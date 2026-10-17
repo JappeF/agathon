@@ -1,7 +1,7 @@
 /**
  * The sparking golden portal behind the logo, the same image as the app icon but
- * alive: the glow breathes, a glint runs counterclockwise round the ring and sparks
- * fly off counterclockwise. CSS-only motion; everything stops under
+ * alive: the glow breathes, a glint runs clockwise round the ring and sparks fly
+ * off clockwise. CSS-only motion; everything stops under
  * prefers-reduced-motion. Spark positions come from a fixed seed so they never jump.
  */
 
@@ -19,9 +19,9 @@ const SPARKS = Array.from({ length: 46 }, () => {
   // like the icon: more of them spray off the right and bottom
   const a = rand() < 0.55 ? lerp(-0.6, 2.2, rand()) : rand() * Math.PI * 2;
   const out = lerp(0.25, 0.75, rand());
-  // counterclockwise tangent on screen (y down) is (sin a, -cos a), plus an outward pull
-  const dx = Math.sin(a) * (1 - out) + Math.cos(a) * out;
-  const dy = -Math.cos(a) * (1 - out) + Math.sin(a) * out;
+  // clockwise tangent on screen (y down) is (-sin a, cos a), plus an outward pull
+  const dx = -Math.sin(a) * (1 - out) + Math.cos(a) * out;
+  const dy = Math.cos(a) * (1 - out) + Math.sin(a) * out;
   const fly = lerp(14, 46, rand());
   const len = lerp(2, 5, rand());
   return {
@@ -44,8 +44,8 @@ export function Portal() {
       <svg viewBox="0 0 200 200" className="portal-svg">
         <defs>
           <radialGradient id="portal-heart" cx="50%" cy="50%" r="50%">
-            <stop offset="0" stopColor="#2e1c52" />
-            <stop offset="0.7" stopColor="#1d1135" />
+            <stop offset="0" stopColor="#1f1340" />
+            <stop offset="0.7" stopColor="#150c2a" />
             <stop offset="1" stopColor="#160c26" stopOpacity="0" />
           </radialGradient>
           <filter id="portal-glow" x="-30%" y="-30%" width="160%" height="160%">

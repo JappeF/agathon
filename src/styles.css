@@ -129,19 +129,19 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .portal-glow { fill: none; stroke: #ff7a12; stroke-width: 14; opacity: 0.4; animation: portal-breathe 5s ease-in-out infinite; }
 .portal-mid { fill: none; stroke: #ffb340; stroke-width: 4.5; opacity: 0.85; }
 .portal-core { fill: none; stroke: #ffe7a3; stroke-width: 1.6; }
-/* a few bright dashes running round the ring counterclockwise */
+/* a few bright dashes running round the ring clockwise */
 .portal-glint { fill: none; stroke: #fffaf0; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 10 46 3 60 18 90 5 40; opacity: 0.9; }
 .portal-glint-spin, .portal-sparks { transform-origin: 100px 100px; }
-.portal-glint-spin { animation: turn-back 9s linear infinite; }
-.portal-sparks { animation: turn-back 70s linear infinite; }
+.portal-glint-spin { animation: turn 9s linear infinite; }
+.portal-sparks { animation: turn 70s linear infinite; }
 .portal-spark { stroke: #ffb340; stroke-linecap: round; opacity: 0.55; animation: spark-fly 2s ease-out infinite; }
 .portal-spark.hot { stroke: #ffe7a3; }
 @keyframes portal-breathe {
   0%, 100% { opacity: 0.32; }
   50% { opacity: 0.55; }
 }
-@keyframes turn-back {
-  to { transform: rotate(-360deg); }
+@keyframes turn {
+  to { transform: rotate(360deg); }
 }
 @keyframes spark-fly {
   0% { transform: translate(0, 0); opacity: 0; }
