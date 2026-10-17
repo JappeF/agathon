@@ -59,6 +59,23 @@ check('mini bar while scrolled', (await page.$('.vitals-fixed .mini-face img')) 
 await page.mouse.wheel(0, -2000);
 await page.waitForSelector('.vitals-fixed', { state: 'detached' });
 
+// regression: with the trackers open, scrolling used to bounce between the two bars
+await page.click('.sheet-title .vitals-bar');
+await page.waitForSelector('.vitals-panel');
+await page.mouse.wheel(0, 700);
+await page.waitForTimeout(500);
+const y1 = await page.evaluate(() => scrollY);
+await page.mouse.wheel(0, 500);
+await page.waitForTimeout(500);
+const y2 = await page.evaluate(() => scrollY);
+check('scrolling works with trackers open', y1 > 300 && y2 > y1, `${y1} -> ${y2}`);
+await page.click('.vitals-fixed .vitals-bar');
+check('mini bar has its own drop-down', (await page.$('.vitals-fixed .vitals-panel')) !== null);
+await page.mouse.wheel(0, -4000);
+await page.waitForSelector('.vitals-fixed', { state: 'detached' });
+await page.click('.sheet-title .vitals-bar');
+await page.waitForSelector('.vitals-panel', { state: 'detached' });
+
 await page.click('.lock');
 await page.setInputFiles('.view.sheet input[accept="image/*"]', 'public/icons/icon-512.png');
 await page.waitForFunction((old) => document.querySelector('.sheet-hero .pp-face img')?.getAttribute('src') !== old, fromPdf);

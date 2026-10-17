@@ -151,6 +151,22 @@ Naam: Agathon (Grieks *to agathon*, "het Goede"). Let op: de lore-claim uit de G
 - Spraakinvoer (Web Speech API) voor spell-ideeen.
 - Extended rolls bijhouden (benodigde successes over meerdere beurten).
 
+## Status (17 okt 2026)
+
+Live op https://agathon.pages.dev, repo `OWNER/agathon` (private).
+
+- **Fase 1, fundament:** klaar.
+- **Fase 2, character:** klaar, inclusief portretten (uit de PDF of zelf gekozen) en delen
+  via bestand, link en QR.
+- **Fase 3, effect-bibliotheek:** klaar. 563 effecten, eerste steekproefronde gedaan;
+  correcties lopen via de bibliotheek-sessie op een eigen branch.
+- **Fase 4, spell-dossiers en context pack:** nog te doen.
+- **Fase 5, officiele M20-sheet:** wacht op een voorbeeld.
+
+Onderweg erbij gekomen: het portaal-icoon en het geanimeerde portaal achter het logo,
+eigen Sphere-symbolen (o.a. een brein voor Mind en een drietand voor Prime), en de
+another app-achtige zijbalk voor de bibliotheek op desktop.
+
 ## Bouwvolgorde (voorstel)
 
 1. **Fundament:** repo, Vite/React/TS-PWA, thema (fonts, kleuren, animaties), auto-update,

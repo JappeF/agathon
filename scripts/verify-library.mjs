@@ -69,7 +69,10 @@ check('unknown operator is just text', (await num()) === 0);
 
 // tags
 await search('');
-await page.click('.tag-bar .tag:has-text("healing")');
+check('tags hidden behind Filters on a phone', !(await page.isVisible('.tag-list')));
+await page.click('.filters-toggle');
+await page.click('.tag-row:has-text("healing")');
+check('nothing runs off a phone screen', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
 check('tag chip', (await page.textContent('.op-chips')).includes('tag healing'));
 const healing = await num();
 check('tag filters', healing > 0 && healing < 400, String(healing));
@@ -123,6 +126,18 @@ await page.click('.effect-card >> nth=0');
 await page.waitForSelector('.detail');
 check('Sphere tip marked ready', /Correspondence 4/.test(await page.textContent('.tips')));
 await page.keyboard.press('Escape');
+
+// desktop: another app-style sticky filter sidebar and a grid of cards
+const desk = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+await desk.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
+await desk.waitForSelector('.effect-card');
+check('desktop sidebar is sticky', (await desk.$eval('.lib-side', (e) => getComputedStyle(e).position)) === 'sticky');
+check('desktop tags visible without a toggle', await desk.isVisible('.tag-list'));
+const cols = await desk.$eval('.effect-list', (e) => getComputedStyle(e).gridTemplateColumns.split(' ').length);
+check('desktop shows cards in columns', cols >= 2, `${cols} columns`);
+check('nothing runs off a desktop screen', await desk.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+await desk.screenshot({ path: 'shots/34-library-desktop.png' });
+await desk.close();
 
 // clean up Saito
 await page.click('.nav-item:has-text("Characters")');

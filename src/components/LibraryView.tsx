@@ -9,6 +9,7 @@ import { go } from '../useHashRoute';
 import { ComboChips } from './ComboChips';
 import { EffectDetail } from './EffectDetail';
 import { SphereGlyph } from './SphereGlyph';
+import { Icon } from './Icon';
 
 const PAGE = 40;
 
@@ -60,6 +61,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
   const [prefs, setPrefs] = useState(loadPrefs);
   const [limit, setLimit] = useState(PAGE);
   const [nearLimit, setNearLimit] = useState(10);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const activeId = getActiveCharacter();
   const character = useLiveQuery(() => (activeId ? db.characters.get(activeId) : undefined), [activeId]);
 
@@ -76,11 +78,12 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
     }
   }, [prefs]);
 
-  const tags = useMemo(() => {
+  const tagCounts = useMemo(() => {
     const count = new Map<string, number>();
     for (const e of effects ?? []) for (const t of e.tags) count.set(t, (count.get(t) ?? 0) + 1);
-    return [...count].sort((a, b) => b[1] - a[1]).map(([t]) => t);
+    return count;
   }, [effects]);
+  const tags = useMemo(() => [...tagCounts.keys()].sort((a, b) => a.localeCompare(b)), [tagCounts]);
 
   const parsed = useMemo(() => {
     const q = parseQuery(query, tags);
@@ -99,14 +102,13 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
     const r = sphereRankInQuery(parsed, s);
     setQuery(setSphereInQuery(query, s, r >= 5 ? 0 : r + 1));
   };
-  const toggleTag = (t: string) => {
-    const has = parsed.tags.some((x) => x.value === t && !x.neg);
-    setQuery(
-      has
-        ? query.replace(new RegExp(`(^|\\s)tag:${t}\\S*`, 'i'), ' ').replace(/\s+/g, ' ').trimStart()
-        : `${query.trim()} tag:${t} `.trimStart(),
-    );
+  /** Add or remove one `field:value` operator in the query text (the query stays the source of truth). */
+  const toggleOp = (field: string, value: string) => {
+    const re = new RegExp(`(^|\\s)${field}:${value}\\S*`, 'i');
+    setQuery(re.test(query) ? query.replace(re, ' ').replace(/\s+/g, ' ').trimStart() : `${query.trim()} ${field}:${value} `.trimStart());
   };
+  const hasOp = (field: string, value: string) => new RegExp(`(^|\\s)${field}:${value}(\\s|$)`, 'i').test(query);
+  const toggleTag = (t: string) => toggleOp('tag', t);
 
   const list = (items: Hit[]) => (
     <ul className="effect-list">
@@ -124,119 +126,159 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
     </ul>
   );
 
+  const tagCount = (t: string) => tagCounts.get(t) ?? 0;
+  const activeFilters = parsed.tags.length + parsed.kinds.length + parsed.books.length;
+
   return (
     <section className="view library">
-      <h2 className="view-title">Library</h2>
-      <input
-        className="text-input search-input"
-        type="search"
-        value={query}
-        placeholder="portal, mind:3 forces:2, tag:healing"
-        aria-label="Search effects"
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <div className="lib-layout">
+        <div className="lib-search">
+          <h2 className="view-title">Library</h2>
+          <input
+            className="text-input search-input"
+            type="search"
+            value={query}
+            placeholder="portal, mind:3 forces:2, tag:healing"
+            aria-label="Search effects"
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          {parsed.chips.length > 0 && (
+            <p className="op-chips">
+              {parsed.chips.map((c, i) => (
+                <span key={i} className={`op-chip${c.neg ? ' neg' : ''}${c.ok ? '' : ' bad'}`} title={c.ok ? undefined : 'Not recognised'}>
+                  {c.label}
+                </span>
+              ))}
+            </p>
+          )}
+        </div>
 
-      <div className="sphere-bar" role="group" aria-label="Sphere ranks">
-        {SPHERES.map((s) => {
-          const r = sphereRankInQuery(parsed, s);
-          return (
-            <button
-              key={s}
-              type="button"
-              className={`sphere-btn${r ? ' on' : ''}`}
-              aria-label={`${s}${r ? ` up to ${r}` : ''}`}
-              title={s}
-              onClick={() => cycleSphere(s)}
-            >
-              <SphereGlyph sphere={s} size={20} />
-              <span className="sphere-btn-rank">{r || ''}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="lib-toggles">
-        {character && (
-          <label className="check">
-            <input type="checkbox" checked={prefs.castable} onChange={(e) => setPrefs({ ...prefs, castable: e.target.checked })} />
-            What {character.name} can cast
-          </label>
-        )}
-        {parsed.spheres.some((o) => !o.neg) && (
-          <label className="check">
-            <input type="checkbox" checked={prefs.others} onChange={(e) => setPrefs({ ...prefs, others: e.target.checked })} />
-            Allow other Spheres too
-          </label>
-        )}
-      </div>
-
-      <div className="tag-bar">
-        {tags.map((t) => (
-          <button
-            key={t}
-            type="button"
-            className={`tag${parsed.tags.some((x) => x.value === t && !x.neg) ? ' on' : ''}`}
-            onClick={() => toggleTag(t)}
-          >
-            {t}
-          </button>
-        ))}
-      </div>
-
-      {parsed.chips.length > 0 && (
-        <p className="op-chips">
-          {parsed.chips.map((c, i) => (
-            <span key={i} className={`op-chip${c.neg ? ' neg' : ''}${c.ok ? '' : ' bad'}`} title={c.ok ? undefined : 'Not recognised'}>
-              {c.label}
-            </span>
-          ))}
-        </p>
-      )}
-
-      {!effects ? (
-        <p className="empty">Opening the library...</p>
-      ) : (
-        <>
-          <p className="results-count">
-            {castable
-              ? `${ready.length} ${character!.name} can cast, ${near.length} one dot away`
-              : `${hits.length} of ${effects.length} effects`}
-            {parsed.spheres.some((o) => !o.neg) && !prefs.others && ' (exactly these Spheres)'}
-          </p>
-          {hits.length === 0 && <p className="empty">Nothing matches. Try fewer words, or allow other Spheres.</p>}
-          {castable ? (
-            <>
-              {list(ready.slice(0, limit))}
-              {ready.length > limit && (
-                <button type="button" className="btn load-more" onClick={() => setLimit(limit + PAGE)}>
-                  Show more
+        <aside className="lib-side" aria-label="Filters">
+          <h3 className="side-title">Spheres</h3>
+          <div className="sphere-bar" role="group" aria-label="Sphere ranks">
+            {SPHERES.map((s) => {
+              const r = sphereRankInQuery(parsed, s);
+              return (
+                <button
+                  key={s}
+                  type="button"
+                  className={`sphere-btn${r ? ' on' : ''}`}
+                  aria-label={`${s}${r ? ` up to ${r}` : ''}`}
+                  title={s}
+                  onClick={() => cycleSphere(s)}
+                >
+                  <SphereGlyph sphere={s} size={20} />
+                  <span className="sphere-btn-name">{s === 'Correspondence' ? 'Corresp.' : s}</span>
+                  <span className="sphere-btn-rank">{r || ''}</span>
                 </button>
-              )}
-              {near.length > 0 && (
+              );
+            })}
+          </div>
+
+          <div className="lib-toggles">
+            {character && (
+              <label className="check">
+                <input type="checkbox" checked={prefs.castable} onChange={(e) => setPrefs({ ...prefs, castable: e.target.checked })} />
+                What {character.name} can cast
+              </label>
+            )}
+            {parsed.spheres.some((o) => !o.neg) && (
+              <label className="check">
+                <input type="checkbox" checked={prefs.others} onChange={(e) => setPrefs({ ...prefs, others: e.target.checked })} />
+                Allow other Spheres too
+              </label>
+            )}
+          </div>
+
+          <button
+            type="button"
+            className={`btn btn-small filters-toggle${activeFilters ? ' has-active' : ''}`}
+            aria-expanded={filtersOpen}
+            onClick={() => setFiltersOpen(!filtersOpen)}
+          >
+            Filters{activeFilters ? ` (${activeFilters})` : ''} <Icon name={filtersOpen ? 'up' : 'down'} size={14} />
+          </button>
+          <div className={`lib-filters${filtersOpen ? ' open' : ''}`}>
+            <h3 className="side-title">Kind</h3>
+            <div className="chip-row">
+              {(['feat', 'rote', 'rank'] as const).map((k) => (
+                <button key={k} type="button" className={`tag${hasOp('kind', k) ? ' on' : ''}`} onClick={() => toggleOp('kind', k)}>
+                  {k === 'feat' ? 'Effects' : k === 'rote' ? 'Rotes' : 'Sphere ranks'}
+                </button>
+              ))}
+            </div>
+            <h3 className="side-title">Book</h3>
+            <div className="chip-row">
+              {(['m20', 'hdydt'] as const).map((b) => (
+                <button key={b} type="button" className={`tag${hasOp('book', b) ? ' on' : ''}`} onClick={() => toggleOp('book', b)}>
+                  {b === 'm20' ? 'Mage 20' : 'How Do You DO That?'}
+                </button>
+              ))}
+            </div>
+            <h3 className="side-title">Tags</h3>
+            <ul className="tag-list">
+              {tags.map((t) => {
+                const on = parsed.tags.some((x) => x.value === t && !x.neg);
+                return (
+                  <li key={t}>
+                    <button type="button" className={`tag-row${on ? ' on' : ''}`} aria-pressed={on} onClick={() => toggleTag(t)}>
+                      <span>{t}</span>
+                      <span className="tag-count">{tagCount(t)}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </aside>
+
+        <div className="lib-results">
+          {!effects ? (
+            <p className="empty">Opening the library...</p>
+          ) : (
+            <>
+              <p className="results-count">
+                {castable
+                  ? `${ready.length} ${character!.name} can cast, ${near.length} one dot away`
+                  : `${hits.length} of ${effects.length} effects`}
+                {parsed.spheres.some((o) => !o.neg) && !prefs.others && ' (exactly these Spheres)'}
+              </p>
+              {hits.length === 0 && <p className="empty">Nothing matches. Try fewer words, or allow other Spheres.</p>}
+              {castable ? (
                 <>
-                  <h3 className="block-title near-title">One dot away</h3>
-                  <p className="empty-small">Effects {character!.name} could cast with one more dot. The missing Sphere is marked.</p>
-                  {list(near.slice(0, nearLimit))}
-                  {near.length > nearLimit && (
-                    <button type="button" className="btn load-more" onClick={() => setNearLimit(nearLimit + PAGE)}>
+                  {list(ready.slice(0, limit))}
+                  {ready.length > limit && (
+                    <button type="button" className="btn load-more" onClick={() => setLimit(limit + PAGE)}>
+                      Show more
+                    </button>
+                  )}
+                  {near.length > 0 && (
+                    <>
+                      <h3 className="block-title near-title">One dot away</h3>
+                      <p className="empty-small">Effects {character!.name} could cast with one more dot. The missing Sphere is marked.</p>
+                      {list(near.slice(0, nearLimit))}
+                      {near.length > nearLimit && (
+                        <button type="button" className="btn load-more" onClick={() => setNearLimit(nearLimit + PAGE)}>
+                          Show more
+                        </button>
+                      )}
+                    </>
+                  )}
+                </>
+              ) : (
+                <>
+                  {list(hits.slice(0, limit))}
+                  {hits.length > limit && (
+                    <button type="button" className="btn load-more" onClick={() => setLimit(limit + PAGE)}>
                       Show more
                     </button>
                   )}
                 </>
               )}
             </>
-          ) : (
-            <>
-              {list(hits.slice(0, limit))}
-              {hits.length > limit && (
-                <button type="button" className="btn load-more" onClick={() => setLimit(limit + PAGE)}>
-                  Show more
-                </button>
-              )}
-            </>
           )}
-        </>
-      )}
+        </div>
+      </div>
 
       {selected && (
         <EffectDetail

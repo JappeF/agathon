@@ -3,6 +3,7 @@ import qrcode from 'qrcode-generator';
 import type { Character } from '../character';
 import { download } from '../sheetActions';
 import { buildPayload, encodeShare, payloadFileName, shareUrl } from '../share';
+import { shrinkPortrait } from '../portrait';
 import { Modal } from './Modal';
 
 /** Largest link we put in a QR code; beyond this phones struggle to scan it. */
@@ -15,6 +16,8 @@ const QR_MAX = 2200;
 export function ShareDialog({ characters, title, onClose }: { characters: Character[]; title: string; onClose: () => void }) {
   const [includeNotes, setIncludeNotes] = useState(characters.length > 1);
   const [url, setUrl] = useState('');
+  // the QR code holds ~2 KB, so it gets its own link without the portrait
+  const [qrUrl, setQrUrl] = useState('');
   const [copied, setCopied] = useState(false);
   const [qr, setQr] = useState<string | null>(null);
   const hasNotes = characters.some((c) => c.notes.trim());
@@ -22,8 +25,25 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
   useEffect(() => {
     let live = true;
     setQr(null);
-    // links and QR codes stay small: no portrait (the file carries it)
-    encodeShare(buildPayload(characters, includeNotes, false)).then((enc) => live && setUrl(shareUrl(enc)));
+    (async () => {
+      const bare = buildPayload(characters, includeNotes, false);
+      const qr = shareUrl(await encodeShare(bare));
+      // links carry a small copy of the portrait; the file has the full one
+      const withThumb = {
+        ...bare,
+        characters: await Promise.all(
+          bare.characters.map(async (sc, i) => {
+            const p = characters[i].portrait;
+            return p ? { ...sc, portrait: await shrinkPortrait(p).catch(() => undefined) } : sc;
+          }),
+        ),
+      };
+      const link = shareUrl(await encodeShare(withThumb));
+      if (live) {
+        setQrUrl(qr);
+        setUrl(link);
+      }
+    })();
     return () => {
       live = false;
     };
@@ -53,8 +73,8 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
   };
 
   const showQr = () => {
-    const code = qrcode(0, url.length > 1500 ? 'L' : 'M');
-    code.addData(url);
+    const code = qrcode(0, qrUrl.length > 1500 ? 'L' : 'M');
+    code.addData(qrUrl);
     code.make();
     setQr(code.createSvgTag({ cellSize: 4, margin: 3, scalable: true }));
   };
@@ -67,7 +87,8 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
         {characters.length === 1
           ? 'Whoever opens it gets their own copy. Their changes never reach yours.'
           : `A backup of all ${characters.length} characters. Importing it adds them, nothing gets overwritten.`}{' '}
-        The stored PDF sheet is not included{characters.some((c) => c.portrait) ? ', and links leave out the portrait (the file has it)' : ''}.
+        The stored PDF sheet is not included.
+        {characters.some((c) => c.portrait) && characters.length === 1 && ' Links carry a small copy of the portrait; QR codes leave it out.'}
       </p>
       {hasNotes && (
         <label className="check">
@@ -89,7 +110,7 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
             <button className="btn" onClick={copy} disabled={!url}>
               {copied ? 'Link copied' : 'Copy link'}
             </button>
-            {url.length <= QR_MAX && (
+            {qrUrl.length <= QR_MAX && (
               <button className="btn" onClick={showQr} disabled={!url}>
                 Show QR code
               </button>
@@ -97,7 +118,7 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
           </>
         )}
       </div>
-      {characters.length === 1 && url.length > QR_MAX && (
+      {characters.length === 1 && qrUrl.length > QR_MAX && (
         <p className="empty-small">This character is too big for a QR code. Use the link or the file.</p>
       )}
       {qr && <div className="qr" role="img" aria-label="QR code with the share link" dangerouslySetInnerHTML={{ __html: qr }} />}

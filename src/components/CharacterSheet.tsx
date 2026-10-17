@@ -104,13 +104,21 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [sharing, setSharing] = useState(false);
   const [zoom, setZoom] = useState(false);
+  // the mini bar has its own drop-down, so opening it never changes the page height
+  const [miniOpen, setMiniOpen] = useState(false);
   // the pills sit beside the portrait; once that scrolls away a fixed mini bar takes over
   const [heroGone, setHeroGone] = useState(false);
   const heroObserver = useRef<IntersectionObserver | null>(null);
   const heroRef = (el: HTMLDivElement | null) => {
     heroObserver.current?.disconnect();
     if (!el) return;
-    heroObserver.current = new IntersectionObserver(([e]) => setHeroGone(!e.isIntersecting), { rootMargin: '-60px 0px 0px 0px' });
+    heroObserver.current = new IntersectionObserver(
+      ([e]) => {
+        setHeroGone(!e.isIntersecting);
+        if (e.isIntersecting) setMiniOpen(false);
+      },
+      { rootMargin: '-60px 0px 0px 0px' },
+    );
     heroObserver.current.observe(el);
   };
   const blankInput = useRef<HTMLInputElement>(null);
@@ -145,8 +153,8 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   let worst = -1;
   c.health.forEach((m, i) => m && (worst = i));
 
-  const pills = (
-    <button type="button" className="vitals-bar" aria-expanded={vitalsOpen} onClick={() => setVitalsOpen(!vitalsOpen)}>
+  const pills = (open: boolean, toggle: () => void) => (
+    <button type="button" className="vitals-bar" aria-expanded={open} onClick={toggle}>
       <span className={`chip${worst >= 3 ? ' bad' : ''}`}>
         {worst < 0 ? 'Unhurt' : `${HEALTH_LEVELS[worst].name}${HEALTH_LEVELS[worst].penalty ? ` ${HEALTH_LEVELS[worst].penalty}` : ''}`}
       </span>
@@ -156,7 +164,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       <span className="chip q">Q {c.quintessence}</span>
       <span className="chip p">P {c.paradox}</span>
       <span className="vitals-toggle" aria-hidden="true">
-        <Icon name={vitalsOpen ? 'up' : 'down'} size={16} />
+        <Icon name={open ? 'up' : 'down'} size={16} />
       </span>
     </button>
   );
@@ -240,19 +248,19 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             <h2 className="sheet-name">{c.name}</h2>
           )}
           <p className="sheet-sub">{[c.concept, c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</p>
-          {!heroGone && pills}
+          {pills(vitalsOpen, () => setVitalsOpen(!vitalsOpen))}
         </div>
       </div>
-      {!heroGone && vitalsOpen && panel}
+      {vitalsOpen && panel}
       {heroGone && (
         <div className="vitals-fixed">
           <div className="vitals-fixed-inner">
             <span className="mini-face" aria-hidden="true">
               {c.portrait ? <img src={c.portrait} alt="" /> : c.name.slice(0, 1)}
             </span>
-            {pills}
+            {pills(miniOpen, () => setMiniOpen(!miniOpen))}
           </div>
-          {vitalsOpen && panel}
+          {miniOpen && panel}
         </div>
       )}
       <input

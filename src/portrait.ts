@@ -61,6 +61,20 @@ export async function portraitFromPdf(bytes: ArrayBuffer): Promise<Blob | null> 
   return best.data ? new Blob([best.data as BlobPart], { type: 'image/jpeg' }) : null;
 }
 
+/** A small copy of a portrait for share links (a few KB instead of tens). */
+export async function shrinkPortrait(dataUrl: string, size = 128): Promise<string> {
+  const img = new Image();
+  img.src = dataUrl;
+  await img.decode();
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d')!;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(img, 0, 0, size, size);
+  const webp = canvas.toDataURL('image/webp', 0.7);
+  return webp.startsWith('data:image/webp') ? webp : canvas.toDataURL('image/jpeg', 0.7);
+}
+
 /** A portrait from outside (a shared file) is only accepted as a small image data URL. */
 export function safePortrait(v: unknown): string | undefined {
   return typeof v === 'string' && v.length < 400_000 && /^data:image\/(webp|jpeg|png);base64,[A-Za-z0-9+/=]+$/.test(v) ? v : undefined;

@@ -1,0 +1,20 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run preview &
+      - run: npx wait-on http://localhost:4173
+      # the sheet and library checks need a filled PDF sheet that is not in the repo
+      - run: node scripts/verify.mjs
+      - run: node scripts/verify-share.mjs
