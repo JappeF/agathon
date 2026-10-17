@@ -1,5 +1,6 @@
 import { SphereRing } from './components/SphereRing';
 import { CharactersView } from './components/CharactersView';
+import { CharacterSheet } from './components/CharacterSheet';
 import { useHashRoute, type View } from './useHashRoute';
 
 const NAV: { view: View; label: string; icon: JSX.Element }[] = [
@@ -35,7 +36,7 @@ function Placeholder({ title, children }: { title: string; children: React.React
 }
 
 export default function App() {
-  const view = useHashRoute();
+  const { view, parts } = useHashRoute();
 
   return (
     <>
@@ -73,7 +74,7 @@ export default function App() {
             Your spell ideas, their versions and how they went at the table. Coming soon.
           </Placeholder>
         )}
-        {view === 'characters' && <CharactersView />}
+        {view === 'characters' && (parts[0] ? <CharacterSheet id={parts[0]} tab={parts[1]} /> : <CharactersView />)}
       </main>
     </>
   );

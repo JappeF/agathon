@@ -3,18 +3,29 @@ import { useEffect, useState } from 'react';
 export const VIEWS = ['library', 'spells', 'characters'] as const;
 export type View = (typeof VIEWS)[number];
 
-const parse = (): View => {
-  const head = location.hash.replace(/^#\/?/, '').split('/')[0];
-  return (VIEWS as readonly string[]).includes(head) ? (head as View) : 'library';
+export interface Route {
+  view: View;
+  /** Path segments after the view, e.g. ['<character id>', 'traits']. */
+  parts: string[];
+}
+
+const parse = (): Route => {
+  const [head, ...parts] = location.hash.replace(/^#\/?/, '').split('/').map(decodeURIComponent);
+  const view = (VIEWS as readonly string[]).includes(head) ? (head as View) : 'library';
+  return { view, parts: parts.filter(Boolean) };
 };
 
-/** Top-level view from the URL hash (#/library, #/spells, #/characters), so back and links work. */
-export function useHashRoute(): View {
-  const [view, setView] = useState<View>(parse);
+/** Route from the URL hash (#/characters/<id>/<tab>), so back and links work. */
+export function useHashRoute(): Route {
+  const [route, setRoute] = useState<Route>(parse);
   useEffect(() => {
-    const on = () => setView(parse());
+    const on = () => setRoute(parse());
     window.addEventListener('hashchange', on);
     return () => window.removeEventListener('hashchange', on);
   }, []);
-  return view;
+  return route;
 }
+
+export const go = (...segments: string[]) => {
+  location.hash = '#/' + segments.map(encodeURIComponent).join('/');
+};

@@ -10,7 +10,7 @@ await sharp(svg, { density: 300 }).resize(512, 512).png().toFile('public/icons/i
 // maskable: same art with extra safe-zone padding
 const padded = await sharp(svg, { density: 300 }).resize(400, 400).png().toBuffer();
 await sharp({
-  create: { width: 512, height: 512, channels: 4, background: '#1a1027' },
+  create: { width: 512, height: 512, channels: 4, background: '#120a1d' },
 })
   .composite([{ input: padded, top: 56, left: 56 }])
   .png()

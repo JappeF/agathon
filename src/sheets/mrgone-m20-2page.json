@@ -1,0 +1,1014 @@
+{
+ "id": "mrgone-m20-2page",
+ "title": "Mr. Gone's M20 2-page interactive sheet",
+ "fieldCount": 625,
+ "text": {
+  "name": "name",
+  "player": "player",
+  "chronicle": "chronicle",
+  "nature": "nature",
+  "demeanor": "demeanor",
+  "essence": "essence",
+  "affiliation": "affiliation",
+  "sect": "sect",
+  "concept": "concept",
+  "experience": "experience"
+ },
+ "traits": {
+  "Strength": {
+   "dots": [
+    "dot1",
+    "dot2",
+    "dot3",
+    "dot4",
+    "dot5"
+   ],
+   "specialty": "attributes1"
+  },
+  "Charisma": {
+   "dots": [
+    "dot25",
+    "dot26",
+    "dot27",
+    "dot28",
+    "dot29"
+   ],
+   "specialty": "attributes4"
+  },
+  "Perception": {
+   "dots": [
+    "dot49",
+    "dot50",
+    "dot51",
+    "dot52",
+    "dot53"
+   ],
+   "specialty": "attributes7"
+  },
+  "Dexterity": {
+   "dots": [
+    "dot9",
+    "dot10",
+    "dot11",
+    "dot12",
+    "dot13"
+   ],
+   "specialty": "attributes2"
+  },
+  "Manipulation": {
+   "dots": [
+    "dot33",
+    "dot34",
+    "dot35",
+    "dot36",
+    "dot37"
+   ],
+   "specialty": "attributes5"
+  },
+  "Intelligence": {
+   "dots": [
+    "dot57",
+    "dot58",
+    "dot59",
+    "dot60",
+    "dot61"
+   ],
+   "specialty": "attributes8"
+  },
+  "Stamina": {
+   "dots": [
+    "dot17",
+    "dot18",
+    "dot19",
+    "dot20",
+    "dot21"
+   ],
+   "specialty": "attributes3"
+  },
+  "Appearance": {
+   "dots": [
+    "dot41",
+    "dot42",
+    "dot43",
+    "dot44",
+    "dot45"
+   ],
+   "specialty": "attributes6"
+  },
+  "Wits": {
+   "dots": [
+    "dot65",
+    "dot66",
+    "dot67",
+    "dot68",
+    "dot69"
+   ],
+   "specialty": "attributes9"
+  },
+  "Alertness": {
+   "dots": [
+    "dot73",
+    "dot74",
+    "dot75",
+    "dot76",
+    "dot77"
+   ],
+   "specialty": "skills1"
+  },
+  "Crafts": {
+   "dots": [
+    "dot177",
+    "dot178",
+    "dot179",
+    "dot180",
+    "dot181"
+   ],
+   "specialty": "skills12"
+  },
+  "Academics": {
+   "dots": [
+    "dot281",
+    "dot282",
+    "dot283",
+    "dot284",
+    "dot285"
+   ],
+   "specialty": "skills23"
+  },
+  "Art": {
+   "dots": [
+    "dot81",
+    "dot82",
+    "dot83",
+    "dot84",
+    "dot85"
+   ],
+   "specialty": "skills2"
+  },
+  "Drive": {
+   "dots": [
+    "dot185",
+    "dot186",
+    "dot187",
+    "dot188",
+    "dot189"
+   ],
+   "specialty": "skills13"
+  },
+  "Computer": {
+   "dots": [
+    "dot289",
+    "dot290",
+    "dot291",
+    "dot292",
+    "dot293"
+   ],
+   "specialty": "skills24"
+  },
+  "Athletics": {
+   "dots": [
+    "dot89",
+    "dot90",
+    "dot91",
+    "dot92",
+    "dot93"
+   ],
+   "specialty": "skills3"
+  },
+  "Etiquette": {
+   "dots": [
+    "dot193",
+    "dot194",
+    "dot195",
+    "dot196",
+    "dot197"
+   ],
+   "specialty": "skills14"
+  },
+  "Cosmology": {
+   "dots": [
+    "dot329",
+    "dot330",
+    "dot331",
+    "dot332",
+    "dot333"
+   ],
+   "specialty": "skills25"
+  },
+  "Awareness": {
+   "dots": [
+    "dot97",
+    "dot98",
+    "dot99",
+    "dot100",
+    "dot101"
+   ],
+   "specialty": "skills4"
+  },
+  "Firearms": {
+   "dots": [
+    "dot201",
+    "dot202",
+    "dot203",
+    "dot204",
+    "dot205"
+   ],
+   "specialty": "skills15"
+  },
+  "Enigmas": {
+   "dots": [
+    "dot337",
+    "dot338",
+    "dot339",
+    "dot340",
+    "dot341"
+   ],
+   "specialty": "skills26"
+  },
+  "Brawl": {
+   "dots": [
+    "dot105",
+    "dot106",
+    "dot107",
+    "dot108",
+    "dot109"
+   ],
+   "specialty": "skills5"
+  },
+  "Martial Arts": {
+   "dots": [
+    "dot209",
+    "dot210",
+    "dot211",
+    "dot212",
+    "dot213"
+   ],
+   "specialty": "skills16"
+  },
+  "Esoterica": {
+   "dots": [
+    "dot345",
+    "dot346",
+    "dot347",
+    "dot348",
+    "dot349"
+   ],
+   "specialty": "skills27"
+  },
+  "Empathy": {
+   "dots": [
+    "dot113",
+    "dot114",
+    "dot115",
+    "dot116",
+    "dot117"
+   ],
+   "specialty": "skills6"
+  },
+  "Meditation": {
+   "dots": [
+    "dot233",
+    "dot234",
+    "dot235",
+    "dot236",
+    "dot237"
+   ],
+   "specialty": "skills17"
+  },
+  "Investigation": {
+   "dots": [
+    "xdot1",
+    "xdot2",
+    "xdot3",
+    "xdot4",
+    "xdot5"
+   ],
+   "specialty": "skills28"
+  },
+  "Expression": {
+   "dots": [
+    "dot121",
+    "dot122",
+    "dot123",
+    "dot124",
+    "dot125"
+   ],
+   "specialty": "skills7"
+  },
+  "Melee": {
+   "dots": [
+    "dot241",
+    "dot242",
+    "dot243",
+    "dot244",
+    "dot245"
+   ],
+   "specialty": "skills18"
+  },
+  "Law": {
+   "dots": [
+    "xdot11",
+    "xdot12",
+    "xdot13",
+    "xdot14",
+    "xdot15"
+   ],
+   "specialty": "skills29"
+  },
+  "Intimidation": {
+   "dots": [
+    "dot129",
+    "dot130",
+    "dot131",
+    "dot132",
+    "dot133"
+   ],
+   "specialty": "skills8"
+  },
+  "Research": {
+   "dots": [
+    "dot249",
+    "dot250",
+    "dot251",
+    "dot252",
+    "dot253"
+   ],
+   "specialty": "skills19"
+  },
+  "Medicine": {
+   "dots": [
+    "xdot16",
+    "xdot17",
+    "xdot18",
+    "xdot19",
+    "xdot20"
+   ],
+   "specialty": "skills30"
+  },
+  "Leadership": {
+   "dots": [
+    "dot153",
+    "dot154",
+    "dot155",
+    "dot156",
+    "dot157"
+   ],
+   "specialty": "skills9"
+  },
+  "Stealth": {
+   "dots": [
+    "dot257",
+    "dot258",
+    "dot259",
+    "dot260",
+    "dot261"
+   ],
+   "specialty": "skills20"
+  },
+  "Occult": {
+   "dots": [
+    "xdotm1",
+    "xdotm2",
+    "xdotm3",
+    "xdotm4",
+    "xdotm5"
+   ],
+   "specialty": "skills31"
+  },
+  "Streetwise": {
+   "dots": [
+    "dot161",
+    "dot162",
+    "dot163",
+    "dot164",
+    "dot165"
+   ],
+   "specialty": "skills10"
+  },
+  "Survival": {
+   "dots": [
+    "dot265",
+    "dot266",
+    "dot267",
+    "dot268",
+    "dot269"
+   ],
+   "specialty": "skills21"
+  },
+  "Politics": {
+   "dots": [
+    "xdotm6",
+    "xdotm7",
+    "xdotm8",
+    "xdotm9",
+    "xdotm10"
+   ],
+   "specialty": "skills32"
+  },
+  "Subterfuge": {
+   "dots": [
+    "dot169",
+    "dot170",
+    "dot171",
+    "dot172",
+    "dot173"
+   ],
+   "specialty": "skills11"
+  },
+  "Technology": {
+   "dots": [
+    "dot273",
+    "dot274",
+    "dot275",
+    "dot276",
+    "dot277"
+   ],
+   "specialty": "skills22"
+  },
+  "Science": {
+   "dots": [
+    "xdotm11",
+    "xdotm12",
+    "xdotm13",
+    "xdotm14",
+    "xdotm15"
+   ],
+   "specialty": "skills33"
+  },
+  "Correspondence": {
+   "dots": [
+    "sdot1",
+    "sdot2",
+    "sdot3",
+    "sdot4",
+    "sdot5"
+   ],
+   "specialty": "spheres1"
+  },
+  "Life": {
+   "dots": [
+    "sdot16",
+    "sdot17",
+    "sdot18",
+    "sdot19",
+    "sdot20"
+   ],
+   "specialty": "spheres4"
+  },
+  "Prime": {
+   "dots": [
+    "sdot31",
+    "sdot32",
+    "sdot33",
+    "sdot34",
+    "sdot35"
+   ],
+   "specialty": "spheres7"
+  },
+  "Entropy": {
+   "dots": [
+    "sdot6",
+    "sdot7",
+    "sdot8",
+    "sdot9",
+    "sdot10"
+   ],
+   "specialty": "spheres2"
+  },
+  "Matter": {
+   "dots": [
+    "sdot21",
+    "sdot22",
+    "sdot23",
+    "sdot24",
+    "sdot25"
+   ],
+   "specialty": "spheres5"
+  },
+  "Spirit": {
+   "dots": [
+    "sdot36",
+    "sdot37",
+    "sdot38",
+    "sdot39",
+    "sdot40"
+   ],
+   "specialty": "spheres8"
+  },
+  "Forces": {
+   "dots": [
+    "sdot11",
+    "sdot12",
+    "sdot13",
+    "sdot14",
+    "sdot15"
+   ],
+   "specialty": "spheres3"
+  },
+  "Mind": {
+   "dots": [
+    "sdot26",
+    "sdot27",
+    "sdot28",
+    "sdot29",
+    "sdot30"
+   ],
+   "specialty": "spheres6"
+  },
+  "Time": {
+   "dots": [
+    "sdot41",
+    "sdot42",
+    "sdot43",
+    "sdot44",
+    "sdot45"
+   ],
+   "specialty": "spheres9"
+  }
+ },
+ "arete": [
+  "bpdot1",
+  "bpdot2",
+  "bpdot3",
+  "bpdot4",
+  "bpdot5",
+  "bpdot6",
+  "bpdot7",
+  "bpdot8",
+  "bpdot9",
+  "bpdot10"
+ ],
+ "willpower": [
+  "willdot1",
+  "willdot2",
+  "willdot3",
+  "willdot4",
+  "willdot5",
+  "willdot6",
+  "willdot7",
+  "willdot8",
+  "willdot9",
+  "willdot10"
+ ],
+ "willpowerSpent": [
+  "check1b",
+  "check2b",
+  "check3b",
+  "check4b",
+  "check5b",
+  "check6b",
+  "check7b",
+  "check8b",
+  "check9b",
+  "check10b"
+ ],
+ "wheel": [
+  "qpcheck1",
+  "qpcheck2",
+  "qpcheck3",
+  "qpcheck4",
+  "qpcheck5",
+  "qpcheck6",
+  "qpcheck7",
+  "qpcheck8",
+  "qpcheck9",
+  "qpcheck10",
+  "qpcheck11",
+  "qpcheck12",
+  "qpcheck13",
+  "qpcheck14",
+  "qpcheck15",
+  "qpcheck16",
+  "qpcheck17",
+  "qpcheck18",
+  "qpcheck19",
+  "qpcheck20"
+ ],
+ "health": [
+  "health1",
+  "health2",
+  "health3",
+  "health4",
+  "health5",
+  "health6",
+  "health7"
+ ],
+ "backgrounds": [
+  {
+   "name": "backgrounds1",
+   "dots": [
+    "xdotm16",
+    "xdotm17",
+    "xdotm18",
+    "xdotm19",
+    "xdotm20"
+   ]
+  },
+  {
+   "name": "backgrounds2",
+   "dots": [
+    "dot137",
+    "dot138",
+    "dot139",
+    "dot140",
+    "dot141"
+   ]
+  },
+  {
+   "name": "backgrounds3",
+   "dots": [
+    "dot145",
+    "dot146",
+    "dot147",
+    "dot148",
+    "dot149"
+   ]
+  },
+  {
+   "name": "backgrounds4",
+   "dots": [
+    "dot217",
+    "dot218",
+    "dot219",
+    "dot220",
+    "dot221"
+   ]
+  },
+  {
+   "name": "backgrounds5",
+   "dots": [
+    "dot225",
+    "dot226",
+    "dot227",
+    "dot228",
+    "dot229"
+   ]
+  },
+  {
+   "name": "backgrounds6",
+   "dots": [
+    "dot297",
+    "dot298",
+    "dot299",
+    "dot300",
+    "dot301"
+   ]
+  }
+ ],
+ "otherTraits": [
+  {
+   "name": "othertraits1",
+   "dots": [
+    "dot305",
+    "dot306",
+    "dot307",
+    "dot308",
+    "dot309"
+   ]
+  },
+  {
+   "name": "othertraits2",
+   "dots": [
+    "dot393",
+    "dot394",
+    "dot395",
+    "dot396",
+    "dot397"
+   ]
+  },
+  {
+   "name": "othertraits3",
+   "dots": [
+    "dot401",
+    "dot402",
+    "dot403",
+    "dot404",
+    "dot405"
+   ]
+  },
+  {
+   "name": "othertraits4",
+   "dots": [
+    "dot313",
+    "dot314",
+    "dot315",
+    "dot316",
+    "dot317"
+   ]
+  },
+  {
+   "name": "othertraits5",
+   "dots": [
+    "dot321",
+    "dot322",
+    "dot323",
+    "dot324",
+    "dot325"
+   ]
+  },
+  {
+   "name": "othertraits6",
+   "dots": [
+    "OTdot1",
+    "OTdot2",
+    "OTdot3",
+    "OTdot4",
+    "OTdot5"
+   ]
+  },
+  {
+   "name": "othertraits7",
+   "dots": [
+    "OTdot6",
+    "OTdot7",
+    "OTdot8",
+    "OTdot9",
+    "OTdot10"
+   ]
+  },
+  {
+   "name": "othertraits8",
+   "dots": [
+    "dot497",
+    "dot498",
+    "dot499",
+    "dot500",
+    "dot501"
+   ]
+  },
+  {
+   "name": "othertraits9",
+   "dots": [
+    "dot505",
+    "dot506",
+    "dot507",
+    "dot508",
+    "dot509"
+   ]
+  },
+  {
+   "name": "othertraits10",
+   "dots": [
+    "dot513",
+    "dot514",
+    "dot515",
+    "dot516",
+    "dot517"
+   ]
+  },
+  {
+   "name": "othertraits11",
+   "dots": [
+    "dot521",
+    "dot522",
+    "dot523",
+    "dot524",
+    "dot525"
+   ]
+  },
+  {
+   "name": "othertraits12",
+   "dots": [
+    "dot529",
+    "dot530",
+    "dot531",
+    "dot532",
+    "dot533"
+   ]
+  },
+  {
+   "name": "othertraits13",
+   "dots": [
+    "dot537",
+    "dot538",
+    "dot539",
+    "dot540",
+    "dot541"
+   ]
+  },
+  {
+   "name": "othertraits14",
+   "dots": [
+    "dot545",
+    "dot546",
+    "dot547",
+    "dot548",
+    "dot549"
+   ]
+  },
+  {
+   "name": "othertraits15",
+   "dots": [
+    "dot553",
+    "dot554",
+    "dot555",
+    "dot556",
+    "dot557"
+   ]
+  },
+  {
+   "name": "othertraits16",
+   "dots": [
+    "dot561",
+    "dot562",
+    "dot563",
+    "dot564",
+    "dot566"
+   ]
+  }
+ ],
+ "merits": [
+  {
+   "name": "Merit1",
+   "cost": "cost1"
+  },
+  {
+   "name": "Merit2",
+   "cost": "cost2"
+  },
+  {
+   "name": "Merit3",
+   "cost": "cost3"
+  },
+  {
+   "name": "Merit4",
+   "cost": "cost4"
+  },
+  {
+   "name": "Merit5",
+   "cost": "cost5"
+  },
+  {
+   "name": "Merit6",
+   "cost": "cost6"
+  },
+  {
+   "name": "Merit7",
+   "cost": "cost7"
+  }
+ ],
+ "flaws": [
+  {
+   "name": "flaw1",
+   "cost": "cost8"
+  },
+  {
+   "name": "flaw2",
+   "cost": "cost9"
+  },
+  {
+   "name": "flaw3",
+   "cost": "cost10"
+  },
+  {
+   "name": "flaw4",
+   "cost": "cost11"
+  },
+  {
+   "name": "flaw5",
+   "cost": "cost12"
+  },
+  {
+   "name": "flaw6",
+   "cost": "cost13"
+  },
+  {
+   "name": "flaw7",
+   "cost": "cost14"
+  }
+ ],
+ "rotes": [
+  "rotes1",
+  "rotes2",
+  "rotes3",
+  "rotes4",
+  "rotes5",
+  "rotes6",
+  "rotes7",
+  "rotes8"
+ ],
+ "focus": [
+  "focus1",
+  "focus2",
+  "focus3",
+  "focus4",
+  "focus5",
+  "focus6",
+  "focus7",
+  "focus8"
+ ],
+ "wonders": [
+  {
+   "name": "wonders1",
+   "description": [
+    "wonders2",
+    "wonders3",
+    "wonders4",
+    "wonders5"
+   ]
+  },
+  {
+   "name": "wonders6",
+   "description": [
+    "wonders7",
+    "wonders8",
+    "wonders9",
+    "wonders10"
+   ]
+  },
+  {
+   "name": "wonders11",
+   "description": [
+    "wonders12",
+    "wonders13",
+    "wonders14",
+    "wonders15"
+   ]
+  }
+ ],
+ "history": [
+  "history1",
+  "history2",
+  "history3",
+  "history4",
+  "history5",
+  "history9"
+ ],
+ "goals": [
+  "history6",
+  "history7",
+  "history8"
+ ],
+ "description": {
+  "lines": [
+   "description1",
+   "description2",
+   "description3",
+   "description4"
+  ],
+  "age": "description5",
+  "apparentAge": "description6",
+  "sex": "description7",
+  "ethnicity": "description8",
+  "hair": "description9",
+  "eyes": "description10",
+  "height": "description11",
+  "weight": "description12"
+ },
+ "gear": [
+  "gear1",
+  "gear2",
+  "gear3",
+  "gear4"
+ ],
+ "combat": [
+  {
+   "weapon": "combat1",
+   "difficulty": "combat7",
+   "damage": "combat13",
+   "range": "combat19",
+   "rate": "combat25",
+   "clip": "combat31"
+  },
+  {
+   "weapon": "combat2",
+   "difficulty": "combat8",
+   "damage": "combat14",
+   "range": "combat20",
+   "rate": "combat26",
+   "clip": "combat32"
+  },
+  {
+   "weapon": "combat3",
+   "difficulty": "combat9",
+   "damage": "combat15",
+   "range": "combat21",
+   "rate": "combat27",
+   "clip": "combat33"
+  },
+  {
+   "weapon": "combat4",
+   "difficulty": "combat10",
+   "damage": "combat16",
+   "range": "combat22",
+   "rate": "combat28",
+   "clip": "combat34"
+  },
+  {
+   "weapon": "combat5",
+   "difficulty": "combat11",
+   "damage": "combat17",
+   "range": "combat23",
+   "rate": "combat29",
+   "clip": "combat35"
+  },
+  {
+   "weapon": "combat6",
+   "difficulty": "combat12",
+   "damage": "combat18",
+   "range": "combat24",
+   "rate": "combat30",
+   "clip": "combat36"
+  }
+ ]
+}

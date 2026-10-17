@@ -38,14 +38,14 @@ check(
     .then(() => true, () => false),
 );
 
-// add a character; it must survive a reload (IndexedDB)
+// add a character: it opens its sheet and must survive a reload (IndexedDB)
 const name = `Test Adept ${Date.now() % 10000}`;
-await page.fill('.text-input', name);
+await page.fill('.add-row .text-input', name);
 await page.click('button:has-text("Add")');
-await page.waitForSelector(`.char-name:has-text("${name}")`);
+await page.waitForSelector(`.sheet-name:has-text("${name}")`);
 await page.reload({ waitUntil: 'networkidle' });
-check('character persists after reload', (await page.$(`.char-name:has-text("${name}")`)) !== null);
-await page.screenshot({ path: 'shots/02-mobile-characters.png' });
+check('character persists after reload', (await page.$(`.sheet-name:has-text("${name}")`)) !== null);
+await page.screenshot({ path: 'shots/02-mobile-sheet.png' });
 
 // service worker + manifest
 const swReady = await page.evaluate(async () => {
@@ -64,12 +64,14 @@ await ctx.setOffline(true);
 await page.reload({ waitUntil: 'domcontentloaded' });
 await page.waitForSelector('.logo', { timeout: 10000 }).catch(() => {});
 check('loads offline', (await page.textContent('.logo').catch(() => null))?.trim() === 'Agathon');
-check('character still there offline', (await page.$(`.char-name:has-text("${name}")`)) !== null);
+check('character still there offline', (await page.$(`.sheet-name:has-text("${name}")`)) !== null);
 await ctx.setOffline(false);
 
 // clean up the test character
-page.on('dialog', (d) => d.accept());
-await page.click(`.char-row:has-text("${name}") .btn-icon`);
+await page.click('.menu summary');
+await page.click('button:has-text("Delete character")');
+await page.click('.modal .btn-danger');
+await page.waitForSelector('.char-list', { state: 'attached' });
 
 // desktop layout
 const desk = await browser.newPage({ viewport: { width: 1280, height: 800 } });

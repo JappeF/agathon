@@ -1,0 +1,563 @@
+import { useEffect, useRef, useState } from 'react';
+import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, HEALTH_LEVELS, type Character } from '../character';
+import { db, deleteCharacter, saveCharacter } from '../db/db';
+import { exportPdf } from '../sheetActions';
+import { SheetFormatError } from '../sheets/mrgone';
+import { SPHERES, type Sphere } from '../types';
+import { go } from '../useHashRoute';
+import { Dots } from './Dots';
+import { Field, LineList, LongText, RatedList } from './Fields';
+import { ImportFlow } from './ImportFlow';
+import { Modal } from './Modal';
+import { SphereGlyph } from './SphereGlyph';
+import { HealthTrack, QPWheel, WillpowerTrack } from './Trackers';
+import { Icon } from './Icon';
+import { setActiveCharacter } from '../activeCharacter';
+
+const TABS = [
+  { id: 'magick', label: 'Magick' },
+  { id: 'traits', label: 'Traits' },
+  { id: 'background', label: 'Background' },
+  { id: 'notes', label: 'Notes' },
+] as const;
+type Tab = (typeof TABS)[number]['id'];
+
+/**
+ * Load a character and keep a local copy that updates instantly while typing;
+ * writes to IndexedDB are debounced and flushed when leaving the sheet.
+ */
+function useCharacter(id: string) {
+  const [c, setC] = useState<Character | null | undefined>(undefined);
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const pending = useRef<Character | null>(null);
+
+  useEffect(() => {
+    let live = true;
+    db.characters.get(id).then((x) => live && setC(x ?? null));
+    return () => {
+      live = false;
+      clearTimeout(timer.current);
+      if (pending.current) saveCharacter(pending.current);
+      pending.current = null;
+    };
+  }, [id]);
+
+  const patch = (p: Partial<Character>) =>
+    setC((prev) => {
+      if (!prev) return prev;
+      const next = { ...prev, ...p };
+      pending.current = next;
+      clearTimeout(timer.current);
+      timer.current = setTimeout(() => {
+        saveCharacter(next);
+        pending.current = null;
+      }, 250);
+      return next;
+    });
+
+  return { c, patch, replace: setC };
+}
+
+function TraitRow({
+  name,
+  value,
+  specialty,
+  edit,
+  onValue,
+  onSpecialty,
+}: {
+  name: string;
+  value: number;
+  specialty?: string;
+  edit: boolean;
+  onValue: (v: number) => void;
+  onSpecialty: (s: string) => void;
+}) {
+  return (
+    <li className="trait-row">
+      <span className="trait-label">
+        <span className="trait-name">{name}</span>
+        {edit ? (
+          <input className="spec-input" value={specialty ?? ''} placeholder="specialty" aria-label={`${name} specialty`} onChange={(e) => onSpecialty(e.target.value)} />
+        ) : (
+          specialty && <span className="trait-spec">{specialty}</span>
+        )}
+      </span>
+      <span className="trait-num" aria-hidden="true">
+        {value}
+      </span>
+      <Dots value={value} label={name} onChange={edit ? onValue : undefined} />
+    </li>
+  );
+}
+
+export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string }) {
+  const { c, patch, replace } = useCharacter(id);
+  const [edit, setEdit] = useState(false);
+  const [vitalsOpen, setVitalsOpen] = useState(false);
+  const [showUntrained, setShowUntrained] = useState(false);
+  const [message, setMessage] = useState<{ title: string; lines: string[] } | null>(null);
+  const [needBlank, setNeedBlank] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const blankInput = useRef<HTMLInputElement>(null);
+  const tab: Tab = (TABS.some((t) => t.id === tabParam) ? tabParam : 'magick') as Tab;
+
+  useEffect(() => {
+    if (c) setActiveCharacter(c.id);
+  }, [c?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (c === undefined) return null;
+  if (c === null) {
+    return (
+      <section className="view">
+        <p className="empty">This character isn't on this device.</p>
+        <a className="btn" href="#/characters">
+          All characters
+        </a>
+      </section>
+    );
+  }
+
+  const setSpec = (trait: string, s: string) => patch({ specialties: { ...c.specialties, [trait]: s } });
+  let worst = -1;
+  c.health.forEach((m, i) => m && (worst = i));
+
+  const doExport = async (blank?: File) => {
+    try {
+      const warnings = await exportPdf(c, blank);
+      setMessage({ title: 'PDF exported', lines: warnings.length ? warnings : ['Your sheet has been filled in and downloaded.'] });
+    } catch (e) {
+      if (e instanceof SheetFormatError) setMessage({ title: "That's not the right sheet", lines: [e.message] });
+      else if (!blank) setNeedBlank(true);
+      else setMessage({ title: 'Export failed', lines: ["The PDF couldn't be written."] });
+    }
+  };
+
+  return (
+    <section className="view sheet">
+      <div className="sheet-head">
+        <a className="back" href="#/characters" aria-label="All characters">
+          <Icon name="back" /> Characters
+        </a>
+        <div className="sheet-actions">
+          <button
+            type="button"
+            className={`btn btn-small lock${edit ? ' on' : ''}`}
+            aria-pressed={edit}
+            onClick={() => setEdit(!edit)}
+          >
+            <Icon name={edit ? 'unlock' : 'lock'} size={16} /> {edit ? 'Done' : 'Edit'}
+          </button>
+          <details className="menu">
+            <summary className="btn btn-small" aria-label="More actions">
+              <Icon name="more" />
+            </summary>
+            <div className="menu-items" onClick={(e) => (e.currentTarget.parentElement as HTMLDetailsElement).removeAttribute('open')}>
+              <button type="button" onClick={() => doExport()}>
+                Export PDF sheet
+              </button>
+              <ImportFlow target={c} label="Update from PDF" className="menu-btn" onDone={(n) => replace(n)} />
+              <button type="button" className="danger" onClick={() => setConfirmDelete(true)}>
+                Delete character
+              </button>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      {edit ? (
+        <input className="text-input name-input" value={c.name} aria-label="Name" onChange={(e) => patch({ name: e.target.value })} />
+      ) : (
+        <h2 className="sheet-name">{c.name}</h2>
+      )}
+      <p className="sheet-sub">{[c.concept, c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</p>
+
+      <div className="vitals">
+        <button type="button" className="vitals-bar" aria-expanded={vitalsOpen} onClick={() => setVitalsOpen(!vitalsOpen)}>
+          <span className={`chip${worst >= 3 ? ' bad' : ''}`}>
+            {worst < 0 ? 'Unhurt' : `${HEALTH_LEVELS[worst].name}${HEALTH_LEVELS[worst].penalty ? ` ${HEALTH_LEVELS[worst].penalty}` : ''}`}
+          </span>
+          <span className="chip">
+            WP {Math.max(0, c.willpower - c.willpowerSpent)}/{c.willpower}
+          </span>
+          <span className="chip q">Q {c.quintessence}</span>
+          <span className="chip p">P {c.paradox}</span>
+          <span className="vitals-toggle" aria-hidden="true">
+            <Icon name={vitalsOpen ? 'up' : 'down'} size={16} />
+          </span>
+        </button>
+        {vitalsOpen && (
+          <div className="vitals-panel">
+            <HealthTrack c={c} patch={patch} />
+            <WillpowerTrack c={c} patch={patch} edit={edit} />
+          </div>
+        )}
+      </div>
+
+      <div className="tabs" role="tablist">
+        {TABS.map((t) => (
+          <a
+            key={t.id}
+            role="tab"
+            aria-selected={tab === t.id}
+            className={`tab${tab === t.id ? ' on' : ''}`}
+            href={`#/characters/${encodeURIComponent(c.id)}/${t.id}`}
+            onClick={(e) => {
+              e.preventDefault();
+              history.replaceState(null, '', `#/characters/${encodeURIComponent(c.id)}/${t.id}`);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }}
+          >
+            {t.label}
+          </a>
+        ))}
+      </div>
+
+      {tab === 'magick' && (
+        <div className="tab-body">
+          <div className="block">
+            <ul className="trait-list">
+              <li className="trait-row arete-row">
+                <span className="trait-label">
+                  <span className="trait-name big">Arete</span>
+                </span>
+                <span className="trait-num" aria-hidden="true">
+                  {c.arete}
+                </span>
+                <Dots value={c.arete} max={10} label="Arete" onChange={edit ? (v) => patch({ arete: v }) : undefined} />
+              </li>
+            </ul>
+          </div>
+          <div className="block">
+            <h3 className="block-title">Spheres</h3>
+            <ul className="trait-list">
+              {SPHERES.map((s) => (
+                <li key={s} className={`trait-row sphere-row${c.spheres[s] ? '' : ' zero'}`}>
+                  <span className="trait-label">
+                    <span className="trait-name">
+                      <SphereGlyph sphere={s} size={18} /> {s}
+                      {c.affinitySphere === s && (
+                        <span className="affinity" title="Affinity Sphere">
+                          affinity
+                        </span>
+                      )}
+                    </span>
+                    {edit ? (
+                      <span className="sphere-edit">
+                        <input className="spec-input" value={c.specialties[s] ?? ''} placeholder="specialty" aria-label={`${s} specialty`} onChange={(e) => setSpec(s, e.target.value)} />
+                        <label className="check">
+                          <input
+                            type="radio"
+                            name="affinity"
+                            checked={c.affinitySphere === s}
+                            onChange={() => patch({ affinitySphere: s as Sphere })}
+                          />
+                          affinity
+                        </label>
+                      </span>
+                    ) : (
+                      c.specialties[s] && <span className="trait-spec">{c.specialties[s]}</span>
+                    )}
+                  </span>
+                  <span className="trait-num" aria-hidden="true">
+                    {c.spheres[s]}
+                  </span>
+                  <Dots value={c.spheres[s]} label={s} onChange={edit ? (v) => patch({ spheres: { ...c.spheres, [s]: v } }) : undefined} />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="block">
+            <h3 className="block-title">Quintessence and Paradox</h3>
+            <QPWheel c={c} patch={patch} />
+          </div>
+          <div className="block">
+            <h3 className="block-title">Focus</h3>
+            <LineList
+              items={c.focus}
+              edit={edit}
+              onChange={(focus) => patch({ focus })}
+              addLabel="Add line"
+              placeholder="Paradigm, practice or instruments"
+              empty="No paradigm, practice or instruments yet."
+            />
+          </div>
+          <div className="block">
+            <h3 className="block-title">Rotes</h3>
+            <LineList items={c.rotes} edit={edit} onChange={(rotes) => patch({ rotes })} addLabel="Add rote" empty="No rotes yet." />
+          </div>
+          <div className="block">
+            <h3 className="block-title">Wonders</h3>
+            {c.wonders.length === 0 && !edit && <p className="empty-small">No Wonders.</p>}
+            {c.wonders.map((w, i) => (
+              <div key={i} className="wonder">
+                {edit ? (
+                  <>
+                    <div className="line-edit">
+                      <input
+                        className="text-input"
+                        value={w.name}
+                        aria-label="Wonder name"
+                        onChange={(e) => patch({ wonders: c.wonders.map((x, j) => (j === i ? { ...x, name: e.target.value } : x)) })}
+                      />
+                      <button type="button" className="btn-icon" aria-label="Remove Wonder" onClick={() => patch({ wonders: c.wonders.filter((_, j) => j !== i) })}>
+                        <Icon name="close" />
+                      </button>
+                    </div>
+                    <textarea
+                      className="text-area"
+                      rows={2}
+                      value={w.description}
+                      aria-label="Wonder description"
+                      onChange={(e) => patch({ wonders: c.wonders.map((x, j) => (j === i ? { ...x, description: e.target.value } : x)) })}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <strong>{w.name}</strong>
+                    {w.description && <p className="prose">{w.description}</p>}
+                  </>
+                )}
+              </div>
+            ))}
+            {edit && (
+              <button type="button" className="btn btn-small" onClick={() => patch({ wonders: [...c.wonders, { name: '', description: '' }] })}>
+                Add Wonder
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {tab === 'traits' && (
+        <div className="tab-body">
+          {ATTRIBUTE_GROUPS.map((g) => (
+            <div key={g.title} className="block">
+              <h3 className="block-title">{g.title}</h3>
+              <ul className="trait-list">
+                {g.traits.map((t) => (
+                  <TraitRow
+                    key={t}
+                    name={t}
+                    value={c.traits[t] ?? 0}
+                    specialty={c.specialties[t]}
+                    edit={edit}
+                    onValue={(v) => patch({ traits: { ...c.traits, [t]: v } })}
+                    onSpecialty={(s) => setSpec(t, s)}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))}
+          {!edit && (
+            <label className="check toggle-untrained">
+              <input type="checkbox" checked={showUntrained} onChange={(e) => setShowUntrained(e.target.checked)} />
+              Show Abilities at 0
+            </label>
+          )}
+          {ABILITY_GROUPS.map((g) => {
+            const shown = g.traits.filter((t) => edit || showUntrained || (c.traits[t] ?? 0) > 0);
+            return (
+              <div key={g.title} className="block">
+                <h3 className="block-title">{g.title}</h3>
+                {shown.length === 0 && <p className="empty-small">None trained.</p>}
+                <ul className="trait-list">
+                  {shown.map((t) => (
+                    <TraitRow
+                      key={t}
+                      name={t}
+                      value={c.traits[t] ?? 0}
+                      specialty={c.specialties[t]}
+                      edit={edit}
+                      onValue={(v) => patch({ traits: { ...c.traits, [t]: v } })}
+                      onSpecialty={(s) => setSpec(t, s)}
+                    />
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+          <div className="block">
+            <h3 className="block-title">Other traits</h3>
+            <RatedList
+              items={c.otherTraits}
+              edit={edit}
+              onChange={(otherTraits) => patch({ otherTraits })}
+              addLabel="Add trait"
+              empty="No other traits."
+            />
+          </div>
+        </div>
+      )}
+
+      {tab === 'background' && (
+        <div className="tab-body">
+          <div className="block field-grid">
+            {(
+              [
+                ['concept', 'Concept'],
+                ['affiliation', 'Affiliation'],
+                ['sect', 'Sect'],
+                ['essence', 'Essence'],
+                ['nature', 'Nature'],
+                ['demeanor', 'Demeanor'],
+                ['player', 'Player'],
+                ['chronicle', 'Chronicle'],
+                ['experience', 'Experience'],
+              ] as const
+            ).map(([k, label]) => (
+              <Field key={k} label={label} value={c[k]} edit={edit} onChange={(v) => patch({ [k]: v })} />
+            ))}
+          </div>
+          <div className="block">
+            <h3 className="block-title">Backgrounds</h3>
+            <RatedList items={c.backgrounds} edit={edit} onChange={(backgrounds) => patch({ backgrounds })} addLabel="Add background" empty="No Backgrounds." />
+          </div>
+          <div className="block">
+            <h3 className="block-title">Merits</h3>
+            <RatedList items={c.merits} kind="cost" edit={edit} onChange={(merits) => patch({ merits })} addLabel="Add merit" empty="No Merits." />
+          </div>
+          <div className="block">
+            <h3 className="block-title">Flaws</h3>
+            <RatedList items={c.flaws} kind="cost" edit={edit} onChange={(flaws) => patch({ flaws })} addLabel="Add flaw" empty="No Flaws." />
+          </div>
+          <div className="block field-grid">
+            {(
+              [
+                ['age', 'Age'],
+                ['apparentAge', 'Apparent age'],
+                ['sex', 'Sex'],
+                ['ethnicity', 'Ethnicity'],
+                ['hair', 'Hair'],
+                ['eyes', 'Eyes'],
+                ['height', 'Height'],
+                ['weight', 'Weight'],
+              ] as const
+            ).map(([k, label]) => (
+              <Field key={k} label={label} value={c.description[k]} edit={edit} onChange={(v) => patch({ description: { ...c.description, [k]: v } })} />
+            ))}
+          </div>
+          <div className="block">
+            <LongText label="Description" value={c.description.text} edit={edit} onChange={(text) => patch({ description: { ...c.description, text } })} />
+            <LongText label="History" value={c.history} edit={edit} onChange={(history) => patch({ history })} />
+            <LongText label="Goals and destiny" value={c.goals} edit={edit} onChange={(goals) => patch({ goals })} />
+          </div>
+          <div className="block">
+            <h3 className="block-title">Gear</h3>
+            <LineList items={c.gear} edit={edit} onChange={(gear) => patch({ gear })} addLabel="Add gear" empty="No gear listed." />
+          </div>
+          <div className="block">
+            <h3 className="block-title">Weapons</h3>
+            {c.combat.length === 0 && !edit && <p className="empty-small">No weapons listed.</p>}
+            {c.combat.map((w, i) =>
+              edit ? (
+                <div key={i} className="weapon-edit">
+                  {(['weapon', 'difficulty', 'damage', 'range', 'rate', 'clip'] as const).map((k) => (
+                    <input
+                      key={k}
+                      className="text-input"
+                      value={w[k]}
+                      placeholder={k}
+                      aria-label={k}
+                      onChange={(e) => patch({ combat: c.combat.map((x, j) => (j === i ? { ...x, [k]: e.target.value } : x)) })}
+                    />
+                  ))}
+                  <button type="button" className="btn-icon" aria-label="Remove weapon" onClick={() => patch({ combat: c.combat.filter((_, j) => j !== i) })}>
+                    <Icon name="close" />
+                  </button>
+                </div>
+              ) : (
+                <p key={i} className="weapon">
+                  <strong>{w.weapon}</strong>{' '}
+                  {[w.difficulty && `diff ${w.difficulty}`, w.damage && `dmg ${w.damage}`, w.range && `range ${w.range}`, w.rate && `rate ${w.rate}`, w.clip && `clip ${w.clip}`]
+                    .filter(Boolean)
+                    .join(', ')}
+                </p>
+              ),
+            )}
+            {edit && (
+              <button
+                type="button"
+                className="btn btn-small"
+                onClick={() => patch({ combat: [...c.combat, { weapon: '', difficulty: '', damage: '', range: '', rate: '', clip: '' }] })}
+              >
+                Add weapon
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {tab === 'notes' && (
+        <div className="tab-body">
+          <div className="block">
+            <LongText label="Notes" value={c.notes} edit onChange={(notes) => patch({ notes })} placeholder="Resonance, Seekings, scenes, anything." />
+          </div>
+        </div>
+      )}
+
+      <input
+        ref={blankInput}
+        type="file"
+        accept="application/pdf,.pdf"
+        hidden
+        onChange={(e) => {
+          const f = e.target.files?.[0];
+          e.target.value = '';
+          setNeedBlank(false);
+          if (f) doExport(f);
+        }}
+      />
+      {needBlank && (
+        <Modal title="Pick a blank sheet" onClose={() => setNeedBlank(false)}>
+          <p>
+            {c.name} wasn't imported from a PDF, so there's no sheet to fill in yet. Choose a blank Mr. Gone M20 2-page sheet
+            and Agathon fills it in (and keeps it for next time).
+          </p>
+          <div className="modal-actions">
+            <button className="btn" onClick={() => setNeedBlank(false)}>
+              Cancel
+            </button>
+            <button className="btn btn-gold" onClick={() => blankInput.current?.click()}>
+              Choose PDF
+            </button>
+          </div>
+        </Modal>
+      )}
+      {message && (
+        <Modal title={message.title} onClose={() => setMessage(null)}>
+          <ul className="change-list">
+            {message.lines.map((l) => (
+              <li key={l}>{l}</li>
+            ))}
+          </ul>
+          <div className="modal-actions">
+            <button className="btn btn-gold" onClick={() => setMessage(null)}>
+              OK
+            </button>
+          </div>
+        </Modal>
+      )}
+      {confirmDelete && (
+        <Modal title={`Delete ${c.name}?`} onClose={() => setConfirmDelete(false)}>
+          <p>This removes the character, its stored PDF and its spell ideas from this device.</p>
+          <div className="modal-actions">
+            <button className="btn" onClick={() => setConfirmDelete(false)}>
+              Cancel
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={async () => {
+                await deleteCharacter(c.id);
+                go('characters');
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        </Modal>
+      )}
+    </section>
+  );
+}
+

@@ -1,17 +1,12 @@
 import Dexie, { type EntityTable } from 'dexie';
+import { newCharacter, type Character } from '../character';
 
 /**
  * Everything the player owns lives in IndexedDB on this device: characters,
- * spell dossiers, and the page text of their own rulebooks. Nothing leaves the
- * device unless they export or share it.
+ * spell dossiers, the PDF sheet a character was imported from (so it can be
+ * filled back in on export), and the page text of their own rulebooks. Nothing
+ * leaves the device unless they export or share it.
  */
-
-export interface CharacterRecord {
-  id: string;
-  name: string;
-  createdAt: number;
-  updatedAt: number;
-}
 
 export interface SpellRecord {
   id: string;
@@ -19,6 +14,14 @@ export interface SpellRecord {
   title: string;
   createdAt: number;
   updatedAt: number;
+}
+
+/** The original sheet PDF of a character, kept for export. Never part of a share. */
+export interface SheetFileRecord {
+  characterId: string;
+  sheetId: string;
+  fileName: string;
+  bytes: ArrayBuffer;
 }
 
 /** Page text extracted from the player's own rulebook PDF (never shipped, never shared). */
@@ -30,8 +33,9 @@ export interface BookRecord {
 }
 
 class AgathonDB extends Dexie {
-  characters!: EntityTable<CharacterRecord, 'id'>;
+  characters!: EntityTable<Character, 'id'>;
   spells!: EntityTable<SpellRecord, 'id'>;
+  sheetFiles!: EntityTable<SheetFileRecord, 'characterId'>;
   books!: EntityTable<BookRecord, 'id'>;
 
   constructor() {
@@ -41,12 +45,36 @@ class AgathonDB extends Dexie {
       spells: 'id, characterId, updatedAt',
       books: 'id',
     });
+    // v2: characters hold the full M20 sheet; v1 rows only had a name
+    this.version(2)
+      .stores({ sheetFiles: 'characterId' })
+      .upgrade((tx) =>
+        tx
+          .table('characters')
+          .toCollection()
+          .modify((c) => {
+            const full = newCharacter(c.id, c.name);
+            for (const [k, v] of Object.entries(full)) if (!(k in c)) c[k] = v;
+          }),
+      );
   }
 }
 
 export const db = new AgathonDB();
 
 export const newId = () => crypto.randomUUID();
+
+export async function saveCharacter(c: Character) {
+  await db.characters.put({ ...c, updatedAt: Date.now() });
+}
+
+export async function deleteCharacter(id: string) {
+  await db.transaction('rw', db.characters, db.sheetFiles, db.spells, async () => {
+    await db.characters.delete(id);
+    await db.sheetFiles.delete(id);
+    await db.spells.where('characterId').equals(id).delete();
+  });
+}
 
 /**
  * Ask the browser not to evict our data under storage pressure (Safari and

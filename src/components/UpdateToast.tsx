@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
+import { Icon } from './Icon';
 
 const CHECK_EVERY = 60 * 60 * 1000;
 
@@ -52,7 +53,7 @@ export function UpdateToast() {
             Reload
           </button>
           <button className="btn-icon" onClick={() => setNeedRefresh(false)} aria-label="Later">
-            ✕
+            <Icon name="close" />
           </button>
         </>
       ) : (
