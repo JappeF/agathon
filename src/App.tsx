@@ -4,6 +4,7 @@ import { SharedImport } from './components/SharedImport';
 import { decodeShare, ShareFormatError, type SharePayload } from './share';
 import { CharactersView } from './components/CharactersView';
 import { CharacterSheet } from './components/CharacterSheet';
+import { LibraryView } from './components/LibraryView';
 import { go, useHashRoute, type View } from './useHashRoute';
 
 const NAV: { view: View; label: string; icon: JSX.Element }[] = [
@@ -84,11 +85,7 @@ export default function App() {
       </nav>
 
       <main className="app-main">
-        {view === 'library' && (
-          <Placeholder title="Library">
-            Every effect from Mage 20 and How Do You DO That, searchable by Sphere. Being written now.
-          </Placeholder>
-        )}
+        {view === 'library' && <LibraryView selectedId={parts[0]} />}
         {view === 'spells' && (
           <Placeholder title="Spells">
             Your spell ideas, their versions and how they went at the table. Coming soon.

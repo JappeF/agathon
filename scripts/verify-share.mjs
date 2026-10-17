@@ -46,6 +46,7 @@ const url = await a.evaluate(() => navigator.clipboard.readText());
 check('share link', url.startsWith(`${BASE}/#import=1.`), `${url.length} chars`);
 await a.click('.modal button:has-text("Show QR code")');
 check('QR code drawn', (await a.$('.qr svg')) !== null);
+await a.waitForTimeout(400); // let the fade-in finish
 await a.screenshot({ path: 'shots/20-share-dialog.png' });
 const [dl] = await Promise.all([a.waitForEvent('download'), a.click('.modal button:has-text("Download file")')]);
 const filePath = `shots/${dl.suggestedFilename()}`;
