@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dev-dist/
+shots/
+*.tsbuildinfo
+.wrangler/
+
+# rulebooks, sample sheets and any text extracted from them stay local
+refs/
