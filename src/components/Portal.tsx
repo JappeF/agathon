@@ -8,35 +8,76 @@
 const R = 72; // ring radius in the 200x200 viewBox
 const C = 100;
 
-let seed = 1017;
-const rand = () => {
-  seed = (seed * 16807) % 2147483647;
-  return seed / 2147483647;
-};
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-const SPARKS = Array.from({ length: 46 }, () => {
-  // like the icon: more of them spray off the right and bottom
-  const a = rand() < 0.55 ? lerp(-0.6, 2.2, rand()) : rand() * Math.PI * 2;
-  const out = lerp(0.25, 0.75, rand());
-  // clockwise tangent on screen (y down) is (-sin a, cos a), plus an outward pull
-  const dx = -Math.sin(a) * (1 - out) + Math.cos(a) * out;
-  const dy = Math.cos(a) * (1 - out) + Math.sin(a) * out;
-  const fly = lerp(14, 46, rand());
-  const len = lerp(2, 5, rand());
-  return {
-    x: C + Math.cos(a) * R,
-    y: C + Math.sin(a) * R,
-    dx,
-    dy,
-    len,
-    fly,
-    w: lerp(0.8, 1.6, rand()),
-    hot: rand() < 0.4,
-    dur: lerp(1.4, 3.2, rand()),
-    delay: -rand() * 3.2,
+export interface Spark {
+  x: number;
+  y: number;
+  dx: number;
+  dy: number;
+  len: number;
+  fly: number;
+  w: number;
+  hot: boolean;
+  dur: number;
+  delay: number;
+}
+
+/** Sparks thrown off a ring of radius r around (c, c), clockwise, from a fixed seed. */
+export function makeSparks(n: number, c: number, r: number, fly: [number, number], len: [number, number], seed = 1017): Spark[] {
+  const rand = () => {
+    seed = (seed * 16807) % 2147483647;
+    return seed / 2147483647;
   };
-});
+  return Array.from({ length: n }, () => {
+    // like the icon: more of them spray off the right and bottom
+    const a = rand() < 0.55 ? lerp(-0.6, 2.2, rand()) : rand() * Math.PI * 2;
+    const out = lerp(0.25, 0.75, rand());
+    // clockwise tangent on screen (y down) is (-sin a, cos a), plus an outward pull
+    const dx = -Math.sin(a) * (1 - out) + Math.cos(a) * out;
+    const dy = Math.cos(a) * (1 - out) + Math.sin(a) * out;
+    return {
+      x: c + Math.cos(a) * r,
+      y: c + Math.sin(a) * r,
+      dx,
+      dy,
+      len: lerp(len[0], len[1], rand()),
+      fly: lerp(fly[0], fly[1], rand()),
+      w: lerp(0.8, 1.6, rand()),
+      hot: rand() < 0.4,
+      dur: lerp(1.4, 3.2, rand()),
+      delay: -rand() * 3.2,
+    };
+  });
+}
+
+export function SparkLines({ sparks }: { sparks: Spark[] }) {
+  return (
+    <>
+      {sparks.map((s, i) => (
+        <line
+          key={i}
+          x1={s.x}
+          y1={s.y}
+          x2={s.x + s.dx * s.len}
+          y2={s.y + s.dy * s.len}
+          strokeWidth={s.w}
+          className={`portal-spark${s.hot ? ' hot' : ''}`}
+          style={
+            {
+              '--fx': `${(s.dx * s.fly).toFixed(1)}px`,
+              '--fy': `${(s.dy * s.fly).toFixed(1)}px`,
+              animationDuration: `${s.dur.toFixed(2)}s`,
+              animationDelay: `${s.delay.toFixed(2)}s`,
+            } as React.CSSProperties
+          }
+        />
+      ))}
+    </>
+  );
+}
+
+const SPARKS = makeSparks(46, C, R, [14, 46], [2, 5]);
 
 export function Portal() {
   return (
@@ -63,25 +104,7 @@ export function Portal() {
           <circle cx={C} cy={C} r={R} className="portal-glint" />
         </g>
         <g className="portal-sparks">
-          {SPARKS.map((s, i) => (
-            <line
-              key={i}
-              x1={s.x}
-              y1={s.y}
-              x2={s.x + s.dx * s.len}
-              y2={s.y + s.dy * s.len}
-              strokeWidth={s.w}
-              className={`portal-spark${s.hot ? ' hot' : ''}`}
-              style={
-                {
-                  '--fx': `${(s.dx * s.fly).toFixed(1)}px`,
-                  '--fy': `${(s.dy * s.fly).toFixed(1)}px`,
-                  animationDuration: `${s.dur.toFixed(2)}s`,
-                  animationDelay: `${s.delay.toFixed(2)}s`,
-                } as React.CSSProperties
-              }
-            />
-          ))}
+          <SparkLines sparks={SPARKS} />
         </g>
       </svg>
     </div>

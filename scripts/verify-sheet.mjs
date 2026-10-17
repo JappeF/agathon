@@ -39,6 +39,18 @@ await page.waitForSelector('.sheet-name');
 check('opens the sheet', (await text('.sheet-name')) === 'Saito Weinberg');
 const id = decodeURIComponent(new URL(page.url()).hash.split('/')[2]);
 
+// portrait: taken from the picture in the PDF
+const portraitSrc = () => page.getAttribute('.sheet-hero .pp-face img', 'src').catch(() => null);
+const fromPdf = await portraitSrc();
+check('portrait from the PDF', /^data:image\/(webp|jpeg);base64,/.test(fromPdf ?? ''), `${(fromPdf ?? '').length} chars`);
+await page.click('.lock');
+await page.setInputFiles('.view.sheet input[accept="image/*"]', 'public/icons/icon-512.png');
+await page.waitForFunction((old) => document.querySelector('.sheet-hero .pp-face img')?.getAttribute('src') !== old, fromPdf);
+check('portrait replaced in edit mode', (await portraitSrc()) !== fromPdf);
+await page.click('.portrait-edit .link-btn');
+check('portrait removed shows initials', (await page.textContent('.sheet-hero .pp-initials')) === 'SW');
+await page.click('.lock');
+
 // Magick tab
 const sphere = async (s) => Number(await page.textContent(`.sphere-row:has-text("${s}") .trait-num`));
 check('Correspondence 4', (await sphere('Correspondence')) === 4);

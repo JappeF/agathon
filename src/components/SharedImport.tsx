@@ -4,6 +4,7 @@ import { db, newId, requestPersistence, saveCharacter } from '../db/db';
 import type { SharePayload } from '../share';
 import { SPHERES } from '../types';
 import { Modal } from './Modal';
+import { PortalPortrait } from './PortalPortrait';
 
 /**
  * Preview and add characters from a share link or file. Imports only ever add:
@@ -56,13 +57,16 @@ export function SharedImport({
     <Modal title={n === 1 ? `Add ${payload.characters[0].name}?` : `Add ${n} characters?`} onClose={onClose}>
       <ul className="import-list">
         {payload.characters.map((c, i) => (
-          <li key={i}>
+          <li key={i} className="import-item">
+            <PortalPortrait src={c.portrait} name={c.name} size={52} />
+            <span className="import-item-text">
             <strong>{c.name}</strong>
             <span className="empty-small">
               {[c.concept, c.affiliation].filter(Boolean).join(', ')}
               {c.concept || c.affiliation ? '. ' : ''}
               Arete {c.arete}
               {SPHERES.filter((s) => c.spheres[s]).map((s) => `, ${s} ${c.spheres[s]}`).join('')}
+            </span>
             </span>
           </li>
         ))}

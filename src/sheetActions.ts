@@ -1,6 +1,7 @@
 import { newCharacter, type Character } from './character';
 import { db, newId, requestPersistence, saveCharacter } from './db/db';
 import { MRGONE_SHEET_ID, readMrGone, sheetPart, diffSheet, writeMrGone, type SheetFields } from './sheets/mrgone';
+import { imageToPortrait, portraitFromPdf } from './portrait';
 
 export interface PendingImport {
   fields: SheetFields;
@@ -9,6 +10,8 @@ export interface PendingImport {
   /** Existing character this sheet would update (same name, or the one re-imported into). */
   target?: Character;
   changes: string[];
+  /** the picture found in the PDF, ready to use */
+  portrait?: string;
 }
 
 /** Read a sheet file and work out whether it is new or an update of `target` / a same-named character. */
@@ -20,13 +23,16 @@ export async function prepareImport(file: File, target?: Character): Promise<Pen
     const all = await db.characters.toArray();
     match = all.find((c) => c.name.trim().toLowerCase() === fields.name.toLowerCase());
   }
-  return {
-    fields,
-    bytes,
-    fileName: file.name,
-    target: match,
-    changes: match ? diffSheet(sheetPart(match), fields) : [],
-  };
+  let portrait: string | undefined;
+  try {
+    const img = await portraitFromPdf(bytes);
+    if (img) portrait = await imageToPortrait(img);
+  } catch {
+    // a sheet without a readable picture is fine
+  }
+  const changes = match ? diffSheet(sheetPart(match), fields) : [];
+  if (match && !match.portrait && portrait) changes.push('Portrait: taken from the PDF');
+  return { fields, bytes, fileName: file.name, target: match, changes, portrait };
 }
 
 /** Save an import: update the target (keeping its id, notes and spells) or create a new character. */
@@ -39,6 +45,8 @@ export async function applyImport(p: PendingImport, asNew = false): Promise<Char
     createdAt: base.createdAt,
     notes: base.notes,
     name: p.fields.name || base.name,
+    // the PDF's picture is used when there is none yet; a portrait set in the app stays
+    portrait: base.portrait ?? p.portrait,
     sheet: { id: MRGONE_SHEET_ID, fileName: p.fileName, importedAt: Date.now() },
   };
   await db.transaction('rw', db.characters, db.sheetFiles, async () => {

@@ -10,6 +10,8 @@ import { Field, LineList, LongText, RatedList } from './Fields';
 import { ImportFlow } from './ImportFlow';
 import { Modal } from './Modal';
 import { ShareDialog } from './ShareDialog';
+import { PortalPortrait } from './PortalPortrait';
+import { imageToPortrait } from '../portrait';
 import { SphereGlyph } from './SphereGlyph';
 import { HealthTrack, QPWheel, WillpowerTrack } from './Trackers';
 import { Icon } from './Icon';
@@ -102,6 +104,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [sharing, setSharing] = useState(false);
   const blankInput = useRef<HTMLInputElement>(null);
+  const portraitInput = useRef<HTMLInputElement>(null);
   const tab: Tab = (TABS.some((t) => t.id === tabParam) ? tabParam : 'magick') as Tab;
 
   useEffect(() => {
@@ -170,12 +173,47 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
         </div>
       </div>
 
-      {edit ? (
-        <input className="text-input name-input" value={c.name} aria-label="Name" onChange={(e) => patch({ name: e.target.value })} />
-      ) : (
-        <h2 className="sheet-name">{c.name}</h2>
-      )}
-      <p className="sheet-sub">{[c.concept, c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</p>
+      <div className="sheet-hero">
+        {edit ? (
+          <span className="portrait-edit">
+            <button type="button" className="portrait-btn" aria-label="Change portrait" onClick={() => portraitInput.current?.click()}>
+              <PortalPortrait src={c.portrait} name={c.name} size={92} />
+              <span className="portrait-hint">{c.portrait ? 'Change' : 'Add photo'}</span>
+            </button>
+            {c.portrait && (
+              <button type="button" className="link-btn" onClick={() => patch({ portrait: undefined })}>
+                Remove
+              </button>
+            )}
+          </span>
+        ) : (
+          <PortalPortrait src={c.portrait} name={c.name} size={92} />
+        )}
+        <div className="sheet-title">
+          {edit ? (
+            <input className="text-input name-input" value={c.name} aria-label="Name" onChange={(e) => patch({ name: e.target.value })} />
+          ) : (
+            <h2 className="sheet-name">{c.name}</h2>
+          )}
+          <p className="sheet-sub">{[c.concept, c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</p>
+        </div>
+      </div>
+      <input
+        ref={portraitInput}
+        type="file"
+        accept="image/*"
+        hidden
+        onChange={async (e) => {
+          const f = e.target.files?.[0];
+          e.target.value = '';
+          if (!f) return;
+          try {
+            patch({ portrait: await imageToPortrait(f) });
+          } catch {
+            setMessage({ title: "Can't use that image", lines: ['Pick a JPEG, PNG or WebP photo.'] });
+          }
+        }}
+      />
 
       <div className="vitals">
         <button type="button" className="vitals-bar" aria-expanded={vitalsOpen} onClick={() => setVitalsOpen(!vitalsOpen)}>

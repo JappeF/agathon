@@ -1,5 +1,6 @@
 import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, clampWheel, HEALTH_LEVELS, newCharacter, type Character, type HealthMark, type Rated } from './character';
 import { SPHERES, type Sphere } from './types';
+import { safePortrait } from './portrait';
 
 /**
  * Versioned wire format for moving characters between devices and players: a JSON
@@ -17,7 +18,7 @@ export interface SharePayload {
   characters: SharedCharacter[];
 }
 
-export function buildPayload(characters: Character[], includeNotes: boolean): SharePayload {
+export function buildPayload(characters: Character[], includeNotes: boolean, includePortraits = true): SharePayload {
   return {
     app: 'agathon',
     kind: 'characters',
@@ -26,6 +27,7 @@ export function buildPayload(characters: Character[], includeNotes: boolean): Sh
     characters: characters.map(({ id: _i, createdAt: _c, updatedAt: _u, sheet: _s, ...rest }) => ({
       ...rest,
       notes: includeNotes ? rest.notes : '',
+      portrait: includePortraits ? rest.portrait : undefined,
     })),
   };
 }
@@ -97,6 +99,7 @@ export function sanitizeCharacter(raw: unknown): SharedCharacter {
     };
   });
   c.notes = str(r.notes, 50000);
+  c.portrait = safePortrait(r.portrait);
   return c;
 }
 

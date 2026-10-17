@@ -95,6 +95,8 @@ export interface Character {
   gear: string[];
   combat: { weapon: string; difficulty: string; damage: string; range: string; rate: string; clip: string }[];
   notes: string;
+  /** Square portrait as a data URL (see portrait.ts). */
+  portrait?: string;
 
   /** Where the character came from, so re-imports and PDF export know the sheet. */
   sheet?: { id: string; fileName: string; importedAt: number };

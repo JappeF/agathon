@@ -12,7 +12,7 @@ import { SPHERES, type Sphere } from '../types';
 export const MRGONE_SHEET_ID = map.id;
 
 /** Fields from the parts of a Character that the sheet holds (app-only fields stay). */
-export type SheetFields = Omit<Character, 'id' | 'createdAt' | 'updatedAt' | 'notes' | 'sheet'>;
+export type SheetFields = Omit<Character, 'id' | 'createdAt' | 'updatedAt' | 'notes' | 'sheet' | 'portrait'>;
 
 const loadPdf = async (bytes: ArrayBuffer) => {
   const { PDFDocument } = await import('pdf-lib');
@@ -258,6 +258,6 @@ export function diffSheet(a: SheetFields, b: SheetFields): string[] {
 
 /** The sheet part of a character, for diffing against a fresh import. */
 export function sheetPart(c: Character): SheetFields {
-  const { id: _id, createdAt: _c, updatedAt: _u, notes: _n, sheet: _s, ...rest } = c;
+  const { id: _id, createdAt: _c, updatedAt: _u, notes: _n, sheet: _s, portrait: _p, ...rest } = c;
   return rest;
 }

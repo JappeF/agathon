@@ -32,6 +32,8 @@ await a.click('button:has-text("Add")');
 await a.waitForSelector('.sheet-name');
 await a.click('.lock');
 await a.click('[aria-label="Forces 3"]');
+await a.setInputFiles('.view.sheet input[accept="image/*"]', 'public/icons/icon-512.png');
+await a.waitForSelector('.sheet-hero .pp-face img');
 await a.click('.lock');
 await a.click('.tab:has-text("Notes")');
 await a.fill('.text-area', 'The secret of the Tower');
@@ -54,6 +56,8 @@ await dl.saveAs(filePath);
 const file = JSON.parse(await readFile(filePath, 'utf8'));
 check('file name', dl.suggestedFilename() === `${name}.agathon.json`, dl.suggestedFilename());
 check('file: Forces 3, no notes, no id', file.characters[0].spheres.Forces === 3 && file.characters[0].notes === '' && !('id' in file.characters[0]));
+check('file carries the portrait', /^data:image\//.test(file.characters[0].portrait ?? ''));
+check('link stays small without it', url.length < 2200, `${url.length} chars`);
 await a.click('.modal button:has-text("Done")');
 
 // --- device B: open the link ---
@@ -68,6 +72,7 @@ check('arrives on device B', (await b.textContent('.sheet-name')) === name);
 check('Forces 3 on device B', (await b.textContent('.sphere-row:has-text("Forces") .trait-num')) === '3');
 await b.click('.tab:has-text("Notes")');
 check('note stayed private', (await b.inputValue('.text-area')) === '');
+check('no portrait through the link', (await b.$('.sheet-hero .pp-face img')) === null);
 
 // opening the same link again adds a copy instead of overwriting
 await b.goto(url, { waitUntil: 'networkidle' });
@@ -83,6 +88,7 @@ await b.waitForSelector('.modal');
 await b.click('.modal button:has-text("Add character")');
 await b.waitForSelector('.sheet-name');
 check('file import', (await b.textContent('.sheet-name')) === `${name} (3)`);
+check('portrait through the file', (await b.$('.sheet-hero .pp-face img')) !== null);
 
 // a damaged link explains itself
 await b.goto(`${BASE}/#import=1.bm90IGEgcmVhbCBsaW5r`, { waitUntil: 'networkidle' });

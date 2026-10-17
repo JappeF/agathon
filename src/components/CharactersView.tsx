@@ -8,6 +8,7 @@ import { getActiveCharacter } from '../activeCharacter';
 import { ImportFlow } from './ImportFlow';
 import { SphereGlyph } from './SphereGlyph';
 import { ShareDialog } from './ShareDialog';
+import { PortalPortrait } from './PortalPortrait';
 
 export function CharactersView() {
   const characters = useLiveQuery(() => db.characters.orderBy('updatedAt').reverse().toArray(), []);
@@ -63,6 +64,8 @@ export function CharactersView() {
           return (
             <li key={c.id}>
               <a className={`char-card${c.id === active ? ' active' : ''}`} href={`#/characters/${encodeURIComponent(c.id)}`}>
+                <PortalPortrait src={c.portrait} name={c.name} size={68} />
+                <span className="char-text">
                 <span className="char-name">{c.name}</span>
                 <span className="char-sub">{[c.concept, c.affiliation].filter(Boolean).join(', ') || 'Mage'}</span>
                 <span className="char-stats">
@@ -73,6 +76,7 @@ export function CharactersView() {
                       {c.spheres[s]}
                     </span>
                   ))}
+                </span>
                 </span>
               </a>
             </li>

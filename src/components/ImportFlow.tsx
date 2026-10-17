@@ -6,6 +6,7 @@ import { SheetFormatError } from '../sheets/mrgone';
 import { SPHERES } from '../types';
 import { Modal } from './Modal';
 import { SharedImport } from './SharedImport';
+import { PortalPortrait } from './PortalPortrait';
 import { parsePayload, ShareFormatError, type SharePayload } from '../share';
 
 /**
@@ -93,6 +94,11 @@ export function ImportFlow({
 
       {pending && f && !pending.target && (
         <Modal title={`Import ${f.name || 'this mage'}?`} onClose={() => setPending(null)}>
+          {pending.portrait && (
+            <div className="import-portrait">
+              <PortalPortrait src={pending.portrait} name={f.name} size={96} />
+            </div>
+          )}
           <p className="import-summary">
             {[f.concept, f.affiliation, f.essence && `${f.essence} Essence`].filter(Boolean).join(', ')}
           </p>

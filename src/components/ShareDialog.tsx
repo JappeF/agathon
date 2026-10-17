@@ -22,7 +22,8 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
   useEffect(() => {
     let live = true;
     setQr(null);
-    encodeShare(buildPayload(characters, includeNotes)).then((enc) => live && setUrl(shareUrl(enc)));
+    // links and QR codes stay small: no portrait (the file carries it)
+    encodeShare(buildPayload(characters, includeNotes, false)).then((enc) => live && setUrl(shareUrl(enc)));
     return () => {
       live = false;
     };
@@ -66,7 +67,7 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
         {characters.length === 1
           ? 'Whoever opens it gets their own copy. Their changes never reach yours.'
           : `A backup of all ${characters.length} characters. Importing it adds them, nothing gets overwritten.`}{' '}
-        The stored PDF sheet is not included.
+        The stored PDF sheet is not included{characters.some((c) => c.portrait) ? ', and links leave out the portrait (the file has it)' : ''}.
       </p>
       {hasNotes && (
         <label className="check">
