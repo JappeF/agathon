@@ -1316,7 +1316,7 @@
     "name": "Mind 3: Mental Link / Project Illusions / Dreamwalk / Psychic Blast",
     "kind": "rank",
     "summary": "Link minds for telepathy, read or sway someone's thoughts, put illusions in their head, walk into dreams and dream Realms, and hit a rival with a psychic attack.",
-    "system": "Mind attacks do bashing damage: painful, rarely deadly. Combined with Correspondence, Forces, Matter or Life you get telekinesis, pyrokinesis and similar powers, which are not coincidental.",
+    "system": "Mind attacks do bashing damage: painful, rarely deadly. Adding Correspondence, Forces, Matter or Life gives telekinesis, pyrokinesis and similar powers, which are not coincidental.",
     "combos": [
       {
         "spheres": {
@@ -1829,7 +1829,7 @@
     "id": "read-spiritual-energies",
     "name": "Read Spiritual Energies",
     "kind": "feat",
-    "summary": "Read Resonance, Synergy and other spiritual energies, such as a spirit's Essence or its place in a hierarchy.",
+    "summary": "Sense and interpret Resonance, Synergy and other spirit energies, such as a spirit's Essence or its place in a hierarchy.",
     "combos": [
       {
         "spheres": {
@@ -1885,7 +1885,7 @@
     "id": "spirit-4",
     "name": "Spirit 4: Rend Gauntlet / Seal Breach / Bind Spirit",
     "kind": "rank",
-    "summary": "Tear open or close gateways through the Gauntlet big enough for groups or large objects. Compel spirits to appear, bind them into Fetishes, places or prisons, invite one into your own body, or drive one out of a possessed host.",
+    "summary": "Tear open or close gateways through the Gauntlet big enough for groups or large objects. Force spirits to show up, lock them into Fetishes, places or prisons, invite one into your own body, or drive one out of a possessed host.",
     "system": "Binding, channeling and exorcism are resisted rolls of your Willpower against the spirit's. While a spirit rides you, you use its powers but cannot use true magick. Opening or closing gateways is very vulgar.",
     "combos": [
       {
@@ -2109,7 +2109,7 @@
     "id": "time-4",
     "name": "Time 4: Time Determinism / Trigger Effect / Time Bubble / Anchor Point",
     "kind": "rank",
-    "summary": "Step out of the normal flow of time, hold an Effect until a set event triggers it, and with other Spheres trap beings or forces in a bubble of time. You can also set an anchor point to return to when you travel in time at rank 5.",
+    "summary": "Stand outside the usual current of time, hold an Effect until a set event triggers it, and with other Spheres trap beings or forces in a bubble of time. You can also set an anchor point to return to when you travel in time at rank 5.",
     "system": "A time bubble needs the Sphere of what it holds (Correspondence, Forces, Life, Matter or Spirit). Trapping something like a tornado is vulgar.",
     "combos": [
       {
@@ -2489,7 +2489,7 @@
     "id": "primal-utility-3",
     "name": "Primal Utility 3: Create Stable Extraordinary Devices / Living-Asset Exploitation / Use Currency and Primal Storage",
     "kind": "rank",
-    "summary": "Use Currency (Tass) and a well-run team to build permanent Devices, restore your own Pattern, and drain or refill Devices and storage Matrices (Periapts).",
+    "summary": "Use Currency (Tass) and a well-run team to build permanent Devices, restore your own Pattern, and empty or recharge Devices and Matrices (Periapts).",
     "combos": [
       {
         "spheres": {

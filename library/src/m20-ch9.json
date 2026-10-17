@@ -566,7 +566,7 @@
     "id": "thunder-punch",
     "name": "The Thunder Punch",
     "kind": "feat",
-    "summary": "Put Enlightened force behind a punch, kick or melee blow so it lands as a perfect, devastating strike. Pick whichever Sphere fits: aim, luck, speed, strength, a mental push or a Pattern attack.",
+    "summary": "Charge a punch, kick or weapon blow with Enlightened power so it lands as a perfect, devastating strike. Pick whichever Sphere fits: aim, luck, speed, strength, a mental push or a Pattern attack.",
     "system": "Each success lowers the attack difficulty by 1, up to -3. Normally bashing; Pattern attacks with Life 3 or Prime 3 deal aggravated damage. If the target soaks all of it, the damage rebounds on you (bashing for Pattern attacks, possibly lethal against walls or steel).",
     "combos": [
       {
@@ -1241,7 +1241,7 @@
     "name": "Popping and Backspacing",
     "kind": "feat",
     "summary": "Jump from one Web sector to another, or hop back to where you just were, usually with a pop prog that scans and logs the destination first.",
-    "system": "Scan one turn, pop the next; popping blind is +2 difficulty. No pop prog is needed to return within a minute or two. Popping into or out of a Restricted sector is difficulty 8 or 9 and vulgar, and failure there means icon death or a chaos dump. A failed pop lands you somewhere awkward; a botch can soft de-rez you.",
+    "system": "Scan one turn, pop the next; popping blind is +2 difficulty. No pop prog is needed to return within a minute or two. Popping into or out of Restricted space is difficulty 8 or 9 and vulgar, and failure there means icon death or a chaos dump. A failed pop lands you somewhere awkward; a botch can soft de-rez you.",
     "combos": [
       {
         "spheres": {

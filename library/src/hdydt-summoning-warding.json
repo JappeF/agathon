@@ -1455,7 +1455,7 @@
     "id": "wrack-a-spirit-prolonged-agony",
     "name": "Wrack a Spirit: Prolonged Agony",
     "kind": "feat",
-    "summary": "Add Time to any spirit wrack: extra actions for more attacks, or a bubble of time where the pain goes on until you stop it or a trigger fires.",
+    "summary": "Add Time to any spirit wrack: extra actions for more attacks, or a time bubble that keeps the pain going until you stop it or a trigger fires.",
     "system": "Spirit 3 is the cheapest wrack to build on; use the Spheres of whichever wrack you choose. This earns enmity that lasts for ages.",
     "combos": [
       {

@@ -998,7 +998,7 @@
     "name": "Mind 3: Mental Link / Project Illusions / Dreamwalk / Psychic Blast",
     "kind": "rank",
     "summary": "Link minds for telepathy, read or sway someone's thoughts, put illusions in their head, walk into dreams and dream Realms, and hit a rival with a psychic attack.",
-    "system": "Mind attacks do bashing damage: painful, rarely deadly. Combined with Correspondence, Forces, Matter or Life you get telekinesis, pyrokinesis and similar powers, which are not coincidental.",
+    "system": "Mind attacks do bashing damage: painful, rarely deadly. Adding Correspondence, Forces, Matter or Life gives telekinesis, pyrokinesis and similar powers, which are not coincidental.",
     "combos": [
       {
         "spheres": {
@@ -1347,7 +1347,7 @@
     "id": "spirit-4",
     "name": "Spirit 4: Rend Gauntlet / Seal Breach / Bind Spirit",
     "kind": "rank",
-    "summary": "Tear open or close gateways through the Gauntlet big enough for groups or large objects. Compel spirits to appear, bind them into Fetishes, places or prisons, invite one into your own body, or drive one out of a possessed host.",
+    "summary": "Tear open or close gateways through the Gauntlet big enough for groups or large objects. Force spirits to show up, lock them into Fetishes, places or prisons, invite one into your own body, or drive one out of a possessed host.",
     "system": "Binding, channeling and exorcism are resisted rolls of your Willpower against the spirit's. While a spirit rides you, you use its powers but cannot use true magick. Opening or closing gateways is very vulgar.",
     "combos": [
       {
@@ -1518,7 +1518,7 @@
     "id": "time-4",
     "name": "Time 4: Time Determinism / Trigger Effect / Time Bubble / Anchor Point",
     "kind": "rank",
-    "summary": "Step out of the normal flow of time, hold an Effect until a set event triggers it, and with other Spheres trap beings or forces in a bubble of time. You can also set an anchor point to return to when you travel in time at rank 5.",
+    "summary": "Stand outside the usual current of time, hold an Effect until a set event triggers it, and with other Spheres trap beings or forces in a bubble of time. You can also set an anchor point to return to when you travel in time at rank 5.",
     "system": "A time bubble needs the Sphere of what it holds (Correspondence, Forces, Life, Matter or Spirit). Trapping something like a tornado is vulgar.",
     "combos": [
       {
@@ -1913,7 +1913,7 @@
     "id": "primal-utility-3",
     "name": "Primal Utility 3: Create Stable Extraordinary Devices / Living-Asset Exploitation / Use Currency and Primal Storage",
     "kind": "rank",
-    "summary": "Use Currency (Tass) and a well-run team to build permanent Devices, restore your own Pattern, and drain or refill Devices and storage Matrices (Periapts).",
+    "summary": "Use Currency (Tass) and a well-run team to build permanent Devices, restore your own Pattern, and empty or recharge Devices and Matrices (Periapts).",
     "combos": [
       {
         "spheres": {
@@ -2129,7 +2129,7 @@
     "id": "slip-past-the-cops",
     "name": "Slip Past the Cops by Luck",
     "kind": "feat",
-    "summary": "Scramble the odds of being noticed in your favor so passing police overlook you, while you do something unremarkable like scratching graffiti into a wall.",
+    "summary": "Bend the odds so passing police overlook you, while you do something unremarkable like scratching graffiti into a wall.",
     "system": "Coincidental, difficulty 5. Back it up with a good Stealth roll.",
     "combos": [
       {
@@ -2749,7 +2749,7 @@
     "id": "thunder-punch",
     "name": "The Thunder Punch",
     "kind": "feat",
-    "summary": "Put Enlightened force behind a punch, kick or melee blow so it lands as a perfect, devastating strike. Pick whichever Sphere fits: aim, luck, speed, strength, a mental push or a Pattern attack.",
+    "summary": "Charge a punch, kick or weapon blow with Enlightened power so it lands as a perfect, devastating strike. Pick whichever Sphere fits: aim, luck, speed, strength, a mental push or a Pattern attack.",
     "system": "Each success lowers the attack difficulty by 1, up to -3. Normally bashing; Pattern attacks with Life 3 or Prime 3 deal aggravated damage. If the target soaks all of it, the damage rebounds on you (bashing for Pattern attacks, possibly lethal against walls or steel).",
     "combos": [
       {
@@ -3448,7 +3448,7 @@
     "name": "Popping and Backspacing",
     "kind": "feat",
     "summary": "Jump from one Web sector to another, or hop back to where you just were, usually with a pop prog that scans and logs the destination first.",
-    "system": "Scan one turn, pop the next; popping blind is +2 difficulty. No pop prog is needed to return within a minute or two. Popping into or out of a Restricted sector is difficulty 8 or 9 and vulgar, and failure there means icon death or a chaos dump. A failed pop lands you somewhere awkward; a botch can soft de-rez you.",
+    "system": "Scan one turn, pop the next; popping blind is +2 difficulty. No pop prog is needed to return within a minute or two. Popping into or out of Restricted space is difficulty 8 or 9 and vulgar, and failure there means icon death or a chaos dump. A failed pop lands you somewhere awkward; a botch can soft de-rez you.",
     "combos": [
       {
         "spheres": {
@@ -6895,7 +6895,7 @@
     "id": "read-spiritual-energies",
     "name": "Read Spiritual Energies",
     "kind": "feat",
-    "summary": "Read Resonance, Synergy and other spiritual energies, such as a spirit's Essence or its place in a hierarchy.",
+    "summary": "Sense and interpret Resonance, Synergy and other spirit energies, such as a spirit's Essence or its place in a hierarchy.",
     "combos": [
       {
         "spheres": {
@@ -17889,7 +17889,7 @@
     "id": "wrack-a-spirit-prolonged-agony",
     "name": "Wrack a Spirit: Prolonged Agony",
     "kind": "feat",
-    "summary": "Add Time to any spirit wrack: extra actions for more attacks, or a bubble of time where the pain goes on until you stop it or a trigger fires.",
+    "summary": "Add Time to any spirit wrack: extra actions for more attacks, or a time bubble that keeps the pain going until you stop it or a trigger fires.",
     "system": "Spirit 3 is the cheapest wrack to build on; use the Spheres of whichever wrack you choose. This earns enmity that lasts for ages.",
     "combos": [
       {
@@ -19869,7 +19869,7 @@
     "id": "psychic-shatter",
     "name": "The Psychic Shatter",
     "kind": "feat",
-    "summary": "Tear straight into the Pattern of a target's brain, Scanners style, dealing aggravated damage that armor and tough skin cannot stop.",
+    "summary": "Rip directly into the Pattern of the target's brain, Scanners style, dealing aggravated damage that armor and tough skin cannot stop.",
     "system": "Difficulty is the target's Willpower (+3 or +5 for mages and Night-Folk). Only internal protection like a psychic shield can soak it. A survivor may need a Willpower roll, difficulty equal to health levels lost, to avoid Things Man Was Not Meant to Know. Extremely vulgar.",
     "combos": [
       {

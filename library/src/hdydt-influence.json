@@ -573,7 +573,7 @@
     "id": "psychic-shatter",
     "name": "The Psychic Shatter",
     "kind": "feat",
-    "summary": "Tear straight into the Pattern of a target's brain, Scanners style, dealing aggravated damage that armor and tough skin cannot stop.",
+    "summary": "Rip directly into the Pattern of the target's brain, Scanners style, dealing aggravated damage that armor and tough skin cannot stop.",
     "system": "Difficulty is the target's Willpower (+3 or +5 for mages and Night-Folk). Only internal protection like a psychic shield can soak it. A survivor may need a Willpower roll, difficulty equal to health levels lost, to avoid Things Man Was Not Meant to Know. Extremely vulgar.",
     "combos": [
       {
