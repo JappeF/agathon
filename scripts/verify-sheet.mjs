@@ -53,6 +53,12 @@ await page.screenshot({ path: 'shots/44-portrait-zoom.png' });
 await page.keyboard.press('Escape');
 await page.waitForSelector('.zoom-backdrop', { state: 'detached' });
 check('pills beside the portrait', (await page.$('.sheet-title .vitals-bar')) !== null);
+
+// experience sits by the name and takes digits only, in play mode too
+await page.fill('.xp input', '');
+await page.locator('.xp input').pressSequentially('2x7 ');
+check('XP: digits only, editable while playing', (await page.inputValue('.xp input')) === '27', await page.inputValue('.xp input'));
+check('XP left the Background tab', !(await page.isVisible('.field:has-text("Experience")')));
 await page.mouse.wheel(0, 900);
 await page.waitForSelector('.vitals-fixed');
 check('mini bar while scrolled', (await page.$('.vitals-fixed .mini-face img')) !== null);
@@ -157,6 +163,7 @@ check('export: Correspondence 4', count(map.traits.Correspondence.dots) === 4);
 check('export: Hurt is lethal', form.getDropdown('health2').getSelected()[0] === 'X');
 check('export: Willpower spent 2', count(map.willpowerSpent) === 2);
 check('export: name', form.getTextField('name').getText() === 'Saito Weinberg');
+check('export: experience', form.getTextField('experience').getText() === '27', form.getTextField('experience').getText());
 await page.click('.modal button:has-text("OK")');
 
 // re-import the original: the diff lists what the app changed since

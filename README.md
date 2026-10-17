@@ -51,7 +51,8 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
   history, description, gear and weapons.
 - **Play mode and edit mode**: while playing only health, Willpower and the
   **Quintessence/Paradox wheel** change (Paradox cancels Quintessence, never the
-  other way round, as in M20); a lock switches to editing.
+  other way round, as in M20), plus the experience beside the name; a lock switches
+  to editing.
 - **PDF import and export**: drop in Mr. Gone's fillable M20 2-page sheet and every
   field comes across, including the portrait pasted into it. Re-importing shows the
   changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in.

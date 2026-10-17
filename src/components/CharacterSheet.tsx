@@ -243,12 +243,31 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           <PortalPortrait name={c.name} size={128} />
         )}
         <div className="sheet-title">
-          {edit ? (
-            <input className="text-input name-input" value={c.name} aria-label="Name" onChange={(e) => patch({ name: e.target.value })} />
-          ) : (
-            <h2 className="sheet-name">{c.name}</h2>
-          )}
-          <p className="sheet-sub">{[c.concept, c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</p>
+          <div className="sheet-ident">
+            {edit ? (
+              <input className="text-input name-input" value={c.name} aria-label="Name" onChange={(e) => patch({ name: e.target.value })} />
+            ) : (
+              <h2 className="sheet-name">{c.name}</h2>
+            )}
+            <p className="sheet-sub">
+              <span>{[c.concept, c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</span>
+              {/* experience is handed out at the table, so it is editable in play mode too */}
+              <label className="xp">
+                XP
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={c.experience}
+                  placeholder="0"
+                  aria-label="Experience"
+                  style={{ width: `${Math.max(1, c.experience.length) + 0.6}ch` }}
+                  onFocus={(e) => e.target.select()}
+                  onChange={(e) => patch({ experience: e.target.value.replace(/\D/g, '').slice(0, 4) })}
+                />
+              </label>
+            </p>
+          </div>
           {pills(vitalsOpen, () => setVitalsOpen(!vitalsOpen))}
         </div>
       </div>
@@ -504,7 +523,6 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
                 ['demeanor', 'Demeanor'],
                 ['player', 'Player'],
                 ['chronicle', 'Chronicle'],
-                ['experience', 'Experience'],
               ] as const
             ).map(([k, label]) => (
               <Field key={k} label={label} value={c[k]} edit={edit} onChange={(v) => patch({ [k]: v })} />

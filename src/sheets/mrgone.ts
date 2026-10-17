@@ -66,6 +66,8 @@ export async function readMrGone(bytes: ArrayBuffer): Promise<SheetFields> {
   const c = newCharacter('', '');
   const out: SheetFields = sheetPart(c);
   for (const [k, field] of Object.entries(map.text)) (out as unknown as Record<string, string>)[k] = text(field);
+  // the app keeps experience as a plain number ("4 exp" on a sheet becomes "4")
+  out.experience = out.experience.match(/\d+/)?.[0] ?? '';
 
   out.traits = {};
   out.specialties = {};

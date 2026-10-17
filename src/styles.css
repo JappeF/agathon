@@ -966,6 +966,50 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .sheet-hero .name-input { font-size: 1.15rem; }
 .sheet-title .vitals-bar { width: auto; min-height: 0; padding: 0.45rem 0 0; border-bottom: 0; gap: 0.3rem; }
 .sheet-title .vitals-toggle { margin-left: 0.1rem; }
+/* concept line plus the experience field, which is filled in right there */
+.sheet-hero .sheet-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.6rem; }
+.sheet-sub > span:empty { display: none; }
+.xp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0 0.15rem 0 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--violet-soft);
+  border: 1px solid #8b5cf655;
+  border-radius: 999px;
+  background: #8b5cf614;
+  cursor: text;
+}
+.xp input {
+  all: unset;
+  box-sizing: content-box;
+  min-width: 1.6ch;
+  padding: 0.15rem 0.3rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--ink);
+  border-radius: 999px;
+}
+.xp input::placeholder { color: var(--ink-faint); }
+.xp:focus-within { border-color: var(--gold); }
+.xp:focus-within { background: #8b5cf626; }
+
+/* phones: a smaller portrait with name, concept and XP beside it, the status pills on
+   their own full-width row underneath (beside the portrait they wrapped onto two lines) */
+@media (max-width: 599px) {
+  .sheet-hero { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 0.85rem; }
+  .sheet-hero .pp { --pp: 96px !important; }
+  .sheet-title { display: contents; }
+  .sheet-ident { grid-column: 2; }
+  .sheet-hero .sheet-name { font-size: clamp(1.3rem, 6.4vw, 1.7rem); }
+  .sheet-hero .sheet-sub { font-size: 0.9rem; line-height: 1.45; }
+  .sheet-title .vitals-bar { grid-column: 1 / -1; flex-wrap: nowrap; padding-top: 0.55rem; }
+  .sheet-title .vitals-toggle { margin-left: auto; }
+}
 .sheet-hero + .vitals-panel { border-top: 1px solid var(--line-solid); margin-top: 0.6rem; }
 .portrait-hint { font-size: 0.75rem; bottom: 6px; }
 

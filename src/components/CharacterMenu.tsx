@@ -14,7 +14,7 @@ import { SphereGlyph } from './SphereGlyph';
 
 const OPEN = 'agathon:character-menu';
 
-/** Open the character switcher next to `trigger` (focus goes back there on close). */
+/** Open (or, from the same trigger, close) the character switcher next to `trigger`. */
 export function openCharacterMenu(trigger: HTMLElement) {
   window.dispatchEvent(new CustomEvent(OPEN, { detail: trigger }));
 }
@@ -81,7 +81,11 @@ export function CharacterMenu({ characters, active }: { characters?: Character[]
   const isOpen = !!trigger;
 
   useEffect(() => {
-    const onOpen = (e: Event) => setTrigger((e as CustomEvent<HTMLElement>).detail);
+    // the same trigger again closes it, like any drop-down
+    const onOpen = (e: Event) => {
+      const t = (e as CustomEvent<HTMLElement>).detail;
+      setTrigger((open) => (open === t ? null : t));
+    };
     // going somewhere else (a pick, an import, the back button) closes it
     const onRoute = () => setTrigger(null);
     window.addEventListener(OPEN, onOpen);
