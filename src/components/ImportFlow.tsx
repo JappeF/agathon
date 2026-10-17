@@ -1,9 +1,12 @@
 import { useRef, useState } from 'react';
 import type { Character } from '../character';
+import { db } from '../db/db';
 import { applyImport, prepareImport, type PendingImport } from '../sheetActions';
 import { SheetFormatError } from '../sheets/mrgone';
 import { SPHERES } from '../types';
 import { Modal } from './Modal';
+import { SharedImport } from './SharedImport';
+import { parsePayload, ShareFormatError, type SharePayload } from '../share';
 
 /**
  * "Import PDF sheet" button plus the confirmation dialog. A new character gets a short
@@ -25,14 +28,23 @@ export function ImportFlow({
   const [pending, setPending] = useState<PendingImport | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [shared, setShared] = useState<SharePayload | null>(null);
 
   const pick = async (file: File | undefined) => {
     if (!file) return;
     setBusy(true);
     try {
-      setPending(await prepareImport(file, target));
+      if (!target && (/\.json$/i.test(file.name) || file.type === 'application/json')) {
+        setShared(parsePayload(JSON.parse(await file.text())));
+      } else {
+        setPending(await prepareImport(file, target));
+      }
     } catch (e) {
-      setError(e instanceof SheetFormatError ? e.message : "Couldn't read that file.");
+      setError(
+        e instanceof SheetFormatError || e instanceof ShareFormatError
+          ? e.message
+          : "Couldn't read that file. Agathon imports Mr. Gone M20 PDF sheets and Agathon character files.",
+      );
     } finally {
       setBusy(false);
       if (input.current) input.current.value = '';
@@ -54,7 +66,19 @@ export function ImportFlow({
       <button type="button" className={className} onClick={() => input.current?.click()} disabled={busy}>
         {busy ? 'Reading...' : label}
       </button>
-      <input ref={input} type="file" accept="application/pdf,.pdf" hidden onChange={(e) => pick(e.target.files?.[0])} />
+      <input ref={input} type="file" accept={target ? 'application/pdf,.pdf' : 'application/pdf,.pdf,application/json,.json'} hidden onChange={(e) => pick(e.target.files?.[0])} />
+
+      {shared && (
+        <SharedImport
+          payload={shared}
+          onClose={() => setShared(null)}
+          onDone={async (id) => {
+            setShared(null);
+            const c = await db.characters.get(id);
+            if (c) onDone(c);
+          }}
+        />
+      )}
 
       {error && (
         <Modal title="Can't import this sheet" onClose={() => setError('')}>

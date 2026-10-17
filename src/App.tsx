@@ -1,7 +1,10 @@
+import { useEffect, useState } from 'react';
 import { SphereRing } from './components/SphereRing';
+import { SharedImport } from './components/SharedImport';
+import { decodeShare, ShareFormatError, type SharePayload } from './share';
 import { CharactersView } from './components/CharactersView';
 import { CharacterSheet } from './components/CharacterSheet';
-import { useHashRoute, type View } from './useHashRoute';
+import { go, useHashRoute, type View } from './useHashRoute';
 
 const NAV: { view: View; label: string; icon: JSX.Element }[] = [
   {
@@ -37,6 +40,23 @@ function Placeholder({ title, children }: { title: string; children: React.React
 
 export default function App() {
   const { view, parts } = useHashRoute();
+  const [shared, setShared] = useState<{ payload: SharePayload | null; error?: string } | null>(null);
+
+  // #import=<payload> share links open the import preview, then leave the URL clean
+  useEffect(() => {
+    const check = () => {
+      if (!location.hash.startsWith('#import=')) return;
+      const encoded = location.hash.slice('#import='.length);
+      history.replaceState(null, '', location.pathname + location.search + '#/characters');
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
+      decodeShare(encoded)
+        .then((payload) => setShared({ payload }))
+        .catch((e) => setShared({ payload: null, error: e instanceof ShareFormatError ? e.message : 'This share link is invalid or damaged.' }));
+    };
+    check();
+    window.addEventListener('hashchange', check);
+    return () => window.removeEventListener('hashchange', check);
+  }, []);
 
   return (
     <>
@@ -76,6 +96,17 @@ export default function App() {
         )}
         {view === 'characters' && (parts[0] ? <CharacterSheet id={parts[0]} tab={parts[1]} /> : <CharactersView />)}
       </main>
+      {shared && (
+        <SharedImport
+          payload={shared.payload}
+          error={shared.error}
+          onClose={() => setShared(null)}
+          onDone={(id) => {
+            setShared(null);
+            go('characters', id);
+          }}
+        />
+      )}
     </>
   );
 }

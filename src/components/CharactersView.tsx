@@ -7,10 +7,12 @@ import { go } from '../useHashRoute';
 import { getActiveCharacter } from '../activeCharacter';
 import { ImportFlow } from './ImportFlow';
 import { SphereGlyph } from './SphereGlyph';
+import { ShareDialog } from './ShareDialog';
 
 export function CharactersView() {
   const characters = useLiveQuery(() => db.characters.orderBy('updatedAt').reverse().toArray(), []);
   const [name, setName] = useState('');
+  const [backup, setBackup] = useState(false);
   const active = getActiveCharacter();
 
   const add = async (e: React.FormEvent) => {
@@ -40,9 +42,17 @@ export function CharactersView() {
         </button>
       </form>
       <div className="import-row">
-        <ImportFlow label="Import PDF sheet" onDone={(c) => go('characters', c.id)} />
-        <span className="empty-small">Mr. Gone's fillable M20 2-page sheet</span>
+        <ImportFlow label="Import" onDone={(c) => go('characters', c.id)} />
+        {!!characters?.length && (
+          <button type="button" className="btn" onClick={() => setBackup(true)}>
+            Back up all
+          </button>
+        )}
+        <span className="empty-small">Mr. Gone M20 PDF sheets or Agathon character files</span>
       </div>
+      {backup && characters && (
+        <ShareDialog characters={characters} title="Back up all characters" onClose={() => setBackup(false)} />
+      )}
 
       {characters && characters.length === 0 && (
         <p className="empty">No characters yet. Add one by name or import a PDF sheet.</p>

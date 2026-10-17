@@ -9,6 +9,7 @@ import { Dots } from './Dots';
 import { Field, LineList, LongText, RatedList } from './Fields';
 import { ImportFlow } from './ImportFlow';
 import { Modal } from './Modal';
+import { ShareDialog } from './ShareDialog';
 import { SphereGlyph } from './SphereGlyph';
 import { HealthTrack, QPWheel, WillpowerTrack } from './Trackers';
 import { Icon } from './Icon';
@@ -99,6 +100,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const [message, setMessage] = useState<{ title: string; lines: string[] } | null>(null);
   const [needBlank, setNeedBlank] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [sharing, setSharing] = useState(false);
   const blankInput = useRef<HTMLInputElement>(null);
   const tab: Tab = (TABS.some((t) => t.id === tabParam) ? tabParam : 'magick') as Tab;
 
@@ -153,6 +155,9 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               <Icon name="more" />
             </summary>
             <div className="menu-items" onClick={(e) => (e.currentTarget.parentElement as HTMLDetailsElement).removeAttribute('open')}>
+              <button type="button" onClick={() => setSharing(true)}>
+                Share character
+              </button>
               <button type="button" onClick={() => doExport()}>
                 Export PDF sheet
               </button>
@@ -538,6 +543,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           </div>
         </Modal>
       )}
+      {sharing && <ShareDialog characters={[c]} title={`Share ${c.name}`} onClose={() => setSharing(false)} />}
       {confirmDelete && (
         <Modal title={`Delete ${c.name}?`} onClose={() => setConfirmDelete(false)}>
           <p>This removes the character, its stored PDF and its spell ideas from this device.</p>
