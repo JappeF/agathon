@@ -136,30 +136,53 @@ is reading section by section, not a regex job.
 - **Vulgarity and coincidence** only when the book says so.
 - Leave out things a mage does not cast: creature powers, spirit Charms, Wonders and
   character-creation examples.
+- **One Effect, one entry.** When both books (or two places in one book) describe the same
+  Effect, it is one entry with several sources. Most rows of the M20 Common Magickal Effects
+  chart (pp. 508-510) were folded into the fuller HDYDT entry this way; the rows HDYDT does not
+  cover stay as short chart entries.
+- **Whitelist** only what the book really states in a way the checker cannot read (a rank
+  set by a general rule a few paragraphs earlier, "two dots in the appropriate Spheres",
+  a rank split by a page break), with the reason in the whitelist entry.
+
+## Coverage
+
+- **M20:** the rank lists (pp. 512-527, with the Technocratic Spheres), the Common Magickal
+  Effects chart (pp. 508-510), Chapters Eight and Nine (combat, hazards, technology, the
+  Digital Web, the Otherworlds; pp. 383-497), the rest of Chapter Ten (casting step by step,
+  Paradox, Quiet, Examples in Play, Focus, and every named Adjustment, Procedure and rote on
+  pp. 601-611), and the worked magick elsewhere in the book.
+- **HDYDT:** every sub-chapter of Classic Magickal Feats (pp. 11-136).
+- **Left out on purpose:** Wonders as items (M20 Appendix II), creature and spirit powers
+  (Jagglings, Charms), NPC Traits, character-creation dot examples, and HDYDT's index.
+- Batch files: `m20-spheres` (rank lists), `m20-chart`, `m20-ch9`, `m20-ch10`, and
+  `hdydt-<sub-chapter>` for each part of HDYDT.
+
+Every batch was read section by section, and each has a spot-check sheet
+(`node library/scripts/spotcheck.mjs <batch>`) for comparing entries with the book.
 
 ## Counts
 
 <!-- stats:start -->
-80 entries.
+563 entries.
 
 | Book | rank | feat | rote | total |
 | --- | ---: | ---: | ---: | ---: |
-| M20 | 60 | 20 | 0 | 80 |
-| HDYDT | 0 | 0 | 0 | 0 |
+| M20 | 60 | 216 | 18 | 294 |
+| HDYDT | 0 | 303 | 0 | 303 |
 
 Entries citing both books count in both rows.
 
 | Sphere | rank | feat | rote | in any combo | needed in every combo |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Correspondence | 10 | 4 | 0 | 14 | 14 |
-| Entropy | 5 | 1 | 0 | 6 | 6 |
-| Forces | 5 | 5 | 0 | 10 | 9 |
-| Life | 5 | 13 | 0 | 18 | 14 |
-| Matter | 5 | 10 | 0 | 15 | 10 |
-| Mind | 5 | 4 | 0 | 9 | 9 |
-| Prime | 10 | 6 | 0 | 16 | 16 |
-| Spirit | 10 | 2 | 0 | 12 | 12 |
-| Time | 5 | 2 | 0 | 7 | 7 |
+| Correspondence | 10 | 90 | 4 | 104 | 82 |
+| Entropy | 5 | 67 | 1 | 73 | 43 |
+| Forces | 5 | 117 | 8 | 130 | 91 |
+| Life | 5 | 165 | 5 | 175 | 109 |
+| Matter | 5 | 101 | 4 | 110 | 56 |
+| Mind | 5 | 131 | 7 | 143 | 107 |
+| Prime | 10 | 163 | 3 | 176 | 148 |
+| Spirit | 10 | 87 | 3 | 100 | 78 |
+| Time | 5 | 45 | 4 | 54 | 44 |
 
-8 entries have more than one alternative combo; 6 have at least one inferred rank.
+192 entries have more than one alternative combo; 54 have at least one inferred rank.
 <!-- stats:end -->

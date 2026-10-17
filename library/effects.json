@@ -2832,7 +2832,7 @@
     "id": "see-through-drunken-style",
     "name": "See Through the Drunken Style",
     "kind": "feat",
-    "summary": "Watch the flow of time during a fight to anticipate a drunken-style or Broken Rhythm fighter, cancelling the extra defense penalty that style imposes. Mind reading does not help, since the fighter does not know his next move either.",
+    "summary": "Watch the flow of time during a fight to anticipate a drunken-style or Broken Rhythm fighter, cancelling the extra defense penalty that style imposes. Mind reading does not help, since the fighter does not know their next move either.",
     "combos": [
       {
         "spheres": {
@@ -3472,7 +3472,7 @@
     ]
   },
   {
-    "id": "otherworlds-step-sideways",
+    "id": "step-sideways",
     "name": "Step Sideways into the Umbra",
     "kind": "feat",
     "summary": "Turn yourself into ephemera and walk bodily through the Gauntlet into the spirit world, or tear a gateway so others can follow.",
@@ -3514,11 +3514,17 @@
         "page": 484,
         "pdfPage": 485,
         "section": "The Otherworlds: Traveling the Otherworlds"
+      },
+      {
+        "book": "M20",
+        "page": 508,
+        "pdfPage": 509,
+        "section": "Common Magickal Effects: Spirit Powers"
       }
     ]
   },
   {
-    "id": "otherworlds-astral-travel",
+    "id": "astral-projection",
     "name": "Astral Travel Through the Otherworlds",
     "kind": "feat",
     "summary": "Leave your body in a trance and fly as pure consciousness, tied home by a silver cord, through the material world, the Periphery and the High Umbra.",
@@ -3568,6 +3574,12 @@
         "page": 485,
         "pdfPage": 486,
         "section": "The Otherworlds: Example of Umbral Travel"
+      },
+      {
+        "book": "M20",
+        "page": 509,
+        "pdfPage": 510,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
       }
     ]
   },
@@ -3637,7 +3649,7 @@
     "name": "Snap an Astral Traveler's Silver Cord",
     "kind": "feat",
     "summary": "A direct psychic attack that cuts an astral traveler off from the body left behind.",
-    "system": "Resisted roll, both sides at the target's Willpower as difficulty; you need more successes. The victim can spend a Willpower point to grab the cord and ride it home; otherwise she drifts.",
+    "system": "Resisted roll, both sides at the target's Willpower as difficulty; you need more successes. The victim can spend a Willpower point to grab the cord and ride it home; otherwise they drift.",
     "combos": [
       {
         "spheres": {
@@ -3663,7 +3675,7 @@
     "id": "astral-beacon",
     "name": "Astral Beacon",
     "kind": "feat",
-    "summary": "Light a guiding signal near the body of a lost astral traveler so her drifting mind can find the way home.",
+    "summary": "Light a guiding signal near the body of a lost astral traveler so their drifting mind can find the way home.",
     "system": "Lasts one day per success. The traveler rolls Perception or Wits + Occult or Meditation at difficulty 9 minus your successes. A drifting soul has one week per point of permanent Willpower before it fades for good.",
     "combos": [
       {
@@ -5018,31 +5030,6 @@
     ]
   },
   {
-    "id": "step-sideways",
-    "name": "Step Sideways",
-    "kind": "feat",
-    "summary": "Cross the Gauntlet bodily into the Umbra.",
-    "combos": [
-      {
-        "spheres": {
-          "Spirit": 3
-        }
-      }
-    ],
-    "tags": [
-      "spirit",
-      "travel"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "pdfPage": 509,
-        "section": "Common Magickal Effects: Spirit Powers"
-      }
-    ]
-  },
-  {
     "id": "touch-spirit",
     "name": "Touch a Spirit",
     "kind": "feat",
@@ -5649,33 +5636,6 @@
         "page": 509,
         "pdfPage": 510,
         "section": "Common Magickal Effects: Time and Distance"
-      }
-    ]
-  },
-  {
-    "id": "astral-projection",
-    "name": "Astral Projection",
-    "kind": "feat",
-    "summary": "Leave your body behind and travel as a mind through the astral realms.",
-    "system": "Astral travel rules are on M20 pp. 476-478.",
-    "combos": [
-      {
-        "spheres": {
-          "Mind": 4
-        }
-      }
-    ],
-    "tags": [
-      "travel",
-      "spirit",
-      "mental"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "pdfPage": 510,
-        "section": "Common Magickal Effects: Perception and Psychic Powers"
       }
     ]
   },
@@ -6332,32 +6292,6 @@
     "tags": [
       "quintessence",
       "conjuration"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "pdfPage": 511,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
-    "id": "nullify-paradox",
-    "name": "Nullify Paradox",
-    "kind": "feat",
-    "summary": "Cancel Paradox before it strikes.",
-    "system": "Details are under Nullifying Paradox, M20 p. 549.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 5
-        }
-      }
-    ],
-    "tags": [
-      "paradox",
-      "quintessence"
     ],
     "source": [
       {
@@ -7451,7 +7385,7 @@
     ]
   },
   {
-    "id": "nullify-paradox-with-stored-quintessence",
+    "id": "nullify-paradox",
     "name": "Nullify Paradox with Stored Quintessence",
     "kind": "feat",
     "summary": "Bank Quintessence in a symbol or Periapt tied to your body or to a working, then release it when Paradox gathers so the two energies cancel out.",
@@ -7473,6 +7407,12 @@
         "page": 549,
         "pdfPage": 550,
         "section": "Paradox: Nullifying Paradox"
+      },
+      {
+        "book": "M20",
+        "page": 510,
+        "pdfPage": 511,
+        "section": "Common Magickal Effects: Quintessence Energy"
       }
     ]
   },
@@ -7757,7 +7697,7 @@
     "id": "turn-an-enemy-into-a-newt",
     "name": "Turn an Enemy into a Newt",
     "kind": "feat",
-    "summary": "Transform a person into a small animal. Whether a mage does it with a glare or a transmutation ray depends entirely on her focus.",
+    "summary": "Transform a person into a small animal. Whether a mage does it with a glare or a transmutation ray depends entirely on their focus.",
     "combos": [
       {
         "spheres": {
@@ -8814,7 +8754,7 @@
     "id": "clam-in-the-heart",
     "name": "Create a Clam in a Foe's Heart",
     "kind": "feat",
-    "summary": "A player's favorite memory: with no combat skills, a young Verbena used her power over simple life to grow a clam inside an enemy's heart.",
+    "summary": "A player's favorite memory: with no combat skills, a young Verbena used their power over simple life to grow a clam inside an enemy's heart.",
     "combos": [
       {
         "spheres": {
@@ -9429,7 +9369,7 @@
     "name": "Restore Someone's Original Form",
     "kind": "feat",
     "summary": "Undo another mage's shapechange, even a permanent one, and put the subject back into its true shape.",
-    "system": "Either unweave it with Life countermagick that beats the original successes, or cast a new shapechange back to the original form. The mage who made a permanent change can always undo it herself.",
+    "system": "Either unweave it with Life countermagick that beats the original successes, or cast a new shapechange back to the original form. The mage who made a permanent change can always undo it themselves.",
     "combos": [
       {
         "spheres": {
@@ -11833,7 +11773,7 @@
     "name": "Channel Quintessence Beyond Your Avatar Rating",
     "kind": "feat",
     "summary": "Use more Quintessence in a turn than your Avatar rating, and draw it from outside sources such as Nodes, Tass and living things instead of only your own store.",
-    "system": "Below Prime 3 a mage can spend at most her Avatar rating in Quintessence per turn. With Prime 3 an Effect can move up to 2 Quintessence per success (3 successes: 6 points, 5 successes: 10). Channeling takes touch, concentration or meditation; Primal Utility users do it as an act of investment.",
+    "system": "Below Prime 3 a mage can spend at most their Avatar rating in Quintessence per turn. With Prime 3 an Effect can move up to 2 Quintessence per success (3 successes: 6 points, 5 successes: 10). Channeling takes touch, concentration or meditation; Primal Utility users do it as an act of investment.",
     "combos": [
       {
         "spheres": {
@@ -11865,7 +11805,7 @@
     "name": "Tap a Wellspring of Emotion",
     "kind": "feat",
     "summary": "Soak up the free Quintessence that strong emotions release at an exciting event (a concert, a riot, a revival) and use it to power yourself. Many mages stir up the event themselves to get the energy they want.",
-    "system": "The Wellspring's Resonance has to suit both you and your purpose: a calm mage gets little from a battle unless he wants a fight. Primal Utility 4 does the same with Ventures and opportunities.",
+    "system": "The Wellspring's Resonance has to suit both you and your purpose: a calm mage gets little from a battle unless they want a fight. Primal Utility 4 does the same with Ventures and opportunities.",
     "combos": [
       {
         "spheres": {
@@ -12699,7 +12639,7 @@
     "name": "Rubbing the Bones",
     "kind": "feat",
     "summary": "Make the Quintessence inside a victim surge and waver, causing agony; onlookers see the victim flicker like a ghost. A favorite of mages who cannot yet do real damage.",
-    "system": "Bashing damage by successes. The victim rolls Willpower against a difficulty equal to the health levels taken before soak; on a failure the pain paralyzes him.",
+    "system": "Bashing damage by successes. The victim rolls Willpower against a difficulty equal to the health levels taken before soak; on a failure the pain paralyzes them.",
     "combos": [
       {
         "spheres": {
@@ -13865,7 +13805,7 @@
     "name": "Stunning Nerve-Pinch",
     "kind": "feat",
     "summary": "A light touch in the right spot, and the opponent is overwhelmed by pain or simply told to drop. You can choose to do no damage and just stun.",
-    "system": "The target goes limp and obeys unless she wins a Willpower roll (difficulty 6) with more successes than you.",
+    "system": "The target goes limp and obeys unless they win a Willpower roll (difficulty 6) with more successes than you.",
     "combos": [
       {
         "spheres": {
@@ -13925,7 +13865,7 @@
     "id": "delayed-death-touch",
     "name": "The Delayed-Death Touch",
     "kind": "feat",
-    "summary": "Touch a target so that she dies later: after six steps, thirteen heartbeats, an hour, whatever trigger fits your art.",
+    "summary": "Touch a target so that they die later: after six steps, thirteen heartbeats, an hour, whatever trigger fits your art.",
     "system": "Time 4 sets the trigger; Life 3 does the aggravated damage, often built up with an extended killing-blow ritual. Adding chi (Prime 2, 1 Quintessence) does not raise the damage but fits the style.",
     "combos": [
       {
@@ -16061,7 +16001,7 @@
     "id": "song-of-flies",
     "name": "The Song of Flies: Read a Death",
     "kind": "feat",
-    "summary": "Study a murder scene, grave, body or murder weapon for how someone died, who was there and what happened. Works best where the death left a strong mark, and can leave the mage scarred by what she sees.",
+    "summary": "Study a murder scene, grave, body or murder weapon for how someone died, who was there and what happened. Works best where the death left a strong mark, and can leave the mage scarred by what they see.",
     "combos": [
       {
         "spheres": {
@@ -17633,7 +17573,7 @@
     "name": "Major Ward: Co-Occupational Ward",
     "kind": "feat",
     "summary": "A master's version of any ward: the warded thing and what it bars sit on different layers of the same space, so the barred thing passes right through without touching it.",
-    "system": "Everything else interacts with the warded thing normally. A Black Suit grabbing a co-occupational laptop closes his hand on nothing until he counters the ward. Obviously strange, and vulgar.",
+    "system": "Everything else interacts with the warded thing normally. A Black Suit grabbing a co-occupational laptop closes a hand on nothing until the ward is countered. Obviously strange, and vulgar.",
     "combos": [
       {
         "spheres": {
@@ -19078,7 +19018,7 @@
     "id": "detect-a-lie",
     "name": "Detect a Lie",
     "kind": "feat",
-    "summary": "Catch a deliberate falsehood, either by noticing the hitch in the liar's thoughts or by reading the tiny tells people give off when they say what they know is untrue. Someone who believes her own words does not read as lying.",
+    "summary": "Catch a deliberate falsehood, either by noticing the hitch in the liar's thoughts or by reading the tiny tells people give off when they say what they know is untrue. Someone who believes their own words does not read as lying.",
     "system": "Simple method: one roll against the target's Willpower. Resisted method: the liar's base difficulty is 4-5 for a plausible lie, 8-10 for an absurd one; the seeker rolls against the liar's Willpower. A liar without fear or conscience may add +3.",
     "combos": [
       {
@@ -19176,7 +19116,7 @@
     "id": "instant-sleep",
     "name": "Knock Someone Out Instantly",
     "kind": "feat",
-    "summary": "Drop a target where he stands, either by switching his body over to sleep or with a mental order to sleep at once. He stays out until the Effect ends or you wake him.",
+    "summary": "Drop a target where they stand, either by switching their body over to sleep or with a mental order to sleep at once. They stay out until the Effect ends or you wake them.",
     "system": "The target can try to resist as usual. Extra successes or the Magickal Feats chart cover several targets.",
     "combos": [
       {
@@ -19587,7 +19527,7 @@
     "id": "binding-oath",
     "name": "Binding Oath",
     "kind": "feat",
-    "summary": "Tie a person's luck to a promise he makes freely and knowingly, so that breaking it turns his own sense of fate against him. You may talk him into it by any ordinary means, but forced or Mind-planted oaths fail.",
+    "summary": "Tie a person's luck to a promise they make freely and knowingly, so that breaking it turns their own sense of fate against them. You may talk them into it by any ordinary means, but forced or Mind-planted oaths fail.",
     "system": "A vague doom is coincidental and Storyteller-shaped; a specific doom is vulgar but happens. A simple doom takes 1-3 successes, an elaborate one 10 or more. Entropy 1 plus Perception + Awareness spots the oath and any breach. Permanent until broken, released or kept to death.",
     "combos": [
       {
@@ -19635,7 +19575,7 @@
         }
       }
     ],
-    "coincidentalIf": "the target reaches his own conclusions rather than having his mind suddenly go haywire",
+    "coincidentalIf": "the target reaches their own conclusions rather than having their mind suddenly go haywire",
     "vulgarity": "depends",
     "tags": [
       "social",
@@ -19692,7 +19632,7 @@
     "name": "Lift Another Mage's Mental Influence",
     "kind": "feat",
     "summary": "Clear away someone else's mind control or influence from a person, either by unweaving it as countermagick or by removing it outright.",
-    "system": "Either way you need more successes than the original caster rolled. A target can also shake off an intrusion himself with Willpower at difficulty 6 by beating the caster's successes.",
+    "system": "Either way you need more successes than the original caster rolled. A target can also shake off an intrusion on their own with Willpower at difficulty 6 by beating the caster's successes.",
     "combos": [
       {
         "spheres": {
@@ -19718,7 +19658,7 @@
     "name": "Trigger-Conditioning",
     "kind": "feat",
     "summary": "Plant a Mind Effect that lies dormant until a trigger sets it off: a code word, a feeling, an activity or a set time.",
-    "system": "When the trigger fires, the subject rolls Willpower at difficulty 8; success breaks the conditioning, failure means she carries out the planted command.",
+    "system": "When the trigger fires, the subject rolls Willpower at difficulty 8; success breaks the conditioning, failure means they carry out the planted command.",
     "combos": [
       {
         "spheres": {
@@ -20194,7 +20134,7 @@
     "id": "coax-out-the-truth",
     "name": "Coax a Liar into Giving Herself Away",
     "kind": "feat",
-    "summary": "Trick a liar into revealing the lie, either by working on her mind or by tilting the odds so she is more likely to tell the truth.",
+    "summary": "Trick a liar into revealing the lie, either by working on their mind or by tilting the odds so they are more likely to tell the truth.",
     "combos": [
       {
         "spheres": {
@@ -20232,7 +20172,7 @@
     "id": "compel-the-truth",
     "name": "Compel Someone to Speak the Truth",
     "kind": "feat",
-    "summary": "Make a person tell the truth even though she does not want to.",
+    "summary": "Make a person tell the truth even though they do not want to.",
     "combos": [
       {
         "spheres": {
@@ -20306,7 +20246,7 @@
     "id": "break-a-liars-concentration",
     "name": "Break a Liar's Concentration",
     "kind": "feat",
-    "summary": "Unravel a liar's focus so completely that she can no longer hold the story together and the truth comes out.",
+    "summary": "Unravel a liar's focus so completely that they can no longer hold the story together and the truth comes out.",
     "combos": [
       {
         "spheres": {
@@ -20331,8 +20271,8 @@
     "id": "tell-tale-heart-syndrome",
     "name": "Tell-Tale Heart Syndrome (The Perry Mason Trick)",
     "kind": "feat",
-    "summary": "Raise a liar's anxiety, squeeze her with circumstance and feed her a growing guilt until she breaks down and confesses, usually in a dramatic outburst. Innocent people sometimes confess too.",
-    "system": "Uses the normal truth-seeking rolls. Works best with all three Spheres and needs at least two of them. A success ruins the liar's credibility and rattles her emotionally.",
+    "summary": "Raise a liar's anxiety, squeeze them with circumstance and feed them a growing guilt until they break down and confess, usually in a dramatic outburst. Innocent people sometimes confess too.",
+    "system": "Uses the normal truth-seeking rolls. Works best with all three Spheres and needs at least two of them. A success ruins the liar's credibility and rattles them emotionally.",
     "combos": [
       {
         "spheres": {
@@ -20477,7 +20417,7 @@
     "id": "phantasmal-wounds",
     "name": "Phantasmal Wounds",
     "kind": "feat",
-    "summary": "Tie a psychic attack to a mental illusion so the victim sees a phantom claw or blade and real injuries appear on her body, however you choose to shape them.",
+    "summary": "Tie a psychic attack to a mental illusion so the victim sees a phantom claw or blade and real injuries appear on their body, however you choose to shape them.",
     "system": "Each success above the illusion's base adds two levels of damage.",
     "combos": [
       {
@@ -20675,8 +20615,8 @@
     "id": "shatter-a-mages-paradigm",
     "name": "Shatter a Mage's Paradigm",
     "kind": "feat",
-    "summary": "Turn conceptual entropy on another mage's paradigm until he no longer trusts it, so all of his magick counts as vulgar with witnesses: he is his own witness.",
-    "system": "Needs at least 10 successes against his Willpower +5. Lasts until he regains full Willpower; combined with torture or Mind assaults it can stick until he finds his faith again or a new Path.",
+    "summary": "Turn conceptual entropy on another mage's paradigm until they no longer trust it, so all of their magick counts as vulgar with witnesses: they are their own witness.",
+    "system": "Needs at least 10 successes against their Willpower +5. Lasts until they regain full Willpower; combined with torture or Mind assaults it can stick until they find their faith again or a new Path.",
     "combos": [
       {
         "spheres": {

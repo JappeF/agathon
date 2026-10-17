@@ -53,7 +53,7 @@
     "name": "Channel Quintessence Beyond Your Avatar Rating",
     "kind": "feat",
     "summary": "Use more Quintessence in a turn than your Avatar rating, and draw it from outside sources such as Nodes, Tass and living things instead of only your own store.",
-    "system": "Below Prime 3 a mage can spend at most her Avatar rating in Quintessence per turn. With Prime 3 an Effect can move up to 2 Quintessence per success (3 successes: 6 points, 5 successes: 10). Channeling takes touch, concentration or meditation; Primal Utility users do it as an act of investment.",
+    "system": "Below Prime 3 a mage can spend at most their Avatar rating in Quintessence per turn. With Prime 3 an Effect can move up to 2 Quintessence per success (3 successes: 6 points, 5 successes: 10). Channeling takes touch, concentration or meditation; Primal Utility users do it as an act of investment.",
     "combos": [
       {
         "spheres": {
@@ -83,7 +83,7 @@
     "name": "Tap a Wellspring of Emotion",
     "kind": "feat",
     "summary": "Soak up the free Quintessence that strong emotions release at an exciting event (a concert, a riot, a revival) and use it to power yourself. Many mages stir up the event themselves to get the energy they want.",
-    "system": "The Wellspring's Resonance has to suit both you and your purpose: a calm mage gets little from a battle unless he wants a fight. Primal Utility 4 does the same with Ventures and opportunities.",
+    "system": "The Wellspring's Resonance has to suit both you and your purpose: a calm mage gets little from a battle unless they want a fight. Primal Utility 4 does the same with Ventures and opportunities.",
     "combos": [
       {
         "spheres": {
@@ -881,7 +881,7 @@
     "name": "Rubbing the Bones",
     "kind": "feat",
     "summary": "Make the Quintessence inside a victim surge and waver, causing agony; onlookers see the victim flicker like a ghost. A favorite of mages who cannot yet do real damage.",
-    "system": "Bashing damage by successes. The victim rolls Willpower against a difficulty equal to the health levels taken before soak; on a failure the pain paralyzes him.",
+    "system": "Bashing damage by successes. The victim rolls Willpower against a difficulty equal to the health levels taken before soak; on a failure the pain paralyzes them.",
     "vulgarity": "vulgar",
     "combos": [
       {

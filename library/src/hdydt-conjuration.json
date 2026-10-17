@@ -523,7 +523,7 @@
     "name": "Restore Someone's Original Form",
     "kind": "feat",
     "summary": "Undo another mage's shapechange, even a permanent one, and put the subject back into its true shape.",
-    "system": "Either unweave it with Life countermagick that beats the original successes, or cast a new shapechange back to the original form. The mage who made a permanent change can always undo it herself.",
+    "system": "Either unweave it with Life countermagick that beats the original successes, or cast a new shapechange back to the original form. The mage who made a permanent change can always undo it themselves.",
     "combos": [
       {
         "spheres": {

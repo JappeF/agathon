@@ -919,30 +919,6 @@
     ]
   },
   {
-    "id": "step-sideways",
-    "name": "Step Sideways",
-    "kind": "feat",
-    "summary": "Cross the Gauntlet bodily into the Umbra.",
-    "combos": [
-      {
-        "spheres": {
-          "Spirit": 3
-        }
-      }
-    ],
-    "tags": [
-      "spirit",
-      "travel"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Spirit Powers"
-      }
-    ]
-  },
-  {
     "id": "touch-spirit",
     "name": "Touch a Spirit",
     "kind": "feat",
@@ -1530,32 +1506,6 @@
         "book": "M20",
         "page": 509,
         "section": "Common Magickal Effects: Time and Distance"
-      }
-    ]
-  },
-  {
-    "id": "astral-projection",
-    "name": "Astral Projection",
-    "kind": "feat",
-    "summary": "Leave your body behind and travel as a mind through the astral realms.",
-    "system": "Astral travel rules are on M20 pp. 476-478.",
-    "combos": [
-      {
-        "spheres": {
-          "Mind": 4
-        }
-      }
-    ],
-    "tags": [
-      "travel",
-      "spirit",
-      "mental"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Perception and Psychic Powers"
       }
     ]
   },
@@ -2192,31 +2142,6 @@
     "tags": [
       "quintessence",
       "conjuration"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
-    "id": "nullify-paradox",
-    "name": "Nullify Paradox",
-    "kind": "feat",
-    "summary": "Cancel Paradox before it strikes.",
-    "system": "Details are under Nullifying Paradox, M20 p. 549.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 5
-        }
-      }
-    ],
-    "tags": [
-      "paradox",
-      "quintessence"
     ],
     "source": [
       {

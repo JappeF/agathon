@@ -358,7 +358,7 @@
     ]
   },
   {
-    "id": "nullify-paradox-with-stored-quintessence",
+    "id": "nullify-paradox",
     "name": "Nullify Paradox with Stored Quintessence",
     "kind": "feat",
     "summary": "Bank Quintessence in a symbol or Periapt tied to your body or to a working, then release it when Paradox gathers so the two energies cancel out.",
@@ -379,6 +379,11 @@
         "book": "M20",
         "page": 549,
         "section": "Paradox: Nullifying Paradox"
+      },
+      {
+        "book": "M20",
+        "page": 510,
+        "section": "Common Magickal Effects: Quintessence Energy"
       }
     ]
   },
@@ -652,7 +657,7 @@
     "id": "turn-an-enemy-into-a-newt",
     "name": "Turn an Enemy into a Newt",
     "kind": "feat",
-    "summary": "Transform a person into a small animal. Whether a mage does it with a glare or a transmutation ray depends entirely on her focus.",
+    "summary": "Transform a person into a small animal. Whether a mage does it with a glare or a transmutation ray depends entirely on their focus.",
     "combos": [
       {
         "spheres": {
@@ -1829,7 +1834,7 @@
     "id": "clam-in-the-heart",
     "name": "Create a Clam in a Foe's Heart",
     "kind": "feat",
-    "summary": "A player's favorite memory: with no combat skills, a young Verbena used her power over simple life to grow a clam inside an enemy's heart.",
+    "summary": "A player's favorite memory: with no combat skills, a young Verbena used their power over simple life to grow a clam inside an enemy's heart.",
     "combos": [
       {
         "spheres": {

@@ -591,7 +591,7 @@
     "name": "Stunning Nerve-Pinch",
     "kind": "feat",
     "summary": "A light touch in the right spot, and the opponent is overwhelmed by pain or simply told to drop. You can choose to do no damage and just stun.",
-    "system": "The target goes limp and obeys unless she wins a Willpower roll (difficulty 6) with more successes than you.",
+    "system": "The target goes limp and obeys unless they win a Willpower roll (difficulty 6) with more successes than you.",
     "combos": [
       {
         "spheres": {
@@ -648,7 +648,7 @@
     "id": "delayed-death-touch",
     "name": "The Delayed-Death Touch",
     "kind": "feat",
-    "summary": "Touch a target so that she dies later: after six steps, thirteen heartbeats, an hour, whatever trigger fits your art.",
+    "summary": "Touch a target so that they die later: after six steps, thirteen heartbeats, an hour, whatever trigger fits your art.",
     "system": "Time 4 sets the trigger; Life 3 does the aggravated damage, often built up with an extended killing-blow ritual. Adding chi (Prime 2, 1 Quintessence) does not raise the damage but fits the style.",
     "combos": [
       {

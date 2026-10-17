@@ -648,7 +648,7 @@
     "id": "see-through-drunken-style",
     "name": "See Through the Drunken Style",
     "kind": "feat",
-    "summary": "Watch the flow of time during a fight to anticipate a drunken-style or Broken Rhythm fighter, cancelling the extra defense penalty that style imposes. Mind reading does not help, since the fighter does not know his next move either.",
+    "summary": "Watch the flow of time during a fight to anticipate a drunken-style or Broken Rhythm fighter, cancelling the extra defense penalty that style imposes. Mind reading does not help, since the fighter does not know their next move either.",
     "combos": [
       {
         "spheres": {
@@ -1264,7 +1264,7 @@
     ]
   },
   {
-    "id": "otherworlds-step-sideways",
+    "id": "step-sideways",
     "name": "Step Sideways into the Umbra",
     "kind": "feat",
     "summary": "Turn yourself into ephemera and walk bodily through the Gauntlet into the spirit world, or tear a gateway so others can follow.",
@@ -1303,11 +1303,16 @@
         "book": "M20",
         "page": 484,
         "section": "The Otherworlds: Traveling the Otherworlds"
+      },
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
       }
     ]
   },
   {
-    "id": "otherworlds-astral-travel",
+    "id": "astral-projection",
     "name": "Astral Travel Through the Otherworlds",
     "kind": "feat",
     "summary": "Leave your body in a trance and fly as pure consciousness, tied home by a silver cord, through the material world, the Periphery and the High Umbra.",
@@ -1353,6 +1358,11 @@
         "book": "M20",
         "page": 485,
         "section": "The Otherworlds: Example of Umbral Travel"
+      },
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
       }
     ]
   },
@@ -1419,7 +1429,7 @@
     "name": "Snap an Astral Traveler's Silver Cord",
     "kind": "feat",
     "summary": "A direct psychic attack that cuts an astral traveler off from the body left behind.",
-    "system": "Resisted roll, both sides at the target's Willpower as difficulty; you need more successes. The victim can spend a Willpower point to grab the cord and ride it home; otherwise she drifts.",
+    "system": "Resisted roll, both sides at the target's Willpower as difficulty; you need more successes. The victim can spend a Willpower point to grab the cord and ride it home; otherwise they drift.",
     "combos": [
       {
         "spheres": {
@@ -1444,7 +1454,7 @@
     "id": "astral-beacon",
     "name": "Astral Beacon",
     "kind": "feat",
-    "summary": "Light a guiding signal near the body of a lost astral traveler so her drifting mind can find the way home.",
+    "summary": "Light a guiding signal near the body of a lost astral traveler so their drifting mind can find the way home.",
     "system": "Lasts one day per success. The traveler rolls Perception or Wits + Occult or Meditation at difficulty 9 minus your successes. A drifting soul has one week per point of permanent Willpower before it fades for good.",
     "combos": [
       {

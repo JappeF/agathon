@@ -824,7 +824,7 @@
     "name": "Major Ward: Co-Occupational Ward",
     "kind": "feat",
     "summary": "A master's version of any ward: the warded thing and what it bars sit on different layers of the same space, so the barred thing passes right through without touching it.",
-    "system": "Everything else interacts with the warded thing normally. A Black Suit grabbing a co-occupational laptop closes his hand on nothing until he counters the ward. Obviously strange, and vulgar.",
+    "system": "Everything else interacts with the warded thing normally. A Black Suit grabbing a co-occupational laptop closes a hand on nothing until the ward is countered. Obviously strange, and vulgar.",
     "combos": [
       {
         "spheres": {

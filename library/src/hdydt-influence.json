@@ -307,7 +307,7 @@
     "name": "Lift Another Mage's Mental Influence",
     "kind": "feat",
     "summary": "Clear away someone else's mind control or influence from a person, either by unweaving it as countermagick or by removing it outright.",
-    "system": "Either way you need more successes than the original caster rolled. A target can also shake off an intrusion himself with Willpower at difficulty 6 by beating the caster's successes.",
+    "system": "Either way you need more successes than the original caster rolled. A target can also shake off an intrusion on their own with Willpower at difficulty 6 by beating the caster's successes.",
     "combos": [
       {
         "spheres": {
@@ -332,7 +332,7 @@
     "name": "Trigger-Conditioning",
     "kind": "feat",
     "summary": "Plant a Mind Effect that lies dormant until a trigger sets it off: a code word, a feeling, an activity or a set time.",
-    "system": "When the trigger fires, the subject rolls Willpower at difficulty 8; success breaks the conditioning, failure means she carries out the planted command.",
+    "system": "When the trigger fires, the subject rolls Willpower at difficulty 8; success breaks the conditioning, failure means they carry out the planted command.",
     "combos": [
       {
         "spheres": {
@@ -880,7 +880,7 @@
     "id": "detect-a-lie",
     "name": "Detect a Lie",
     "kind": "feat",
-    "summary": "Catch a deliberate falsehood, either by noticing the hitch in the liar's thoughts or by reading the tiny tells people give off when they say what they know is untrue. Someone who believes her own words does not read as lying.",
+    "summary": "Catch a deliberate falsehood, either by noticing the hitch in the liar's thoughts or by reading the tiny tells people give off when they say what they know is untrue. Someone who believes their own words does not read as lying.",
     "system": "Simple method: one roll against the target's Willpower. Resisted method: the liar's base difficulty is 4-5 for a plausible lie, 8-10 for an absurd one; the seeker rolls against the liar's Willpower. A liar without fear or conscience may add +3.",
     "combos": [
       {
@@ -923,7 +923,7 @@
     "id": "coax-out-the-truth",
     "name": "Coax a Liar into Giving Herself Away",
     "kind": "feat",
-    "summary": "Trick a liar into revealing the lie, either by working on her mind or by tilting the odds so she is more likely to tell the truth.",
+    "summary": "Trick a liar into revealing the lie, either by working on their mind or by tilting the odds so they are more likely to tell the truth.",
     "combos": [
       {
         "spheres": {
@@ -959,7 +959,7 @@
     "id": "compel-the-truth",
     "name": "Compel Someone to Speak the Truth",
     "kind": "feat",
-    "summary": "Make a person tell the truth even though she does not want to.",
+    "summary": "Make a person tell the truth even though they do not want to.",
     "combos": [
       {
         "spheres": {
@@ -990,7 +990,7 @@
     "id": "break-a-liars-concentration",
     "name": "Break a Liar's Concentration",
     "kind": "feat",
-    "summary": "Unravel a liar's focus so completely that she can no longer hold the story together and the truth comes out.",
+    "summary": "Unravel a liar's focus so completely that they can no longer hold the story together and the truth comes out.",
     "combos": [
       {
         "spheres": {
@@ -1054,8 +1054,8 @@
     "id": "tell-tale-heart-syndrome",
     "name": "Tell-Tale Heart Syndrome (The Perry Mason Trick)",
     "kind": "feat",
-    "summary": "Raise a liar's anxiety, squeeze her with circumstance and feed her a growing guilt until she breaks down and confesses, usually in a dramatic outburst. Innocent people sometimes confess too.",
-    "system": "Uses the normal truth-seeking rolls. Works best with all three Spheres and needs at least two of them. A success ruins the liar's credibility and rattles her emotionally.",
+    "summary": "Raise a liar's anxiety, squeeze them with circumstance and feed them a growing guilt until they break down and confess, usually in a dramatic outburst. Innocent people sometimes confess too.",
+    "system": "Uses the normal truth-seeking rolls. Works best with all three Spheres and needs at least two of them. A success ruins the liar's credibility and rattles them emotionally.",
     "combos": [
       {
         "spheres": {
@@ -1152,7 +1152,7 @@
     "id": "instant-sleep",
     "name": "Knock Someone Out Instantly",
     "kind": "feat",
-    "summary": "Drop a target where he stands, either by switching his body over to sleep or with a mental order to sleep at once. He stays out until the Effect ends or you wake him.",
+    "summary": "Drop a target where they stand, either by switching their body over to sleep or with a mental order to sleep at once. They stay out until the Effect ends or you wake them.",
     "system": "The target can try to resist as usual. Extra successes or the Magickal Feats chart cover several targets.",
     "combos": [
       {
@@ -1392,7 +1392,7 @@
     "id": "phantasmal-wounds",
     "name": "Phantasmal Wounds",
     "kind": "feat",
-    "summary": "Tie a psychic attack to a mental illusion so the victim sees a phantom claw or blade and real injuries appear on her body, however you choose to shape them.",
+    "summary": "Tie a psychic attack to a mental illusion so the victim sees a phantom claw or blade and real injuries appear on their body, however you choose to shape them.",
     "system": "Each success above the illusion's base adds two levels of damage.",
     "combos": [
       {
@@ -1661,7 +1661,7 @@
     "id": "binding-oath",
     "name": "Binding Oath",
     "kind": "feat",
-    "summary": "Tie a person's luck to a promise he makes freely and knowingly, so that breaking it turns his own sense of fate against him. You may talk him into it by any ordinary means, but forced or Mind-planted oaths fail.",
+    "summary": "Tie a person's luck to a promise they make freely and knowingly, so that breaking it turns their own sense of fate against them. You may talk them into it by any ordinary means, but forced or Mind-planted oaths fail.",
     "system": "A vague doom is coincidental and Storyteller-shaped; a specific doom is vulgar but happens. A simple doom takes 1-3 successes, an elaborate one 10 or more. Entropy 1 plus Perception + Awareness spots the oath and any breach. Permanent until broken, released or kept to death.",
     "combos": [
       {
@@ -1707,7 +1707,7 @@
       }
     ],
     "vulgarity": "depends",
-    "coincidentalIf": "the target reaches his own conclusions rather than having his mind suddenly go haywire",
+    "coincidentalIf": "the target reaches their own conclusions rather than having their mind suddenly go haywire",
     "tags": [
       "social",
       "mental"
@@ -1797,8 +1797,8 @@
     "id": "shatter-a-mages-paradigm",
     "name": "Shatter a Mage's Paradigm",
     "kind": "feat",
-    "summary": "Turn conceptual entropy on another mage's paradigm until he no longer trusts it, so all of his magick counts as vulgar with witnesses: he is his own witness.",
-    "system": "Needs at least 10 successes against his Willpower +5. Lasts until he regains full Willpower; combined with torture or Mind assaults it can stick until he finds his faith again or a new Path.",
+    "summary": "Turn conceptual entropy on another mage's paradigm until they no longer trust it, so all of their magick counts as vulgar with witnesses: they are their own witness.",
+    "system": "Needs at least 10 successes against their Willpower +5. Lasts until they regain full Willpower; combined with torture or Mind assaults it can stick until they find their faith again or a new Path.",
     "combos": [
       {
         "spheres": {
