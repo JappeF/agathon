@@ -1,0 +1,693 @@
+[
+  {
+    "id": "spot-temporal-disturbances",
+    "name": "Spot Temporal Disturbances",
+    "kind": "feat",
+    "summary": "Keep an exact sense of the current time and notice the ripples left behind by Time magick: rewinds, loops, triggers, anchor points and travellers popping out of the timestream.",
+    "system": "Noticing a disturbance is usually a Perception + Awareness roll; bigger Effects leave bigger ripples. They can show up as waves in the air, ghostly sounds from other times, ticking clocks, slow-motion patches or deja vu.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 1
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 107,
+        "section": "Time Distortion and Travel: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 108,
+        "section": "Time Distortion and Travel: Temporal Disturbances"
+      }
+    ]
+  },
+  {
+    "id": "speed-up-or-slow-down-time",
+    "name": "Speed Yourself Up or Slow Others Down",
+    "kind": "feat",
+    "summary": "Stretch time around yourself to get extra actions in a turn, or squeeze it around someone else to take actions away from them.",
+    "system": "Two successes per extra action gained, or per action taken away from another character. Speeding yourself up does not count toward the Repeated Time Effects penalty.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 3
+        }
+      }
+    ],
+    "coincidentalIf": "you take only one or two extra actions a turn, which can pass as a burst of speed; three or more a turn is vulgar",
+    "vulgarity": "depends",
+    "tags": [
+      "time",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 107,
+        "section": "Time Distortion and Travel: The Basics"
+      }
+    ]
+  },
+  {
+    "id": "the-perfect-moment",
+    "name": "The Perfect Moment",
+    "kind": "feat",
+    "summary": "Sense exactly when to act so a mundane task goes better: the right moment to walk in, crack a joke, throw a punch or juggle. Harder, more involved tasks call on extra Spheres to read the situation.",
+    "system": "Cast the Effect with your focus first. Each Arete success then lowers the difficulty of one Attribute + Ability roll by 1, to at most -3. It cannot lower an Arete roll, except when used to prepare a ritual in advance, and even then by no more than -3. Needs time to set up, so it is little use in a fast fight.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 1
+        },
+        "note": "simple tasks"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        },
+        "purpose": "spot the right place as well as the right time"
+      },
+      {
+        "spheres": {
+          "Correspondence": 3
+        },
+        "purpose": "get yourself to the right place at the right time"
+      },
+      {
+        "spheres": {
+          "Entropy": 1
+        },
+        "purpose": "read the odds"
+      },
+      {
+        "spheres": {
+          "Entropy": 2
+        },
+        "purpose": "nudge the odds toward the perfect moment"
+      },
+      {
+        "spheres": {
+          "Forces": 1
+        },
+        "purpose": "time your move to the flow of energies"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "purpose": "bend those energies to fit your timing"
+      },
+      {
+        "spheres": {
+          "Life": 1
+        },
+        "purpose": "sense who is around and how healthy and receptive they are"
+      },
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "purpose": "read the moods of the people involved"
+      },
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "purpose": "read their thoughts to know when they are most open"
+      },
+      {
+        "spheres": {
+          "Matter": 1
+        },
+        "purpose": "spot flaws in an object"
+      },
+      {
+        "spheres": {
+          "Prime": 1
+        },
+        "purpose": "feel the currents of Quintessence"
+      },
+      {
+        "spheres": {
+          "Prime": 3
+        },
+        "purpose": "steer those currents toward the moment"
+      },
+      {
+        "spheres": {
+          "Spirit": 1
+        },
+        "purpose": "read the spirit of the times"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "time",
+      "utility",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 109,
+        "section": "Time Distortion and Travel: The Perfect Moment"
+      }
+    ]
+  },
+  {
+    "id": "total-recall",
+    "name": "Total Recall",
+    "kind": "feat",
+    "summary": "Relive a past event from someone's own memory in full sensory detail, as if it were happening now. The memory stays as subjective as the original experience, though the viewer may catch details missed at the time.",
+    "system": "More successes give a clearer and more accurate memory. Nothing the person could not perceive back then can be recovered. Whether it can recall things that have not happened yet is up to the Storyteller.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 2,
+          "Mind": 3
+        },
+        "note": "your own memories"
+      },
+      {
+        "spheres": {
+          "Time": 2,
+          "Mind": 4
+        },
+        "note": "someone else's memories"
+      }
+    ],
+    "tags": [
+      "mental",
+      "divination",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 110,
+        "section": "Time Distortion and Travel: Total Recall"
+      }
+    ]
+  },
+  {
+    "id": "thicken-the-walls-of-time",
+    "name": "Thicken the Walls of Time",
+    "kind": "feat",
+    "summary": "Make the local flow of time heavy and stubborn so that other mages have a harder time working Time magick near you.",
+    "system": "Each success you score takes one success off another mage's Time Effects. Past five successes, time around you starts to stutter: clocks skip, speech and movement drag, and everyone feels heavy. That is easy to miss out in the wilds but obvious in busy places like cities or parties.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 2
+        }
+      }
+    ],
+    "coincidentalIf": "you use no more than five successes",
+    "vulgarity": "depends",
+    "tags": [
+      "defense",
+      "warding",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 110,
+        "section": "Time Distortion and Travel: Thickening the Walls of Time"
+      }
+    ]
+  },
+  {
+    "id": "time-loop",
+    "name": "Time Loop",
+    "kind": "feat",
+    "summary": "Freeze an area and roll it back to an earlier moment while you alone keep moving, so you can act differently the second time around.",
+    "system": "Counts as a Magickal Feat of Time: 3 successes for yourself, 4 for one other person, 5 for a few people or a 10-foot square, 8 for a 25-foot square, 10-20 for larger areas, 20+ for a huge area. Add 2 successes per turn rewound. Going back adds +3 difficulty and multiplies Paradox by the turns rewound. Each further Time Effect in the same scene must score more successes than the one before.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 3
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 111,
+        "section": "Time Distortion and Travel: Rewinding Time"
+      },
+      {
+        "book": "HDYDT",
+        "page": 108,
+        "section": "Time Distortion and Travel: Magickal Feats of Time"
+      }
+    ]
+  },
+  {
+    "id": "reboot-another-person",
+    "name": "Reboot Another Person",
+    "kind": "feat",
+    "summary": "Send someone else back a few turns with their memories intact, so they can replay events knowing what is coming. The rest of the world repeats itself until they change something.",
+    "system": "Each rebooted person beyond yourself costs 3 or more extra successes on top of the 2 per turn rewound. Rewinding adds +3 difficulty and stacks Paradox per turn. The Storyteller may cap reboots at five turns. Cannot undo a vampire's curse. Rebooting only yourself takes Life 3, Mind 1 and Time 3.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 5,
+          "Mind": 4,
+          "Time": 3
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 111,
+        "section": "Time Distortion and Travel: Rewinding Time"
+      }
+    ]
+  },
+  {
+    "id": "accelerated-aging-or-youth",
+    "name": "Accelerated Aging or Youth",
+    "kind": "feat",
+    "summary": "Fast-forward the aging of a person, creature or object until it withers or crumbles, or run it backward to make it young or new again. It works on the whole subject at once, never on a single part.",
+    "system": "Successes depend on how much aging, not how many years: 3 minor, 4 noticeable, 5 severe, 8 decrepit, 10-20 near destruction, 20+ aged out of existence. Reversing age adds +3 difficulty. Vampires, werecreatures, mummies and fae just take lethal damage equal to the successes and recover their years; spirits and ghosts are immune.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 3,
+          "Life": 3
+        },
+        "note": "living beings"
+      },
+      {
+        "spheres": {
+          "Time": 3,
+          "Matter": 3
+        },
+        "note": "objects"
+      },
+      {
+        "spheres": {
+          "Time": 3,
+          "Entropy": 3
+        },
+        "note": "objects, through decay"
+      },
+      {
+        "spheres": {
+          "Time": 3,
+          "Entropy": 4
+        },
+        "note": "living beings, through decay"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time",
+      "destruction",
+      "body",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 111,
+        "section": "Time Distortion and Travel: Accelerated Youth or Decay"
+      },
+      {
+        "book": "HDYDT",
+        "page": 112,
+        "section": "Time Distortion and Travel: Aging the Night-Folk"
+      }
+    ]
+  },
+  {
+    "id": "disrupt-heartbeat-rhythm",
+    "name": "Disrupt Heartbeat Rhythm",
+    "kind": "feat",
+    "summary": "Throw a person's heartbeat out of its natural rhythm. You can upset the timing of the heart, but you cannot run it in a different time-stream from the rest of the body.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Time": 3
+        }
+      }
+    ],
+    "tags": [
+      "combat",
+      "body",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 112,
+        "section": "Time Distortion and Travel: Accelerated Youth or Decay"
+      }
+    ]
+  },
+  {
+    "id": "temporal-anchor-point",
+    "name": "Temporal Anchor Point",
+    "kind": "feat",
+    "summary": "Fix a point in time you can return to after travelling or stepping out of time. The anchor can be a set alarm or clock, a mantra, an icon, a place or a memorable staged event, depending on your focus.",
+    "system": "Without an anchor, any trip through time is one-way and the Storyteller decides where you end up. Returning also needs Time 4 and only works if the anchor still exists and you can reach it. Anyone with Time 1 can spot an anchor, so hide it well. Setting it in a Sanctum or other secluded place makes the return less likely to draw Paradox.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Correspondence": 4
+        },
+        "purpose": "return to the anchor from far away in space"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 112,
+        "section": "Time Distortion and Travel: Time Immunity"
+      }
+    ]
+  },
+  {
+    "id": "freeze-a-moment",
+    "name": "Freeze a Moment in Time",
+    "kind": "feat",
+    "summary": "Stop a single event in mid-motion, like a falling glass, a bullet or a car crash. When the freeze ends, everything carries on along its old path unless you changed it in the meantime.",
+    "system": "Base successes by size of event: a falling teacup 1, a looming train wreck 5-10 or more. Add successes for longer durations by the dividing successes chart (one day +2, six months +5). Anyone else touching the frozen scene ends it at once; you can end it whenever you like.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 4
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 112,
+        "section": "Time Distortion and Travel: Time Immunity"
+      }
+    ]
+  },
+  {
+    "id": "temporal-suspension",
+    "name": "Temporal Suspension",
+    "kind": "feat",
+    "summary": "Put one subject into stasis: stop a body's life processes, hold an object, energy or place unchanged, keep something from decaying, lock a spirit outside time, or even hold a feeling, memory or train of thought in place.",
+    "system": "Lasts the normal Duration; extend it with the dividing successes rule. Small subjects are easy (a mouse, 1-2 successes); big or complex ones like a tank or a set of memories take 5 or more.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 4,
+          "Life": 3
+        },
+        "note": "your own body"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Life": 4
+        },
+        "note": "another living being"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Matter": 4
+        },
+        "note": "an object or material"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Forces": 4
+        },
+        "note": "an energy"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Correspondence": 4
+        },
+        "note": "a location"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Entropy": 4
+        },
+        "note": "stop decay; also add the Sphere of the place, object or body"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Spirit": 5
+        },
+        "note": "a spirit"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Mind": 2
+        },
+        "note": "an emotional impulse"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Mind": 4
+        },
+        "note": "a memory, idea or state of sanity"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Mind": 5
+        },
+        "note": "the deepest subconscious"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 113,
+        "section": "Time Distortion and Travel: Time Immunity"
+      }
+    ]
+  },
+  {
+    "id": "contingency-trigger-effect",
+    "name": "Contingency Trigger Effect",
+    "kind": "feat",
+    "summary": "Hang another Effect in time so it only goes off when a chosen condition is met: a kiss, a cat crossing a doorstep, a band finally splitting up.",
+    "system": "Base successes depend on the scale of the held Effect, per the Feats of Time Magick chart; it lasts until the condition happens. While waiting it sits in a temporal ripple that Time mages can notice and counter.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 4,
+          "Entropy": 3
+        },
+        "note": "triggered by objects or events"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Entropy": 4
+        },
+        "note": "triggered by living things"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Entropy": 5
+        },
+        "note": "triggered by ideas or memes"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "inferred": [
+          "Matter"
+        ],
+        "purpose": "tie the held Effect to an object"
+      },
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "purpose": "tie the held Effect to a living being"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 113,
+        "section": "Time Distortion and Travel: Time Immunity"
+      }
+    ]
+  },
+  {
+    "id": "time-bubble-prison",
+    "name": "Time Bubble Prison",
+    "kind": "feat",
+    "summary": "Wrap a creature, energy, object or spirit in a bubble outside both time and space, cut off from the world until it ends.",
+    "system": "A Godlike feat: 20 or more successes, plus 2 per step on the Time-Sphere Timelines chart, and Paradox doubles for each step. Fifty years takes at least 24 successes and eight times the normal Paradox.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 4,
+          "Correspondence": 4,
+          "Life": 4
+        },
+        "note": "a creature"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Correspondence": 4,
+          "Forces": 4
+        },
+        "note": "an energy"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Correspondence": 4,
+          "Matter": 4
+        },
+        "note": "an object"
+      },
+      {
+        "spheres": {
+          "Time": 4,
+          "Correspondence": 4,
+          "Spirit": 5
+        },
+        "note": "a spirit"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time",
+      "warding",
+      "summoning"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 113,
+        "section": "Time Distortion and Travel: Time Immunity"
+      }
+    ]
+  },
+  {
+    "id": "sidestep-time",
+    "name": "Sidestep Time",
+    "kind": "feat",
+    "summary": "Step sideways out of the timestream so nothing outside can touch you. You can still hit or handle things, but they only feel it once the Effect ends, so a victim gets punched by someone they never saw.",
+    "system": "Turn by turn only. You cannot cast magick while sidestepped, and anything already inside you (poison, sickness, wounds) keeps working. Bringing someone along costs 2 more successes and 1 more Paradox per person.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 5
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time",
+      "defense",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 113,
+        "section": "Time Distortion and Travel: Time Immunity"
+      }
+    ]
+  },
+  {
+    "id": "time-travel",
+    "name": "Time Travel",
+    "kind": "feat",
+    "summary": "Leave the present and travel forward or back through time, stepping out again in the same place at another time. Long trips can change you so much that you no longer fit into the life you left.",
+    "system": "Out of combat only. Successes: 2 for each step on the Timelines chart (within a year 1, five years 2, 20 years 3, 50 years 4, 100 years 5, 500 years 6, 1000+ years 10); 50 years back takes 8. Going back adds +3 difficulty, is always vulgar and doubles Paradox per step. Without an anchor point the trip is one-way. Sending another person a few turns costs 4 successes plus 2 per turn.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 5
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 113,
+        "section": "Time Distortion and Travel: Time Immunity"
+      },
+      {
+        "book": "HDYDT",
+        "page": 110,
+        "section": "Time Distortion and Travel: Dilating Time"
+      }
+    ]
+  }
+]

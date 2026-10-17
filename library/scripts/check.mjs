@@ -5,6 +5,7 @@
 //   node library/scripts/check.mjs                  # report on effects.json
 //   node library/scripts/check.mjs --src hdydt-time # check one batch file while writing it
 //   node library/scripts/check.mjs --verbose        # also list inferred ranks and whitelisted hits
+//   node library/scripts/check.mjs --prune          # remove whitelist entries that no longer match anything
 //
 // Checks:
 //   schema     required fields, known Spheres/kinds/tags, ranks 1-5, no empty combos
@@ -19,7 +20,7 @@
 //   text       shipped text uses plain keyboard characters only (no em/en dashes,
 //              curly quotes or other non-ASCII)
 //   copies     no run of 8+ words in our text matches the book text of the page window
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { BOOKS, LIBRARY_DIR, pageText } from './books.mjs';
 
@@ -92,6 +93,11 @@ const NAME_RE = '(?:Correspondence|Entropy|Forces|Life|Matter|Mind|Prime|Spirit|
 const WORDNUM = { one: 1, two: 2, three: 3, four: 4, five: 5 };
 const canon = (n) => ALIASES[n] ?? n;
 
+// One more rank after the first: "Life 2 (3)", "Spirit 2 or 3", "Mind 1-3", "Entropy 3 (objects), 4 (living
+// things), or 5", "Mind 3 for yourself or 4 for others". Digits followed by a unit are not ranks.
+const UNITS = 'successes|success|dice|turns?|points?|levels?|health|difficulty|times|hours?|minutes?|days?|weeks?|months?|years?|dots?|yards|feet|miles|Quintessence|Paradox';
+const TAIL_ITEM = `\\s*\\+?(?:\\s*\\([^()]{1,120}\\)|\\s+(?:for|to|on|in|with|against)\\s[^.;:()\\d]{1,40}?)?\\s*(?:\\(|,\\s*or\\b|,|\\bor\\b|/|-|\\bto\\b|\\band\\b)\\s*(\\d)(?!\\d)(?!\\s*(?:${UNITS})\\b)\\)?`;
+
 // All Sphere+rank pairs a stretch of book text states, as a Map "Sphere:n" -> positions.
 const pairCache = new Map();
 function statedPairs(book, pdfPage) {
@@ -110,13 +116,13 @@ function statedPairs(book, pdfPage) {
   // "Forces 3", "Forces 2+", "Forces 2 (3)", "Forces or Matter 3", "Life, Matter, or Forces 2",
   // "Mind 1-3", "Spirit 2 or 3", "Forces Rank 3", "Forces •••", "Forces Three"
   const chain = new RegExp(
-    `(${NAME_RE})((?:\\s*(?:,\\s*(?:and/or\\b|or\\b|and\\b)?|/|&|\\band/or\\b|\\bor\\b|\\band\\b)\\s*(?:${NAME_RE}))*)\\s*\\(?\\s*(?:at\\s+)?(?:Rank|rank|level)?\\s*(\\d|•{1,5}|(?:One|Two|Three|Four|Five)\\b)((?:\\s*\\+?\\s*(?:\\(|or|/|-|to|and)\\s*\\d\\)?)*)`,
+    `(${NAME_RE})((?:\\s*(?:,\\s*(?:and/or\\b|or\\b|and\\b)?|/|&|\\band/or\\b|\\bor\\b|\\band\\b)\\s*(?:${NAME_RE}))*)\\s*\\(?\\s*(?:at\\s+)?(?:Rank|rank|level)?\\s*(\\d|•{1,5}|(?:One|Two|Three|Four|Five)\\b)((?:${TAIL_ITEM})*)`,
     'g',
   );
   for (const m of text.matchAll(chain)) {
     const names = [m[1], ...(m[2].match(new RegExp(NAME_RE, 'g')) ?? [])];
     const first = m[3].startsWith('•') ? m[3].length : WORDNUM[m[3].toLowerCase()] ?? Number(m[3]);
-    const more = (m[4].match(/\d/g) ?? []).map(Number);
+    const more = [...m[4].matchAll(new RegExp(TAIL_ITEM, 'g'))].map((t) => Number(t[1]));
     add(names, [first], m.index);
     // extra ranks ("Life 2 (3)", "Spirit 2 or 3") belong to the last-named Sphere
     add([names.at(-1)], more, m.index);
@@ -134,7 +140,7 @@ function statedPairs(book, pdfPage) {
 }
 
 // The pairs of one combo must be stated close together, not just somewhere on the page.
-const SPAN = 400;
+const SPAN = 700;
 function statedTogether(src, pairs) {
   return src.some((x) => {
     const found = statedPairs(x.book, x.pdfPage);
@@ -274,6 +280,15 @@ if (!single) for (const s of SPHERES) for (let r = 1; r <= 5; r++) if (!rankGrid
 const ourIds = new Set(effects.map((e) => e.id));
 const stale = whitelist.filter((w, i) => !usedWl.has(i) && (!single || ourIds.has(w.id)));
 for (const w of stale) (issues.whitelist ??= []).push({ id: w.id, detail: `unused whitelist entry (${w.check}${w.detail ? ': ' + w.detail : ''})` });
+// --prune: drop the stale entries from their whitelist files instead of reporting them
+if (process.argv.includes('--prune') && stale.length) {
+  for (const f of new Set(stale.map((w) => w.file))) {
+    const keep = whitelist.filter((w) => w.file === f && !stale.includes(w)).map(({ file, ...w }) => w);
+    writeFileSync(join(wlDir, f), JSON.stringify(keep, null, 2) + '\n');
+    console.log(`pruned ${stale.filter((w) => w.file === f).length} stale entries from whitelist/${f}`);
+  }
+  delete issues.whitelist;
+}
 
 // ---------- report ----------
 

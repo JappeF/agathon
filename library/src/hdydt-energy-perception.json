@@ -1,0 +1,541 @@
+[
+  {
+    "id": "sense-quintessence-and-hold-extra",
+    "name": "See Quintessence Flows and Hold More Than Your Avatar",
+    "kind": "feat",
+    "summary": "The entry-level energy trick: notice where Quintessence is flowing, read the energy signature it carries, and pack your own Pattern with more Quintessence than your Avatar rating normally allows.",
+    "system": "Quintessence work stays coincidental while less than 10 points move in a turn and nothing visibly withers or glows; 10 or more points in one turn makes a light show that is usually vulgar.",
+    "combos": [{ "spheres": { "Prime": 1 } }],
+    "tags": ["perception", "quintessence"],
+    "source": [{ "book": "HDYDT", "page": 42, "section": "Energy-Work: The Basics" }]
+  },
+  {
+    "id": "pour-quintessence-into-patterns",
+    "name": "Pour Quintessence into a Pattern",
+    "kind": "feat",
+    "summary": "Push Quintessence into something that already exists to strengthen or energize it, or into empty space to start building something out of nothing (with the Sphere of whatever you make).",
+    "combos": [{ "spheres": { "Prime": 2 } }],
+    "tags": ["quintessence", "conjuration"],
+    "source": [{ "book": "HDYDT", "page": 43, "section": "Energy-Work: The Basics" }]
+  },
+  {
+    "id": "channel-quintessence-beyond-avatar",
+    "name": "Channel Quintessence Beyond Your Avatar Rating",
+    "kind": "feat",
+    "summary": "Use more Quintessence in a turn than your Avatar rating, and draw it from outside sources such as Nodes, Tass and living things instead of only your own store.",
+    "system": "Below Prime 3 a mage can spend at most her Avatar rating in Quintessence per turn. With Prime 3 an Effect can move up to 2 Quintessence per success (3 successes: 6 points, 5 successes: 10). Channeling takes touch, concentration or meditation; Primal Utility users do it as an act of investment.",
+    "combos": [{ "spheres": { "Prime": 3 } }],
+    "tags": ["quintessence", "technocracy"],
+    "source": [{ "book": "HDYDT", "page": 43, "section": "Energy-Work: Amount of Quintessence Used" }]
+  },
+  {
+    "id": "tap-a-wellspring",
+    "name": "Tap a Wellspring of Emotion",
+    "kind": "feat",
+    "summary": "Soak up the free Quintessence that strong emotions release at an exciting event (a concert, a riot, a revival) and use it to power yourself. Many mages stir up the event themselves to get the energy they want.",
+    "system": "The Wellspring's Resonance has to suit both you and your purpose: a calm mage gets little from a battle unless he wants a fight. Primal Utility 4 does the same with Ventures and opportunities.",
+    "combos": [{ "spheres": { "Prime": 4 } }],
+    "tags": ["quintessence", "technocracy"],
+    "source": [
+      { "book": "HDYDT", "page": 43, "section": "Energy-Work: Tapping a Wellspring" },
+      { "book": "HDYDT", "page": 44, "section": "Energy-Work: Tapping a Wellspring" }
+    ]
+  },
+  {
+    "id": "open-a-node-or-conflux",
+    "name": "Open a New Node or Conflux",
+    "kind": "feat",
+    "summary": "Gather the loose currents of energy in an area and knot them into a lasting Node. Technocrats with Primal Utility make a Conflux instead, usually by founding a business, staging a concert or exploiting a resource.",
+    "system": "Roughly 10 successes per dot of the Node Background created, as a ritual; the Storyteller sets the exact number, and a place thick with Resonance is easier than a dead one.",
+    "coincidentalIf": "the energy flow stays below 10 Quintessence per turn",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Prime": 5 } }],
+    "tags": ["quintessence", "creation", "technocracy"],
+    "source": [{ "book": "HDYDT", "page": 44, "section": "Energy-Work: Opening a Node/ Conflux" }]
+  },
+  {
+    "id": "create-tass-or-currency",
+    "name": "Create Tass or Currency",
+    "kind": "feat",
+    "summary": "Draw free Quintessence to yourself and set it into a physical form through your focus: prayed into holy water, or counted into banknotes by a Syndicate agent. The object is used up as its energy is spent.",
+    "system": "When the last of the Quintessence is drawn out, the Tass is gone: the water evaporates, the bills crumble.",
+    "combos": [{ "spheres": { "Prime": 4 } }],
+    "tags": ["quintessence", "enchantment", "technocracy"],
+    "source": [{ "book": "HDYDT", "page": 44, "section": "Energy-Work: Creating and Using Tass/ Currency" }]
+  },
+  {
+    "id": "charge-or-drain-a-periapt",
+    "name": "Charge or Drain a Periapt or Matrix",
+    "kind": "feat",
+    "summary": "Move Quintessence into or out of a Periapt (a Matrix, for Technocrats): a lasting battery prepared to store energy that, unlike Tass, does not fall apart when emptied.",
+    "system": "Each success shifts up to 2 Quintessence into or out of the battery. With Prime 4 you can recharge a Periapt wherever you are, at any time.",
+    "combos": [{ "spheres": { "Prime": 3 } }],
+    "tags": ["quintessence", "enchantment", "technocracy"],
+    "source": [{ "book": "HDYDT", "page": 45, "section": "Energy-Work: Employing a Periapt/ Matrix" }]
+  },
+  {
+    "id": "draw-on-a-battery-out-of-reach",
+    "name": "Draw on Tass or a Periapt You Are Not Carrying",
+    "kind": "feat",
+    "summary": "Tap the Quintessence in Tass or a Periapt that is not on your body. Carried batteries need no Effect at all: you can use your Avatar rating's worth per turn reflexively.",
+    "combos": [
+      { "spheres": { "Prime": 2 }, "note": "within reach but not touching you" },
+      { "spheres": { "Correspondence": 2, "Prime": 2 }, "note": "some distance away" }
+    ],
+    "tags": ["quintessence"],
+    "source": [{ "book": "HDYDT", "page": 45, "section": "Energy-Work: Accessing Tass or Periapt Quintessence" }]
+  },
+  {
+    "id": "conjure-forms-from-quintessence",
+    "name": "Conjure Material Forms from Quintessence",
+    "kind": "feat",
+    "summary": "Fill empty space with focused energy and build a new force, substance or creature out of it. Prime supplies the raw stuff; the Pattern Sphere gives it shape.",
+    "system": "Conjured things last for the Effect's Duration unless you dismiss them earlier.",
+    "coincidentalIf": "it is well hidden, or done through a technological instrument such as a laser weapon",
+    "vulgarity": "depends",
+    "combos": [
+      { "spheres": { "Prime": 2, "Forces": 3 }, "inferred": ["Forces"], "note": "energies" },
+      { "spheres": { "Prime": 2, "Matter": 2 }, "inferred": ["Matter"], "note": "materials" },
+      { "spheres": { "Prime": 2, "Life": 3 }, "inferred": ["Life"], "note": "simple organisms" }
+    ],
+    "tags": ["conjuration", "quintessence"],
+    "source": [{ "book": "HDYDT", "page": 45, "section": "Energy-Work: Conjuring Material Forms" }]
+  },
+  {
+    "id": "alter-your-aura",
+    "name": "Mask or Recolor Your Aura",
+    "kind": "feat",
+    "summary": "Dim, brighten or change the color and texture of your own aura, either to hide what you are or to show an observer a false picture.",
+    "system": "Each success takes one success off anyone trying to read your aura, now or later. A Charisma + Subterfuge roll can lower the difficulty, to a minimum of 3.",
+    "vulgarity": "coincidental",
+    "combos": [
+      { "spheres": { "Prime": 2 }, "note": "reshaping your energy" },
+      { "spheres": { "Mind": 1 }, "note": "mental shielding" }
+    ],
+    "tags": ["stealth", "defense", "illusion"],
+    "source": [
+      { "book": "HDYDT", "page": 45, "section": "Energy-Work: Aura Alteration" },
+      { "book": "HDYDT", "page": 54, "section": "Enhanced Perceptions: Perceiving Auras" }
+    ]
+  },
+  {
+    "id": "conjure-visible-phantasms",
+    "name": "Give Mental Phantasms Visible Form",
+    "kind": "feat",
+    "summary": "Spin thoughts into half-real shapes that other people can see: illusions, mental projections, shared dreamscapes.",
+    "coincidentalIf": "a technological device such as a TV screen or holographic projector carries the image",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Mind": 3, "Prime": 2 } }],
+    "tags": ["illusion", "conjuration"],
+    "source": [{ "book": "HDYDT", "page": 45, "section": "Energy-Work: Conjuring Immaterial Mind and Spirit Forms" }]
+  },
+  {
+    "id": "give-a-spirit-a-solid-body",
+    "name": "Give a Spirit a Solid Body",
+    "kind": "feat",
+    "summary": "Charge a spirit with so much Quintessence that it becomes solid in the physical world. When the body is destroyed the spirit simply goes back to being ephemeral.",
+    "system": "The body has 2 health levels per success after the first (3 successes: 6 health levels).",
+    "combos": [{ "spheres": { "Prime": 4, "Spirit": 4 } }],
+    "tags": ["spirit", "summoning", "conjuration"],
+    "source": [
+      { "book": "HDYDT", "page": 45, "section": "Energy-Work: Conjuring Immaterial Mind and Spirit Forms" },
+      { "book": "HDYDT", "page": 46, "section": "Energy-Work: Conjuring Immaterial Mind and Spirit Forms" }
+    ]
+  },
+  {
+    "id": "energize-an-item-for-aggravated-damage",
+    "name": "Energize an Item to Deal or Soak Aggravated Damage",
+    "kind": "feat",
+    "summary": "Make an object more real so that it can dish out or withstand aggravated damage: holy weapons that wound spirits, vampires and werewolves, or sacred armor against their attacks.",
+    "system": "Lasts for the Effect's Duration unless the item is enchanted permanently.",
+    "combos": [{ "spheres": { "Prime": 2 } }],
+    "tags": ["enchantment", "combat", "defense"],
+    "source": [{ "book": "HDYDT", "page": 46, "section": "Energy-Work: Consecrating and Energizing Items" }]
+  },
+  {
+    "id": "craft-wonders-by-prime-rank",
+    "name": "Craft Wonders (by Prime Rank)",
+    "kind": "feat",
+    "summary": "What you can enchant depends on your Prime: small trinkets first, then lasting energy stores and temporary Talismans, then permanent Talismans.",
+    "system": "Crafting rules are in M20 pp. 652-653; Charms and Artifacts are covered in The Book of Secrets.",
+    "combos": [
+      { "spheres": { "Prime": 2 }, "note": "Trinkets and simple Charms" },
+      { "spheres": { "Prime": 3 }, "note": "Artifacts, Periapts, temporary Talismans" },
+      { "spheres": { "Prime": 4 }, "note": "permanent Talismans" }
+    ],
+    "tags": ["enchantment"],
+    "source": [{ "book": "HDYDT", "page": 46, "section": "Energy-Work: Consecrating and Energizing Items" }]
+  },
+  {
+    "id": "quintessence-blade-or-bolt",
+    "name": "Quintessence Blade or Bolt",
+    "kind": "feat",
+    "summary": "Form a weapon or a blast of pure metaphysical energy, such as a sword of light or a plasma hammer. It burns on contact but is cold, so it sets nothing alight.",
+    "system": "Aggravated damage. Costs 1 Quintessence per turn of use, hit or miss, so it suits ambushes and last stands.",
+    "coincidentalIf": "it is built into technology, or used among believers in a place where miracles are accepted",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Prime": 3 } }],
+    "optional": [{ "spheres": { "Forces": 3 }, "purpose": "give the energy real heat" }],
+    "tags": ["combat", "quintessence"],
+    "source": [
+      { "book": "HDYDT", "page": 46, "section": "Energy-Work: Quintessential Bolts and Weapons" },
+      { "book": "HDYDT", "page": 47, "section": "Energy-Work: Quintessential Bolts and Weapons" }
+    ]
+  },
+  {
+    "id": "reverse-magnetic-polarity",
+    "name": "Reverse Magnetic Polarity",
+    "kind": "feat",
+    "summary": "Change the magnetic polarity of an object by adjusting the Quintessence that flows through it.",
+    "coincidentalIf": "nothing reveals the altered property",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Forces": 4, "Matter": 4, "Prime": 4 } }],
+    "tags": ["transformation", "elemental", "quintessence"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Altering Properties" }]
+  },
+  {
+    "id": "neutralize-chemical-bonds",
+    "name": "Stop a Chemical from Bonding",
+    "kind": "feat",
+    "summary": "Take away a chemical's ability to bond with other substances, which changes or cancels what it normally does (a poison that cannot react, a fuel that will not combine).",
+    "coincidentalIf": "nothing reveals the altered property",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Matter": 4, "Prime": 4 } }],
+    "tags": ["transformation", "quintessence"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Altering Properties" }]
+  },
+  {
+    "id": "make-a-solid-insubstantial",
+    "name": "Make a Solid Object Insubstantial",
+    "kind": "feat",
+    "summary": "Adjust an object's energy flow so that a solid thing loses its substance and other things pass through it.",
+    "coincidentalIf": "nothing reveals the altered property",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Matter": 4, "Prime": 4 } }],
+    "tags": ["transformation", "quintessence"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Altering Properties" }]
+  },
+  {
+    "id": "heatless-fire-and-shockless-electricity",
+    "name": "Heatless Fire and Shockless Electricity",
+    "kind": "feat",
+    "summary": "Strip an energy of one of its usual properties: fire that gives off no heat and does not use up its fuel, or electricity that no longer shocks.",
+    "system": "Large or obvious changes are vulgar; a hand held unharmed in the flame gives the game away.",
+    "coincidentalIf": "nothing reveals the altered property",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Forces": 4, "Prime": 4 } }],
+    "tags": ["transformation", "elemental", "quintessence"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Altering Properties" }]
+  },
+  {
+    "id": "energize-a-creature-for-aggravated-damage",
+    "name": "Energize a Creature to Deal or Soak Aggravated Damage",
+    "kind": "feat",
+    "summary": "Charge an organic creature with Quintessence so that its attacks deal aggravated damage and it can soak aggravated wounds.",
+    "combos": [{ "spheres": { "Prime": 3 } }],
+    "tags": ["enchantment", "combat", "defense", "body"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Energizing Organisms" }]
+  },
+  {
+    "id": "make-a-living-charm",
+    "name": "Make a Living Charm",
+    "kind": "feat",
+    "summary": "Store one single-use magickal Effect inside a living creature. It goes off when the Duration ends or when you choose to trigger it, and afterwards the creature is ordinary again.",
+    "system": "Costs 1 Quintessence per dot of the highest Sphere in the stored Effect. The Life rank needed is lower than for real Pattern changes because the creature only carries the energy for a moment.",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Prime": 4, "Life": 3 } }],
+    "optional": [{ "spheres": { "Time": 4 }, "purpose": "set a trigger that outlasts the normal Duration" }],
+    "tags": ["enchantment", "body"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Living Charms" }]
+  },
+  {
+    "id": "living-charm-burning-tree",
+    "name": "Living Charm: Tree That Burns Unharmed",
+    "kind": "feat",
+    "summary": "Enchant a tree so that it bursts into flames on cue without being burned itself.",
+    "system": "Costs 4 Quintessence (1 per dot of the highest Sphere).",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Forces": 3, "Life": 3, "Prime": 4 } }],
+    "tags": ["enchantment", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Living Charms" }]
+  },
+  {
+    "id": "living-charm-ice-blossom",
+    "name": "Living Charm: Blossoms of Ice",
+    "kind": "feat",
+    "summary": "Enchant a plant so that, when the charm goes off, it flowers into ice.",
+    "system": "Costs 4 Quintessence (1 per dot of the highest Sphere).",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Life": 2, "Matter": 3, "Prime": 4 } }],
+    "tags": ["enchantment", "transformation"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Living Charms" }]
+  },
+  {
+    "id": "living-charm-luck-carrier",
+    "name": "Living Charm: Carrier of Luck",
+    "kind": "feat",
+    "summary": "Load a person, even a child, with an Effect that spreads good or bad luck to those around them.",
+    "system": "Costs 4 Quintessence (1 per dot of the highest Sphere).",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Entropy": 2, "Life": 3, "Prime": 4 } }],
+    "tags": ["enchantment", "luck"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Living Charms" }]
+  },
+  {
+    "id": "living-bomb",
+    "name": "Living Bomb",
+    "kind": "feat",
+    "summary": "Turn a living being into a walking explosive set to go off at a chosen moment. A cruel weapon that the book treats as an atrocity.",
+    "system": "Costs 4 Quintessence (1 per dot of the highest Sphere).",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Forces": 3, "Life": 4, "Prime": 4, "Time": 4 } }],
+    "tags": ["enchantment", "combat", "destruction"],
+    "source": [{ "book": "HDYDT", "page": 47, "section": "Energy-Work: Living Charms" }]
+  },
+  {
+    "id": "fuse-flesh-and-machine",
+    "name": "Fuse Flesh and Machine with Quintessence",
+    "kind": "feat",
+    "summary": "Use Quintessence to join living tissue and inert matter into one working whole, installing cybernetics or other upgrades in a complex creature.",
+    "combos": [{ "spheres": { "Life": 4, "Matter": 4, "Prime": 4 } }],
+    "tags": ["body", "technology", "transformation"],
+    "source": [{ "book": "HDYDT", "page": 48, "section": "Energy-Work: Upgrades" }]
+  },
+  {
+    "id": "energize-orgasm",
+    "name": "Bring On and Energize Orgasm",
+    "kind": "feat",
+    "summary": "Bring a willing lover to climax by magick, stretch the moment out, and with Prime merge, boost or drain the energy between you. Doing this to an unwilling person is rape, and ethical mages never go there.",
+    "combos": [
+      { "spheres": { "Life": 2 } },
+      { "spheres": { "Mind": 2 } },
+      { "spheres": { "Life": 2, "Mind": 2 } }
+    ],
+    "optional": [
+      { "spheres": { "Time": 3 }, "purpose": "prolong the ecstasy" },
+      { "spheres": { "Prime": 1 }, "purpose": "blend, boost or drain the shared energy" }
+    ],
+    "tags": ["body", "social", "quintessence"],
+    "source": [{ "book": "HDYDT", "page": 48, "section": "Energy-Work: What You Thought This Section Said" }]
+  },
+  {
+    "id": "rubbing-the-bones",
+    "name": "Rubbing the Bones",
+    "kind": "feat",
+    "summary": "Make the Quintessence inside a victim surge and waver, causing agony; onlookers see the victim flicker like a ghost. A favorite of mages who cannot yet do real damage.",
+    "system": "Bashing damage by successes. The victim rolls Willpower against a difficulty equal to the health levels taken before soak; on a failure the pain paralyzes him.",
+    "vulgarity": "vulgar",
+    "combos": [{ "spheres": { "Prime": 2 } }],
+    "tags": ["combat"],
+    "source": [{ "book": "HDYDT", "page": 48, "section": "Energy-Work: Rubbing the Bones" }]
+  },
+  {
+    "id": "quintessential-blessing",
+    "name": "Quintessential Blessing",
+    "kind": "feat",
+    "summary": "Fill someone so full of life that they glow and feel unstoppable: they ignore wound penalties for the Duration, and a mage's Quintessence pool fills up.",
+    "system": "Grants 2 Quintessence per success (4 successes: 8 points).",
+    "combos": [{ "spheres": { "Prime": 5 } }],
+    "optional": [{ "spheres": { "Entropy": 2 }, "purpose": "add story-based good fortune until it wears off" }],
+    "tags": ["quintessence", "luck", "body"],
+    "source": [{ "book": "HDYDT", "page": 48, "section": "Energy-Work: Quintessential Blessings" }]
+  },
+  {
+    "id": "add-temporary-health-levels",
+    "name": "Add Temporary Health Levels",
+    "kind": "feat",
+    "summary": "Reinforce a Pattern with extra life-force so that it gains health levels that take hits first, leaving only cuts and bruises behind.",
+    "system": "2 extra health levels per success, counted like damage, for the Duration or until used up; they absorb bashing, lethal and aggravated damage. Each absorbed level that no normal human could survive (being set on fire, a falling safe) gives 1 Paradox that stays after the Effect ends.",
+    "vulgarity": "coincidental",
+    "combos": [
+      { "spheres": { "Life": 3, "Prime": 5 }, "note": "on yourself" },
+      { "spheres": { "Life": 4, "Prime": 5 }, "note": "on someone else" }
+    ],
+    "tags": ["body", "defense", "healing"],
+    "source": [{ "book": "HDYDT", "page": 49, "section": "Energy-Work: Added Life-Force (Health Levels)" }]
+  },
+  {
+    "id": "energy-vampirism",
+    "name": "Energy Vampirism",
+    "kind": "feat",
+    "summary": "Siphon life energy from the people around you. Victims just feel tired and sore unless they have Awareness or can see Prime energy.",
+    "system": "Taking energy by force or in secret has heavy Resonance consequences (the Lady Macbeth effect).",
+    "coincidentalIf": "the mage does not drain victims to the point of death",
+    "vulgarity": "depends",
+    "combos": [
+      { "spheres": { "Prime": 3 }, "note": "willing or seduced donors, or a forced drain the victim feels" },
+      { "spheres": { "Prime": 5 }, "note": "unwilling victims who notice nothing until they collapse" }
+    ],
+    "tags": ["quintessence", "combat"],
+    "source": [{ "book": "HDYDT", "page": 49, "section": "Energy-Work: Energy Vampirism" }]
+  },
+  {
+    "id": "disintegrate-by-withdrawing-quintessence",
+    "name": "Disintegrate by Withdrawing Quintessence",
+    "kind": "feat",
+    "summary": "Scatter a target's Quintessence back into the world until it simply stops existing. Technocrats call it liquidating an asset; as a sacrifice, the energy is given up rather than kept.",
+    "system": "Aggravated damage by successes. The target is gone when it runs out of health levels, or for objects Durability and Structure.",
+    "coincidentalIf": "a believable method such as fire, acid or cremation does the visible work",
+    "vulgarity": "depends",
+    "combos": [
+      { "spheres": { "Prime": 4 }, "note": "objects" },
+      { "spheres": { "Prime": 5 }, "note": "living beings" }
+    ],
+    "tags": ["destruction", "quintessence", "technocracy"],
+    "source": [
+      { "book": "HDYDT", "page": 49, "section": "Energy-Work: Disintegrating Things/ Liquidating Assets" },
+      { "book": "HDYDT", "page": 51, "section": "Energy-Work: Disintegration/ Purifying Flames" }
+    ]
+  },
+  {
+    "id": "hearts-blood",
+    "name": "Heart's Blood",
+    "kind": "feat",
+    "summary": "Bleed, strain or exhaust yourself to pour your own life-force into a task and make it easier.",
+    "system": "Each success moves 1 Quintessence from your Pattern into the task, for -1 difficulty per point (the Storyteller may let this pass the usual -3 limit). You have 10 such points on top of your normal Quintessence, one per health level; the last three take you past Incapacitated, and spending them all kills you. This damage heals only with time and rest.",
+    "combos": [{ "spheres": { "Prime": 1 } }],
+    "tags": ["quintessence", "body"],
+    "source": [{ "book": "HDYDT", "page": 50, "section": "Energy-Work: Heart's Blood" }]
+  },
+  {
+    "id": "burnt-offerings",
+    "name": "Burnt Offerings",
+    "kind": "feat",
+    "summary": "Draw Quintessence from an object you give up in a ritual sacrifice: burned, smashed, dissolved, sunk at sea or buried for good. Without a real sacrifice there is no energy.",
+    "combos": [
+      { "spheres": { "Prime": 2 }, "note": "one point of Quintessence" },
+      { "spheres": { "Matter": 2, "Prime": 2 }, "note": "one point per success" }
+    ],
+    "vulgarity": "coincidental",
+    "tags": ["quintessence"],
+    "source": [{ "book": "HDYDT", "page": 50, "section": "Energy-Work: Burnt Offerings" }]
+  },
+  {
+    "id": "bond-of-blood",
+    "name": "Bond of Blood",
+    "kind": "feat",
+    "summary": "Take Quintessence from a willing donor, or give your own to someone, sealed by a gesture of surrender such as a kiss, a blessing or shed blood.",
+    "system": "Amount by successes on the Base Damage and Duration chart (2 points per success).",
+    "combos": [{ "spheres": { "Prime": 3 } }],
+    "tags": ["quintessence"],
+    "source": [{ "book": "HDYDT", "page": 50, "section": "Energy-Work: Bond of Blood" }]
+  },
+  {
+    "id": "lambs-to-the-slaughter",
+    "name": "Lambs to the Slaughter",
+    "kind": "feat",
+    "summary": "Rip Quintessence out of an unwilling living sacrifice, usually while killing it. The Resonance of the act clings to whoever takes the energy, with grim consequences.",
+    "system": "Typical yields: small animal 5 (3-5), wolf, horse or human 10, tiger, elephant or whale 15-25, changeling 20-30, mage 10-30, spirit its Essence, vampire 10 + Blood Pool, werecreature 20 + Gnosis.",
+    "combos": [{ "spheres": { "Prime": 3 } }],
+    "tags": ["quintessence", "combat"],
+    "source": [
+      { "book": "HDYDT", "page": 51, "section": "Energy-Work: Lambs to the Slaughter" },
+      { "book": "HDYDT", "page": 51, "section": "Energy-Work: Quintessence Amounts" }
+    ]
+  },
+  {
+    "id": "perceive-auras",
+    "name": "Perceive Auras",
+    "kind": "feat",
+    "summary": "See the halo of life-energy around living and half-living things and read moods, states and natures from its colors and textures (a vampire's is pale, a mage's sparkles).",
+    "system": "Perception + Awareness roll; the Effect can lower its difficulty. Reading spirits or the undead may add +1 difficulty. Stronger life-force or Resonance gives a brighter aura.",
+    "combos": [
+      { "spheres": { "Mind": 1 } },
+      { "spheres": { "Spirit": 1 } },
+      { "spheres": { "Life": 1, "Prime": 1 } }
+    ],
+    "tags": ["perception"],
+    "source": [
+      { "book": "HDYDT", "page": 53, "section": "Enhanced Perceptions: Perceiving Auras" },
+      { "book": "HDYDT", "page": 54, "section": "Enhanced Perceptions: Perceiving Auras" }
+    ]
+  },
+  {
+    "id": "read-resonance-signature",
+    "name": "Read a Resonance Signature",
+    "kind": "feat",
+    "summary": "Pick out the Resonance or Synergy signature that clings to a person.",
+    "system": "Perception + Awareness roll.",
+    "combos": [{ "spheres": { "Prime": 1 } }],
+    "tags": ["perception", "quintessence"],
+    "source": [{ "book": "HDYDT", "page": 54, "section": "Enhanced Perceptions: Perceiving Auras" }]
+  },
+  {
+    "id": "spot-the-afterglow",
+    "name": "Spot the Afterglow of Magick",
+    "kind": "feat",
+    "summary": "Sense the traces that spells leave behind in a place after they are cast.",
+    "system": "A small spell fades in about five minutes; big ones linger for hours or days, longer if Paradox struck. The difficulty climbs as traces fade. (Plain sensing of magick in use within about 100 feet is a Perception + Awareness roll, difficulty 6, from 4 for strong Effects to 9 for subtle ones.)",
+    "combos": [{ "spheres": { "Prime": 1 } }],
+    "tags": ["perception", "divination"],
+    "source": [{ "book": "HDYDT", "page": 54, "section": "Enhanced Perceptions: Spotting the Afterglow" }]
+  },
+  {
+    "id": "share-enhanced-perceptions",
+    "name": "Share Your Enhanced Senses",
+    "kind": "feat",
+    "summary": "Let someone else experience what your magickal senses pick up. Through touch a willing partner needs nothing extra; the Spheres below reach past touch or force the visions on someone.",
+    "system": "One extra success per person you share with (one partner: 2 successes). Must be rolled; no automatic success. Forced visions can count as a psychic assault.",
+    "coincidentalIf": "shared with other mages, or with Sleepers who can explain it away as drugs or expanded consciousness",
+    "vulgarity": "depends",
+    "combos": [
+      { "spheres": { "Mind": 2 }, "note": "willing, within a yard or two" },
+      { "spheres": { "Correspondence": 2, "Mind": 2 }, "note": "willing, farther away" },
+      { "spheres": { "Mind": 3 }, "note": "unwilling, within a yard or two" },
+      { "spheres": { "Correspondence": 3, "Mind": 3 }, "note": "unwilling, farther away" }
+    ],
+    "tags": ["perception", "communication"],
+    "source": [{ "book": "HDYDT", "page": 54, "section": "Enhanced Perceptions: Sharing Perceptions" }]
+  },
+  {
+    "id": "project-observed-images",
+    "name": "Project What You Perceive",
+    "kind": "feat",
+    "summary": "Add this to a perception Effect to show what you are sensing as a picture or sound others can follow: on a screen, in smoke, in a mirror.",
+    "system": "Lasts for the normal Duration unless you end it early.",
+    "coincidentalIf": "the setting accepts it, such as a hologram on smoke at a rave",
+    "vulgarity": "depends",
+    "combos": [{ "spheres": { "Forces": 3, "Mind": 2, "Prime": 2 } }],
+    "optional": [{ "spheres": { "Time": 4 }, "purpose": "make the projection last past the normal Duration" }],
+    "tags": ["perception", "illusion", "communication"],
+    "source": [
+      { "book": "HDYDT", "page": 54, "section": "Enhanced Perceptions: Projecting Images and Impressions" },
+      { "book": "HDYDT", "page": 55, "section": "Enhanced Perceptions: Projecting Images and Impressions" }
+    ]
+  },
+  {
+    "id": "scry-from-a-distance",
+    "name": "Scry a Distant Place or Subject",
+    "kind": "feat",
+    "summary": "Watch, listen to or otherwise sense a far-off place or target, by crystal ball or by webcam. Combine it with another Sphere's senses to perceive that Sphere's things far away.",
+    "system": "Range and difficulty follow the Correspondence Ranges chart (Data uses the Data Connections chart, M20 p. 524); a tie to the target such as hair or records helps. A distant Effect can never be higher than your Correspondence rank.",
+    "combos": [
+      { "spheres": { "Correspondence": 2 }, "note": "a place or target" },
+      { "spheres": { "Correspondence": 2, "Life": 1 }, "note": "keep watch on distant living things" }
+    ],
+    "tags": ["perception", "divination"],
+    "source": [{ "book": "HDYDT", "page": 55, "section": "Enhanced Perceptions: Perceiving From a Distance" }]
+  },
+  {
+    "id": "command-a-mind-from-afar",
+    "name": "Command a Mind from Afar",
+    "kind": "feat",
+    "summary": "Give orders to a distant mind. Because a long-range Effect is capped by your Correspondence, Mind 3 at a distance needs Correspondence 3, not 2.",
+    "combos": [{ "spheres": { "Correspondence": 3, "Mind": 3 } }],
+    "tags": ["mind-control", "communication"],
+    "source": [{ "book": "HDYDT", "page": 55, "section": "Enhanced Perceptions: Perceiving From a Distance" }]
+  },
+  {
+    "id": "pre-and-postcognition",
+    "name": "Pre- and Postcognition on a Place or Object",
+    "kind": "feat",
+    "summary": "Look into the past or likely future of a place or object, now and then of a living thing. You only see what that subject could have witnessed, and the visions tend to be symbolic and unclear.",
+    "system": "The Time-Sphere Timelines chart sets the successes needed for each span. The Storyteller may roll in secret so the player does not know how reliable the vision is.",
+    "combos": [{ "spheres": { "Time": 2 } }],
+    "tags": ["divination", "time", "perception"],
+    "source": [
+      { "book": "HDYDT", "page": 55, "section": "Enhanced Perceptions: Pre- and Postcognition" },
+      { "book": "HDYDT", "page": 56, "section": "Enhanced Perceptions: Pre- and Postcognition" }
+    ]
+  }
+]

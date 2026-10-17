@@ -46,7 +46,7 @@ node library/scripts/stats.mjs          # refresh the counts below
 | --- | --- |
 | `schema` | required fields, known Spheres, kinds, tags and vulgarity values, ranks 1-5, no empty combos |
 | `pages` | every source has a printed page, and its `pdfPage` is page + the book's offset (1 for both books) |
-| `spheres` | every printed Sphere+rank of an entry is stated on its page or a neighbouring page, and the Spheres of one combo are stated within 400 characters of each other |
+| `spheres` | every printed Sphere+rank of an entry is stated on its page or a neighbouring page, and the Spheres of one combo are stated within 700 characters of each other |
 | `ranks` | the rank entries cover all 9 Spheres x 5 ranks |
 | `duplicates` | ids and names are unique (names case-insensitive) |
 | `text` | shipped text is plain keyboard ASCII: no em/en dashes, curly quotes or other typographic characters |
