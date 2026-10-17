@@ -7,3 +7,6 @@ shots/
 
 # rulebooks, sample sheets and any text extracted from them stay local
 refs/
+
+# local spot-check sheets for the effect library (they quote book text)
+library/.spotcheck/

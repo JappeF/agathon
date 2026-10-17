@@ -1,0 +1,14 @@
+[
+  {
+    "check": "spheres",
+    "id": "witchs-vengeance",
+    "detail": "Correspondence 3 not found on M20 p.610",
+    "reason": "p.610 system: to curse without touch the caster needs at least one Correspondence dot per dot in the damage-causing Sphere, so Correspondence 3 for the Life/Time versions and 4 for the Entropy version."
+  },
+  {
+    "check": "spheres",
+    "id": "witchs-vengeance",
+    "detail": "Correspondence 4 not found on M20 p.610",
+    "reason": "p.610 system: to curse without touch the caster needs at least one Correspondence dot per dot in the damage-causing Sphere, so Correspondence 3 for the Life/Time versions and 4 for the Entropy version."
+  }
+]

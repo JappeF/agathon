@@ -1,0 +1,1737 @@
+[
+  {
+    "id": "attach-travel-effect-to-subject",
+    "name": "Attach a Travel Effect to Its Subject",
+    "kind": "feat",
+    "summary": "Fix a movement Effect onto the thing it moves, so it keeps carrying that object or being wherever it goes instead of shoving it once and stopping.",
+    "system": "The extra Sphere depends on what you attach to: Matter 2 for an object, Life 3 for yourself or a simple organism, Life 4 for another complex creature, Spirit 4 for ephemera. Beings that live on several levels at once need every Sphere involved (Life and Spirit for shapeshifters, Life and Matter for vampires). The same add-ons work for Correspondence Effects; see Forging a Tether.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2,
+          "Matter": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "an object"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 3
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "yourself or a simple organism"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 4
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "another complex creature"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Spirit": 4
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "a spirit or ghost"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 4,
+          "Spirit": 4
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "a werecreature"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 4,
+          "Matter": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "a vampire"
+      }
+    ],
+    "tags": [
+      "travel",
+      "movement"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 71,
+        "section": "Mystic Travel: Correspondence and Data"
+      }
+    ]
+  },
+  {
+    "id": "forces-speed-push",
+    "name": "Forces Speed Push",
+    "kind": "feat",
+    "summary": "Give a runner, rider or vehicle a kinetic shove so it goes much faster than it normally could. Push too hard and the body or machine starts to break under the strain.",
+    "system": "Every two successes double the speed: a 10 MPH runner goes 15 with one success, 20 with two, 30 with three, 40 with four. A creature moving under its own power at twice its top speed takes 1 lethal level per turn for each success past the second, unless its body was reinforced first. A vehicle can take one success past its Max Speed per point of Durability, then loses 1 Structure per turn. Time 3 speed does not cause this strain.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "purpose": "toughen your own body against speed damage"
+      },
+      {
+        "spheres": {
+          "Life": 4
+        },
+        "purpose": "toughen someone else's body against speed damage"
+      },
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "inferred": [
+          "Matter"
+        ],
+        "purpose": "reinforce an object or vehicle against speed stress"
+      }
+    ],
+    "tags": [
+      "travel",
+      "movement",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 71,
+        "section": "Mystic Travel: Speed"
+      }
+    ]
+  },
+  {
+    "id": "old-mind-push",
+    "name": "The Old Mind-Push",
+    "kind": "feat",
+    "summary": "Convince a guard, cop or official that you are not the one they want, or that you are exactly who belongs here. The more dedicated the official, the stronger the Mind magick you need.",
+    "system": "Difficulty is the target's Willpower (minimum 4); against a mage it is Willpower +3, against Night-Folk +3 or even +5. Groups use the normal coincidental or vulgar difficulty. The target may resist with Willpower at difficulty 6; if they beat your successes they keep their own mind, otherwise the push holds for the Effect's Duration.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "note": "nudge off a casual question"
+      },
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "note": "steer the official's thinking"
+      },
+      {
+        "spheres": {
+          "Mind": 4
+        },
+        "note": "plant thoughts that beat determined scrutiny"
+      }
+    ],
+    "tags": [
+      "social",
+      "mind-control",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 72,
+        "section": "Mystic Travel: Traveler's Tricks"
+      }
+    ]
+  },
+  {
+    "id": "jam-an-id-card-scan",
+    "name": "Jam an ID Card Scan",
+    "kind": "feat",
+    "summary": "Make an ID card simply fail to scan, then talk the guard into waving you through because the reader must be broken again. Gets you past the first ring of security, not into high-security areas.",
+    "system": "Essentially coincidental. Mundane scanners take 3 or more successes, special or Technocratic ones 5 or more. A failed roll rejects the card and a botch trips an alarm.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2
+        },
+        "note": "bad luck for the reader"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "note": "disrupt the signal"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "inferred": [
+          "Mind"
+        ],
+        "purpose": "push the guard to let you pass anyway"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "technology",
+      "stealth",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 73,
+        "section": "Mystic Travel: Traveler's Tricks"
+      }
+    ]
+  },
+  {
+    "id": "data-spoof-id-scanner",
+    "name": "Data Spoof of an ID Scanner",
+    "kind": "feat",
+    "summary": "Feed most ID-reading equipment exactly the information it wants to see. Only the Technocratic Data Sphere can do this; mystic Correspondence cannot.",
+    "system": "Essentially coincidental. Mundane scanners take 3 or more successes, special or Technocratic ones 5 or more. On a failure the ID is refused; on a botch an alarm goes off. The same trick gives a false reading on body scanners.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Forces": 2
+        },
+        "note": "Data only, not mystic Correspondence"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "technology",
+      "technocracy",
+      "stealth",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 73,
+        "section": "Mystic Travel: Traveler's Tricks"
+      }
+    ]
+  },
+  {
+    "id": "luck-a-fake-id-through",
+    "name": "Luck a Fake ID Through",
+    "kind": "feat",
+    "summary": "Bend probability so a card reads as valid even though the data on it is wrong. It can be prepared in advance as a standing credential.",
+    "system": "Essentially coincidental. Mundane scanners take 3 or more successes, special or Technocratic ones 5 or more. A failure rejects the card; a botch likely ruins the card and glitches the system, which sets off alarms.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 3,
+          "Forces": 2
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "technology",
+      "luck",
+      "stealth",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 73,
+        "section": "Mystic Travel: Traveler's Tricks"
+      }
+    ]
+  },
+  {
+    "id": "glitch-a-security-scanner",
+    "name": "Glitch a Security Scanner",
+    "kind": "feat",
+    "summary": "Throw faults into a body scanner, X-ray, breathalyzer or retina reader so it reports what you want and you walk through. Not enough for scans guarding high-security areas.",
+    "system": "Needs 3 or more successes for the result you want. Too few successes or a failure gets you a closer look from the guards; a botch sets off every alarm in the building.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2
+        },
+        "note": "chance glitch"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "note": "energy glitch"
+      },
+      {
+        "spheres": {
+          "Entropy": 2,
+          "Forces": 2
+        },
+        "note": "both at once"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Forces": 2
+        },
+        "note": "Data only: a clean false reading"
+      }
+    ],
+    "tags": [
+      "technology",
+      "stealth",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 74,
+        "section": "Mystic Travel: Traveler's Tricks"
+      }
+    ]
+  },
+  {
+    "id": "all-access-pass",
+    "name": "The All-Access Pass",
+    "kind": "feat",
+    "summary": "Combine a prepared fake credential, a mental push and a commanding presence (plus props and Backgrounds like Fame or Rank) to stride past security as someone far too important to check.",
+    "system": "Against ordinary security and no real resistance, the combination may get you through without rolling at all.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2,
+          "Entropy": 3,
+          "Forces": 2
+        },
+        "inferred": [
+          "Mind"
+        ]
+      }
+    ],
+    "tags": [
+      "social",
+      "stealth",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 75,
+        "section": "Mystic Travel: Traveler's Tricks"
+      }
+    ]
+  },
+  {
+    "id": "flip-traffic-lights",
+    "name": "Flip Traffic Lights",
+    "kind": "feat",
+    "summary": "Turn a traffic signal in your favor with a quick jolt. The other drivers may not react well to the sudden change, so accidents can follow.",
+    "system": "Coincidental unless you are absurdly obvious about it, since plenty of people yell at traffic lights.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2
+        }
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      },
+      {
+        "spheres": {
+          "Entropy": 2,
+          "Forces": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Time": 1
+        },
+        "purpose": "pick the best moment for the switch"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "technology",
+      "luck",
+      "travel",
+      "utility"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 75,
+        "section": "Mystic Travel: Traveler's Tricks"
+      }
+    ]
+  },
+  {
+    "id": "part-the-crowd",
+    "name": "Part the Crowd",
+    "kind": "feat",
+    "summary": "Reshape the flow of a crowd or traffic so a path opens for you, pursuers get stuck behind, or both. A jam that has nowhere to go cannot be redirected this way.",
+    "system": "Most crowds take 2-5 successes, dense ones a few more; riots and stampedes are easier to scatter than orderly crowds. A Mind add-on costs 3 or more extra successes. The Entropy version is usually coincidental; physically shoving people or cars around with Forces turns vulgar if they go flying.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 3
+        },
+        "note": "redirect the flow"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "note": "physically push traffic; Forces 3 for more"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Correspondence": 3
+        },
+        "purpose": "reach a huge crowd or freeway beyond your sight"
+      },
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "purpose": "make people scramble out of your way or cover your escape"
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "luck",
+      "travel",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 75,
+        "section": "Mystic Travel: Traveler's Tricks"
+      }
+    ]
+  },
+  {
+    "id": "levitation-travel",
+    "name": "Levitate and Float Along",
+    "kind": "feat",
+    "summary": "Shift gravity and inertia to lift a person or object off the ground and drift it around. Living beings are harder to levitate than objects.",
+    "system": "Forces 2 lifts about one person (up to 300 pounds), Forces 3 about two tons, Forces 4 a small building, Forces 5 nearly anything short of a mountain. Rough flight may call for Dexterity or Wits + Athletics.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "an object you keep aloft yourself"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "yourself"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 3
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "another living being"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "purpose": "lock the levitation on with mental power"
+      },
+      {
+        "spheres": {
+          "Life": 2,
+          "Prime": 2
+        },
+        "purpose": "lock the levitation on with vital energy"
+      }
+    ],
+    "tags": [
+      "travel",
+      "movement"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 75,
+        "section": "Mystic Travel: Flight"
+      }
+    ]
+  },
+  {
+    "id": "fly-an-object",
+    "name": "Fly a Broom, Carpet or Car",
+    "kind": "feat",
+    "summary": "Make an object that was never meant to fly, from a broom to a sports car, carry you through the air. Binding the Effect to the object keeps it up without your constant attention.",
+    "system": "A simple rule: 20 MPH per success spent on flight, so 100 MPH takes 5 successes (divide successes as usual). Heavy objects need more Forces: Forces 3 handles a car. No seat belts, so hold on.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2,
+          "Matter": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "a light object like a broom or carpet"
+      },
+      {
+        "spheres": {
+          "Forces": 3,
+          "Matter": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "a car or similar weight"
+      }
+    ],
+    "tags": [
+      "travel",
+      "movement",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 75,
+        "section": "Mystic Travel: Flight"
+      },
+      {
+        "book": "HDYDT",
+        "page": 76,
+        "section": "Mystic Travel: Flight"
+      }
+    ]
+  },
+  {
+    "id": "fly-like-an-eagle",
+    "name": "Fly Like an Eagle",
+    "kind": "feat",
+    "summary": "Grow working wings, or strap on homemade mechanical ones, and fly.",
+    "system": "Muscle-powered wings move up to 20 yards per action for 3 actions per Stamina dot before fatigue. After that, a Willpower roll (difficulty 6) buys another 3 actions per dot at half speed; more rolls keep going at 1 bashing level per action, then lethal once bashing runs out.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Forces": 2
+        },
+        "note": "grow your own wings"
+      },
+      {
+        "spheres": {
+          "Life": 4,
+          "Forces": 2
+        },
+        "note": "give wings to someone else"
+      },
+      {
+        "spheres": {
+          "Matter": 2,
+          "Forces": 2
+        },
+        "note": "jury-rigged mechanical wings"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "power mechanical wings with a Quintessence battery"
+      }
+    ],
+    "tags": [
+      "travel",
+      "body",
+      "shapechanging"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 76,
+        "section": "Mystic Travel: Flight"
+      }
+    ]
+  },
+  {
+    "id": "teleportation-step",
+    "name": "Teleport to a Location",
+    "kind": "feat",
+    "summary": "Step from where you are to another place without crossing the space between. Seen or familiar places are far easier to hit than unknown ones.",
+    "system": "Successes by destination: 1 within your perception; 2 a very familiar place like home or Sanctum; 3 familiar, recently seen or known through intimate data; 4 visited briefly, an IP address or seen online; 5 only heard described or given coordinates; 6+ totally blind. A failure fizzles; a botch is an immediate physical Paradox backlash as you arrive inside something (bashing for a bump, lethal for a crash, aggravated for landing inside an object or person, who may be hurt too), plus +3 to your spotting difficulties for a while. Calling the jump a lucky taxi does not make it coincidental.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3
+        }
+      },
+      {
+        "spheres": {
+          "Correspondence": 4
+        },
+        "note": "someone or something else"
+      }
+    ],
+    "coincidentalIf": "you vanish into darkness or smoke and a witness could believe you simply went somewhere else; vanishing in front of people is vulgar with witnesses, and vanishing unseen is still vulgar without witnesses",
+    "vulgarity": "depends",
+    "tags": [
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 76,
+        "section": "Mystic Travel: Teleportation"
+      },
+      {
+        "book": "HDYDT",
+        "page": 77,
+        "section": "Mystic Travel: Teleportation"
+      },
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      }
+    ]
+  },
+  {
+    "id": "hail-a-coincidental-cab",
+    "name": "Hail a Coincidental Cab",
+    "kind": "feat",
+    "summary": "Instead of teleporting and pretending it was a taxi, use magick to get a real cab to you: call one with your thoughts, or arrange to be at the curb just as one rolls up.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Mind": 2
+        },
+        "inferred": [
+          "Correspondence",
+          "Mind"
+        ],
+        "note": "call a driver to you"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Entropy": 2
+        },
+        "inferred": [
+          "Correspondence",
+          "Entropy"
+        ],
+        "note": "catch one at just the right moment"
+      }
+    ],
+    "tags": [
+      "travel",
+      "luck",
+      "utility"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 76,
+        "section": "Mystic Travel: Teleportation"
+      }
+    ]
+  },
+  {
+    "id": "spot-the-new-location",
+    "name": "Spot the New Location",
+    "kind": "feat",
+    "summary": "Take a turn to look ahead at where you mean to teleport, so you do not jump in blind.",
+    "system": "Roll Intelligence + Awareness, difficulty 6 (higher in darkness, storms or stress; lower in bright light or calm focus). On a success the destination counts as within your perception on the teleport chart, so the jump itself needs only 1 success.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        },
+        "note": "a nearby spot"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2
+        },
+        "note": "a distant spot"
+      }
+    ],
+    "tags": [
+      "travel",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 77,
+        "section": "Mystic Travel: Teleportation"
+      }
+    ]
+  },
+  {
+    "id": "the-blink",
+    "name": "The Blink",
+    "kind": "feat",
+    "summary": "Hop through several locations in quick succession rather than making a single jump, for surprise and mobility in a fight.",
+    "system": "Add up the teleport-chart successes for each stop, then add 1 per blink: three blinks within sight cost 3 + 3 = 6. Each blink is an action; to blink and act in one turn, roll the lower of Arete or the action's dice pool. If cast ahead of time you can fast-cast between blinks. Vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "travel",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 77,
+        "section": "Mystic Travel: Teleportation"
+      }
+    ]
+  },
+  {
+    "id": "the-batman-vanish",
+    "name": "The Batman: Vanish in Shadow",
+    "kind": "feat",
+    "summary": "Wrap yourself in shadow or smoke and muffled sound, and when it clears you are gone. A variant lets you pop in and out of cover, strike, and turn up somewhere else.",
+    "system": "Forces hides you while Correspondence moves you. It can stay coincidental as long as nobody could see you disappear impossibly or cross space in a way normal physics cannot explain.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3,
+          "Forces": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "purpose": "leave onlookers with an uneasy chill"
+      }
+    ],
+    "coincidentalIf": "no one can witness you vanishing or moving in a way physics cannot explain",
+    "vulgarity": "depends",
+    "tags": [
+      "travel",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 77,
+        "section": "Mystic Travel: Teleportation"
+      }
+    ]
+  },
+  {
+    "id": "forge-a-tether",
+    "name": "Forge a Tether",
+    "kind": "feat",
+    "summary": "Bind an object or being to yourself so you can pull it to you through space from wherever it is.",
+    "system": "A tethered thing always counts as within your perception on the teleport chart. You need at least as many Correspondence dots as the highest other Sphere used. Lasts the normal Duration unless made permanent.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Matter": 2
+        },
+        "note": "an inanimate object"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 4
+        },
+        "note": "a complex living being, such as a cat or person"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 4,
+          "Matter": 2
+        },
+        "note": "a vampire"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 4,
+          "Spirit": 4
+        },
+        "inferred": [
+          "Spirit"
+        ],
+        "note": "a werecreature"
+      }
+    ],
+    "tags": [
+      "travel",
+      "movement",
+      "conjuration"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 78,
+        "section": "Mystic Travel: Teleportation"
+      },
+      {
+        "book": "HDYDT",
+        "page": 79,
+        "section": "Mystic Travel: Teleportation"
+      }
+    ]
+  },
+  {
+    "id": "everywhere-at-once",
+    "name": "Everywhere at Once: Multiple Selves",
+    "kind": "feat",
+    "summary": "Send copies of yourself to several places at once. Plain Correspondence makes them mirror images; with more magick each self acts on its own in its own place.",
+    "system": "Base successes come from the least familiar destination, plus 1 per self; Mind adds 1, Life adds 1 per self. Example: 3 selves, one to a described place, independent: 5 + 3 + 1 + 3 = 12. Each self takes damage on its own; on reuniting all damage lands on you. A self that dies deals you 1 aggravated level that heals only once all selves are back; if all copies die, so do you, and killing the original ends them all. The Avatar stays in the original. Vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Mind": 1
+        },
+        "purpose": "keep the selves' senses from getting scrambled"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "purpose": "let each self act independently"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "travel",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 79,
+        "section": "Mystic Travel: Teleportation"
+      }
+    ]
+  },
+  {
+    "id": "warp-gate",
+    "name": "The Warp-Gate",
+    "kind": "feat",
+    "summary": "Tear a brief hole in space to pass through, open just long enough to get in, usually to shortcut a journey. Spot the destination first.",
+    "system": "Stays open a turn or two. Roll only the teleport-chart successes: 2 to get home, 5 for a place you saw online. Gates are vulgar except where local reality, such as a fitting Sanctum, allows them.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3
+        },
+        "note": "a small gate, just you"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4
+        },
+        "note": "a larger gate, for others or a vehicle"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 80,
+        "section": "Mystic Travel: Gates and Portals"
+      }
+    ]
+  },
+  {
+    "id": "location-portal",
+    "name": "The Location Portal",
+    "kind": "feat",
+    "summary": "Build a lasting doorway between two places, from a rune-carved arch to an ordinary door that opens somewhere else. Wise mages set both ends up in Sanctums or Chantries first and add wards.",
+    "system": "10 successes make it permanent, plus the teleport-chart successes (2 more for a very familiar place, 5 for one only heard of). Bigger portals and more safeguards cost more. Vulgar unless local reality allows it; if either end is a place where it would be vulgar, the whole thing is.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "purpose": "open the far end into an Umbral Realm"
+      },
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Mind": 5,
+          "Spirit": 4
+        },
+        "purpose": "open onto a personal Astral Realm, dreamworld or Demesne"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "travel",
+      "spirit",
+      "creation"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 80,
+        "section": "Mystic Travel: Gates and Portals"
+      },
+      {
+        "book": "HDYDT",
+        "page": 79,
+        "section": "Mystic Travel: Gates and Portals"
+      }
+    ]
+  },
+  {
+    "id": "bridge-similar-locations",
+    "name": "Bridge Similar Locations",
+    "kind": "feat",
+    "summary": "Fold space so that two similar places join: a hotel door opens into a club on another continent, a forest path ends in a different forest.",
+    "system": "Base 5 successes plus the teleport-chart value of the far end: 7 for a very familiar place, 10 for one only heard about. A quick blur onlookers can shrug off may pass as coincidental; open spatial weirdness is vulgar. Big space-warping feats like this start at difficulty 6 or more and cause at least 5 Paradox.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5
+        }
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 80,
+        "section": "Mystic Travel: Bringing \"There\" to \"Here\""
+      },
+      {
+        "book": "HDYDT",
+        "page": 81,
+        "section": "Mystic Travel: Bringing \"There\" to \"Here\""
+      }
+    ]
+  },
+  {
+    "id": "stretch-or-shrink-distance",
+    "name": "Stretch or Shrink Distance",
+    "kind": "feat",
+    "summary": "Warp space for as long as it lasts: a short hallway runs for miles, or a long road shrinks to a stroll.",
+    "system": "Successes follow the Magickal Feats chart at the Storyteller's call: shrinking downtown Seattle to Mount Rainier might take 6, Seattle to Berlin 10 or more. Subtle warps may pass as coincidental; visible Escher-style ones are vulgar and draw powerful attention. Permanent warps take at least 10 successes, gross ones 20 or more.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5
+        }
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "travel",
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 80,
+        "section": "Mystic Travel: Bringing \"There\" to \"Here\""
+      },
+      {
+        "book": "HDYDT",
+        "page": 81,
+        "section": "Mystic Travel: Bringing \"There\" to \"Here\""
+      }
+    ]
+  },
+  {
+    "id": "escher-architecture",
+    "name": "Escher Architecture: Bend Local Physics",
+    "kind": "feat",
+    "summary": "Remake a small area into an impossible landscape: stairs that loop, rooms that fold, fire sculptures and upward-flowing water, even trees of flesh and talking hills. People inside can use it as if it were normal.",
+    "system": "Successes by the Magickal Feats chart, and it needs many. Making it permanent costs 10 extra successes and Quintessence: 1-2 points for small touches, 5 or more for big works. Life 5 is still needed for living things to swim in fire or breathe sunlight. Vulgar, but more or less normal inside a Sanctum or Realm that fits your reality.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Matter": 4
+        },
+        "note": "impossible shapes and spaces"
+      },
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Forces": 4,
+          "Matter": 4,
+          "Prime": 2
+        },
+        "note": "elements and energies that behave impossibly"
+      },
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Forces": 4,
+          "Matter": 4,
+          "Prime": 2,
+          "Life": 5
+        },
+        "note": "living, flesh-warped scenery and adapted lifeforms"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "transformation",
+      "creation",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 81,
+        "section": "Mystic Travel: Bringing \"There\" to \"Here\""
+      }
+    ]
+  },
+  {
+    "id": "transpose-locations",
+    "name": "Transpose Locations",
+    "kind": "feat",
+    "summary": "Stack two or more places on top of each other like layers, so a car in one city can turn onto a road in another. Weather bleeds between layers, satellites go haywire, and anyone who wanders across stays where they end up.",
+    "system": "10 base successes plus 10 per layer for pieces up to a quarter-mile square; 10 more per piece for each extra quarter-mile square. Each 10 minutes of Duration costs 1 more success (21 for 10 minutes, 23 for 30). No modifiers: difficulty 9 without witnesses, 10 with. At least 5 Paradox per 10 minutes even on a success. Can never be made permanent. Always vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "travel",
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 81,
+        "section": "Mystic Travel: Bringing \"There\" to \"Here\""
+      },
+      {
+        "book": "HDYDT",
+        "page": 82,
+        "section": "Mystic Travel: Bringing \"There\" to \"Here\""
+      }
+    ]
+  },
+  {
+    "id": "moving-mountains",
+    "name": "Moving Mountains",
+    "kind": "feat",
+    "summary": "Rip a whole place, from a shed to a mountain, out of its spot and set it down somewhere else, leaving a hole or a blank surface behind.",
+    "system": "Base successes by size: 3 tiny (car, tent), 5 small (van, hut), 7 noticeable (small house), 10 medium (suburban home), 13 sizable (mansion, park), 15 large (estate, small hill), 17 huge (office block, city block), 20+ vast (skyscraper, mountain). Lasts the normal Duration, then the place crumbles; making it permanent takes 10 more successes and at least 10 Quintessence. At least 5 Paradox even on a success. The moved place takes on its new climate. Vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Forces": 5,
+          "Matter": 5,
+          "Prime": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Life": 4
+        },
+        "purpose": "keep the living things that come along alive"
+      },
+      {
+        "spheres": {
+          "Mind": 4
+        },
+        "purpose": "keep those living things from panicking"
+      },
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "purpose": "keep the Umbrascape at both ends from being scrambled"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "travel",
+      "movement",
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 82,
+        "section": "Mystic Travel: Bringing \"There\" to \"Here\""
+      },
+      {
+        "book": "HDYDT",
+        "page": 83,
+        "section": "Mystic Travel: Bringing \"There\" to \"Here\""
+      }
+    ]
+  },
+  {
+    "id": "wrack-a-ghost",
+    "name": "Wrack a Ghost",
+    "kind": "feat",
+    "summary": "Force a ghost to show up, pin it in place, and make it hurt until it talks or obeys, or simply destroy it. Cruel, and guaranteed to make the dead hostile.",
+    "system": "Remains, fetters or things tied to the death count as personal items on the difficulty chart, and threatening a fetter is another lever over the ghost.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        },
+        "note": "inflict pain on a ghost"
+      },
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "note": "compel it to appear and trap it there"
+      },
+      {
+        "spheres": {
+          "Spirit": 5
+        },
+        "note": "destroy it entirely"
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "spirit",
+      "summoning",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 86,
+        "section": "Necromancy: Ghost-Calling"
+      }
+    ]
+  },
+  {
+    "id": "bind-a-ghost-into-an-object",
+    "name": "Bind a Ghost into an Object",
+    "kind": "feat",
+    "summary": "Seal a ghost inside a thing, as a threat, a punishment, or a way to get rid of a dangerous spectre.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4
+        }
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "spirit",
+      "summoning",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 86,
+        "section": "Necromancy: Ghost-Calling"
+      }
+    ]
+  },
+  {
+    "id": "thicken-gauntlet-against-ghosts",
+    "name": "Thicken the Gauntlet Against Ghosts",
+    "kind": "feat",
+    "summary": "Harden the barrier to the dead inside a circle of salt, a pentacle or a shield grid, so ghosts have a harder time reaching through.",
+    "system": "Each success raises the local Gauntlet by 1 for the Duration.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2
+        }
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "warding",
+      "spirit",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 86,
+        "section": "Necromancy: Warding Against the Dead"
+      }
+    ]
+  },
+  {
+    "id": "ward-against-ghostly-powers",
+    "name": "Ward Against Ghostly Powers",
+    "kind": "feat",
+    "summary": "Shield an area and the people in it from the death-powers of ghosts, without changing the spirit world around it.",
+    "system": "The first 2 successes set the ward; each further success takes 1 success off any ghostly attack on the protected. Spend 1 more success per extra person warded. A wraith gains a die per Fetter dot if the ward sits between it and its fetter, but loses those dice if the fetter is built into the ward.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Spirit": 3,
+          "Entropy": 2
+        }
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "warding",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 86,
+        "section": "Necromancy: Warding Against the Dead"
+      },
+      {
+        "book": "HDYDT",
+        "page": 87,
+        "section": "Necromancy: Warding Against the Dead"
+      }
+    ]
+  },
+  {
+    "id": "wall-off-or-banish-ghosts",
+    "name": "Wall Off or Banish Ghosts",
+    "kind": "feat",
+    "summary": "Raise walls of ephemera against the dead, drive spirits away, or exorcise a ghost from a place or person. Handy against vicious spectres.",
+    "system": "Stronger workings may need Spirit 5. See Exorcism in the Uncanny Influence rules.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4
+        }
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "warding",
+      "spirit",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 86,
+        "section": "Necromancy: Warding Against the Dead"
+      }
+    ]
+  },
+  {
+    "id": "song-of-flies",
+    "name": "The Song of Flies: Read a Death",
+    "kind": "feat",
+    "summary": "Study a murder scene, grave, body or murder weapon for how someone died, who was there and what happened. Works best where the death left a strong mark, and can leave the mage scarred by what they see.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2,
+          "Prime": 1
+        },
+        "note": "read the Resonance the death left"
+      },
+      {
+        "spheres": {
+          "Time": 2,
+          "Matter": 1
+        },
+        "note": "look back in time at the death"
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "divination",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 86,
+        "section": "Necromancy: The Song of Flies"
+      }
+    ]
+  },
+  {
+    "id": "self-possession-by-a-ghost",
+    "name": "Self-Possession by a Ghost",
+    "kind": "feat",
+    "summary": "Open yourself as a willing horse for a ghost, keeping some control while borrowing whatever Abilities it chooses to share. The ghost gets a living body to ride for a while.",
+    "system": "You and the ghost make an extended, resisted Willpower roll, each against the other's Willpower; the first to 10 successes controls the body. Afterward you need a day to two weeks of rest and pick up a dot or two of the ghost's Resonance, and you count as a personal item for dealing with that ghost from then on. No Arcanoi or Charms pass over. Obvious possession is usually vulgar, though some places like New Orleans accept it from the right people.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4
+        }
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "necromancy",
+      "spirit",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 87,
+        "section": "Necromancy: Channeling the Dead"
+      }
+    ]
+  },
+  {
+    "id": "possess-another-with-a-ghost",
+    "name": "Possess Another with a Ghost",
+    "kind": "feat",
+    "summary": "Bind a ghost into another living creature's flesh to sway its moods, drive its body, fight it for control, or rip it apart from inside.",
+    "system": "The tear-apart version deals aggravated damage. Always vulgar, and especially foul unless ghost and host both agree.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4,
+          "Mind": 2
+        },
+        "note": "sway the victim's moods"
+      },
+      {
+        "spheres": {
+          "Spirit": 4,
+          "Mind": 4
+        },
+        "note": "command the victim's body"
+      },
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "note": "drop the ghost in and let them fight for control"
+      },
+      {
+        "spheres": {
+          "Spirit": 4,
+          "Life": 3
+        },
+        "note": "the ghost tears the victim apart"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "necromancy",
+      "mind-control",
+      "spirit",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 87,
+        "section": "Necromancy: Channeling the Dead"
+      }
+    ]
+  },
+  {
+    "id": "animate-dead-remains",
+    "name": "Animate Dead Remains",
+    "kind": "feat",
+    "summary": "Make dead flesh or bones move again, from a twitching finger to a walking corpse. This gives no mind or life, only motion, unless you invite or lock a ghost in.",
+    "system": "Successes: 1 for a small piece (finger, heart), 2 a hand or foot, 3 a head or arm, 4 limbs plus torso, 5 a whole body. Remains keep rotting; slowing it only delays the end. Scavengers love animated remains.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2,
+          "Prime": 2
+        },
+        "note": "recently dead tissue"
+      },
+      {
+        "spheres": {
+          "Matter": 2,
+          "Prime": 2
+        },
+        "note": "bones"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Spirit": 2
+        },
+        "purpose": "invite a ghost into the remains"
+      },
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "purpose": "lock a ghost into the remains"
+      },
+      {
+        "spheres": {
+          "Entropy": 3
+        },
+        "purpose": "slow the rot"
+      },
+      {
+        "spheres": {
+          "Time": 3
+        },
+        "purpose": "slow the rot"
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "conjuration"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 87,
+        "section": "Necromancy: Animating the Dead"
+      },
+      {
+        "book": "HDYDT",
+        "page": 88,
+        "section": "Necromancy: Animating the Dead"
+      },
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "raise-a-zombie",
+    "name": "Raise a Zombie",
+    "kind": "feat",
+    "summary": "Create a walking dead thing by one of four grim methods, from swapping a living soul for a ghost to locking a murdered person's mind inside their own corpse.",
+    "system": "Unless made permanent, the zombie collapses when the Duration ends. It rots like any animated remains. All methods are extremely vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 5,
+          "Spirit": 4
+        },
+        "note": "replace a living person's mind and soul with a ghost"
+      },
+      {
+        "spheres": {
+          "Spirit": 4,
+          "Matter": 2,
+          "Prime": 2
+        },
+        "note": "a corpse made into a Fetish ridden by a ghost"
+      },
+      {
+        "spheres": {
+          "Mind": 5,
+          "Life": 4,
+          "Matter": 2,
+          "Prime": 2
+        },
+        "note": "kill the person and trap their mind in the corpse"
+      },
+      {
+        "spheres": {
+          "Spirit": 5,
+          "Life": 4,
+          "Prime": 2
+        },
+        "note": "destroy a living soul and move a ghost in"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "necromancy",
+      "mind-control",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 88,
+        "section": "Necromancy: Animating the Dead"
+      }
+    ]
+  },
+  {
+    "id": "frankencritter",
+    "name": "Build a Frankencritter",
+    "kind": "feat",
+    "summary": "The technomancer's take on raising the dead: surgery, formulae and current turn dead parts into something that moves, thinks, or refuses to finish dying.",
+    "system": "Uses the same rules as zombies. The galvanized kind runs on twitchy reflexes and does not last long; the kind with a mind has its own will and may ignore you. Extremely vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 4,
+          "Life": 4,
+          "Matter": 2,
+          "Prime": 2
+        },
+        "note": "galvanize remains with energy"
+      },
+      {
+        "spheres": {
+          "Mind": 5,
+          "Life": 4,
+          "Matter": 2,
+          "Prime": 2
+        },
+        "note": "give a reanimated corpse a working mind"
+      },
+      {
+        "spheres": {
+          "Life": 4,
+          "Mind": 4,
+          "Time": 4,
+          "Prime": 2
+        },
+        "note": "freeze time in a dying body and keep it running"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "necromancy",
+      "technology",
+      "creation"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 88,
+        "section": "Necromancy: Animating the Dead"
+      }
+    ]
+  },
+  {
+    "id": "revive-the-newly-dead",
+    "name": "Revive the Newly Dead",
+    "kind": "feat",
+    "summary": "Bring back someone who died in the last five minutes or so: repair what killed them, hold the soul in place and jump-start the body. Much easier than true resurrection.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 4,
+          "Spirit": 4,
+          "Prime": 3
+        }
+      }
+    ],
+    "coincidentalIf": "the death was minutes ago and a revival is believable, like CPR on a drowning or heart attack victim; bringing back someone beheaded or burned to a crisp is vulgar",
+    "vulgarity": "depends",
+    "tags": [
+      "necromancy",
+      "healing"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 88,
+        "section": "Necromancy: Reviving and Resurrection"
+      },
+      {
+        "book": "HDYDT",
+        "page": 89,
+        "section": "Necromancy: Reviving and Resurrection"
+      },
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "resurrect-the-dead",
+    "name": "Resurrect the Dead",
+    "kind": "feat",
+    "summary": "Truly raise the dead: turn the corpse back into a living body, restore the mind and fetch back the departed soul. A soul long gone may be hard to find, and what comes back may not be the same person.",
+    "system": "Older corpses need Matter as well, more the further decay has gone. Finding a long-dead soul may mean a journey into the Underworld or afterlife Realms. Totally vulgar unless the subject died only minutes ago.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 5,
+          "Mind": 5,
+          "Spirit": 5,
+          "Prime": 3
+        },
+        "note": "a fresh corpse"
+      },
+      {
+        "spheres": {
+          "Life": 5,
+          "Mind": 5,
+          "Spirit": 5,
+          "Prime": 3,
+          "Matter": 2
+        },
+        "note": "a corpse dead for some time"
+      },
+      {
+        "spheres": {
+          "Life": 5,
+          "Mind": 5,
+          "Spirit": 5,
+          "Prime": 3,
+          "Matter": 4
+        },
+        "note": "a badly decayed corpse"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Time": 4
+        },
+        "purpose": "restore body and mind to a save point just before death (very hard)"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "necromancy",
+      "healing",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 88,
+        "section": "Necromancy: Reviving and Resurrection"
+      }
+    ]
+  },
+  {
+    "id": "necrosynthesis",
+    "name": "Necrosynthesis",
+    "kind": "feat",
+    "summary": "Pump death-energy through a living body so it rots with leprous corruption, or even hatches maggots that eat the victim from inside.",
+    "system": "Deals aggravated damage. Casting it automatically gives you a dot of Jhor or Entropic Synergy, and Morbidity Quiet likely follows at your next Paradox. Extremely vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 4,
+          "Life": 3
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "breed maggots inside the victim"
+      },
+      {
+        "spheres": {
+          "Spirit": 5
+        },
+        "purpose": "combine with Gilgul to destroy the Avatar too"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "necromancy",
+      "combat",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 89,
+        "section": "Necromancy: Necrosynthesis"
+      }
+    ]
+  }
+]

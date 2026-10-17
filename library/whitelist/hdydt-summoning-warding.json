@@ -1,0 +1,128 @@
+[
+  {
+    "check": "spheres",
+    "id": "ward-against-substances-and-objects",
+    "detail": "Correspondence 4 + Matter 2 not stated together (within 700 chars) on HDYDT p.95, HDYDT p.96",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. p.96 lists the Matter 2/3/4 objectives added to Correspondence; the two are just on different parts of the section."
+  },
+  {
+    "check": "spheres",
+    "id": "ward-against-substances-and-objects",
+    "detail": "Correspondence 4 + Matter 3 not stated together (within 700 chars) on HDYDT p.95, HDYDT p.96",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. p.96 lists the Matter 2/3/4 objectives added to Correspondence; the two are just on different parts of the section."
+  },
+  {
+    "check": "spheres",
+    "id": "ward-against-substances-and-objects",
+    "detail": "Correspondence 4 + Matter 4 not stated together (within 700 chars) on HDYDT p.95, HDYDT p.96",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. p.96 lists the Matter 2/3/4 objectives added to Correspondence; the two are just on different parts of the section."
+  },
+  {
+    "check": "spheres",
+    "id": "ward-against-primium",
+    "detail": "Correspondence 4 + Matter 4 + Prime 4 not stated together (within 700 chars) on HDYDT p.96",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. p.96 says the Matter 4 objective combined with Prime 4 wards against Primium."
+  },
+  {
+    "check": "spheres",
+    "id": "ward-against-a-resonance",
+    "detail": "Correspondence 4 + Prime 4 not stated together (within 700 chars) on HDYDT p.96",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. p.96 lists Prime 4 as the objective Sphere for Resonance and Synergy wards."
+  },
+  {
+    "check": "spheres",
+    "id": "lock-a-ward-into-a-thing",
+    "detail": "Correspondence 4 + Matter 2 not stated together (within 700 chars) on HDYDT p.95, HDYDT p.96, HDYDT p.97",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. p.96 (Locking the Ward) gives Matter 2 for items and building materials and Matter 3+ for complex objects as add-ons to the ward."
+  },
+  {
+    "check": "spheres",
+    "id": "lock-a-ward-into-a-thing",
+    "detail": "Correspondence 4 + Matter 3 not stated together (within 700 chars) on HDYDT p.95, HDYDT p.96, HDYDT p.97",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. p.96 (Locking the Ward) gives Matter 2 for items and building materials and Matter 3+ for complex objects as add-ons to the ward."
+  },
+  {
+    "check": "spheres",
+    "id": "circumstantial-ward",
+    "detail": "Correspondence 4 + Time 4 not stated together (within 700 chars) on HDYDT p.97",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. p.97 says a circumstantial ward adds Time 4 to the ward."
+  },
+  {
+    "check": "spheres",
+    "id": "the-ban",
+    "detail": "Correspondence 4 + Life 4 + Mind 4 + Prime 2 not stated together (within 700 chars) on HDYDT p.96, HDYDT p.100",
+    "reason": "p.100: the Ban needs Correspondence 4, Life 3 or 4, Prime 2 or 4; to ban one particular mortal it also needs Mind 4, stated two paragraphs further on. p.96 also gives Life 4/Mind 4 for picking out types of people."
+  },
+  {
+    "check": "spheres",
+    "id": "psychic-ward-suggestion-of-unease",
+    "detail": "Correspondence 4 + Mind 2 not stated together (within 700 chars) on HDYDT p.96, HDYDT p.101",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. The Psychic Ward (p.101, under Major Wards) adds Mind 2; p.96 lists the same Mind objectives."
+  },
+  {
+    "check": "spheres",
+    "id": "psychic-ward-psychic-pain",
+    "detail": "Correspondence 4 + Mind 3 not stated together (within 700 chars) on HDYDT p.96, HDYDT p.101",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. The Psychic Ward (p.101, under Major Wards) adds Mind 3, or Life 3/Mind 3 for Psychic Shatter."
+  },
+  {
+    "check": "spheres",
+    "id": "psychic-ward-psychic-pain",
+    "detail": "Correspondence 4 + Life 3 + Mind 3 not stated together (within 700 chars) on HDYDT p.96, HDYDT p.101",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. The Psychic Ward (p.101, under Major Wards) adds Mind 3, or Life 3/Mind 3 for Psychic Shatter."
+  },
+  {
+    "check": "spheres",
+    "id": "psychic-ward-sensory-stunning",
+    "detail": "Correspondence 4 + Mind 3 not stated together (within 700 chars) on HDYDT p.101",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. The Psychic Ward (p.101, under Major Wards) adds Mind 3."
+  },
+  {
+    "check": "spheres",
+    "id": "psychic-ward-change-of-mind",
+    "detail": "Correspondence 4 + Mind 4 not stated together (within 700 chars) on HDYDT p.101, HDYDT p.102",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. The Psychic Ward (p.101, under Major Wards) adds Mind 4."
+  },
+  {
+    "check": "spheres",
+    "id": "psychic-ward-mind-barring",
+    "detail": "Correspondence 4 + Mind 4 not stated together (within 700 chars) on HDYDT p.95, HDYDT p.102",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. Mind-Barring (p.102, under Major Wards) adds Mind 4, Spirit 4 instead, or both."
+  },
+  {
+    "check": "spheres",
+    "id": "psychic-ward-mind-barring",
+    "detail": "Correspondence 4 + Spirit 4 not stated together (within 700 chars) on HDYDT p.95, HDYDT p.102",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. Mind-Barring (p.102, under Major Wards) adds Mind 4, Spirit 4 instead, or both."
+  },
+  {
+    "check": "spheres",
+    "id": "psychic-ward-mind-barring",
+    "detail": "Correspondence 4 + Mind 4 + Spirit 4 not stated together (within 700 chars) on HDYDT p.95, HDYDT p.102",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. Mind-Barring (p.102, under Major Wards) adds Mind 4, Spirit 4 instead, or both."
+  },
+  {
+    "check": "spheres",
+    "id": "psychic-ward-mood-barring",
+    "detail": "Correspondence 4 + Mind 4 not stated together (within 700 chars) on HDYDT p.95, HDYDT p.102",
+    "reason": "Major wards are built on Correspondence 4: p.95 (Ward Types) says Correspondence 4 sets up an actual ward that other Spheres are added to, and Correspondence must be at least the highest other Sphere. Mood-Barring (p.102, under Major Wards) adds Mind 4."
+  },
+  {
+    "check": "spheres",
+    "id": "unweave-a-ward",
+    "detail": "Correspondence 1 not found on HDYDT p.103",
+    "reason": "p.103: the counter-mage needs at least one dot in each Sphere used to build the ward; nearly every ward includes Correspondence, so 1 dot of it is the floor, written as words the checker does not parse."
+  },
+  {
+    "check": "spheres",
+    "id": "wrack-a-spirit-prolonged-agony",
+    "detail": "Spirit 3 + Time 3 not stated together (within 700 chars) on HDYDT p.104, HDYDT p.106",
+    "reason": "p.106: Time 3 or 4 is added to any of the wracking attacks above; the cheapest of those is Spiritual Damage with Spirit 3 (p.104), two pages earlier."
+  },
+  {
+    "check": "spheres",
+    "id": "wrack-a-spirit-prolonged-agony",
+    "detail": "Spirit 3 + Time 4 not stated together (within 700 chars) on HDYDT p.104, HDYDT p.106",
+    "reason": "p.106: Time 3 or 4 is added to any of the wracking attacks above; the cheapest of those is Spiritual Damage with Spirit 3 (p.104), two pages earlier."
+  }
+]

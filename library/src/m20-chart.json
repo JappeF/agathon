@@ -1,0 +1,2201 @@
+[
+  {
+    "id": "adapt-to-environment",
+    "name": "Adapt to Environment",
+    "kind": "feat",
+    "summary": "Change a body so it copes with a hostile setting: breathe underwater, shrug off cold or heat, survive thin air.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "note": "yourself"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "someone else"
+      }
+    ],
+    "tags": [
+      "body",
+      "utility"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "cause-or-cure-disease",
+    "name": "Cause or Cure Disease",
+    "kind": "feat",
+    "summary": "Make a living body sick or drive an illness out of it.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "note": "yourself"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "someone else"
+      }
+    ],
+    "tags": [
+      "healing",
+      "body",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "cosmetic-alteration",
+    "name": "Cosmetic Alteration",
+    "kind": "feat",
+    "summary": "Change looks without changing what the body can do: hair, eye or skin color, features, scars, tattoos.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "note": "yourself"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "someone else"
+      }
+    ],
+    "tags": [
+      "body",
+      "shapechanging",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "create-a-body",
+    "name": "Create a Living Body",
+    "kind": "feat",
+    "summary": "Build a living body out of raw Quintessence: easy for something simple like a plant or insect, a Master's work for a complex creature.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2,
+          "Prime": 2
+        },
+        "note": "simple organism"
+      },
+      {
+        "spheres": {
+          "Life": 5,
+          "Prime": 2
+        },
+        "note": "complex creature"
+      }
+    ],
+    "tags": [
+      "creation",
+      "conjuration",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "duplicate-a-body",
+    "name": "Duplicate a Body",
+    "kind": "feat",
+    "summary": "Make a physical copy of a living body, such as a clone.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 5,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "creation",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "grow-new-limbs",
+    "name": "Grow New Limbs or Other Features",
+    "kind": "feat",
+    "summary": "Regrow a lost limb or add new body parts and features, like claws, gills or an extra arm.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "yourself"
+      },
+      {
+        "spheres": {
+          "Life": 4
+        },
+        "note": "someone else"
+      }
+    ],
+    "tags": [
+      "body",
+      "healing",
+      "shapechanging"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "heal-or-harm-living-being",
+    "name": "Heal or Harm a Living Being",
+    "kind": "feat",
+    "summary": "Mend injuries in a living body, or damage it directly by twisting its Pattern.",
+    "system": "Health levels healed or inflicted follow the damage chart (two levels for two successes, more after). Life damage is aggravated.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "note": "yourself"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "someone else"
+      }
+    ],
+    "tags": [
+      "healing",
+      "combat",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "heal-or-harm-fae",
+    "name": "Heal or Harm a Fae",
+    "kind": "feat",
+    "summary": "Heal or injure one of the fae, whose bodies blend flesh with dream-stuff.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Mind": 3
+        }
+      }
+    ],
+    "tags": [
+      "healing",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "heal-or-harm-vampire",
+    "name": "Heal or Harm a Vampire",
+    "kind": "feat",
+    "summary": "Heal or injure a vampire, whose undead body sits between living tissue and dead matter.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Matter": 2
+        }
+      }
+    ],
+    "tags": [
+      "healing",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "heal-or-harm-werecreature",
+    "name": "Heal or Harm a Werecreature",
+    "kind": "feat",
+    "summary": "Heal or injure a shapeshifter, whose body is bound up with spirit.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Spirit": 2
+        }
+      }
+    ],
+    "tags": [
+      "healing",
+      "combat",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "increase-physique",
+    "name": "Increase Physique or Physical Traits",
+    "kind": "feat",
+    "summary": "Make a body stronger, tougher or quicker by boosting its Physical Attributes.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "yourself"
+      },
+      {
+        "spheres": {
+          "Life": 4
+        },
+        "note": "someone else"
+      }
+    ],
+    "tags": [
+      "body",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "rot-body",
+    "name": "Rot a Body",
+    "kind": "feat",
+    "summary": "Make living flesh decay and wither, either through entropy or by attacking the life Pattern directly.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 4
+        }
+      },
+      {
+        "spheres": {
+          "Life": 4
+        }
+      }
+    ],
+    "tags": [
+      "combat",
+      "destruction",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "sleep-spell",
+    "name": "Sleep Spell",
+    "kind": "feat",
+    "summary": "Put someone to sleep, either by nudging their mind toward drowsiness or by forcing their body to drop off at once.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "note": "suggest sleep"
+      },
+      {
+        "spheres": {
+          "Mind": 4
+        },
+        "note": "instant slumber"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "instant slumber"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Mind": 4
+        },
+        "note": "instant slumber, mind and body"
+      }
+    ],
+    "tags": [
+      "mind-control",
+      "body",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "soak-aggravated-damage",
+    "name": "Soak Aggravated Damage",
+    "kind": "feat",
+    "summary": "Toughen your body so you can soak aggravated damage that normally cannot be soaked.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        }
+      }
+    ],
+    "tags": [
+      "defense",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "transform-body-into-element",
+    "name": "Transform a Body into an Element",
+    "kind": "feat",
+    "summary": "Turn a living body into an element such as stone, water, fire or air. Higher ranks make the change more thorough.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Forces": 3
+        },
+        "note": "yourself, into an energy (fire, air)"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Matter": 3
+        },
+        "note": "yourself, into a material (stone, water)"
+      },
+      {
+        "spheres": {
+          "Life": 4,
+          "Forces": 3
+        },
+        "note": "someone else, into an energy"
+      },
+      {
+        "spheres": {
+          "Life": 4,
+          "Matter": 3
+        },
+        "note": "someone else, into a material"
+      }
+    ],
+    "tags": [
+      "shapechanging",
+      "transformation",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
+      }
+    ]
+  },
+  {
+    "id": "alter-probability",
+    "name": "Alter Probability",
+    "kind": "feat",
+    "summary": "Tip the odds of a chance event your way; more rank lets you push bigger or less likely outcomes.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2
+        }
+      }
+    ],
+    "tags": [
+      "luck"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Fate and Fortune"
+      }
+    ]
+  },
+  {
+    "id": "cause-decay",
+    "name": "Cause Decay",
+    "kind": "feat",
+    "summary": "Make an object age, rust, rot or fall apart faster than it should; more rank speeds it up further.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 3
+        }
+      }
+    ],
+    "tags": [
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Fate and Fortune"
+      }
+    ]
+  },
+  {
+    "id": "spot-weakness",
+    "name": "Spot Weakness",
+    "kind": "feat",
+    "summary": "See the flaw or weak point in an object, a defense, a plan or a person.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 1
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Fate and Fortune"
+      }
+    ]
+  },
+  {
+    "id": "craft-device",
+    "name": "Craft a Device",
+    "kind": "feat",
+    "summary": "Build a permanent technological Wonder that holds an Effect.",
+    "system": "Needs Prime 4 plus the Spheres of every Effect the Device performs. Rules for Wonders are in M20 Appendix II.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 4
+        }
+      }
+    ],
+    "tags": [
+      "enchantment",
+      "technology"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Crafting Wonders"
+      }
+    ]
+  },
+  {
+    "id": "craft-fetish",
+    "name": "Craft a Fetish",
+    "kind": "feat",
+    "summary": "Bind a spirit into an object so the object can use its powers.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "note": "an unwilling spirit"
+      },
+      {
+        "spheres": {
+          "Prime": 4
+        },
+        "note": "a willing spirit"
+      }
+    ],
+    "tags": [
+      "enchantment",
+      "spirit",
+      "summoning"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Crafting Wonders"
+      }
+    ]
+  },
+  {
+    "id": "craft-periapt",
+    "name": "Craft a Periapt or Matrix",
+    "kind": "feat",
+    "summary": "Make a permanent store for Quintessence out of an object or a living being.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 5,
+          "Prime": 3
+        },
+        "note": "an inanimate store"
+      },
+      {
+        "spheres": {
+          "Life": 5,
+          "Prime": 3
+        },
+        "note": "a living store"
+      }
+    ],
+    "tags": [
+      "enchantment",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Crafting Wonders"
+      }
+    ]
+  },
+  {
+    "id": "craft-talisman",
+    "name": "Craft a Talisman",
+    "kind": "feat",
+    "summary": "Make a permanent mystic Wonder that holds an Effect.",
+    "system": "Needs Prime 4 plus the Spheres of every Effect the Talisman performs.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 4
+        }
+      }
+    ],
+    "tags": [
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Crafting Wonders"
+      }
+    ]
+  },
+  {
+    "id": "craft-trinket",
+    "name": "Craft a Trinket",
+    "kind": "feat",
+    "summary": "Make a small magickal item: consecrate it with Prime, or give it its special quality with whatever Sphere fits.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "note": "to consecrate it"
+      }
+    ],
+    "tags": [
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Crafting Wonders"
+      }
+    ]
+  },
+  {
+    "id": "bless-or-curse-spirit",
+    "name": "Bless or Curse a Spirit",
+    "kind": "feat",
+    "summary": "Give a spirit or ephemeral being good or bad fortune.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 3
+        }
+      },
+      {
+        "spheres": {
+          "Prime": 5
+        }
+      }
+    ],
+    "tags": [
+      "luck",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      }
+    ]
+  },
+  {
+    "id": "command-spirit",
+    "name": "Command a Spirit",
+    "kind": "feat",
+    "summary": "Force a spirit to obey your orders.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 4,
+          "Spirit": 4
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "summoning",
+      "mind-control"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      }
+    ]
+  },
+  {
+    "id": "conjure-spirit",
+    "name": "Conjure a Spirit",
+    "kind": "feat",
+    "summary": "Call a spirit to come to you.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "summoning"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      }
+    ]
+  },
+  {
+    "id": "drain-spirit-essence",
+    "name": "Drain a Spirit's Essence",
+    "kind": "feat",
+    "summary": "Pull the Essence out of a spirit, weakening it and taking its power.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 4,
+          "Spirit": 4
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "quintessence",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      }
+    ]
+  },
+  {
+    "id": "harm-ghost",
+    "name": "Harm a Ghost",
+    "kind": "feat",
+    "summary": "Injure a wraith or other ghost, either through death-magick backed by Prime or directly through its spirit form.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 3,
+          "Prime": 2
+        }
+      },
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "combat",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      }
+    ]
+  },
+  {
+    "id": "harm-spirit",
+    "name": "Harm a Spirit",
+    "kind": "feat",
+    "summary": "Damage a spirit's ephemeral body the way Life 3 damages a living one.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      }
+    ]
+  },
+  {
+    "id": "open-or-close-spirit-gateway",
+    "name": "Open or Close a Gateway to the Umbra",
+    "kind": "feat",
+    "summary": "Tear a passage through the Gauntlet that others can use, or seal one shut.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "spirit",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      },
+      {
+        "book": "M20",
+        "page": 522,
+        "section": "Spheres: Spirit"
+      }
+    ]
+  },
+  {
+    "id": "see-spirits",
+    "name": "See Spirits",
+    "kind": "feat",
+    "summary": "Perceive spirits and the spirit world beyond the Gauntlet.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 1
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      }
+    ]
+  },
+  {
+    "id": "speak-to-spirits",
+    "name": "Speak to Spirits",
+    "kind": "feat",
+    "summary": "Talk with spirits across the Gauntlet.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2
+        }
+      }
+    ],
+    "tags": [
+      "communication",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      }
+    ]
+  },
+  {
+    "id": "touch-spirit",
+    "name": "Touch a Spirit",
+    "kind": "feat",
+    "summary": "Make brief physical contact with a spirit on the other side of the Gauntlet.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2
+        }
+      }
+    ],
+    "tags": [
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Spirit Powers"
+      }
+    ]
+  },
+  {
+    "id": "call-storm",
+    "name": "Call a Storm",
+    "kind": "feat",
+    "summary": "Summon a storm out of the sky; more Forces makes it bigger and wilder.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 4,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "weather",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "conjure-new-object",
+    "name": "Conjure a New Object",
+    "kind": "feat",
+    "summary": "Create a physical object out of thin air; more complex objects need more Matter.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "conjuration"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "disintegrate-object",
+    "name": "Disintegrate an Object",
+    "kind": "feat",
+    "summary": "Reduce an object to dust, either by aging it to ruin in moments or by tearing its material apart.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 3,
+          "Time": 3
+        }
+      },
+      {
+        "spheres": {
+          "Matter": 3
+        }
+      }
+    ],
+    "tags": [
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "invisibility-or-silence-field",
+    "name": "Invisibility or Silence Field",
+    "kind": "feat",
+    "summary": "Bend light or sound around an object or area so it cannot be seen or heard.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
+    ],
+    "tags": [
+      "stealth",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "invisibility-on-living-being",
+    "name": "Make a Living Being Invisible",
+    "kind": "feat",
+    "summary": "Make a person or animal invisible by locking light-bending into their body.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 2
+        }
+      }
+    ],
+    "tags": [
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "consecrate-harden-perfect-object",
+    "name": "Consecrate, Harden or Perfect an Object",
+    "kind": "feat",
+    "summary": "Make an object tougher, flawless or bound to your energy, by reworking its material or charging it with Quintessence.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 3
+        }
+      },
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "enchantment",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "levitation-or-flight",
+    "name": "Levitation or Flight",
+    "kind": "feat",
+    "summary": "Float or fly, by pushing against gravity, by moving yourself through space, or by lightening what you are made of.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "note": "push against gravity; more rank for more speed and weight"
+      },
+      {
+        "spheres": {
+          "Correspondence": 3,
+          "Life": 2
+        },
+        "note": "shift a body through space"
+      },
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "note": "objects"
+      }
+    ],
+    "tags": [
+      "travel",
+      "movement"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "speed-or-slow-velocity",
+    "name": "Speed Up or Slow Down an Object",
+    "kind": "feat",
+    "summary": "Change how fast something moves: stop a bullet, hurl a stone, slow a falling body.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
+    ],
+    "tags": [
+      "movement",
+      "elemental",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "transform-objects",
+    "name": "Transform an Object",
+    "kind": "feat",
+    "summary": "Change an object into something else; turning it into an energy or a living thing also needs that Sphere.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "note": "into another material"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Matter": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "into energy"
+      },
+      {
+        "spheres": {
+          "Life": 2,
+          "Matter": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "note": "into something alive"
+      }
+    ],
+    "tags": [
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "transform-forces",
+    "name": "Transform an Energy",
+    "kind": "feat",
+    "summary": "Turn one force into another (light into heat, sound into electricity), or into matter or life with that Sphere added.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 3
+        },
+        "note": "into another energy"
+      },
+      {
+        "spheres": {
+          "Forces": 3,
+          "Matter": 2
+        },
+        "inferred": [
+          "Matter"
+        ],
+        "note": "into matter"
+      },
+      {
+        "spheres": {
+          "Forces": 3,
+          "Life": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "note": "into something alive"
+      }
+    ],
+    "tags": [
+      "transformation",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Objects and Elements"
+      }
+    ]
+  },
+  {
+    "id": "affect-distant-target",
+    "name": "Affect a Distant Object or Being",
+    "kind": "feat",
+    "summary": "Cast an Effect on someone or something that is not here, by linking to it through space.",
+    "system": "The Correspondence Sphere Ranges chart sets the successes needed by how well you know the target. The linked Effect can go no higher than your Correspondence rank.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2
+        }
+      }
+    ],
+    "tags": [
+      "travel",
+      "utility"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      }
+    ]
+  },
+  {
+    "id": "aging-or-reversing-age",
+    "name": "Age or Rejuvenate",
+    "kind": "feat",
+    "summary": "Make a living being or an object age fast, or turn back its age.",
+    "system": "Running time backwards is always vulgar and costs +3 difficulty.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 4,
+          "Time": 3
+        },
+        "note": "a living being"
+      },
+      {
+        "spheres": {
+          "Matter": 2,
+          "Time": 3
+        },
+        "note": "an object"
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "time",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      }
+    ]
+  },
+  {
+    "id": "conjure-earthly-being",
+    "name": "Conjure an Earthly Being",
+    "kind": "feat",
+    "summary": "Bring a living creature from somewhere else on Earth to you through space.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 2
+        }
+      }
+    ],
+    "tags": [
+      "summoning",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      }
+    ]
+  },
+  {
+    "id": "create-multiple-images",
+    "name": "Create Multiple Images",
+    "kind": "feat",
+    "summary": "Show copies of yourself or something else in several spots, either by bending space or by shaping light.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3
+        }
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "illusion",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      }
+    ]
+  },
+  {
+    "id": "create-multiple-objects",
+    "name": "Create Multiple Copies of an Object",
+    "kind": "feat",
+    "summary": "Make one object exist several times over.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Matter": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "conjuration"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      }
+    ]
+  },
+  {
+    "id": "open-gateway-between-locations",
+    "name": "Open a Gateway Between Locations",
+    "kind": "feat",
+    "summary": "Open a gate through space that people and things can walk through.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4
+        }
+      }
+    ],
+    "tags": [
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      }
+    ]
+  },
+  {
+    "id": "set-time-trigger",
+    "name": "Set a Time Trigger",
+    "kind": "feat",
+    "summary": "Cast an Effect now and hang it in time until a moment or event you choose sets it off.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 4
+        }
+      }
+    ],
+    "tags": [
+      "time"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      }
+    ]
+  },
+  {
+    "id": "ward-or-ban",
+    "name": "Ward or Ban",
+    "kind": "feat",
+    "summary": "Protect a place against a chosen kind of being or energy, or ban it from entering. The Sphere of whatever you keep out goes into the ward.",
+    "system": "HDYDT pp. 95-103 has the detailed ward rules.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Forces": 2,
+          "Prime": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "against energies"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Life": 2,
+          "Prime": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "note": "against living beings"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Matter": 2,
+          "Prime": 2
+        },
+        "inferred": [
+          "Matter"
+        ],
+        "note": "against objects"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Mind": 2,
+          "Prime": 2
+        },
+        "inferred": [
+          "Mind"
+        ],
+        "note": "against minds"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Prime": 2,
+          "Spirit": 2
+        },
+        "inferred": [
+          "Spirit"
+        ],
+        "note": "against spirits"
+      }
+    ],
+    "tags": [
+      "warding",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      }
+    ]
+  },
+  {
+    "id": "astral-body-of-light",
+    "name": "Astral Body of Light",
+    "kind": "feat",
+    "summary": "Give your projected mind a glowing body of its own while you travel astrally.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 4,
+          "Prime": 2,
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "travel",
+      "spirit",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "clairvoyance",
+    "name": "Clairvoyance",
+    "kind": "feat",
+    "summary": "See or hear what is happening at a distant place, or through a distant person's mind.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2
+        },
+        "note": "watch a place"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Mind": 3
+        },
+        "note": "through someone's mind"
+      }
+    ],
+    "tags": [
+      "perception",
+      "divination"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "conceal-or-alter-aura",
+    "name": "Conceal or Alter an Aura",
+    "kind": "feat",
+    "summary": "Hide your aura or make it show something other than what you really feel or are.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 1
+        }
+      },
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "stealth",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "conceal-avatar",
+    "name": "Conceal Your Avatar",
+    "kind": "feat",
+    "summary": "Hide the signs of your Awakened soul from those who look for them.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 1,
+          "Spirit": 2
+        }
+      }
+    ],
+    "tags": [
+      "stealth",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "conceal-thoughts",
+    "name": "Conceal Your Thoughts",
+    "kind": "feat",
+    "summary": "Keep your thoughts hidden from mind-readers.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 1
+        }
+      }
+    ],
+    "tags": [
+      "defense",
+      "mental",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "influence-subconscious",
+    "name": "Influence the Subconscious",
+    "kind": "feat",
+    "summary": "Plant ideas, urges or doubts below someone's conscious awareness.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3
+        }
+      }
+    ],
+    "tags": [
+      "mind-control",
+      "social"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "prophecy-or-hindsight",
+    "name": "Prophecy or Hindsight",
+    "kind": "feat",
+    "summary": "Look into the future or the past, either as a raw glimpse of time or as visions filtered through the mind.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 2
+        }
+      },
+      {
+        "spheres": {
+          "Mind": 2,
+          "Time": 2
+        }
+      }
+    ],
+    "tags": [
+      "divination",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "scramble-thoughts",
+    "name": "Scramble Thoughts",
+    "kind": "feat",
+    "summary": "Jumble someone's thinking so they cannot concentrate or think straight.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3
+        }
+      }
+    ],
+    "tags": [
+      "combat",
+      "mind-control"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "see-avatar",
+    "name": "See Someone's Avatar",
+    "kind": "feat",
+    "summary": "Look past the body and mind to see a person's Avatar, and so tell whether they are Awakened.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3,
+          "Prime": 2,
+          "Spirit": 1
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "see-through-anothers-eyes",
+    "name": "See Through Another's Eyes",
+    "kind": "feat",
+    "summary": "Ride along on someone else's senses and perceive what they perceive.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "see-through-mental-illusions",
+    "name": "See Through Mental Illusions",
+    "kind": "feat",
+    "summary": "Recognize illusions planted in your mind and see what is really there.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 4
+        }
+      }
+    ],
+    "tags": [
+      "defense",
+      "illusion",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "sense-energies",
+    "name": "Sense Energies",
+    "kind": "feat",
+    "summary": "Pick up the kind of energy or Pattern a Sphere covers with rank 1 of that Sphere: forces, life, matter, minds, Quintessence, spirits, time.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 1
+        },
+        "inferred": [
+          "Forces"
+        ]
+      },
+      {
+        "spheres": {
+          "Life": 1
+        },
+        "inferred": [
+          "Life"
+        ]
+      },
+      {
+        "spheres": {
+          "Matter": 1
+        },
+        "inferred": [
+          "Matter"
+        ]
+      },
+      {
+        "spheres": {
+          "Prime": 1
+        },
+        "inferred": [
+          "Prime"
+        ]
+      },
+      {
+        "spheres": {
+          "Spirit": 1
+        },
+        "inferred": [
+          "Spirit"
+        ]
+      }
+    ],
+    "tags": [
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "share-perceptions",
+    "name": "Share Perceptions",
+    "kind": "feat",
+    "summary": "Let other people perceive what your Sphere senses show you.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2,
+          "Correspondence": 1
+        },
+        "inferred": [
+          "Correspondence"
+        ]
+      },
+      {
+        "spheres": {
+          "Mind": 2,
+          "Entropy": 1
+        },
+        "inferred": [
+          "Entropy"
+        ]
+      },
+      {
+        "spheres": {
+          "Mind": 2,
+          "Forces": 1
+        },
+        "inferred": [
+          "Forces"
+        ]
+      },
+      {
+        "spheres": {
+          "Mind": 2,
+          "Life": 1
+        },
+        "inferred": [
+          "Life"
+        ]
+      },
+      {
+        "spheres": {
+          "Mind": 2,
+          "Matter": 1
+        },
+        "inferred": [
+          "Matter"
+        ]
+      },
+      {
+        "spheres": {
+          "Mind": 2,
+          "Prime": 1
+        },
+        "inferred": [
+          "Prime"
+        ]
+      },
+      {
+        "spheres": {
+          "Mind": 2,
+          "Spirit": 1
+        },
+        "inferred": [
+          "Spirit"
+        ]
+      },
+      {
+        "spheres": {
+          "Mind": 2,
+          "Time": 1
+        },
+        "inferred": [
+          "Time"
+        ]
+      }
+    ],
+    "tags": [
+      "perception",
+      "communication"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "shield-mind",
+    "name": "Shield a Mind",
+    "kind": "feat",
+    "summary": "Raise a mental barrier against mind-reading and psychic attack.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 1
+        },
+        "note": "yourself"
+      },
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "note": "someone else"
+      }
+    ],
+    "tags": [
+      "defense",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "telepathy",
+    "name": "Telepathy",
+    "kind": "feat",
+    "summary": "Talk mind to mind.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3
+        }
+      }
+    ],
+    "tags": [
+      "communication",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "telekinesis",
+    "name": "Telekinesis",
+    "kind": "feat",
+    "summary": "Move things without touching them by pushing on them with force; more rank lifts more.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
+    ],
+    "tags": [
+      "movement"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "translate-languages",
+    "name": "Translate Languages",
+    "kind": "feat",
+    "summary": "Understand a language you do not know; with Forces, also make your words understood by others.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "note": "you understand"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Mind": 3
+        },
+        "note": "others understand you too"
+      }
+    ],
+    "tags": [
+      "communication"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Perception and Psychic Powers"
+      }
+    ]
+  },
+  {
+    "id": "absorb-quintessence",
+    "name": "Absorb Quintessence",
+    "kind": "feat",
+    "summary": "Take Quintessence into your own Pattern from a Node, Tass or other source.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 3
+        }
+      }
+    ],
+    "tags": [
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 510,
+        "section": "Common Magickal Effects: Quintessence Energy"
+      }
+    ]
+  },
+  {
+    "id": "drain-node",
+    "name": "Drain a Node",
+    "kind": "feat",
+    "summary": "Empty a Node of its stored Quintessence.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 4
+        }
+      }
+    ],
+    "tags": [
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 510,
+        "section": "Common Magickal Effects: Quintessence Energy"
+      }
+    ]
+  },
+  {
+    "id": "drain-quintessence",
+    "name": "Drain Quintessence",
+    "kind": "feat",
+    "summary": "Siphon Quintessence out of an object, Effect or Pattern.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 3
+        }
+      }
+    ],
+    "tags": [
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 510,
+        "section": "Common Magickal Effects: Quintessence Energy"
+      }
+    ]
+  },
+  {
+    "id": "fuel-new-pattern",
+    "name": "Fuel a New Pattern",
+    "kind": "feat",
+    "summary": "Supply the Quintessence that any conjured energy, matter or life needs to exist; pair it with the Sphere of what you make.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "quintessence",
+      "conjuration"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 510,
+        "section": "Common Magickal Effects: Quintessence Energy"
+      }
+    ]
+  },
+  {
+    "id": "share-quintessence",
+    "name": "Share or Exchange Quintessence",
+    "kind": "feat",
+    "summary": "Pass Quintessence to another mage or trade it back and forth.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 3
+        }
+      }
+    ],
+    "tags": [
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 510,
+        "section": "Common Magickal Effects: Quintessence Energy"
+      }
+    ]
+  },
+  {
+    "id": "weave-body-of-light",
+    "name": "Weave a Simple Body of Light",
+    "kind": "feat",
+    "summary": "Project a glowing image of yourself made of energy. It is only a body: it cannot be used for astral travel.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "quintessence",
+      "illusion"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 510,
+        "section": "Common Magickal Effects: Quintessence Energy"
+      }
+    ]
+  }
+]

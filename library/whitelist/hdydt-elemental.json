@@ -1,0 +1,14 @@
+[
+  {
+    "check": "spheres",
+    "id": "lock-a-quirk-of-physics",
+    "detail": "Forces 2 + Matter 2 not stated together (within 700 chars) on HDYDT p.31",
+    "reason": "p.31 'Locked' Quirks of Physics: the example is a Forces 2 deflection Effect put on a jacket; two paragraphs later the book says locking a Forces Effect into a jacket also needs Matter 2 or more. Same Effect, just further apart than the window."
+  },
+  {
+    "check": "spheres",
+    "id": "lock-a-quirk-of-physics",
+    "detail": "Forces 2 + Life 4 not stated together (within 700 chars) on HDYDT p.31",
+    "reason": "p.31 'Locked' Quirks of Physics: the bent-physics field is the Forces 2 deflection Effect from the start of the section; locking such a Forces Effect onto a person is stated a few paragraphs later to need Life 4 as well."
+  }
+]
