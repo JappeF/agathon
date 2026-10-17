@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SphereRing } from './components/SphereRing';
+import { Portal } from './components/Portal';
 import { SharedImport } from './components/SharedImport';
 import { decodeShare, ShareFormatError, type SharePayload } from './share';
 import { CharactersView } from './components/CharactersView';
@@ -62,7 +62,7 @@ export default function App() {
     <>
       <div className="sparks" aria-hidden="true" />
       <header className="app-header">
-        <SphereRing />
+        <Portal />
         <h1 className="logo">Agathon</h1>
         <p className="tagline">a grimoire for the Awakened</p>
       </header>

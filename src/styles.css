@@ -115,43 +115,38 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   overflow: hidden;
   isolation: isolate;
 }
-.sphere-ring {
+.portal {
   position: absolute;
   left: 50%;
   top: calc(50% + env(safe-area-inset-top) / 2);
-  width: 220px;
+  width: 240px;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   z-index: -1;
-  opacity: 0.5;
-  color: var(--gold);
+  opacity: 0.85;
 }
-.sphere-ring-spin {
-  position: absolute;
-  inset: 0;
-  animation: turn 240s linear infinite;
+.portal-svg { width: 100%; height: 100%; overflow: visible; }
+.portal-glow { fill: none; stroke: #ff7a12; stroke-width: 14; opacity: 0.4; animation: portal-breathe 5s ease-in-out infinite; }
+.portal-mid { fill: none; stroke: #ffb340; stroke-width: 4.5; opacity: 0.85; }
+.portal-core { fill: none; stroke: #ffe7a3; stroke-width: 1.6; }
+/* a few bright dashes running round the ring counterclockwise */
+.portal-glint { fill: none; stroke: #fffaf0; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 10 46 3 60 18 90 5 40; opacity: 0.9; }
+.portal-glint-spin, .portal-sparks { transform-origin: 100px 100px; }
+.portal-glint-spin { animation: turn-back 9s linear infinite; }
+.portal-sparks { animation: turn-back 70s linear infinite; }
+.portal-spark { stroke: #ffb340; stroke-linecap: round; opacity: 0.55; animation: spark-fly 2s ease-out infinite; }
+.portal-spark.hot { stroke: #ffe7a3; }
+@keyframes portal-breathe {
+  0%, 100% { opacity: 0.32; }
+  50% { opacity: 0.55; }
 }
-.sphere-ring-lines {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  fill: none;
-  stroke: var(--gold-deep);
-  stroke-width: 0.35;
+@keyframes turn-back {
+  to { transform: rotate(-360deg); }
 }
-.sphere-ring-glyph {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--bg);
-}
-@keyframes turn {
-  to { transform: rotate(360deg); }
+@keyframes spark-fly {
+  0% { transform: translate(0, 0); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translate(var(--fx), var(--fy)); opacity: 0; }
 }
 
 .logo {

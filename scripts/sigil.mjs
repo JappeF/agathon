@@ -1,5 +1,5 @@
 // Generate public/icons/sigil.svg: a sparking golden portal ring on dark violet with a
-// lighter violet heart. Sparks come from a seeded PRNG so the icon is reproducible.
+// dark violet heart. Sparks come from a seeded PRNG so the icon is reproducible.
 // Run `npm run icons` afterwards for the PNG sizes.
 import { writeFile } from 'node:fs/promises';
 
@@ -28,15 +28,16 @@ const line = (x0, y0, dx, dy, len, heat, w) =>
     `<line x1="${x0.toFixed(1)}" y1="${y0.toFixed(1)}" x2="${(x0 + dx * len).toFixed(1)}" y2="${(y0 + dy * len).toFixed(1)}" stroke="${sparkColor(heat)}" stroke-width="${w.toFixed(2)}" stroke-opacity="${Math.max(0.2, lerp(0.45, 1, heat)).toFixed(2)}" stroke-linecap="round"/>`,
   );
 
-// flying sparks, thrown off clockwise, with more of them spraying off the lower right
+// flying sparks, thrown off counterclockwise, with more of them spraying off the lower right
 for (let i = 0; i < 420; i++) {
   let a = rand() * Math.PI * 2;
   if (rand() < 0.5) a = lerp(-0.4, 2.0, rand());
   const start = R + lerp(-3, 6, rand());
   const travel = Math.pow(rand(), 2.2) * 130; // most stay close, a few fly far
   const out = lerp(0.2, 0.85, rand());
-  const dx = -Math.sin(a) * (1 - out) + Math.cos(a) * out;
-  const dy = Math.cos(a) * (1 - out) + Math.sin(a) * out;
+  // counterclockwise tangent on screen (y down) is (sin a, -cos a)
+  const dx = Math.sin(a) * (1 - out) + Math.cos(a) * out;
+  const dy = -Math.cos(a) * (1 - out) + Math.sin(a) * out;
   const heat = Math.max(0, 1 - travel / 110);
   line(
     C + Math.cos(a) * start + dx * travel,
@@ -53,8 +54,8 @@ for (let i = 0; i < 260; i++) {
   const a = rand() * Math.PI * 2;
   const r = R + lerp(-9, 11, rand());
   const out = lerp(-0.3, 0.6, rand());
-  const dx = -Math.sin(a) * (1 - Math.abs(out)) + Math.cos(a) * out;
-  const dy = Math.cos(a) * (1 - Math.abs(out)) + Math.sin(a) * out;
+  const dx = Math.sin(a) * (1 - Math.abs(out)) + Math.cos(a) * out;
+  const dy = -Math.cos(a) * (1 - Math.abs(out)) + Math.sin(a) * out;
   line(C + Math.cos(a) * r, C + Math.sin(a) * r, dx, dy, lerp(2, 7, rand()), lerp(0.7, 1, rand()), lerp(1.2, 2.6, rand()));
 }
 
@@ -65,9 +66,9 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${S} ${S}">
 <stop offset="1" stop-color="#120a1d"/>
 </radialGradient>
 <radialGradient id="heart" cx="50%" cy="50%" r="50%">
-<stop offset="0" stop-color="#6e4cb4"/>
-<stop offset="0.6" stop-color="#432a7c"/>
-<stop offset="1" stop-color="#26153f"/>
+<stop offset="0" stop-color="#3a2468"/>
+<stop offset="0.6" stop-color="#26163f"/>
+<stop offset="1" stop-color="#170d28"/>
 </radialGradient>
 <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
 <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3"/></filter>

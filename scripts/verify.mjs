@@ -21,7 +21,7 @@ const check = (label, ok, detail = '') => {
 
 await page.goto(BASE, { waitUntil: 'networkidle' });
 check('logo', (await page.textContent('.logo'))?.trim() === 'Agathon');
-check('nine Sphere glyphs in the ring', (await page.$$('.sphere-ring-glyph')).length === 9);
+check('portal behind the logo', (await page.$$('.portal .portal-spark')).length > 20);
 check(
   'logo font is Cinzel Decorative',
   await page.evaluate(() => document.fonts.check('700 40px "Cinzel Decorative"')),
