@@ -1,9 +1,10 @@
 // Checks library/effects.json against the local book text and prints a coverage
-// report. Every count must be 0, or each remaining hit must sit in
-// library/check-whitelist.json with a reason. Exit code 1 when anything is left.
+// report. Every count must be 0, or each remaining hit must be whitelisted with a
+// reason in library/whitelist/*.json. Exit code 1 when anything is left.
 //
-//   node library/scripts/check.mjs            # report
-//   node library/scripts/check.mjs --verbose  # also list inferred ranks and whitelisted hits
+//   node library/scripts/check.mjs                  # report on effects.json
+//   node library/scripts/check.mjs --src hdydt-time # check one batch file while writing it
+//   node library/scripts/check.mjs --verbose        # also list inferred ranks and whitelisted hits
 //
 // Checks:
 //   schema     required fields, known Spheres/kinds/tags, ranks 1-5, no empty combos
@@ -18,7 +19,7 @@
 //   text       shipped text uses plain keyboard characters only (no em/en dashes,
 //              curly quotes or other non-ASCII)
 //   copies     no run of 8+ words in our text matches the book text of the page window
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { BOOKS, LIBRARY_DIR, pageText } from './books.mjs';
 
@@ -30,9 +31,22 @@ export const KINDS = ['rank', 'feat', 'rote'];
 export const VULGARITY = ['coincidental', 'vulgar', 'depends'];
 export const TAGS = JSON.parse(readFileSync(join(LIBRARY_DIR, 'tags.json'), 'utf8')).map((t) => t.tag);
 
-const effects = JSON.parse(readFileSync(process.env.AGATHON_EFFECTS ?? join(LIBRARY_DIR, 'effects.json'), 'utf8'));
-const wlFile = join(LIBRARY_DIR, 'check-whitelist.json');
-const whitelist = existsSync(wlFile) ? JSON.parse(readFileSync(wlFile, 'utf8')) : [];
+// --src <batch>: check a single library/src file (pdfPage filled in as build.mjs does)
+const srcAt = process.argv.indexOf('--src');
+const single = srcAt >= 0 ? process.argv[srcAt + 1].replace(/\.json$/, '') : null;
+const effects = single
+  ? JSON.parse(readFileSync(join(LIBRARY_DIR, 'src', `${single}.json`), 'utf8')).map((e) => ({
+      ...e,
+      source: (e.source ?? []).map((s) => ({ ...s, pdfPage: s.pdfPage ?? (BOOKS[s.book] && s.page + BOOKS[s.book].offset) })),
+    }))
+  : JSON.parse(readFileSync(process.env.AGATHON_EFFECTS ?? join(LIBRARY_DIR, 'effects.json'), 'utf8'));
+
+// whitelist: library/whitelist/*.json, each a list of { check, id, detail?, reason }
+const wlDir = join(LIBRARY_DIR, 'whitelist');
+const whitelist = existsSync(wlDir)
+  ? readdirSync(wlDir).filter((f) => f.endsWith('.json')).flatMap((f) => JSON.parse(readFileSync(join(wlDir, f), 'utf8')).map((w) => ({ ...w, file: f })))
+  : [];
+for (const w of whitelist) if (!w.reason?.trim()) throw new Error(`whitelist ${w.file}: entry for ${w.id} has no reason`);
 
 const issues = {}; // check -> [{id, detail}]
 const whitelisted = [];
@@ -51,10 +65,10 @@ function report(check, id, detail) {
 
 const norm = (s) =>
   s
-    .replace(/[‘’‛′]/g, "'")
-    .replace(/[“”″]/g, '"')
-    .replace(/[–—−]/g, ' - ')
-    .replace(/­/g, '')
+    .replace(/[\u2018\u2019\u201B\u2032]/g, "'")
+    .replace(/[\u201C\u201D\u2033]/g, '"')
+    .replace(/[\u2013\u2014\u2212]/g, ' - ')
+    .replace(/\u00AD/g, '')
     .replace(/-\s*\n\s*/g, '-')
     .replace(/\s+/g, ' ');
 
@@ -255,15 +269,16 @@ for (const e of effects) {
   if (hits.size) report('copies', id, [...hits][0] + (hits.size > 1 ? ` (+${hits.size - 1} more)` : ''));
 }
 
-for (const s of SPHERES) for (let r = 1; r <= 5; r++) if (!rankGrid.has(`${s}:${r}`)) report('ranks', `${s} ${r}`, 'no rank entry');
+if (!single) for (const s of SPHERES) for (let r = 1; r <= 5; r++) if (!rankGrid.has(`${s}:${r}`)) report('ranks', `${s} ${r}`, 'no rank entry');
 
-const stale = whitelist.filter((_, i) => !usedWl.has(i));
+const ourIds = new Set(effects.map((e) => e.id));
+const stale = whitelist.filter((w, i) => !usedWl.has(i) && (!single || ourIds.has(w.id)));
 for (const w of stale) (issues.whitelist ??= []).push({ id: w.id, detail: `unused whitelist entry (${w.check}${w.detail ? ': ' + w.detail : ''})` });
 
 // ---------- report ----------
 
 const CHECKS = ['schema', 'pages', 'spheres', 'ranks', 'duplicates', 'text', 'copies', 'whitelist'];
-console.log(`Agathon effect library check: ${effects.length} entries`);
+console.log(`Agathon effect library check: ${effects.length} entries${single ? ` in src/${single}.json` : ''}`);
 let total = 0;
 for (const c of CHECKS) {
   const list = issues[c] ?? [];

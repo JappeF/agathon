@@ -14,7 +14,7 @@ if (!BOOKS[book] || !phrase) {
   process.exit(1);
 }
 const dir = join(textDir(), BOOKS[book].slug);
-const flat = (s) => s.replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, ' ');
+const flat = (s) => s.replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"').replace(/\s+/g, ' ');
 const needle = flat(phrase).toLowerCase();
 for (const f of readdirSync(dir).sort()) {
   const text = flat(readFileSync(join(dir, f), 'utf8'));
