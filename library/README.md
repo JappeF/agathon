@@ -158,7 +158,8 @@ is reading section by section, not a regex job.
   `hdydt-<sub-chapter>` for each part of HDYDT.
 
 Every batch was read section by section, and each has a spot-check sheet
-(`node library/scripts/spotcheck.mjs <batch>`) for comparing entries with the book.
+(`node library/scripts/spotcheck.mjs <batch>`) for comparing entries with the book. The first
+round of spot-checks (10 entries per batch, seed 11) came back without corrections on 2026-10-17.
 
 ## Counts
 
