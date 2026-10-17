@@ -8,6 +8,7 @@ import { ComboChips } from './ComboChips';
 import { EffectDetail } from './EffectDetail';
 import { SphereGlyph } from './SphereGlyph';
 import { Icon } from './Icon';
+import { hasMatch, Highlighted, snippet } from './Highlighted';
 
 const PAGE = 40;
 
@@ -33,16 +34,25 @@ function accentSphere(e: Effect, combo: number): Sphere {
 /**
  * One effect as a card. Only the first (best matching) way to cast it is shown, with
  * "+N more" for the rest, so every card has the same shape; the detail has them all.
+ * Search words are marked; when they only occur further down (the system, a combo note,
+ * the coincidental note) a line from there shows why the card matched.
  */
-function EffectCard({ hit, dots, onOpen }: { hit: Hit; dots?: Record<Sphere, number>; onOpen: () => void }) {
+function EffectCard({ hit, dots, terms, onOpen }: { hit: Hit; dots?: Record<Sphere, number>; terms: string[]; onOpen: () => void }) {
   const e = hit.effect;
   const first = hit.combos[0];
   const more = e.combos.length - 1;
+  const inSummary = hasMatch(e.summary, terms);
+  const elsewhere =
+    terms.length && !inSummary
+      ? [e.system, e.coincidentalIf, ...e.combos.map((c) => c.note), ...(e.optional ?? []).map((o) => o.purpose)].find((t) => hasMatch(t, terms))
+      : undefined;
   return (
     <li>
       <button type="button" className={`effect-card kind-${e.kind} sph-${accentSphere(e, first)}`} onClick={onOpen}>
         <span className="effect-head">
-          <span className="effect-name">{e.name}</span>
+          <span className="effect-name">
+            <Highlighted text={e.name} terms={terms} />
+          </span>
           {e.kind !== 'feat' && <span className={`kind-badge kind-${e.kind}`}>{e.kind === 'rank' ? 'Sphere rank' : 'rote'}</span>}
         </span>
         <span className="effect-combos">
@@ -51,7 +61,14 @@ function EffectCard({ hit, dots, onOpen }: { hit: Hit; dots?: Record<Sphere, num
           </span>
           {more > 0 && <span className="more-ways">+{more} more</span>}
         </span>
-        <span className="effect-summary">{e.summary}</span>
+        <span className="effect-summary">
+          <Highlighted text={inSummary ? snippet(e.summary, terms) : e.summary} terms={terms} />
+        </span>
+        {elsewhere && (
+          <span className="effect-match">
+            <Highlighted text={snippet(elsewhere, terms, 40, 140)} terms={terms} />
+          </span>
+        )}
         <span className="effect-meta">
           {e.vulgarity && <span className={`vulg vulg-${e.vulgarity}`}>{e.vulgarity === 'depends' ? 'coincidental or vulgar' : e.vulgarity}</span>}
           <span>{e.source.map(sourceLabel).join(', ')}</span>
@@ -97,6 +114,8 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
     return q;
   }, [query, tags, prefs.others]);
 
+  // the words to mark in cards and the detail: free text, phrases and name: terms
+  const terms = useMemo(() => [...parsed.terms, ...parsed.nameTerms], [parsed]);
   const castable = prefs.castable && character ? character.spheres : undefined;
   const hits = useMemo(() => (effects ? search(effects, parsed, { castable }) : []), [effects, parsed, castable]);
   const ready = hits.filter((h) => !h.missing);
@@ -122,6 +141,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
           key={h.effect.id}
           hit={h}
           dots={castable}
+          terms={terms}
           onOpen={() => {
             openedFromList = true;
             go('library', h.effect.id);
@@ -299,6 +319,8 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
         <EffectDetail
           effect={selected}
           character={character}
+          terms={terms}
+          tagsOn={parsed.tags.filter((t) => !t.neg).map((t) => t.value)}
           onClose={() => {
             if (openedFromList) history.back();
             else {

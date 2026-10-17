@@ -5,6 +5,7 @@ import { deficit, highestRank } from '../library/search';
 import type { Sphere } from '../types';
 import { ComboChips } from './ComboChips';
 import { Icon } from './Icon';
+import { Highlighted } from './Highlighted';
 
 /** Base difficulty from M20 p. 501: highest Sphere +3 / +4 / +5, never below 3. */
 function difficulties(c: Combo) {
@@ -64,14 +65,20 @@ function mitigation(combo: Combo, c?: Character | null): Tip[] {
 export function EffectDetail({
   effect,
   character,
+  terms = [],
+  tagsOn = [],
   onClose,
   onTag,
 }: {
   effect: Effect;
   character?: Character | null;
+  /** search words to mark, and the tags the search filters on */
+  terms?: string[];
+  tagsOn?: string[];
   onClose: () => void;
   onTag: (tag: string) => void;
 }) {
+  const hl = (text: string) => <Highlighted text={text} terms={terms} />;
   const dots = character?.spheres;
   // start on the first combo the character can cast, else the first one
   const firstCastable = dots ? effect.combos.findIndex((c) => deficit(c, dots) === 0) : -1;
@@ -95,11 +102,11 @@ export function EffectDetail({
           </button>
           <span className={`kind-badge kind-${effect.kind}`}>{effect.kind === 'rank' ? 'Sphere rank' : effect.kind}</span>
         </div>
-        <h2 className="detail-name">{effect.name}</h2>
-        <p className="detail-summary">{effect.summary}</p>
+        <h2 className="detail-name">{hl(effect.name)}</h2>
+        <p className="detail-summary">{hl(effect.summary)}</p>
         {effect.system && (
           <p className="detail-system">
-            <strong>System.</strong> {effect.system}
+            <strong>System.</strong> {hl(effect.system)}
           </p>
         )}
 
@@ -111,7 +118,7 @@ export function EffectDetail({
               <li key={i}>
                 <button type="button" className={`combo-pick${i === pick ? ' on' : ''}`} aria-pressed={i === pick} onClick={() => setPick(i)}>
                   <ComboChips combo={c} dots={dots} />
-                  {c.note && <span className="combo-note">{c.note}</span>}
+                  {c.note && <span className="combo-note">{hl(c.note)}</span>}
                   {miss !== undefined && (
                     <span className={`castable${miss === 0 ? ' yes' : ''}`}>
                       {miss === 0 ? `${character!.name} can cast this` : `${miss} dot${miss > 1 ? 's' : ''} short`}
@@ -129,7 +136,7 @@ export function EffectDetail({
               {effect.optional.map((o, i) => (
                 <li key={i} className="addon">
                   <ComboChips combo={o} dots={dots} />
-                  <span className="combo-note">{o.purpose}</span>
+                  <span className="combo-note">{hl(o.purpose)}</span>
                 </li>
               ))}
             </ul>
@@ -156,7 +163,7 @@ export function EffectDetail({
         <h3 className="block-title">Keeping it coincidental</h3>
         {effect.coincidentalIf && (
           <p className="book-tip">
-            <strong>The book:</strong> it stays coincidental if {effect.coincidentalIf}.
+            <strong>The book:</strong> it stays coincidental if {hl(effect.coincidentalIf)}.
           </p>
         )}
         <ul className="tips">
@@ -194,7 +201,7 @@ export function EffectDetail({
         </ul>
         <p className="detail-tags">
           {effect.tags.map((t) => (
-            <button key={t} type="button" className="tag" onClick={() => onTag(t)}>
+            <button key={t} type="button" className={`tag${tagsOn.includes(t) ? ' on' : ''}`} onClick={() => onTag(t)}>
               {t}
             </button>
           ))}

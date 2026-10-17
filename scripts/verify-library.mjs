@@ -38,6 +38,9 @@ await page.screenshot({ path: 'shots/30-library.png' });
 
 await search('portal');
 check('text search', (await num()) > 0, await count());
+check('search words are marked', (await page.$$eval('.effect-card mark', (ms) => ms.length && ms.every((m) => m.textContent.toLowerCase() === 'portal'))) === true);
+await search('witnesses');
+check('a line shows matches outside the summary', (await page.$$eval('.effect-match mark', (ms) => ms.length)) > 0);
 
 // Sphere bar: Mind 3 + Forces 2 = exactly those two Spheres
 await search('');

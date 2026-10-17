@@ -36,6 +36,8 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
 - **What can my character cast**: one switch splits the list into what the active
   character can cast right now and what is **one dot away**, with the missing
   Sphere marked.
+- **Search words are marked** in the cards and the detail; when they only occur
+  further down an effect, a line from there shows why it matched.
 - **Operators** for keyboard search: `tag:healing`, `book:hdydt`, `kind:rote`,
   `is:vulgar`, `name:portal`, rank forms `=3`, `3+`, `2-4`, the Technocratic names
   (`data:`, `primal:`, `dimsci:`), and `-` to exclude anything.

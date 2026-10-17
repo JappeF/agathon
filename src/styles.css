@@ -11,7 +11,8 @@
   --card: #1a1126f2;
   --line: #3a2a5566;
   --line-solid: #3a2a55;
-  --ink: #efe7f7;
+  /* body text: a soft violet-white, not paper white */
+  --ink: #ddd3e8;
   --ink-dim: #b3a3c9;
   --ink-faint: #7d6d93;
   --gold: #d9b45a;
@@ -824,6 +825,26 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+/* search words: a gold wash in text, just brighter gold in names */
+.effect-card mark, .detail mark {
+  background: #d9b45a2e;
+  color: var(--gold-hot);
+  border-radius: 3px;
+  padding: 0 0.1em;
+}
+.effect-name mark, .detail-name mark { background: none; color: #fff3cf; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 0.15em; }
+/* why a card matched, when the words are not in its summary */
+.effect-match {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--ink-faint);
+  padding-left: 0.6rem;
+  border-left: 2px solid var(--line-solid);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .effect-meta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; font-size: 0.76rem; color: var(--ink-faint); }
 .more-ways { font-size: 0.75rem; font-weight: 700; color: var(--ink-faint); padding: 0.05rem 0.45rem; border: 1px dashed var(--line-solid); border-radius: 999px; white-space: nowrap; }
 .effect-list > li { min-width: 0; }
@@ -1141,9 +1162,9 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .sph-Entropy { --sp: #b9c95a; }
 .sph-Forces { --sp: #ff7a45; }
 .sph-Life { --sp: #6fcf7a; }
-.sph-Matter { --sp: #c9a36b; }
+.sph-Matter { --sp: #a8834e; }
 .sph-Mind { --sp: #6fa8ff; }
-.sph-Prime { --sp: #f3d58a; }
+.sph-Prime { --sp: #e6dcff; }
 .sph-Spirit { --sp: #b9a6ff; }
 .sph-Time { --sp: #c4ccd6; }
 .sphere-chip[class*='sph-'] {
