@@ -1,0 +1,692 @@
+[
+  {
+    "id": "sense-elemental-energies-and-substances",
+    "name": "Sense Elemental Energies and Substances",
+    "kind": "feat",
+    "summary": "Feel how heat, light, wind and other energies flow around you, or pick out the makeup and details of solid stuff such as stone, metal or water.",
+    "combos": [
+      { "spheres": { "Forces": 1 }, "note": "energies" },
+      { "spheres": { "Matter": 1 }, "note": "substances" }
+    ],
+    "tags": ["perception", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 27, "section": "Elemental Mastery: The Basics" }]
+  },
+  {
+    "id": "manipulate-existing-elements",
+    "name": "Manipulate an Existing Element",
+    "kind": "feat",
+    "summary": "Push around an element that is already there: fan a breeze, make a flame flare or gutter, warp metal, turn a lock's tumblers, make a door stick, still a pool. Rank 2 covers small tweaks, rank 3 big ones (flipping a speeding truck), rank 5 disasters such as tornados, whirlpools and earthquakes.",
+    "system": "Use the Sphere that rules the element: rank 2 basic handling, 3 major shifts, 4 drastic change, 5 full mastery (a breeze is Forces 2, a hurricane Forces 5; earthquakes and hurricanes may need Forces 5 and Matter 5 together). Simple feats take 1-3 successes, big ones 5, 10 or more; a trivial trick like snuffing a candle at home can be an automatic success. It covers one person or about a 10 foot (3 m) area for the normal Duration and stays where it was cast.",
+    "combos": [
+      { "spheres": { "Forces": 2 }, "note": "small feats with energies (fire, wind, heat, light)" },
+      { "spheres": { "Matter": 2 }, "note": "small feats with substances (earth, water, metal, dead wood)" },
+      { "spheres": { "Life": 2 }, "inferred": ["Life"], "note": "living wood and plants" },
+      { "spheres": { "Forces": 3 }, "note": "large feats, like flipping a truck" },
+      { "spheres": { "Forces": 5 }, "note": "catastrophic energies: tornados, blizzards" },
+      { "spheres": { "Matter": 5 }, "note": "catastrophic substances" },
+      { "spheres": { "Forces": 5, "Matter": 5 }, "note": "earthquakes, hurricanes" }
+    ],
+    "coincidentalIf": "the element is already present and the change looks like an accident to the unAwakened: a slipped grip, a stumble, a shot that somehow misses.",
+    "vulgarity": "depends",
+    "tags": ["elemental", "movement", "utility"],
+    "source": [
+      { "book": "HDYDT", "page": 26, "section": "Elemental Mastery: Substances and Energies" },
+      { "book": "HDYDT", "page": 27, "section": "Elemental Mastery: The Basics" },
+      { "book": "HDYDT", "page": 28, "section": "Elemental Mastery: Elemental Kinetics" }
+    ]
+  },
+  {
+    "id": "conjure-an-element-from-nothing",
+    "name": "Conjure an Element from Nothing",
+    "kind": "feat",
+    "summary": "Call an element into being where there was none: fire in your palm, a gust of wind, water, stone, or living wood.",
+    "system": "The ruling Sphere at rank 3 or more plus Prime 2. Even air needs Prime 2 to appear in a vacuum. Bigger, purer or more complex results need more successes, per the Magickal Feats chart.",
+    "combos": [
+      { "spheres": { "Forces": 3, "Prime": 2 }, "note": "energies" },
+      { "spheres": { "Matter": 3, "Prime": 2 }, "note": "solid or liquid materials, or air in a vacuum" },
+      { "spheres": { "Life": 3, "Prime": 2 }, "note": "wood or living plants" }
+    ],
+    "tags": ["conjuration", "elemental"],
+    "source": [
+      { "book": "HDYDT", "page": 27, "section": "Elemental Mastery: The Basics" },
+      { "book": "HDYDT", "page": 37, "section": "Elemental Mastery: Elemental Assault and Defense" }
+    ]
+  },
+  {
+    "id": "turn-glass-into-fire",
+    "name": "Turn Glass into Fire",
+    "kind": "feat",
+    "summary": "Change a solid material into a form of energy, such as making a pane of glass burst into flame. Each Sphere involved must be high enough for its half of the job; Forces 2 with Matter 1 will not do it.",
+    "combos": [{ "spheres": { "Forces": 3, "Matter": 2 } }],
+    "tags": ["transformation", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 27, "section": "Elemental Mastery: Elements and Spheres" }]
+  },
+  {
+    "id": "transmute-one-substance-into-another",
+    "name": "Transmute One Substance into Another",
+    "kind": "feat",
+    "summary": "Change one material into a different one. Simple swaps like rock into steel or water into honey are easy; turning water into pill tablets is a radical change that also wants the right chemistry know-how.",
+    "combos": [
+      { "spheres": { "Matter": 2 }, "note": "simple swaps: rock to steel, water to honey" },
+      { "spheres": { "Matter": 4 }, "note": "radical changes: water to Prozac tablets" }
+    ],
+    "tags": ["transformation", "elemental"],
+    "source": [
+      { "book": "HDYDT", "page": 26, "section": "Elemental Mastery: Substances and Energies" },
+      { "book": "HDYDT", "page": 27, "section": "Elemental Mastery: The Basics" }
+    ]
+  },
+  {
+    "id": "build-a-working-car-from-rocks",
+    "name": "Build a Working Car from Rocks",
+    "kind": "feat",
+    "summary": "Shape raw material into a complex machine such as a car. A thing that runs on several elements together needs every Sphere that rules them.",
+    "combos": [{ "spheres": { "Matter": 4 } }],
+    "optional": [{ "spheres": { "Forces": 3, "Prime": 2 }, "purpose": "make the machine actually run" }],
+    "tags": ["transformation", "creation", "technology"],
+    "source": [
+      { "book": "HDYDT", "page": 26, "section": "Elemental Mastery: Substances and Energies" },
+      { "book": "HDYDT", "page": 27, "section": "Elemental Mastery: Elements and Spheres" }
+    ]
+  },
+  {
+    "id": "set-a-self-sustaining-effect-in-an-object",
+    "name": "Set a Self-Sustaining Elemental Effect in an Object",
+    "kind": "feat",
+    "summary": "Anchor an elemental Effect inside a material thing so it keeps going on its own, for example a steel car that burns without heating up or taking harm.",
+    "system": "Add Matter 3 or more to whatever the elemental Effect itself needs.",
+    "combos": [{ "spheres": { "Forces": 2, "Matter": 3 }, "inferred": ["Forces"], "note": "plus the Spheres of the elemental Effect" }],
+    "tags": ["enchantment", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 27, "section": "Elemental Mastery: The Basics" }]
+  },
+  {
+    "id": "turn-an-element-into-ephemera",
+    "name": "Turn an Element into Ephemera",
+    "kind": "feat",
+    "summary": "Change a physical element into spirit-stuff, or spirit-stuff into a physical element.",
+    "system": "Add Spirit 3 or more to the Pattern Sphere of the element; higher Spirit ranks do more.",
+    "combos": [
+      { "spheres": { "Forces": 2, "Spirit": 3 }, "inferred": ["Forces"], "note": "energies" },
+      { "spheres": { "Matter": 2, "Spirit": 3 }, "inferred": ["Matter"], "note": "substances" }
+    ],
+    "tags": ["transformation", "spirit", "elemental"],
+    "source": [
+      { "book": "HDYDT", "page": 27, "section": "Elemental Mastery: The Basics" },
+      { "book": "HDYDT", "page": 35, "section": "Elemental Mastery: Psychic and Spiritual Elementalism" }
+    ]
+  },
+  {
+    "id": "summon-an-elemental",
+    "name": "Summon an Elemental",
+    "kind": "feat",
+    "summary": "Call a spirit into a big mass of its own element so it takes form there: an earth elemental out of earth, a plant spirit out of plants. Once it stands up it does as it likes and wrecks its surroundings in its own way.",
+    "system": "You need a large amount of the element at hand, and the bigger the elemental the more of it. You could gate one in from elsewhere with Spirit or Correspondence instead. Full summoning rules are on HDYDT pp. 90-106.",
+    "combos": [{ "spheres": { "Spirit": 2 } }],
+    "tags": ["summoning", "spirit", "elemental"],
+    "source": [
+      { "book": "HDYDT", "page": 27, "section": "Elemental Mastery: The Basics" },
+      { "book": "HDYDT", "page": 36, "section": "Elemental Mastery: Summoning Elemental Entities" }
+    ]
+  },
+  {
+    "id": "lift-objects-with-forces",
+    "name": "Lift Objects with Forces",
+    "kind": "feat",
+    "summary": "Tweak the physics around something so it rises off the ground. How much you can lift depends on your Forces rank.",
+    "system": "Forces 1 lifts nothing. Forces 2: one person, about 300 lbs. Forces 3: about two tons, a car. Forces 4: small buildings. Forces 5: anything short of a mountain.",
+    "combos": [
+      { "spheres": { "Forces": 2 }, "note": "up to about 300 lbs" },
+      { "spheres": { "Forces": 3 }, "note": "about two tons" },
+      { "spheres": { "Forces": 4 }, "note": "small buildings" },
+      { "spheres": { "Forces": 5 }, "note": "nearly anything short of a mountain" }
+    ],
+    "tags": ["movement", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 29, "section": "Elemental Mastery: Forces and Weight" }]
+  },
+  {
+    "id": "quirk-of-physics-trap",
+    "name": "Quirk of Physics Trap",
+    "kind": "feat",
+    "summary": "Bend local physics in a spot: no friction on one stair, odd gravity at a doorway, a cold or hot patch, warped sound, dead phone signal, wiped video. Anyone who blunders in trips, slips or falls.",
+    "system": "A victim's roll (such as Dexterity + Athletics to stay upright) loses one success per success you rolled. A fall from it deals one bashing health level per success, doubled or tripled for big falls like a staircase. It covers a person or about a 10 foot area and stays put unless locked into a Pattern.",
+    "combos": [{ "spheres": { "Forces": 2 } }],
+    "tags": ["elemental", "combat", "warding"],
+    "source": [
+      { "book": "HDYDT", "page": 29, "section": "Elemental Mastery: Mystic Physics" },
+      { "book": "HDYDT", "page": 30, "section": "Elemental Mastery: Mystic Physics" }
+    ]
+  },
+  {
+    "id": "bend-a-strike-off-target",
+    "name": "Bend a Strike On or Off Target",
+    "kind": "feat",
+    "summary": "Nudge the physics of an attack: blur the target, push a weapon aside, or curve a blow into its mark.",
+    "system": "Your Arete successes raise or lower the difficulty of the attack, as in Magick Enhances Violence (M20 p. 414). The changed difficulty can change the damage too.",
+    "combos": [{ "spheres": { "Forces": 2 } }],
+    "tags": ["combat", "defense", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 30, "section": "Elemental Mastery: Mystic Physics" }]
+  },
+  {
+    "id": "harder-or-softer-blows",
+    "name": "Harder or Softer Blows",
+    "kind": "feat",
+    "summary": "Boost or blunt the kinetic punch of a single hit.",
+    "system": "Add or remove one success of impact damage. A boosted bashing blow turns lethal; a softened lethal blow turns bashing. Aggravated attacks are not affected this way.",
+    "combos": [{ "spheres": { "Forces": 2 } }],
+    "tags": ["combat", "defense", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 30, "section": "Elemental Mastery: Mystic Physics" }]
+  },
+  {
+    "id": "defuse-an-elemental-attack",
+    "name": "Defuse an Elemental Attack",
+    "kind": "feat",
+    "summary": "Strip an incoming elemental attack of its power: pull the heat out of a flame or send an electric jolt somewhere else, so it does no harm to what you protect. The energy still has to go somewhere.",
+    "system": "Match every attacker success with one of yours; with no attacker (a wildfire, say), the size of the force sets the successes. Without a way to change the energy it spills into the surroundings.",
+    "combos": [{ "spheres": { "Forces": 2 }, "inferred": ["Forces"] }],
+    "optional": [
+      { "spheres": { "Forces": 3 }, "purpose": "turn the caught energy into another kind of energy" },
+      { "spheres": { "Prime": 4 }, "purpose": "turn the caught energy into Quintessence, one point per health level" }
+    ],
+    "vulgarity": "depends",
+    "tags": ["defense", "elemental", "quintessence"],
+    "source": [
+      { "book": "HDYDT", "page": 30, "section": "Elemental Mastery: Mystic Physics" },
+      { "book": "HDYDT", "page": 31, "section": "Elemental Mastery: Mystic Physics" }
+    ]
+  },
+  {
+    "id": "change-an-attacks-element",
+    "name": "Change an Attack's Element",
+    "kind": "feat",
+    "summary": "Turn one kind of elemental energy into another in mid-attack, such as fire into wind. Forces 2 cannot do this.",
+    "combos": [{ "spheres": { "Forces": 3 } }],
+    "vulgarity": "vulgar",
+    "tags": ["transformation", "elemental", "defense"],
+    "source": [{ "book": "HDYDT", "page": 30, "section": "Elemental Mastery: Mystic Physics" }]
+  },
+  {
+    "id": "lock-a-quirk-of-physics",
+    "name": "Lock a Quirk of Physics into a Pattern",
+    "kind": "feat",
+    "summary": "Tie a bent-physics field to a person or thing so it travels with them: a jacket that deflects blows, a heavy chest that weighs nothing, brass knuckles that hit harder. It lasts only the normal Duration and the field acts on everything, not just foes.",
+    "combos": [
+      { "spheres": { "Forces": 2, "Matter": 2 }, "note": "on an object" },
+      { "spheres": { "Forces": 2, "Life": 4 }, "note": "on a person" }
+    ],
+    "tags": ["enchantment", "elemental", "defense"],
+    "source": [{ "book": "HDYDT", "page": 31, "section": "Elemental Mastery: Mystic Physics" }]
+  },
+  {
+    "id": "blackout",
+    "name": "Blackout!",
+    "kind": "feat",
+    "summary": "Kill the power to an electrical system. A room or building is easy; a city grid needs great power to beat all its backups.",
+    "system": "A small area takes a few successes with Forces 2; a whole city needs Forces 5 and many successes. The outage holds until someone repairs it or a backup kicks in, from seconds to days.",
+    "combos": [
+      { "spheres": { "Forces": 2 }, "note": "a small area" },
+      { "spheres": { "Forces": 5 }, "note": "a city" }
+    ],
+    "optional": [
+      { "spheres": { "Correspondence": 2 }, "inferred": ["Correspondence"], "purpose": "reach the heart of a system far away (Data works too)" },
+      { "spheres": { "Matter": 2 }, "inferred": ["Matter"], "purpose": "wreck vital machinery" }
+    ],
+    "tags": ["technology", "elemental", "destruction", "technocracy"],
+    "source": [{ "book": "HDYDT", "page": 31, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "concoct-chemical-compounds",
+    "name": "Concoct Chemical Compounds",
+    "kind": "feat",
+    "summary": "Turn one chemical into another: salt into cyanide, water into acid, oregano into pot. You must know the chemistry involved.",
+    "system": "Small simple amounts take Matter 2 or 3; seriously complex work Matter 4 or 5. Usually 1-3 successes. Needs at least three dots in a fitting Ability and specialty (Science: Chemistry, Esoterica: Alchemy and the like).",
+    "combos": [
+      { "spheres": { "Matter": 2 }, "note": "small, simple batches" },
+      { "spheres": { "Matter": 4 }, "note": "complex compounds" }
+    ],
+    "tags": ["transformation", "utility"],
+    "source": [{ "book": "HDYDT", "page": 31, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "cram-a-materials-properties",
+    "name": "Cram a Material's Properties",
+    "kind": "feat",
+    "summary": "Study a sample of an unknown material with magickal senses until you understand it well enough to work with it for a day or two.",
+    "system": "A minute of study for simple materials, up to an hour for complex ones. Afterwards you count as having the needed three dots for that one material, briefly.",
+    "combos": [{ "spheres": { "Matter": 1 } }],
+    "tags": ["perception", "utility"],
+    "source": [{ "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "change-chemistry-inside-a-living-body",
+    "name": "Change Chemistry Inside a Living Body",
+    "kind": "feat",
+    "summary": "Alter the chemicals inside a working organism, such as turning sugar into cocaine after someone has eaten it. Matter alone cannot reach into a living Pattern.",
+    "combos": [{ "spheres": { "Life": 3, "Matter": 2 }, "inferred": ["Matter"] }],
+    "tags": ["body", "transformation"],
+    "source": [
+      { "book": "HDYDT", "page": 27, "section": "Elemental Mastery: The Basics" },
+      { "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }
+    ]
+  },
+  {
+    "id": "purify-food-and-water",
+    "name": "Purify Food and Water",
+    "kind": "feat",
+    "summary": "Make fouled food or water safe again: strip out mineral poisons, kill germs, or bring food back from the first stages of rot.",
+    "combos": [
+      { "spheres": { "Matter": 2 }, "note": "inorganic toxins" },
+      { "spheres": { "Life": 2 }, "note": "microorganisms and early rot" }
+    ],
+    "tags": ["healing", "utility"],
+    "source": [{ "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "conjure-food-and-water",
+    "name": "Conjure Food and Water",
+    "kind": "feat",
+    "summary": "Make edible food or drinkable water appear out of thin air. It will taste awful unless you know how to cook.",
+    "combos": [{ "spheres": { "Life": 3, "Matter": 3, "Prime": 2 } }],
+    "tags": ["conjuration", "utility"],
+    "source": [{ "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "scrounge-edible-leftovers",
+    "name": "Scrounge Edible Leftovers",
+    "kind": "feat",
+    "summary": "A street-mage trick: dig through the dumpsters and magickally turn up fast food or leftovers that are safe enough to eat.",
+    "system": "Cast alongside an Urban Survival roll for the dumpster dive.",
+    "combos": [{ "spheres": { "Life": 2, "Matter": 2, "Prime": 2 } }],
+    "tags": ["utility"],
+    "source": [{ "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "stave-off-hunger-and-thirst",
+    "name": "Stave Off Hunger and Thirst",
+    "kind": "feat",
+    "summary": "Hold back the effects of going without food and water for a while.",
+    "system": "Each success buys one extra day without water and one extra week without food. One roll only; when the successes run out, starvation sets in.",
+    "combos": [
+      { "spheres": { "Life": 2 }, "note": "yourself" },
+      { "spheres": { "Life": 3 }, "note": "someone else" }
+    ],
+    "tags": ["body", "utility"],
+    "source": [{ "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "create-light",
+    "name": "Create Light",
+    "kind": "feat",
+    "summary": "Brighten what little light is around, or flood a pitch-dark place with sudden strong light. It is not true sunlight and does not hurt vampires.",
+    "combos": [
+      { "spheres": { "Forces": 2 }, "note": "boost light that is already there" },
+      { "spheres": { "Forces": 3, "Prime": 2 }, "note": "total darkness, or strong sudden light" }
+    ],
+    "tags": ["elemental", "conjuration", "utility"],
+    "source": [{ "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "gate-in-sunlight",
+    "name": "Gate In Real Sunlight",
+    "kind": "feat",
+    "summary": "Open a gate from a sunlit place to a dark one so genuine sunlight pours through. If a broken window would do, just break the window.",
+    "combos": [{ "spheres": { "Correspondence": 4, "Forces": 4 } }],
+    "vulgarity": "vulgar",
+    "tags": ["elemental", "travel", "combat"],
+    "source": [{ "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "searing-light-blast",
+    "name": "Searing Light Blast",
+    "kind": "feat",
+    "summary": "Fire off blasts of intense light that cause lethal damage. With more magick the light burns vampires as if it were sunlight.",
+    "combos": [{ "spheres": { "Forces": 4, "Prime": 2 } }],
+    "optional": [{ "spheres": { "Life": 3, "Matter": 2 }, "purpose": "aggravated damage to vampires" }],
+    "tags": ["combat", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "reproduce-true-sunlight",
+    "name": "Reproduce True Sunlight",
+    "kind": "feat",
+    "summary": "Recreate sunlight in every physical respect, which the Storyteller may let count as real sunlight against the undead. A spiritual mage can add the holy essence of the sun as well.",
+    "system": "Storyteller's option, depending on whether sunlight is pure physics or divine grace in your chronicle.",
+    "combos": [{ "spheres": { "Forces": 5, "Prime": 4 } }],
+    "optional": [{ "spheres": { "Spirit": 5 }, "purpose": "channel the spiritual essence of sunlight too" }],
+    "tags": ["combat", "elemental", "conjuration"],
+    "source": [
+      { "book": "HDYDT", "page": 32, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" },
+      { "book": "HDYDT", "page": 33, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }
+    ]
+  },
+  {
+    "id": "deflect-missiles",
+    "name": "Deflect Missiles",
+    "kind": "feat",
+    "summary": "Push an incoming bullet, arrow or energy beam off course. Works one shot at a time, not as a standing field.",
+    "system": "Each of your successes cancels one attacker success, like a dodge. Beat the attack and the shot goes elsewhere, maybe into a bystander; double the attacker's successes and it rebounds on the shooter for its base damage. Stopping every bullet in midair is possible but blatantly vulgar.",
+    "combos": [{ "spheres": { "Forces": 2 } }],
+    "coincidentalIf": "it is played as a dodge-like deflection rather than bullets hanging in the air.",
+    "vulgarity": "depends",
+    "tags": ["defense", "combat", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 33, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "bioelectric-assault",
+    "name": "Bioelectric Assault",
+    "kind": "feat",
+    "summary": "Scramble a body's electrical impulses to stop organs, clot blood, lock muscles or damage the brain. You need to understand how bodies work.",
+    "system": "Aggravated damage: the normal amount plus one success for Forces. Unlike a plain Life 3 attack, nobody can see the inside misfire.",
+    "combos": [{ "spheres": { "Forces": 2, "Life": 3 } }],
+    "coincidentalIf": "the victim simply seems to suffer a sudden medical failure; a trail of such deaths draws suspicion.",
+    "vulgarity": "depends",
+    "tags": ["combat", "body", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 33, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "chemical-body-disruption",
+    "name": "Chemical Body Disruption",
+    "kind": "feat",
+    "summary": "Throw off someone's body chemistry: make them drunk or sick, or impair their senses and thinking.",
+    "system": "Bashing or lethal damage, depending on what you do to them.",
+    "combos": [{ "spheres": { "Life": 3, "Matter": 2 } }],
+    "vulgarity": "depends",
+    "tags": ["combat", "body"],
+    "source": [{ "book": "HDYDT", "page": 34, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "trigger-an-involuntary-reflex",
+    "name": "Trigger an Involuntary Reflex",
+    "kind": "feat",
+    "summary": "Use a small electrical or chemical nudge to make a target vomit, spasm, go briefly blind or reel in confusion instead of taking damage.",
+    "system": "For one or two turns the target is as helpless as under brief Mind 4 puppetry, yet Willpower gives no defense because the body, not the mind, is hit.",
+    "combos": [
+      { "spheres": { "Forces": 2, "Life": 3 }, "note": "electrical" },
+      { "spheres": { "Life": 3, "Matter": 2 }, "note": "chemical" }
+    ],
+    "vulgarity": "depends",
+    "tags": ["combat", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 33, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" },
+      { "book": "HDYDT", "page": 34, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }
+    ]
+  },
+  {
+    "id": "bend-light-or-sound-around-yourself",
+    "name": "Bend Light or Sound Around Yourself",
+    "kind": "feat",
+    "summary": "Curve light around your body to vanish from sight, or do the same with sound to move in silence.",
+    "system": "Observers spot you with Perception + Alertness or Awareness; each of your successes adds +1 difficulty, up to +3. Bigger areas need higher Forces.",
+    "combos": [{ "spheres": { "Forces": 2 } }],
+    "optional": [{ "spheres": { "Correspondence": 1 }, "purpose": "still sense your way around while light or sound is bent away" }],
+    "vulgarity": "vulgar",
+    "tags": ["stealth", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 34, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "cloak-a-vehicle",
+    "name": "Cloak a Vehicle",
+    "kind": "feat",
+    "summary": "Make something large, like a helicopter, invisible and silent, with the cloak locked onto the vehicle so it moves with it.",
+    "combos": [{ "spheres": { "Forces": 4, "Matter": 4 } }],
+    "tags": ["stealth", "elemental", "technology"],
+    "source": [{ "book": "HDYDT", "page": 34, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "shadowplay",
+    "name": "Shadowplay",
+    "kind": "feat",
+    "summary": "Drive light away and make the shadows move, or shape light and dark into figures of people, beasts or horrors that distract or frighten. The same works on sound. You need some light to start with.",
+    "system": "Forces 2 covers about 10 feet; the top ranks reach a mile or more. Shaping figures takes a Manipulation + Expression roll.",
+    "combos": [{ "spheres": { "Forces": 2 } }],
+    "tags": ["illusion", "elemental", "stealth"],
+    "source": [{ "book": "HDYDT", "page": 34, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "shoot-around-corners",
+    "name": "Shoot Around Corners",
+    "kind": "feat",
+    "summary": "Fire at one spot and have the bullet come out somewhere else, or bend its path around cover. Projectiles only; beams fly straight.",
+    "system": "+3 to the Dexterity + Firearms difficulty. Good for one shot or burst; cast again for each one.",
+    "combos": [
+      { "spheres": { "Correspondence": 2, "Matter": 2 }, "note": "the bullet exits somewhere else" },
+      { "spheres": { "Forces": 2 }, "note": "curve its flight" }
+    ],
+    "vulgarity": "vulgar",
+    "tags": ["combat", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 34, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "synthesize-new-materials",
+    "name": "Synthesize New Materials",
+    "kind": "feat",
+    "summary": "Turn raw stuff into something else entirely, such as sand into a rough wooden table, pasta into armor or sand into chips. Fine work needs real craft skills, and the result reverts when the Effect ends unless made permanent.",
+    "system": "Matter 2 alone makes simple things; complex or brand-new materials need higher ranks plus Forces, Life or Spirit for any parts they rule. Things that radiate or explode need both Matter and Forces. Blatantly impossible transmutations like light into steel are vulgar.",
+    "combos": [{ "spheres": { "Matter": 2 } }],
+    "tags": ["transformation", "creation"],
+    "source": [
+      { "book": "HDYDT", "page": 34, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" },
+      { "book": "HDYDT", "page": 35, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }
+    ]
+  },
+  {
+    "id": "shift-temperature",
+    "name": "Shift the Temperature",
+    "kind": "feat",
+    "summary": "Warm or chill an area, from mildly uncomfortable up to flash-freezing flesh or melting metal into slag.",
+    "system": "Forces 2 stays within comfort and discomfort. Forces 3 makes damaging extremes, usually bashing, but heated metal or boiling water can deal lethal and molten metal aggravated. Freezing things solid (lethal or aggravated, worse if shattered) or melting metal takes Forces 4 or 5.",
+    "combos": [
+      { "spheres": { "Forces": 2 }, "note": "comfortable to unpleasant" },
+      { "spheres": { "Forces": 3 }, "note": "harmful extremes" },
+      { "spheres": { "Forces": 4 }, "note": "freeze solid or melt metal" }
+    ],
+    "tags": ["elemental", "weather", "combat"],
+    "source": [{ "book": "HDYDT", "page": 35, "section": "Elemental Mastery: Classic Tricks of Mystic Physics" }]
+  },
+  {
+    "id": "psychic-elementalism",
+    "name": "Psychic Elementalism",
+    "kind": "feat",
+    "summary": "Command elements by sheer mental focus, adding a mind link to the usual Pattern magick.",
+    "system": "Add Mind 3 to the Pattern Spheres the Effect already needs. Spend a temporary Willpower point for one automatic success (one per turn; several over turns for an extended ritual).",
+    "combos": [
+      { "spheres": { "Forces": 2, "Mind": 3 }, "inferred": ["Forces"], "note": "energies" },
+      { "spheres": { "Matter": 2, "Mind": 3 }, "inferred": ["Matter"], "note": "substances" },
+      { "spheres": { "Life": 2, "Mind": 3 }, "inferred": ["Life"], "note": "living plants" }
+    ],
+    "tags": ["elemental", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 27, "section": "Elemental Mastery: The Basics" },
+      { "book": "HDYDT", "page": 35, "section": "Elemental Mastery: Psychic and Spiritual Elementalism" }
+    ]
+  },
+  {
+    "id": "spiritual-elemental-bond",
+    "name": "Spiritual Elemental Bond",
+    "kind": "feat",
+    "summary": "Join your soul to the spirit of one element, as the benders of Avatar do, and work it through that bond. You live and dress in its Resonance and focus on that single element.",
+    "system": "Add Spirit 2 or more to the usual Pattern Spheres. Spend a temporary Willpower point for one automatic success. Dimensional Science cannot do this.",
+    "combos": [
+      { "spheres": { "Forces": 2, "Spirit": 2 }, "inferred": ["Forces"], "note": "energies" },
+      { "spheres": { "Matter": 2, "Spirit": 2 }, "inferred": ["Matter"], "note": "substances" },
+      { "spheres": { "Life": 2, "Spirit": 2 }, "inferred": ["Life"], "note": "living plants" }
+    ],
+    "tags": ["elemental", "spirit"],
+    "source": [{ "book": "HDYDT", "page": 35, "section": "Elemental Mastery: Psychic and Spiritual Elementalism" }]
+  },
+  {
+    "id": "psychic-telekinesis",
+    "name": "Psychic Telekinesis",
+    "kind": "feat",
+    "summary": "Move or levitate things with your mind alone, as long as you keep concentrating.",
+    "system": "Higher Forces moves more, per the Forces and Weight chart (2: 300 lbs, 3: two tons, 4: small buildings, 5: almost anything). Roll Willpower as well as Arete; the Storyteller may ask a Willpower point for very big loads. Usually vulgar unless small or passed off as plausible tech.",
+    "combos": [{ "spheres": { "Forces": 2, "Mind": 3 } }],
+    "vulgarity": "depends",
+    "tags": ["movement", "mental", "elemental"],
+    "source": [
+      { "book": "HDYDT", "page": 35, "section": "Elemental Mastery: Psychic and Spiritual Elementalism" },
+      { "book": "HDYDT", "page": 36, "section": "Elemental Mastery: Psychic and Spiritual Elementalism" }
+    ]
+  },
+  {
+    "id": "pyrokinesis",
+    "name": "Pyrokinesis",
+    "kind": "feat",
+    "summary": "Steer, kindle or grow fire with your mind, even setting alight things that should not burn.",
+    "system": "Needs concentration and a Willpower roll; the Storyteller may ask a Willpower point for large or hard fires such as burning metal.",
+    "combos": [
+      { "spheres": { "Forces": 2, "Mind": 3 }, "note": "control flames that already exist" },
+      { "spheres": { "Forces": 3, "Mind": 3, "Prime": 2 }, "note": "start fire from nothing or make a fire much bigger" }
+    ],
+    "optional": [
+      { "spheres": { "Matter": 2 }, "purpose": "burn flame-resistant materials" },
+      { "spheres": { "Life": 3 }, "purpose": "set living beings alight" },
+      { "spheres": { "Spirit": 3 }, "purpose": "burn Umbral ephemera" }
+    ],
+    "coincidentalIf": "only small nudges to existing flames that can pass as chance.",
+    "vulgarity": "depends",
+    "tags": ["elemental", "mental", "combat"],
+    "source": [{ "book": "HDYDT", "page": 36, "section": "Elemental Mastery: Psychic and Spiritual Elementalism" }]
+  },
+  {
+    "id": "psychomanifestation",
+    "name": "Psychomanifestation",
+    "kind": "feat",
+    "summary": "Shape or create solid and liquid elements, such as a block of stone, by force of mind. It works like Pyrokinesis with Matter in place of Forces.",
+    "system": "Willpower roll as for Pyrokinesis; the Storyteller should ask a Willpower point for making solids from thin air. Plain Matter with Prime is simpler for conjuring.",
+    "combos": [
+      { "spheres": { "Matter": 2, "Mind": 3 }, "inferred": ["Matter"], "note": "control existing material" },
+      { "spheres": { "Matter": 3, "Mind": 3, "Prime": 2 }, "inferred": ["Matter"], "note": "manifest it from nothing" }
+    ],
+    "tags": ["elemental", "mental", "conjuration"],
+    "source": [
+      { "book": "HDYDT", "page": 36, "section": "Elemental Mastery: Psychic and Spiritual Elementalism" },
+      { "book": "HDYDT", "page": 37, "section": "Elemental Mastery: Psychic and Spiritual Elementalism" }
+    ]
+  },
+  {
+    "id": "hurl-an-elemental-blast",
+    "name": "Hurl an Elemental Blast",
+    "kind": "feat",
+    "summary": "Throw a fireball, a lightning bolt, a gust of wind or a hail of stone. The blast appears, does its damage and is gone; another needs another casting.",
+    "system": "Forces adds one success to damage. Blunt force deals bashing, sharp lethal, and hot things (fire, electricity, steam, molten stuff) lethal or aggravated. A targeted blast must hit as an attack; area blasts count as Environmental Hazards.",
+    "combos": [
+      { "spheres": { "Forces": 2 }, "note": "from energy already present" },
+      { "spheres": { "Matter": 2 }, "note": "from material already present" },
+      { "spheres": { "Life": 2 }, "note": "from plants already present" },
+      { "spheres": { "Forces": 3, "Prime": 2 }, "note": "conjured energy" },
+      { "spheres": { "Matter": 3, "Prime": 2 }, "note": "conjured solids" },
+      { "spheres": { "Life": 3, "Prime": 2 }, "note": "conjured wood or plants" }
+    ],
+    "tags": ["combat", "elemental", "conjuration"],
+    "source": [{ "book": "HDYDT", "page": 37, "section": "Elemental Mastery: Elemental Assault and Defense" }]
+  },
+  {
+    "id": "raise-an-elemental-wall",
+    "name": "Raise an Elemental Wall",
+    "kind": "feat",
+    "summary": "Build a lasting elemental barrier or weapon: a hedge of thorns, a metal wall, a flood, a plasma force-field. It lasts until its Duration ends, someone dispels or breaks it, or its fuel runs out.",
+    "system": "Add the successes for the Duration and the Damage you want from the Base Damage or Duration chart. A one-day ice wall dealing six levels needs 6 successes; as plasma it needs 5, since Forces adds one damage success. Fire and similar energies burn fuel unless fed Quintessence.",
+    "combos": [
+      { "spheres": { "Forces": 2 }, "note": "from energy already present" },
+      { "spheres": { "Matter": 2 }, "note": "from material already present" },
+      { "spheres": { "Life": 2 }, "note": "from plants already present" },
+      { "spheres": { "Forces": 3, "Prime": 2 }, "note": "conjured energy" },
+      { "spheres": { "Matter": 3, "Prime": 2 }, "note": "conjured solids" },
+      { "spheres": { "Life": 3, "Prime": 2 }, "note": "conjured wood or plants" }
+    ],
+    "optional": [{ "spheres": { "Prime": 3 }, "purpose": "keep an energy wall burning on Quintessence instead of fuel" }],
+    "tags": ["defense", "combat", "elemental", "warding"],
+    "source": [
+      { "book": "HDYDT", "page": 37, "section": "Elemental Mastery: Elemental Assault and Defense" },
+      { "book": "HDYDT", "page": 38, "section": "Elemental Mastery: Elemental Assault and Defense" }
+    ]
+  },
+  {
+    "id": "fuel-an-element-with-quintessence",
+    "name": "Fuel an Element with Quintessence",
+    "kind": "feat",
+    "summary": "Feed a fire, bolt or laser with raw Quintessence so it keeps going without coal, gas or batteries.",
+    "system": "Costs 1 to 5 Quintessence per turn, by how intense the energy is (Storyteller's call). Without it, an energy Effect lasts only as long as its mundane fuel.",
+    "combos": [{ "spheres": { "Prime": 3 } }],
+    "tags": ["quintessence", "elemental"],
+    "source": [{ "book": "HDYDT", "page": 38, "section": "Elemental Mastery: Elemental Assault and Defense" }]
+  },
+  {
+    "id": "storm-cocoon",
+    "name": "Storm-Cocoon",
+    "kind": "feat",
+    "summary": "Wrap yourself and your friends in a shield against the storm you are raising: Forces fends off the elements, Entropy steers away falling roofs and flying junk, Prime keeps it fueled while you work.",
+    "system": "Five successes guard a circle about 10 feet across for the length of the storm; each extra success adds another 10 feet.",
+    "combos": [{ "spheres": { "Entropy": 2, "Forces": 3, "Prime": 2 } }],
+    "coincidentalIf": "it does not show as an obvious bubble such as a glowing field; a hypertech shield may stay coincidental even then.",
+    "vulgarity": "depends",
+    "tags": ["defense", "weather", "warding"],
+    "source": [{ "book": "HDYDT", "page": 39, "section": "Elemental Mastery: Weather-Witching" }]
+  },
+  {
+    "id": "steer-existing-weather",
+    "name": "Steer Existing Weather",
+    "kind": "feat",
+    "summary": "Work with the weather that is already forming and push it where you want: a gentle probability nudge, a strong suggestion, or yanking the elements into line. The weather still follows the local climate; snow on a cold November night, never on a hot July day.",
+    "system": "Weather magick takes at least 5 successes: small changes about 5, big ones 10 or more, near-impossible ones 20 or more. Changes take hours; doing it in minutes is vulgar. The probability nudge goes its own way and works slowly. Fitting Abilities (Meteorology, Weathercraft) can lower the difficulty.",
+    "combos": [
+      { "spheres": { "Correspondence": 3, "Entropy": 2, "Forces": 3 }, "note": "nudge the odds of a pattern forming" },
+      { "spheres": { "Entropy": 3, "Forces": 4 }, "note": "a strong push: the front forms fast and as you design" },
+      { "spheres": { "Forces": 4 }, "note": "force the elements into shape" }
+    ],
+    "optional": [{ "spheres": { "Correspondence": 4 }, "inferred": ["Correspondence"], "purpose": "work it somewhere far away (Correspondence must equal your Forces rank)" }],
+    "vulgarity": "depends",
+    "tags": ["weather", "elemental", "luck"],
+    "source": [
+      { "book": "HDYDT", "page": 38, "section": "Elemental Mastery: Weather-Witching" },
+      { "book": "HDYDT", "page": 39, "section": "Elemental Mastery: Weather-Witching" },
+      { "book": "HDYDT", "page": 40, "section": "Elemental Mastery: Weather-Witching" }
+    ]
+  },
+  {
+    "id": "summon-a-storm",
+    "name": "Summon a Storm",
+    "kind": "feat",
+    "summary": "Call up a major tempest: gather existing weather into a storm, whip up blizzards, floods and thunderstorms, or at the top end produce impossible weather such as summer blizzards and tornados from a clear sky. Without a cocoon you suffer it like everyone else.",
+    "system": "A storm out of calm skies, or where storms cannot form, costs one Quintessence per dot of every Sphere used (Forces 5 alone: 5; the full combo: 15). Roll Willpower as it gathers and again each hour or scene (difficulty 5 rain, 7 thunderstorm, 9 tornado); a failure lets it run wild. Ending it takes a new ritual with at least 5 more successes than raised it. The dangerous storms create Environmental Hazards; you can add separate elemental attacks.",
+    "combos": [
+      { "spheres": { "Forces": 5 }, "note": "pull existing weather into a storm" },
+      { "spheres": { "Forces": 5, "Matter": 2, "Prime": 3 }, "note": "dangerous storms: blizzards, floods, thunderstorms" },
+      { "spheres": { "Entropy": 3, "Forces": 5, "Matter": 3, "Prime": 4 }, "note": "impossible weather, hazards for miles; vulgar" }
+    ],
+    "optional": [{ "spheres": { "Correspondence": 5 }, "purpose": "raise the storm somewhere far away" }],
+    "vulgarity": "depends",
+    "tags": ["weather", "elemental", "combat", "conjuration"],
+    "source": [
+      { "book": "HDYDT", "page": 39, "section": "Elemental Mastery: Raining on Someone Else's Parade" },
+      { "book": "HDYDT", "page": 40, "section": "Elemental Mastery: Weather-Witching" }
+    ]
+  },
+  {
+    "id": "shake-the-earth",
+    "name": "Shake the Earth",
+    "kind": "feat",
+    "summary": "Make the ground, or a house or skyscraper, tremble and break. The quake damages structures, trees and terrain rather than people, though collapses and sinkholes can hurt anyone nearby.",
+    "system": "Normal damage plus one success for Forces, applied to structures. Roughly 100 feet of diameter per success, adjusted by the Storyteller for the ground and what stands on it.",
+    "combos": [{ "spheres": { "Entropy": 3, "Forces": 5, "Matter": 5 } }],
+    "tags": ["destruction", "elemental"],
+    "source": [
+      { "book": "HDYDT", "page": 40, "section": "Elemental Mastery: Weather-Witching" },
+      { "book": "HDYDT", "page": 41, "section": "Elemental Mastery: Weather-Witching" }
+    ]
+  },
+  {
+    "id": "create-a-horizon-realm",
+    "name": "Create a Horizon Realm",
+    "kind": "feat",
+    "summary": "Build a whole new world in the Horizon, with its own land, climate, living things and flow of time. Usually a group of mages working for months or years.",
+    "system": "Needs a Node of at least five dots first. Shaping a livable Realm can take 100+ successes over several Great Work rituals. Higher Entropy, Mind and Time add stronger quirks of chance, vision or time. May fail outright, or turn lethal, while the Avatar Storm rages.",
+    "combos": [
+      {
+        "spheres": { "Correspondence": 5, "Entropy": 3, "Forces": 5, "Life": 5, "Matter": 5, "Mind": 3, "Prime": 5, "Spirit": 5, "Time": 4 }
+      }
+    ],
+    "tags": ["creation", "spirit"],
+    "source": [{ "book": "HDYDT", "page": 41, "section": "Elemental Mastery: Creating a Realm" }]
+  }
+]

@@ -1,0 +1,396 @@
+[
+  {
+    "id": "channel-a-spirits-essence",
+    "name": "Channel a Spirit's Essence (Optional Rule)",
+    "kind": "feat",
+    "summary": "Optional rule for practices that work through a bond with the spirits, like an Avatar-style bender or a totem shaman: such a mage adds Spirit 2 (Touch Spirit) to the other Spheres of the Effect. Dimensional Science counts as Spirit here, so a Void Engineer qualifies too.",
+    "system": "Add Spirit 2 on top of the normal Spheres: decay spirits behind an Entropy Effect, Chronos behind a Time Effect, Wolf behind grown fangs (Life 3 / Spirit 2). Rotes written for a spirit-based practice need it as well, so a purely materialist mage cannot use them. Actually channeling entities, calling one up or opening gates needs whatever Spirit rank that feat demands.",
+    "combos": [
+      { "spheres": { "Spirit": 2 }, "note": "added to the Effect's other Spheres" }
+    ],
+    "tags": ["spirit", "sphere-basics", "technocracy"],
+    "source": [
+      { "book": "HDYDT", "page": 16, "section": "Moments of Magick: A Bit of Spirit?" }
+    ]
+  },
+  {
+    "id": "call-up-a-totem-embodiment",
+    "name": "Call Up an Embodiment of a Totem Spirit",
+    "kind": "feat",
+    "summary": "Go beyond drawing on the essence of Wolf and summon an actual embodiment of that totem to appear.",
+    "system": "Spirit 3 or better; bigger entities need more.",
+    "combos": [
+      { "spheres": { "Spirit": 3 } }
+    ],
+    "tags": ["spirit", "summoning"],
+    "source": [
+      { "book": "HDYDT", "page": 16, "section": "Moments of Magick: A Bit of Spirit?" }
+    ]
+  },
+  {
+    "id": "partial-transformation",
+    "name": "Partial Transformation: Claws, Fangs and Animal Parts",
+    "kind": "feat",
+    "summary": "Change only part of a body: jaguar claws on human hands, wolf fangs in a human mouth, goat legs under a human torso. It can be done on purpose or happen when a full change goes halfway.",
+    "system": "Either use the minor-alteration rank (Life 3 on yourself, Life 4 on another complex creature), or the rank of the full change with half its successes: 1 success for claws on yourself, 2 on someone else. Add Prime 2 for fangs or claws that deal aggravated damage.",
+    "combos": [
+      { "spheres": { "Life": 3 }, "note": "on yourself" },
+      { "spheres": { "Life": 4 }, "note": "on another complex creature" },
+      { "spheres": { "Life": 3, "Spirit": 2 }, "note": "on yourself, through an animal spirit (optional Bit of Spirit rule)" }
+    ],
+    "optional": [
+      { "spheres": { "Prime": 2 }, "purpose": "the fangs or claws inflict aggravated damage" }
+    ],
+    "tags": ["shapechanging", "body", "combat"],
+    "source": [
+      { "book": "HDYDT", "page": 16, "section": "Moments of Magick: A Bit of Spirit?" },
+      { "book": "HDYDT", "page": 19, "section": "Conjuration, Transformation, Shapechanging, and Modification: Partial Transformations" }
+    ]
+  },
+  {
+    "id": "conjure-basic-material",
+    "name": "Conjure Basic Material from Nothing",
+    "kind": "feat",
+    "summary": "Make plain stuff appear out of raw energy, such as a rock in your empty hand.",
+    "system": "Pair the Sphere that governs the thing with Prime 2: a rock is Matter 3 / Prime 2. Conjured things fade back to nothing when the duration runs out, unless enough successes make them permanent or a Time 4 trigger sets terms for the reversal. See Elemental Mastery for elements and objects in detail.",
+    "combos": [
+      { "spheres": { "Matter": 3, "Prime": 2 }, "note": "simple material such as a rock" }
+    ],
+    "tags": ["conjuration", "creation"],
+    "source": [
+      { "book": "HDYDT", "page": 18, "section": "Conjuration, Transformation, Shapechanging, and Modification: The Basics" }
+    ]
+  },
+  {
+    "id": "shapechange-yourself",
+    "name": "Shapechange Yourself",
+    "kind": "feat",
+    "summary": "Change your own body: small shifts of looks and ability, a whole new shape such as a fox or a tiger, or, as a Master, any form at all without ever losing who you are.",
+    "system": "2 successes for a similar shape (woman to man), 3 for a very different one (woman to mist); 4 to 6 make it permanent, though you can still undo it at will. The new body brings its natural features (wings, gills, claws) and nothing more, and costs +1 to +3 difficulty for hours to days while you adapt. Below Life 5, every day in a radically different form costs 1 Willpower (1 per 3 days as a similar person), unless you buy the form for 2 experience points. Bygones, six arms and other bizarre shapes are vulgar with witnesses.",
+    "combos": [
+      { "spheres": { "Life": 3 }, "note": "minor changes of appearance and ability" },
+      { "spheres": { "Life": 4 }, "note": "full transformation into another shape" },
+      { "spheres": { "Life": 5 }, "note": "perfect metamorphosis, keeping your own identity in any form" }
+    ],
+    "optional": [
+      { "spheres": { "Time": 4 }, "purpose": "a time-trigger that sets when or how the change reverts" }
+    ],
+    "coincidentalIf": "At the Storyteller's option, the change passes as a costume at a convention, festival or rite where elaborate costumes are normal, and you do nothing a costume could not explain (no growing to dragon size, no flying).",
+    "vulgarity": "depends",
+    "tags": ["shapechanging", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 18, "section": "Conjuration, Transformation, Shapechanging, and Modification: The Basics" },
+      { "book": "HDYDT", "page": 19, "section": "Conjuration, Transformation, Shapechanging, and Modification: Shapechanging" },
+      { "book": "HDYDT", "page": 20, "section": "Conjuration, Transformation, Shapechanging, and Modification: Losing One's Self" },
+      { "book": "HDYDT", "page": 21, "section": "Conjuration, Transformation, Shapechanging, and Modification: Permanent Changes" },
+      { "book": "HDYDT", "page": 23, "section": "Conjuration, Transformation, Shapechanging, and Modification: Cosplay Transformations" }
+    ]
+  },
+  {
+    "id": "shapechange-another-creature",
+    "name": "Shapechange Another Creature",
+    "kind": "feat",
+    "summary": "Turn some other living thing into a different living shape: a bug into a flower, a cat into a tree, a man into a pig, a tiger into a woman. The subject keeps its own mind and nature for a while, and strong Resonance shows through the new form.",
+    "system": "4 successes for a similar shape, 5 or more for a radically different one; each extra target adds 1 success (5 for one tiger into a mouse, 7 for three), or divide successes. 8 to 10 successes make it permanent. Turning a creature into something another Sphere governs, like water, adds that Sphere. Subjects tend to lose themselves in the new identity, even under Life 5. Night-Folk still need Life 4 or 5 to reshape, not just the rank that would harm them.",
+    "combos": [
+      { "spheres": { "Life": 3 }, "note": "simple organisms: bugs, plants, fruit" },
+      { "spheres": { "Life": 4 }, "note": "minor changes to a complex creature" },
+      { "spheres": { "Life": 5 }, "note": "full transformation of a complex creature" }
+    ],
+    "optional": [
+      { "spheres": { "Time": 4 }, "purpose": "a time-trigger that sets when or how the change reverts" }
+    ],
+    "tags": ["shapechanging", "transformation"],
+    "source": [
+      { "book": "HDYDT", "page": 18, "section": "Conjuration, Transformation, Shapechanging, and Modification: The Basics" },
+      { "book": "HDYDT", "page": 19, "section": "Conjuration, Transformation, Shapechanging, and Modification: Shapechanging" },
+      { "book": "HDYDT", "page": 20, "section": "Conjuration, Transformation, Shapechanging, and Modification: Shapechanging Shapechangers" },
+      { "book": "HDYDT", "page": 21, "section": "Conjuration, Transformation, Shapechanging, and Modification: Permanent Changes" }
+    ]
+  },
+  {
+    "id": "build-powers-into-a-new-form",
+    "name": "Build Special Powers into a New Form",
+    "kind": "feat",
+    "summary": "Give a shapechanged or newly made creature a power its shape would not have by nature: fire breath, venom, invisibility, floating without wings. The power has to be woven into the transformation itself.",
+    "system": "Usually Forces and Prime; fire breath is Forces 3 / Prime 2. Each new power adds at least 1 success to the transformation, 2 or more for very strong ones like an aura of crackling electricity. Every use burns 1 Quintessence (one per blast of fire or venomous bite), from your own pool or the creature's life-force; Periapts help. A fire-breathing tiger-woman who also teleports at inhuman speed would need high ranks of Correspondence, Life, Forces, Prime and Time, 7 or 8 successes, and is blatantly vulgar.",
+    "combos": [
+      { "spheres": { "Forces": 3, "Prime": 2 }, "note": "fire breath and similar energy powers, on top of the shapechange" }
+    ],
+    "tags": ["shapechanging", "elemental", "quintessence"],
+    "source": [
+      { "book": "HDYDT", "page": 18, "section": "Conjuration, Transformation, Shapechanging, and Modification: The Basics" },
+      { "book": "HDYDT", "page": 19, "section": "Conjuration, Transformation, Shapechanging, and Modification: Additional Abilities" },
+      { "book": "HDYDT", "page": 20, "section": "Conjuration, Transformation, Shapechanging, and Modification: Additional Abilities" }
+    ]
+  },
+  {
+    "id": "fire-breathing-tiger-form",
+    "name": "Shapechange into a Fire-Breathing Tiger",
+    "kind": "feat",
+    "summary": "Turn yourself into a tiger that can breathe fire: the book's worked example of a shapechange with a built-in power.",
+    "system": "At least 4 successes: 3 for the tiger shape and 1 for the fire. Each blast of flame costs 1 Quintessence.",
+    "combos": [
+      { "spheres": { "Life": 4, "Forces": 3, "Prime": 2 } }
+    ],
+    "tags": ["shapechanging", "elemental", "combat"],
+    "source": [
+      { "book": "HDYDT", "page": 19, "section": "Conjuration, Transformation, Shapechanging, and Modification: Additional Abilities" }
+    ]
+  },
+  {
+    "id": "shapeshift-gear-with-matter",
+    "name": "Shapeshift Clothes and Gear with Matter",
+    "kind": "feat",
+    "summary": "Life only reshapes living things, so to have your clothes, weapons or gadgets change along with your body, work Matter into the shapechange.",
+    "system": "The Matter rank depends on the object: Matter 2 for something simple like a rock, Matter 4 for something intricate like a laptop, plus Forces 3 / Prime 2 if it should still work as a laptop afterward. A bag full of things takes more successes than a single item. Bound items stay tied to you and can later be used against you as personal objects (-3 difficulty).",
+    "combos": [
+      { "spheres": { "Matter": 2 }, "note": "simple objects" },
+      { "spheres": { "Matter": 4 }, "note": "complex objects such as a laptop" }
+    ],
+    "optional": [
+      { "spheres": { "Forces": 3, "Prime": 2 }, "purpose": "a complex device still functions after the change" }
+    ],
+    "tags": ["shapechanging", "transformation"],
+    "source": [
+      { "book": "HDYDT", "page": 20, "section": "Conjuration, Transformation, Shapechanging, and Modification: Shapeshifting and Consecrating Possessions" },
+      { "book": "HDYDT", "page": 21, "section": "Conjuration, Transformation, Shapechanging, and Modification: Shapeshifting and Consecrating Possessions" }
+    ]
+  },
+  {
+    "id": "consecrate-gear-for-shapechanging",
+    "name": "Consecrate Gear for Shapechanging",
+    "kind": "feat",
+    "summary": "Bind your clothes and belongings to your own Pattern with Prime so they change when you do, and later cut that bond so nobody can use them against you.",
+    "system": "Usually 1 extra success per item; a full backpack needs more than a pair of pants. The bond lasts for the Effect's duration and must then be renewed. Until another Prime 1 Effect deconsecrates it, the item counts as a personal object: -3 difficulty to spells cast at you through it (about -1 for things you merely carried). Periapts are always bound to you. Stripping off gear before a change instead takes a turn or more.",
+    "combos": [
+      { "spheres": { "Prime": 1 }, "note": "consecrate an item, or deconsecrate it afterward" }
+    ],
+    "tags": ["shapechanging", "enchantment"],
+    "source": [
+      { "book": "HDYDT", "page": 20, "section": "Conjuration, Transformation, Shapechanging, and Modification: Shapeshifting and Consecrating Possessions" },
+      { "book": "HDYDT", "page": 21, "section": "Conjuration, Transformation, Shapechanging, and Modification: Shapeshifting and Consecrating Possessions" }
+    ]
+  },
+  {
+    "id": "lock-a-werecreatures-form",
+    "name": "Lock a Werecreature's Form",
+    "kind": "feat",
+    "summary": "Force a werecreature to stay in the shape it has now for the duration, or push it into another of its own forms. Shapeshifters tend to take this very badly.",
+    "system": "Spirit 3 with Life 4 or higher. Other shapechangers usually just shift back at will, and vampires who change through Protean or Vicissitude will soon break free with their own powers.",
+    "combos": [
+      { "spheres": { "Spirit": 3, "Life": 4 } }
+    ],
+    "tags": ["shapechanging", "spirit"],
+    "source": [
+      { "book": "HDYDT", "page": 20, "section": "Conjuration, Transformation, Shapechanging, and Modification: Shapechanging Shapechangers" }
+    ]
+  },
+  {
+    "id": "split-into-several-creatures",
+    "name": "Split into Several Creatures",
+    "kind": "feat",
+    "summary": "Become several separate living creatures at once, each sharing your mind and spirit. As long as one of them survives, so do you.",
+    "system": "One creature per success over the base. Each has your health levels and Abilities; their wounds all come back to you when they merge, so heal first. Any survivor can turn back into you, and the others vanish when it does. See Everywhere at Once in Mystic Travel.",
+    "combos": [
+      { "spheres": { "Correspondence": 4, "Life": 4, "Mind": 2 } },
+      { "spheres": { "Life": 5 }, "note": "a Master of Life, without the other Spheres" }
+    ],
+    "optional": [
+      { "spheres": { "Mind": 2 }, "purpose": "with Life 5 alone, split your awareness between the bodies without trouble" }
+    ],
+    "tags": ["shapechanging", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 21, "section": "Conjuration, Transformation, Shapechanging, and Modification: Multiple Forms" }
+    ]
+  },
+  {
+    "id": "alter-attributes-with-life",
+    "name": "Raise or Lower Attributes with Life",
+    "kind": "feat",
+    "summary": "Reshape a body to boost or weaken its Attributes: bigger muscles, finer features, faster reflexes, keener senses for Perception, or a reworked brain for Intelligence or Wits.",
+    "system": "One dot up or down per success, for the Effect's duration. To keep raised Attributes for good, pay half the usual experience; until you do, the body rejects them for 1 lethal health level a day, no soak. Inhuman mods such as claws, wings or cybernetics stay only as permanent Paradox dots bought as the Enhancements Background. Radical permanent changes may bring Genetic Flaws.",
+    "combos": [
+      { "spheres": { "Life": 3 }, "note": "on yourself" },
+      { "spheres": { "Life": 4 }, "note": "on someone else" }
+    ],
+    "coincidentalIf": "The Attributes stay in the human range of 1 to 5 dots and the subject's looks do not change suddenly or radically.",
+    "vulgarity": "depends",
+    "tags": ["body"],
+    "source": [
+      { "book": "HDYDT", "page": 21, "section": "Conjuration, Transformation, Shapechanging, and Modification: Altering Characteristics" },
+      { "book": "HDYDT", "page": 22, "section": "Conjuration, Transformation, Shapechanging, and Modification: Permanent Modifications" }
+    ]
+  },
+  {
+    "id": "restore-original-form",
+    "name": "Restore Someone's Original Form",
+    "kind": "feat",
+    "summary": "Undo another mage's shapechange, even a permanent one, and put the subject back into its true shape.",
+    "system": "Either unweave it with Life countermagick that beats the original successes, or cast a new shapechange back to the original form. The mage who made a permanent change can always undo it herself.",
+    "combos": [
+      { "spheres": { "Life": 4 }, "note": "reverse a change that took Life 4" },
+      { "spheres": { "Life": 5 }, "note": "reverse a change that took Life 5" }
+    ],
+    "tags": ["shapechanging", "defense"],
+    "source": [
+      { "book": "HDYDT", "page": 21, "section": "Conjuration, Transformation, Shapechanging, and Modification: Permanent Changes" }
+    ]
+  },
+  {
+    "id": "change-sex-or-gender",
+    "name": "Change Sex or Gender",
+    "kind": "feat",
+    "summary": "Change a body's sex with Life and, if wanted, the inner sense of gender with Mind, for yourself or, with more skill, for someone else.",
+    "system": "Counts as a similar shape: 2 successes on yourself, 4 on someone else. Long immersion as the other sex costs 1 Willpower every 3 days unless the form is bought for 2 experience points.",
+    "combos": [
+      { "spheres": { "Life": 3 }, "note": "your own body", "inferred": ["Life"] },
+      { "spheres": { "Life": 4 }, "note": "someone else's body", "inferred": ["Life"] }
+    ],
+    "optional": [
+      { "spheres": { "Mind": 4 }, "purpose": "change the psychological sense of gender as well", "inferred": ["Mind"] }
+    ],
+    "coincidentalIf": "The change is subtle, like becoming your own look-alike twin brother or shifting body language with a few cosmetic touches; an obvious total change is vulgar.",
+    "vulgarity": "depends",
+    "tags": ["shapechanging", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 22, "section": "Conjuration, Transformation, Shapechanging, and Modification: Sex, Gender, and Shapechanging" }
+    ]
+  },
+  {
+    "id": "impersonate-with-life-magick",
+    "name": "Impersonate Someone with Life Magick",
+    "kind": "feat",
+    "summary": "Copy another person's looks, on yourself or on a clone or ally, to pass as that individual. Looking right is easy; acting right for long is not.",
+    "system": "Roll Intelligence or Wits + Subterfuge, difficulty 5 or 6 for simple deceptions and higher for hard ones. Add +1 for small talk and everyday contact, +2 with coworkers and casual friends, +3 with family, close friends and lovers, until the impostor has had time to adjust. Failure is a small slip; a botch threatens to expose the whole act.",
+    "combos": [
+      { "spheres": { "Life": 3 }, "note": "your own appearance", "inferred": ["Life"] },
+      { "spheres": { "Life": 4 }, "note": "someone else's appearance", "inferred": ["Life"] }
+    ],
+    "tags": ["stealth", "social", "shapechanging"],
+    "source": [
+      { "book": "HDYDT", "page": 25, "section": "Conjuration, Transformation, Shapechanging, and Modification: Impersonating Other Beings" }
+    ]
+  },
+  {
+    "id": "create-simple-organisms",
+    "name": "Create Simple Organisms from Energy",
+    "kind": "feat",
+    "summary": "Make plants, crabs, ants and similar simple life out of raw energy. Their social life is mostly chemistry, so a new ant fits into its colony as long as the basics are right.",
+    "combos": [
+      { "spheres": { "Life": 3, "Prime": 2 } }
+    ],
+    "tags": ["creation", "conjuration"],
+    "source": [
+      { "book": "HDYDT", "page": 24, "section": "Conjuration, Transformation, Shapechanging, and Modification: Creating Living Things" }
+    ]
+  },
+  {
+    "id": "create-a-higher-organism",
+    "name": "Create a Higher Organism",
+    "kind": "feat",
+    "summary": "Build a complex creature such as a cat, a dog or a person from nothing: a body, a mind, the energy to animate them, and a soul if you want one.",
+    "system": "Needs at least Life 5 (body), Mind 5 (mind) and Prime 2 (animating energy), plus Spirit 5 for a soul. Unusual powers need extra Spheres on top. The new being knows nothing yet: without long training it may take +3 difficulty on all but the simplest acts.",
+    "combos": [
+      { "spheres": { "Life": 5, "Mind": 5, "Prime": 2 } }
+    ],
+    "optional": [
+      { "spheres": { "Spirit": 5 }, "purpose": "give the creature a soul" }
+    ],
+    "tags": ["creation", "conjuration"],
+    "source": [
+      { "book": "HDYDT", "page": 18, "section": "Conjuration, Transformation, Shapechanging, and Modification: The Basics" },
+      { "book": "HDYDT", "page": 24, "section": "Conjuration, Transformation, Shapechanging, and Modification: Creating Living Things" }
+    ]
+  },
+  {
+    "id": "bind-a-spirit-into-a-mindless-body",
+    "name": "Bind a Spirit into a Mindless Body",
+    "kind": "feat",
+    "summary": "Skip making a mind: grow an empty body and seat a spirit inside it. The result is little more than that entity's puppet, which can bring its own trouble.",
+    "combos": [
+      { "spheres": { "Life": 5, "Spirit": 4, "Prime": 2 } }
+    ],
+    "tags": ["creation", "spirit", "summoning"],
+    "source": [
+      { "book": "HDYDT", "page": 24, "section": "Conjuration, Transformation, Shapechanging, and Modification: Creating Living Things" }
+    ]
+  },
+  {
+    "id": "rapid-cloning",
+    "name": "Rapid Cloning",
+    "kind": "feat",
+    "summary": "Grow a copy of an organism from a sample of it far faster than any lab could.",
+    "system": "Life 5 / Mind 5 / Prime 2, often with Time 3 to run the clock faster. The clone still needs teaching and training before it does more than stand around. Sleeper labs can clone simple animals the slow way without magick.",
+    "combos": [
+      { "spheres": { "Life": 5, "Mind": 5, "Prime": 2 } }
+    ],
+    "optional": [
+      { "spheres": { "Time": 3 }, "purpose": "speed up the clone's growth" }
+    ],
+    "tags": ["creation", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 24, "section": "Conjuration, Transformation, Shapechanging, and Modification: Creating Living Things" }
+    ]
+  },
+  {
+    "id": "conjure-simple-beasts",
+    "name": "Conjure Simple Beasts to Fight or Labor",
+    "kind": "feat",
+    "summary": "Call instant creatures into being to fight your battles or do simple work. They are good for little else.",
+    "combos": [
+      { "spheres": { "Life": 5, "Mind": 5, "Prime": 2 }, "inferred": ["Life", "Mind", "Prime"] }
+    ],
+    "vulgarity": "vulgar",
+    "tags": ["creation", "conjuration", "combat"],
+    "source": [
+      { "book": "HDYDT", "page": 24, "section": "Conjuration, Transformation, Shapechanging, and Modification: Creating Living Things" }
+    ]
+  },
+  {
+    "id": "speed-teach-a-new-creature",
+    "name": "Speed-Teach a New Creature",
+    "kind": "feat",
+    "summary": "Imprint skills and knowledge straight into a freshly made creature's mind so it can function sooner.",
+    "system": "Mind 4 or 5, and many successes for anything close to real intelligence, since even a pet knows a staggering amount. Untaught creations may suffer +3 difficulty on all but the simplest tasks. Time 3 speeds the learning up, but that is vulgar.",
+    "combos": [
+      { "spheres": { "Mind": 4 } }
+    ],
+    "optional": [
+      { "spheres": { "Time": 3 }, "purpose": "speed up the learning (vulgar)" }
+    ],
+    "tags": ["mental", "creation"],
+    "source": [
+      { "book": "HDYDT", "page": 24, "section": "Conjuration, Transformation, Shapechanging, and Modification: Creating Living Things" }
+    ]
+  },
+  {
+    "id": "copy-a-mind-into-a-clone",
+    "name": "Copy a Mind into a Clone",
+    "kind": "feat",
+    "summary": "Transfer or duplicate an existing consciousness, your own included, into a blank clone body, or send your own mind into a duplicate of yourself.",
+    "system": "The clone has the Abilities the original had at the moment of imprinting and nothing learned later, unless the original mind itself moves over. Muscle memory lags behind, so physical skills need an adjustment period. Bruises and changes on one body do not show on the others.",
+    "combos": [
+      { "spheres": { "Mind": 5 } }
+    ],
+    "tags": ["mental", "creation", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 24, "section": "Conjuration, Transformation, Shapechanging, and Modification: Creating Living Things" },
+      { "book": "HDYDT", "page": 25, "section": "Conjuration, Transformation, Shapechanging, and Modification: Duplicating Yourself" }
+    ]
+  },
+  {
+    "id": "control-several-duplicate-bodies",
+    "name": "Control Several Duplicate Bodies",
+    "kind": "feat",
+    "summary": "Run several cloned copies of yourself at the same time from one mind.",
+    "system": "Usually 1 success per extra self. Injuries and changes to one body do not carry over to the others, which can raise awkward questions. See Everywhere at Once in Mystic Travel.",
+    "combos": [
+      { "spheres": { "Correspondence": 5, "Mind": 5, "Life": 3 } }
+    ],
+    "tags": ["body", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 25, "section": "Conjuration, Transformation, Shapechanging, and Modification: Duplicating Yourself" }
+    ]
+  }
+]

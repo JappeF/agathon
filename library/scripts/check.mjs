@@ -96,7 +96,7 @@ const canon = (n) => ALIASES[n] ?? n;
 // One more rank after the first: "Life 2 (3)", "Spirit 2 or 3", "Mind 1-3", "Entropy 3 (objects), 4 (living
 // things), or 5", "Mind 3 for yourself or 4 for others". Digits followed by a unit are not ranks.
 const UNITS = 'successes|success|dice|turns?|points?|levels?|health|difficulty|times|hours?|minutes?|days?|weeks?|months?|years?|dots?|yards|feet|miles|Quintessence|Paradox';
-const TAIL_ITEM = `\\s*\\+?(?:\\s*\\([^()]{1,120}\\)|\\s+(?:for|to|on|in|with|against)\\s[^.;:()\\d]{1,40}?)?\\s*(?:\\(|,\\s*or\\b|,|\\bor\\b|/|-|\\bto\\b|\\band\\b)\\s*(\\d)(?!\\d)(?!\\s*(?:${UNITS})\\b)\\)?`;
+const TAIL_ITEM = `\\s*\\+?(?:\\s*\\([^()]{1,120}\\)|\\s+(?:for|to|on|in|with|against)\\s[^.;:()\\d]{1,40}?)?\\s*(?:\\(|,?\\s*\\bor\\s+even\\b|,\\s*or\\b|,|\\bor\\b|/|-|\\bto\\b|\\band\\b)\\s*(\\d)(?!\\d)(?!\\s*(?:${UNITS})\\b)\\)?`;
 
 // All Sphere+rank pairs a stretch of book text states, as a Map "Sphere:n" -> positions.
 const pairCache = new Map();
@@ -131,7 +131,7 @@ function statedPairs(book, pdfPage) {
     if (range) for (let r = first; r <= Number(range[1]); r++) add([names.at(-1)], [r], m.index);
   }
   // "Rank 3 Forces", "rank-3 Forces", "level 3 Forces"
-  for (const m of text.matchAll(new RegExp(`\\b(?:Rank|rank|level|Level)[\\s-]*(\\d)\\s+(${NAME_RE})`, 'g'))) add([m[2]], [Number(m[1])], m.index);
+  for (const m of text.matchAll(new RegExp(`\\b(?:Rank|rank|level|Level)[\\s-]*(\\d)\\s+(?:(?:in|of)\\s+(?:the\\s+)?)?(${NAME_RE})`, 'g'))) add([m[2]], [Number(m[1])], m.index);
   // "three dots of Forces", "two dots in Life", "3 dots of Mind"
   for (const m of text.matchAll(new RegExp(`\\b(one|two|three|four|five|\\d)[\\s-]+dots?\\s+(?:of|in)\\s+(?:the\\s+)?(${NAME_RE})`, 'gi')))
     add([m[2].replace(/^\w/, (c) => c.toUpperCase())], [WORDNUM[m[1].toLowerCase()] ?? Number(m[1])], m.index);

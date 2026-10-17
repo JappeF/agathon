@@ -1,0 +1,790 @@
+[
+  {
+    "id": "read-emotional-state",
+    "name": "Read Someone's Emotional State",
+    "kind": "feat",
+    "summary": "Get a sense of how another person is feeling right now, either by reading their mind or by sensing their spiritual state.",
+    "combos": [
+      { "spheres": { "Mind": 1 }, "note": "through the mind" },
+      { "spheres": { "Spirit": 1 }, "note": "through the spirit" }
+    ],
+    "tags": ["perception", "social"],
+    "source": [
+      { "book": "HDYDT", "page": 114, "section": "Uncanny Influence: The Basics" }
+    ]
+  },
+  {
+    "id": "hdydt-shift-mood",
+    "name": "Shift Someone's Mood",
+    "kind": "feat",
+    "summary": "Push another character's mood one way or another, by working on their mental currents, on the chemistry of their body, or on both together.",
+    "system": "Against one target a Mind Effect rolls against their Willpower (at least 4), or Willpower +3 when it makes them do what they do not want. Against mages the difficulty is Willpower +3, against some Night-Folk Willpower +5. Mind influence is normally coincidental.",
+    "combos": [
+      { "spheres": { "Mind": 2 }, "note": "mental currents" },
+      { "spheres": { "Life": 3 }, "note": "body chemistry" },
+      { "spheres": { "Mind": 2, "Life": 3 }, "note": "both at once" }
+    ],
+    "tags": ["social"],
+    "source": [
+      { "book": "HDYDT", "page": 114, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" }
+    ]
+  },
+  {
+    "id": "hdydt-read-surface-thoughts",
+    "name": "Read Surface Thoughts",
+    "kind": "feat",
+    "summary": "Pick up whatever another character is thinking at the moment, without digging any deeper.",
+    "system": "Difficulty is the target's Willpower, with 4 as the minimum. A surface read on someone with Willpower 3 is difficulty 4.",
+    "combos": [
+      { "spheres": { "Mind": 2 } }
+    ],
+    "tags": ["perception", "communication"],
+    "source": [
+      { "book": "HDYDT", "page": 114, "section": "Uncanny Influence: The Basics" }
+    ]
+  },
+  {
+    "id": "read-biological-cues",
+    "name": "Read Biological Cues",
+    "kind": "feat",
+    "summary": "Read a living creature's body for the chemical and physical signals that betray its fear, arousal, aggression and other reactions.",
+    "combos": [
+      { "spheres": { "Life": 1 } }
+    ],
+    "tags": ["perception", "social"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" }
+    ]
+  },
+  {
+    "id": "invade-thoughts-and-dreams",
+    "name": "Invade Another's Thoughts and Dreams",
+    "kind": "feat",
+    "summary": "Push into someone else's mind: go through their thoughts or step into their dreams while they sleep.",
+    "combos": [
+      { "spheres": { "Mind": 3 } }
+    ],
+    "tags": ["mind-control", "mental", "communication"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" }
+    ]
+  },
+  {
+    "id": "mass-mind-control",
+    "name": "Mass Mind Control",
+    "kind": "feat",
+    "summary": "Take hold of a whole crowd's minds at once, or wipe out, completely rebuild or even create a person's consciousness.",
+    "system": "Large numbers of targets need many successes; see the Magickal Feats chart. Against a group the difficulty follows the normal coincidental or vulgar values rather than one Willpower; a group of mages or Night-Folk is difficulty 8 when you are subtle and 10 when you are blatant.",
+    "combos": [
+      { "spheres": { "Mind": 5 } }
+    ],
+    "tags": ["mind-control"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" }
+    ]
+  },
+  {
+    "id": "scatter-or-focus-thoughts",
+    "name": "Scatter or Focus Someone's Thoughts",
+    "kind": "feat",
+    "summary": "Work on the odds behind a person's perceptions and nerve reflexes so their thinking falls apart or snaps into sharp focus.",
+    "combos": [
+      { "spheres": { "Entropy": 5 } }
+    ],
+    "tags": ["mental", "luck"],
+    "source": [
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" }
+    ]
+  },
+  {
+    "id": "bewitch-from-a-distance",
+    "name": "Bewitch Someone from a Distance",
+    "kind": "feat",
+    "summary": "Work influence magick on a person who is not in front of you. Normally that takes Correspondence alongside the influence Sphere, but a phone, text or email to someone you already have a tie to can replace it, and mass media can reach crowds.",
+    "system": "Correspondence caps the Effect: Mind 4 at range needs Correspondence 4. Virtual messages reach one person; a mass-media Effect needs at least 10 successes, often 30 or more, works slowly and suits mild ideas better than orders.",
+    "combos": [
+      { "spheres": { "Correspondence": 2, "Mind": 2 }, "note": "Correspondence at least equal to the Mind rank used", "inferred": ["Mind"] }
+    ],
+    "tags": ["social", "mind-control", "technocracy"],
+    "source": [
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 118, "section": "Uncanny Influence: Instruments of Influence" },
+      { "book": "HDYDT", "page": 119, "section": "Uncanny Influence: Instruments of Influence" }
+    ]
+  },
+  {
+    "id": "link-people-across-distance",
+    "name": "Bind Distant People Together",
+    "kind": "feat",
+    "summary": "Tie two or more people in different places to each other: a love spell that links two hearts far apart, or a psychic bond shared by a scattered group.",
+    "system": "The Data Sphere works the same as Correspondence for this.",
+    "combos": [
+      { "spheres": { "Correspondence": 3, "Mind": 3 } }
+    ],
+    "tags": ["social", "communication", "technocracy"],
+    "source": [
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" }
+    ]
+  },
+  {
+    "id": "detect-mind-control",
+    "name": "Spot Another Mage's Mind Control",
+    "kind": "feat",
+    "summary": "Look over someone who is acting strangely and see whether a mage's Mind magick is working on them. Resonance often shows whose signature it is.",
+    "combos": [
+      { "spheres": { "Mind": 1 } }
+    ],
+    "tags": ["perception", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 117, "section": "Uncanny Influence: Resistance, Recognition, and Duration" }
+    ]
+  },
+  {
+    "id": "remove-mental-influence",
+    "name": "Lift Another Mage's Mental Influence",
+    "kind": "feat",
+    "summary": "Clear away someone else's mind control or influence from a person, either by unweaving it as countermagick or by removing it outright.",
+    "system": "Either way you need more successes than the original caster rolled. A target can also shake off an intrusion himself with Willpower at difficulty 6 by beating the caster's successes.",
+    "combos": [
+      { "spheres": { "Mind": 4 } }
+    ],
+    "tags": ["mental", "defense"],
+    "source": [
+      { "book": "HDYDT", "page": 117, "section": "Uncanny Influence: Resistance, Recognition, and Duration" }
+    ]
+  },
+  {
+    "id": "trigger-conditioning",
+    "name": "Trigger-Conditioning",
+    "kind": "feat",
+    "summary": "Plant a Mind Effect that lies dormant until a trigger sets it off: a code word, a feeling, an activity or a set time.",
+    "system": "When the trigger fires, the subject rolls Willpower at difficulty 8; success breaks the conditioning, failure means she carries out the planted command.",
+    "combos": [
+      { "spheres": { "Mind": 2, "Time": 4 }, "note": "Mind at the rank of the Effect being planted", "inferred": ["Mind"] }
+    ],
+    "tags": ["mind-control", "time"],
+    "source": [
+      { "book": "HDYDT", "page": 117, "section": "Uncanny Influence: Resistance, Recognition, and Duration" }
+    ]
+  },
+  {
+    "id": "subtle-mind-social-boost",
+    "name": "Ease Social Rolls with Subtle Mind Magick",
+    "kind": "feat",
+    "summary": "Use a quiet, coincidental Mind nudge to make ordinary social actions easier, and alternate it with plain charm and social feats so nobody sees magick at work.",
+    "system": "Lowers the difficulty of the social roll as per Magick Enhancing Abilities (-1 to -3). Followers from Cult, Retainers or Spies take minor influence at -3 difficulty or without a roll; major influence is at normal difficulty, and traumatic acts on them add +3.",
+    "combos": [
+      { "spheres": { "Mind": 2 }, "inferred": ["Mind"] }
+    ],
+    "vulgarity": "coincidental",
+    "tags": ["social"],
+    "source": [
+      { "book": "HDYDT", "page": 117, "section": "Uncanny Influence: The Social Element" }
+    ]
+  },
+  {
+    "id": "tweak-body-chemistry",
+    "name": "Tweak Body Chemistry",
+    "kind": "feat",
+    "summary": "Adjust hormones and pheromones, your own or someone else's, to stir emotions: smell right, dull pain, project raw aggression, or make a person feel uneasy or drawn in. It sways people without controlling their minds.",
+    "system": "Acts as a coincidental modifier of -1 to -3 on a related mundane roll, and at the Storyteller's call may give automatic success on easy tasks. Needs a paradigm that knows body chemistry; an optional rule asks for Science 3 with a biochemistry specialty.",
+    "combos": [
+      { "spheres": { "Life": 2 }, "note": "your own body" },
+      { "spheres": { "Life": 3 }, "note": "another person" }
+    ],
+    "coincidentalIf": "you do not make drastic, obviously magickal changes",
+    "tags": ["social", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 120, "section": "Uncanny Influence: Tweaking Chemistry" }
+    ]
+  },
+  {
+    "id": "emotional-surge-or-sudden-chill",
+    "name": "Emotional Surge or Sudden Chill",
+    "kind": "feat",
+    "summary": "Flood a target with one overwhelming feeling (rage, despair, lust, euphoria) until they lose their judgment, or flip it and drown them in deep calm instead.",
+    "system": "Each success takes one temporary Willpower; more successes than the target's Willpower rating leaves them in an irrational fit of passion. Difficulty is the target's Willpower, +1 to +3 if the feeling fights their current mood, -1 to -3 if it fits. The Life version uses Stamina +3 as difficulty.",
+    "combos": [
+      { "spheres": { "Mind": 2 }, "note": "mental surge" },
+      { "spheres": { "Life": 3 }, "note": "chemical burst in the body" }
+    ],
+    "tags": ["combat", "social", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 121, "section": "Uncanny Influence: Psychic Assault" }
+    ]
+  },
+  {
+    "id": "psychic-overload",
+    "name": "Psychic Overload",
+    "kind": "feat",
+    "summary": "Swamp a target with sensations and conflicting signals until they are stunned and reeling.",
+    "system": "Difficulty is the target's Willpower (Stamina +3 for the nerve version). Stuns if successes reach the target's Willpower; each success above it is one turn stunned. A stunned character can still move if attacked but loses one die per success.",
+    "combos": [
+      { "spheres": { "Mind": 3 }, "note": "mental overload" },
+      { "spheres": { "Entropy": 4, "Mind": 2 }, "note": "scrambled thoughts" },
+      { "spheres": { "Correspondence": 3, "Life": 3 }, "note": "shut down or overload the nerves and senses" }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "it comes through a believable instrument such as loud music or strobe lights",
+    "tags": ["combat", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 121, "section": "Uncanny Influence: Psychic Assault" },
+      { "book": "HDYDT", "page": 122, "section": "Uncanny Influence: Psychic Assault" }
+    ]
+  },
+  {
+    "id": "instant-madness-or-sanity",
+    "name": "Instant Madness or Sanity",
+    "kind": "feat",
+    "summary": "Blow apart a victim's grip on reality with hallucinations and wild impulses, or the reverse: snap an insane person back to sanity. Marauders and Malkavians cannot be cured this way.",
+    "system": "Instant shifts are vulgar; driving someone mad or sane slowly by plausible means can stay coincidental. Derangements are in M20 pp. 649-650.",
+    "combos": [
+      { "spheres": { "Mind": 4 } }
+    ],
+    "vulgarity": "depends",
+    "tags": ["combat", "mental", "mind-control", "healing"],
+    "source": [
+      { "book": "HDYDT", "page": 122, "section": "Uncanny Influence: Psychic Assault" }
+    ]
+  },
+  {
+    "id": "hdydt-psychic-blast",
+    "name": "Psychic Blast",
+    "kind": "feat",
+    "summary": "Hit a target's mind with a focused bolt of psychic force.",
+    "system": "A direct attack against the target's Willpower (mages and Night-Folk +3, vampires with Dominate +5), dealing bashing damage per the Base Damage or Duration chart. Vulgar, with the usual Paradox.",
+    "combos": [
+      { "spheres": { "Mind": 3 } }
+    ],
+    "vulgarity": "vulgar",
+    "tags": ["combat", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 122, "section": "Uncanny Influence: Psychic Assault" }
+    ]
+  },
+  {
+    "id": "psychic-shatter",
+    "name": "The Psychic Shatter",
+    "kind": "feat",
+    "summary": "Tear straight into the Pattern of a target's brain, Scanners style, dealing aggravated damage that armor and tough skin cannot stop.",
+    "system": "Difficulty is the target's Willpower (+3 or +5 for mages and Night-Folk). Only internal protection like a psychic shield can soak it. A survivor may need a Willpower roll, difficulty equal to health levels lost, to avoid Things Man Was Not Meant to Know. Extremely vulgar.",
+    "combos": [
+      { "spheres": { "Life": 3, "Mind": 3 } },
+      { "spheres": { "Mind": 3, "Prime": 2 } }
+    ],
+    "vulgarity": "vulgar",
+    "tags": ["combat", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 122, "section": "Uncanny Influence: Psychic Assault" },
+      { "book": "HDYDT", "page": 123, "section": "Uncanny Influence: Psychic Assault" }
+    ]
+  },
+  {
+    "id": "puppetry",
+    "name": "Puppetry: Take Over a Mind",
+    "kind": "feat",
+    "summary": "Override a person's will and run them like a puppet, from a gentle push toward something they half want to a total takeover they will not remember. Rewriting the person from the ground up takes Mind 5.",
+    "system": "Difficulty is Willpower for a willing subject, Willpower +3 for an unwilling one (mages and Night-Folk +3 or +5, plus another +3 to force Night-Folk). A nudge takes 2-3 successes, forcing an act takes one per point of Willpower, total command 10 (or 2 per Willpower point at Willpower 6+). Prior social feats lower the difficulty.",
+    "combos": [
+      { "spheres": { "Mind": 4 }, "note": "take control" },
+      { "spheres": { "Mind": 5 }, "note": "rewrite the person completely" }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "you seduce the subject into your control rather than suddenly jerking the strings",
+    "tags": ["mind-control"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 122, "section": "Uncanny Influence: Puppetry and Possession" },
+      { "book": "HDYDT", "page": 123, "section": "Uncanny Influence: Puppetry and Possession" }
+    ]
+  },
+  {
+    "id": "forge-memories",
+    "name": "Forge Memories",
+    "kind": "feat",
+    "summary": "Make a person forget something, remember what never happened, or recall it differently, by hypnosis, conditioning or a flash from a gadget.",
+    "system": "Willing or unwitting subjects use Willpower as difficulty, unwilling ones Willpower +3 and may resist. Erasing one small detail takes 1-2 successes; large wipes or overlays take 5 or more and can leave the subject confused and traumatized. At the Storyteller's option Mind 3 can blur a short stretch of time.",
+    "combos": [
+      { "spheres": { "Mind": 3 }, "note": "fog a brief event (Storyteller's option)" },
+      { "spheres": { "Mind": 4 }, "note": "simple changes" },
+      { "spheres": { "Mind": 5 }, "note": "extensive changes" }
+    ],
+    "tags": ["mind-control", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 123, "section": "Uncanny Influence: Puppetry and Possession" }
+    ]
+  },
+  {
+    "id": "awaken-an-objects-spirit",
+    "name": "Awaken the Spirit in an Object",
+    "kind": "feat",
+    "summary": "Wake the sleeping spirit inside a thing so it works a little better (a knife that never dulls, a car that starts easily) and exists in the Umbra as well. With Life the same works on microbes; complex creatures are awake already.",
+    "system": "Needs an animistic paradigm, and the spirit must be won over with offerings, songs or thanks. The edge is minor and story-based; real power needs a Fetish.",
+    "combos": [
+      { "spheres": { "Spirit": 3 }, "note": "a material object" },
+      { "spheres": { "Life": 2, "Spirit": 3 }, "note": "microbes or viruses" }
+    ],
+    "tags": ["spirit", "enchantment"],
+    "source": [
+      { "book": "HDYDT", "page": 123, "section": "Uncanny Influence: Puppetry and Possession" }
+    ]
+  },
+  {
+    "id": "invoke-spirit-possession",
+    "name": "Invoke Spirit Possession",
+    "kind": "feat",
+    "summary": "Put a spirit into an object, a creature or your own body, whether it likes it or not, and use it to influence both the host and the spirit.",
+    "system": "Sleepers with Willpower 5 or less cannot throw the spirit out. Others get one try a day: an extended resisted roll to 10 successes, each side rolling against the other's Willpower. Optional: -1 difficulty for a deeply compatible spirit and host, +1 for an obviously conflicted pair. Ejecting a spirit you invited yourself is a resisted Willpower roll.",
+    "combos": [
+      { "spheres": { "Spirit": 4 } }
+    ],
+    "tags": ["spirit", "summoning", "mind-control"],
+    "source": [
+      { "book": "HDYDT", "page": 123, "section": "Uncanny Influence: Invoking Spirit Possession" },
+      { "book": "HDYDT", "page": 124, "section": "Uncanny Influence: Invoking Spirit Possession" },
+      { "book": "HDYDT", "page": 125, "section": "Uncanny Influence: Spirit Possession Compatibility" }
+    ]
+  },
+  {
+    "id": "channel-spirit-gifts-through-possession",
+    "name": "Channel a Spirit's Gifts Through Possession",
+    "kind": "feat",
+    "summary": "Let an allied spirit into your body and use the bond as the focus for Life magick that matches it: a Wolf spirit giving you fur, quick reflexes or a full wolf shape.",
+    "combos": [
+      { "spheres": { "Life": 2 }, "note": "small changes such as furry skin" },
+      { "spheres": { "Life": 3 }, "note": "boosted reflexes" },
+      { "spheres": { "Life": 4 }, "note": "full change into the spirit's animal form" }
+    ],
+    "optional": [
+      { "spheres": { "Spirit": 4 }, "purpose": "invite the spirit into yourself without an Allies or Totem bond" }
+    ],
+    "tags": ["spirit", "shapechanging", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 124, "section": "Uncanny Influence: Invoking Spirit Possession" }
+    ]
+  },
+  {
+    "id": "exorcism",
+    "name": "Exorcise a Possessing Spirit",
+    "kind": "feat",
+    "summary": "Drive a possessing spirit out of a person or object and back where it came from, by prayer, ritual or ectoplasm-busting tech. You can also bribe it with your own Quintessence, which is risky.",
+    "system": "Extended resisted Willpower rolls at difficulty 8, one per hour. The spirit wins at successes equal to your Willpower + Avatar; you need 10 for a minor spirit, 15 for a stronger one, 20+ for a major Umbrood, 30+ for a mighty one. A spirit's botch ejects it; your botch lets it take you over. True Faith acts as Spirit 4 against foes of the faith.",
+    "combos": [
+      { "spheres": { "Spirit": 4 } }
+    ],
+    "optional": [
+      { "spheres": { "Prime": 3 }, "purpose": "bribe the spirit: each point of Quintessence given is -1 difficulty (max -3)" }
+    ],
+    "tags": ["spirit", "defense"],
+    "source": [
+      { "book": "HDYDT", "page": 125, "section": "Uncanny Influence: Exorcism" }
+    ]
+  },
+  {
+    "id": "spot-a-spirits-mark",
+    "name": "Spot a Spirit's Mark",
+    "kind": "feat",
+    "summary": "Notice the traces a possessing spirit leaves on its host: a limp, a scent, an odd craving, raven-black eyes. A Lore roll may tell you which spirit left it.",
+    "system": "Without the Sphere a Perception + Awareness roll can still spot it, difficulty set by the spirit's power.",
+    "combos": [
+      { "spheres": { "Spirit": 1 } }
+    ],
+    "tags": ["perception", "spirit"],
+    "source": [
+      { "book": "HDYDT", "page": 126, "section": "Uncanny Influence: The Spirit's Mark" }
+    ]
+  },
+  {
+    "id": "detect-a-lie",
+    "name": "Detect a Lie",
+    "kind": "feat",
+    "summary": "Catch a deliberate falsehood, either by noticing the hitch in the liar's thoughts or by reading the tiny tells people give off when they say what they know is untrue. Someone who believes her own words does not read as lying.",
+    "system": "Simple method: one roll against the target's Willpower. Resisted method: the liar's base difficulty is 4-5 for a plausible lie, 8-10 for an absurd one; the seeker rolls against the liar's Willpower. A liar without fear or conscience may add +3.",
+    "combos": [
+      { "spheres": { "Mind": 1 }, "note": "mental stutters" },
+      { "spheres": { "Entropy": 1 }, "note": "tells of deliberate falsehood" }
+    ],
+    "coincidentalIf": "you are not blatant about it; a long look into the eyes is fine, conjuring a demon of lies is not",
+    "tags": ["perception", "social"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 126, "section": "Uncanny Influence: Truth and Deception" },
+      { "book": "HDYDT", "page": 127, "section": "Uncanny Influence: Truth and Deception" }
+    ]
+  },
+  {
+    "id": "coax-out-the-truth",
+    "name": "Coax a Liar into Giving Herself Away",
+    "kind": "feat",
+    "summary": "Trick a liar into revealing the lie, either by working on her mind or by tilting the odds so she is more likely to tell the truth.",
+    "combos": [
+      { "spheres": { "Mind": 2 }, "note": "trick her mind" },
+      { "spheres": { "Entropy": 2 }, "note": "sway the odds; Entropy 3 sways them harder" }
+    ],
+    "tags": ["social", "luck"],
+    "source": [
+      { "book": "HDYDT", "page": 126, "section": "Uncanny Influence: Truth and Deception" },
+      { "book": "HDYDT", "page": 127, "section": "Uncanny Influence: Truth and Deception" }
+    ]
+  },
+  {
+    "id": "compel-the-truth",
+    "name": "Compel Someone to Speak the Truth",
+    "kind": "feat",
+    "summary": "Make a person tell the truth even though she does not want to.",
+    "combos": [
+      { "spheres": { "Mind": 3 }, "note": "strong mental push" },
+      { "spheres": { "Mind": 4 }, "note": "outright command" }
+    ],
+    "tags": ["mind-control", "social"],
+    "source": [
+      { "book": "HDYDT", "page": 126, "section": "Uncanny Influence: Truth and Deception" }
+    ]
+  },
+  {
+    "id": "break-a-liars-concentration",
+    "name": "Break a Liar's Concentration",
+    "kind": "feat",
+    "summary": "Unravel a liar's focus so completely that she can no longer hold the story together and the truth comes out.",
+    "combos": [
+      { "spheres": { "Entropy": 5 } }
+    ],
+    "tags": ["social", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 127, "section": "Uncanny Influence: Truth and Deception" }
+    ]
+  },
+  {
+    "id": "sell-a-lie-with-magick",
+    "name": "Back a Lie with Magick",
+    "kind": "feat",
+    "summary": "Use subtle Mind or Entropy magick to make your own lies go down easier, or to help someone else's lie detection.",
+    "system": "Lowers the difficulty of the Subterfuge roll as per Magick Enhancing Abilities. The base difficulty of the lie is 4-5 if believable and 8-10 if outrageous, so a small lie gains more than a huge one.",
+    "combos": [
+      { "spheres": { "Mind": 2 }, "inferred": ["Mind"] },
+      { "spheres": { "Entropy": 2 }, "inferred": ["Entropy"] }
+    ],
+    "tags": ["social"],
+    "source": [
+      { "book": "HDYDT", "page": 126, "section": "Uncanny Influence: Truth and Deception" },
+      { "book": "HDYDT", "page": 127, "section": "Uncanny Influence: Truth and Deception" }
+    ]
+  },
+  {
+    "id": "tell-tale-heart-syndrome",
+    "name": "Tell-Tale Heart Syndrome (The Perry Mason Trick)",
+    "kind": "feat",
+    "summary": "Raise a liar's anxiety, squeeze her with circumstance and feed her a growing guilt until she breaks down and confesses, usually in a dramatic outburst. Innocent people sometimes confess too.",
+    "system": "Uses the normal truth-seeking rolls. Works best with all three Spheres and needs at least two of them. A success ruins the liar's credibility and rattles her emotionally.",
+    "combos": [
+      { "spheres": { "Entropy": 2, "Life": 3, "Mind": 2 }, "note": "full version" },
+      { "spheres": { "Entropy": 2, "Life": 3 }, "note": "without Mind" },
+      { "spheres": { "Life": 3, "Mind": 2 }, "note": "without Entropy" },
+      { "spheres": { "Entropy": 2, "Mind": 2 }, "note": "without Life" }
+    ],
+    "tags": ["social", "mind-control"],
+    "source": [
+      { "book": "HDYDT", "page": 128, "section": "Uncanny Influence: Truth and Deception" }
+    ]
+  },
+  {
+    "id": "lull-to-sleep",
+    "name": "Lull Someone to Sleep",
+    "kind": "feat",
+    "summary": "Coax a person toward sleep with a wave of drowsiness, a firm mental suggestion, or tired body chemistry. They drift off in their own time and can fight it for a while.",
+    "system": "The target can resist with Willpower rolls, or Stamina to stay awake by sheer toughness. Other people can wake the sleeper. Extra successes or the Magickal Feats chart put several people to sleep.",
+    "combos": [
+      { "spheres": { "Mind": 2 }, "note": "gentle sleepiness" },
+      { "spheres": { "Mind": 3 }, "note": "strong suggestion" },
+      { "spheres": { "Life": 3 }, "note": "drowsy body chemistry" }
+    ],
+    "vulgarity": "coincidental",
+    "tags": ["mind-control", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 128, "section": "Uncanny Influence: Sleep Spells" },
+      { "book": "HDYDT", "page": 129, "section": "Uncanny Influence: Sleep Spells" }
+    ]
+  },
+  {
+    "id": "instant-sleep",
+    "name": "Knock Someone Out Instantly",
+    "kind": "feat",
+    "summary": "Drop a target where he stands, either by switching his body over to sleep or with a mental order to sleep at once. He stays out until the Effect ends or you wake him.",
+    "system": "The target can try to resist as usual. Extra successes or the Magickal Feats chart cover several targets.",
+    "combos": [
+      { "spheres": { "Life": 4 }, "note": "switch the body to sleep" },
+      { "spheres": { "Mind": 4 }, "note": "command to sleep" }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "it comes through something like sleep gas or a knockout blow",
+    "tags": ["mind-control", "body", "combat"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 128, "section": "Uncanny Influence: Sleep Spells" }
+    ]
+  },
+  {
+    "id": "mental-illusion",
+    "name": "Plant a Mental Illusion",
+    "kind": "feat",
+    "summary": "Plant sights, sounds or other false sensations straight into a target's head. Nobody else perceives them, so the victim may just look crazy.",
+    "system": "Feats of Illusion: 1 success for one simple sensation, 2 if it moves, 3 for complex and still or two senses, 4 complex and moving, 5 reflexive, 6+ interactive. Lasts a scene; each extra Duration level costs a success. To disbelieve, roll Willpower at 3 (absurd) to 9 (too likely) needing as many successes as the caster.",
+    "combos": [
+      { "spheres": { "Mind": 3 } }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "it comes through drugs, hypnosis or some other reason to doubt one's senses, not a stare into the eyes",
+    "tags": ["illusion", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 129, "section": "Uncanny Influence: Arts of Illusion" },
+      { "book": "HDYDT", "page": 131, "section": "Uncanny Influence: I Disbelieve!" }
+    ]
+  },
+  {
+    "id": "chemical-hallucinations",
+    "name": "Hallucinations Through Body Chemistry",
+    "kind": "feat",
+    "summary": "Fool any of a person's senses by tampering with the chemistry and nerve signals behind them. You need to know what you are doing for it to produce the hallucination you want.",
+    "combos": [
+      { "spheres": { "Life": 3 }, "inferred": ["Life"] }
+    ],
+    "tags": ["illusion", "body"],
+    "source": [
+      { "book": "HDYDT", "page": 129, "section": "Uncanny Influence: Arts of Illusion" }
+    ]
+  },
+  {
+    "id": "physical-illusion",
+    "name": "Project a Physical Illusion",
+    "kind": "feat",
+    "summary": "Shape light, sound and other forces into an illusion that everyone present can perceive, powered by Prime. A small flicker or noise needs little; a large, elaborate scene needs high ranks.",
+    "system": "Successes follow the Feats of Illusion chart (1 for one simple sensation up to 6+ for interactive); a fully convincing illusion needs at least 5, a realistic tank 20 or more. Lasts a scene. Close scrutiny (Perception + Alertness) can spot flaws, but disbelief alone does nothing. Cameras see through it unless it is built to fool them.",
+    "combos": [
+      { "spheres": { "Forces": 2, "Prime": 2 }, "note": "a small trick of light or sound" },
+      { "spheres": { "Forces": 4, "Prime": 3 }, "note": "a large, elaborate illusion" }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "it looks like something that could be real, or onlookers expect special effects from you",
+    "tags": ["illusion", "elemental"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 129, "section": "Uncanny Influence: Arts of Illusion" },
+      { "book": "HDYDT", "page": 131, "section": "Uncanny Influence: I Disbelieve!" }
+    ]
+  },
+  {
+    "id": "illusion-that-fools-cameras",
+    "name": "Illusion That Fools Cameras",
+    "kind": "feat",
+    "summary": "Build a complex illusion specifically for recording gear so a video camera captures it as real.",
+    "system": "Also needs a successful roll with several dots in the right Technology Skill. Only very simple, brief illusions fool recordings without this.",
+    "combos": [
+      { "spheres": { "Forces": 3, "Prime": 2 } }
+    ],
+    "tags": ["illusion", "technology"],
+    "source": [
+      { "book": "HDYDT", "page": 130, "section": "Uncanny Influence: Arts of Illusion" }
+    ]
+  },
+  {
+    "id": "immersive-illusion",
+    "name": "Immersive Illusion (Holodeck Level)",
+    "kind": "feat",
+    "summary": "Create a physical illusion as convincing as reality, one that reacts freely to people, can be touched and creates real sensations. It is still not real.",
+    "system": "No amount of successes reaches this level with lower ranks. A mental illusion can be immersive without these Spheres.",
+    "combos": [
+      { "spheres": { "Forces": 4, "Mind": 4, "Prime": 4 } }
+    ],
+    "tags": ["illusion", "elemental", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 130, "section": "Uncanny Influence: Arts of Illusion" }
+    ]
+  },
+  {
+    "id": "phantasmal-wounds",
+    "name": "Phantasmal Wounds",
+    "kind": "feat",
+    "summary": "Tie a psychic attack to a mental illusion so the victim sees a phantom claw or blade and real injuries appear on her body, however you choose to shape them.",
+    "system": "Each success above the illusion's base adds two levels of damage.",
+    "combos": [
+      { "spheres": { "Mind": 3 }, "note": "bashing damage" },
+      { "spheres": { "Life": 3, "Mind": 3 }, "note": "aggravated damage" }
+    ],
+    "tags": ["illusion", "combat"],
+    "source": [
+      { "book": "HDYDT", "page": 130, "section": "Uncanny Influence: Arts of Illusion" },
+      { "book": "HDYDT", "page": 131, "section": "Uncanny Influence: Arts of Illusion" }
+    ]
+  },
+  {
+    "id": "illusion-with-real-force",
+    "name": "Illusion Backed by Real Force",
+    "kind": "feat",
+    "summary": "Put real elemental force behind a physical illusion, so it hits with blasts of wind or steam, or an illusory robot actually picks someone up and flies off with them.",
+    "system": "Usually bashing damage, lethal or aggravated with things like radiation or steam. Each success above the illusion's base adds two levels of damage. Lifting uses the Forces and Weight chart.",
+    "combos": [
+      { "spheres": { "Forces": 3, "Prime": 2 }, "inferred": ["Forces"] }
+    ],
+    "tags": ["illusion", "combat", "elemental"],
+    "source": [
+      { "book": "HDYDT", "page": 130, "section": "Uncanny Influence: Arts of Illusion" },
+      { "book": "HDYDT", "page": 131, "section": "Uncanny Influence: Arts of Illusion" }
+    ]
+  },
+  {
+    "id": "nudge-fate-and-fortune",
+    "name": "Nudge Fate and Fortune",
+    "kind": "feat",
+    "summary": "Tilt chance in small ways using what is already there: arrive at the perfect moment, decide how dice fall, delay a bus, make a gun run dry. Rank 3 gives finer control. It cannot conjure a taxi from nowhere.",
+    "system": "Small, likely tweaks are coincidental and need 1-2 successes (an enemy tripping on a crack: difficulty 5). Unlikely results are vulgar and need 5 or more. Coincidentally, the Storyteller decides how the result comes about; picking the exact outcome yourself is vulgar.",
+    "combos": [
+      { "spheres": { "Entropy": 2 }, "note": "small nudges" },
+      { "spheres": { "Entropy": 3 }, "note": "more precise control" }
+    ],
+    "vulgarity": "depends",
+    "tags": ["luck"],
+    "source": [
+      { "book": "HDYDT", "page": 115, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 132, "section": "Uncanny Influence: Fate and Fortune" }
+    ]
+  },
+  {
+    "id": "dangerous-coincidence",
+    "name": "Arrange a Dangerous Coincidence",
+    "kind": "feat",
+    "summary": "Steer an enemy into a hazard that is already around, like a speeding car or a rotten floorboard. Below rank 4 Entropy does no damage itself, so the hazard does the work; forcing a specific disaster, like collapsing a floor, is vulgar Entropy 4.",
+    "system": "Coincidentally, the Storyteller decides the hazard and its damage; a likely hazard needs fewer successes than a freak one. Damage per Environmental Hazards in M20.",
+    "combos": [
+      { "spheres": { "Entropy": 2 }, "note": "lead them into it", "inferred": ["Entropy"] },
+      { "spheres": { "Entropy": 4 }, "note": "force a specific disaster" }
+    ],
+    "vulgarity": "depends",
+    "tags": ["luck", "combat"],
+    "source": [
+      { "book": "HDYDT", "page": 132, "section": "Uncanny Influence: Fate and Fortune" },
+      { "book": "HDYDT", "page": 133, "section": "Uncanny Influence: Fate and Fortune" }
+    ]
+  },
+  {
+    "id": "hdydt-bless-or-curse",
+    "name": "Bless or Curse a Person or Place",
+    "kind": "feat",
+    "summary": "Point the flow of events toward good or bad luck for a person, place or situation. From Entropy 4 you can lay an immediate blessing or curse straight onto a person.",
+    "system": "Coincidentally you wish for good or ill and the Storyteller decides what happens; naming the exact outcome (ace that interview) is vulgar. A simple blessing needs few successes, a sweeping one more. It lasts the Effect's Duration and touches those near you.",
+    "combos": [
+      { "spheres": { "Entropy": 3 }, "note": "nudge events toward good or bad fortune" },
+      { "spheres": { "Entropy": 4 }, "note": "immediate blessing or curse on a person" }
+    ],
+    "vulgarity": "depends",
+    "tags": ["luck"],
+    "source": [
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 133, "section": "Uncanny Influence: Blessings and Curses" }
+    ]
+  },
+  {
+    "id": "lasting-blessing-or-curse",
+    "name": "Lasting Blessing or Curse",
+    "kind": "feat",
+    "summary": "Work a blessing or curse into the Pattern of a person, object or place so it follows them after they leave you, like a car that stays unlucky for good.",
+    "combos": [
+      { "spheres": { "Entropy": 4, "Life": 4 }, "note": "a person, even after they leave" },
+      { "spheres": { "Entropy": 3, "Matter": 4 }, "note": "an object such as a car", "inferred": ["Entropy"] }
+    ],
+    "optional": [
+      { "spheres": { "Time": 4 }, "purpose": "set it to go off on a trigger event" }
+    ],
+    "tags": ["luck"],
+    "source": [
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 133, "section": "Uncanny Influence: Blessings and Curses" }
+    ]
+  },
+  {
+    "id": "binding-oath",
+    "name": "Binding Oath",
+    "kind": "feat",
+    "summary": "Tie a person's luck to a promise he makes freely and knowingly, so that breaking it turns his own sense of fate against him. You may talk him into it by any ordinary means, but forced or Mind-planted oaths fail.",
+    "system": "A vague doom is coincidental and Storyteller-shaped; a specific doom is vulgar but happens. A simple doom takes 1-3 successes, an elaborate one 10 or more. Entropy 1 plus Perception + Awareness spots the oath and any breach. Permanent until broken, released or kept to death.",
+    "combos": [
+      { "spheres": { "Entropy": 5 } }
+    ],
+    "vulgarity": "depends",
+    "tags": ["luck", "social"],
+    "source": [
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 133, "section": "Uncanny Influence: Binding Oaths" },
+      { "book": "HDYDT", "page": 134, "section": "Uncanny Influence: Binding Oaths" }
+    ]
+  },
+  {
+    "id": "conceptual-entropy",
+    "name": "Conceptual Entropy: Plant or Break an Idea",
+    "kind": "feat",
+    "summary": "Build up or pick apart an idea in people's heads, through talk and argument backed by Entropy. It works on whole groups if you have their ear; planted ideas spread on their own, broken ones are discredited, and a backlash always follows big pushes.",
+    "system": "Difficulty Willpower +3 (mages and Night-Folk +5), with social rolls to set up influence. A whim takes 1-2 successes, a simple concept 2-3, a complex idea or deep conviction 4-5, an obsession or philosophy 5 or more.",
+    "combos": [
+      { "spheres": { "Entropy": 5 } }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "the target reaches his own conclusions rather than having his mind suddenly go haywire",
+    "tags": ["social", "mental"],
+    "source": [
+      { "book": "HDYDT", "page": 116, "section": "Uncanny Influence: The Basics" },
+      { "book": "HDYDT", "page": 134, "section": "Uncanny Influence: Conceptual Entropy" },
+      { "book": "HDYDT", "page": 135, "section": "Uncanny Influence: Conceptual Entropy" }
+    ]
+  },
+  {
+    "id": "wave-away-an-idea",
+    "name": "Wave Away an Idea",
+    "kind": "feat",
+    "summary": "Make an idea vanish from someone's head with a gesture or a look, skipping the argument.",
+    "combos": [
+      { "spheres": { "Entropy": 5 }, "note": "entropic dismissal" },
+      { "spheres": { "Mind": 5 }, "note": "mental erasure" }
+    ],
+    "vulgarity": "vulgar",
+    "tags": ["mental", "mind-control"],
+    "source": [
+      { "book": "HDYDT", "page": 134, "section": "Uncanny Influence: Conceptual Entropy" },
+      { "book": "HDYDT", "page": 135, "section": "Uncanny Influence: Conceptual Entropy" }
+    ]
+  },
+  {
+    "id": "losing-my-religion",
+    "name": "Losing My Religion: Break Someone's Faith",
+    "kind": "feat",
+    "summary": "Grind down a single person's faith until it and their will give way. On Night-Folk the result can be devastating, from frenzy and despair to a Harrowing or a flood of Banality.",
+    "system": "One target only, rolled as vulgar without witnesses. Difficulty is the target's Willpower (mages and Night-Folk +5), +1 per dot of True Faith, which also adds 2 needed successes per dot. Each success removes a temporary Willpower; at 0 the faith breaks until Willpower is fully regained, longer if torture or Mind assaults are added.",
+    "combos": [
+      { "spheres": { "Entropy": 5 } }
+    ],
+    "vulgarity": "vulgar",
+    "tags": ["mental", "combat"],
+    "source": [
+      { "book": "HDYDT", "page": 135, "section": "Uncanny Influence: Losing My Religion" }
+    ]
+  },
+  {
+    "id": "shatter-a-mages-paradigm",
+    "name": "Shatter a Mage's Paradigm",
+    "kind": "feat",
+    "summary": "Turn conceptual entropy on another mage's paradigm until he no longer trusts it, so all of his magick counts as vulgar with witnesses: he is his own witness.",
+    "system": "Needs at least 10 successes against his Willpower +5. Lasts until he regains full Willpower; combined with torture or Mind assaults it can stick until he finds his faith again or a new Path.",
+    "combos": [
+      { "spheres": { "Entropy": 5 } }
+    ],
+    "tags": ["mental", "paradox"],
+    "source": [
+      { "book": "HDYDT", "page": 135, "section": "Uncanny Influence: Losing My Religion" }
+    ]
+  }
+]
