@@ -122,6 +122,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
     );
     heroObserver.current.observe(el);
   };
+  const menuRef = useRef<HTMLDetailsElement>(null);
   const blankInput = useRef<HTMLInputElement>(null);
   const portraitInput = useRef<HTMLInputElement>(null);
   const tab: Tab = (TABS.some((t) => t.id === tabParam) ? tabParam : 'magick') as Tab;
@@ -133,6 +134,26 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
     return () => window.removeEventListener('keydown', onKey);
   }, [zoom]);
   useEffect(() => () => heroObserver.current?.disconnect(), []);
+
+  // the actions menu is a plain <details>: close it on a tap outside it or on Escape
+  useEffect(() => {
+    const onDown = (e: PointerEvent) => {
+      const m = menuRef.current;
+      if (m?.open && !m.contains(e.target as Node)) m.open = false;
+    };
+    const onKey = (e: KeyboardEvent) => {
+      const m = menuRef.current;
+      if (e.key !== 'Escape' || !m?.open) return;
+      m.open = false;
+      m.querySelector('summary')?.focus();
+    };
+    document.addEventListener('pointerdown', onDown);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, []);
 
   useEffect(() => {
     if (c) setActiveCharacter(c.id);
@@ -202,7 +223,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           >
             <Icon name={edit ? 'unlock' : 'lock'} size={16} /> {edit ? 'Done' : 'Edit'}
           </button>
-          <details className="menu">
+          <details className="menu" ref={menuRef}>
             <summary className="btn btn-small" aria-label="More actions">
               <Icon name="more" />
             </summary>

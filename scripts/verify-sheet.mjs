@@ -150,6 +150,14 @@ await page.click('.tab:has-text("Traits")');
 await page.check('.toggle-untrained input');
 check('edit survives reload', (await text('.trait-row:has-text("Esoterica") .trait-num')) === '2');
 
+// the actions menu closes on a tap outside it and on Escape
+await page.click('.menu summary');
+await page.mouse.click(5, 400);
+check('menu closes on an outside tap', !(await page.$eval('.menu', (m) => m.open)));
+await page.click('.menu summary');
+await page.keyboard.press('Escape');
+check('menu closes on Escape', !(await page.$eval('.menu', (m) => m.open)));
+
 // export back into the PDF and read it back
 await page.click('.menu summary');
 const [dl] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("Export PDF sheet")')]);
