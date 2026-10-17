@@ -192,7 +192,7 @@ export function EffectDetail({
             </li>
           ))}
         </ul>
-        <p className="tag-row">
+        <p className="detail-tags">
           {effect.tags.map((t) => (
             <button key={t} type="button" className="tag" onClick={() => onTag(t)}>
               {t}

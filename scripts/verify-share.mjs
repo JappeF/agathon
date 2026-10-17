@@ -78,15 +78,16 @@ check('small portrait through the link', (await b.$('.sheet-hero .pp-face img'))
 await b.goto(url, { waitUntil: 'networkidle' });
 await b.waitForSelector('.modal');
 await b.click('.modal button:has-text("Add character")');
-await b.waitForSelector('.sheet-name');
+// the sheet in play shows first; wait for the new one
+await b.waitForSelector(`.sheet-name:text-is("${name} (2)")`, { timeout: 8000 }).catch(() => {});
 check('name clash gets a suffix', (await b.textContent('.sheet-name')) === `${name} (2)`);
 
-// the downloaded file imports through the Import button
-await b.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
-await b.setInputFiles('.import-row input[type=file]', filePath);
+// the downloaded file imports through the Import button in the character menu
+await b.click('.switch-btn');
+await b.setInputFiles('.switch-menu .import-row input[type=file]', filePath);
 await b.waitForSelector('.modal');
 await b.click('.modal button:has-text("Add character")');
-await b.waitForSelector('.sheet-name');
+await b.waitForSelector(`.sheet-name:text-is("${name} (3)")`, { timeout: 8000 }).catch(() => {});
 check('file import', (await b.textContent('.sheet-name')) === `${name} (3)`);
 check('portrait through the file', (await b.$('.sheet-hero .pp-face img')) !== null);
 
@@ -96,9 +97,11 @@ await b.waitForSelector('.modal');
 check('damaged link message', /invalid or damaged/.test(await b.textContent('.modal')));
 await b.click('.modal button:has-text("OK")');
 
-// back up all on device B: three characters in one file
+// back up all on device B (from the character menu): three characters in one file
 await b.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
-await b.click('button:has-text("Back up all")');
+await b.waitForSelector('.sheet-name');
+await b.click('.switch-btn');
+await b.click('.switch-menu button:has-text("Back up all")');
 const [bk] = await Promise.all([b.waitForEvent('download'), b.click('.modal button:has-text("Download file")')]);
 await bk.saveAs(`shots/${bk.suggestedFilename()}`);
 const backup = JSON.parse(await readFile(`shots/${bk.suggestedFilename()}`, 'utf8'));

@@ -76,10 +76,14 @@ check('nothing runs off a phone screen', await page.evaluate(() => document.docu
 check('tag chip', (await page.textContent('.op-chips')).includes('tag healing'));
 const healing = await num();
 check('tag filters', healing > 0 && healing < 400, String(healing));
+await page.click('.op-clear');
+check('Clear all empties the search', (await page.inputValue('.search-input')) === '' && (await num()) > healing);
+await page.click('.tag-row:has-text("healing")');
 
 // detail
 await page.click('.effect-card >> nth=0');
 await page.waitForSelector('.detail');
+check('detail tags are plain chips, not a pill around them', await page.$eval('.detail-tags', (n) => getComputedStyle(n).borderStyle === 'none'));
 check('detail route', /^#\/library\/[a-z0-9-]+$/.test(new URL(page.url()).hash), new URL(page.url()).hash);
 check('difficulty shown', /Coincidental\s*\d/.test(await page.textContent('.difficulty')));
 check('checklist shown', (await page.$$('.tips li')).length >= 5);
@@ -140,8 +144,8 @@ await desk.screenshot({ path: 'shots/34-library-desktop.png' });
 await desk.close();
 
 // clean up Saito
-await page.click('.nav-item:has-text("Characters")');
-await page.click('.char-card:has-text("Saito Weinberg")');
+await page.click('.nav-char .nav-item');
+await page.waitForSelector('.sheet-name:has-text("Saito Weinberg")');
 await page.click('.menu summary');
 await page.click('button:has-text("Delete character")');
 await page.click('.modal .btn-danger');

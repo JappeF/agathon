@@ -1,90 +1,27 @@
-import { useState } from 'react';
-import { useLiveQuery } from 'dexie-react-hooks';
-import { newCharacter } from '../character';
-import { db, newId, requestPersistence, saveCharacter } from '../db/db';
-import { SPHERES } from '../types';
-import { go } from '../useHashRoute';
-import { getActiveCharacter } from '../activeCharacter';
-import { ImportFlow } from './ImportFlow';
-import { SphereGlyph } from './SphereGlyph';
-import { ShareDialog } from './ShareDialog';
+import { useEffect } from 'react';
+import type { Character } from '../character';
+import { CharacterTools } from './CharacterMenu';
 import { PortalPortrait } from './PortalPortrait';
 
-export function CharactersView() {
-  const characters = useLiveQuery(() => db.characters.orderBy('updatedAt').reverse().toArray(), []);
-  const [name, setName] = useState('');
-  const [backup, setBackup] = useState(false);
-  const active = getActiveCharacter();
+/**
+ * #/characters without an id. With characters on this device it goes straight to the
+ * one in play (switching happens in the character menu); without any it is the place
+ * to add or import the first.
+ */
+export function CharactersView({ characters, active }: { characters?: Character[]; active?: Character }) {
+  useEffect(() => {
+    if (!active) return;
+    history.replaceState(null, '', `#/characters/${encodeURIComponent(active.id)}`);
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
+  }, [active]);
 
-  const add = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const n = name.trim();
-    if (!n) return;
-    const c = newCharacter(newId(), n);
-    await saveCharacter(c);
-    setName('');
-    requestPersistence();
-    go('characters', c.id);
-  };
-
+  if (!characters || active) return null;
   return (
-    <section className="view characters">
+    <section className="view characters welcome">
+      <PortalPortrait name="?" size={120} />
       <h2 className="view-title">Characters</h2>
-      {characters && characters.length === 0 && (
-        <p className="empty">No characters yet. Add one by name below, or import a PDF sheet.</p>
-      )}
-      <ul className="char-list">
-        {characters?.map((c) => {
-          const spheres = SPHERES.filter((s) => c.spheres[s] > 0);
-          return (
-            <li key={c.id}>
-              <a className={`char-card${c.id === active ? ' active' : ''}`} href={`#/characters/${encodeURIComponent(c.id)}`}>
-                <PortalPortrait src={c.portrait} name={c.name} size={68} />
-                <span className="char-text">
-                <span className="char-name">{c.name}</span>
-                <span className="char-sub">{[c.concept, c.affiliation].filter(Boolean).join(', ') || 'Mage'}</span>
-                <span className="char-stats">
-                  <span className="char-arete">Arete {c.arete}</span>
-                  {spheres.map((s) => (
-                    <span key={s} className={`char-sphere sph-${s}`} title={`${s} ${c.spheres[s]}`}>
-                      <SphereGlyph sphere={s} size={15} />
-                      {c.spheres[s]}
-                    </span>
-                  ))}
-                </span>
-                </span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-
-      <div className="char-tools">
-        <form className="add-row" onSubmit={add}>
-          <input
-            className="text-input"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="De Tovenaar van Salsaborenco"
-            aria-label="New character name"
-          />
-          <button className="btn btn-gold" type="submit">
-            Add
-          </button>
-        </form>
-        <div className="import-row">
-          <ImportFlow label="Import" onDone={(c) => go('characters', c.id)} />
-          {!!characters?.length && (
-            <button type="button" className="btn" onClick={() => setBackup(true)}>
-              Back up all
-            </button>
-          )}
-        </div>
-        <p className="fine-print">Imports Mr. Gone's fillable M20 2-page PDF sheet and Agathon character files.</p>
-      </div>
-      {backup && characters && (
-        <ShareDialog characters={characters} title="Back up all characters" onClose={() => setBackup(false)} />
-      )}
+      <p className="flavor">No mage on this device yet. Start one by name, import your Mr. Gone sheet, or open a character file someone shared.</p>
+      <CharacterTools />
     </section>
   );
 }

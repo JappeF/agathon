@@ -173,7 +173,7 @@ await page.evaluate(() => document.querySelector('.menu')?.removeAttribute('open
 await page.click('.menu summary');
 await page.click('button:has-text("Delete character")');
 await page.click('.modal .btn-danger');
-await page.waitForSelector('.char-list', { state: 'attached' });
+await page.waitForSelector('.welcome');
 check('deleted', !(await page.evaluate((i) => document.body.innerHTML.includes(i), id)));
 
 check('no page errors', errors.length === 0, errors.join(' | '));

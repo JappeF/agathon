@@ -17,7 +17,7 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
 <p>
   <img src="docs/screenshot-mobile-sheet.png" alt="A character sheet with portrait, status and Spheres on a phone" width="260">
   <img src="docs/screenshot-mobile-library.png" alt="Searching the library for Mind 3 and Forces 2 on a phone" width="260">
-  <img src="docs/screenshot-mobile-characters.png" alt="The character list on a phone" width="260">
+  <img src="docs/screenshot-mobile-characters.png" alt="The character switcher on a phone" width="260">
 </p>
 
 </details>
@@ -57,6 +57,9 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
   changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in.
 - **Portraits** in a small sparking portal, enlarged with a tap, replaceable in edit
   mode.
+- **One character in play**: the nav carries the active character, one tap opens
+  the sheet. The character switcher (the caret beside it on a wide screen, or
+  "Characters" on the sheet) lists the others and adds or imports new ones.
 
 ### Sharing
 

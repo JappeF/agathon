@@ -16,6 +16,7 @@ import { SphereGlyph } from './SphereGlyph';
 import { HealthTrack, QPWheel, WillpowerTrack } from './Trackers';
 import { Icon } from './Icon';
 import { setActiveCharacter } from '../activeCharacter';
+import { openCharacterMenu } from './CharacterMenu';
 
 const TABS = [
   { id: 'magick', label: 'Magick' },
@@ -143,7 +144,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       <section className="view">
         <p className="empty">This character isn't on this device.</p>
         <a className="btn" href="#/characters">
-          All characters
+          Your characters
         </a>
       </section>
     );
@@ -189,9 +190,9 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   return (
     <section className="view sheet">
       <div className="sheet-head">
-        <a className="back" href="#/characters" aria-label="All characters">
-          <Icon name="back" /> Characters
-        </a>
+        <button type="button" className="back switch-btn" aria-haspopup="dialog" onClick={(e) => openCharacterMenu(e.currentTarget)}>
+          Characters <Icon name="down" size={16} />
+        </button>
         <div className="sheet-actions">
           <button
             type="button"
@@ -650,7 +651,13 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               className="btn btn-danger"
               onClick={async () => {
                 await deleteCharacter(c.id);
-                go('characters');
+                setConfirmDelete(false);
+                // the most recent of the others takes over, or the empty characters page
+                const next = await db.characters.orderBy('updatedAt').reverse().first();
+                if (next) {
+                  setActiveCharacter(next.id);
+                  go('characters', next.id);
+                } else go('characters');
               }}
             >
               Delete

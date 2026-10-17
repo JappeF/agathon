@@ -3,11 +3,15 @@ import { Portal } from './components/Portal';
 import { SharedImport } from './components/SharedImport';
 import { decodeShare, ShareFormatError, type SharePayload } from './share';
 import { CharactersView } from './components/CharactersView';
+import { CharacterMenu, openCharacterMenu } from './components/CharacterMenu';
+import { PortalPortrait } from './components/PortalPortrait';
+import { Icon } from './components/Icon';
+import { useActiveCharacter } from './activeCharacter';
 import { CharacterSheet } from './components/CharacterSheet';
 import { LibraryView } from './components/LibraryView';
 import { go, useHashRoute, type View } from './useHashRoute';
 
-const NAV: { view: View; label: string; icon: JSX.Element }[] = [
+const NAV: { view: Exclude<View, 'characters'>; label: string; icon: JSX.Element }[] = [
   {
     view: 'library',
     label: 'Library',
@@ -18,17 +22,14 @@ const NAV: { view: View; label: string; icon: JSX.Element }[] = [
     label: 'Spells',
     icon: <path d="M12 2.5l2.2 6.3 6.3 2.2-6.3 2.2L12 19.5l-2.2-6.3L3.5 11l6.3-2.2zM18.5 17l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />,
   },
-  {
-    view: 'characters',
-    label: 'Characters',
-    icon: (
-      <>
-        <circle cx="12" cy="8" r="4" />
-        <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
-      </>
-    ),
-  },
 ];
+
+const PERSON = (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="8" r="4" />
+    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+  </svg>
+);
 
 function Placeholder({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -41,6 +42,7 @@ function Placeholder({ title, children }: { title: string; children: React.React
 
 export default function App() {
   const { view, parts } = useHashRoute();
+  const { characters, active } = useActiveCharacter();
   const [shared, setShared] = useState<{ payload: SharePayload | null; error?: string } | null>(null);
 
   // #import=<payload> share links open the import preview, then leave the URL clean
@@ -85,6 +87,30 @@ export default function App() {
             <span>{n.label}</span>
           </a>
         ))}
+        {/* the character in play: tap for the sheet; the caret (wide screens) or the sheet's
+            own switch button opens the switcher */}
+        <span className={`nav-char${view === 'characters' ? ' on' : ''}`}>
+          <a
+            href={active ? `#/characters/${encodeURIComponent(active.id)}` : '#/characters'}
+            className={`nav-item${view === 'characters' ? ' on' : ''}`}
+            aria-current={view === 'characters' ? 'page' : undefined}
+            aria-label={active ? `${active.name}, character sheet` : 'Characters'}
+          >
+            {active ? <PortalPortrait src={active.portrait} name={active.name} size={30} /> : PERSON}
+            <span className="nav-char-name">{active ? active.name : 'Characters'}</span>
+          </a>
+          {active && (
+            <button
+              type="button"
+              className="nav-caret"
+              aria-label="Switch character"
+              title="Switch character"
+              onClick={(e) => openCharacterMenu(e.currentTarget.parentElement!)}
+            >
+              <Icon name="down" size={16} />
+            </button>
+          )}
+        </span>
       </nav>
       </header>
 
@@ -95,8 +121,11 @@ export default function App() {
             Your spell ideas, their versions and how they went at the table. Coming soon.
           </Placeholder>
         )}
-        {view === 'characters' && (parts[0] ? <CharacterSheet id={parts[0]} tab={parts[1]} /> : <CharactersView />)}
+        {/* keyed per character: switching starts fresh (play mode, no dialog left open) */}
+        {view === 'characters' &&
+          (parts[0] ? <CharacterSheet key={parts[0]} id={parts[0]} tab={parts[1]} /> : <CharactersView characters={characters} active={active} />)}
       </main>
+      <CharacterMenu characters={characters} active={active} />
       {shared && (
         <SharedImport
           payload={shared.payload}

@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useLiveQuery } from 'dexie-react-hooks';
-import { getActiveCharacter } from '../activeCharacter';
-import { db } from '../db/db';
+import { useActiveCharacter } from '../activeCharacter';
 import { sourceLabel, useEffects, type Effect } from '../library/data';
 import { parseQuery, search, setSphereInQuery, sphereRankInQuery, type Hit } from '../library/search';
 import { SPHERES, type Sphere } from '../types';
@@ -70,8 +68,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
   const [limit, setLimit] = useState(PAGE);
   const [nearLimit, setNearLimit] = useState(10);
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const activeId = getActiveCharacter();
-  const character = useLiveQuery(() => (activeId ? db.characters.get(activeId) : undefined), [activeId]);
+  const { active: character } = useActiveCharacter();
 
   useEffect(() => {
     lastQuery = query;
@@ -150,13 +147,23 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
             aria-label="Search effects"
             onChange={(e) => setQuery(e.target.value)}
           />
-          {parsed.chips.length > 0 && (
+          {query.trim() && (
             <p className="op-chips">
               {parsed.chips.map((c, i) => (
                 <span key={i} className={`op-chip${c.neg ? ' neg' : ''}${c.ok ? '' : ' bad'}`} title={c.ok ? undefined : 'Not recognised'}>
                   {c.label}
                 </span>
               ))}
+              <button
+                type="button"
+                className="op-clear"
+                onClick={() => {
+                  setQuery('');
+                  setPrefs({ ...prefs, others: false });
+                }}
+              >
+                <Icon name="close" size={13} /> Clear all
+              </button>
             </p>
           )}
         </div>
