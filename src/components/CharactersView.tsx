@@ -28,35 +28,10 @@ export function CharactersView() {
   };
 
   return (
-    <section className="view">
+    <section className="view characters">
       <h2 className="view-title">Characters</h2>
-      <form className="add-row" onSubmit={add}>
-        <input
-          className="text-input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="De Tovenaar van Salsaborenco"
-          aria-label="Character name"
-        />
-        <button className="btn btn-gold" type="submit">
-          Add
-        </button>
-      </form>
-      <div className="import-row">
-        <ImportFlow label="Import" onDone={(c) => go('characters', c.id)} />
-        {!!characters?.length && (
-          <button type="button" className="btn" onClick={() => setBackup(true)}>
-            Back up all
-          </button>
-        )}
-        <span className="empty-small">Mr. Gone M20 PDF sheets or Agathon character files</span>
-      </div>
-      {backup && characters && (
-        <ShareDialog characters={characters} title="Back up all characters" onClose={() => setBackup(false)} />
-      )}
-
       {characters && characters.length === 0 && (
-        <p className="empty">No characters yet. Add one by name or import a PDF sheet.</p>
+        <p className="empty">No characters yet. Add one by name below, or import a PDF sheet.</p>
       )}
       <ul className="char-list">
         {characters?.map((c) => {
@@ -71,7 +46,7 @@ export function CharactersView() {
                 <span className="char-stats">
                   <span className="char-arete">Arete {c.arete}</span>
                   {spheres.map((s) => (
-                    <span key={s} className="char-sphere" title={`${s} ${c.spheres[s]}`}>
+                    <span key={s} className={`char-sphere sph-${s}`} title={`${s} ${c.spheres[s]}`}>
                       <SphereGlyph sphere={s} size={15} />
                       {c.spheres[s]}
                     </span>
@@ -83,6 +58,33 @@ export function CharactersView() {
           );
         })}
       </ul>
+
+      <div className="char-tools">
+        <form className="add-row" onSubmit={add}>
+          <input
+            className="text-input"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="De Tovenaar van Salsaborenco"
+            aria-label="New character name"
+          />
+          <button className="btn btn-gold" type="submit">
+            Add
+          </button>
+        </form>
+        <div className="import-row">
+          <ImportFlow label="Import" onDone={(c) => go('characters', c.id)} />
+          {!!characters?.length && (
+            <button type="button" className="btn" onClick={() => setBackup(true)}>
+              Back up all
+            </button>
+          )}
+        </div>
+        <p className="fine-print">Imports Mr. Gone's fillable M20 2-page PDF sheet and Agathon character files.</p>
+      </div>
+      {backup && characters && (
+        <ShareDialog characters={characters} title="Back up all characters" onClose={() => setBackup(false)} />
+      )}
     </section>
   );
 }

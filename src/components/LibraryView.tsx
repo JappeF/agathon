@@ -26,24 +26,32 @@ const loadPrefs = (): { castable: boolean; others: boolean } => {
   }
 };
 
+/** The Sphere that colours a card: the highest-ranked one of the combo shown first. */
+function accentSphere(e: Effect, combo: number): Sphere {
+  const entries = Object.entries(e.combos[combo].spheres) as [Sphere, number][];
+  return entries.sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'Prime';
+}
+
+/**
+ * One effect as a card. Only the first (best matching) way to cast it is shown, with
+ * "+N more" for the rest, so every card has the same shape; the detail has them all.
+ */
 function EffectCard({ hit, dots, onOpen }: { hit: Hit; dots?: Record<Sphere, number>; onOpen: () => void }) {
   const e = hit.effect;
-  const shown = hit.combos.slice(0, 3);
+  const first = hit.combos[0];
+  const more = e.combos.length - 1;
   return (
     <li>
-      <button type="button" className={`effect-card kind-${e.kind}`} onClick={onOpen}>
+      <button type="button" className={`effect-card kind-${e.kind} sph-${accentSphere(e, first)}`} onClick={onOpen}>
         <span className="effect-head">
           <span className="effect-name">{e.name}</span>
           {e.kind !== 'feat' && <span className={`kind-badge kind-${e.kind}`}>{e.kind === 'rank' ? 'Sphere rank' : 'rote'}</span>}
         </span>
         <span className="effect-combos">
-          {shown.map((i, n) => (
-            <span key={i} className="effect-combo">
-              {n > 0 && <span className="combo-or">or</span>}
-              <ComboChips combo={e.combos[i]} dots={dots} />
-            </span>
-          ))}
-          {hit.combos.length > shown.length && <span className="combo-or">+{hit.combos.length - shown.length} more</span>}
+          <span className="effect-combo">
+            <ComboChips combo={e.combos[first]} dots={dots} />
+          </span>
+          {more > 0 && <span className="more-ways">+{more} more</span>}
         </span>
         <span className="effect-summary">{e.summary}</span>
         <span className="effect-meta">
@@ -162,7 +170,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
                 <button
                   key={s}
                   type="button"
-                  className={`sphere-btn${r ? ' on' : ''}`}
+                  className={`sphere-btn sph-${s}${r ? ' on' : ''}`}
                   aria-label={`${s}${r ? ` up to ${r}` : ''}`}
                   title={s}
                   onClick={() => cycleSphere(s)}

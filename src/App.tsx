@@ -63,10 +63,13 @@ export default function App() {
     <>
       <div className="sparks" aria-hidden="true" />
       <header className="app-header">
-        <Portal />
-        <h1 className="logo">Agathon</h1>
-        <p className="tagline">a grimoire for the Awakened</p>
-      </header>
+        <a className="brand" href="#/library" aria-label="Agathon, to the library">
+          <Portal />
+          <span className="brand-text">
+            <h1 className="logo">Agathon</h1>
+            <p className="tagline">a grimoire for the Awakened</p>
+          </span>
+        </a>
 
       <nav className="app-nav" aria-label="Main">
         {NAV.map((n) => (
@@ -83,6 +86,7 @@ export default function App() {
           </a>
         ))}
       </nav>
+      </header>
 
       <main className="app-main">
         {view === 'library' && <LibraryView selectedId={parts[0]} />}

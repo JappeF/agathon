@@ -306,7 +306,8 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       </div>
 
       {tab === 'magick' && (
-        <div className="tab-body">
+        <div className="tab-body spread">
+          <div className="spread-col">
           <div className="block">
             <ul className="trait-list">
               <li className="trait-row arete-row">
@@ -324,7 +325,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             <h3 className="block-title">Spheres</h3>
             <ul className="trait-list">
               {SPHERES.map((s) => (
-                <li key={s} className={`trait-row sphere-row${c.spheres[s] ? '' : ' zero'}`}>
+                <li key={s} className={`trait-row sphere-row sph-${s}${c.spheres[s] ? '' : ' zero'}`}>
                   <span className="trait-label">
                     <span className="trait-name">
                       <SphereGlyph sphere={s} size={18} /> {s}
@@ -359,6 +360,8 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               ))}
             </ul>
           </div>
+          </div>
+          <div className="spread-col">
           <div className="block">
             <h3 className="block-title">Quintessence and Paradox</h3>
             <QPWheel c={c} patch={patch} />
@@ -418,11 +421,13 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               </button>
             )}
           </div>
+          </div>
         </div>
       )}
 
       {tab === 'traits' && (
         <div className="tab-body">
+          <div className="trio">
           {ATTRIBUTE_GROUPS.map((g) => (
             <div key={g.title} className="block">
               <h3 className="block-title">{g.title}</h3>
@@ -441,12 +446,14 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               </ul>
             </div>
           ))}
+          </div>
           {!edit && (
             <label className="check toggle-untrained">
               <input type="checkbox" checked={showUntrained} onChange={(e) => setShowUntrained(e.target.checked)} />
               Show Abilities at 0
             </label>
           )}
+          <div className="trio">
           {ABILITY_GROUPS.map((g) => {
             const shown = g.traits.filter((t) => edit || showUntrained || (c.traits[t] ?? 0) > 0);
             return (
@@ -469,6 +476,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               </div>
             );
           })}
+          </div>
           <div className="block">
             <h3 className="block-title">Other traits</h3>
             <RatedList
@@ -483,7 +491,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       )}
 
       {tab === 'background' && (
-        <div className="tab-body">
+        <div className="tab-body flow">
           <div className="block field-grid">
             {(
               [

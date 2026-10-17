@@ -76,8 +76,10 @@ await page.waitForSelector('.char-list', { state: 'attached' });
 // desktop layout
 const desk = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 await desk.goto(BASE, { waitUntil: 'networkidle' });
-const navPos = await desk.$eval('.app-nav', (n) => getComputedStyle(n).position);
-check('desktop nav is a sticky bar, not the bottom bar', navPos === 'sticky', navPos);
+const barPos = await desk.$eval('.app-header', (n) => getComputedStyle(n).position);
+const navInBar = await desk.$eval('.app-nav', (n) => n.closest('.app-header') !== null && getComputedStyle(n).position === 'static');
+check('desktop: compact sticky bar with the nav inside it', barPos === 'sticky' && navInBar, barPos);
+check('desktop bar is compact', (await desk.$eval('.app-header', (n) => n.getBoundingClientRect().height)) <= 80);
 await desk.screenshot({ path: 'shots/03-desktop.png' });
 
 check('no page errors', errors.length === 0, errors.join(' | '));

@@ -14,7 +14,7 @@ export function ComboChips({ combo, dots }: { combo: Combo; dots?: Record<Sphere
         return (
           <span key={s} className="combo-part">
             {i > 0 && <span className="combo-plus">+</span>}
-            <span className={`sphere-chip${short ? ' short' : ''}`} title={approx ? 'Rank not printed in the book; our best reading' : undefined}>
+            <span className={`sphere-chip sph-${s}${short ? ' short' : ''}`} title={approx ? 'Rank not printed in the book; our best reading' : undefined}>
               <SphereGlyph sphere={s} size={14} />
               {s} {approx ? '~' : ''}
               {need}
