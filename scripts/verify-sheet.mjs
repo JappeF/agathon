@@ -43,6 +43,22 @@ const id = decodeURIComponent(new URL(page.url()).hash.split('/')[2]);
 const portraitSrc = () => page.getAttribute('.sheet-hero .pp-face img', 'src').catch(() => null);
 const fromPdf = await portraitSrc();
 check('portrait from the PDF', /^data:image\/(webp|jpeg);base64,/.test(fromPdf ?? ''), `${(fromPdf ?? '').length} chars`);
+
+// tapping the portrait (play mode) shows it large; scrolling away brings the mini bar
+await page.click('.sheet-hero .portrait-btn');
+await page.waitForSelector('.zoom-backdrop');
+check('portrait zooms', ((await page.$eval('.zoom-backdrop .pp', (e) => e.getBoundingClientRect().width)) ?? 0) > 250);
+await page.waitForTimeout(300);
+await page.screenshot({ path: 'shots/44-portrait-zoom.png' });
+await page.keyboard.press('Escape');
+await page.waitForSelector('.zoom-backdrop', { state: 'detached' });
+check('pills beside the portrait', (await page.$('.sheet-title .vitals-bar')) !== null);
+await page.mouse.wheel(0, 900);
+await page.waitForSelector('.vitals-fixed');
+check('mini bar while scrolled', (await page.$('.vitals-fixed .mini-face img')) !== null);
+await page.mouse.wheel(0, -2000);
+await page.waitForSelector('.vitals-fixed', { state: 'detached' });
+
 await page.click('.lock');
 await page.setInputFiles('.view.sheet input[accept="image/*"]', 'public/icons/icon-512.png');
 await page.waitForFunction((old) => document.querySelector('.sheet-hero .pp-face img')?.getAttribute('src') !== old, fromPdf);
@@ -76,7 +92,7 @@ await page.click('[aria-label^="Bruised"]');
 await page.click('[aria-label^="Hurt"]');
 await page.click('[aria-label^="Hurt"]');
 check('health marks', (await page.getAttribute('[aria-label^="Hurt"]', 'aria-label')) === 'Hurt: lethal');
-check('health status', (await text('.vitals .chip')) === 'Hurt -1', await text('.vitals .chip'));
+check('health status', (await text('.vitals-bar .chip')) === 'Hurt -1', await text('.vitals-bar .chip'));
 await page.click('[aria-label="Willpower point 2"]');
 check('willpower spent', /WP 5\/7/.test(await text('.vitals-bar')), await text('.vitals-bar'));
 check('dots locked while playing', (await page.$('.sphere-row .dot-btn')) === null);

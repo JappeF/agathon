@@ -2,12 +2,12 @@ import type { PDFDict as PDFDictType } from 'pdf-lib';
 
 /**
  * Character portraits: any image (an upload, or the picture inside a PDF sheet) becomes
- * a small square data URL kept on the character, so it travels in backups and files.
+ * a square data URL kept on the character, so it travels in backups and files.
  */
 
-const SIZE = 384;
+const SIZE = 640;
 
-/** Crop to a square (slightly above centre, where faces usually are) and shrink to 384px. */
+/** Crop to a square (slightly above centre, where faces usually are) and shrink to 640px (sharp enough for the enlarged view). */
 export async function imageToPortrait(blob: Blob): Promise<string> {
   const bmp = await createImageBitmap(blob);
   const side = Math.min(bmp.width, bmp.height);

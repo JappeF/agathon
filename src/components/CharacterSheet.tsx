@@ -103,9 +103,27 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const [needBlank, setNeedBlank] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [sharing, setSharing] = useState(false);
+  const [zoom, setZoom] = useState(false);
+  // the pills sit beside the portrait; once that scrolls away a fixed mini bar takes over
+  const [heroGone, setHeroGone] = useState(false);
+  const heroObserver = useRef<IntersectionObserver | null>(null);
+  const heroRef = (el: HTMLDivElement | null) => {
+    heroObserver.current?.disconnect();
+    if (!el) return;
+    heroObserver.current = new IntersectionObserver(([e]) => setHeroGone(!e.isIntersecting), { rootMargin: '-60px 0px 0px 0px' });
+    heroObserver.current.observe(el);
+  };
   const blankInput = useRef<HTMLInputElement>(null);
   const portraitInput = useRef<HTMLInputElement>(null);
   const tab: Tab = (TABS.some((t) => t.id === tabParam) ? tabParam : 'magick') as Tab;
+
+  useEffect(() => {
+    if (!zoom) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setZoom(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [zoom]);
+  useEffect(() => () => heroObserver.current?.disconnect(), []);
 
   useEffect(() => {
     if (c) setActiveCharacter(c.id);
@@ -126,6 +144,28 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const setSpec = (trait: string, s: string) => patch({ specialties: { ...c.specialties, [trait]: s } });
   let worst = -1;
   c.health.forEach((m, i) => m && (worst = i));
+
+  const pills = (
+    <button type="button" className="vitals-bar" aria-expanded={vitalsOpen} onClick={() => setVitalsOpen(!vitalsOpen)}>
+      <span className={`chip${worst >= 3 ? ' bad' : ''}`}>
+        {worst < 0 ? 'Unhurt' : `${HEALTH_LEVELS[worst].name}${HEALTH_LEVELS[worst].penalty ? ` ${HEALTH_LEVELS[worst].penalty}` : ''}`}
+      </span>
+      <span className="chip">
+        WP {Math.max(0, c.willpower - c.willpowerSpent)}/{c.willpower}
+      </span>
+      <span className="chip q">Q {c.quintessence}</span>
+      <span className="chip p">P {c.paradox}</span>
+      <span className="vitals-toggle" aria-hidden="true">
+        <Icon name={vitalsOpen ? 'up' : 'down'} size={16} />
+      </span>
+    </button>
+  );
+  const panel = (
+    <div className="vitals-panel">
+      <HealthTrack c={c} patch={patch} />
+      <WillpowerTrack c={c} patch={patch} edit={edit} />
+    </div>
+  );
 
   const doExport = async (blank?: File) => {
     try {
@@ -173,11 +213,11 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
         </div>
       </div>
 
-      <div className="sheet-hero">
+      <div className="sheet-hero" ref={heroRef}>
         {edit ? (
           <span className="portrait-edit">
             <button type="button" className="portrait-btn" aria-label="Change portrait" onClick={() => portraitInput.current?.click()}>
-              <PortalPortrait src={c.portrait} name={c.name} size={92} />
+              <PortalPortrait src={c.portrait} name={c.name} size={128} />
               <span className="portrait-hint">{c.portrait ? 'Change' : 'Add photo'}</span>
             </button>
             {c.portrait && (
@@ -186,8 +226,12 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               </button>
             )}
           </span>
+        ) : c.portrait ? (
+          <button type="button" className="portrait-btn" aria-label={`Show ${c.name}'s portrait`} onClick={() => setZoom(true)}>
+            <PortalPortrait src={c.portrait} name={c.name} size={128} />
+          </button>
         ) : (
-          <PortalPortrait src={c.portrait} name={c.name} size={92} />
+          <PortalPortrait name={c.name} size={128} />
         )}
         <div className="sheet-title">
           {edit ? (
@@ -196,8 +240,21 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             <h2 className="sheet-name">{c.name}</h2>
           )}
           <p className="sheet-sub">{[c.concept, c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</p>
+          {!heroGone && pills}
         </div>
       </div>
+      {!heroGone && vitalsOpen && panel}
+      {heroGone && (
+        <div className="vitals-fixed">
+          <div className="vitals-fixed-inner">
+            <span className="mini-face" aria-hidden="true">
+              {c.portrait ? <img src={c.portrait} alt="" /> : c.name.slice(0, 1)}
+            </span>
+            {pills}
+          </div>
+          {vitalsOpen && panel}
+        </div>
+      )}
       <input
         ref={portraitInput}
         type="file"
@@ -214,28 +271,12 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           }
         }}
       />
-
-      <div className="vitals">
-        <button type="button" className="vitals-bar" aria-expanded={vitalsOpen} onClick={() => setVitalsOpen(!vitalsOpen)}>
-          <span className={`chip${worst >= 3 ? ' bad' : ''}`}>
-            {worst < 0 ? 'Unhurt' : `${HEALTH_LEVELS[worst].name}${HEALTH_LEVELS[worst].penalty ? ` ${HEALTH_LEVELS[worst].penalty}` : ''}`}
-          </span>
-          <span className="chip">
-            WP {Math.max(0, c.willpower - c.willpowerSpent)}/{c.willpower}
-          </span>
-          <span className="chip q">Q {c.quintessence}</span>
-          <span className="chip p">P {c.paradox}</span>
-          <span className="vitals-toggle" aria-hidden="true">
-            <Icon name={vitalsOpen ? 'up' : 'down'} size={16} />
-          </span>
-        </button>
-        {vitalsOpen && (
-          <div className="vitals-panel">
-            <HealthTrack c={c} patch={patch} />
-            <WillpowerTrack c={c} patch={patch} edit={edit} />
-          </div>
-        )}
-      </div>
+      {zoom && c.portrait && (
+        <div className="zoom-backdrop" role="dialog" aria-modal="true" aria-label={`${c.name}'s portrait`} onClick={() => setZoom(false)}>
+          <PortalPortrait src={c.portrait} name={c.name} size={Math.round(Math.min(window.innerWidth * 0.82, window.innerHeight * 0.6, 460))} />
+          <p className="zoom-name">{c.name}</p>
+        </div>
+      )}
 
       <div className="tabs" role="tablist">
         {TABS.map((t) => (
