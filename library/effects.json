@@ -1,0 +1,2631 @@
+[
+  {
+    "id": "correspondence-1",
+    "name": "Correspondence 1: Immediate Spatial Perceptions",
+    "kind": "rank",
+    "summary": "Feel the space around you beyond your normal senses: judge exact distances, always know where north is, notice hidden things or people close by, and pick up warps, gates and other spatial oddities, including ones made by Correspondence magick.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 513,
+        "pdfPage": 514,
+        "section": "Spheres: Correspondence"
+      }
+    ]
+  },
+  {
+    "id": "correspondence-2",
+    "name": "Correspondence 2: Sense, Touch, Thicken and Reach Through Space",
+    "kind": "rank",
+    "summary": "Send your senses to another place and watch or listen there. You can also make the space around you dense, so it is harder for others to spy on you or to notice your own remote senses.",
+    "system": "Remote senses leave small ripples that Correspondence 1 can pick up. Each success put into thickening space takes one success off a rival's attempt to spy on you or spot your senses. When Correspondence links another Sphere to a distant target, the Effect can go no higher than your Correspondence rank.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "perception",
+      "divination",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 513,
+        "pdfPage": 514,
+        "section": "Spheres: Correspondence"
+      }
+    ]
+  },
+  {
+    "id": "correspondence-3",
+    "name": "Correspondence 3: Pierce Space / Open or Close Gates / Co-locality Perceptions",
+    "kind": "rank",
+    "summary": "Open a small, brief hole in space and step through it to somewhere else, as long as you go alone and travel light. You can also watch several places at once, seen layered over each other like ghosts.",
+    "system": "A close, familiar destination needs fewer successes than a far or unknown one, so look before you jump. Moving big things or heavy loads takes Correspondence 4.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "travel",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 513,
+        "pdfPage": 514,
+        "section": "Spheres: Correspondence"
+      }
+    ]
+  },
+  {
+    "id": "correspondence-4",
+    "name": "Correspondence 4: Rend Space / Ward / Co-locate Self",
+    "kind": "rank",
+    "summary": "Open big, lasting gates between places and teleport while carrying heavy loads. Combined with a Pattern Sphere or Mind, you can seal things into a tiny realm of their own or ward a place so certain things cannot get in or out.",
+    "system": "A permanent gate takes 10 or more successes. Wards and pocket realms need the Sphere of whatever they hold or keep out; Resonance wards need Prime 4. How Do You DO That? has the full ward rules.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "purpose": "isolate or ward against energies"
+      },
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "purpose": "isolate or ward against living things"
+      },
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "inferred": [
+          "Matter"
+        ],
+        "purpose": "isolate or ward against objects"
+      },
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "inferred": [
+          "Mind"
+        ],
+        "purpose": "isolate or ward against minds"
+      },
+      {
+        "spheres": {
+          "Prime": 4
+        },
+        "purpose": "ward against a kind of Resonance"
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "travel",
+      "warding"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 513,
+        "pdfPage": 514,
+        "section": "Spheres: Correspondence"
+      }
+    ]
+  },
+  {
+    "id": "correspondence-5",
+    "name": "Correspondence 5: Spatial Mutation / Co-Location",
+    "kind": "rank",
+    "summary": "Treat distance and size as clay: stretch, shrink or resize things, tie separate Patterns together across space, or put two places or objects in the same spot.",
+    "system": "Stacking places or objects on top of each other is extremely vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "inferred": [
+          "Matter"
+        ],
+        "purpose": "resize or reshape objects"
+      },
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "purpose": "resize or reshape bodies"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "purpose": "resize or reshape energies"
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "sphere-basics",
+      "travel",
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 513,
+        "pdfPage": 514,
+        "section": "Spheres: Correspondence"
+      }
+    ]
+  },
+  {
+    "id": "entropy-1",
+    "name": "Entropy 1: Sense Flaws, Fate and Fortune / Ring of Truth",
+    "kind": "rank",
+    "summary": "See the flow of chance. You can predict dice, cards and other random results, find the weak spot in an object, a person or an argument, and catch the tells that show whether someone believes what they say.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 1
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "perception",
+      "luck"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 514,
+        "pdfPage": 515,
+        "section": "Spheres: Entropy"
+      }
+    ]
+  },
+  {
+    "id": "entropy-2",
+    "name": "Entropy 2: Control Probability",
+    "kind": "rank",
+    "summary": "Steer random events: decide how dice or cards land, hit the same weak spot again and again, and nudge people and things toward the outcome you want.",
+    "system": "Small shifts (who wins a race) take fewer successes than big ones (a six-car pileup). Entropy does no direct damage below rank 4.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "luck"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 514,
+        "pdfPage": 515,
+        "section": "Spheres: Entropy"
+      }
+    ]
+  },
+  {
+    "id": "entropy-3",
+    "name": "Entropy 3: Affect Predictable Patterns",
+    "kind": "rank",
+    "summary": "Make objects break down faster or hold together longer, and start handing out good or bad luck to things and people.",
+    "system": "Complex machines (cars, computers) are easier to make fail than simple solid things (walls, rocks). Bigger luck takes more successes.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 3
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "destruction",
+      "luck"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 515,
+        "pdfPage": 516,
+        "section": "Spheres: Entropy"
+      }
+    ]
+  },
+  {
+    "id": "entropy-4",
+    "name": "Entropy 4: Affect Living Things",
+    "kind": "rank",
+    "summary": "Bless or curse living beings: give them remarkable vitality or a sudden illness, and lasting luck or misfortune.",
+    "system": "From this rank Entropy deals and heals aggravated damage. How long-term luck shows up is up to the Storyteller.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 4
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "luck",
+      "healing",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 515,
+        "pdfPage": 516,
+        "section": "Spheres: Entropy"
+      }
+    ]
+  },
+  {
+    "id": "entropy-5",
+    "name": "Entropy 5: Affect Thought / Shape Memes / Binding Oath",
+    "kind": "rank",
+    "summary": "Bring order or decay to ideas: jumble a target's perceptions, build airtight arguments or tear beliefs and memories apart, start or kill memes, and tie someone's luck to an oath they swear.",
+    "system": "A word or a glance is enough. A whim takes 1-2 successes, a fancy 3, setting or breaking a conviction 4-5, an obsession 5 or more. Usually coincidental; the difficulty is the subject's Willpower (at least 4). Scrambled synapses give dice penalties, and a broken oath brings very bad luck.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 5
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "sphere-basics",
+      "mental",
+      "social",
+      "luck"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 515,
+        "pdfPage": 516,
+        "section": "Spheres: Entropy"
+      }
+    ]
+  },
+  {
+    "id": "forces-1",
+    "name": "Forces 1: Perceive Forces",
+    "kind": "rank",
+    "summary": "Sense the energies around you: see in the dark, in infrared, ultraviolet or X-ray, follow sound and radio waves, notice electrical flow and motion, and hear beyond human range.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 1
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 515,
+        "pdfPage": 516,
+        "section": "Spheres: Forces"
+      }
+    ]
+  },
+  {
+    "id": "forces-2",
+    "name": "Forces 2: Manipulate Forces / Elemental Touch",
+    "kind": "rank",
+    "summary": "Push existing energy around, without making new energy: mute or boost sound, gather or banish shadows, bend light to hide things or change their color, cut electrical current, flare a flame, or redirect wind, momentum or gravity.",
+    "system": "Covers about one human-sized target or a small area of roughly 20 feet; bigger areas need a higher rank. Forces attacks get one extra success of damage.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "elemental",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 515,
+        "pdfPage": 516,
+        "section": "Spheres: Forces"
+      }
+    ]
+  },
+  {
+    "id": "forces-3",
+    "name": "Forces 3: Transmute Minor Forces / Telekinetics / The Dragon's Touch",
+    "kind": "rank",
+    "summary": "Change one kind of energy into another and, with Prime, make it from nothing: fire, wind, electricity, gravity wells. Your reach grows to a few dozen yards or a handful of people.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 3
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "conjure new energy from nothing"
+      },
+      {
+        "spheres": {
+          "Entropy": 3
+        },
+        "purpose": "wear energy down or build it up"
+      },
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "purpose": "turn thoughts into energy"
+      },
+      {
+        "spheres": {
+          "Spirit": 3
+        },
+        "purpose": "turn spirit-stuff into physical energy"
+      },
+      {
+        "spheres": {
+          "Time": 4
+        },
+        "purpose": "set an energy surge to go off later"
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "elemental",
+      "conjuration"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Forces"
+      }
+    ]
+  },
+  {
+    "id": "forces-4",
+    "name": "Forces 4: Control Major Forces / Gift of Zeus / Weather-Witching",
+    "kind": "rank",
+    "summary": "Use the lower-rank tricks over a mile or more: change the weather, darken an area, raise or drop the temperature, and shield a place or wreck it.",
+    "system": "Big Effects at this scale need many successes.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 4
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "sphere-basics",
+      "weather",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Forces"
+      }
+    ]
+  },
+  {
+    "id": "forces-5",
+    "name": "Forces 5: Transmute Major Forces / Conjuring Infernos",
+    "kind": "rank",
+    "summary": "Command energy across huge areas: raise a tornado under a clear sky, still the tides, set the air itself on fire.",
+    "system": "Easier when conditions already lean that way (a cold snap in winter). Workings this big upset the weather afterwards and leave strong Resonance behind.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 5
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "weather",
+      "elemental",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Forces"
+      }
+    ]
+  },
+  {
+    "id": "life-1",
+    "name": "Life 1: Sense Life",
+    "kind": "rank",
+    "summary": "Read the living things around you: who is there, how old they are, their sex and how healthy they are.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 1
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Correspondence": 2
+        },
+        "purpose": "sense organisms far away"
+      },
+      {
+        "spheres": {
+          "Entropy": 1
+        },
+        "purpose": "gauge their risk of illness or bad luck"
+      },
+      {
+        "spheres": {
+          "Time": 2
+        },
+        "purpose": "see their past or future states"
+      },
+      {
+        "spheres": {
+          "Prime": 1
+        },
+        "purpose": "read the Quintessence flowing through them"
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Life"
+      }
+    ]
+  },
+  {
+    "id": "life-2",
+    "name": "Life 2: Alter Simple Life-Forms / Heal Self",
+    "kind": "rank",
+    "summary": "Reshape, heal or kill simple organisms such as plants, insects, shellfish and germs: make flowers bloom or wilt, trees bear fruit, give a crab wings. On yourself you can heal and make small changes to hair, skin, height or weight.",
+    "system": "Life damage and healing is aggravated, because it works on the living Pattern itself.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "healing",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Life"
+      }
+    ]
+  },
+  {
+    "id": "life-3",
+    "name": "Life 3: Transform Simple Life-Forms / Alter Self / Heal Others",
+    "kind": "rank",
+    "summary": "Radically change simple organisms or turn one kind into another (fruit into insects), and with Prime create them from raw energy. Give yourself gills, claws or armor while staying basically human. Heal, harm or put to sleep other complex creatures.",
+    "system": "A creature changed beyond its own Pattern suffers Pattern bleeding: one level of lethal damage a day, until the change is fed with Prime or made permanent.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "create simple life from raw energy"
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "healing",
+      "body",
+      "shapechanging",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Life"
+      }
+    ]
+  },
+  {
+    "id": "life-4",
+    "name": "Life 4: Alter Complex Life-Forms / Transform Self",
+    "kind": "rank",
+    "summary": "Make big changes to complex creatures like people, dogs and horses (extra limbs, thumbs, a bigger brain) without changing what they are. Turn yourself into another creature of about your own size and mass.",
+    "system": "A new form's special abilities (flight, breathing water) only work if you build them in with extra Life magick, and the new body can take time to get used to.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 4
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "shapechanging",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 517,
+        "pdfPage": 518,
+        "section": "Spheres: Life"
+      }
+    ]
+  },
+  {
+    "id": "life-5",
+    "name": "Life 5: Transform and Create Complex Life-Forms / Perfect Metamorphosis",
+    "kind": "rank",
+    "summary": "Take any shape you like and reshape other complex creatures just as freely, make changes permanent, and build complex creatures from energy. Without other Spheres your creations are alive but have no mind or soul.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 5
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "create complex life from energy"
+      },
+      {
+        "spheres": {
+          "Mind": 5
+        },
+        "purpose": "give a creation a mind"
+      },
+      {
+        "spheres": {
+          "Forces": 3
+        },
+        "purpose": "turn a creature into energy or an element"
+      },
+      {
+        "spheres": {
+          "Matter": 3
+        },
+        "purpose": "turn a creature into matter"
+      },
+      {
+        "spheres": {
+          "Prime": 5
+        },
+        "purpose": "turn a creature into raw Quintessence"
+      },
+      {
+        "spheres": {
+          "Entropy": 4
+        },
+        "purpose": "radically age or de-age a creature"
+      },
+      {
+        "spheres": {
+          "Time": 3
+        },
+        "purpose": "radically age or de-age a creature"
+      },
+      {
+        "spheres": {
+          "Spirit": 3
+        },
+        "purpose": "put a spirit into a creature"
+      },
+      {
+        "spheres": {
+          "Spirit": 5
+        },
+        "purpose": "put a soul into a creature"
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "shapechanging",
+      "creation",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 517,
+        "pdfPage": 518,
+        "section": "Spheres: Life"
+      }
+    ]
+  },
+  {
+    "id": "matter-1",
+    "name": "Matter 1: Matter Perceptions",
+    "kind": "rank",
+    "summary": "Perceive what things are made of: their composition, internal structure, hidden layers and how stable they are.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 1
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Entropy": 1
+        },
+        "inferred": [
+          "Entropy"
+        ],
+        "purpose": "find an object's weak points"
+      },
+      {
+        "spheres": {
+          "Life": 1
+        },
+        "inferred": [
+          "Life"
+        ],
+        "purpose": "detect implants and other blends of tissue and material"
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 518,
+        "pdfPage": 519,
+        "section": "Spheres: Matter"
+      }
+    ]
+  },
+  {
+    "id": "matter-2",
+    "name": "Matter 2: Basic Transmutation",
+    "kind": "rank",
+    "summary": "Turn one substance into another as long as its shape, temperature and state (solid, liquid, gas) stay the same: lead into gold, wood into stone, water into wine.",
+    "system": "Rare or complex materials need more successes than common ones. Works on simple, uniform substances; mixtures usually need Matter 3, though simple ones like bread or gunpowder can work with lots of successes. Radioactive materials fall under Forces.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "conjure material from energy or dissolve it into Quintessence"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2
+        },
+        "purpose": "move an object through space"
+      },
+      {
+        "spheres": {
+          "Time": 3
+        },
+        "purpose": "move an object through time"
+      },
+      {
+        "spheres": {
+          "Spirit": 3
+        },
+        "purpose": "wake the sleeping spirit in an object"
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 518,
+        "pdfPage": 519,
+        "section": "Spheres: Matter"
+      }
+    ]
+  },
+  {
+    "id": "matter-3",
+    "name": "Matter 3: Alter Form",
+    "kind": "rank",
+    "summary": "Reshape materials however you like and temporarily change their state (steel into fog, water into glass). Change density, fuse broken pieces, or rip solid things apart.",
+    "system": "Permanent state changes need Matter 5. With other Spheres you can join matter to living tissue, crumble it to dust or move it by thought.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 3
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "transformation",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 518,
+        "pdfPage": 519,
+        "section": "Spheres: Matter"
+      }
+    ]
+  },
+  {
+    "id": "matter-4",
+    "name": "Matter 4: Complex Transmutation",
+    "kind": "rank",
+    "summary": "Pull off complex and radical transformations, mostly with help from other Spheres: blend materials into cybernetics or electrified gold, or conjure a working gun, car or computer out of nothing if you know how it works.",
+    "system": "Conjuring a complex device needs the right Abilities, an extended ritual and many successes.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 4
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "transformation",
+      "conjuration",
+      "technology"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 519,
+        "pdfPage": 520,
+        "section": "Spheres: Matter"
+      }
+    ]
+  },
+  {
+    "id": "matter-5",
+    "name": "Matter 5: Alter Properties",
+    "kind": "rank",
+    "summary": "Create materials that break the rules of science or do not exist on Earth, including radioactive ones.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 5
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "shape things like armor out of thin air"
+      },
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "purpose": "melt steel with a thought"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "sphere-basics",
+      "transformation",
+      "creation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 519,
+        "pdfPage": 520,
+        "section": "Spheres: Matter"
+      }
+    ]
+  },
+  {
+    "id": "mind-1",
+    "name": "Mind 1: Sense Thoughts and Emotions / Mind Shield / Empower Self",
+    "kind": "rank",
+    "summary": "Sense other people's moods and surface urges, scan auras, tell truth from lies. Shield your own mind, and sharpen it to follow several things at once, work faster, or raise a Mental Attribute for a scene or two.",
+    "system": "Each success on a coincidental shield roll removes one success from anyone trying to read you. Each Empower Self success adds one dot to a Mental Trait. Reading a person's general state of mind takes a successful Arete roll.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 1
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Matter": 1
+        },
+        "purpose": "pick up psychic impressions from a place or object"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "sphere-basics",
+      "perception",
+      "mental",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 519,
+        "pdfPage": 520,
+        "section": "Spheres: Mind"
+      }
+    ]
+  },
+  {
+    "id": "mind-2",
+    "name": "Mind 2: Read Surface Thoughts / Empathic Bond / Create Impressions / Mental Impulse",
+    "kind": "rank",
+    "summary": "Skim what is on the surface of an unshielded mind, read emotions and the memories left on objects or places, and send a single word or feeling to someone else.",
+    "system": "Simple feelings like a flash of anger are easy to send or read; layered emotions need more successes. Against unwilling minds the difficulty is usually the target's Willpower (at least 4), and they can resist with a Willpower roll.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "sphere-basics",
+      "communication",
+      "perception",
+      "social"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 519,
+        "pdfPage": 520,
+        "section": "Spheres: Mind"
+      }
+    ]
+  },
+  {
+    "id": "mind-3",
+    "name": "Mind 3: Mental Link / Project Illusions / Dreamwalk / Psychic Blast",
+    "kind": "rank",
+    "summary": "Link minds for telepathy, read or sway someone's thoughts, put illusions in their head, walk into dreams and dream Realms, and hit a rival with a psychic attack.",
+    "system": "Mind attacks do bashing damage: painful, rarely deadly. Combined with Correspondence, Forces, Matter or Life you get telekinesis, pyrokinesis and similar powers, which are not coincidental.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "communication",
+      "illusion",
+      "combat",
+      "mind-control"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 519,
+        "pdfPage": 520,
+        "section": "Spheres: Mind"
+      }
+    ]
+  },
+  {
+    "id": "mind-4",
+    "name": "Mind 4: Control Conscious Mind / Alter Consciousness / Astral Projection",
+    "kind": "rank",
+    "summary": "Take over someone's actions and thoughts, change their memories, drive them mad or bring them back, mask their aura, plant post-hypnotic commands, and leave your own body in astral form.",
+    "system": "Social conditioning rules are on M20 pp. 605-607; astral travel on pp. 476-478.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 4
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "mind-control",
+      "travel",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 520,
+        "pdfPage": 521,
+        "section": "Spheres: Mind"
+      }
+    ]
+  },
+  {
+    "id": "mind-5",
+    "name": "Mind 5: Control Subconscious / Forge Psyche / Untether Consciousness",
+    "kind": "rank",
+    "summary": "Change a mind for good: raise or lower Traits, rewrite a personality or Nature, on others or on yourself. Roam the deep astral reaches for hours or days, or create a mind where none existed.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 5
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "mind-control",
+      "creation",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 520,
+        "pdfPage": 521,
+        "section": "Spheres: Mind"
+      }
+    ]
+  },
+  {
+    "id": "prime-1",
+    "name": "Prime 1: Etheric Senses / Consecration / Infuse Personal Quintessence",
+    "kind": "rank",
+    "summary": "See Quintessence moving through Nodes, Tass, Wonders and spells, try to read Resonance, and take in more Quintessence than your Avatar rating. Consecrate an object with your energy so it changes along with you when you shapeshift or step sideways.",
+    "system": "Without Prime 1 a mage cannot hold more Quintessence than their Avatar rating. A consecrated item also carries your Resonance, which can be used to identify and reach you.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 1
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "perception",
+      "quintessence",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 520,
+        "pdfPage": 521,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "prime-2",
+    "name": "Prime 2: Fuel Pattern / Construct Patterns / Enchant Patterns / Body of Light",
+    "kind": "rank",
+    "summary": "Steer Quintessence into Patterns: with other Spheres, conjure new energy, life or matter out of thin air, and charge weapons, attacks or objects so they hurt spirits and deal aggravated damage, or guard against it. You can also project a glowing, insubstantial image of yourself.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "quintessence",
+      "conjuration",
+      "enchantment",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 520,
+        "pdfPage": 521,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "prime-3",
+    "name": "Prime 3: Channel Quintessence / Enchant Life / Energy Weapon / Craft Periapts and Temporary Wonders",
+    "kind": "rank",
+    "summary": "Draw free or raw Quintessence from Nodes, Junctures and Tass and pour it into Patterns, fill a Periapt, make temporary Talismans and Devices, or form a weapon of pure energy.",
+    "system": "Energy weapons deal aggravated damage and cost 1 Quintessence per use, or per turn if they last; they vanish when you run dry and are vulgar unless fired through tech or seen as a miracle. Permanent enchantment needs Prime 4.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 3
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "quintessence",
+      "enchantment",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 520,
+        "pdfPage": 521,
+        "section": "Spheres: Prime"
+      },
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "prime-4",
+    "name": "Prime 4: Expel or Infuse Energy / Tap Wellspring / Craft Tass and Permanent Wonders",
+    "kind": "rank",
+    "summary": "Drain the Quintessence out of objects or energies (not yet living beings) to burn, crumble or wither them, or pack it in so an object cannot be broken. Fuse living and lifeless material into cybernetics and nanotech, enchant things permanently, and draw energy from exciting events.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 4
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "quintessence",
+      "enchantment",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "prime-5",
+    "name": "Prime 5: Infuse or Withdraw Life Force / Create Node and Soulflower / Nullify Paradox",
+    "kind": "rank",
+    "summary": "Draw Quintessence from anything, anywhere: drain a living being until nothing is left, or fill one with so much life force they are blessed. Create Nodes in meaningful places and cancel out Paradox.",
+    "system": "Draining a living being to nothing is vulgar. Nullifying Paradox is on M20 p. 549.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 5
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "quintessence",
+      "creation",
+      "paradox",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "spirit-1",
+    "name": "Spirit 1: Spirit Sight / Spirit Sense",
+    "kind": "rank",
+    "summary": "Sense spirits of every kind, gauge how thick the local Gauntlet is, read auras, peer into the Penumbra, and tell whether an object has a spirit side, as Fetishes do.",
+    "system": "You are most in tune with spirits whose Resonance resembles yours. With other Spheres you can spot Awakened objects, elementals, possessed beings, Shallowings and Nodes.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 1
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "perception",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
+        "section": "Spheres: Spirit"
+      }
+    ]
+  },
+  {
+    "id": "spirit-2",
+    "name": "Spirit 2: Touch Spirit / Manipulate Gauntlet",
+    "kind": "rank",
+    "summary": "Reach or call across the Gauntlet for a moment, talk to spirits and touch them briefly, and make the local Gauntlet thinner or thicker.",
+    "system": "Each success moves the Gauntlet rating by one. In the material world a mage cannot push it below 4. Spirit Effects usually use the Gauntlet rating as difficulty.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Mind": 4
+        },
+        "purpose": "send thoughts across the Gauntlet"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "purpose": "stir up elemental trouble in the Otherworlds"
+      },
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "purpose": "give a material object ephemeral power"
+      },
+      {
+        "spheres": {
+          "Prime": 3
+        },
+        "purpose": "drain Essence from a spirit"
+      },
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "purpose": "let another living being sense or contact spirits"
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "spirit",
+      "communication"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
+        "section": "Spheres: Spirit"
+      }
+    ]
+  },
+  {
+    "id": "spirit-3",
+    "name": "Spirit 3: Pierce Gauntlet / Step Sideways / Rouse and Lull Spirit",
+    "kind": "rank",
+    "summary": "Step sideways into the Umbra on your own, wound spirits the way Life 3 wounds bodies, and wake up or lull to sleep the spirits within objects and places.",
+    "system": "Taking normal clothes and gear along raises difficulty and needed successes by 1, bulky gear by 2. Taking other people or big objects needs a higher rank.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "spirit",
+      "travel",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
+        "section": "Spheres: Spirit"
+      },
+      {
+        "book": "M20",
+        "page": 522,
+        "pdfPage": 523,
+        "section": "Spheres: Spirit"
+      }
+    ]
+  },
+  {
+    "id": "spirit-4",
+    "name": "Spirit 4: Rend Gauntlet / Seal Breach / Bind Spirit",
+    "kind": "rank",
+    "summary": "Tear open or close gateways through the Gauntlet big enough for groups or large objects. Compel spirits to appear, bind them into Fetishes, places or prisons, invite one into your own body, or drive one out of a possessed host.",
+    "system": "Binding, channeling and exorcism are resisted rolls of your Willpower against the spirit's. While a spirit rides you, you use its powers but cannot use true magick. Opening or closing gateways is very vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4
+        }
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "sphere-basics",
+      "spirit",
+      "summoning",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 522,
+        "pdfPage": 523,
+        "section": "Spheres: Spirit"
+      }
+    ]
+  },
+  {
+    "id": "spirit-5",
+    "name": "Spirit 5: Forge Ephemera / Gilgul / Break the Dreamshell",
+    "kind": "rank",
+    "summary": "Create, reshape and destroy spirit-stuff: craft Realms, feed or drain a spirit's Essence, put a soul into an empty body or object, destroy a mage's Avatar (Gilgul), and break through to the Deep Umbra beyond the Horizon.",
+    "system": "Always vulgar, with heavy consequences even on success. Breaking the Dreamshell takes at least 10 successes.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 5
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "sphere-basics",
+      "spirit",
+      "creation",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 522,
+        "pdfPage": 523,
+        "section": "Spheres: Spirit"
+      }
+    ]
+  },
+  {
+    "id": "time-1",
+    "name": "Time 1: Time Sense",
+    "kind": "rank",
+    "summary": "Get a perfect internal clock and notice the ripples that Time magick and other disturbances leave in the flow of time, before or after they happen.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 1
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "perception",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 522,
+        "pdfPage": 523,
+        "section": "Spheres: Time"
+      }
+    ]
+  },
+  {
+    "id": "time-2",
+    "name": "Time 2: Past and Future Sight / Thicken the Walls of Time",
+    "kind": "rank",
+    "summary": "Catch brief, hazy glimpses of the past or future of the spot you stand on, limited to what someone there could have noticed. Or thicken time so other Time magick has a harder job.",
+    "system": "Each thickening success removes one success from other characters' Time Effects. Add Matter, Life or Correspondence to read the past or future of an object, creature or other place.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 2
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "divination",
+      "time",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 522,
+        "pdfPage": 523,
+        "section": "Spheres: Time"
+      }
+    ]
+  },
+  {
+    "id": "time-3",
+    "name": "Time 3: Time Contraction or Dilation / Bullet Time / Rewind Time",
+    "kind": "rank",
+    "summary": "Speed yourself up for extra actions, slow someone or something down, or wind back the last few moments around you to redo an action.",
+    "system": "Every 2 successes give one extra action that is not magick (still only one Arete roll a turn). Each success slows a target one step (4 successes: a quarter speed). Rewinding goes back one turn per 2 successes. Going back in time adds +3 difficulty, is always vulgar and multiplies Paradox.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 3
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "purpose": "affect energies"
+      },
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "purpose": "affect living beings"
+      },
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "purpose": "affect objects"
+      },
+      {
+        "spheres": {
+          "Correspondence": 3
+        },
+        "purpose": "cast Effects across distance and time"
+      },
+      {
+        "spheres": {
+          "Entropy": 3
+        },
+        "purpose": "call up several probabilities at once"
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "time",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 523,
+        "pdfPage": 524,
+        "section": "Spheres: Time"
+      }
+    ]
+  },
+  {
+    "id": "time-4",
+    "name": "Time 4: Time Determinism / Trigger Effect / Time Bubble / Anchor Point",
+    "kind": "rank",
+    "summary": "Step out of the normal flow of time, hold an Effect until a set event triggers it, and with other Spheres trap beings or forces in a bubble of time. You can also set an anchor point to return to when you travel in time at rank 5.",
+    "system": "A time bubble needs the Sphere of what it holds (Correspondence, Forces, Life, Matter or Spirit). Trapping something like a tornado is vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 4
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 523,
+        "pdfPage": 524,
+        "section": "Spheres: Time"
+      }
+    ]
+  },
+  {
+    "id": "time-5",
+    "name": "Time 5: Temporal Travel / Time Immunity",
+    "kind": "rank",
+    "summary": "Exist outside time, protect people, places or things from its passing, and travel forward or back through time.",
+    "system": "Time travel is imprecise and largely up to the Storyteller; How Do You DO That? has the details.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 5
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "time",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 523,
+        "pdfPage": 524,
+        "section": "Spheres: Time"
+      }
+    ]
+  },
+  {
+    "id": "data-1",
+    "name": "Data 1: On the Ones and Zeros",
+    "kind": "rank",
+    "summary": "Technocratic Correspondence. Read the exact distances and connections between things you can see, and do basic work without instruments.",
+    "system": "Data only reaches targets that are on the grid (electronic data and media).",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "perception",
+      "technology"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 524,
+        "pdfPage": 525,
+        "section": "Spheres: Data"
+      }
+    ]
+  },
+  {
+    "id": "data-2",
+    "name": "Data 2: The Reach and the View",
+    "kind": "rank",
+    "summary": "With the right gear, see and touch what is happening elsewhere. Linked with other Spheres it gives Technocratic Effects range: Matter to tweak tech remotely, Mind to talk to anyone worldwide, Forces for remote strikes, Entropy for probability and flaws.",
+    "system": "Your Data rank must be at least the highest rank in the linked Effect. How much data you need about the target depends on your rank (see the Data Connections chart).",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "perception",
+      "technology",
+      "communication"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 524,
+        "pdfPage": 525,
+        "section": "Spheres: Data"
+      }
+    ]
+  },
+  {
+    "id": "data-3",
+    "name": "Data 3: Quantum Teleportation / Firewalling / Surveillance Hub",
+    "kind": "rank",
+    "summary": "Send yourself by quantum teleportation, set up particle-physics firewalls that ward objects, places or people, and split your perceptions over many monitored locations. With other Spheres you can move things, energies and people across space.",
+    "system": "Needs the proper gear at both ends.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "travel",
+      "warding",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 524,
+        "pdfPage": 525,
+        "section": "Spheres: Data"
+      },
+      {
+        "book": "M20",
+        "page": 525,
+        "pdfPage": 526,
+        "section": "Spheres: Data"
+      }
+    ]
+  },
+  {
+    "id": "data-4",
+    "name": "Data 4: Between Space / Dimensional Cohabitation / Multilocation Access",
+    "kind": "rank",
+    "summary": "Open quantum gateways, build pocket dimensions, and spread holographic copies of yourself over several places. With Life, Mind and Primal Utility those copies become solid and can act on their own.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 525,
+        "pdfPage": 526,
+        "section": "Spheres: Data"
+      }
+    ]
+  },
+  {
+    "id": "data-5",
+    "name": "Data 5: Redistribute Physical Properties / Fold Space / Hyperdispersed Perceptions",
+    "kind": "rank",
+    "summary": "Stack locations into the same space, change a target's size and spatial properties, and spread your perceptions over so many places that you have eyes and ears everywhere.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "perception",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 525,
+        "pdfPage": 526,
+        "section": "Spheres: Data"
+      }
+    ]
+  },
+  {
+    "id": "dimensional-science-1",
+    "name": "Dimensional Science 1: EDE Scan / Evaluate Gauntlet / Map Dimensional Region",
+    "kind": "rank",
+    "summary": "Void Engineer Spirit. Detect extradimensional entities and coming incursions, measure the barrier and the nature of nearby dimensions, and map the terrain of pocket dimensions beyond it.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 1
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "perception",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 525,
+        "pdfPage": 526,
+        "section": "Spheres: Dimensional Science"
+      }
+    ]
+  },
+  {
+    "id": "dimensional-science-2",
+    "name": "Dimensional Science 2: Dimensional Vibration / Modify Dimensional Gauntlet / Transdimensional Field",
+    "kind": "rank",
+    "summary": "Send ripples into nearby subdimensions to lure EDEs or signal other specialists, raise or lower the Gauntlet, and wrap yourself in a field that lets you briefly touch other dimensions without harm from the Dimensional Anomaly.",
+    "system": "Unlike mystics, a specialist can drop the Gauntlet all the way to 0 for one scene, which shields everyone else from the Avatar Storm; the specialist still takes its damage.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 525,
+        "pdfPage": 526,
+        "section": "Spheres: Dimensional Science"
+      }
+    ]
+  },
+  {
+    "id": "dimensional-science-3",
+    "name": "Dimensional Science 3: Dimensional Shift / Manipulate Paraphysical Phenomena / Phase Disruption Field",
+    "kind": "rank",
+    "summary": "Shift sideways into other dimensions, handle their ephemera, and fire phase disruption fields that stun, hurt or disintegrate spirit entities.",
+    "system": "Weapon settings let you pick bashing, lethal or aggravated damage against Umbral targets.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "spirit",
+      "travel",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 525,
+        "pdfPage": 526,
+        "section": "Spheres: Dimensional Science"
+      }
+    ]
+  },
+  {
+    "id": "dimensional-science-4",
+    "name": "Dimensional Science 4: Alter Dimensional Topography / Dimensional Gateway / Stabilize Dimensional Field",
+    "kind": "rank",
+    "summary": "Make lasting changes to other dimensions, even from the Earthly side: pocket domains, walls to block or trap EDEs, fast travel routes, and large gateways. Protect people from Void Adaptation with Quintessence.",
+    "system": "Fast routes divide Otherworld travel time by (successes + 1). Each point of Quintessence keeps one person safe from Void Adaptation for a week.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "spirit",
+      "travel",
+      "warding"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 526,
+        "pdfPage": 527,
+        "section": "Spheres: Dimensional Science"
+      }
+    ]
+  },
+  {
+    "id": "dimensional-science-5",
+    "name": "Dimensional Science 5: Anthropic Field / Breach Spatial Horizon / Cosmogenesis",
+    "kind": "rank",
+    "summary": "Project a reality bubble that lets you and others cross the Horizons into the Deep Universe, and engineer Horizon Constructs and custom EDE organisms.",
+    "system": "The bubble carries two passengers per success beyond the second. Making EDEs also takes Primal Utility, and often Life and Matter if they must survive outside the subdimensions.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 5
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "spirit",
+      "travel",
+      "creation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 526,
+        "pdfPage": 527,
+        "section": "Spheres: Dimensional Science"
+      }
+    ]
+  },
+  {
+    "id": "primal-utility-1",
+    "name": "Primal Utility 1: Assess Primal Utility / Deposit Primal Utility / Exploit Primal Venture",
+    "kind": "rank",
+    "summary": "Syndicate Prime. See Quintessence flows, Resonance and magick at work around you, invest energy like Prime 1, and draw Quintessence from Ventures: businesses that act as Nodes for you.",
+    "system": "A Venture's Node rating depends on its size, and you need a personal connection to it; each Primal Utility dot past the first lowers the connection needed by one step (see the Primal Ventures chart).",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 1
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "quintessence",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 526,
+        "pdfPage": 527,
+        "section": "Spheres: Primal Utility"
+      }
+    ]
+  },
+  {
+    "id": "primal-utility-2",
+    "name": "Primal Utility 2: Create Gadgets / Perfect Material Exploitation / Primal Innovation",
+    "kind": "rank",
+    "summary": "Use the normal Prime 2 Effects (adding value to materials, making something from nothing), always through some technological source.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "quintessence",
+      "conjuration",
+      "technology"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 527,
+        "pdfPage": 528,
+        "section": "Spheres: Primal Utility"
+      }
+    ]
+  },
+  {
+    "id": "primal-utility-3",
+    "name": "Primal Utility 3: Create Stable Extraordinary Devices / Living-Asset Exploitation / Use Currency and Primal Storage",
+    "kind": "rank",
+    "summary": "Use Currency (Tass) and a well-run team to build permanent Devices, restore your own Pattern, and drain or refill Devices and storage Matrices (Periapts).",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 3
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "quintessence",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 527,
+        "pdfPage": 528,
+        "section": "Spheres: Primal Utility"
+      }
+    ]
+  },
+  {
+    "id": "primal-utility-4",
+    "name": "Primal Utility 4: Create Tass / Exploit Opportunity / Liquidate Assets",
+    "kind": "rank",
+    "summary": "Turn free energy into Currency (money, credit cards, art, bonds), draw energy from exciting events, and destroy objects by stripping their value so nobody else can use it.",
+    "system": "Only energy from Primal Utility activities can become Currency; you cannot charge it at an ordinary Node.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 4
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "quintessence",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 527,
+        "pdfPage": 528,
+        "section": "Spheres: Primal Utility"
+      }
+    ]
+  },
+  {
+    "id": "primal-utility-5",
+    "name": "Primal Utility 5: Create Living Assets / Generate Primal Conflux and Ventures / Liquidate Living Assets / Market Compensation",
+    "kind": "rank",
+    "summary": "Work like a Prime Master: create permanent Devices, open new Nodes and Ventures, wipe out living beings, and cancel Market Correction (Paradox).",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 5
+        }
+      }
+    ],
+    "tags": [
+      "sphere-basics",
+      "technocracy",
+      "quintessence",
+      "creation",
+      "paradox"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 527,
+        "pdfPage": 528,
+        "section": "Spheres: Primal Utility"
+      }
+    ]
+  },
+  {
+    "id": "pull-small-things-through-space",
+    "name": "Pull Small Things Through Space",
+    "kind": "feat",
+    "summary": "Reach through a tiny hole in space and pull a small object or creature, no bigger than a house cat, from somewhere else into your hand. Think of a card, a gun or a rabbit appearing out of nowhere.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Matter": 2
+        },
+        "inferred": [
+          "Matter"
+        ],
+        "note": "objects"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Life": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "note": "small living things"
+      }
+    ],
+    "tags": [
+      "conjuration",
+      "movement"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 513,
+        "pdfPage": 514,
+        "section": "Spheres: Correspondence"
+      }
+    ]
+  },
+  {
+    "id": "move-things-at-a-distance",
+    "name": "Move Things at a Distance",
+    "kind": "feat",
+    "summary": "Levitate, handle or teleport an object, force or creature without touching it, by working on the space between you and it.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3,
+          "Matter": 2
+        },
+        "inferred": [
+          "Matter"
+        ],
+        "note": "objects"
+      },
+      {
+        "spheres": {
+          "Correspondence": 3,
+          "Life": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "note": "living things"
+      },
+      {
+        "spheres": {
+          "Correspondence": 3,
+          "Forces": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "energies"
+      }
+    ],
+    "tags": [
+      "movement",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 513,
+        "pdfPage": 514,
+        "section": "Spheres: Correspondence"
+      }
+    ]
+  },
+  {
+    "id": "co-location",
+    "name": "Co-location: Be in Several Places at Once",
+    "kind": "feat",
+    "summary": "Appear in several places at the same time. Without more magick every copy copies your movements; add Life so each self can act on its own.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Mind": 1
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "purpose": "each copy acts independently"
+      }
+    ],
+    "tags": [
+      "travel",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 513,
+        "pdfPage": 514,
+        "section": "Spheres: Correspondence"
+      }
+    ]
+  },
+  {
+    "id": "see-many-places-at-once",
+    "name": "See Many Places at Once",
+    "kind": "feat",
+    "summary": "Spread your senses over many different places at the same time, far beyond the few overlapping views of Correspondence 3.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Life": 3
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "divination"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 513,
+        "pdfPage": 514,
+        "section": "Spheres: Correspondence"
+      }
+    ]
+  },
+  {
+    "id": "attract-or-repel-forces",
+    "name": "Attract or Repel Forces",
+    "kind": "feat",
+    "summary": "Make an object or creature push away, or draw in, a chosen kind of energy: a small protective field against it, or a magnet for it.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2,
+          "Matter": 2
+        },
+        "inferred": [
+          "Matter"
+        ],
+        "note": "on an object"
+      },
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "note": "on a living being"
+      }
+    ],
+    "tags": [
+      "defense",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 515,
+        "pdfPage": 516,
+        "section": "Spheres: Forces"
+      }
+    ]
+  },
+  {
+    "id": "turn-a-person-into-electricity",
+    "name": "Turn a Person into Electricity",
+    "kind": "feat",
+    "summary": "Transform a living being into pure electrical energy.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 3,
+          "Life": 5
+        }
+      }
+    ],
+    "tags": [
+      "transformation",
+      "shapechanging",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Forces"
+      }
+    ]
+  },
+  {
+    "id": "turn-water-into-air",
+    "name": "Turn Water into Air",
+    "kind": "feat",
+    "summary": "Change a material substance into an energetic or gaseous one, such as turning water into air.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 3,
+          "Matter": 3
+        }
+      }
+    ],
+    "tags": [
+      "transformation",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Forces"
+      }
+    ]
+  },
+  {
+    "id": "make-things-fly-or-pin-them-down",
+    "name": "Make Things Fly or Pin Them Down",
+    "kind": "feat",
+    "summary": "Bind a force like gravity or lift to a body or object, so it flies, floats, or gets pinned to the ground.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 3,
+          "Life": 3
+        },
+        "note": "a living being"
+      },
+      {
+        "spheres": {
+          "Forces": 3,
+          "Matter": 3
+        },
+        "note": "an object"
+      }
+    ],
+    "tags": [
+      "movement",
+      "travel",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Forces"
+      }
+    ]
+  },
+  {
+    "id": "turn-matter-into-living-tissue",
+    "name": "Turn Matter into Living Tissue",
+    "kind": "feat",
+    "summary": "Change lifeless material into something alive, from wine into blood up to building living tissue out of dead matter.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Matter": 2
+        },
+        "note": "a simple substance such as blood"
+      },
+      {
+        "spheres": {
+          "Life": 4,
+          "Matter": 2
+        },
+        "note": "living tissue in general"
+      }
+    ],
+    "tags": [
+      "transformation",
+      "creation",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 518,
+        "pdfPage": 519,
+        "section": "Spheres: Matter"
+      }
+    ]
+  },
+  {
+    "id": "turn-a-creature-into-an-object",
+    "name": "Turn a Creature into an Object",
+    "kind": "feat",
+    "summary": "Transform something alive into an inanimate object, fairy-tale style: a pumpkin into a carriage, a person into a throne, a vampire into lawn furniture.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2,
+          "Matter": 4
+        },
+        "note": "simple organisms such as a pumpkin"
+      },
+      {
+        "spheres": {
+          "Life": 5,
+          "Matter": 4
+        },
+        "note": "a person"
+      },
+      {
+        "spheres": {
+          "Life": 5,
+          "Matter": 5
+        },
+        "note": "into exotic materials"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "transformation",
+      "shapechanging"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 519,
+        "pdfPage": 520,
+        "section": "Spheres: Matter"
+      }
+    ]
+  },
+  {
+    "id": "switch-bodies",
+    "name": "Switch Minds Between Bodies",
+    "kind": "feat",
+    "summary": "Move someone's mind into another body.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 4,
+          "Mind": 5
+        }
+      }
+    ],
+    "tags": [
+      "mind-control",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 520,
+        "pdfPage": 521,
+        "section": "Spheres: Mind"
+      }
+    ]
+  },
+  {
+    "id": "consecrate-a-living-being",
+    "name": "Consecrate a Living Being",
+    "kind": "feat",
+    "summary": "Bind a living creature to your personal energy the way Prime 1 binds an object, so it shifts with you when your Pattern changes.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2,
+          "Prime": 2
+        },
+        "note": "simple organisms"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Prime": 2
+        },
+        "note": "complex creatures"
+      }
+    ],
+    "tags": [
+      "enchantment",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 520,
+        "pdfPage": 521,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "enchant-a-living-being",
+    "name": "Enchant a Living Being",
+    "kind": "feat",
+    "summary": "Charge a living creature with Quintessence so it can deal or withstand aggravated damage, or rattle its life force to wound it with aggravated damage.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Prime": 3
+        }
+      }
+    ],
+    "tags": [
+      "enchantment",
+      "combat",
+      "defense",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 520,
+        "pdfPage": 521,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "draw-quintessence-from-sacrifice-or-objects",
+    "name": "Draw Quintessence from a Sacrifice or an Object",
+    "kind": "feat",
+    "summary": "Pull a little life energy out of a living sacrifice, or Quintessence out of a lifeless object.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 3
+        },
+        "note": "from a living sacrifice"
+      },
+      {
+        "spheres": {
+          "Matter": 2,
+          "Prime": 3
+        },
+        "note": "from inert objects"
+      }
+    ],
+    "tags": [
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "craft-a-soulgem",
+    "name": "Craft a Soulgem",
+    "kind": "feat",
+    "summary": "Pour your own Quintessence into a Periapt to make a Soulgem: a portable store filled with your energy and Resonance.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 4,
+          "Prime": 4
+        }
+      }
+    ],
+    "tags": [
+      "enchantment",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "create-a-soulflower",
+    "name": "Create a Soulflower",
+    "kind": "feat",
+    "summary": "Turn a complex living being into a Soulflower: a walking Periapt that stores a boosted supply of Quintessence.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 5,
+          "Prime": 5
+        }
+      }
+    ],
+    "tags": [
+      "quintessence",
+      "enchantment",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
+        "section": "Spheres: Prime"
+      }
+    ]
+  },
+  {
+    "id": "read-spiritual-energies",
+    "name": "Read Spiritual Energies",
+    "kind": "feat",
+    "summary": "Read Resonance, Synergy and other spiritual energies, such as a spirit's Essence or its place in a hierarchy.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2,
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 522,
+        "pdfPage": 523,
+        "section": "Spheres: Spirit"
+      }
+    ]
+  },
+  {
+    "id": "make-objects-from-ephemera",
+    "name": "Make Objects from Ephemera",
+    "kind": "feat",
+    "summary": "Build a short-lived physical object out of spirit-stuff. You make it as if it were a real material thing, and it fades when the Effect ends.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 3,
+          "Prime": 2,
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "conjuration",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 522,
+        "pdfPage": 523,
+        "section": "Spheres: Spirit"
+      }
+    ]
+  },
+  {
+    "id": "pick-the-likeliest-future",
+    "name": "Pick Out the Likeliest Future",
+    "kind": "feat",
+    "summary": "Scan several possible futures side by side and tell which of them is the most probable.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2,
+          "Time": 2
+        }
+      }
+    ],
+    "tags": [
+      "divination",
+      "time",
+      "luck"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 523,
+        "pdfPage": 524,
+        "section": "Spheres: Time"
+      }
+    ]
+  },
+  {
+    "id": "rewind-and-remember",
+    "name": "Rewind Time and Keep Your Memories",
+    "kind": "feat",
+    "summary": "Go back in time while still remembering what happened in the future you just left.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Mind": 1,
+          "Time": 3
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 523,
+        "pdfPage": 524,
+        "section": "Spheres: Time"
+      }
+    ]
+  }
+]
