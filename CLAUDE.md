@@ -29,6 +29,14 @@ node scripts/sheet-words.mjs <sheet.pdf>        # dump a sheet's printed words w
 
 `verify-sheet.mjs` needs the sample sheet in `refs/` (gitignored); override with `SHEET=<path>`.
 
+The effect library (563 effects from M20 and How Do You DO That, our own summaries with book/page refs) lives in `library/`; `library/README.md` has the schema, authoring rules and counts. Edit `library/src/*.json`, then:
+
+```sh
+node library/scripts/extract-text.mjs   # once: book text into refs/text (gitignored)
+node library/scripts/build.mjs          # src/*.json -> library/effects.json (committed)
+node library/scripts/check.mjs          # must end in "OK: 0 issues"
+```
+
 No unit tests or linters; verify scripts (playwright-core driving system Edge via `channel: 'msedge'`) are the verification story. The preview server must be running on :4173 first.
 
 ## Architecture
