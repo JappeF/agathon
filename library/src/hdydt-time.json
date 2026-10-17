@@ -53,6 +53,16 @@
         "book": "HDYDT",
         "page": 107,
         "section": "Time Distortion and Travel: The Basics"
+      },
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
+      },
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
       }
     ]
   },
@@ -254,6 +264,11 @@
         "book": "HDYDT",
         "page": 108,
         "section": "Time Distortion and Travel: Magickal Feats of Time"
+      },
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
       }
     ]
   },
@@ -687,6 +702,11 @@
         "book": "HDYDT",
         "page": 110,
         "section": "Time Distortion and Travel: Dilating Time"
+      },
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
       }
     ]
   }

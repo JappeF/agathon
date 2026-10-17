@@ -617,6 +617,12 @@
         "spheres": {
           "Correspondence": 3
         }
+      },
+      {
+        "spheres": {
+          "Correspondence": 4
+        },
+        "note": "someone or something else"
       }
     ],
     "coincidentalIf": "you vanish into darkness or smoke and a witness could believe you simply went somewhere else; vanishing in front of people is vulgar with witnesses, and vanishing unseen is still vulgar without witnesses",
@@ -634,6 +640,11 @@
         "book": "HDYDT",
         "page": 77,
         "section": "Mystic Travel: Teleportation"
+      },
+      {
+        "book": "M20",
+        "page": 509,
+        "section": "Common Magickal Effects: Time and Distance"
       }
     ]
   },
@@ -1473,6 +1484,11 @@
         "book": "HDYDT",
         "page": 88,
         "section": "Necromancy: Animating the Dead"
+      },
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
       }
     ]
   },
@@ -1609,6 +1625,11 @@
         "book": "HDYDT",
         "page": 89,
         "section": "Necromancy: Reviving and Resurrection"
+      },
+      {
+        "book": "M20",
+        "page": 508,
+        "section": "Common Magickal Effects: Body Magick"
       }
     ]
   },

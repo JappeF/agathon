@@ -1,0 +1,44 @@
+[
+  {
+    "check": "spheres",
+    "id": "read-opponent-at-a-distance",
+    "detail": "Mind 1 not found on M20 p.422",
+    "reason": "p.422 asks for at least one dot in the Correspondence or Mind Spheres plus a perceptual Effect to read an opponent beyond about 20 feet; the shared 'one dot' covers Mind 1 as well."
+  },
+  {
+    "check": "spheres",
+    "id": "dodge-the-blast",
+    "detail": "Entropy 2 not found on M20 p.438",
+    "reason": "The Dodging the Blast sidebar on p.438 names Entropy, Forces, Life, Matter and Time and requires at least two dots in the appropriate Sphere."
+  },
+  {
+    "check": "spheres",
+    "id": "dodge-the-blast",
+    "detail": "Forces 2 not found on M20 p.438",
+    "reason": "The Dodging the Blast sidebar on p.438 names Entropy, Forces, Life, Matter and Time and requires at least two dots in the appropriate Sphere."
+  },
+  {
+    "check": "spheres",
+    "id": "dodge-the-blast",
+    "detail": "Life 2 not found on M20 p.438",
+    "reason": "The Dodging the Blast sidebar on p.438 names Entropy, Forces, Life, Matter and Time and requires at least two dots in the appropriate Sphere."
+  },
+  {
+    "check": "spheres",
+    "id": "dodge-the-blast",
+    "detail": "Matter 2 not found on M20 p.438",
+    "reason": "The Dodging the Blast sidebar on p.438 names Entropy, Forces, Life, Matter and Time and requires at least two dots in the appropriate Sphere."
+  },
+  {
+    "check": "spheres",
+    "id": "dodge-the-blast",
+    "detail": "Time 2 not found on M20 p.438",
+    "reason": "The Dodging the Blast sidebar on p.438 names Entropy, Forces, Life, Matter and Time and requires at least two dots in the appropriate Sphere."
+  },
+  {
+    "check": "spheres",
+    "id": "agama-travel-beyond-the-underworld",
+    "detail": "Entropy 5 + Spirit 5 + Life 2 not stated together (within 700 chars) on M20 p.480, M20 p.484",
+    "reason": "p.480 asks for Entropy 5/ Spirit 5 plus the usual Agama requirements; the Agama Re requirement for one's own passage is Entropy 4/ Spirit 3/ Life 2 (p.478), so Life 2 comes from there."
+  }
+]

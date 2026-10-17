@@ -6,14 +6,41 @@
     "summary": "Before you hit, read the target's Pattern for cracks and weak spots, then aim your blow at them.",
     "system": "Lowers the difficulty of one mundane attack (Magick Enhancing Abilities), at most -3. The insight usually lasts a single blow; a fixed, solid target like a wall can be hit again at the same difficulty until the damage changes its flaws.",
     "combos": [
-      { "spheres": { "Entropy": 1 }, "note": "flaws in anything" },
-      { "spheres": { "Life": 1 }, "note": "a living target" },
-      { "spheres": { "Matter": 1 }, "note": "an object or structure" }
+      {
+        "spheres": {
+          "Entropy": 1
+        },
+        "note": "flaws in anything"
+      },
+      {
+        "spheres": {
+          "Life": 1
+        },
+        "note": "a living target"
+      },
+      {
+        "spheres": {
+          "Matter": 1
+        },
+        "note": "an object or structure"
+      }
     ],
-    "tags": ["martial-arts", "combat", "perception"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "perception"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 57, "section": "Martial Arts: The Basics" },
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 57,
+        "section": "Martial Arts: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -23,12 +50,28 @@
     "summary": "Bend the physics of your punch or kick so it lands with far more speed and impact than muscle alone could give it.",
     "system": "The blow does lethal instead of bashing damage and gains one automatic damage success from Forces. Combine with Prime 2, Life 3 or Entropy 4 to make that extra damage aggravated too.",
     "combos": [
-      { "spheres": { "Forces": 2 } }
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
     ],
-    "tags": ["martial-arts", "combat", "elemental"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "elemental"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 57, "section": "Martial Arts: The Basics" },
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 57,
+        "section": "Martial Arts: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -38,17 +81,48 @@
     "summary": "Make your unarmed blows deal aggravated damage, whether by charging them with vital energy, shattering the target's living Pattern, or breaking through the flaws in its body.",
     "system": "Prime 2 costs 1 Quintessence per strike. Life 3 works on living beings and is vulgar. On their own these only change the damage type; add Forces 2 to also deal extra damage.",
     "combos": [
-      { "spheres": { "Prime": 2 }, "note": "chi-charged blow, 1 Quintessence per strike" },
-      { "spheres": { "Life": 3 }, "note": "shatter a living Pattern; vulgar" },
-      { "spheres": { "Entropy": 4 }, "note": "break through the body's flaws" }
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "note": "chi-charged blow, 1 Quintessence per strike"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "shatter a living Pattern; vulgar"
+      },
+      {
+        "spheres": {
+          "Entropy": 4
+        },
+        "note": "break through the body's flaws"
+      }
     ],
     "optional": [
-      { "spheres": { "Forces": 2 }, "purpose": "extra damage on top of the aggravated type" }
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "purpose": "extra damage on top of the aggravated type"
+      }
     ],
-    "tags": ["martial-arts", "combat"],
+    "tags": [
+      "martial-arts",
+      "combat"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 57, "section": "Martial Arts: The Basics" },
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 57,
+        "section": "Martial Arts: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -58,11 +132,23 @@
     "summary": "Hit an object so that your blow tears straight through its material integrity: smash doors, walls, weapons or armor.",
     "system": "It does not let you ignore a person's armor, but you can aim at the armor itself to damage it. See Bustin' Stuff in M20.",
     "combos": [
-      { "spheres": { "Matter": 2 } }
+      {
+        "spheres": {
+          "Matter": 2
+        }
+      }
     ],
-    "tags": ["martial-arts", "combat", "destruction"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "destruction"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -72,13 +158,38 @@
     "summary": "Deal aggravated damage with your blows to beings whose bodies are not plain flesh: walking dead, werecreatures and faerie folk each need an extra Sphere on top of Life.",
     "system": "Plain physical blows (or Forces 2) still hurt such beings normally; the extra Sphere is only needed to make Life's aggravated disruption work on them.",
     "combos": [
-      { "spheres": { "Life": 3, "Matter": 2 }, "note": "undead" },
-      { "spheres": { "Life": 3, "Spirit": 2 }, "note": "werecreatures" },
-      { "spheres": { "Life": 3, "Mind": 3 }, "note": "changelings, True Fae and other faeries" }
+      {
+        "spheres": {
+          "Life": 3,
+          "Matter": 2
+        },
+        "note": "undead"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Spirit": 2
+        },
+        "note": "werecreatures"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Mind": 3
+        },
+        "note": "changelings, True Fae and other faeries"
+      }
     ],
-    "tags": ["martial-arts", "combat"],
+    "tags": [
+      "martial-arts",
+      "combat"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -88,13 +199,29 @@
     "summary": "Harden your body so you can soak lethal and aggravated damage, push your Stamina past its normal limits, and endure extreme weather, hunger, sickness and other hardships.",
     "system": "2 successes to soak lethal, 3 to soak aggravated, plus 1 per dot of raised Stamina up to 5 and 2 per dot above 5 (Stamina 4 raised to 6 while soaking aggravated: 3 + 1 + 2 = 6). Lasts the normal Duration. Healing aggravated damage costs 1 Quintessence per health level; combine with Chi Healing to mend fast. Looks like toughness, but visibly soaking gunfire or swelling with inhuman stamina is vulgar.",
     "combos": [
-      { "spheres": { "Life": 3 } }
+      {
+        "spheres": {
+          "Life": 3
+        }
+      }
     ],
     "vulgarity": "depends",
-    "tags": ["martial-arts", "defense", "body"],
+    "tags": [
+      "martial-arts",
+      "defense",
+      "body"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 58, "section": "Martial Arts: The Basics" },
-      { "book": "HDYDT", "page": 67, "section": "Martial Arts: Defense" }
+      {
+        "book": "HDYDT",
+        "page": 58,
+        "section": "Martial Arts: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 67,
+        "section": "Martial Arts: Defense"
+      }
     ]
   },
   {
@@ -104,11 +231,23 @@
     "summary": "Shut out the pain of your injuries through sheer will and keep fighting at full strength. The wounds are still there; they just do not slow you down until your body gives out.",
     "system": "Ignore all wound penalties for the Duration, at any injury level short of death.",
     "combos": [
-      { "spheres": { "Mind": 3 } }
+      {
+        "spheres": {
+          "Mind": 3
+        }
+      }
     ],
-    "tags": ["martial-arts", "defense", "mental"],
+    "tags": [
+      "martial-arts",
+      "defense",
+      "mental"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 67, "section": "Martial Arts: Defense" }
+      {
+        "book": "HDYDT",
+        "page": 67,
+        "section": "Martial Arts: Defense"
+      }
     ]
   },
   {
@@ -118,13 +257,25 @@
     "summary": "Stop a fight before it starts by pushing an emotion into a would-be attacker: soothing calm that takes the will to fight away, or fear, panic or blind rage that ruins their tactics and gives you the edge.",
     "system": "Difficulty is the target's Willpower for a normal human, Willpower + 3 for a mage or other supernatural. Against a group of mortals use the normal casting difficulty; against a group of supernaturals use the highest Willpower in it (default 5) + 5. One or two successes usually stop a casual opponent. You can use a social roll to cut the Effect's difficulty, or the Effect to cut the social roll's, by up to -3; both get rolled.",
     "combos": [
-      { "spheres": { "Mind": 2 } }
+      {
+        "spheres": {
+          "Mind": 2
+        }
+      }
     ],
     "coincidentalIf": "you do not make the magick blatantly obvious; a hard stare helps",
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "social", "mind-control"],
+    "tags": [
+      "martial-arts",
+      "social",
+      "mind-control"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 60, "section": "Martial Arts: Before a Blow is Struck" }
+      {
+        "book": "HDYDT",
+        "page": 60,
+        "section": "Martial Arts: Before a Blow is Struck"
+      }
     ]
   },
   {
@@ -134,13 +285,31 @@
     "summary": "Win the fight inside your own head first. With a war-cry, kata, prayer or death glare you either psych out your opponent or psych yourself up.",
     "system": "Each success takes -1 off your next roll, at most -3. Psyching out the foe makes that roll a Facedown; psyching up makes it your next initiative, attack or defense roll. Five successes on a psych-out may make the opponent give up without a fight.",
     "combos": [
-      { "spheres": { "Mind": 2 }, "note": "emotional surge" },
-      { "spheres": { "Mind": 3 }, "note": "mental push" }
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "note": "emotional surge"
+      },
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "note": "mental push"
+      }
     ],
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "mental", "social"],
+    "tags": [
+      "martial-arts",
+      "mental",
+      "social"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 60, "section": "Martial Arts: Before a Blow is Struck" }
+      {
+        "book": "HDYDT",
+        "page": 60,
+        "section": "Martial Arts: Before a Blow is Struck"
+      }
     ]
   },
   {
@@ -150,11 +319,24 @@
     "summary": "Both fighters project their astral selves into the High Umbra, into an arena shaped by their imaginations, and fight it out there until one or both are satisfied.",
     "system": "Uses the Astral Projection feat; astral combat follows the Astral Travel rules in M20 (pp. 476-478).",
     "combos": [
-      { "spheres": { "Mind": 4 } }
+      {
+        "spheres": {
+          "Mind": 4
+        }
+      }
     ],
-    "tags": ["martial-arts", "mental", "spirit", "combat"],
+    "tags": [
+      "martial-arts",
+      "mental",
+      "spirit",
+      "combat"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 60, "section": "Martial Arts: Before a Blow is Struck" }
+      {
+        "book": "HDYDT",
+        "page": 60,
+        "section": "Martial Arts: Before a Blow is Struck"
+      }
     ]
   },
   {
@@ -164,13 +346,25 @@
     "summary": "Lead a brief rite (song, dance, rousing speech) that fills your allies with battle-lust, courage and loyalty. They follow your orders short of suicide or atrocity, maybe even then.",
     "system": "Extended roll. Difficulty 7 or the group's highest Willpower, whichever is higher; social rolls and a fired-up crowd can lower it by up to -3. Successes needed: 3 for up to 5 close allies, 5 for 5 like-minded people, 7 for 20 allies or 10 like-minded, 10 for 50 or 20, 13 for 75 or 50, 15 for 100 or 75, 17 for 150 or 100, 20 for a decent mob. Add 1 success per turn it should last.",
     "combos": [
-      { "spheres": { "Mind": 2 } }
+      {
+        "spheres": {
+          "Mind": 2
+        }
+      }
     ],
     "coincidentalIf": "you do not use obvious magick",
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "social", "combat"],
+    "tags": [
+      "martial-arts",
+      "social",
+      "combat"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 61, "section": "Martial Arts: Before a Blow is Struck" }
+      {
+        "book": "HDYDT",
+        "page": 61,
+        "section": "Martial Arts: Before a Blow is Struck"
+      }
     ]
   },
   {
@@ -180,17 +374,40 @@
     "summary": "A mighty war dance that also makes your allies almost immune to harm. Shamans can call friendly spirits into the rite to add their power.",
     "system": "Per ally: 3 successes to soak lethal, 5 to soak aggravated, +2 per dot of Stamina raised, and 1 Quintessence each. At most 10 people. Lasts one turn per extra success. Needs a long extended ritual.",
     "combos": [
-      { "spheres": { "Mind": 2, "Life": 4 } }
+      {
+        "spheres": {
+          "Mind": 2,
+          "Life": 4
+        }
+      }
     ],
     "optional": [
-      { "spheres": { "Spirit": 2 }, "purpose": "call friendly spirits into the rite" }
+      {
+        "spheres": {
+          "Spirit": 2
+        },
+        "purpose": "call friendly spirits into the rite"
+      }
     ],
     "coincidentalIf": "performed on your own people who share the belief, and the crowd is not visibly glowing or shrugging off bullets",
     "vulgarity": "depends",
-    "tags": ["martial-arts", "social", "defense", "body"],
+    "tags": [
+      "martial-arts",
+      "social",
+      "defense",
+      "body"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 61, "section": "Martial Arts: Before a Blow is Struck" },
-      { "book": "HDYDT", "page": 62, "section": "Martial Arts: Before a Blow is Struck" }
+      {
+        "book": "HDYDT",
+        "page": 61,
+        "section": "Martial Arts: Before a Blow is Struck"
+      },
+      {
+        "book": "HDYDT",
+        "page": 62,
+        "section": "Martial Arts: Before a Blow is Struck"
+      }
     ]
   },
   {
@@ -200,15 +417,35 @@
     "summary": "Sense the whole battleground at once: who stands where, the obstacles, the weapons lying around. A mental link lets your allies share the picture.",
     "system": "Arete roll, usually coincidental. Each success lowers the difficulty of a Perception roll to map the field by -1, at most -3. With an Academics (Strategy or Tactics) specialty or Leadership you add that Ability and can direct your allies.",
     "combos": [
-      { "spheres": { "Correspondence": 1 } }
+      {
+        "spheres": {
+          "Correspondence": 1
+        }
+      }
     ],
     "optional": [
-      { "spheres": { "Mind": 3 }, "inferred": ["Mind"], "purpose": "share the picture with linked allies" }
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "inferred": [
+          "Mind"
+        ],
+        "purpose": "share the picture with linked allies"
+      }
     ],
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "perception", "combat"],
+    "tags": [
+      "martial-arts",
+      "perception",
+      "combat"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 62, "section": "Martial Arts: Before a Blow is Struck" }
+      {
+        "book": "HDYDT",
+        "page": 62,
+        "section": "Martial Arts: Before a Blow is Struck"
+      }
     ]
   },
   {
@@ -218,13 +455,33 @@
     "summary": "See the fight through an ally's eyes, or with Correspondence run a whole squad: you take in what each of them sees and give them orders.",
     "system": "A viewer must be willing or you must beat their Willpower (see Sharing Perceptions). The network costs 1 extra success per ally in it. You only see what your troops see, and many feeds at once are hard to follow.",
     "combos": [
-      { "spheres": { "Mind": 3 }, "note": "one viewer's eyes" },
-      { "spheres": { "Mind": 3, "Correspondence": 1 }, "note": "command a squad" }
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "note": "one viewer's eyes"
+      },
+      {
+        "spheres": {
+          "Mind": 3,
+          "Correspondence": 1
+        },
+        "note": "command a squad"
+      }
     ],
     "coincidentalIf": "the allies are willing and the link is invisible or runs through tactical displays and comms gear",
-    "tags": ["martial-arts", "perception", "communication", "technocracy"],
+    "tags": [
+      "martial-arts",
+      "perception",
+      "communication",
+      "technocracy"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 62, "section": "Martial Arts: Before a Blow is Struck" }
+      {
+        "book": "HDYDT",
+        "page": 62,
+        "section": "Martial Arts: Before a Blow is Struck"
+      }
     ]
   },
   {
@@ -234,13 +491,36 @@
     "summary": "Keep a sensing Effect running during a fight to read it as it happens: where your attackers stand, what they mean to do, or where everyone will be second by second.",
     "system": "Needs Wits 2 and 2 dots in Brawl, Do, Melee or Martial Arts. Takes a full action; Arete at difficulty 4 or 5 by rank. Each success gives -1 to one kind of attack or defense roll (one Attribute + Ability pair) for one action. Use one Sphere at a time. Not at range without Correspondence or a scope, and never for Arete rolls.",
     "combos": [
-      { "spheres": { "Correspondence": 1 }, "note": "attackers' positions" },
-      { "spheres": { "Mind": 2 }, "note": "their intentions" },
-      { "spheres": { "Time": 2 }, "note": "where everyone will be, moment to moment" }
+      {
+        "spheres": {
+          "Correspondence": 1
+        },
+        "note": "attackers' positions"
+      },
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "note": "their intentions"
+      },
+      {
+        "spheres": {
+          "Time": 2
+        },
+        "note": "where everyone will be, moment to moment"
+      }
     ],
-    "tags": ["martial-arts", "perception", "combat"],
+    "tags": [
+      "martial-arts",
+      "perception",
+      "combat"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 62, "section": "Martial Arts: Before a Blow is Struck" }
+      {
+        "book": "HDYDT",
+        "page": 62,
+        "section": "Martial Arts: Before a Blow is Struck"
+      }
     ]
   },
   {
@@ -250,13 +530,25 @@
     "summary": "Pack an emotional jolt into a punch: the target loses heart, flies into a rage, or just stays on the floor.",
     "system": "Works like Predator's Eye riding on the blow. The target resists with Willpower (difficulty 6) and must get more successes than your Arete roll.",
     "combos": [
-      { "spheres": { "Mind": 2 } }
+      {
+        "spheres": {
+          "Mind": 2
+        }
+      }
     ],
     "coincidentalIf": "you are not ridiculously showy about it",
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "combat", "mind-control"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "mind-control"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -266,13 +558,32 @@
     "summary": "Deliver a Psychic Blast through a slap or blow, so it hurts far more inside than out. With Life added it becomes a brain-shredding Psychic Shatter.",
     "system": "The damage comes from the psychic attack, not the physical hit (Violence as a Focus, M20 p. 413). See Psychic Blast and Psychic Shatter in Uncanny Influence.",
     "combos": [
-      { "spheres": { "Mind": 3 }, "note": "Psychic Blast; usually coincidental" },
-      { "spheres": { "Life": 3, "Mind": 3 }, "note": "Psychic Shatter; not coincidental" }
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "note": "Psychic Blast; usually coincidental"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Mind": 3
+        },
+        "note": "Psychic Shatter; not coincidental"
+      }
     ],
     "vulgarity": "depends",
-    "tags": ["martial-arts", "combat", "mental"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "mental"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -282,11 +593,23 @@
     "summary": "A light touch in the right spot, and the opponent is overwhelmed by pain or simply told to drop. You can choose to do no damage and just stun.",
     "system": "The target goes limp and obeys unless she wins a Willpower roll (difficulty 6) with more successes than you.",
     "combos": [
-      { "spheres": { "Mind": 3 } }
+      {
+        "spheres": {
+          "Mind": 3
+        }
+      }
     ],
-    "tags": ["martial-arts", "combat", "mind-control"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "mind-control"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -296,13 +619,29 @@
     "summary": "A blow or a touch that scrambles the target's mind: madness, hallucinations, lost memories, puppet-like control. It adds nothing to the physical damage.",
     "system": "The Uncanny Influence section has the madness, puppetry and false-memory rules. Normally not coincidental, though a clever fighter can make it fit the scene; passing it off as brain damage brings legal trouble.",
     "combos": [
-      { "spheres": { "Mind": 4 } }
+      {
+        "spheres": {
+          "Mind": 4
+        }
+      }
     ],
     "vulgarity": "depends",
-    "tags": ["martial-arts", "combat", "mind-control"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "mind-control"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" },
-      { "book": "HDYDT", "page": 64, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      },
+      {
+        "book": "HDYDT",
+        "page": 64,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -312,15 +651,37 @@
     "summary": "Touch a target so that she dies later: after six steps, thirteen heartbeats, an hour, whatever trigger fits your art.",
     "system": "Time 4 sets the trigger; Life 3 does the aggravated damage, often built up with an extended killing-blow ritual. Adding chi (Prime 2, 1 Quintessence) does not raise the damage but fits the style.",
     "combos": [
-      { "spheres": { "Time": 4, "Life": 3 } }
+      {
+        "spheres": {
+          "Time": 4,
+          "Life": 3
+        }
+      }
     ],
     "optional": [
-      { "spheres": { "Prime": 2 }, "purpose": "chi-based version, 1 Quintessence, no extra damage" }
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "chi-based version, 1 Quintessence, no extra damage"
+      }
     ],
-    "tags": ["martial-arts", "combat", "time"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "time"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 64, "section": "Martial Arts: Strikes" },
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 64,
+        "section": "Martial Arts: Strikes"
+      },
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -330,13 +691,31 @@
     "summary": "Raise a wall of chi that sends people and objects flying without you laying a finger on them.",
     "system": "1 Quintessence per turn. Anyone attacking or pushed by you is thrown unless a Strength or Dexterity roll (difficulty 6) beats your Arete successes. Normal Forces damage, but bashing on landing; a strong roll can still break a neck. Throwing people without touching them is vulgar outside strong martial-arts realities.",
     "combos": [
-      { "spheres": { "Forces": 2, "Prime": 2 } }
+      {
+        "spheres": {
+          "Forces": 2,
+          "Prime": 2
+        }
+      }
     ],
     "vulgarity": "vulgar",
-    "tags": ["martial-arts", "combat", "movement", "quintessence"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "movement",
+      "quintessence"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 64, "section": "Martial Arts: Feats of Focused Chi" },
-      { "book": "HDYDT", "page": 65, "section": "Martial Arts: Feats of Focused Chi" }
+      {
+        "book": "HDYDT",
+        "page": 64,
+        "section": "Martial Arts: Feats of Focused Chi"
+      },
+      {
+        "book": "HDYDT",
+        "page": 65,
+        "section": "Martial Arts: Feats of Focused Chi"
+      }
     ]
   },
   {
@@ -346,11 +725,24 @@
     "summary": "Use chi to whip the winds around you into a swirl of leaves and dust that confuses and distracts your opponents.",
     "system": "Same Spheres as the Chi-Field Push, but it does no damage.",
     "combos": [
-      { "spheres": { "Forces": 2, "Prime": 2 } }
+      {
+        "spheres": {
+          "Forces": 2,
+          "Prime": 2
+        }
+      }
     ],
-    "tags": ["martial-arts", "elemental", "weather"],
+    "tags": [
+      "martial-arts",
+      "elemental",
+      "weather"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 65, "section": "Martial Arts: Feats of Focused Chi" }
+      {
+        "book": "HDYDT",
+        "page": 65,
+        "section": "Martial Arts: Feats of Focused Chi"
+      }
     ]
   },
   {
@@ -360,14 +752,30 @@
     "summary": "Focus your chi into your punches, strikes and kicks so they deal aggravated damage.",
     "system": "1 Quintessence per blow.",
     "combos": [
-      { "spheres": { "Prime": 2 } }
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
     ],
     "coincidentalIf": "you are not glowing, burning or showing some other paranormal sign",
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "combat", "quintessence"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "quintessence"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 65, "section": "Martial Arts: Feats of Focused Chi" },
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 65,
+        "section": "Martial Arts: Feats of Focused Chi"
+      },
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -377,11 +785,26 @@
     "summary": "Make yourself light as a feather in the wuxia style: run over impossible footing, glide short distances, duel in treetops or skim across water.",
     "system": "Forces handles gravity and inertia, Life binds it to your own body, Prime powers it with chi. 1 Quintessence; lasts the normal Duration. Plain Forces 2 could also lift you, but that is not this martial feat.",
     "combos": [
-      { "spheres": { "Forces": 2, "Life": 2, "Prime": 2 } }
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 2,
+          "Prime": 2
+        }
+      }
     ],
-    "tags": ["martial-arts", "travel", "movement", "quintessence"],
+    "tags": [
+      "martial-arts",
+      "travel",
+      "movement",
+      "quintessence"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 65, "section": "Martial Arts: Feats of Focused Chi" }
+      {
+        "book": "HDYDT",
+        "page": 65,
+        "section": "Martial Arts: Feats of Focused Chi"
+      }
     ]
   },
   {
@@ -391,13 +814,33 @@
     "summary": "Redirect chi flow through massage, focus or acupuncture to mend wounds and cure illness in yourself or someone else.",
     "system": "1 Quintessence per attempt for bashing or lethal damage; 1 Quintessence per health level of aggravated damage (Magickal Healing, M20 p. 409). Invisible healing is coincidental; curing cancer or closing gaping wounds with a few needles is vulgar where reality does not accept it.",
     "combos": [
-      { "spheres": { "Life": 2, "Prime": 2 }, "note": "heal yourself" },
-      { "spheres": { "Life": 3, "Prime": 2 }, "note": "heal others" }
+      {
+        "spheres": {
+          "Life": 2,
+          "Prime": 2
+        },
+        "note": "heal yourself"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Prime": 2
+        },
+        "note": "heal others"
+      }
     ],
     "vulgarity": "depends",
-    "tags": ["martial-arts", "healing", "quintessence"],
+    "tags": [
+      "martial-arts",
+      "healing",
+      "quintessence"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 65, "section": "Martial Arts: Feats of Focused Chi" }
+      {
+        "book": "HDYDT",
+        "page": 65,
+        "section": "Martial Arts: Feats of Focused Chi"
+      }
     ]
   },
   {
@@ -407,14 +850,45 @@
     "summary": "Channel chi through your living body to punch spirits and ghosts. Stronger versions actually wound them.",
     "system": "Spirit 2 lets you touch an ephemeral being long enough for one physical blow; Spirit 3 harms spirits as if with Life magick; Entropy 3 does the same against ghosts only, with Entropy's nasty side effects on them (Spirit Combatants, M20 p. 418).",
     "combos": [
-      { "spheres": { "Spirit": 2, "Prime": 2 }, "note": "land one blow on a spirit" },
-      { "spheres": { "Spirit": 3, "Prime": 2 }, "note": "harm spirits" },
-      { "spheres": { "Entropy": 3, "Prime": 2 }, "note": "harm ghosts only" }
+      {
+        "spheres": {
+          "Spirit": 2,
+          "Prime": 2
+        },
+        "note": "land one blow on a spirit"
+      },
+      {
+        "spheres": {
+          "Spirit": 3,
+          "Prime": 2
+        },
+        "note": "harm spirits"
+      },
+      {
+        "spheres": {
+          "Entropy": 3,
+          "Prime": 2
+        },
+        "note": "harm ghosts only"
+      }
     ],
-    "tags": ["martial-arts", "combat", "spirit", "necromancy"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "spirit",
+      "necromancy"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 65, "section": "Martial Arts: Feats of Focused Chi" },
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 65,
+        "section": "Martial Arts: Feats of Focused Chi"
+      },
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -424,13 +898,32 @@
     "summary": "Let out a chi-charged cry that terrifies your enemies, swells your own strength and charges your blows with aggravated force. A variant of the Kiaijutsu Iron Shout.",
     "system": "Life raises chosen Traits by one dot per success; Mind terrifies as Predator's Eye; Prime lets you deal aggravated damage for 1 Quintessence per strike. Lasts the normal Duration. The Mind part is coincidental; the Life and Prime parts are vulgar except where people expect wild martial powers.",
     "combos": [
-      { "spheres": { "Life": 3, "Mind": 2, "Prime": 2 } }
+      {
+        "spheres": {
+          "Life": 3,
+          "Mind": 2,
+          "Prime": 2
+        }
+      }
     ],
     "vulgarity": "vulgar",
-    "tags": ["martial-arts", "combat", "body", "social"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "body",
+      "social"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 65, "section": "Martial Arts: Feats of Focused Chi" },
-      { "book": "HDYDT", "page": 66, "section": "Martial Arts: Feats of Focused Chi" }
+      {
+        "book": "HDYDT",
+        "page": 65,
+        "section": "Martial Arts: Feats of Focused Chi"
+      },
+      {
+        "book": "HDYDT",
+        "page": 66,
+        "section": "Martial Arts: Feats of Focused Chi"
+      }
     ]
   },
   {
@@ -440,14 +933,37 @@
     "summary": "Drain the vital energy out of an opponent on contact, taking Quintessence instead of dealing damage. A true master can burn the victim out entirely.",
     "system": "The drain leaves the victim weak but unhurt and is coincidental. The annihilation makes the victim explode or disintegrate and is very vulgar. Draining living beings follows Lambs to the Slaughter (Energy-Work, pp. 49-50).",
     "combos": [
-      { "spheres": { "Prime": 3 }, "note": "drain Quintessence; coincidental" },
-      { "spheres": { "Prime": 5 }, "note": "annihilate the opponent; vulgar" }
+      {
+        "spheres": {
+          "Prime": 3
+        },
+        "note": "drain Quintessence; coincidental"
+      },
+      {
+        "spheres": {
+          "Prime": 5
+        },
+        "note": "annihilate the opponent; vulgar"
+      }
     ],
     "vulgarity": "depends",
-    "tags": ["martial-arts", "combat", "quintessence", "destruction"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "quintessence",
+      "destruction"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 66, "section": "Martial Arts: Feats of Focused Chi" },
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 66,
+        "section": "Martial Arts: Feats of Focused Chi"
+      },
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -457,14 +973,42 @@
     "summary": "Pour chi into elemental form: flaming hands, crackling lightning, skin of stone, wood or metal, iron spikes. You both deal and resist aggravated damage.",
     "system": "Forces for fire, lightning or air; Matter for wood, metal or stone. Damage depends on the element, which may also set fires or shake the ground (Environmental Hazards). 1 Quintessence per turn, from yourself, a Periapt, Tass or a drained foe. Vulgar except where legendary martial powers are the consensus.",
     "combos": [
-      { "spheres": { "Life": 3, "Prime": 3, "Forces": 3 }, "note": "fire, lightning or air" },
-      { "spheres": { "Life": 3, "Prime": 3, "Matter": 3 }, "note": "wood, metal or stone" }
+      {
+        "spheres": {
+          "Life": 3,
+          "Prime": 3,
+          "Forces": 3
+        },
+        "note": "fire, lightning or air"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Prime": 3,
+          "Matter": 3
+        },
+        "note": "wood, metal or stone"
+      }
     ],
     "vulgarity": "vulgar",
-    "tags": ["martial-arts", "combat", "elemental", "body", "quintessence"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "elemental",
+      "body",
+      "quintessence"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 66, "section": "Martial Arts: Feats of Focused Chi" },
-      { "book": "HDYDT", "page": 67, "section": "Martial Arts: Feats of Focused Chi" }
+      {
+        "book": "HDYDT",
+        "page": 66,
+        "section": "Martial Arts: Feats of Focused Chi"
+      },
+      {
+        "book": "HDYDT",
+        "page": 67,
+        "section": "Martial Arts: Feats of Focused Chi"
+      }
     ]
   },
   {
@@ -474,17 +1018,49 @@
     "summary": "Seem to be a hair's breadth from where you really are, so blows just miss. Pick a method that fits: shifting space, luck, bent light or gravity, or perfect timing.",
     "system": "Each success adds +1 to the attacker's difficulty. Spend extra successes on Duration to keep it up for several turns.",
     "combos": [
-      { "spheres": { "Correspondence": 1 }, "note": "dodge by micrometers" },
-      { "spheres": { "Correspondence": 2 }, "note": "appear slightly elsewhere" },
-      { "spheres": { "Entropy": 2 }, "note": "control the odds of being hit" },
-      { "spheres": { "Forces": 2 }, "note": "bend light or gravity" },
-      { "spheres": { "Time": 1 }, "note": "know the instant of impact" }
+      {
+        "spheres": {
+          "Correspondence": 1
+        },
+        "note": "dodge by micrometers"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2
+        },
+        "note": "appear slightly elsewhere"
+      },
+      {
+        "spheres": {
+          "Entropy": 2
+        },
+        "note": "control the odds of being hit"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "note": "bend light or gravity"
+      },
+      {
+        "spheres": {
+          "Time": 1
+        },
+        "note": "know the instant of impact"
+      }
     ],
     "coincidentalIf": "you do not overdo it, so it just looks like great dodging or a bad attacker",
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "defense"],
+    "tags": [
+      "martial-arts",
+      "defense"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 67, "section": "Martial Arts: Defense" }
+      {
+        "book": "HDYDT",
+        "page": 67,
+        "section": "Martial Arts: Defense"
+      }
     ]
   },
   {
@@ -494,13 +1070,45 @@
     "summary": "Wrap yourself in your chosen element as armor: burning flesh, buffeting winds, or skin of stone, wood or metal. Most masters only ever learn one element.",
     "system": "No new rules: borrow the systems of the Pain-Shrug, Slipstream and Elemental Fury Chi, picking the Spheres that fit the element. Lasts the Effect's Duration. Brawlers and other casual fighters cannot use it. Vulgar outside elemental or wild martial paradigms.",
     "combos": [
-      { "spheres": { "Life": 3, "Prime": 3, "Forces": 3 }, "inferred": ["Life", "Prime", "Forces"], "note": "fire or wind" },
-      { "spheres": { "Life": 3, "Prime": 3, "Matter": 3 }, "inferred": ["Life", "Prime", "Matter"], "note": "stone, wood or metal" }
+      {
+        "spheres": {
+          "Life": 3,
+          "Prime": 3,
+          "Forces": 3
+        },
+        "inferred": [
+          "Life",
+          "Prime",
+          "Forces"
+        ],
+        "note": "fire or wind"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Prime": 3,
+          "Matter": 3
+        },
+        "inferred": [
+          "Life",
+          "Prime",
+          "Matter"
+        ],
+        "note": "stone, wood or metal"
+      }
     ],
     "vulgarity": "vulgar",
-    "tags": ["martial-arts", "defense", "elemental"],
+    "tags": [
+      "martial-arts",
+      "defense",
+      "elemental"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 67, "section": "Martial Arts: Defense" }
+      {
+        "book": "HDYDT",
+        "page": 67,
+        "section": "Martial Arts: Defense"
+      }
     ]
   },
   {
@@ -510,16 +1118,39 @@
     "summary": "Raise a kinetic shield in reach of your hands that stops or knocks aside arrows, bullets and thrown bottles, shown as bracers, spinning staves, flying sleeves or pure reflexes. It can also deflect energy blasts.",
     "system": "1 success stops an arrow, 2 a gunshot, 3 a hail of arrows or bullets, 5 anything a martial artist could plausibly stop. Reaches only as far as you can reach. Recast each turn or pay 1 success per extra turn. No Quintessence unless done with chi. Dodging can pass as coincidental; stopping things in mid-air or deflecting energy is vulgar.",
     "combos": [
-      { "spheres": { "Forces": 2 } }
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
     ],
     "optional": [
-      { "spheres": { "Prime": 2 }, "inferred": ["Prime"], "purpose": "chi-powered version, costs Quintessence" }
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "inferred": [
+          "Prime"
+        ],
+        "purpose": "chi-powered version, costs Quintessence"
+      }
     ],
     "vulgarity": "depends",
-    "tags": ["martial-arts", "defense"],
+    "tags": [
+      "martial-arts",
+      "defense"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 68, "section": "Martial Arts: Defense" },
-      { "book": "HDYDT", "page": 67, "section": "Martial Arts: Defense" }
+      {
+        "book": "HDYDT",
+        "page": 68,
+        "section": "Martial Arts: Defense"
+      },
+      {
+        "book": "HDYDT",
+        "page": 67,
+        "section": "Martial Arts: Defense"
+      }
     ]
   },
   {
@@ -529,12 +1160,23 @@
     "summary": "Nudge gravity and momentum so a thrown knife, arrow or bullet flies faster and truer.",
     "system": "Arete difficulty 5. Each success lowers the throw or shot difficulty by -1, at most -3, and Forces adds one automatic success to damage.",
     "combos": [
-      { "spheres": { "Forces": 2 } }
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
     ],
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "combat"],
+    "tags": [
+      "martial-arts",
+      "combat"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 68, "section": "Martial Arts: Other Martial Magicks" }
+      {
+        "book": "HDYDT",
+        "page": 68,
+        "section": "Martial Arts: Other Martial Magicks"
+      }
     ]
   },
   {
@@ -544,13 +1186,29 @@
     "summary": "Dive through the air with both guns blazing and still hit what you aim at.",
     "system": "Dexterity + Firearms at difficulty 8; each Arete success lowers it by -1 (max -3). Hit one target per success, each for the gun's base damage only. Pistols and small SMGs only.",
     "combos": [
-      { "spheres": { "Entropy": 2 } },
-      { "spheres": { "Forces": 2 } }
+      {
+        "spheres": {
+          "Entropy": 2
+        }
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
     ],
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "combat", "luck"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "luck"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 68, "section": "Martial Arts: Other Martial Magicks" }
+      {
+        "book": "HDYDT",
+        "page": 68,
+        "section": "Martial Arts: Other Martial Magicks"
+      }
     ]
   },
   {
@@ -560,15 +1218,44 @@
     "summary": "Stretch time around yourself in a fight to get extra actions, or slow a foe down. Without tying it to one person, the whole area runs in bullet time.",
     "system": "One extra action per two successes, or the same rate of actions taken from an opponent. Going past a 3x speed-up or slow-down turns it vulgar. More temporal tricks: Time Distortion and Travel, pp. 107-113.",
     "combos": [
-      { "spheres": { "Time": 3 }, "note": "speed yourself, or the whole area" },
-      { "spheres": { "Time": 3, "Correspondence": 2 }, "note": "slow an opponent" },
-      { "spheres": { "Time": 3, "Life": 3 }, "note": "slow an opponent" }
+      {
+        "spheres": {
+          "Time": 3
+        },
+        "note": "speed yourself, or the whole area"
+      },
+      {
+        "spheres": {
+          "Time": 3,
+          "Correspondence": 2
+        },
+        "note": "slow an opponent"
+      },
+      {
+        "spheres": {
+          "Time": 3,
+          "Life": 3
+        },
+        "note": "slow an opponent"
+      }
     ],
     "vulgarity": "depends",
-    "tags": ["martial-arts", "combat", "time"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "time"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 68, "section": "Martial Arts: Other Martial Magicks" },
-      { "book": "HDYDT", "page": 63, "section": "Martial Arts: Strikes" }
+      {
+        "book": "HDYDT",
+        "page": 68,
+        "section": "Martial Arts: Other Martial Magicks"
+      },
+      {
+        "book": "HDYDT",
+        "page": 63,
+        "section": "Martial Arts: Strikes"
+      }
     ]
   },
   {
@@ -578,23 +1265,76 @@
     "summary": "Work yourself into a killing frenzy: stronger, tougher, fearless and blind to pain, you attack every living thing in reach until the magick ends. No spells, no tactics, no telling friend from foe.",
     "system": "Life 3: 1 success per boosted dot up to 5, 2 per dot above, and soak lethal and aggravated. Mind 3: 3 more successes for the berserk state, no wound penalties, no fear. Plus 1 success per turn. Usually an extended ritual. Only death, incapacitation or a Mind 4-5 Effect ends it early.",
     "combos": [
-      { "spheres": { "Life": 3, "Mind": 3 } }
+      {
+        "spheres": {
+          "Life": 3,
+          "Mind": 3
+        }
+      }
     ],
     "optional": [
-      { "spheres": { "Life": 3 }, "purpose": "grow claws and fangs, +1 success" },
-      { "spheres": { "Life": 3 }, "purpose": "heal damage taken in the fight" },
-      { "spheres": { "Prime": 2 }, "purpose": "sustain the rage; aggravated blows for 1 Quintessence each" },
-      { "spheres": { "Spirit": 2 }, "purpose": "harm spirits, +1 success" },
-      { "spheres": { "Time": 3 }, "purpose": "extra actions, 2 successes each" },
-      { "spheres": { "Entropy": 1 }, "purpose": "find weak spots" },
-      { "spheres": { "Matter": 2 }, "purpose": "smash solid materials" }
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "purpose": "grow claws and fangs, +1 success"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "purpose": "heal damage taken in the fight"
+      },
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "sustain the rage; aggravated blows for 1 Quintessence each"
+      },
+      {
+        "spheres": {
+          "Spirit": 2
+        },
+        "purpose": "harm spirits, +1 success"
+      },
+      {
+        "spheres": {
+          "Time": 3
+        },
+        "purpose": "extra actions, 2 successes each"
+      },
+      {
+        "spheres": {
+          "Entropy": 1
+        },
+        "purpose": "find weak spots"
+      },
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "purpose": "smash solid materials"
+      }
     ],
     "coincidentalIf": "you do not visibly swell up or show other monstrous signs",
     "vulgarity": "coincidental",
-    "tags": ["martial-arts", "combat", "body", "mental"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "body",
+      "mental"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 68, "section": "Martial Arts: Other Martial Magicks" },
-      { "book": "HDYDT", "page": 69, "section": "Martial Arts: Other Martial Magicks" }
+      {
+        "book": "HDYDT",
+        "page": 68,
+        "section": "Martial Arts: Other Martial Magicks"
+      },
+      {
+        "book": "HDYDT",
+        "page": 69,
+        "section": "Martial Arts: Other Martial Magicks"
+      }
     ]
   },
   {
@@ -604,12 +1344,31 @@
     "summary": "The battle fury taken to its horrific end: you become a many-armed incarnation of war, over twelve feet tall and more than a ton in weight.",
     "system": "Needs at least 30 successes. Gives all the battle fury powers at Strength 8, Dexterity 5, Stamina 8. About as vulgar as magick gets.",
     "combos": [
-      { "spheres": { "Life": 4, "Spirit": 4, "Mind": 3, "Time": 3, "Matter": 2, "Prime": 2, "Entropy": 1 } }
+      {
+        "spheres": {
+          "Life": 4,
+          "Spirit": 4,
+          "Mind": 3,
+          "Time": 3,
+          "Matter": 2,
+          "Prime": 2,
+          "Entropy": 1
+        }
+      }
     ],
     "vulgarity": "vulgar",
-    "tags": ["martial-arts", "combat", "shapechanging", "body"],
+    "tags": [
+      "martial-arts",
+      "combat",
+      "shapechanging",
+      "body"
+    ],
     "source": [
-      { "book": "HDYDT", "page": 69, "section": "Martial Arts: The Shiva/Kali Murder Machine" }
+      {
+        "book": "HDYDT",
+        "page": 69,
+        "section": "Martial Arts: The Shiva/Kali Murder Machine"
+      }
     ]
   }
 ]

@@ -31,55 +31,6 @@
     ]
   },
   {
-    "id": "animate-corpse",
-    "name": "Animate a Corpse or Body Parts",
-    "kind": "feat",
-    "summary": "Make a fresh corpse, or parts of one, move and act by pushing energy into its remaining living Pattern.",
-    "combos": [
-      {
-        "spheres": {
-          "Life": 2,
-          "Prime": 2
-        }
-      }
-    ],
-    "tags": [
-      "necromancy",
-      "body"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Body Magick"
-      }
-    ]
-  },
-  {
-    "id": "animate-bones-and-remains",
-    "name": "Animate Bones and Remains",
-    "kind": "feat",
-    "summary": "Make skeletons, mummies or other long-dead remains, which count as Matter, get up and move.",
-    "combos": [
-      {
-        "spheres": {
-          "Matter": 2,
-          "Prime": 2
-        }
-      }
-    ],
-    "tags": [
-      "necromancy"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Body Magick"
-      }
-    ]
-  },
-  {
     "id": "cause-or-cure-disease",
     "name": "Cause or Cure Disease",
     "kind": "feat",
@@ -375,58 +326,6 @@
     ]
   },
   {
-    "id": "increase-or-reduce-speed",
-    "name": "Increase or Reduce a Person's Speed",
-    "kind": "feat",
-    "summary": "Speed up or slow down how fast a person moves and acts by changing their relation to time.",
-    "combos": [
-      {
-        "spheres": {
-          "Time": 3
-        }
-      }
-    ],
-    "tags": [
-      "time",
-      "combat",
-      "movement"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Body Magick"
-      }
-    ]
-  },
-  {
-    "id": "revive-recently-dead",
-    "name": "Revive the Recently Dead",
-    "kind": "feat",
-    "summary": "Bring someone who has only just died back to life by repairing the body, recalling the soul and refuelling the Pattern.",
-    "combos": [
-      {
-        "spheres": {
-          "Life": 4,
-          "Prime": 3,
-          "Spirit": 4
-        }
-      }
-    ],
-    "tags": [
-      "healing",
-      "necromancy",
-      "spirit"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Body Magick"
-      }
-    ]
-  },
-  {
     "id": "rot-body",
     "name": "Rot a Body",
     "kind": "feat",
@@ -446,37 +345,6 @@
     "tags": [
       "combat",
       "destruction",
-      "body"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Body Magick"
-      }
-    ]
-  },
-  {
-    "id": "shapeshift",
-    "name": "Shapeshift",
-    "kind": "feat",
-    "summary": "Change a body into another creature's shape.",
-    "combos": [
-      {
-        "spheres": {
-          "Life": 4
-        },
-        "note": "yourself"
-      },
-      {
-        "spheres": {
-          "Life": 5
-        },
-        "note": "someone else"
-      }
-    ],
-    "tags": [
-      "shapechanging",
       "body"
     ],
     "source": [
@@ -613,35 +481,6 @@
       {
         "spheres": {
           "Entropy": 2
-        }
-      }
-    ],
-    "tags": [
-      "luck"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Fate and Fortune"
-      }
-    ]
-  },
-  {
-    "id": "bless-or-curse",
-    "name": "Bless or Curse a Person",
-    "kind": "feat",
-    "summary": "Give a living being good fortune or saddle them with bad luck that follows them around.",
-    "combos": [
-      {
-        "spheres": {
-          "Entropy": 3,
-          "Life": 3
-        }
-      },
-      {
-        "spheres": {
-          "Prime": 5
         }
       }
     ],
@@ -838,159 +677,6 @@
         "book": "M20",
         "page": 508,
         "section": "Common Magickal Effects: Crafting Wonders"
-      }
-    ]
-  },
-  {
-    "id": "mental-illusions",
-    "name": "Mental Illusions",
-    "kind": "feat",
-    "summary": "Create a false sensation that exists only inside the target's head. More successes make it more detailed and convincing.",
-    "system": "See the Feats of Illusion chart: 1 success for one simple sensation up to 6+ for a fully interactive illusion. Lasts a scene by default; usually coincidental.",
-    "combos": [
-      {
-        "spheres": {
-          "Mind": 2
-        }
-      }
-    ],
-    "vulgarity": "coincidental",
-    "tags": [
-      "illusion",
-      "mental"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Illusions"
-      },
-      {
-        "book": "M20",
-        "page": 505,
-        "section": "Magickal Reference Charts: Feats of Illusion"
-      }
-    ]
-  },
-  {
-    "id": "harmful-mental-illusions",
-    "name": "Mental Illusions That Inflict Damage",
-    "kind": "feat",
-    "summary": "An illusion convincing enough to hurt: the target's mind and body react as if it were real.",
-    "system": "Mind alone does bashing damage; with Life 3 the damage is aggravated. Each extra success buys two levels of damage or one more level of duration.",
-    "combos": [
-      {
-        "spheres": {
-          "Mind": 3
-        },
-        "note": "bashing damage"
-      },
-      {
-        "spheres": {
-          "Life": 3,
-          "Mind": 3
-        },
-        "note": "aggravated damage"
-      }
-    ],
-    "tags": [
-      "illusion",
-      "combat"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Illusions"
-      },
-      {
-        "book": "M20",
-        "page": 505,
-        "section": "Magickal Reference Charts: Feats of Illusion"
-      }
-    ]
-  },
-  {
-    "id": "physical-illusions",
-    "name": "Physical Illusions",
-    "kind": "feat",
-    "summary": "Shape light, sound and other energies into an illusion that every witness can see and hear.",
-    "system": "Forces illusions can be bought up to bashing or lethal damage, depending on the elements involved.",
-    "combos": [
-      {
-        "spheres": {
-          "Forces": 2,
-          "Prime": 2
-        }
-      }
-    ],
-    "tags": [
-      "illusion",
-      "elemental"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Illusions"
-      },
-      {
-        "book": "M20",
-        "page": 505,
-        "section": "Magickal Reference Charts: Feats of Illusion"
-      }
-    ]
-  },
-  {
-    "id": "immersive-illusions",
-    "name": "Immersive Illusions",
-    "kind": "feat",
-    "summary": "A full holodeck-style illusion that looks, sounds and feels real to everyone in it.",
-    "combos": [
-      {
-        "spheres": {
-          "Forces": 4,
-          "Mind": 4,
-          "Prime": 4
-        }
-      }
-    ],
-    "tags": [
-      "illusion"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Illusions"
-      },
-      {
-        "book": "M20",
-        "page": 505,
-        "section": "Magickal Reference Charts: Feats of Illusion"
-      }
-    ]
-  },
-  {
-    "id": "awaken-object-spirit",
-    "name": "Awaken an Object's Spirit",
-    "kind": "feat",
-    "summary": "Rouse the sleeping spirit inside an object or place so it becomes aware and active.",
-    "combos": [
-      {
-        "spheres": {
-          "Spirit": 3
-        }
-      }
-    ],
-    "tags": [
-      "spirit"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 508,
-        "section": "Common Magickal Effects: Spirit Powers"
       }
     ]
   },
@@ -1305,46 +991,6 @@
     ]
   },
   {
-    "id": "conjure-element",
-    "name": "Conjure an Element",
-    "kind": "feat",
-    "summary": "Create an element where there was none: fire or wind from Forces, earth, metal or water from Matter, living wood from Life.",
-    "combos": [
-      {
-        "spheres": {
-          "Forces": 3,
-          "Prime": 2
-        },
-        "note": "fire, wind"
-      },
-      {
-        "spheres": {
-          "Matter": 3,
-          "Prime": 2
-        },
-        "note": "earth, metal, water"
-      },
-      {
-        "spheres": {
-          "Life": 3,
-          "Prime": 2
-        },
-        "note": "living wood"
-      }
-    ],
-    "tags": [
-      "conjuration",
-      "elemental"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Objects and Elements"
-      }
-    ]
-  },
-  {
     "id": "conjure-new-object",
     "name": "Conjure a New Object",
     "kind": "feat",
@@ -1359,29 +1005,6 @@
     ],
     "tags": [
       "conjuration"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Objects and Elements"
-      }
-    ]
-  },
-  {
-    "id": "direct-existing-elements",
-    "name": "Direct Existing Elements",
-    "kind": "feat",
-    "summary": "Steer energies that are already present, such as a fire, a breeze or a current.",
-    "combos": [
-      {
-        "spheres": {
-          "Forces": 2
-        }
-      }
-    ],
-    "tags": [
-      "elemental"
     ],
     "source": [
       {
@@ -1526,31 +1149,6 @@
     "tags": [
       "travel",
       "movement"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Objects and Elements"
-      }
-    ]
-  },
-  {
-    "id": "object-inflicts-or-resists-aggravated",
-    "name": "Object Inflicts or Resists Aggravated Damage",
-    "kind": "feat",
-    "summary": "Charge a weapon so it deals aggravated damage, or armor so it protects against it.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 2
-        }
-      }
-    ],
-    "tags": [
-      "enchantment",
-      "combat",
-      "defense"
     ],
     "source": [
       {
@@ -1838,31 +1436,6 @@
     ]
   },
   {
-    "id": "rewind-time",
-    "name": "Rewind Time",
-    "kind": "feat",
-    "summary": "Roll back the last moments around you and play them out again.",
-    "system": "Running time backwards is always vulgar and costs +3 difficulty.",
-    "combos": [
-      {
-        "spheres": {
-          "Time": 3
-        }
-      }
-    ],
-    "vulgarity": "vulgar",
-    "tags": [
-      "time"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Time and Distance"
-      }
-    ]
-  },
-  {
     "id": "set-time-trigger",
     "name": "Set a Time Trigger",
     "kind": "feat",
@@ -1876,85 +1449,6 @@
     ],
     "tags": [
       "time"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Time and Distance"
-      }
-    ]
-  },
-  {
-    "id": "speed-or-slow-time",
-    "name": "Speed Up or Slow Down Time",
-    "kind": "feat",
-    "summary": "Make time run faster or slower for a person, object or small area.",
-    "combos": [
-      {
-        "spheres": {
-          "Time": 3
-        }
-      }
-    ],
-    "tags": [
-      "time"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Time and Distance"
-      }
-    ]
-  },
-  {
-    "id": "teleport",
-    "name": "Teleport",
-    "kind": "feat",
-    "summary": "Jump from one place to another without crossing the space between.",
-    "combos": [
-      {
-        "spheres": {
-          "Correspondence": 3
-        },
-        "note": "yourself"
-      },
-      {
-        "spheres": {
-          "Correspondence": 4
-        },
-        "note": "someone or something else"
-      }
-    ],
-    "tags": [
-      "travel"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Time and Distance"
-      }
-    ]
-  },
-  {
-    "id": "time-travel",
-    "name": "Time Travel",
-    "kind": "feat",
-    "summary": "Travel into the future or the past.",
-    "system": "Travel into the past is always vulgar and costs +3 difficulty.",
-    "combos": [
-      {
-        "spheres": {
-          "Time": 5
-        }
-      }
-    ],
-    "vulgarity": "depends",
-    "tags": [
-      "time",
-      "travel"
     ],
     "source": [
       {
@@ -2204,54 +1698,6 @@
     ]
   },
   {
-    "id": "enter-a-dream",
-    "name": "Enter a Dream",
-    "kind": "feat",
-    "summary": "Step into someone's dream and act inside it.",
-    "combos": [
-      {
-        "spheres": {
-          "Mind": 3
-        }
-      }
-    ],
-    "tags": [
-      "mental",
-      "communication"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Perception and Psychic Powers"
-      }
-    ]
-  },
-  {
-    "id": "influence-mood",
-    "name": "Influence Mood",
-    "kind": "feat",
-    "summary": "Push someone's feelings: calm them, scare them, cheer them up or make them angry.",
-    "combos": [
-      {
-        "spheres": {
-          "Mind": 2
-        }
-      }
-    ],
-    "tags": [
-      "social",
-      "mind-control"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Perception and Psychic Powers"
-      }
-    ]
-  },
-  {
     "id": "influence-subconscious",
     "name": "Influence the Subconscious",
     "kind": "feat",
@@ -2266,29 +1712,6 @@
     "tags": [
       "mind-control",
       "social"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Perception and Psychic Powers"
-      }
-    ]
-  },
-  {
-    "id": "mind-control",
-    "name": "Mind Control",
-    "kind": "feat",
-    "summary": "Take over another person's mind and make them do what you want.",
-    "combos": [
-      {
-        "spheres": {
-          "Mind": 4
-        }
-      }
-    ],
-    "tags": [
-      "mind-control"
     ],
     "source": [
       {
@@ -2329,38 +1752,6 @@
     ]
   },
   {
-    "id": "psychic-pain-blast",
-    "name": "Psychic Pain Blast",
-    "kind": "feat",
-    "summary": "Hit someone's mind with a burst of pain; add Life to make the damage aggravated.",
-    "combos": [
-      {
-        "spheres": {
-          "Mind": 3
-        },
-        "note": "bashing damage"
-      },
-      {
-        "spheres": {
-          "Life": 3,
-          "Mind": 3
-        },
-        "note": "aggravated damage"
-      }
-    ],
-    "tags": [
-      "combat",
-      "mental"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Perception and Psychic Powers"
-      }
-    ]
-  },
-  {
     "id": "scramble-thoughts",
     "name": "Scramble Thoughts",
     "kind": "feat",
@@ -2375,35 +1766,6 @@
     "tags": [
       "combat",
       "mind-control"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 509,
-        "section": "Common Magickal Effects: Perception and Psychic Powers"
-      }
-    ]
-  },
-  {
-    "id": "see-auras",
-    "name": "See Auras",
-    "kind": "feat",
-    "summary": "See the colored aura around a person that shows their mood and nature.",
-    "system": "The Aura Colors and Textures chart (M20 p. 507) lists what each color and texture means.",
-    "combos": [
-      {
-        "spheres": {
-          "Mind": 1
-        }
-      },
-      {
-        "spheres": {
-          "Spirit": 1
-        }
-      }
-    ],
-    "tags": [
-      "perception"
     ],
     "source": [
       {
@@ -2770,110 +2132,6 @@
     ]
   },
   {
-    "id": "channel-quintessence",
-    "name": "Channel Quintessence",
-    "kind": "feat",
-    "summary": "Direct Quintessence from one place or Pattern into another.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 3
-        }
-      }
-    ],
-    "tags": [
-      "quintessence"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
-    "id": "create-new-node",
-    "name": "Create a New Node",
-    "kind": "feat",
-    "summary": "Make a new Node, a lasting wellspring of Quintessence, in a place that matters.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 5
-        }
-      }
-    ],
-    "tags": [
-      "quintessence",
-      "creation"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
-    "id": "create-quintessence-weapon",
-    "name": "Create a Quintessence Weapon",
-    "kind": "feat",
-    "summary": "Form a blade, bolt or blast of pure Primal energy.",
-    "system": "Costs one Quintessence per health level of damage; the damage is aggravated.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 3
-        }
-      }
-    ],
-    "tags": [
-      "combat",
-      "quintessence"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
-    "id": "destroy-by-draining-quintessence",
-    "name": "Destroy by Draining Quintessence",
-    "kind": "feat",
-    "summary": "Pull all the Quintessence out of something until it falls apart.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 4
-        },
-        "note": "an object"
-      },
-      {
-        "spheres": {
-          "Prime": 5
-        },
-        "note": "a living creature"
-      }
-    ],
-    "tags": [
-      "destruction",
-      "quintessence",
-      "combat"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
     "id": "drain-node",
     "name": "Drain a Node",
     "kind": "feat",
@@ -2910,87 +2168,6 @@
     ],
     "tags": [
       "quintessence"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
-    "id": "employ-periapt",
-    "name": "Use a Periapt",
-    "kind": "feat",
-    "summary": "Draw Quintessence from a Periapt you are holding, or from one elsewhere through a spatial link.",
-    "system": "The Avatar rating limits how much you can pull from it reflexively.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 2
-        }
-      },
-      {
-        "spheres": {
-          "Correspondence": 2,
-          "Prime": 2
-        },
-        "note": "from a distance"
-      }
-    ],
-    "tags": [
-      "quintessence",
-      "enchantment"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
-    "id": "enchant-weapon-or-armor",
-    "name": "Enchant a Weapon or Armor",
-    "kind": "feat",
-    "summary": "Charge a weapon or armor with Quintessence so it can hurt or protect against things normal gear cannot.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 2
-        }
-      }
-    ],
-    "tags": [
-      "enchantment",
-      "combat",
-      "defense"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
-    "id": "energize-periapt",
-    "name": "Energize a Periapt",
-    "kind": "feat",
-    "summary": "Fill a Periapt with Quintessence for later use.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 3
-        }
-      }
-    ],
-    "tags": [
-      "quintessence",
-      "enchantment"
     ],
     "source": [
       {
@@ -3050,30 +2227,6 @@
     ]
   },
   {
-    "id": "refine-tass",
-    "name": "Refine Tass",
-    "kind": "feat",
-    "summary": "Turn raw Quintessence into Tass, its solid physical form.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 4
-        }
-      }
-    ],
-    "tags": [
-      "quintessence",
-      "enchantment"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
     "id": "share-quintessence",
     "name": "Share or Exchange Quintessence",
     "kind": "feat",
@@ -3082,29 +2235,6 @@
       {
         "spheres": {
           "Prime": 3
-        }
-      }
-    ],
-    "tags": [
-      "quintessence"
-    ],
-    "source": [
-      {
-        "book": "M20",
-        "page": 510,
-        "section": "Common Magickal Effects: Quintessence Energy"
-      }
-    ]
-  },
-  {
-    "id": "tap-wellspring",
-    "name": "Tap a Wellspring",
-    "kind": "feat",
-    "summary": "Draw Quintessence from the energy of an exciting event, like a concert, a riot or a big game.",
-    "combos": [
-      {
-        "spheres": {
-          "Prime": 4
         }
       }
     ],

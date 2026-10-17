@@ -1,0 +1,1832 @@
+[
+  {
+    "id": "time-3-extra-actions-in-combat",
+    "name": "Extra Actions in Combat (Time 3)",
+    "kind": "feat",
+    "summary": "Speed up your own time so you can do several things in one turn without splitting your dice pool: draw and fire, reload and shoot, or attack and cast in the same moment.",
+    "system": "Replaces the usual divided dice pool for multiple actions. A two-action maneuver, a crossbow that normally takes two turns, or a revolver reload can all fit into one turn. In a certamen duel you may use it for extra Gladius attacks, but slowing your rival with Time 3 breaks duel etiquette and loses the match on the spot.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 3
+        }
+      }
+    ],
+    "tags": [
+      "time",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 389,
+        "section": "Rules: Multiple Actions"
+      },
+      {
+        "book": "M20",
+        "page": 400,
+        "section": "Initiative and Movement: Doing Several Things at Once"
+      },
+      {
+        "book": "M20",
+        "page": 414,
+        "section": "Combat: Magick and Violence"
+      },
+      {
+        "book": "M20",
+        "page": 419,
+        "section": "Combat: Ranged Attacks"
+      },
+      {
+        "book": "M20",
+        "page": 434,
+        "section": "Magickal Duels: Old Form Certamen"
+      }
+    ]
+  },
+  {
+    "id": "unweave-a-living-pattern",
+    "name": "Unweave a Living Pattern",
+    "kind": "feat",
+    "summary": "Tear at the Pattern that holds a living body together, so the wounds you deal are aggravated rather than merely lethal.",
+    "system": "Aggravated damage cannot be soaked by ordinary flesh and heals slowly; only time and magick fix it.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "Life damage"
+      },
+      {
+        "spheres": {
+          "Entropy": 4
+        },
+        "note": "Entropy damage"
+      }
+    ],
+    "tags": [
+      "combat",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 407,
+        "section": "Health and Injury: Aggravated Damage"
+      }
+    ]
+  },
+  {
+    "id": "reweave-aggravated-wounds",
+    "name": "Reweave Aggravated Wounds",
+    "kind": "feat",
+    "summary": "Restore a Pattern torn by fire, acid, fangs or magick, and mend the lasting damage that untreated injuries leave behind.",
+    "system": "Each health level of aggravated damage healed costs one point of Quintessence. Fast healing like this is vulgar, even under a technological paradigm. Without Life 3 or real medical care, bad wounds leave a more or less permanent impairment.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "healing",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 407,
+        "section": "Health and Injury: Aggravated Damage"
+      },
+      {
+        "book": "M20",
+        "page": 408,
+        "section": "Health and Injury: Healing Damage"
+      },
+      {
+        "book": "M20",
+        "page": 409,
+        "section": "Health and Injury: Magickal Healing"
+      }
+    ]
+  },
+  {
+    "id": "harden-skin-to-block-blades",
+    "name": "Harden Skin to Block Blades",
+    "kind": "feat",
+    "summary": "Toughen your own skin so you can block swords, claws and other lethal attacks with your bare arms, which a normal human cannot do.",
+    "system": "Some attacks, such as a running chainsaw, still cannot be blocked without losing the limb.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "inferred": [
+          "Life"
+        ]
+      }
+    ],
+    "tags": [
+      "defense",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 411,
+        "section": "Combat: Blocking"
+      }
+    ]
+  },
+  {
+    "id": "stone-shattering-fist-strike",
+    "name": "Stone-Shattering Fist Strike",
+    "kind": "feat",
+    "summary": "A martial arts punch that finds the weak spot with Entropy and smashes body and matter alike. The Life element makes the damage aggravated.",
+    "system": "Cast through the martial arts practice: roll Arete or Enlightenment for the Effect and Dexterity + Martial Arts to land it, as one action. Damage comes from the Effect; in the book's example four successes gave eight health levels of aggravated damage.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Matter": 3,
+          "Entropy": 1
+        }
+      }
+    ],
+    "tags": [
+      "combat",
+      "martial-arts",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 415,
+        "section": "Combat: Magick and Violence"
+      }
+    ]
+  },
+  {
+    "id": "black-suit-aura-of-authority",
+    "name": "Black Suit Aura of Authority",
+    "kind": "feat",
+    "summary": "A cold stare backed by theatrics plants one clear message in a target's mind: give up or die. Weak-willed foes simply fold.",
+    "system": "Set up with an intimidating act first: each success on Manipulation + Intimidation lowers the casting difficulty by 1 (max -3, and never below 3).",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "social",
+      "mind-control",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 415,
+        "section": "Combat: Magick and Violence"
+      }
+    ]
+  },
+  {
+    "id": "stability-integrity-matrix-scan",
+    "name": "Stability Integrity Matrix Scan",
+    "kind": "feat",
+    "summary": "Scan a foe or a structure for its weakest point, then aim your next strike there. Technocrats build it into their mirrorshades.",
+    "system": "Each success lowers the difficulty of the next attack by 1, up to -3. It stacks nicely with a martial arts Death Strike or a Forces/Matter strike against an object.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 1
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "perception",
+      "combat",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 416,
+        "section": "Combat: Magick and Violence"
+      },
+      {
+        "book": "M20",
+        "page": 440,
+        "section": "Environmental Hazards: Bustin' Stuff"
+      }
+    ]
+  },
+  {
+    "id": "armor-weave-clothing",
+    "name": "Armor-Weave Clothing",
+    "kind": "feat",
+    "summary": "Rework a business suit, a dress or even lingerie so it protects like light armor while looking perfectly normal.",
+    "system": "Enhanced clothing rates 1 to 5 as armor with no Dexterity penalty.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "inferred": [
+          "Matter"
+        ]
+      }
+    ],
+    "tags": [
+      "defense",
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 416,
+        "section": "Combat: Armor and Shields"
+      },
+      {
+        "book": "M20",
+        "page": 447,
+        "section": "Combat System Charts: Armor and Shields"
+      }
+    ]
+  },
+  {
+    "id": "battlefield-overview-sense",
+    "name": "Ignore the Multiple-Opponent Penalty",
+    "kind": "feat",
+    "summary": "Keep a sensory Effect running in a melee so you always know who is doing what around you, even when several foes gang up on you.",
+    "system": "Normally each extra close-range attacker adds +1 difficulty to attack and defense (max +4). With an active sensory Effect from one of these Spheres you ignore that penalty.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        }
+      },
+      {
+        "spheres": {
+          "Mind": 1
+        }
+      },
+      {
+        "spheres": {
+          "Time": 2
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 417,
+        "section": "Combat: Multiple Opponents"
+      },
+      {
+        "book": "M20",
+        "page": 446,
+        "section": "Combat System Charts: Character Is..."
+      }
+    ]
+  },
+  {
+    "id": "soak-spirit-rage",
+    "name": "Soak a Spirit's Rage",
+    "kind": "feat",
+    "summary": "Use your knowledge of Spirit as countermagick to absorb the damage an angry spirit deals with its Rage.",
+    "system": "Any rank of Spirit lets you soak Rage damage at difficulty 6. Without Spirit, a mage soaks with Avatar or Arete at difficulty 8; most mortals cannot soak it at all.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 1
+        }
+      }
+    ],
+    "tags": [
+      "defense",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 417,
+        "section": "Combat: Spirit Combatants"
+      },
+      {
+        "book": "M20",
+        "page": 445,
+        "section": "Combat System Charts: Spirit Combat"
+      }
+    ]
+  },
+  {
+    "id": "fight-unmaterialized-spirits",
+    "name": "Fight an Unmaterialized Spirit",
+    "kind": "feat",
+    "summary": "Lay hands on a spirit that has not taken physical form, and with more skill hurt it the way Life magick hurts a body.",
+    "system": "Spirit 2 lets you touch and grapple a spirit. To damage its ephemeral form you need Spirit 3. Life and Matter do nothing to spirits that never had a physical origin, and Mind attacks on them tend to backfire on the mage. Other Spheres only work if you enter the Umbra yourself.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Spirit": 3
+        },
+        "purpose": "wound the spirit as Life 3 wounds a living body"
+      }
+    ],
+    "tags": [
+      "combat",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 418,
+        "section": "Combat: Spirit Combatants"
+      },
+      {
+        "book": "M20",
+        "page": 485,
+        "section": "The Otherworlds: Magick in the Otherworlds"
+      },
+      {
+        "book": "M20",
+        "page": 489,
+        "section": "Umbrood Spirit Entities: Spirits in Combat"
+      }
+    ]
+  },
+  {
+    "id": "spirit-prime-work-on-umbrood",
+    "name": "Mend or Harm a Spirit's Form",
+    "kind": "feat",
+    "summary": "Combine Spirit and Prime to work on an Umbral entity the way Life magick works on flesh: heal its form, hurt it or reshape it.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "healing",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 418,
+        "section": "Combat: Spirit Combatants"
+      }
+    ]
+  },
+  {
+    "id": "rend-a-ghosts-essence",
+    "name": "Rend a Ghost's Essence with Entropy",
+    "kind": "feat",
+    "summary": "Strike at one of the Restless Dead with Entropy and Prime, which hits a ghost the way Life magick hits a living body. The price: it brings out the ghost's spectre, everything vicious about it.",
+    "system": "In the Underworld, Entropy Effects get -2 difficulty but stir up the dark side of every ghost nearby.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 418,
+        "section": "Combat: Spirit Combatants"
+      },
+      {
+        "book": "M20",
+        "page": 485,
+        "section": "The Otherworlds: Magick in the Otherworlds"
+      }
+    ]
+  },
+  {
+    "id": "enchant-weapon-to-hit-spirits",
+    "name": "Enchant a Weapon to Hit Spirits",
+    "kind": "feat",
+    "summary": "Charge a blade, bullet or fist so that it strikes ephemeral spirits instead of passing straight through them.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "inferred": [
+          "Prime"
+        ],
+        "note": "Prime enchantment"
+      },
+      {
+        "spheres": {
+          "Spirit": 2
+        },
+        "inferred": [
+          "Spirit"
+        ],
+        "note": "Spirit enchantment"
+      }
+    ],
+    "tags": [
+      "enchantment",
+      "spirit",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 418,
+        "section": "Combat: Spirit Combatants"
+      }
+    ]
+  },
+  {
+    "id": "forces-boosted-throw",
+    "name": "Forces-Boosted Throw",
+    "kind": "feat",
+    "summary": "Add a hidden push of kinetic energy to a thrown knife, mug or stone so it flies faster and hits harder.",
+    "system": "Each success lowers the throw's difficulty by 1, to a maximum of -3, which also makes extra damage dice more likely.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "combat",
+      "movement"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 420,
+        "section": "Combat: Thrown Weapons"
+      }
+    ]
+  },
+  {
+    "id": "read-opponent-at-a-distance",
+    "name": "Read an Opponent at a Distance",
+    "kind": "feat",
+    "summary": "Use a perception Effect to size up a fighter's intentions from farther than about 20 feet away, where the plain combat trick no longer works.",
+    "system": "Reading an opponent is a resisted Perception + combat Trait roll against the target's Wits + combat Trait; each success adds a die to your next action.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        }
+      },
+      {
+        "spheres": {
+          "Mind": 1
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 422,
+        "section": "Combat: General Hand-to-Hand Maneuvers"
+      }
+    ]
+  },
+  {
+    "id": "mass-boosted-tackle",
+    "name": "Mass-Boosted Tackle",
+    "kind": "feat",
+    "summary": "Pump up your body mass or your momentum before slamming into someone, turning a bruising tackle into one that sends the target to hospital.",
+    "system": "The tackle deals lethal damage instead of bashing. Throwing your frail human self at a cyborg or another mass-boosted body can do the same to you.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "inferred": [
+          "Life"
+        ],
+        "note": "add body mass"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "add momentum"
+      }
+    ],
+    "tags": [
+      "combat",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 422,
+        "section": "Combat: General Hand-to-Hand Maneuvers"
+      }
+    ]
+  },
+  {
+    "id": "thunder-punch",
+    "name": "The Thunder Punch",
+    "kind": "feat",
+    "summary": "Put Enlightened force behind a punch, kick or melee blow so it lands as a perfect, devastating strike. Pick whichever Sphere fits: aim, luck, speed, strength, a mental push or a Pattern attack.",
+    "system": "Each success lowers the attack difficulty by 1, up to -3. Normally bashing; Pattern attacks with Life 3 or Prime 3 deal aggravated damage. If the target soaks all of it, the damage rebounds on you (bashing for Pattern attacks, possibly lethal against walls or steel).",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        },
+        "note": "judge the perfect spot"
+      },
+      {
+        "spheres": {
+          "Entropy": 1
+        },
+        "note": "find a weak spot"
+      },
+      {
+        "spheres": {
+          "Entropy": 2
+        },
+        "note": "nudge probability to the perfect moment"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "note": "more velocity"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "boost Strength or hurt internally; aggravated"
+      },
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "note": "impulse to surrender"
+      },
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "note": "break inert materials"
+      },
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "note": "strike the target's Pattern"
+      },
+      {
+        "spheres": {
+          "Prime": 3
+        },
+        "note": "all-out Pattern assault; aggravated"
+      },
+      {
+        "spheres": {
+          "Time": 2
+        },
+        "note": "spot the perfect opening"
+      }
+    ],
+    "coincidentalIf": "it looks like a perfectly executed strike; a blow far too strong for the mage's apparent build turns vulgar",
+    "vulgarity": "depends",
+    "tags": [
+      "combat",
+      "martial-arts"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 422,
+        "section": "Combat: Dirty Fighting"
+      }
+    ]
+  },
+  {
+    "id": "see-through-drunken-style",
+    "name": "See Through the Drunken Style",
+    "kind": "feat",
+    "summary": "Watch the flow of time during a fight to anticipate a drunken-style or Broken Rhythm fighter, cancelling the extra defense penalty that style imposes. Mind reading does not help, since the fighter does not know his next move either.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 2
+        },
+        "inferred": [
+          "Time"
+        ]
+      }
+    ],
+    "tags": [
+      "perception",
+      "martial-arts"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 424,
+        "section": "Combat: Martial Arts"
+      }
+    ]
+  },
+  {
+    "id": "do-bullet-catch",
+    "name": "Bullet-Catch",
+    "kind": "feat",
+    "summary": "Added to the Arrow Cutting technique, this lets an Akashic snatch a bullet out of the air: Time quickens the reflexes, Forces bleeds off the bullet's energy, and Life hardens the skin.",
+    "system": "You must know the shot is coming. Cast the Effect through Do, then roll Dexterity + Do as a dodge; beat the attacker's successes and you catch the bullet. Useless against shotgun blasts and automatic fire.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 3,
+          "Forces": 2,
+          "Life": 2
+        }
+      }
+    ],
+    "coincidentalIf": "the local paradigm accepts superhuman martial artists; elsewhere it is vulgar",
+    "vulgarity": "depends",
+    "tags": [
+      "defense",
+      "martial-arts"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 429,
+        "section": "Combat: Do"
+      }
+    ]
+  },
+  {
+    "id": "endure-harsh-weather",
+    "name": "Endure Harsh Weather",
+    "kind": "feat",
+    "summary": "Tune your body to scorching desert, freezing cold or a howling storm so the weather stops wearing you down.",
+    "system": "Protects against the bashing damage that brutal conditions deal every hour or so. Truly deadly settings (vacuum, crushing depth) and open flame need Life 3. Some extremes, like going naked in Antarctica, may still override it.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        }
+      }
+    ],
+    "tags": [
+      "body",
+      "defense",
+      "weather"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 435,
+        "section": "Environmental Hazards: Harsh Weather and Environments"
+      }
+    ]
+  },
+  {
+    "id": "survive-vacuum-pressure-and-flame",
+    "name": "Survive Vacuum, Pressure and Flame",
+    "kind": "feat",
+    "summary": "Protect a body against surroundings that kill outright: hard vacuum, deep-sea pressure, or standing in open fire.",
+    "system": "Such places deal lethal damage, often every quarter hour; fire deals 1 to 3 aggravated levels a turn. Life 2 and Body Control do not stop flames. You may still suffer the heat, smoke and other side effects of a fire.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        }
+      }
+    ],
+    "tags": [
+      "body",
+      "defense",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 435,
+        "section": "Environmental Hazards: Harsh Weather and Environments"
+      },
+      {
+        "book": "M20",
+        "page": 436,
+        "section": "Environmental Hazards: Fire"
+      }
+    ]
+  },
+  {
+    "id": "channel-quintessence-from-fire",
+    "name": "Draw Quintessence from a Fire",
+    "kind": "feat",
+    "summary": "Fire turns matter into raw Quintessential chaos; a skilled mage can pull usable Quintessence out of a large blaze.",
+    "system": "The amount follows the Base Damage or Duration chart. Fire's chaotic nature makes this hard even for masters.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 3
+        }
+      }
+    ],
+    "tags": [
+      "quintessence",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 436,
+        "section": "Environmental Hazards: Fire"
+      }
+    ]
+  },
+  {
+    "id": "dodge-the-blast",
+    "name": "Dodge the Blast",
+    "kind": "feat",
+    "summary": "When something explodes, bend luck, the elements, your body or the moment itself so you find just the right cover or roll at just the right time.",
+    "system": "Optional rule. Reflexive: roll Dexterity (or Wits) + Arete at difficulty 6 for a grenade, 8 for a gas tank or IED, 9 with 3 successes needed for an artillery shell or truck bomb. Success halves the damage; 5 or more successes leave only cosmetic harm. Explosions that level buildings cannot be dodged this way. With a full action beforehand, higher ranks allow magickal shields or gateways out; Mind is useless here.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2
+        }
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      },
+      {
+        "spheres": {
+          "Life": 2
+        }
+      },
+      {
+        "spheres": {
+          "Matter": 2
+        }
+      },
+      {
+        "spheres": {
+          "Time": 2
+        }
+      }
+    ],
+    "coincidentalIf": "it looks like a lucky dive behind cover, a fall through the floor or a perfect roll",
+    "tags": [
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 438,
+        "section": "Environmental Hazards: Explosions"
+      }
+    ]
+  },
+  {
+    "id": "structure-shattering-kick",
+    "name": "Structure-Shattering Kick",
+    "kind": "feat",
+    "summary": "A kick that cracks the integrity of a pillar, door or wall, focused through martial arts. Scanning for the weak spot first makes it far easier.",
+    "system": "Damage-dealing Effects of Entropy, Matter or Prime lower an object's Durability by 2; Forces adds one automatic success of damage. Damage beyond Durability goes against Structure; more than twice the Structure wrecks the object. In the book's example six successes took down a Durability 6, Structure 6 pillar.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2,
+          "Matter": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Entropy": 1
+        },
+        "purpose": "find the weak spot first for up to -3 difficulty"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "destruction",
+      "martial-arts"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 440,
+        "section": "Environmental Hazards: Bustin' Stuff"
+      }
+    ]
+  },
+  {
+    "id": "revive-the-drowned",
+    "name": "Revive the Drowned or Suffocated",
+    "kind": "feat",
+    "summary": "Bring back someone who stopped breathing, as long as you reach them soon enough.",
+    "system": "Life 3 works within the first few minutes. After about 10 minutes without air (30 in very cold water) the brain starts to deteriorate and only Life 5 will do.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "within the first minutes"
+      },
+      {
+        "spheres": {
+          "Life": 5
+        },
+        "note": "after the brain has started to deteriorate"
+      }
+    ],
+    "tags": [
+      "healing"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 441,
+        "section": "Environmental Hazards: Drowning and Suffocation"
+      }
+    ]
+  },
+  {
+    "id": "purge-poison-or-disease",
+    "name": "Purge Poison, Drugs or Disease",
+    "kind": "feat",
+    "summary": "Clear a toxin, a drug or an illness out of a body instead of just easing the symptoms as ordinary medicine does.",
+    "system": "A slow cure through an accepted remedy is usually coincidental; an instant cure is vulgar unless the patient and onlookers truly believe in miracles.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "note": "on yourself"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "on someone else"
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "healing"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 442,
+        "section": "Environmental Hazards: Drugs, Poisons, and Disease"
+      }
+    ]
+  },
+  {
+    "id": "inflict-intoxication-or-disease",
+    "name": "Inflict Intoxication or Disease",
+    "kind": "feat",
+    "summary": "Make someone drunk, high or sick through a touch, a drink or a curse.",
+    "system": "Keep it subtle: a mild, believable effect passes, but someone who gets falling-down drunk from a handshake or catches leprosy from a pointed finger is clearly vulgar magick.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        }
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "body",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 442,
+        "section": "Environmental Hazards: Drugs, Poisons, and Disease"
+      },
+      {
+        "book": "M20",
+        "page": 443,
+        "section": "Environmental Hazards: Drugs, Poisons, and Disease"
+      }
+    ]
+  },
+  {
+    "id": "shrug-off-toxic-clouds",
+    "name": "Shrug Off Toxic Clouds",
+    "kind": "feat",
+    "summary": "Protect yourself against tear gas, chlorine and other poison clouds that cannot be dodged.",
+    "system": "Without gear or this Effect, a cloud deals its Toxin Rating every turn you stay in it. Some chemicals work through the skin, so holding your breath is not enough.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        }
+      }
+    ],
+    "tags": [
+      "defense",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 442,
+        "section": "Environmental Hazards: Drugs, Poisons, and Disease"
+      },
+      {
+        "book": "M20",
+        "page": 456,
+        "section": "Combat System Charts: Toxins"
+      }
+    ]
+  },
+  {
+    "id": "disperse-or-spread-toxic-cloud",
+    "name": "Disperse or Spread a Toxic Cloud",
+    "kind": "feat",
+    "summary": "Steer the air so a gas cloud blows away from you, thins out, or drifts over your enemies instead.",
+    "system": "Stronger Forces Effects move bigger clouds.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
+    ],
+    "tags": [
+      "elemental",
+      "weather"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 456,
+        "section": "Combat System Charts: Toxins"
+      }
+    ]
+  },
+  {
+    "id": "awaken-spirit-of-drug-or-disease",
+    "name": "Awaken the Spirit of a Drug or Disease",
+    "kind": "feat",
+    "summary": "Rouse the spirit inside a drug, or inside a disease already in someone's body, through trance, ritual and invocation, making its effects stronger or gentler. It can also produce true mystic drugs.",
+    "system": "With the right rituals this seems coincidental. Each Arete success adds one to the substance's Toxin Rating, and possibly to its other effects.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        },
+        "note": "a drug"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Spirit": 3
+        },
+        "note": "a disease in someone else's body"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "spirit",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 443,
+        "section": "Environmental Hazards: Awakening Substances"
+      }
+    ]
+  },
+  {
+    "id": "enhance-drug-or-microbe",
+    "name": "Enhance a Drug or Microbe",
+    "kind": "feat",
+    "summary": "The lab approach to awakening substances: tweak a compound's molecules or a microbe's makeup to make it stronger, creating technomagickal drugs and diseases.",
+    "system": "Done through lab work and proper procedures, it seems coincidental. Each Arete success adds one to the Toxin Rating, and possibly to its other effects.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "note": "a substance"
+      },
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "note": "microbes"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Matter": 2
+        },
+        "note": "a substance inside a living body"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "a microbe-based disease"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "body",
+      "transformation",
+      "technology"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 443,
+        "section": "Environmental Hazards: Awakening Substances"
+      }
+    ]
+  },
+  {
+    "id": "shoot-the-gas-tank",
+    "name": "Make a Shot Ignite the Gas Tank",
+    "kind": "feat",
+    "summary": "Help a gunshot set off a vehicle's fuel tank, the classic movie explosion, as a coincidental Forces attack.",
+    "system": "The shot needs at least three successes to hit and must deal six or more health levels before the fuel goes off. A car then explodes for about 12 dice of flaming aggravated damage; bigger vehicles do more.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "inferred": [
+          "Forces"
+        ]
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "combat",
+      "elemental",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 459,
+        "section": "The Technological World: Shooting the Gas Tank"
+      }
+    ]
+  },
+  {
+    "id": "unconventional-machine-enhancement",
+    "name": "Unconventional Machine Enhancement",
+    "kind": "feat",
+    "summary": "Upgrade a machine you build or tune with a little magick: advanced materials, a better power supply, sharper optics or a stronger shock. The item gets better but does not become a magickal item.",
+    "system": "Coincidental Arete roll. Each success after the first adds one point of Durability or Structure, or one damage die per two successes, or a story quality such as paint that never scratches.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "note": "advanced materials (Matter 2 or 3)"
+      },
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "note": "boost a power supply"
+      },
+      {
+        "spheres": {
+          "Correspondence": 1
+        },
+        "note": "improve optics such as binoculars"
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        },
+        "inferred": [
+          "Forces"
+        ],
+        "note": "boost an energy device such as a Taser"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "technology",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 464,
+        "section": "The Technological World: Unconventional Enhancement"
+      }
+    ]
+  },
+  {
+    "id": "digital-web-astral-immersion",
+    "name": "Astral Immersion in the Digital Web",
+    "kind": "feat",
+    "summary": "Project your senses and sense of self into the Digital Web through good VR gear, leaving your body in a deep trance at home.",
+    "system": "Needs VR gear (a good smartphone or tablet will do) and an Intelligence + Computer roll, difficulty 7 (6 with the Data option), three successes. Online, Intelligence stands in for Strength and Wits for Dexterity. You can drop out at once, but your body is helpless while you are away. Coincidental.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "technology",
+      "travel",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 467,
+        "section": "The Digital Web: Web Access"
+      },
+      {
+        "book": "M20",
+        "page": 472,
+        "section": "The Digital Web: Web Systems"
+      }
+    ]
+  },
+  {
+    "id": "digital-web-holistic-immersion",
+    "name": "Holistic Immersion in the Digital Web",
+    "kind": "feat",
+    "summary": "Have a Trinary computer break your body down into data and download all of you into the Digital Web, physically present with your normal Traits.",
+    "system": "Extended Intelligence + Computer roll, difficulty 7 (Data does not help), five successes, 30 seconds per roll. Any interruption triggers an immediate Paradox backlash. Damage online is real, and dying there means dying.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 4,
+          "Correspondence": 2,
+          "Forces": 2
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "technology",
+      "travel",
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 467,
+        "section": "The Digital Web: Web Access"
+      },
+      {
+        "book": "M20",
+        "page": 472,
+        "section": "The Digital Web: Web Systems"
+      }
+    ]
+  },
+  {
+    "id": "digital-web-popping-and-backspacing",
+    "name": "Popping and Backspacing",
+    "kind": "feat",
+    "summary": "Jump from one Web sector to another, or hop back to where you just were, usually with a pop prog that scans and logs the destination first.",
+    "system": "Scan one turn, pop the next; popping blind is +2 difficulty. No pop prog is needed to return within a minute or two. Popping into or out of a Restricted sector is difficulty 8 or 9 and vulgar, and failure there means icon death or a chaos dump. A failed pop lands you somewhere awkward; a botch can soft de-rez you.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3
+        }
+      }
+    ],
+    "coincidentalIf": "both locations are in the same sector; popping between sectors is vulgar",
+    "vulgarity": "depends",
+    "tags": [
+      "technology",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 469,
+        "section": "The Digital Web: Popping and Backspacing"
+      }
+    ]
+  },
+  {
+    "id": "otherworlds-step-sideways",
+    "name": "Step Sideways into the Umbra",
+    "kind": "feat",
+    "summary": "Turn yourself into ephemera and walk bodily through the Gauntlet into the spirit world, or tear a gateway so others can follow.",
+    "system": "Extended Arete roll against the local Gauntlet: from difficulty 3 and one success at a Node to difficulty 9 and five successes in a Technocracy lab. A botch leaves you stuck between worlds. You keep your Traits and can see spirits, but need Spirit magick to affect the physical world. High-tech gear may fail on the other side. With the Avatar Storm optional rule, each crossing costs Paradox + Arete dice of damage.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        },
+        "note": "step through yourself"
+      },
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "note": "open a gateway others can use"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "travel",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 475,
+        "section": "The Otherworlds: Stepping Sideways"
+      },
+      {
+        "book": "M20",
+        "page": 476,
+        "section": "The Otherworlds: Stepping Sideways"
+      },
+      {
+        "book": "M20",
+        "page": 484,
+        "section": "The Otherworlds: Traveling the Otherworlds"
+      }
+    ]
+  },
+  {
+    "id": "otherworlds-astral-travel",
+    "name": "Astral Travel Through the Otherworlds",
+    "kind": "feat",
+    "summary": "Leave your body in a trance and fly as pure consciousness, tied home by a silver cord, through the material world, the Periphery and the High Umbra.",
+    "system": "Arete roll against the local Gauntlet. Manipulation serves as Strength, Wits as Dexterity, Intelligence as Stamina, and damage costs Willpower; losing all of it snaps the cord. Immune to the Avatar Storm. Beyond the Penumbra into the Middle Umbra needs the Astral Sojourn's body of light. Usually coincidental, since onlookers only see someone meditating.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Mind": 5
+        },
+        "purpose": "leap past the Horizon into the Deep Umbra"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "travel",
+      "spirit",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 476,
+        "section": "The Otherworlds: Astral Travel"
+      },
+      {
+        "book": "M20",
+        "page": 478,
+        "section": "The Otherworlds: Astral Travel"
+      },
+      {
+        "book": "M20",
+        "page": 484,
+        "section": "The Otherworlds: Traveling the Otherworlds"
+      },
+      {
+        "book": "M20",
+        "page": 485,
+        "section": "The Otherworlds: Example of Umbral Travel"
+      }
+    ]
+  },
+  {
+    "id": "bind-object-to-astral-form",
+    "name": "Bind an Object to Your Astral Form",
+    "kind": "feat",
+    "summary": "Ritually tie a possession to yourself so it comes along when you travel astrally, instead of arriving empty-handed and naked.",
+    "system": "Spend a Willpower point and get at least five Arete successes. The object should not outweigh you, and anything that relies on complex physics, like a gun or a computer, probably will not work there.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "travel",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 477,
+        "section": "The Otherworlds: Astral Travel"
+      }
+    ]
+  },
+  {
+    "id": "astral-sojourn-ritual",
+    "name": "Astral Sojourn Ritual",
+    "kind": "feat",
+    "summary": "While in a helpless trance, weave yourself a body of light out of Quintessence and ephemera, then step sideways in it to reach any layer of the living Otherworlds.",
+    "system": "The light-body has your normal Attributes and health levels. If it loses them all it falls apart and your consciousness is left adrift in the Umbra. Either rank of Mind works.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 4,
+          "Spirit": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "travel",
+      "spirit",
+      "creation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 477,
+        "section": "The Otherworlds: Astral Travel"
+      },
+      {
+        "book": "M20",
+        "page": 484,
+        "section": "The Otherworlds: Traveling the Otherworlds"
+      }
+    ]
+  },
+  {
+    "id": "snap-a-silver-cord",
+    "name": "Snap an Astral Traveler's Silver Cord",
+    "kind": "feat",
+    "summary": "A direct psychic attack that cuts an astral traveler off from the body left behind.",
+    "system": "Resisted roll, both sides at the target's Willpower as difficulty; you need more successes. The victim can spend a Willpower point to grab the cord and ride it home; otherwise she drifts.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 5
+        }
+      }
+    ],
+    "tags": [
+      "mental",
+      "combat",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 477,
+        "section": "The Otherworlds: Astral Travel"
+      }
+    ]
+  },
+  {
+    "id": "astral-beacon",
+    "name": "Astral Beacon",
+    "kind": "feat",
+    "summary": "Light a guiding signal near the body of a lost astral traveler so her drifting mind can find the way home.",
+    "system": "Lasts one day per success. The traveler rolls Perception or Wits + Occult or Meditation at difficulty 9 minus your successes. A drifting soul has one week per point of permanent Willpower before it fades for good.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "travel",
+      "mental",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 477,
+        "section": "The Otherworlds: Astral Travel"
+      }
+    ]
+  },
+  {
+    "id": "drifting-soul-possesses-body",
+    "name": "Drifting Soul Possesses a Body",
+    "kind": "feat",
+    "summary": "A lost astral traveler takes over someone else's body as a new home.",
+    "system": "You must overcome the target's Willpower. If the body is on the other side of the Gauntlet, you first need to be able to see it.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 4
+        },
+        "note": "body on your side of the Gauntlet"
+      },
+      {
+        "spheres": {
+          "Mind": 4,
+          "Spirit": 2
+        },
+        "note": "body across the Gauntlet"
+      }
+    ],
+    "tags": [
+      "mind-control",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 477,
+        "section": "The Otherworlds: Astral Travel"
+      },
+      {
+        "book": "M20",
+        "page": 478,
+        "section": "The Otherworlds: Astral Travel"
+      }
+    ]
+  },
+  {
+    "id": "sense-body-while-astral",
+    "name": "Keep Watch on Your Body While Astral",
+    "kind": "feat",
+    "summary": "Keep a sensory link to your entranced body while you travel astrally, so you notice if someone comes for it.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2
+        }
+      }
+    ],
+    "tags": [
+      "perception",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 478,
+        "section": "The Otherworlds: Astral Travel"
+      }
+    ]
+  },
+  {
+    "id": "agama-sojourn",
+    "name": "Agama Sojourn",
+    "kind": "feat",
+    "summary": "Die a little: split your soul between life and death and enter the Shadowlands as ghostly ephemera while your body lies clinically dead. A Euthanatos initiation, and a very dangerous trip.",
+    "system": "The Agama Re rite takes yourself through; the Agama Te rite sends someone else and keeps them tethered for the return. The traveler's corpus has 10 health levels and no wound penalties; Life magick does not affect it. Losing all of it means a permanent point of Jhor and a Harrowing.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 4,
+          "Spirit": 3,
+          "Life": 2
+        },
+        "note": "Agama Re: your own passage"
+      },
+      {
+        "spheres": {
+          "Entropy": 4,
+          "Spirit": 4,
+          "Life": 3
+        },
+        "note": "Agama Te: send someone else"
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "travel",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 478,
+        "section": "The Otherworlds: The Agama Sojourn"
+      },
+      {
+        "book": "M20",
+        "page": 484,
+        "section": "The Otherworlds: Traveling the Otherworlds"
+      }
+    ]
+  },
+  {
+    "id": "heal-an-agama-corpus",
+    "name": "Heal an Agama Corpus",
+    "kind": "feat",
+    "summary": "Repair the ghostly body of a living mage on an Agama Sojourn. Life magick cannot touch it, since its life stayed behind in the flesh.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "healing",
+      "necromancy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 478,
+        "section": "The Otherworlds: The Agama Sojourn"
+      }
+    ]
+  },
+  {
+    "id": "carry-items-into-the-shadowlands",
+    "name": "Carry Items into the Shadowlands",
+    "kind": "feat",
+    "summary": "Soak an item in Entropic energy and bind it to yourself, so it travels with you on an Agama Sojourn instead of staying behind with your body.",
+    "system": "The binding uses the same Prime 2 ritual as for astral travel: a Willpower point and at least five Arete successes.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "travel",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 480,
+        "section": "The Otherworlds: The Agama Sojourn"
+      }
+    ]
+  },
+  {
+    "id": "agama-travel-beyond-the-underworld",
+    "name": "Agama Travel Beyond the Underworld",
+    "kind": "feat",
+    "summary": "Climb out of the Low Umbra into other layers while on an Agama Sojourn: either open a gate from the Shadowlands to the Middle Umbra, or raise your dead consciousness astrally into the Vulgate of the High Umbra.",
+    "system": "Needs the normal Agama Sojourn ranks as well. No other kind of traveler can move between the Underworld and the other layers like this.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 5,
+          "Spirit": 5,
+          "Life": 2
+        },
+        "note": "gateway to the Middle Umbra; Life 2 from the Agama rite"
+      },
+      {
+        "spheres": {
+          "Entropy": 5,
+          "Mind": 5,
+          "Spirit": 3,
+          "Life": 2
+        },
+        "note": "astral rise to the High Umbra; Spirit 3 and Life 2 from the Agama rite"
+      }
+    ],
+    "tags": [
+      "necromancy",
+      "travel",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 480,
+        "section": "The Otherworlds: The Agama Sojourn"
+      },
+      {
+        "book": "M20",
+        "page": 484,
+        "section": "The Otherworlds: Traveling the Otherworlds"
+      }
+    ]
+  },
+  {
+    "id": "shield-of-the-soul",
+    "name": "Shield of the Soul",
+    "kind": "feat",
+    "summary": "Ask your familiar or totem to wrap your spirit inside its own so you cross the Avatar Storm under its protection.",
+    "system": "Optional Avatar Storm rule. With the Shield in place, Storm damage is rolled on your Paradox alone, not Paradox + Arete. The spirit must be friendly toward you on both ends of the trip.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 3,
+          "Spirit": 2
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "defense",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 479,
+        "section": "The Otherworlds: The Avatar Storm"
+      }
+    ]
+  },
+  {
+    "id": "bridge-of-blood",
+    "name": "Bridge of Blood",
+    "kind": "feat",
+    "summary": "A despised rite: stuff a captive spirit with your own Quintessence and drag it through the Gauntlet as a decoy for the Avatar Storm to devour while you step sideways.",
+    "system": "Needs at least one success per dot of your Avatar Background and puts all of your Quintessence into the spirit. Other mages and spirits take a very dim view of it.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4,
+          "Prime": 3
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "defense",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 479,
+        "section": "The Otherworlds: The Avatar Storm"
+      }
+    ]
+  },
+  {
+    "id": "find-the-old-roads",
+    "name": "Find the Old Roads",
+    "kind": "feat",
+    "summary": "A Verbena secret: search near a Node for an entrance to the Paths of the Wyck, the Old Roads that bypass the Avatar Storm.",
+    "system": "Only for trusted, trained Verbena. The Arete roll uses the local Gauntlet as difficulty. Often there is nothing to find, or the path dead-ends; three or more successes should turn up a path that matters.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        }
+      }
+    ],
+    "tags": [
+      "travel",
+      "spirit",
+      "divination"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 482,
+        "section": "The Otherworlds: Verbenae and the Old Roads"
+      }
+    ]
+  },
+  {
+    "id": "cross-a-pericarp",
+    "name": "Cross a Pericarp Between Realms",
+    "kind": "feat",
+    "summary": "Step sideways through the Pericarp, the Gauntlet-like barrier between one Realm and the next.",
+    "system": "Some Realms may demand another Sphere, such as Mind, Forces or Time, instead of Spirit.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "tags": [
+      "travel",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 485,
+        "section": "The Otherworlds: Magick in the Otherworlds"
+      }
+    ]
+  },
+  {
+    "id": "bind-spirit-in-fetish-or-pentacle",
+    "name": "Bind a Spirit in a Fetish or Pentacle",
+    "kind": "feat",
+    "summary": "Imprison a spirit: seal a slumbering one into a Fetish, or trap a materialized one in a pentacle or hypertech spirit cage so it cannot roam.",
+    "system": "A Fetish stays unusable until the bound spirit has regained its full Essence. Most spirits deeply resent being imprisoned, and they live a very long time.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4
+        }
+      }
+    ],
+    "tags": [
+      "summoning",
+      "spirit",
+      "warding"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 489,
+        "section": "Umbrood Spirit Entities: Spirit Feats"
+      },
+      {
+        "book": "M20",
+        "page": 493,
+        "section": "Umbrood Spirit Entities: Spirit Charms"
+      }
+    ]
+  },
+  {
+    "id": "exorcise-a-possessing-spirit",
+    "name": "Exorcism of a Possessing Umbrood",
+    "kind": "feat",
+    "summary": "Drive a demon or other possessing entity out of the person or object it has taken over.",
+    "system": "Once a Possession has taken hold it usually lasts until the spirit leaves; exorcism or True Faith are the ways to break it.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4,
+          "Life": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "summoning",
+      "healing"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 494,
+        "section": "Umbrood Spirit Entities: Spirit Charms"
+      }
+    ]
+  }
+]

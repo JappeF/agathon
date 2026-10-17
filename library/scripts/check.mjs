@@ -52,8 +52,11 @@ for (const w of whitelist) if (!w.reason?.trim()) throw new Error(`whitelist ${w
 const issues = {}; // check -> [{id, detail}]
 const whitelisted = [];
 const usedWl = new Set();
+// "Mind 4 + Forces 2 not stated together (within N chars) on ..." matches in any Sphere order and span
+const normDetail = (d) =>
+  d.replace(/^(.*) not stated together \(within \d+ chars\)/, (_, pairs) => `${pairs.split(' + ').sort().join(' + ')} not stated together`);
 function report(check, id, detail) {
-  const i = whitelist.findIndex((w) => w.check === check && w.id === id && (w.detail === undefined || w.detail === detail));
+  const i = whitelist.findIndex((w) => w.check === check && w.id === id && (w.detail === undefined || normDetail(w.detail) === normDetail(detail)));
   if (i >= 0) {
     usedWl.add(i);
     whitelisted.push({ check, id, detail, reason: whitelist[i].reason });
@@ -132,6 +135,9 @@ function statedPairs(book, pdfPage) {
   }
   // "Rank 3 Forces", "rank-3 Forces", "level 3 Forces"
   for (const m of text.matchAll(new RegExp(`\\b(?:Rank|rank|level|Level)[\\s-]*(\\d)\\s+(?:(?:in|of)\\s+(?:the\\s+)?)?(${NAME_RE})`, 'g'))) add([m[2]], [Number(m[1])], m.index);
+  // rote headers: "(••• Mind/ •• Correspondence)", "(•• or ••• Mind/ • Forces)"
+  for (const m of text.matchAll(new RegExp(`(•{1,5})(?:\\s*or\\s*(•{1,5}))?\\s+(${NAME_RE})`, 'g')))
+    add([m[3]], [m[1].length, ...(m[2] ? [m[2].length] : [])], m.index);
   // "three dots of Forces", "two dots in Life", "3 dots of Mind"
   for (const m of text.matchAll(new RegExp(`\\b(one|two|three|four|five|\\d)[\\s-]+dots?\\s+(?:of|in)\\s+(?:the\\s+)?(${NAME_RE})`, 'gi')))
     add([m[2].replace(/^\w/, (c) => c.toUpperCase())], [WORDNUM[m[1].toLowerCase()] ?? Number(m[1])], m.index);

@@ -1,0 +1,1494 @@
+[
+  {
+    "id": "summon-a-creature-from-elsewhere",
+    "name": "Summon a Creature from Elsewhere on Earth",
+    "kind": "feat",
+    "summary": "Pull a living creature from some other place in the physical world to your summoning spot. A tiny one, house-cat size or smaller, needs far less power.",
+    "system": "Takes 2 to 10 successes, more for big creatures and long distances. Nearly always vulgar; the Storyteller may allow exceptions.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4
+        },
+        "note": "any creature"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2
+        },
+        "note": "house-cat size or smaller"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "purpose": "win the creature over to your side right away"
+      },
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "purpose": "sway the creature to your side right away"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "summoning",
+      "conjuration"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 90,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 91,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      }
+    ]
+  },
+  {
+    "id": "summon-a-spirit-through-the-gauntlet",
+    "name": "Summon a Spirit Through the Gauntlet",
+    "kind": "feat",
+    "summary": "Call out to a spirit, then drag it across the Gauntlet into the material world; with more rank you can bring a whole group over. What arrives still has to be bargained with.",
+    "system": "A nature spirit in its own element is easy: open the Gauntlet and let it through. A major entity has to be fetched from its home Realm for 10 to 15 successes or more. Bargaining: if you score no successes on a roll, the spirit may roll Willpower (difficulty your Spirit rank +5) to leave or attack; the Pact is a resisted Willpower contest where each side needs successes equal to the other's Willpower. Quintessence offered to a spirit becomes Essence point for point.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2
+        },
+        "note": "call to a spirit"
+      },
+      {
+        "spheres": {
+          "Spirit": 3
+        },
+        "note": "bring one through the Gauntlet"
+      },
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "note": "bring several through"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "summoning",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 90,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 91,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 94,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Bargaining Process"
+      }
+    ]
+  },
+  {
+    "id": "summon-a-ghost-by-its-fetter",
+    "name": "Summon a Ghost Through Its Fetter",
+    "kind": "feat",
+    "summary": "Call up a particular ghost by working through a Fetter, a thing or place that tied it to its life.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "summoning",
+      "necromancy",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 90,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      }
+    ]
+  },
+  {
+    "id": "summon-a-major-entity",
+    "name": "Summon a Demon, Angel or Other Great Entity",
+    "kind": "feat",
+    "summary": "Open a gateway for a mighty being such as an angel or a demon, a big Bygone or a vast alien, and tie it to the material world through an enchanted item, its True Name, or both.",
+    "system": "Pulling it from its home Realm takes 10 to 15 successes; truly powerful beings from far planes take at least 15, plus 10 more while the Avatar Storm lasts. Needs a prepared space and full protocols, and is vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "summoning",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 90,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 91,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      }
+    ]
+  },
+  {
+    "id": "give-a-summoned-spirit-a-flesh-body",
+    "name": "Give a Summoned Spirit a Flesh Body",
+    "kind": "feat",
+    "summary": "Provide a living body for a spirit to move into: grow one from scratch, or evict whatever mind or soul already lives in a body so the spirit can take it over.",
+    "system": "A near-death experience can also empty a body. The book flags this as very dark magick.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 5,
+          "Prime": 2
+        },
+        "note": "build a new body"
+      },
+      {
+        "spheres": {
+          "Mind": 5
+        },
+        "note": "drive out the body's owner with Mind"
+      },
+      {
+        "spheres": {
+          "Spirit": 5
+        },
+        "note": "drive out the body's owner with Spirit"
+      },
+      {
+        "spheres": {
+          "Mind": 5,
+          "Spirit": 5
+        },
+        "note": "drive out the owner with both"
+      }
+    ],
+    "tags": [
+      "summoning",
+      "spirit",
+      "body",
+      "creation"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 90,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      }
+    ]
+  },
+  {
+    "id": "house-an-elemental-in-its-element",
+    "name": "House an Elemental in Its Element",
+    "kind": "feat",
+    "summary": "Gather a good amount of an element, like a pool of water or a bonfire, and call up a spirit of that element. It uses its own power to take shape in the material you provided.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 2
+        }
+      }
+    ],
+    "tags": [
+      "summoning",
+      "spirit",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 90,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 91,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      }
+    ]
+  },
+  {
+    "id": "build-a-golem",
+    "name": "Build a Golem",
+    "kind": "feat",
+    "summary": "Shape material into a body, bind a spirit into it and quicken it with Quintessence: a golem.",
+    "system": "Spirit binds the entity, Matter forms the body, Prime animates it. Every 2 successes give the golem 1 Durability and 1 Structure (M20 pp. 439-440); if attacks bring those to zero it breaks apart and the spirit goes free.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4,
+          "Matter": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "summoning",
+      "creation",
+      "spirit",
+      "conjuration"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 91,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      }
+    ]
+  },
+  {
+    "id": "ward-against-elemental-energies",
+    "name": "Ward Against Elemental Energies",
+    "kind": "feat",
+    "summary": "Bar a kind of energy, such as fire, electricity, light or sound, at a threshold or a surface. The same ward can make a doorway airtight, which matters next to a vacuum.",
+    "system": "Intense radiation and nuclear forces need Forces 5, and so Correspondence 5, since Correspondence must be at least your highest other Sphere in the ward; shutting out a nuclear blast takes Matter 5 too. Price: 1 Quintessence for the ward plus 1 per objective, and each objective adds 1 to the successes needed. Successes set how long it holds: 1 a turn, 2 a scene, 3 a day, 4 a story, 5 six months; permanent takes 10 plus 1 per objective and 1 more Quintessence per Sphere. As a major ward it costs 1 extra Quintessence per Sphere (2 per Sphere if permanent). Paradox: 1 point per dot of the highest Sphere, +1 if someone watched, added to your wheel without a backlash unless you botch.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Forces": 3
+        },
+        "note": "ordinary energies, or airtight"
+      },
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Forces": 5
+        },
+        "note": "intense radiation and nuclear forces"
+      },
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Forces": 5,
+          "Matter": 5
+        },
+        "note": "a nuclear blast"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "purpose": "make the seal watertight as well"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "defense",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 95,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 97,
+        "section": "Summoning, Binding, Bargaining, and Warding: Setting a Ward"
+      }
+    ]
+  },
+  {
+    "id": "ward-against-substances-and-objects",
+    "name": "Ward Against Substances and Objects",
+    "kind": "feat",
+    "summary": "Keep a kind of material thing out: a plain substance like steel or glass, a complex object like a gun or car, or advanced artificial things like robots and computers.",
+    "system": "Price: 1 Quintessence for the ward plus 1 per objective, and each objective adds 1 to the successes needed. Successes set how long it holds: 1 a turn, 2 a scene, 3 a day, 4 a story, 5 six months; permanent takes 10 plus 1 per objective and 1 more Quintessence per Sphere. As a major ward it costs 1 extra Quintessence per Sphere (2 per Sphere if permanent). Paradox: 1 point per dot of the highest Sphere, +1 if someone watched, added to your wheel without a backlash unless you botch.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Matter": 2
+        },
+        "note": "simple uniform substances: steel, glass, marble, water"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Matter": 3
+        },
+        "note": "complex objects: guns, cars"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Matter": 4
+        },
+        "note": "complicated artificial things: robots, computers"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 95,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      }
+    ]
+  },
+  {
+    "id": "ward-against-primium",
+    "name": "Ward Against Primium",
+    "kind": "feat",
+    "summary": "A Tradition ward against the Technocracy's anti-magick metal Primium. It does not hold perfectly, but it slows down an invading force.",
+    "system": "Can be broken like any ward (see Unweave a Ward).",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Matter": 4,
+          "Prime": 4
+        }
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "defense",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      }
+    ]
+  },
+  {
+    "id": "ward-against-a-resonance",
+    "name": "Ward Against a Resonance or Synergy",
+    "kind": "feat",
+    "summary": "Turn back a particular flavor of Resonance or Synergy at the threshold, for example a holy ward that stops Infernal essence. An optional rule, since it gets complicated quickly.",
+    "system": "Resonance and Synergy are detailed in The Book of Secrets, Chapter Two.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Prime": 4
+        }
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "defense",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      }
+    ]
+  },
+  {
+    "id": "lock-a-ward-into-a-thing",
+    "name": "Lock a Ward into an Object, Element or Creature",
+    "kind": "feat",
+    "summary": "Build a ward into the Pattern of the thing that carries it: floorboards, a door, a gadget, a fire, or a living being. With Prime it becomes a traveling ward that goes where the thing goes, and nothing it bars can touch that thing.",
+    "system": "Air, light, heat and radiation are too thin to hold a ward, though shadows oddly can. A traveling ward costs 1 more Quintessence and pushes barred things off its surface instead of stopping them at a line; it only covers what it sits on, so a warded jacket leaves your legs open. Every 3 extra successes push the barrier one more yard out (the cost chart lists 3 Quintessence per yard). Pressing your own warded thing into what it bars cancels the ward for you, but not when someone else does it. Correspondence must match the highest other Sphere, so Forces 5 needs Correspondence 5.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Forces": 3
+        },
+        "note": "fire, electricity, or gadgets that use them"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Forces": 4
+        },
+        "note": "a vast area of an element (the largest need Forces 5)"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Matter": 2
+        },
+        "note": "an item, substance or building material"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Matter": 3
+        },
+        "note": "complex objects such as computers or cars"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 4
+        },
+        "note": "a living being, so it travels with them"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "the ward travels with the thing until its Duration runs out (+1 Quintessence)"
+      },
+      {
+        "spheres": {
+          "Prime": 4
+        },
+        "purpose": "a permanent traveling ward, which makes the thing a Wonder"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "defense",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 95,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 97,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      }
+    ]
+  },
+  {
+    "id": "circumstantial-ward",
+    "name": "Circumstantial Ward (Triggered by an Event)",
+    "kind": "feat",
+    "summary": "Set a ward that stays dormant until a named event happens, such as a certain person opening a door or a particular ghost showing up, then springs into place.",
+    "system": "Works only once, but waits as long as it takes. Costs just 1 Quintessence plus 1 per objective.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Time": 4
+        },
+        "note": "plus the Spheres for what the ward bars"
+      }
+    ],
+    "tags": [
+      "warding",
+      "defense",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 97,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      }
+    ]
+  },
+  {
+    "id": "dantes-laptop-ward",
+    "name": "Dante's Laptop: Ward a Device Against a Group of People",
+    "kind": "feat",
+    "summary": "Worked example: ward a laptop so Black Suits cannot get hold of it. Forces and Matter tie the ward into the machine's power and parts, Life and Mind pick Black Suits out from everyone else, and Prime invests it.",
+    "system": "At least 2 successes ward it for a turn; more buy longer. Temporary: 2 Quintessence (ward and objective), plus 1 because it travels. Permanent with Prime 4: 6 Quintessence in all. Other major wards can be built on top of this frame.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Forces": 3,
+          "Life": 4,
+          "Matter": 4,
+          "Mind": 4,
+          "Prime": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 4
+        },
+        "purpose": "make the ward permanent"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "defense",
+      "technology"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 98,
+        "section": "Summoning, Binding, Bargaining, and Warding: Dante's Laptop"
+      }
+    ]
+  },
+  {
+    "id": "minor-ward",
+    "name": "Minor Ward Against Living Things or Spirits",
+    "kind": "feat",
+    "summary": "A basic summoner's precaution. The ward does not block or hurt its target, but it hampers anything the target tries to do to you.",
+    "system": "Costs 1 Quintessence plus 1 per objective. For the Duration, each success takes one success off the target's actions against you. Usually laid on a pentacle, a circle or a room's entrances. Carried versions can have side effects that clash with a spirit's bargain.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Prime": 2,
+          "Life": 2
+        },
+        "note": "hinder living things"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Prime": 2,
+          "Spirit": 2
+        },
+        "note": "hinder spirits"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "purpose": "put it on jewelry or clothing you wear"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "warding",
+      "defense",
+      "summoning"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 98,
+        "section": "Summoning, Binding, Bargaining, and Warding: Minor Wards"
+      },
+      {
+        "book": "HDYDT",
+        "page": 99,
+        "section": "Summoning, Binding, Bargaining, and Warding: Minor Wards"
+      }
+    ]
+  },
+  {
+    "id": "minor-area-ward",
+    "name": "Minor Area Ward: Keep Out or Stay In",
+    "kind": "feat",
+    "summary": "Put a place under a gentle push that tells outsiders to stay away, or tells those inside to stay put. Nothing is actually blocked, but crossing feels wrong.",
+    "system": "Each success takes one success off an intruder's rolls inside the area. The NWO uses it to shoo away the curious.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Mind": 2,
+          "Prime": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Entropy": 2
+        },
+        "purpose": "tilt probability inside the area"
+      },
+      {
+        "spheres": {
+          "Life": 2
+        },
+        "purpose": "deter living things"
+      },
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "purpose": "deter non-living intruders"
+      },
+      {
+        "spheres": {
+          "Spirit": 2
+        },
+        "purpose": "discourage Umbral intrusion"
+      },
+      {
+        "spheres": {
+          "Time": 2
+        },
+        "purpose": "guard against trespass through time"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Mind": 4
+        },
+        "purpose": "make the push strong enough to be real mind control"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "warding",
+      "defense",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 99,
+        "section": "Summoning, Binding, Bargaining, and Warding: Minor Wards"
+      }
+    ]
+  },
+  {
+    "id": "the-ban",
+    "name": "Major Ward: The Ban",
+    "kind": "feat",
+    "summary": "The simplest major ward: a kind of creature or spirit, or one named individual, cannot touch you or aim its powers and weapons straight at you.",
+    "system": "At least 5 successes on a vulgar roll. One named spirit needs its True Name or another link (a Fetter, a sigil, a tied object); one particular mortal needs an item from their life plus Mind 4. It does not stop indirect attacks through other people or things, and it drops if you botch a Contest of Wills. As a major ward it costs 1 extra Quintessence per Sphere (2 per Sphere if permanent). Paradox: 1 point per dot of the highest Sphere, +1 if someone watched, added to your wheel without a backlash unless you botch.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 3,
+          "Prime": 2
+        },
+        "note": "a class of living things"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 4,
+          "Prime": 2
+        },
+        "note": "one specific creature, with a sample of its Pattern"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 4,
+          "Mind": 4,
+          "Prime": 2
+        },
+        "note": "a type of people, or one particular person"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Prime": 2,
+          "Spirit": 4
+        },
+        "note": "spirits, or one named spirit"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 3,
+          "Prime": 2,
+          "Spirit": 4
+        },
+        "note": "living things and spirits together"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Prime": 4
+        },
+        "purpose": "invest the ward with Prime 4 instead of 2, as for a permanent ward"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "warding",
+      "defense",
+      "summoning",
+      "spirit"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 100,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Ban"
+      }
+    ]
+  },
+  {
+    "id": "binding-and-gauntlet-cage",
+    "name": "Major Ward: Binding and the Gauntlet Cage",
+    "kind": "feat",
+    "summary": "Lock a spirit inside a warded space, or shut it out. The cage version hardens the Gauntlet in the area to 10; the binding version holds the spirit there until you let go or the Duration ends.",
+    "system": "Against an unwilling spirit you roll the Effect at difficulty equal to its Willpower while the Storyteller rolls its Willpower at difficulty equal to yours; win and it is held, tie and both roll again. Each success takes one off its attempts to break out. Uses: imprison it, make a Fetish, banish it, drive it out of a possessed host, force it into a body, pin it for wracking.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 4,
+          "Spirit": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Matter": 4
+        },
+        "purpose": "trap the spirit inside an object such as a globe or mirror"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "summoning",
+      "spirit",
+      "warding"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 100,
+        "section": "Summoning, Binding, Bargaining, and Warding: Binding and the Gauntlet Cage"
+      }
+    ]
+  },
+  {
+    "id": "co-occupational-ward",
+    "name": "Major Ward: Co-Occupational Ward",
+    "kind": "feat",
+    "summary": "A master's version of any ward: the warded thing and what it bars sit on different layers of the same space, so the barred thing passes right through without touching it.",
+    "system": "Everything else interacts with the warded thing normally. A Black Suit grabbing a co-occupational laptop closes his hand on nothing until he counters the ward. Obviously strange, and vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5
+        },
+        "note": "instead of Correspondence 4, plus the ward's other Spheres"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "warding",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 100,
+        "section": "Summoning, Binding, Bargaining, and Warding: Co-Occupational Wards"
+      }
+    ]
+  },
+  {
+    "id": "luck-ward",
+    "name": "Major Ward: The Luck Ward",
+    "kind": "feat",
+    "summary": "Keep misfortune out of an area, or invite it in, and blunt hostile Entropy magick. Casinos use it against cheating mages; gamblers carry it as a charm.",
+    "system": "When a non-combat event inside could turn out lucky or unlucky, you roll Arete automatically, with no action needed. The Storyteller decides which events count. One use per Quintessence spent on the ward; more uses cost 1 Quintessence each. Entropy 2 is the minimum; more works too.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Entropy": 2
+        }
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "luck",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 100,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Luck Ward"
+      },
+      {
+        "book": "HDYDT",
+        "page": 101,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Luck Ward"
+      }
+    ]
+  },
+  {
+    "id": "psychic-ward-suggestion-of-unease",
+    "name": "Psychic Ward: Suggestion of Unease",
+    "kind": "feat",
+    "summary": "The ward radiates vague discomfort or a quiet nothing-to-see-here nudge, so most people avoid the place without knowing why.",
+    "system": "Subtle enough to last as long as the ward stands. Victims may resist with Willpower at difficulty 6 and must beat the successes you rolled for the ward (a permanent ward has at least 10). Lasts the normal Duration unless held with Time 4 or made permanent. See Emotional Surge in the Uncanny Influence section.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Mind": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Time": 4
+        },
+        "purpose": "keep the ward going past the normal Duration"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "mental",
+      "social"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 101,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Psychic Ward"
+      }
+    ]
+  },
+  {
+    "id": "psychic-ward-psychic-pain",
+    "name": "Psychic Ward: Psychic Pain",
+    "kind": "feat",
+    "summary": "Anyone who crosses into the ward gets stabbed by an invisible spike of mental pain. A nastier version shatters the mind and does aggravated harm.",
+    "system": "Bashing attack on crossing: your Arete is the dice pool, difficulty 6 or the target's Willpower, whichever is higher. Hidden in the ward, so no extra Paradox. One blast per Quintessence spent on the ward. Victims may resist with Willpower at difficulty 6 and must beat the successes you rolled for the ward (a permanent ward has at least 10). Lasts the normal Duration unless held with Time 4 or made permanent.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Mind": 3
+        },
+        "note": "bashing Psychic Blast"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Life": 3,
+          "Mind": 3
+        },
+        "note": "aggravated Psychic Shatter"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Time": 4
+        },
+        "purpose": "keep the ward going past the normal Duration"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "combat",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 101,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Psychic Ward"
+      }
+    ]
+  },
+  {
+    "id": "psychic-ward-sensory-stunning",
+    "name": "Psychic Ward: Sensory Stunning",
+    "kind": "feat",
+    "summary": "Flood trespassers with jumbled sensations until they are stunned, as with Overload, leaving them open for you to strike.",
+    "system": "One assault per Quintessence spent on the ward. Victims may resist with Willpower at difficulty 6 and must beat the successes you rolled for the ward (a permanent ward has at least 10). Lasts the normal Duration unless held with Time 4 or made permanent.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Mind": 3
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Time": 4
+        },
+        "purpose": "keep the ward going past the normal Duration"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "mental",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 101,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Psychic Ward"
+      }
+    ]
+  },
+  {
+    "id": "psychic-ward-change-of-mind",
+    "name": "Psychic Ward: Change of Mind",
+    "kind": "feat",
+    "summary": "Whoever enters gets a thought, perception or urge you built into the ward: they see an empty room, take a sudden liking to murder, or strip and dance. You set the effect when casting; you cannot steer them live.",
+    "system": "Built on the Puppetry and Forging Memories Effects from Uncanny Influence. One assault per Quintessence spent on the ward. Victims may resist with Willpower at difficulty 6 and must beat the successes you rolled for the ward (a permanent ward has at least 10). Lasts the normal Duration unless held with Time 4 or made permanent.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Mind": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Time": 4
+        },
+        "purpose": "keep the ward going past the normal Duration"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "mind-control",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 101,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Psychic Ward"
+      },
+      {
+        "book": "HDYDT",
+        "page": 102,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Psychic Ward"
+      }
+    ]
+  },
+  {
+    "id": "psychic-ward-mind-barring",
+    "name": "Psychic Ward: Mind-Barring",
+    "kind": "feat",
+    "summary": "Keep particular people out by their mental fingerprint: the ward recognizes them and turns their mind away from going in.",
+    "system": "Each barred person is a separate objective costing 1 Quintessence. You must have read the person's mind before setting the ward. Spirit 4 (or Dimensional Science) is needed against werecreatures, Umbral entities and other deeply spiritual beings. Victims may resist with Willpower at difficulty 6 and must beat the successes you rolled for the ward (a permanent ward has at least 10). Lasts the normal Duration unless held with Time 4 or made permanent.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Mind": 4
+        },
+        "note": "by mental imprint"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Spirit": 4
+        },
+        "note": "by spiritual identity"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Mind": 4,
+          "Spirit": 4
+        },
+        "note": "both"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Time": 4
+        },
+        "purpose": "keep the ward going past the normal Duration"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "mental",
+      "spirit",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 95,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 102,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Psychic Ward"
+      }
+    ]
+  },
+  {
+    "id": "psychic-ward-mood-barring",
+    "name": "Psychic Ward: Mood-Barring",
+    "kind": "feat",
+    "summary": "Push away anyone in a chosen state of mind, or anyone lacking it: a temple can turn back skeptics, or let in only the reverent.",
+    "system": "Victims may resist with Willpower at difficulty 6 and must beat the successes you rolled for the ward (a permanent ward has at least 10). Lasts the normal Duration unless held with Time 4 or made permanent.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Mind": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "purpose": "work on spiritual as well as mental states"
+      },
+      {
+        "spheres": {
+          "Time": 4
+        },
+        "purpose": "keep the ward going past the normal Duration"
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "mental",
+      "social"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 95,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 102,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Psychic Ward"
+      }
+    ]
+  },
+  {
+    "id": "paradigm-ward",
+    "name": "Major Ward: The Paradigm Ward",
+    "kind": "feat",
+    "summary": "Seal a place against followers of chosen paradigms or practices: magick they work through those beliefs counts as vulgar with witnesses on your side of the gate.",
+    "system": "Each barred paradigm or practice costs 3 more successes and 3 more Quintessence on top of the ward itself (three of them: +9 and +9); they are the objectives, so no separate objective cost. You can bar one form of a practice and allow another at the same price. Optional: mages with lower Arete than yours may lose their Spheres there. Optional pain on entry, 5 Quintessence each: a Psychic Blast, an Entropy assault on their beliefs, or both for 10; one attack per Quintessence invested.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Entropy": 5,
+          "Life": 4,
+          "Mind": 4,
+          "Prime": 4
+        }
+      }
+    ],
+    "vulgarity": "depends",
+    "coincidentalIf": "Set up inside a Sanctum or Realm that is built around your own magick.",
+    "tags": [
+      "warding",
+      "defense",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 102,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Paradigm Ward"
+      },
+      {
+        "book": "HDYDT",
+        "page": 103,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Paradigm Ward"
+      }
+    ]
+  },
+  {
+    "id": "time-ward",
+    "name": "Major Ward: The Time Ward",
+    "kind": "feat",
+    "summary": "Split time at a threshold: to someone who crosses, the far side seems frozen, and when they come back they arrive at roughly the moment they left.",
+    "system": "Time Effects are slippery; the Storyteller may land the traveler in the wrong timestream. See Time Immunity.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Time": 5
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "warding",
+      "time",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 96,
+        "section": "Summoning, Binding, Bargaining, and Warding: Warding"
+      },
+      {
+        "book": "HDYDT",
+        "page": 103,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Time Ward"
+      }
+    ]
+  },
+  {
+    "id": "unweave-a-ward",
+    "name": "Unweave a Ward",
+    "kind": "feat",
+    "summary": "Tear down someone else's ward with countermagick. You need at least a dot in every Sphere the ward was built with.",
+    "system": "Arete roll at difficulty 7 (8 under the Reckoning), spending as much Quintessence as went into the ward. Each success cancels one of the ward's successes and you need one more than it had, so 16 against a 15-success ward. An unwoven ward is gone for good. For a ward of unknown origin the Storyteller picks its Spheres and successes.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        },
+        "note": "plus 1 dot in each other Sphere used in the ward"
+      }
+    ],
+    "tags": [
+      "warding",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 103,
+        "section": "Summoning, Binding, Bargaining, and Warding: Penetrating a Ward"
+      }
+    ]
+  },
+  {
+    "id": "wrack-a-spirit-spiritual-damage",
+    "name": "Wrack a Spirit: Spiritual Damage",
+    "kind": "feat",
+    "summary": "Hurt a bound or warded spirit to back up your threats. At the lower rank you simply wound it; at mastery you can twist and tear its very form apart.",
+    "system": "Normal damage, which the spirit heals at its normal rate. Any wracking makes a lasting enemy of the spirit, so it is a last resort.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        },
+        "note": "plain damage"
+      },
+      {
+        "spheres": {
+          "Spirit": 5
+        },
+        "note": "warp and rip its form"
+      }
+    ],
+    "tags": [
+      "spirit",
+      "combat",
+      "summoning"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 104,
+        "section": "Summoning, Binding, Bargaining, and Warding: Wracking the Spirit"
+      }
+    ]
+  },
+  {
+    "id": "wrack-a-spirit-ephemeral-mutation",
+    "name": "Wrack a Spirit: Ephemeral Mutation",
+    "kind": "feat",
+    "summary": "Reshape a spirit's form the way Life 4 or 5 reshapes a person: painful and humiliating, and dangerous if you make it look like prey for other spirits.",
+    "system": "Deals the attack's damage on top. Most spirits can reform without much trouble.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 4,
+          "Prime": 2
+        },
+        "note": "lesser reshaping, like Life 4"
+      },
+      {
+        "spheres": {
+          "Spirit": 5,
+          "Prime": 2
+        },
+        "note": "full reshaping, like Life 5"
+      }
+    ],
+    "tags": [
+      "spirit",
+      "combat",
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 104,
+        "section": "Summoning, Binding, Bargaining, and Warding: Wracking the Spirit"
+      }
+    ]
+  },
+  {
+    "id": "wrack-a-spirit-psychic-agony",
+    "name": "Wrack a Spirit: Psychic Agony",
+    "kind": "feat",
+    "summary": "Attack a spirit's sense of self, as with Psychic Shatter: agony without injury to its form. Pushed hard enough, it can drive the spirit mad.",
+    "system": "Works on spirits despite the usual limits on mental attacks against them, because the rites are made for it.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3,
+          "Spirit": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "mental",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 104,
+        "section": "Summoning, Binding, Bargaining, and Warding: Wracking the Spirit"
+      }
+    ]
+  },
+  {
+    "id": "wrack-a-spirit-primal-disruption",
+    "name": "Wrack a Spirit: Primal Disruption",
+    "kind": "feat",
+    "summary": "Scramble the Quintessence a spirit is made of. At the lower ranks it is like Rubbing the Bones; at mastery you blast its form apart across the landscape.",
+    "system": "A disintegrated spirit can heal, but it takes far longer than usual, by Storyteller call.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2,
+          "Spirit": 4
+        },
+        "note": "disrupt its energies (Rubbing the Bones)"
+      },
+      {
+        "spheres": {
+          "Prime": 5,
+          "Spirit": 5
+        },
+        "note": "disintegrate its form"
+      }
+    ],
+    "tags": [
+      "spirit",
+      "combat",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 104,
+        "section": "Summoning, Binding, Bargaining, and Warding: Wracking the Spirit"
+      },
+      {
+        "book": "HDYDT",
+        "page": 105,
+        "section": "Summoning, Binding, Bargaining, and Warding: Wracking the Spirit"
+      }
+    ]
+  },
+  {
+    "id": "wrack-a-spirit-entropic-dispersal",
+    "name": "Wrack a Spirit: Entropic Dispersal",
+    "kind": "feat",
+    "summary": "Turn decay on the idea behind a spirit and scatter its conceptual self, for a while or maybe for good.",
+    "system": "Deals normal damage too. Spirits usually reform in a few months; one with 10 Essence or less never does, while famous beings reform in minutes. Minor spirits scatter at 0 Essence; great ones may need two or three times their Essence in damage. Icons of the human imagination cannot really be dispersed.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 5,
+          "Spirit": 5
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "combat",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 105,
+        "section": "Summoning, Binding, Bargaining, and Warding: Wracking the Spirit"
+      }
+    ]
+  },
+  {
+    "id": "wrack-a-spirit-imprisonment",
+    "name": "Wrack a Spirit: Spiritual Imprisonment",
+    "kind": "feat",
+    "summary": "Build a small spirit Realm as a jail, bind the spirit to it and send it away. It stays there until it breaks the Gauntlet Cage, the Realm collapses, or you free it.",
+    "system": "Can be combined with the other tortures and with Prolonged Agony, which marks the mage as a brute and stains their Resonance.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 5,
+          "Prime": 5,
+          "Spirit": 5
+        }
+      }
+    ],
+    "tags": [
+      "spirit",
+      "summoning",
+      "creation"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 105,
+        "section": "Summoning, Binding, Bargaining, and Warding: Wracking the Spirit"
+      }
+    ]
+  },
+  {
+    "id": "wrack-a-spirit-prolonged-agony",
+    "name": "Wrack a Spirit: Prolonged Agony",
+    "kind": "feat",
+    "summary": "Add Time to any spirit wrack: extra actions for more attacks, or a bubble of time where the pain goes on until you stop it or a trigger fires.",
+    "system": "Spirit 3 is the cheapest wrack to build on; use the Spheres of whichever wrack you choose. This earns enmity that lasts for ages.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3,
+          "Time": 3
+        },
+        "note": "extra actions to attack with"
+      },
+      {
+        "spheres": {
+          "Spirit": 3,
+          "Time": 4
+        },
+        "note": "lock the spirit in a bubble of time"
+      }
+    ],
+    "tags": [
+      "spirit",
+      "combat",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "HDYDT",
+        "page": 104,
+        "section": "Summoning, Binding, Bargaining, and Warding: Wracking the Spirit"
+      },
+      {
+        "book": "HDYDT",
+        "page": 106,
+        "section": "Summoning, Binding, Bargaining, and Warding: Wracking the Spirit"
+      }
+    ]
+  }
+]

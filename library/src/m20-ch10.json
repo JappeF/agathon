@@ -1,0 +1,1852 @@
+[
+  {
+    "id": "change-hair-color-by-magick",
+    "name": "Change Your Hair Color by Magick",
+    "kind": "feat",
+    "summary": "Turn your own hair from one color to another, say brown to blue, by working on your body's Pattern instead of reaching for dye.",
+    "system": "A minor cosmetic change to yourself needs only one success.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 2
+        }
+      }
+    ],
+    "tags": [
+      "body",
+      "utility"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 528,
+        "section": "Casting Magick: Step One"
+      }
+    ]
+  },
+  {
+    "id": "conjure-fire-or-pulse-cannon-blast",
+    "name": "Conjure a Fireball or Pulse-Cannon Blast",
+    "kind": "feat",
+    "summary": "Create a destructive burst of energy out of nothing: a hypertech pulse-cannon shot, or a fireball. Forces shapes the element and Prime supplies the energy. A Black Suit might do it with a lighter and a can of hairspray instead of a staff.",
+    "system": "The focus has to fit the caster's beliefs; the same Spheres work through very different tools.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "combat",
+      "elemental",
+      "conjuration"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 528,
+        "section": "Casting Magick: Step One"
+      },
+      {
+        "book": "M20",
+        "page": 530,
+        "section": "Casting Magick: Step Two"
+      }
+    ]
+  },
+  {
+    "id": "conjure-object-into-your-pocket",
+    "name": "Conjure a Small Object into Your Pocket",
+    "kind": "feat",
+    "summary": "Produce a small item, like a flask, a business card or a pocket pistol, from a pocket that was not proven empty. The thing has to come from somewhere: either build it from nothing or fetch it from where it really is.",
+    "system": "Making it from thin air takes several successes. The object must fit where it appears; a big gun from a tiny pocket does not pass as coincidence.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 2,
+          "Prime": 2
+        },
+        "note": "create it from nothing"
+      },
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Matter": 2
+        },
+        "inferred": [
+          "Correspondence",
+          "Matter"
+        ],
+        "note": "move a real one from elsewhere"
+      }
+    ],
+    "tags": [
+      "conjuration",
+      "utility"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 533,
+        "section": "Casting Magick: Axis of Coincidence"
+      }
+    ]
+  },
+  {
+    "id": "hail-a-taxi-by-magick",
+    "name": "Hail a Taxi by Magick",
+    "kind": "feat",
+    "summary": "Get a real cab to come to you: find one nearby, nudge its driver your way and bend the odds so it shows up. With luck alone it works too, but slowly.",
+    "system": "With Entropy alone you need lots of successes outside a busy city, and you may still wait a while. A teleport followed by a lucky taxi does not count; the process has to explain the result.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3,
+          "Mind": 2,
+          "Entropy": 2
+        },
+        "note": "find a cab and steer its driver to you"
+      },
+      {
+        "spheres": {
+          "Entropy": 2
+        },
+        "note": "just tilt the odds and wait"
+      }
+    ],
+    "tags": [
+      "travel",
+      "luck",
+      "utility"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 533,
+        "section": "Casting Magick: Axis of Coincidence"
+      }
+    ]
+  },
+  {
+    "id": "conjure-a-taxi-and-driver",
+    "name": "Conjure a Taxi and Its Driver from Nothing",
+    "kind": "feat",
+    "summary": "Build a working car, engine and all, plus a capable human driver, out of thin air. Possible in theory, but a huge undertaking that shows why mages rarely try such things.",
+    "system": "Needs several dots in Crafts and Science (Biology, Human Anatomy) with many successes on those rolls, then 20 to 30 successes on the Effect at difficulty 9 (10 near people), never below 6. A botch can be catastrophic.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 4,
+          "Forces": 3,
+          "Life": 5,
+          "Mind": 5,
+          "Prime": 2
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "conjuration",
+      "creation",
+      "technology"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 533,
+        "section": "Casting Magick: Axis of Coincidence"
+      },
+      {
+        "book": "M20",
+        "page": 534,
+        "section": "Casting Magick: Successes and Consequences"
+      }
+    ]
+  },
+  {
+    "id": "draw-the-tarot-card-you-need",
+    "name": "Draw the Tarot Card You Need",
+    "kind": "feat",
+    "summary": "Bend chance so the card you want comes up in a reading, using magick to help a mundane task rather than replace it.",
+    "system": "Each success on the Arete roll cuts the difficulty of the related Attribute + Ability roll by 1, to at most -3. The casting roll itself can be lowered with Quintessence as usual.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2
+        }
+      }
+    ],
+    "tags": [
+      "luck",
+      "divination"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 535,
+        "section": "Casting Magick: Step Two"
+      }
+    ]
+  },
+  {
+    "id": "scatter-a-body-across-space",
+    "name": "Scatter a Body Across Space",
+    "kind": "feat",
+    "summary": "Teleport a person to several destinations at the same time, tearing them apart. One of the few ways Correspondence does harm, together with dropping someone somewhere deadly.",
+    "system": "Usually aggravated damage.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Correspondence": 3
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "combat",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 543,
+        "section": "Casting Magick: Step Four"
+      }
+    ]
+  },
+  {
+    "id": "make-a-magickal-attack-aggravated",
+    "name": "Make Any Magickal Attack Aggravated",
+    "kind": "feat",
+    "summary": "Charge an attack of any Sphere with Quintessence so its damage becomes aggravated: a psychic blast that would only bruise, a stone or spirit strike that would only cut.",
+    "system": "Costs a point of Quintessence. Mind attacks are normally bashing, Matter and Spirit attacks lethal. Combined Spheres use the most harmful damage type, they do not add up.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "combat",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 543,
+        "section": "Casting Magick: Step Four"
+      }
+    ]
+  },
+  {
+    "id": "blow-up-the-moon",
+    "name": "Strike a Faraway Target (Blow Up the Moon)",
+    "kind": "feat",
+    "summary": "Hit a target as remote as the moon with a massive energy attack. Correspondence limits how strong a linked Effect can be, so a long-range assault this big needs Correspondence as high as the Forces behind it.",
+    "system": "Forces 5 with only Correspondence 2 cannot do it. Needs a great many successes.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 5,
+          "Correspondence": 5,
+          "Prime": 2
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "combat",
+      "destruction",
+      "elemental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 544,
+        "section": "Casting Magick: Correspondence Ranges"
+      }
+    ]
+  },
+  {
+    "id": "protective-countermagick",
+    "name": "Protective Countermagick: Dispel or Reflect",
+    "kind": "feat",
+    "summary": "Step in to block a spell aimed at someone else, or throw an attack back at the mage who cast it. You need to understand one of the attacking Spheres and fuel the defense with Prime.",
+    "system": "Full action and 1 Quintessence; you also need a dot in a Sphere the attack uses. Basic countermagick is Arete at difficulty 7; dispelling is +1, reflecting +2. Each success cancels one of the attacker's; when reflecting, every success beyond the caster's roll hits the caster.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 1
+        },
+        "note": "plus 1 dot in a Sphere the attack uses"
+      }
+    ],
+    "tags": [
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 545,
+        "section": "Casting Magick: Countermagick"
+      }
+    ]
+  },
+  {
+    "id": "anti-magick",
+    "name": "Anti-Magick: Harden Reality",
+    "kind": "feat",
+    "summary": "Use your own Prime energy to stiffen local reality so a Deviant's spells get harder to cast. A favorite Technocratic tactic, also used by some mystics.",
+    "system": "Full turn. Roll your Prime rating at difficulty 8. Every success raises the opposing mage's casting difficulty by 1 and costs you 1 Quintessence.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 1
+        },
+        "inferred": [
+          "Prime"
+        ]
+      }
+    ],
+    "tags": [
+      "defense",
+      "quintessence",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 545,
+        "section": "Casting Magick: Countermagick"
+      }
+    ]
+  },
+  {
+    "id": "unweave-an-effect",
+    "name": "Unweave an Existing Effect",
+    "kind": "feat",
+    "summary": "Untangle a spell that is already in place, such as a curse, ward, gateway, trigger or transformation, through a ritual that unpicks the original caster's work.",
+    "system": "Needs Prime plus a dot in every Sphere of the original Effect. Roll at countermagick difficulty +1 to overcome each of its successes; long-standing Effects need 10 or more, major creations 20+. Spend at least as much Quintessence as went into it. Gilgul, instant damage, sensory magick and Horizon Realm creation cannot be unwoven.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 1
+        },
+        "note": "plus 1 dot in each Sphere of the original Effect"
+      }
+    ],
+    "tags": [
+      "defense",
+      "quintessence",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 545,
+        "section": "Casting Magick: Countermagick"
+      },
+      {
+        "book": "M20",
+        "page": 546,
+        "section": "Casting Magick: Countermagick"
+      }
+    ]
+  },
+  {
+    "id": "nullify-paradox-with-stored-quintessence",
+    "name": "Nullify Paradox with Stored Quintessence",
+    "kind": "feat",
+    "summary": "Bank Quintessence in a symbol or Periapt tied to your body or to a working, then release it when Paradox gathers so the two energies cancel out.",
+    "system": "Pool the Quintessence and cast the Effect: each point wipes out one point of Paradox. Whatever is left over acts or stays on the wheel as usual.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 5
+        }
+      }
+    ],
+    "tags": [
+      "paradox",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 549,
+        "section": "Paradox: Nullifying Paradox"
+      }
+    ]
+  },
+  {
+    "id": "cure-another-mages-quiet",
+    "name": "Cure Another Mage's Quiet",
+    "kind": "feat",
+    "summary": "Help a fellow mage out of Quiet by driving the Paradox out of their mind, paying for it with your own life energy. Expect heavy roleplaying and social or Knowledge rolls alongside the magick.",
+    "system": "An extended roll. As a guide, replace each point of Paradox in the patient's pool with 2 or 3 points of your own Quintessence. Meant to be hard.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 4,
+          "Prime": 4
+        }
+      }
+    ],
+    "tags": [
+      "paradox",
+      "mental",
+      "healing"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 557,
+        "section": "Quiet: Curing Quiet"
+      }
+    ]
+  },
+  {
+    "id": "enter-a-quiet-mindscape",
+    "name": "Enter a Mad Mage's Mindscape",
+    "kind": "feat",
+    "summary": "Travel into the private dreamworld where a mage lost in Quiet is trapped, to help guide them back. Once inside, you face its terrors too.",
+    "system": "Takes a few successes, and only if the Storyteller allows it. Mind 5 astral travel works as well. Damage taken inside is bashing; being killed there may mean real death or a coma.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "note": "dreamwalk"
+      },
+      {
+        "spheres": {
+          "Mind": 4
+        },
+        "note": "astral projection"
+      }
+    ],
+    "tags": [
+      "mental",
+      "travel",
+      "paradox"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 559,
+        "section": "Quiet: Mindscapes"
+      },
+      {
+        "book": "M20",
+        "page": 561,
+        "section": "Quiet: Mindscapes"
+      }
+    ]
+  },
+  {
+    "id": "luck-into-a-free-lunch",
+    "name": "Luck into a Free Lunch",
+    "kind": "feat",
+    "summary": "While panhandling, tilt the odds so someone offers you a meal: spot the hungry, kindly passersby and read auras to pick one who wants nothing in return. Jinx's card-dealing example.",
+    "system": "Coincidental, difficulty 5 (Entropy 2 + 3), -1 for a personal instrument. One success is enough. A good Charisma roll first can cut the difficulty further.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2,
+          "Life": 2,
+          "Spirit": 1
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "luck",
+      "social",
+      "perception"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 562,
+        "section": "Examples in Play: Coincidental Mystic Effect"
+      }
+    ]
+  },
+  {
+    "id": "trans-temporal-warp-drive",
+    "name": "Trans-Temporal Warp Drive Getaway",
+    "kind": "feat",
+    "summary": "Make a souped-up car outrun pursuit: skip it through space past traffic, push it faster than it should go, handle the physics and keep it from shaking apart. Dr. von Roth's Aston Martin example.",
+    "system": "Base difficulty 7 (Correspondence 4 + 3), -2 for a unique personalized instrument, -1 for a point of Quintessence.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 4,
+          "Time": 3,
+          "Forces": 2,
+          "Matter": 2
+        }
+      }
+    ],
+    "coincidentalIf": "focused through a vehicle the mage has engineered for it, and only barely",
+    "vulgarity": "coincidental",
+    "tags": [
+      "travel",
+      "technology",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 562,
+        "section": "Examples in Play: Technomagickal Effect"
+      }
+    ]
+  },
+  {
+    "id": "prime-charged-bullets",
+    "name": "Prime-Charged Bullets",
+    "kind": "feat",
+    "summary": "Fire a gun loaded with special ammo that carries an Effect into the target: more velocity and harm, and aggravated damage that hurts even a werewolf. Bruce Foster's example.",
+    "system": "Coincidental, difficulty 5. Roll the attack separately; one Arete roll covers all shots that turn. Forces adds one success of damage, so 2 successes mean 6 health levels, made aggravated by Prime.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2,
+          "Prime": 2
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "combat",
+      "technocracy",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 563,
+        "section": "Examples in Play: Targeted Damage Effect"
+      }
+    ]
+  },
+  {
+    "id": "ward-a-home-against-spies",
+    "name": "Ward a Home Against Spies and Intruders",
+    "kind": "feat",
+    "summary": "Ritually protect your home: thicken space against remote spying, tie the Effect into the building itself, push a quiet go-away feeling at anyone who comes near, and get a mental alarm if someone breaks in. Nix's ritual example.",
+    "system": "A ceremony of about 7 successes over several hours, difficulty 5 before Quintessence. Every success is taken off anyone spying with Correspondence. Lasts until you take it down.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Matter": 2,
+          "Mind": 2
+        }
+      }
+    ],
+    "coincidentalIf": "the wards stay subtle; if they flare up or do something obvious the Effect is vulgar",
+    "vulgarity": "depends",
+    "tags": [
+      "warding",
+      "stealth",
+      "mental"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 563,
+        "section": "Examples in Play: Extended Roll Ritual"
+      }
+    ]
+  },
+  {
+    "id": "moyo-kizungu",
+    "name": "Moyo Kizungu: Speaking the Heart",
+    "kind": "feat",
+    "summary": "An old honesty spell, here mixed with digital data: reach your targets from afar and push them to blurt out their worst secrets at the worst moments. Malcolm's divided-successes example against public figures.",
+    "system": "Correspondence caps the Effect, so Mind stays at 2 with Correspondence 2. The example spends 17 successes (a Great Work) on base, six targets, a one-story duration and range from personal data, at difficulty 5.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Mind": 2,
+          "Entropy": 1
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "social",
+      "mind-control",
+      "luck"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 563,
+        "section": "Examples in Play: Divided Successes Option"
+      },
+      {
+        "book": "M20",
+        "page": 564,
+        "section": "Examples in Play: Divided Successes Option"
+      }
+    ]
+  },
+  {
+    "id": "freeze-a-fight-in-a-time-bubble",
+    "name": "Freeze a Fight in a Time Bubble",
+    "kind": "feat",
+    "summary": "Stop time around a group of people so you can pull a victim out of danger before anyone moves again. Aria's example.",
+    "system": "At least 5 successes for three people. In front of Sleepers the difficulty is 9; one success beyond what was needed kept them frozen for the rest of the scene. Earns Paradox even on success.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 4
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "time",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 564,
+        "section": "Examples in Play: Vulgar Magic Effect"
+      }
+    ]
+  },
+  {
+    "id": "mend-a-broken-leg",
+    "name": "Mend a Broken Leg",
+    "kind": "feat",
+    "summary": "Heal another person's broken bone. A shaman and a Progenitor doctor manage it equally well with the same Sphere rank; the practice is only the method.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        }
+      }
+    ],
+    "tags": [
+      "healing"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 581,
+        "section": "Focus and the Arts: Medicine-Work"
+      }
+    ]
+  },
+  {
+    "id": "turn-an-enemy-into-a-newt",
+    "name": "Turn an Enemy into a Newt",
+    "kind": "feat",
+    "summary": "Transform a person into a small animal. Whether a mage does it with a glare or a transmutation ray depends entirely on her focus.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 5
+        }
+      }
+    ],
+    "tags": [
+      "shapechanging",
+      "transformation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 587,
+        "section": "Focus and the Arts: Instruments"
+      }
+    ]
+  },
+  {
+    "id": "harden-armor-against-aggravated-damage",
+    "name": "Harden Armor Against Aggravated Damage",
+    "kind": "feat",
+    "summary": "Invest Quintessence into a suit of armor so it also protects against aggravated harm.",
+    "system": "One point of Quintessence.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "defense",
+      "enchantment",
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 588,
+        "section": "Focus and the Arts: Armor"
+      }
+    ]
+  },
+  {
+    "id": "pull-strings-for-fast-transport",
+    "name": "Pull Strings for Fast Transport",
+    "kind": "feat",
+    "summary": "Use corporate or political clout to get somewhere far away fast: one call and a helicopter is waiting, and hours later you are in the meeting that matters. Magick through management.",
+    "system": "Needs 3 or more dots in at least two suitable social Backgrounds and a concept that lets you give orders. Slow and indirect, but safe.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 3,
+          "Mind": 3
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "travel",
+      "social"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 595,
+        "section": "Focus and the Arts: Management and HR"
+      }
+    ]
+  },
+  {
+    "id": "black-card-little-black-box",
+    "name": "Black Card / Little Black Box",
+    "kind": "rote",
+    "summary": "Plug a little black box or swipe a card into one part of a security system and watch the locks open, even ones you could never reach directly, as long as they share a network. The classic movie hacking trick, made real.",
+    "system": "You still need to hack the system with the proper rolls (Hacking, M20 p. 403). The gadget makes what would be vulgar coincidental.",
+    "combos": [
+      {
+        "spheres": {
+          "Correspondence": 2,
+          "Forces": 2,
+          "Mind": 2
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "technology",
+      "technocracy",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 601,
+        "section": "Rotes: Enlightened Adjustments"
+      }
+    ]
+  },
+  {
+    "id": "hot-shotting",
+    "name": "Hot-Shotting",
+    "kind": "rote",
+    "summary": "Tweak your weapon so its cocking, click or draw sounds ominous and hits harder. The noise and the extra kick can be used to scare a target into giving up, hurt them more, or hit several of them.",
+    "system": "A Crafts roll modifies the weapon. Each success gives -1 difficulty on your next attack plus one automatic Forces success, spent on intimidation, damage, extra targets or a mix (Dividing Successes, p. 538).",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Mind": 2
+        },
+        "purpose": "make the sound itself a threat: roll against the target's Willpower, and if your successes match or beat it they surrender"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "combat",
+      "social",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 601,
+        "section": "Rotes: Enlightened Adjustments"
+      }
+    ]
+  },
+  {
+    "id": "hands-of-death",
+    "name": "Hands of Death",
+    "kind": "rote",
+    "summary": "Hit with bare hands and feet hard enough to break planks, punch through walls and cripple a foe, through martial training, cybernetics or anatomy know-how. Forces adds impact, Life aims at the body's Pattern.",
+    "system": "Strikes use the Damage or Duration chart, plus one automatic success for Forces. Coincidental blows are not aggravated, but a truly theatrical (usually vulgar) one can be.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        }
+      },
+      {
+        "spheres": {
+          "Forces": 2
+        }
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Forces": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Entropy": 2
+        },
+        "purpose": "find weak points: each success lowers armor, Durability or soak by one (not vulgar)"
+      },
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "charge your fists with chi for aggravated damage (vulgar)"
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "combat",
+      "martial-arts",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 601,
+        "section": "Rotes: Enlightened Adjustments"
+      },
+      {
+        "book": "M20",
+        "page": 602,
+        "section": "Rotes: Enlightened Adjustments"
+      }
+    ]
+  },
+  {
+    "id": "right-click",
+    "name": "Right-Click",
+    "kind": "rote",
+    "summary": "Focus a mental cursor on a person, place or thing and get a readout of what the databases know about it: name, stats, posts, photos and more, plus their current location if they keep checking in online. Works only on what is actually stored somewhere.",
+    "system": "Needs a data-linked instrument (implant, phone, VDAS). Successes set the depth: 1 surface data up to 5 classified files, 6+ anything that exists. Each extra vision mode beyond the first is +1 difficulty to perception rolls. The data may be wrong.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3,
+          "Correspondence": 3
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Forces": 1
+        },
+        "purpose": "ultraviolet and infrared vision"
+      },
+      {
+        "spheres": {
+          "Life": 1
+        },
+        "purpose": "see health and body heat"
+      },
+      {
+        "spheres": {
+          "Matter": 1
+        },
+        "purpose": "scan an object's physical makeup"
+      },
+      {
+        "spheres": {
+          "Life": 1,
+          "Matter": 1
+        },
+        "purpose": "X-ray vision"
+      },
+      {
+        "spheres": {
+          "Prime": 1
+        },
+        "purpose": "see Quintessence flows"
+      },
+      {
+        "spheres": {
+          "Spirit": 1
+        },
+        "purpose": "look up spirits in a database of entities (Storyteller's option)"
+      },
+      {
+        "spheres": {
+          "Spirit": 2
+        },
+        "purpose": "use it from the Otherworlds"
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "divination",
+      "perception",
+      "technology",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 602,
+        "section": "Rotes: Enlightened Adjustments"
+      },
+      {
+        "book": "M20",
+        "page": 603,
+        "section": "Rotes: Enlightened Adjustments"
+      }
+    ]
+  },
+  {
+    "id": "hypernarrative-influence",
+    "name": "Hypernarrative Influence",
+    "kind": "rote",
+    "summary": "Use a stock movie line, archetype or trope to make someone slip into a familiar story role (the hero, the sidekick, the enemy who becomes an ally) and play it out, unless they notice the cliche.",
+    "system": "A Manipulation + Art or Expression roll triggers the behavior, usually for one scene; buy more Duration to keep a role going. A failure, botch or savvy target breaks the spell.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 4
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Entropy": 2
+        },
+        "purpose": "tilt events to fit the story (guns run dry, cars explode); the Storyteller picks the twist"
+      }
+    ],
+    "coincidentalIf": "the target knows mass-media tropes, which nearly everyone does",
+    "vulgarity": "coincidental",
+    "tags": [
+      "mind-control",
+      "social",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 603,
+        "section": "Rotes: Enlightened Adjustments"
+      }
+    ]
+  },
+  {
+    "id": "sanitize-evidence",
+    "name": "Sanitize Evidence",
+    "kind": "rote",
+    "summary": "A cleanup squad's Procedure: repair the damage, destroy bodies, blood and bullet holes, and turn the waste into energy so nothing is left to alarm the Masses.",
+    "system": "Extended roll, one hour of work per roll; each success turns 10 pounds of matter into energy. Teams split big jobs, and other agents keep the scene clear. A botch brings Paradox right away, often as an explosion or meltdown.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 2,
+          "Forces": 2
+        }
+      },
+      {
+        "spheres": {
+          "Prime": 4
+        }
+      },
+      {
+        "spheres": {
+          "Matter": 2,
+          "Forces": 2,
+          "Prime": 4
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "destruction",
+      "stealth",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 603,
+        "section": "Rotes: Technocratic Procedures"
+      },
+      {
+        "book": "M20",
+        "page": 604,
+        "section": "Rotes: Technocratic Procedures"
+      }
+    ]
+  },
+  {
+    "id": "secure-the-scene",
+    "name": "Secure the Scene",
+    "kind": "rote",
+    "summary": "Seal off an incident site with tape and hazard signs that push people away, while scanners pick up blood, gunpowder and other traces for later cleanup. Cloaking projectors can also black out light and sound.",
+    "system": "At least 3 successes, 5+ for big areas. Getting in takes a Willpower roll beating the operative's successes. Scanning gives -1 to Perception + Alertness rolls for evidence. The blackout adds 3 successes to the total.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 2,
+          "Forces": 1,
+          "Matter": 1
+        },
+        "note": "people feel they should avoid the area"
+      },
+      {
+        "spheres": {
+          "Mind": 3,
+          "Forces": 1,
+          "Matter": 1
+        },
+        "note": "people are actively driven away"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Forces": 3
+        },
+        "purpose": "blackout field: the area looks dark and silent from outside (vulgar unless already dark)"
+      }
+    ],
+    "coincidentalIf": "without the blackout field, or with it only in near or total darkness",
+    "vulgarity": "depends",
+    "tags": [
+      "stealth",
+      "perception",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 604,
+        "section": "Rotes: Technocratic Procedures"
+      },
+      {
+        "book": "M20",
+        "page": 605,
+        "section": "Rotes: Technocratic Procedures"
+      }
+    ]
+  },
+  {
+    "id": "dimension-bomb",
+    "name": "Dimension Bomb",
+    "kind": "rote",
+    "summary": "Phase a calibrated grenade or other explosive through the Gauntlet so it goes off on the other side, among whatever is waiting to come through.",
+    "system": "Difficulty is the Gauntlet rating. A failure or botch can leave the bomb stuck between worlds, hurting both sides. With the Forces add-on, every success not needed to get through becomes Forces damage.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Forces": 3,
+          "Prime": 2
+        },
+        "purpose": "use the bomb as the focus for a Forces explosion; more Forces makes it bigger"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "combat",
+      "spirit",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 605,
+        "section": "Rotes: Technocratic Procedures"
+      }
+    ]
+  },
+  {
+    "id": "golden-gunman",
+    "name": "Golden Gunman",
+    "kind": "rote",
+    "summary": "Action-movie gunplay with two pistols or two blades: flips, huge leaps, no recoil, and attacks at several enemies at once.",
+    "system": "Time lets you act with both hands without the usual multiple-action penalties; roll each attack normally. A botch or backlash brings spectacular movie-style mishaps.",
+    "combos": [
+      {
+        "spheres": {
+          "Time": 3,
+          "Forces": 2
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "combat",
+      "time",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 605,
+        "section": "Rotes: Technocratic Procedures"
+      }
+    ]
+  },
+  {
+    "id": "social-conditioning",
+    "name": "Social Conditioning",
+    "kind": "rote",
+    "summary": "Isolate a subject and reshape their loyalties through intensive indoctrination and Mind Procedures, from willing convert up to total devotion over ten stages. Only an organized group with resources can do it.",
+    "system": "Initial processing: Arete vs the target's Willpower + 3; each success strips a temporary Willpower point, and at zero the subject reaches stage 1. Each later stage needs one success on an extended resisted roll (difficulty 6) against the subject's permanent Willpower, one roll per day for PsychOps.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3,
+          "Prime": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Mind": 4
+        },
+        "purpose": "reinforce the programming in the later stages"
+      }
+    ],
+    "tags": [
+      "mind-control",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 606,
+        "section": "Rotes: Social Conditioning and Reprogramming"
+      }
+    ]
+  },
+  {
+    "id": "break-your-own-conditioning",
+    "name": "Break Your Own Social Conditioning",
+    "kind": "feat",
+    "summary": "Fight off programming that was put into your mind by working magick on yourself.",
+    "system": "Spend a Willpower point first. Each success removes one stage of Conditioning for the scene; 5 or more breaks it for good.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3
+        }
+      }
+    ],
+    "tags": [
+      "mental",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 607,
+        "section": "Rotes: Social Conditioning and Reprogramming"
+      }
+    ]
+  },
+  {
+    "id": "bullet-catch-rote",
+    "name": "The Bullet-Catch (Akashic Rote)",
+    "kind": "rote",
+    "summary": "An Akashic trick for snatching bullets out of the air: slow the round, toughen your skin and speed your reflexes.",
+    "system": "Added to the Arrow Cutting feat (p. 428) and focused through Do. You must know the attack is coming; roll Dexterity + Do as a dodge, and if you beat the attacker's successes you catch the bullets.",
+    "combos": [
+      {
+        "spheres": {
+          "Forces": 2,
+          "Life": 2,
+          "Time": 2
+        }
+      }
+    ],
+    "coincidentalIf": "in a region that accepts superhuman martial arts",
+    "vulgarity": "depends",
+    "tags": [
+      "defense",
+      "martial-arts",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 607,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      }
+    ]
+  },
+  {
+    "id": "awaken-the-inanimate",
+    "name": "Awaken the Inanimate",
+    "kind": "rote",
+    "summary": "Wake the sleeping spirit of an object or place by giving it attention and a share of your own Resonance. An awakened thing works better for you, does you small favors, and also exists in the Umbra, so it can travel there with you.",
+    "system": "An extended ritual: about 5 successes for small things, 20 or more for big areas or complex machines. Asking for clearly impossible favors can make it vulgar.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "purpose": "also lower the Gauntlet of an awakened house"
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "spirit",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 607,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      },
+      {
+        "book": "M20",
+        "page": 608,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      }
+    ]
+  },
+  {
+    "id": "chain-of-whispers",
+    "name": "Chain of Whispers",
+    "kind": "rote",
+    "summary": "Tell a scandalous secret to a friend and beg them to keep it; the spell makes them pass it on, and each new listener feels the same itch. Today a call, text or post works as well as a whisper.",
+    "system": "Each success makes two people share it; ordinary gossip carries it on after the spell fades. A simple Willpower roll resists, though few bother.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3,
+          "Correspondence": 2
+        }
+      }
+    ],
+    "coincidentalIf": "the secret is not obviously ridiculous or easy to disprove",
+    "vulgarity": "coincidental",
+    "tags": [
+      "social",
+      "mind-control",
+      "communication"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 608,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      }
+    ]
+  },
+  {
+    "id": "bright-new-penny",
+    "name": "Penny Dreadful's Bright New Penny",
+    "kind": "rote",
+    "summary": "Look back at what a piece of junk once was and restore it to mint condition, or rebuild it entirely. Hollowers and street kids use it to find pristine antiques in unlikely places.",
+    "system": "Simple, battered items are easy; elaborate restorations or full recreations take 3 or more successes.",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 3,
+          "Prime": 2,
+          "Time": 2
+        },
+        "note": "restore the item"
+      },
+      {
+        "spheres": {
+          "Matter": 4,
+          "Prime": 2,
+          "Time": 2
+        },
+        "note": "recreate it from scratch"
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "transformation",
+      "time",
+      "utility"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 608,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      }
+    ]
+  },
+  {
+    "id": "psychic-interface",
+    "name": "Psychic Interface",
+    "kind": "rote",
+    "summary": "Enter a light trance and work on computer data with your mind alone: read and change it, run IT systems, surge or short out a network, maybe talk to data entities. Technoshamans reach the machine through its spirits instead.",
+    "system": "Needs Computer 4 with a Psychic Interface specialty and Meditation 3; meditation can then replace computer gear as an instrument. Quietly hacking from afar is coincidental; making a machine across the room explode is vulgar, and so is entering the Digital Web.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3,
+          "Correspondence": 2,
+          "Forces": 2
+        }
+      },
+      {
+        "spheres": {
+          "Mind": 4,
+          "Correspondence": 2,
+          "Forces": 2
+        },
+        "note": "also project yourself into the Digital Web"
+      },
+      {
+        "spheres": {
+          "Mind": 3,
+          "Spirit": 2,
+          "Forces": 2
+        },
+        "note": "through computer spirits instead of Data"
+      },
+      {
+        "spheres": {
+          "Mind": 4,
+          "Spirit": 2,
+          "Forces": 2
+        },
+        "note": "through computer spirits, into the Digital Web"
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "technology",
+      "communication",
+      "technocracy"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 608,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      },
+      {
+        "book": "M20",
+        "page": 609,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      }
+    ]
+  },
+  {
+    "id": "talons",
+    "name": "Talons",
+    "kind": "rote",
+    "summary": "Grow claws by stretching and hardening finger bones, or graft steel and other materials into the limbs as cybernetic blades.",
+    "system": "Claws do lethal damage and allow the Claw maneuver (Chapter Nine).",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "on yourself"
+      },
+      {
+        "spheres": {
+          "Life": 4
+        },
+        "note": "on someone else"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Matter": 2
+        },
+        "purpose": "work steel or other materials into the claws"
+      },
+      {
+        "spheres": {
+          "Prime": 2
+        },
+        "purpose": "toughen the claws so they deal aggravated damage"
+      }
+    ],
+    "tags": [
+      "body",
+      "combat",
+      "shapechanging"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 609,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      },
+      {
+        "book": "M20",
+        "page": 610,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      }
+    ]
+  },
+  {
+    "id": "witchs-vengeance",
+    "name": "Witch's Vengeance",
+    "kind": "rote",
+    "summary": "Make a poppet or image of a victim, bind it to them and abuse it: the victim burns, withers, rots or ages as the image suffers. Ticktock Man is a Data version that ages its target from afar using personal information.",
+    "system": "Entropy brings decay or disease, Life wrecks the body, and Time with Life ages the target (Feats of Time Magick chart). Without Correspondence at least equal to the damaging Sphere, you must touch the victim.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 4
+        },
+        "note": "decay or disease"
+      },
+      {
+        "spheres": {
+          "Life": 3
+        },
+        "note": "ruin the body"
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Time": 3
+        },
+        "note": "age the victim"
+      },
+      {
+        "spheres": {
+          "Entropy": 4,
+          "Life": 3,
+          "Time": 3
+        },
+        "note": "all three"
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Correspondence": 3
+        },
+        "purpose": "curse from a distance with the Life and Time versions"
+      },
+      {
+        "spheres": {
+          "Correspondence": 4
+        },
+        "purpose": "curse from a distance with the Entropy version"
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "combat",
+      "luck",
+      "time"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 610,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      }
+    ]
+  },
+  {
+    "id": "vampiric-lawn-chair",
+    "name": "The Notorious Vampiric Lawn Chair",
+    "kind": "rote",
+    "summary": "Turn a vampire into a piece of furniture. Famous, rarely done and a terrible idea: the vampire stays aware, may change back, and its kind will hunt you for it.",
+    "system": "Beat the vampire's countermagick and do enough to take it to Incapacitated (4+ successes for a young one, more for elders); a lasting change needs Duration on top, e.g. 7 successes for one day. Shapeshifting vampires can buy successes off with blood. Never justifiable as coincidence.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 5,
+          "Matter": 5
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "transformation",
+      "shapechanging",
+      "combat"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 610,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      },
+      {
+        "book": "M20",
+        "page": 611,
+        "section": "Rotes: Mystic Spells and Traditional Rotes"
+      }
+    ]
+  },
+  {
+    "id": "resist-marauder-madness",
+    "name": "Resist a Marauder's Madness",
+    "kind": "feat",
+    "summary": "Shield your mind so a Marauder's contagious delusions do not take hold while you are near them.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 1
+        }
+      }
+    ],
+    "tags": [
+      "mental",
+      "defense"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 242,
+        "section": "The Mad: Sanity Sinks"
+      }
+    ]
+  },
+  {
+    "id": "draw-others-into-your-demesne",
+    "name": "Draw Others into Your Demesne",
+    "kind": "feat",
+    "summary": "Pull another person's consciousness into your personal dream realm. An unwilling guest stays trapped until they win their way out.",
+    "system": "An unwilling target resists with a Willpower contest and may roll again every few turns to leave. Nothing physical is trapped, only the mind.",
+    "combos": [
+      {
+        "spheres": {
+          "Mind": 3
+        },
+        "note": "a sleeping person"
+      },
+      {
+        "spheres": {
+          "Mind": 4
+        },
+        "note": "someone awake"
+      }
+    ],
+    "tags": [
+      "mental",
+      "mind-control",
+      "travel"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 311,
+        "section": "Backgrounds: Demesne"
+      }
+    ]
+  },
+  {
+    "id": "absorb-quintessence-beyond-avatar",
+    "name": "Absorb Quintessence: Node, Tass or Anywhere",
+    "kind": "feat",
+    "summary": "Take Quintessence into your Avatar: meditate at a Node for more than your usual limit, draw it out of Tass, or as a Master pull it from anywhere at all.",
+    "system": "Without Prime 1 you cannot store more than your Avatar rating. How much you absorb with magick follows the Base Damage or Duration chart. You can still only take in your Avatar rating per turn.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 1
+        },
+        "note": "beyond your Avatar rating while meditating at a Node"
+      },
+      {
+        "spheres": {
+          "Prime": 3
+        },
+        "note": "from Tass"
+      },
+      {
+        "spheres": {
+          "Prime": 5
+        },
+        "note": "from anywhere (vulgar)"
+      }
+    ],
+    "vulgarity": "depends",
+    "tags": [
+      "quintessence"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 332,
+        "section": "Traits: Quintessence"
+      }
+    ]
+  },
+  {
+    "id": "orchestrate-a-car-crash",
+    "name": "Orchestrate a Car Crash",
+    "kind": "feat",
+    "summary": "Set up a chain of small coincidences, nudging objects and people without touching them, so they all collide into an accident. Inspired by Jacob in the film Ink.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2,
+          "Forces": 2
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Time": 2
+        },
+        "purpose": "time everything to fall together"
+      }
+    ],
+    "tags": [
+      "luck",
+      "movement",
+      "destruction"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 372,
+        "section": "Running With Magick: Jacob's Focus"
+      }
+    ]
+  },
+  {
+    "id": "slip-past-the-cops",
+    "name": "Slip Past the Cops by Luck",
+    "kind": "feat",
+    "summary": "Scramble the odds of being noticed in your favor so passing police overlook you, while you do something unremarkable like scratching graffiti into a wall.",
+    "system": "Coincidental, difficulty 5. Back it up with a good Stealth roll.",
+    "combos": [
+      {
+        "spheres": {
+          "Entropy": 2
+        }
+      }
+    ],
+    "vulgarity": "coincidental",
+    "tags": [
+      "luck",
+      "stealth"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 373,
+        "section": "Running With Magick: Example of Play"
+      }
+    ]
+  },
+  {
+    "id": "reprogram-a-hit-mark-x",
+    "name": "Reprogram a HIT Mark X",
+    "kind": "feat",
+    "summary": "Rewrite the programming of the newest Technocratic cyborg model, which cannot be hacked by computer skills alone. You need your hands on the unit itself.",
+    "system": "On top of the Effect, spend 10+ minutes and make the hacking rolls: Intelligence + Hypertech once per model number, difficulty equal to the model (ten rolls at difficulty 10 for a Mark X).",
+    "combos": [
+      {
+        "spheres": {
+          "Matter": 3,
+          "Mind": 3,
+          "Forces": 2
+        }
+      }
+    ],
+    "tags": [
+      "technology",
+      "mind-control"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 626,
+        "section": "Appendix I: Hacking a HIT Mark"
+      }
+    ]
+  },
+  {
+    "id": "track-judgment-to-its-realm",
+    "name": "Track Judgment to Its Paradox Realm",
+    "kind": "feat",
+    "summary": "Examine the spot where the Paradox spirit Judgment's vehicle vanished with an arrested mage and learn where it went, then follow it if you dare.",
+    "combos": [
+      {
+        "spheres": {
+          "Spirit": 3
+        }
+      }
+    ],
+    "optional": [
+      {
+        "spheres": {
+          "Spirit": 4
+        },
+        "purpose": "travel to that Realm"
+      }
+    ],
+    "tags": [
+      "spirit",
+      "paradox",
+      "travel",
+      "divination"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 640,
+        "section": "Appendix I: Paradox Spirits"
+      }
+    ]
+  },
+  {
+    "id": "tap-or-refill-a-periapt",
+    "name": "Tap or Refill a Periapt",
+    "kind": "feat",
+    "summary": "Draw stored Quintessence out of a Periapt or Matrix, or channel energy back into it. Without this a mage cannot use such a battery at all.",
+    "system": "Takes at least one turn of focused concentration. A Periapt holds 5 Quintessence per dot.",
+    "combos": [
+      {
+        "spheres": {
+          "Prime": 2
+        }
+      }
+    ],
+    "tags": [
+      "quintessence",
+      "enchantment"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 652,
+        "section": "Appendix II: Wonders"
+      }
+    ]
+  },
+  {
+    "id": "shut-down-a-cyborg",
+    "name": "Shut Down a Cyborg",
+    "kind": "feat",
+    "summary": "Disrupt a cyborg's implants so the machinery stops working, often leaving the victim awake inside a dead body.",
+    "system": "The mage also needs the technical know-how for those implants. Five or more successes take the cyborg offline until repaired.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3,
+          "Forces": 2,
+          "Prime": 2
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "combat",
+      "technology"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 658,
+        "section": "Appendix II: Cybernetics"
+      }
+    ]
+  },
+  {
+    "id": "force-implant-rejection",
+    "name": "Force Implant Rejection",
+    "kind": "feat",
+    "summary": "Make a cyborg's body reject its implants, tearing them loose in a gruesome way.",
+    "system": "Once past countermagick, the attack does 2 extra health levels of aggravated damage that cannot be soaked. Six or more health levels in one attack rip the implants out.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        }
+      },
+      {
+        "spheres": {
+          "Life": 3,
+          "Matter": 2
+        }
+      }
+    ],
+    "vulgarity": "vulgar",
+    "tags": [
+      "combat",
+      "technology",
+      "body"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 658,
+        "section": "Appendix II: Cybernetics"
+      }
+    ]
+  },
+  {
+    "id": "clam-in-the-heart",
+    "name": "Create a Clam in a Foe's Heart",
+    "kind": "feat",
+    "summary": "A player's favorite memory: with no combat skills, a young Verbena used her power over simple life to grow a clam inside an enemy's heart.",
+    "combos": [
+      {
+        "spheres": {
+          "Life": 3
+        }
+      }
+    ],
+    "tags": [
+      "combat",
+      "creation"
+    ],
+    "source": [
+      {
+        "book": "M20",
+        "page": 667,
+        "section": "Afterwords"
+      }
+    ]
+  }
+]
