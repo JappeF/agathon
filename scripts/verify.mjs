@@ -1,9 +1,10 @@
 // Drive the built app in headless Edge: shell, navigation, IndexedDB persistence,
-// service worker, and a full offline reload. Needs `npm run preview` on :4173.
+// service worker, and a full offline reload. Needs `npm run preview` on :4173,
+// or BASE=https://agathon.pages.dev to check the live site.
 import { chromium } from 'playwright-core';
 import { mkdir } from 'node:fs/promises';
 
-const BASE = 'http://localhost:4173';
+const BASE = process.env.BASE ?? 'http://localhost:4173';
 await mkdir('shots', { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });

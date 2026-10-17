@@ -38,3 +38,5 @@ Violet depths and gilded type in `src/styles.css`: gold `--gold` on violet-black
 - `all: unset` on buttons resets `box-sizing`; re-set it after (as in `.btn-icon`).
 - Shipped text uses plain keyboard characters only: no em/en dashes, no curly quotes (house style, same as another app).
 - Commit messages end with a line containing only `⚡`, no other trailers.
+- Hosting is a classic Cloudflare Pages project (`agathon`, live at https://agathon.pages.dev), created with the hidden `wrangler pages project create --force` flag. Without it, wrangler 4.151 silently "delegates" new Pages projects to Workers: it rewrote package.json scripts (`wrangler dev`/`wrangler deploy`), added `@cloudflare/vite-plugin` to vite.config.ts and a `wrangler.jsonc`, and deployed a Worker on workers.dev. Now that the project exists, `npm run deploy` (`wrangler pages deploy`) goes straight to Pages; never run `wrangler deploy` here or accept that conversion, and do not pass `--force` again.
+- The GitHub repo `OWNER/agathon` is private for now.
