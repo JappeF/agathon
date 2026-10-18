@@ -20,7 +20,7 @@ await page.evaluate(async (n) => {
   const p = await doc.getPage(n);
   const vp = p.getViewport({ scale: 2 });
   const c = document.getElementById('c'); c.width = vp.width; c.height = vp.height;
-  await p.render({ canvasContext: c.getContext('2d'), viewport: vp, annotationMode: pdfjs.AnnotationMode.ENABLE_FORMS }).promise;
+  await p.render({ canvasContext: c.getContext('2d'), viewport: vp, annotationMode: pdfjs.AnnotationMode.ENABLE }).promise;
 }, Number(pageNo));
 await page.locator('#c').screenshot({ path: out });
 await b.close();

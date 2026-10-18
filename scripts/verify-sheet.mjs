@@ -383,6 +383,54 @@ await page.click('.modal .btn-danger');
 await page.waitForSelector('.welcome');
 check('deleted', !(await page.evaluate((i) => document.body.innerHTML.includes(i), id)));
 
+// the later version of Mr. Gone's sheet (the one on his site now): drop-downs for Nature,
+// Demeanor, Essence, Backgrounds and Merits, own-Ability rows, one Other Traits row less.
+// Export onto it, check the fields, and import it back without changes.
+const BLANK2 = process.env.BLANK2 ?? 'refs/mrgone-m20-v2-blank.pdf';
+if (existsSync(BLANK2)) {
+  const v2map = JSON.parse(await readFile('src/sheets/mrgone-m20-2page-v2.json', 'utf8'));
+  const ctx2 = await browser.newContext({ viewport: { width: 390, height: 844 }, acceptDownloads: true });
+  const p2 = await ctx2.newPage();
+  p2.on('pageerror', (e) => errors.push(e.message));
+  const v2char = {
+    app: 'agathon', kind: 'characters', version: 1,
+    characters: [{
+      name: 'Version Two', nature: 'Visionary', demeanor: 'My Own Demeanor', essence: 'Questing',
+      backgrounds: [{ name: 'Avatar', rating: 3 }, { name: 'Library', rating: 2 }],
+      merits: [{ name: 'Lucky', rating: 3 }],
+      otherTraits: [{ name: 'Hypereconomics', rating: 2 }],
+      spheres: { Forces: 3, Mind: 2 }, arete: 3, quintessence: 4, paradox: 1,
+    }],
+  };
+  await p2.goto(`${BASE}/#import=0.${Buffer.from(JSON.stringify(v2char)).toString('base64url')}`, { waitUntil: 'networkidle' });
+  await p2.click('.modal button:has-text("Add character")');
+  await p2.waitForSelector('.sheet-name:text-is("Version Two")');
+  await p2.click('.menu summary');
+  await p2.click('button:has-text("Export PDF sheet")');
+  await p2.waitForSelector('.modal-title:has-text("Pick a blank sheet")');
+  const [d2] = await Promise.all([p2.waitForEvent('download'), p2.setInputFiles('.modal .file-pick input', BLANK2)]);
+  const out2 = `shots/export-v2-${Date.now()}.pdf`;
+  await d2.saveAs(out2);
+  const f2 = (await PDFDocument.load(await readFile(out2))).getForm();
+  const sel = (n) => f2.getDropdown(n).getSelected()[0] ?? '';
+  const dots2 = (names) => names.filter((n) => f2.getCheckBox(n).isChecked()).length;
+  check('v2 sheet: export works', true);
+  check('v2 sheet: Nature in its drop-down', sel('nature') === 'Visionary', sel('nature'));
+  check('v2 sheet: own Demeanor in its drop-down', sel('demeanor') === 'My Own Demeanor', sel('demeanor'));
+  check('v2 sheet: Backgrounds with dots', sel(v2map.backgrounds[0].name) === 'Avatar' && dots2(v2map.backgrounds[0].dots) === 3, `${sel(v2map.backgrounds[0].name)} ${dots2(v2map.backgrounds[0].dots)}`);
+  check('v2 sheet: Merit', sel(v2map.merits[0].name) === 'Lucky', sel(v2map.merits[0].name));
+  check('v2 sheet: Spheres in the shifted rows', dots2(v2map.traits.Forces.dots) === 3 && dots2(v2map.traits.Mind.dots) === 2);
+  check('v2 sheet: Other Traits', f2.getTextField(v2map.otherTraits[0].name).getText() === 'Hypereconomics');
+  await p2.click('.modal button:has-text("OK")');
+  // and back: the exported sheet matches the character
+  await p2.click('.switch-btn');
+  await p2.setInputFiles('.switch-menu input[type=file]', out2);
+  await p2.waitForSelector('.modal-title:has-text("Update Version Two")');
+  const same = await p2.textContent('.modal');
+  check('v2 sheet: reads back without changes', /Nothing would change/.test(same), same.slice(0, 200));
+  await ctx2.close();
+}
+
 check('no page errors', errors.length === 0, errors.join(' | '));
 await browser.close();
 console.log(failed ? `\n${failed} check(s) failed` : '\nAll checks passed');

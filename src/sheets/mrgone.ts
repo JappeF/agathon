@@ -1,6 +1,7 @@
 import type { PDFDocument, PDFForm } from 'pdf-lib';
 import { findPdfPortrait, type SheetPortrait } from '../portrait';
-import map from './mrgone-m20-2page.json';
+import mapV1 from './mrgone-m20-2page.json';
+import mapV2 from './mrgone-m20-2page-v2.json';
 import { clampWheel, HEALTH_LEVELS, newCharacter, WHEEL_SIZE, type Character, type HealthMark, type Rated } from '../character';
 import { SPHERES, type Sphere } from '../types';
 
@@ -10,7 +11,17 @@ import { SPHERES, type Sphere } from '../types';
  * pdf-lib is loaded lazily so it only costs bytes when someone imports or exports.
  */
 
-export const MRGONE_SHEET_ID = map.id;
+export const MRGONE_SHEET_ID = mapV1.id;
+
+/**
+ * Two versions of the sheet are around. The later one (on Mr. Gone's site now) adds a
+ * blank Talent, Skill and Knowledge row for an Ability of your own (`extraAbilities`),
+ * has one Other Traits row less, and makes Nature, Demeanor, Essence, Backgrounds and
+ * Merits drop-downs with the book's names (still editable). Each has its own field map.
+ */
+type SheetMap = typeof mapV1 & { extraAbilities?: { name: string; dots: string[] }[] };
+const mapFor = (form: PDFForm): SheetMap =>
+  form.getFields().some((f) => f.getName() === 'skillsex1') ? (mapV2 as SheetMap) : mapV1;
 
 /** Fields from the parts of a Character that the sheet holds (app-only fields stay). */
 export type SheetFields = Omit<Character, 'id' | 'createdAt' | 'updatedAt' | 'notes' | 'sheet' | 'portrait' | 'pinned'>;
@@ -42,9 +53,13 @@ export async function readMrGone(bytes: ArrayBuffer): Promise<SheetFields> {
     );
   }
 
+  const map = mapFor(form);
+  const { PDFDropdown } = await import('pdf-lib');
+  // a text field, or (later sheet version) an editable drop-down
   const text = (n: string) => {
     try {
-      return (form.getTextField(n).getText() ?? '').trim();
+      const f = form.getField(n);
+      return ((f instanceof PDFDropdown ? f.getSelected()[0] : form.getTextField(n).getText()) ?? '').trim();
     } catch {
       return '';
     }
@@ -107,7 +122,8 @@ export async function readMrGone(bytes: ArrayBuffer): Promise<SheetFields> {
   });
 
   out.backgrounds = rated(map.backgrounds);
-  out.otherTraits = rated(map.otherTraits);
+  // the later sheet's own-Ability rows have no place of their own in the app: Other Traits
+  out.otherTraits = [...rated(map.otherTraits), ...rated(map.extraAbilities ?? [])];
   out.merits = costed(map.merits);
   out.flaws = costed(map.flaws);
   out.rotes = map.rotes.map(text).filter(Boolean);
@@ -160,11 +176,12 @@ export async function writeMrGone(
 ): Promise<{ pdf: Uint8Array; warnings: string[] }> {
   const doc = await loadPdf(bytes);
   const form = doc.getForm();
+  const map = mapFor(form);
   const warnings: string[] = [];
   // The blank sheet is "Reader extended": an Adobe signature (/Perms /UR3) over the exact
   // bytes. Any rewrite breaks it and Acrobat Reader then turns the form off ("extended
   // features no longer available"). Without it, Reader fills and saves forms as usual.
-  const { PDFName } = await import('pdf-lib');
+  const { PDFName, PDFDropdown } = await import('pdf-lib');
   doc.catalog.delete(PDFName.of('Perms'));
   if (portrait) {
     const old = await findPdfPortrait(doc);
@@ -189,13 +206,28 @@ export async function writeMrGone(
 
   const setText = (n: string, v: string) => {
     try {
-      form.getTextField(n).setText(v);
+      const f = form.getField(n);
+      if (f instanceof PDFDropdown) {
+        // the later sheet's drop-downs are editable: any name goes, not just the book's
+        if (v) f.select(v);
+        else f.clear();
+      } else form.getTextField(n).setText(v);
     } catch {
       warnings.push(`Couldn't write "${v.slice(0, 40)}" (unsupported characters?)`);
     }
   };
-  const setDots = (names: string[], n: number) =>
-    names.forEach((f, i) => (i < n ? form.getCheckBox(f).check() : form.getCheckBox(f).uncheck()));
+  // a box this version of the sheet lacks is skipped, not fatal
+  let missing = 0;
+  const setBox = (f: string, on: boolean) => {
+    try {
+      const box = form.getCheckBox(f);
+      if (on) box.check();
+      else box.uncheck();
+    } catch {
+      missing++;
+    }
+  };
+  const setDots = (names: string[], n: number) => names.forEach((f, i) => setBox(f, i < n));
   /** Spread multi-line text over the sheet's lines; whatever doesn't fit goes on the last line. */
   const setLines = (names: string[], v: string, what: string) => {
     const ls = v.split('\n').map((s) => s.trim()).filter(Boolean);
@@ -219,15 +251,15 @@ export async function writeMrGone(
   setDots(map.arete, c.arete);
   setDots(map.willpower, c.willpower);
   setDots(map.willpowerSpent, c.willpowerSpent);
-  map.wheel.forEach((f, i) =>
-    i < c.quintessence || i >= WHEEL_SIZE - c.paradox ? form.getCheckBox(f).check() : form.getCheckBox(f).uncheck(),
-  );
+  map.wheel.forEach((f, i) => setBox(f, i < c.quintessence || i >= WHEEL_SIZE - c.paradox));
   map.health.forEach((f, i) => form.getDropdown(f).select(c.health[i] || ' '));
 
   const ratedRows = (rows: { name: string; dots: string[] }[], items: Rated[], what: string) =>
     fill(rows, items, what, (r, it: Rated) => (setText(r.name, it.name), setDots(r.dots, it.rating)), (r) => (setText(r.name, ''), setDots(r.dots, 0)));
   ratedRows(map.backgrounds, c.backgrounds, 'backgrounds');
   ratedRows(map.otherTraits, c.otherTraits, 'other traits');
+  // own-Ability rows (later sheet) come in as Other Traits and go back out there
+  for (const r of map.extraAbilities ?? []) (setText(r.name, ''), setDots(r.dots, 0));
   const costRows = (rows: { name: string; cost: string }[], items: Rated[], what: string) =>
     fill(rows, items, what, (r, it: Rated) => (setText(r.name, it.name), setText(r.cost, it.rating ? String(it.rating) : '')), (r) => (setText(r.name, ''), setText(r.cost, '')));
   costRows(map.merits, c.merits, 'merits');
@@ -285,6 +317,7 @@ export async function writeMrGone(
       warnings.push(`Couldn't draw "${f.getName()}" (characters the PDF font lacks?)`);
     }
   }
+  if (missing) warnings.push(`${missing} check boxes this version of the sheet doesn't have were skipped.`);
   return { pdf: await doc.save({ updateFieldAppearances: false }), warnings };
 }
 

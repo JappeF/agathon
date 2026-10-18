@@ -104,7 +104,7 @@ for (const n of [1, 0]) {
   await page.waitForFunction((k) => document.querySelectorAll('.book-row.on').length === k, n);
 }
 check('books removed', (await page.locator('.book-row.on').count()) === 0);
-await page.setInputFiles('.books-panel input[accept*="json"]', path);
+await page.setInputFiles('.books-panel .file-pick:has-text("Load a book file") input', path);
 await page.waitForSelector('.book-row.on');
 check('index file loads back', /Loaded/.test(await text('.book-message')) && (await page.locator('.book-row.on').count()) === 2, await text('.book-message'));
 

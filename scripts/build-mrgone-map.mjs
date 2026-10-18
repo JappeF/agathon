@@ -3,7 +3,7 @@
 // one is assigned to a trait by where it sits: the printed labels and the fixed M20
 // layout. The result (field names only, nothing from the PDF itself) is committed as
 // src/sheets/mrgone-m20-2page.json.
-// Usage: node scripts/build-mrgone-map.mjs <filled or blank sheet.pdf>
+// Usage: node scripts/build-mrgone-map.mjs <filled or blank sheet.pdf> [out.json]
 import { readFile, writeFile } from 'node:fs/promises';
 import { PDFDocument, PDFCheckBox } from 'pdf-lib';
 
@@ -107,13 +107,19 @@ function assign(labels, dots, texts, what) {
     }),
   );
 }
+const has = (n) => widgets.some((w) => w.name === n);
+// A later version of the sheet adds a blank row under Talents, Skills and Knowledges for an
+// Ability of your own (skillsex1-3), which moves everything below it down 12pt, and drops
+// one Other Traits row from page 1. Same layout otherwise.
+const v2 = has('skillsex1');
+const shift = v2 ? 12 : 0;
+
 // bands (top-down y, page 1) taken from the printed label positions
 assign(ATTRIBUTES, dotRows(1, 185, 235), textRows(1, 185, 225), 'attributes');
-assign(ABILITIES, dotRows(1, 270, 420), textRows(1, 270, 412), 'abilities');
-assign(SPHERES, dotRows(1, 440, 490), textRows(1, 440, 480), 'spheres');
+assign(ABILITIES, dotRows(1, 270, 418), textRows(1, 270, 412), 'abilities');
+assign(SPHERES, dotRows(1, 440 + shift, 490 + shift), textRows(1, 440 + shift, 480 + shift), 'spheres');
 
 const named = (prefix, n, from = 1) => Array.from({ length: n }, (_, i) => `${prefix}${i + from}`);
-const has = (n) => widgets.some((w) => w.name === n);
 
 /** "name field + five dots" rows (backgrounds, other traits): the dots on the name's line. */
 function namedRows(names, page) {
@@ -132,6 +138,7 @@ function namedRows(names, page) {
 const map = {
   id: 'mrgone-m20-2page',
   title: "Mr. Gone's M20 2-page interactive sheet",
+  version: v2 ? 2 : 1,
   fieldCount: form.getFields().length,
   text: Object.fromEntries(
     ['name', 'player', 'chronicle', 'nature', 'demeanor', 'essence', 'affiliation', 'sect', 'concept', 'experience'].map(
@@ -146,7 +153,9 @@ const map = {
   wheel: named('qpcheck', 20),
   health: named('health', 7),
   backgrounds: namedRows(named('backgrounds', 6), 1),
-  otherTraits: [...namedRows(named('othertraits', 7), 1), ...namedRows(named('othertraits', 9, 8), 2)],
+  otherTraits: [...namedRows(named('othertraits', 7).filter(has), 1), ...namedRows(named('othertraits', 9, 8), 2)],
+  // v2 only: the blank Talent, Skill and Knowledge rows for an Ability of your own
+  ...(v2 ? { extraAbilities: namedRows(['skillsex1', 'skillsex2', 'skillsex3'], 1) } : {}),
   merits: named('Merit', 7).map((n, i) => ({ name: n, cost: `cost${i + 1}` })),
   flaws: named('flaw', 7).map((n, i) => ({ name: n, cost: `cost${i + 8}` })),
   rotes: named('rotes', 8),
@@ -191,5 +200,6 @@ const unused = form.getFields().map((f) => f.getName()).filter((n) => !used.incl
 console.log(`mapped ${used.length} of ${map.fieldCount} fields`);
 if (unused.length) console.log(`unmapped: ${unused.join(' ')}`);
 
-await writeFile('src/sheets/mrgone-m20-2page.json', JSON.stringify(map, null, 1) + '\n');
-console.log('wrote src/sheets/mrgone-m20-2page.json');
+const out = process.argv[3] ?? 'src/sheets/mrgone-m20-2page.json';
+await writeFile(out, JSON.stringify(map, null, 1) + '\n');
+console.log(`wrote ${out}`);

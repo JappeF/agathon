@@ -142,6 +142,8 @@ await b.waitForSelector('.modal');
 check('newer version explains itself', /newer version/.test(await b.textContent('.modal')));
 await b.click('.modal button:has-text("OK")');
 
+// the Import picker has no file filter (a shared file often arrives renamed, ".json.txt")
+check('Import picker shows every file', await b.$eval('.switch-menu .file-pick input, .welcome .file-pick input', (i) => !i.hasAttribute('accept')).catch(() => false));
 // a damaged link explains itself
 await b.goto(`${BASE}/#import=1.bm90IGEgcmVhbCBsaW5r`, { waitUntil: 'networkidle' });
 await b.waitForSelector('.modal');
