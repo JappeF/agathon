@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useActiveCharacter } from '../activeCharacter';
+import type { Character } from '../character';
 import { db, requestPersistence, saveCharacter, saveSpell } from '../db/db';
 import { useEffects, type Effect } from '../library/data';
 import { deficit, difficulties, parseQuery, search } from '../library/search';
@@ -12,6 +13,7 @@ import { EffectDetail } from './EffectDetail';
 import { Icon } from './Icon';
 import { searchLibrary, togglePinned } from './LibraryView';
 import { Modal } from './Modal';
+import { buildPack, packSize, parseReply, ReplyError, type PackOptions } from '../contextPack';
 import { SphereGlyph } from './SphereGlyph';
 
 /** Fit a textarea to its text (for browsers without field-sizing: content). */
@@ -146,6 +148,7 @@ function SpellDossier({ id }: { id: string }) {
   const [openEffect, setOpenEffect] = useState<string | null>(null);
   const [linking, setLinking] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [ai, setAi] = useState<'copy' | 'paste' | null>(null);
 
   if (s === undefined) return null;
   if (s === null) {
@@ -200,6 +203,28 @@ function SpellDossier({ id }: { id: string }) {
           onChange={(e) => patch({ goal: e.target.value })}
         />
       </label>
+
+      {character && (
+        <div className="ai-row">
+          <button type="button" className="btn btn-gold" onClick={() => setAi('copy')}>
+            Copy for AI
+          </button>
+          <button type="button" className="btn" onClick={() => setAi('paste')}>
+            Paste the answer
+          </button>
+          <span className="fine-print">Think it through with your own Claude, ChatGPT or Gemini. Nothing is sent from here.</span>
+        </div>
+      )}
+      {ai === 'copy' && character && <CopyForAi s={s} c={character} effects={effects ?? []} onClose={() => setAi(null)} />}
+      {ai === 'paste' && (
+        <PasteAnswer
+          onClose={() => setAi(null)}
+          onVersion={(v) => {
+            patch({ versions: [...s.versions, v] });
+            setAi(null);
+          }}
+        />
+      )}
 
       <div className="dossier-grid">
         <div className="dossier-main">
@@ -346,6 +371,12 @@ function VersionEditor({
         {v.source === 'ai' && <span className="kind-badge">from AI</span>}
         <span className="fine-print">{when(v.createdAt)}</span>
       </p>
+      {v.reply && (
+        <details className="ai-reply">
+          <summary>The AI's whole answer</summary>
+          <p className="prose">{v.reply}</p>
+        </details>
+      )}
       <div className="sphere-bar version-spheres" role="group" aria-label={`${versionLabel(s, v)} Spheres`}>
         {SPHERES.map((sp) => {
           const r = v.spheres[sp] ?? 0;
@@ -501,5 +532,125 @@ function CastLogView({ s, onChange }: { s: Spell; onChange: (log: Spell['log']) 
         </ul>
       )}
     </div>
+  );
+}
+
+// ---------- the AI round trip: copy a context pack out, paste the answer back ----------
+
+const PACK_PREFS = 'agathon:pack';
+
+function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects: Effect[]; onClose: () => void }) {
+  const [o, setO] = useState<PackOptions>(() => {
+    try {
+      // the toggles are remembered per device; the question starts empty each time
+      return { history: true, library: true, notes: false, ...JSON.parse(localStorage.getItem(PACK_PREFS) ?? '{}'), ask: '' };
+    } catch {
+      return { ask: '', history: true, library: true, notes: false };
+    }
+  });
+  const [copied, setCopied] = useState(false);
+  const text = useMemo(() => buildPack(s, c, effects, o), [s, c, effects, o]);
+  const size = packSize(text);
+  const set = (p: Partial<PackOptions>) => {
+    const next = { ...o, ...p };
+    setO(next);
+    setCopied(false);
+    try {
+      localStorage.setItem(PACK_PREFS, JSON.stringify({ history: next.history, library: next.library, notes: next.notes }));
+    } catch {
+      // private mode: just don't remember
+    }
+  };
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+    } catch {
+      // no clipboard access: select the preview so it can be copied by hand
+      const pre = document.querySelector<HTMLElement>('.pack-preview pre');
+      if (pre) getSelection()?.selectAllChildren(pre);
+    }
+  };
+  return (
+    <Modal title="Copy for AI" onClose={onClose}>
+      <p className="empty-small">One prompt with {c.name}, this idea and the rules it needs. Paste it into your own AI chat.</p>
+      <label className="field field-long">
+        <span className="field-label">The scene, or your question (optional)</span>
+        <textarea
+          className="text-area"
+          rows={3}
+          value={o.ask}
+          placeholder="A crowded train platform, two Men in Black at the far end. Can I do it without them noticing?"
+          onChange={(e) => set({ ask: e.target.value })}
+        />
+      </label>
+      <div className="pack-options">
+        <label className="check">
+          <input type="checkbox" checked={o.library} onChange={(e) => set({ library: e.target.checked })} />
+          Linked library effects
+        </label>
+        <label className="check">
+          <input type="checkbox" checked={o.history} onChange={(e) => set({ history: e.target.checked })} />
+          Earlier versions and the log
+        </label>
+        <label className="check">
+          <input type="checkbox" checked={o.notes} onChange={(e) => set({ notes: e.target.checked })} />
+          {c.name}'s private notes
+        </label>
+      </div>
+      <details className="pack-preview">
+        <summary>
+          Preview, about {size.words} words ({size.tokens} tokens)
+        </summary>
+        <pre>{text}</pre>
+      </details>
+      <div className="modal-actions">
+        <button className="btn" onClick={onClose}>
+          Close
+        </button>
+        <button className="btn btn-gold" onClick={copy}>
+          {copied ? 'Copied' : 'Copy the prompt'}
+        </button>
+      </div>
+      {copied && <p className="empty-small pack-done">Copied. Paste it into Claude, ChatGPT or Gemini, then bring the answer back with Paste the answer.</p>}
+    </Modal>
+  );
+}
+
+function PasteAnswer({ onClose, onVersion }: { onClose: () => void; onVersion: (v: SpellVersion) => void }) {
+  const [text, setText] = useState('');
+  const [error, setError] = useState('');
+  const take = () => {
+    try {
+      onVersion(parseReply(text));
+    } catch (e) {
+      setError(e instanceof ReplyError ? e.message : "This answer couldn't be read.");
+    }
+  };
+  return (
+    <Modal title="Paste the answer" onClose={onClose}>
+      <p className="empty-small">Paste the whole answer. Its plan block becomes a new version, marked as from AI; the full answer is kept with it.</p>
+      <textarea
+        className="text-area paste-area"
+        rows={8}
+        value={text}
+        autoFocus
+        placeholder="Paste the AI's answer here"
+        aria-label="The AI's answer"
+        onChange={(e) => {
+          setText(e.target.value);
+          setError('');
+        }}
+      />
+      {error && <p className="paste-error">{error}</p>}
+      <div className="modal-actions">
+        <button className="btn" onClick={onClose}>
+          Cancel
+        </button>
+        <button className="btn btn-gold" disabled={!text.trim()} onClick={take}>
+          Add as a new version
+        </button>
+      </div>
+    </Modal>
   );
 }

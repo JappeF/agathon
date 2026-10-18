@@ -8,7 +8,9 @@ import { mkdir } from 'node:fs/promises';
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 await mkdir('shots', { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
-const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+await ctx.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: BASE });
+const page = await ctx.newPage();
 const errors = [];
 page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
 page.on('console', (m) => m.type() === 'error' && errors.push(`console: ${m.text()}`));
@@ -86,13 +88,53 @@ await page.click('button:has-text("Add to the log")');
 check('log entry', /Botched/.test(await text('.log-list')) && /\+3 Paradox/.test(await text('.log-list')), await text('.log-list'));
 await page.screenshot({ path: 'shots/50-dossier.png', fullPage: true });
 
+// Copy for AI: one prompt with the mage, the idea, the linked effects and the question
+await page.click('button:has-text("Copy for AI")');
+await page.fill('.modal textarea', 'Two Men in Black at the far end of the platform.');
+await page.click('.pack-preview summary');
+const pack = await page.textContent('.pack-preview pre');
+check('pack has the mage', pack.includes(`# A spell for ${name}`) && /Forces 3/.test(pack));
+check('pack has the plan and difficulty', pack.includes('Gas leak fireball') && /Base difficulty \d coincidental/.test(pack));
+check('pack has the linked effects with pages', pack.includes(effectName) && /p\. \d+/.test(pack));
+check('pack has the log and the question', pack.includes('botched, +3 Paradox') && pack.includes('Two Men in Black'));
+check('pack asks for the JSON block', pack.includes('"agathon": "version"'));
+check('private notes left out by default', !(await page.isChecked('.pack-options .check:has-text("private notes") input')));
+await page.uncheck('.pack-options .check:has-text("Linked library") input');
+check('library toggle drops the effects', !(await page.textContent('.pack-preview pre')).includes('Related effects from my library'));
+await page.check('.pack-options .check:has-text("Linked library") input');
+await page.click('.modal button:has-text("Copy the prompt")');
+check('prompt copied', (await page.evaluate(() => navigator.clipboard.readText())).includes('Two Men in Black'));
+check('size shown', /about \d+ words/.test(await page.textContent('.pack-preview summary')));
+await page.click('.modal button:has-text("Close")');
+
+// Paste the answer: the JSON block becomes a version, junk is filtered out
+await page.click('button:has-text("Paste the answer")');
+await page.fill('.paste-area', 'Nice idea, but no plan block here.');
+await page.click('.modal button:has-text("Add as a new version")');
+check('no block: explains', /no plan block/.test(await page.textContent('.paste-error')));
+const answer = [
+  'Use Forces 4 for a bigger blast, keep Prime 2.',
+  '```json',
+  '{"agathon": "version", "spheres": {"forces": 4, "Prime": "2", "Fire": 3, "Matter": 9}, "how": "Hairspray, a lighter, a whispered word", "coincidental": "Blame the old gas pipes", "notes": "Witnesses make it vulgar", "evil": "<script>"}',
+  '```',
+].join('\n');
+await page.fill('.paste-area', answer);
+await page.click('.modal button:has-text("Add as a new version")');
+await page.waitForSelector('.modal', { state: 'detached' });
+check('answer becomes the plan, marked from AI', (await page.textContent('.dossier-main .version-head')).includes('from AI'));
+const aiSpheres = await page.$$eval('.dossier-main > .version .version-spheres .sphere-btn.on', (bs) => bs.map((b) => b.getAttribute('aria-label')).join());
+check('only known Spheres and ranks 1-5', aiSpheres === 'Forces 4,Prime 2', aiSpheres);
+check('plan fields from the answer', (await page.inputValue('.dossier-main .version label:has-text("Keeping it coincidental") textarea')) === 'Blame the old gas pipes');
+await page.click('.dossier-main .ai-reply summary');
+check('whole answer kept', (await page.textContent('.dossier-main .ai-reply .prose')).includes('bigger blast'));
+
 // everything survives a reload
 await page.waitForTimeout(500);
 await page.reload({ waitUntil: 'networkidle' });
 await page.waitForSelector('.dossier');
 check('title persists', (await page.inputValue('.dossier-title')) === 'Gas leak fireball');
 check('goal persists', (await page.inputValue('.dossier label:has-text("What should happen") textarea')) === 'Blow the door, blame the gas.');
-check('versions persist', (await page.locator('.old-version').count()) === 1);
+check('versions persist', (await page.locator('.old-version').count()) === 2);
 check('log persists', (await page.locator('.log-entry').count()) === 1);
 
 // the list and the sheet

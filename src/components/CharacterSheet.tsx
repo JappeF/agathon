@@ -25,6 +25,8 @@ import { EffectDetail } from './EffectDetail';
 import { searchLibrary, togglePinned } from './LibraryView';
 import { startSpellFrom } from '../spellActions';
 
+const UNTRAINED_KEY = 'agathon:show-untrained';
+
 /** Loose name match for rotes on the sheet against library effects. */
 const normName = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
@@ -113,7 +115,22 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const { c, patch, replace } = useCharacter(id);
   const [edit, setEdit] = useState(false);
   const [vitalsOpen, setVitalsOpen] = useState(false);
-  const [showUntrained, setShowUntrained] = useState(false);
+  // "show Abilities at 0" is remembered on this device, for every character
+  const [showUntrained, setShowUntrainedState] = useState(() => {
+    try {
+      return localStorage.getItem(UNTRAINED_KEY) === '1';
+    } catch {
+      return false;
+    }
+  });
+  const setShowUntrained = (on: boolean) => {
+    setShowUntrainedState(on);
+    try {
+      localStorage.setItem(UNTRAINED_KEY, on ? '1' : '0');
+    } catch {
+      // private mode: only for this visit
+    }
+  };
   const [message, setMessage] = useState<{ title: string; lines: string[] } | null>(null);
   const [needBlank, setNeedBlank] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);

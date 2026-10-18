@@ -32,6 +32,8 @@ export interface SpellVersion {
   notes: string;
   /** where it came from: written here or pasted back from an AI */
   source: 'me' | 'ai';
+  /** the AI's whole answer, kept with a version that came from one */
+  reply?: string;
 }
 
 export type Outcome = 'worked' | 'partly' | 'failed' | 'botched';

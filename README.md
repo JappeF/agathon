@@ -75,6 +75,10 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
 - **At the table**: log how a casting went (worked, partly, failed, botched) and the
   Paradox it cost.
 - Start one by name, or from any effect in the library.
+- **Copy for AI**: one prompt with your mage, the idea, its plan and the linked
+  effects, plus the scene or your question, to paste into your own Claude, ChatGPT
+  or Gemini. Nothing is sent from the app. Paste the answer back and its plan
+  becomes a new version, marked as from AI.
 
 ### Sharing
 

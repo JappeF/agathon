@@ -147,7 +147,7 @@ await page.waitForTimeout(400);
 await page.reload({ waitUntil: 'networkidle' });
 await page.waitForSelector('.sheet-name');
 await page.click('.tab:has-text("Traits")');
-await page.check('.toggle-untrained input');
+check('"show Abilities at 0" remembered', await page.isChecked('.toggle-untrained input'));
 check('edit survives reload', (await text('.trait-row:has-text("Esoterica") .trait-num')) === '2');
 
 // the actions menu closes on a tap outside it and on Escape

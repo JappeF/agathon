@@ -1519,3 +1519,29 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .log-head .fine-print { margin: 0; flex: 1; }
 .log-notes { color: var(--ink-dim); font-size: 0.9rem; white-space: pre-wrap; }
 .start-spell { margin-top: 0.8rem; }
+
+/* ---------- the AI round trip ---------- */
+.ai-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.7rem; margin: 0.4rem 0 0.4rem; }
+.ai-row .fine-print { margin: 0; flex-basis: 100%; }
+@media (min-width: 600px) {
+  .ai-row .fine-print { flex-basis: auto; }
+}
+.pack-options { display: grid; gap: 0.1rem; margin: 0.3rem 0 0.6rem; }
+.pack-preview { border: 1px solid var(--line); border-radius: var(--r-sm); padding: 0 0.7rem; }
+.pack-preview summary { min-height: 40px; display: flex; align-items: center; cursor: pointer; font-size: 0.88rem; color: var(--ink-dim); }
+.pack-preview pre {
+  margin: 0 0 0.7rem;
+  max-height: 40vh;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+.pack-done { margin-top: 0.6rem; }
+.paste-area { width: 100%; min-height: 10rem; }
+.paste-error { color: #ff8fb1; font-size: 0.88rem; }
+.ai-reply { border-left: 2px solid var(--line-solid); padding-left: 0.7rem; }
+.ai-reply summary { cursor: pointer; font-size: 0.85rem; color: var(--ink-faint); min-height: 32px; display: flex; align-items: center; }
+.ai-reply .prose { white-space: pre-wrap; font-size: 0.88rem; color: var(--ink-dim); max-height: 50vh; overflow: auto; }
