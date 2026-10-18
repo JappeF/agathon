@@ -974,7 +974,7 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .detail-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.8rem; }
 
 /* ---------- portraits in a small portal ---------- */
-.pp { position: relative; flex: none; display: inline-block; width: var(--pp); height: var(--pp); }
+.pp { position: relative; flex: none; display: inline-block; width: var(--pp); height: var(--pp); isolation: isolate; }
 .pp-ring {
   position: absolute;
   inset: 9%;

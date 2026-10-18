@@ -113,6 +113,11 @@ await page.click('.sheet-title .vitals-bar');
 await page.waitForSelector('.vitals-panel', { state: 'detached' });
 
 await page.click('.lock');
+// the Change / Add photo badge must not slip under the portal ring
+check('portrait badge above the ring', await page.$eval('.portrait-hint', (h) => {
+  const r = h.getBoundingClientRect();
+  return h.contains(document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2));
+}));
 await page.setInputFiles('.view.sheet input[accept="image/*"]', 'public/icons/icon-512.png');
 await page.waitForFunction((old) => document.querySelector('.sheet-hero .pp-face img')?.getAttribute('src') !== old, fromPdf);
 check('portrait replaced in edit mode', (await portraitSrc()) !== fromPdf);
