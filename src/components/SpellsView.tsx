@@ -215,7 +215,7 @@ function SpellDossier({ id }: { id: string }) {
           <button type="button" className="btn" onClick={() => setAi('paste')}>
             Paste the answer
           </button>
-          <span className="fine-print">Think it through with your own Claude, ChatGPT or Gemini. Nothing is sent from here.</span>
+          <span className="fine-print">Work out the Spheres, the rules and the story that keeps it coincidental with an AI: copy the idea out, paste the answer back.</span>
         </div>
       )}
       {ai === 'copy' && character && <CopyForAi s={s} c={character} effects={effects ?? []} onClose={() => setAi(null)} />}
@@ -597,7 +597,10 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
   };
   return (
     <Modal title="Copy for AI" onClose={onClose}>
-      <p className="empty-small">One prompt with {c.name}, this idea and the rules it needs. Paste it into your own AI chat.</p>
+      <p className="empty-small">
+        Everything needed to work this spell out: {c.name}'s Arete, Spheres and focus, the idea and its plan, the spells it builds on and the
+        rules. Paste it into Claude, ChatGPT or Gemini and ask away.
+      </p>
       <label className="field field-long">
         <span className="field-label">The scene, or your question (optional)</span>
         <textarea
@@ -640,7 +643,7 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
         </details>
       ) : (
         <p className="fine-print">
-          Add your own M20 or How Do You DO That? PDF under <a href="#/spells">Spell ideas</a> to take the real pages along.
+          Add your rulebook PDF under <a href="#/spells">Spell ideas</a> to bring the book's own pages along.
         </p>
       )}
       <details className="pack-preview">
@@ -657,7 +660,7 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
           {copied ? 'Copied' : 'Copy the prompt'}
         </button>
       </div>
-      {copied && <p className="empty-small pack-done">Copied. Paste it into Claude, ChatGPT or Gemini, then bring the answer back with Paste the answer.</p>}
+      {copied && <p className="empty-small pack-done">Copied. Paste it into your AI chat; when you like the answer, bring it back with Paste the answer.</p>}
     </Modal>
   );
 }
@@ -674,7 +677,7 @@ function PasteAnswer({ onClose, onVersion }: { onClose: () => void; onVersion: (
   };
   return (
     <Modal title="Paste the answer" onClose={onClose}>
-      <p className="empty-small">Paste the whole answer. Its plan block becomes a new version, marked as from AI; the full answer is kept with it.</p>
+      <p className="empty-small">Paste the AI's answer. Its plan becomes a new version of this idea, with the whole answer kept beside it.</p>
       <textarea
         className="text-area paste-area"
         rows={8}

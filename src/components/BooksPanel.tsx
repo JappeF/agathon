@@ -46,8 +46,8 @@ export function BooksPanel() {
     <section className="books-panel" aria-label="Your rulebooks">
       <h3 className="block-title">Your rulebooks</h3>
       <p className="empty-small">
-        Add your own PDF of the M20 core book or How Do You DO That? and Copy for AI can take the real pages along. Only the text is kept, on this
-        device; it is never shared.
+        Add your M20 or How Do You DO That? PDF and your spell ideas can lean on the book itself: the pages of the spells an idea builds on,
+        its Sphere ranks, and the casting and Paradox rules. Handy when you work a spell out, on your own or with an AI.
       </p>
       <ul className="book-list">
         {(Object.keys(BOOKS) as BookId[]).map((id) => {
@@ -90,7 +90,7 @@ export function BooksPanel() {
         </div>
       )}
       {message && <p className="book-message">{message}</p>}
-      <p className="fine-print">Reading a whole book takes a while on a phone. You can add it on a computer, save it as a file and load that on your phone.</p>
+      <p className="fine-print">Reading a whole book takes a while on a phone: add it on a computer, save it as a file and load that on your phone.</p>
     </section>
   );
 }

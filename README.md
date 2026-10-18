@@ -87,15 +87,14 @@ table; Agathon is the helper and sounding board.
 - **At the table**: log how a casting went (worked, partly, failed, botched) and the
   Paradox it cost.
 - Start one by name, or from any spell in the library.
-- **Copy for AI**: one prompt with your mage, the idea, its plan and the linked
-  spells, plus the scene or your question, to paste into your own Claude, ChatGPT
-  or Gemini. Nothing is sent from the app. Paste the answer back and its plan
-  becomes a new version, marked as from AI (the plan block is read in whatever
-  shape the AI gives it).
-- **Your own rulebooks**: add your PDF of the M20 core book or How Do You DO That?
-  and Copy for AI can quote the real pages (the spell's own pages, the Sphere ranks,
-  the casting and Paradox rules). Only the text is kept, on your device; it is never
-  shared. Save it as a file to move it to your phone.
+- **Work it out with an AI**: Copy for AI gathers everything needed to work a spell
+  out (your mage, the idea and its plan, the spells it builds on, the rules, your
+  scene or question) into one prompt for Claude, ChatGPT or Gemini. Paste the answer
+  back and its plan becomes a new version of the idea.
+- **The rules from your own books**: add your PDF of the M20 core book or How Do You
+  DO That? and your spell ideas can lean on the book itself: the pages of the spells
+  an idea builds on, its Sphere ranks, and the casting and Paradox rules. The text
+  stays on your device; save it as a file to move it to your phone.
 
 ### Sharing
 
