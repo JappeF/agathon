@@ -329,8 +329,10 @@ for (let i = 0; i < 2; i++) {
 await page.waitForSelector('.sheet-name:text-is("Saito Weinberg")');
 check('copy: original untouched', decodeURIComponent(new URL(page.url()).hash.split('/')[2]) === id);
 
-// a character made in the app: the first export asks for a blank sheet (with a download
-// link to Mr. Gone's), and every later one reuses it
+// a character made in the app: the first export fetches the blank sheet (/blank-sheet,
+// a Pages Function). When that fails (offline; this test makes it fail) it asks for one,
+// with a download link to Mr. Gone's, and every later export reuses it
+await page.route('**/blank-sheet', (r) => r.fulfill({ body: '<!doctype html>', contentType: 'text/html' }));
 const exportFrom = async () => {
   await page.click('.menu summary');
   await page.click('button:has-text("Export PDF sheet")');
@@ -405,10 +407,11 @@ if (existsSync(BLANK2)) {
   await p2.goto(`${BASE}/#import=0.${Buffer.from(JSON.stringify(v2char)).toString('base64url')}`, { waitUntil: 'networkidle' });
   await p2.click('.modal button:has-text("Add character")');
   await p2.waitForSelector('.sheet-name:text-is("Version Two")');
+  // the first export fetches the blank sheet by itself (here a stand-in for the function)
+  await p2.route('**/blank-sheet', async (r) => r.fulfill({ body: await readFile(BLANK2), contentType: 'application/pdf' }));
   await p2.click('.menu summary');
-  await p2.click('button:has-text("Export PDF sheet")');
-  await p2.waitForSelector('.modal-title:has-text("Pick a blank sheet")');
-  const [d2] = await Promise.all([p2.waitForEvent('download'), p2.setInputFiles('.modal .file-pick input', BLANK2)]);
+  const [d2] = await Promise.all([p2.waitForEvent('download'), p2.click('button:has-text("Export PDF sheet")')]);
+  check('v2 sheet: fetched without asking', (await p2.locator('.modal-title:has-text("Pick a blank sheet")').count()) === 0);
   const out2 = `shots/export-v2-${Date.now()}.pdf`;
   await d2.saveAs(out2);
   const f2 = (await PDFDocument.load(await readFile(out2))).getForm();

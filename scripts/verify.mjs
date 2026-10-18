@@ -184,6 +184,16 @@ for (const l of levels) for (let i = 0; i < 3; i++) await page.click(`.vitals-pa
 await page.click('.sheet-title .vitals-bar');
 await page.setViewportSize({ width: 390, height: 844 });
 
+// on the live site, /blank-sheet (a Pages Function) hands over Mr. Gone's blank sheet
+if (!/localhost|127\.0\.0\.1/.test(BASE)) {
+  const r = await page.evaluate(async () => {
+    const res = await fetch('/blank-sheet');
+    const buf = new Uint8Array(await res.arrayBuffer());
+    return { status: res.status, type: res.headers.get('content-type'), size: buf.length, head: String.fromCharCode(...buf.slice(0, 5)) };
+  });
+  check('blank sheet function serves the PDF', r.status === 200 && /pdf/.test(r.type) && r.head === '%PDF-' && r.size > 1_000_000, JSON.stringify(r));
+}
+
 // service worker + manifest
 const swReady = await page.evaluate(async () => {
   const reg = await navigator.serviceWorker?.ready;

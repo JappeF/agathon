@@ -68,7 +68,7 @@ table; Agathon is the helper and sounding board.
   changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in,
   portrait included (a new one from the app replaces the old picture), and the result
   stays fillable in Acrobat Reader. Characters made in the app use Mr. Gone's free
-  blank sheet: the first export links to it, and after that it is kept on the device.
+  blank sheet: the first export fetches it from his site, once per device.
 - **Pick lists**: Concept, Essence, Nature, Demeanor, Affiliation, Sect, Backgrounds,
   Merits, Flaws and the Focus (paradigm, practice, instruments) come from searchable
   lists of what M20 defines, with a short hint,
@@ -166,7 +166,7 @@ default `refs/`), which is not in the repository.
 - **Character sheets**: the importer reads Mr. Gone's interactive M20 2-page sheet,
   the only fillable M20 sheet around (the official ones are not fillable);
   its field map is generated from the field positions (`scripts/build-mrgone-map.mjs`).
-  The sheet itself is not included; the app links to Mr. Gone's free download.
+  The sheet itself is not included: a small Cloudflare Pages Function fetches Mr. Gone's free download from his site on first export.
 
 Unofficial fan tool. Mage: The Ascension is (c) Paradox Interactive AB; the rules
 and setting belong to their authors. Use your own copies of the books.

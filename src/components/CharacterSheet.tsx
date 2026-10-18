@@ -272,12 +272,17 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
 
   const doExport = async (blank?: File) => {
     try {
-      const warnings = await exportPdf(c, blank);
+      const warnings = await exportPdf(c, blank, () =>
+        setMessage({ title: 'Getting the blank sheet', lines: ["Mr. Gone's M20 2-page sheet, about 5 MB. Only the first time on this device."] }),
+      );
       setMessage({ title: 'PDF exported', lines: warnings.length ? warnings : ['Your sheet has been filled in and downloaded.'] });
     } catch (e) {
       // only a missing sheet asks for a blank one; anything else says what went wrong
       if (e instanceof SheetFormatError) setMessage({ title: "That's not the right sheet", lines: [e.message] });
-      else if (e instanceof NoSheetError) setNeedBlank(true);
+      else if (e instanceof NoSheetError) {
+        setMessage(null); // the "Getting the blank sheet" note
+        setNeedBlank(true);
+      }
       else setMessage({ title: 'Export failed', lines: [`The PDF couldn't be written (${e instanceof Error ? e.message : String(e)}).`] });
     }
   };
@@ -840,8 +845,8 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       {needBlank && (
         <Modal title="Pick a blank sheet" onClose={() => setNeedBlank(false)}>
           <p>
-            {c.name} wasn't imported from a PDF, so there's no sheet to fill in yet. Download Mr. Gone's free M20 2-page sheet, then choose it here.
-            Agathon keeps it, so this is a one-time step on this device.
+            {c.name} wasn't imported from a PDF, and Agathon couldn't fetch Mr. Gone's blank sheet just now (offline?). Download his free M20
+            2-page sheet, then choose it here. Agathon keeps it, so this is a one-time step on this device.
           </p>
           <p>
             <a className="btn btn-small" href={MRGONE_BLANK_URL} target="_blank" rel="noopener noreferrer">

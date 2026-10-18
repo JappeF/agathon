@@ -93,12 +93,28 @@ const safeName = (s: string) => s.replace(/[\\/:*?"<>|]+/g, '').trim() || 'chara
  * from; for characters made in the app the player picks a blank Mr. Gone sheet.
  */
 /**
- * The blank sheet a player picked once, kept under this id in `sheetFiles` and used for
- * every character made in the app. We can't ship it (it carries the publisher's logo and
- * Mr. Gone's work, with no terms for hosting it elsewhere) and his server doesn't allow
- * fetching it from the app, so the player downloads it once from MRGONE_BLANK_URL.
+ * The blank sheet, kept under this id in `sheetFiles` and used for every character made
+ * in the app on this device. We don't ship a copy (it is Mr. Gone's work, with the
+ * publisher's logo, and no terms for hosting it elsewhere), and his server sends no CORS
+ * header, so the app fetches it through our Pages Function `/blank-sheet`
+ * (functions/blank-sheet.js), which passes his current file on. If that fails (offline,
+ * a local dev server), the player downloads it from MRGONE_BLANK_URL and picks it.
  */
 const BLANK_ID = '__blank__';
+const BLANK_FETCH = '/blank-sheet';
+
+/** Mr. Gone's blank sheet through our function, or null; only a real Mr. Gone sheet counts. */
+async function fetchBlankSheet(): Promise<ArrayBuffer | null> {
+  try {
+    const r = await fetch(BLANK_FETCH);
+    if (!r.ok || !/pdf/i.test(r.headers.get('content-type') ?? '')) return null;
+    const bytes = await r.arrayBuffer();
+    await readMrGone(bytes);
+    return bytes;
+  } catch {
+    return null;
+  }
+}
 export const MRGONE_BLANK_URL = 'https://mrgone.rocksolidshells.com/pdf/M20/M20_2-Page_Interactive.pdf';
 
 /**
@@ -122,9 +138,16 @@ async function sheetPortrait(c: Character, bytes: ArrayBuffer): Promise<SheetPor
 /** No PDF to fill in: the character wasn't imported and no blank sheet was picked yet. */
 export class NoSheetError extends Error {}
 
-export async function exportPdf(c: Character, blankSheet?: File): Promise<string[]> {
+export async function exportPdf(c: Character, blankSheet?: File, onFetching?: () => void): Promise<string[]> {
   const stored = (await db.sheetFiles.get(c.id)) ?? (await db.sheetFiles.get(BLANK_ID));
-  const bytes = blankSheet ? await blankSheet.arrayBuffer() : stored?.bytes;
+  let bytes = blankSheet ? await blankSheet.arrayBuffer() : stored?.bytes;
+  // no sheet yet: fetch the blank one, once for this device
+  let fetched = false;
+  if (!bytes) {
+    onFetching?.();
+    bytes = (await fetchBlankSheet()) ?? undefined;
+    fetched = !!bytes;
+  }
   if (!bytes) throw new NoSheetError();
   if (blankSheet) await readMrGone(bytes); // throws a friendly error for the wrong file
   const { pdf, warnings } = await writeMrGone(
@@ -134,9 +157,10 @@ export async function exportPdf(c: Character, blankSheet?: File): Promise<string
     await sheetPortrait(c, bytes),
   );
   download(pdf as Uint8Array<ArrayBuffer>, `${safeName(c.name)}.pdf`, 'application/pdf');
-  if (blankSheet) {
+  if (blankSheet || fetched) {
     // keep it for every character made in the app on this device, not just this one
-    await db.sheetFiles.put({ characterId: BLANK_ID, sheetId: MRGONE_SHEET_ID, fileName: blankSheet.name, bytes });
+    const fileName = blankSheet?.name ?? 'M20_2-Page_Interactive.pdf';
+    await db.sheetFiles.put({ characterId: BLANK_ID, sheetId: MRGONE_SHEET_ID, fileName, bytes });
   }
   return warnings;
 }
