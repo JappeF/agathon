@@ -46,6 +46,9 @@ table; Agathon is the helper and sounding board.
 - **Operators** for keyboard search: `tag:healing`, `book:hdydt`, `kind:rote`,
   `is:vulgar`, `is:fav` (your favorites), `name:portal`, rank forms `=3`, `3+`, `2-4`, the Technocratic names
   (`data:`, `primal:`, `dimsci:`), and `-` to exclude anything.
+- **Share a spell**: the button next to the star shares a link (the share sheet on a
+  phone, copied on a desktop) that shows the spell's name and summary as a preview in
+  WhatsApp, Discord and the like, and opens the spell in Agathon.
 - **Spell detail**: every way to cast it, the base difficulty (highest Sphere +3
   coincidental, +4 vulgar, +5 with witnesses, M20 p. 501), what the book says about
   keeping it coincidental, and a checklist of mitigation tricks that light up when
@@ -94,6 +97,8 @@ table; Agathon is the helper and sounding board.
 - **At the table**: log how a casting went (worked, partly, failed, botched) and the
   Paradox it cost.
 - Start one by name, or from any spell in the library.
+- **Share a spell idea**: the link carries the idea and its plans (not the log), shows
+  its title and goal as a preview card, and adds a copy to the other player's characters.
 - **Work it out with an AI**: Copy for AI gathers everything needed to work a spell
   out (your mage, the idea and its plan, the spells it builds on, the rules, your
   scene or question) into one prompt for Claude, ChatGPT or Gemini. Paste the answer

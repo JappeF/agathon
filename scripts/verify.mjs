@@ -194,6 +194,12 @@ if (!/localhost|127\.0\.0\.1/.test(BASE)) {
   check('blank sheet function serves the PDF', r.status === 200 && /pdf/.test(r.type) && r.head === '%PDF-' && r.size > 1_000_000, JSON.stringify(r));
 }
 
+// on the live site, /s/<spell id> is a link with a preview card for other apps
+if (!/localhost|127\.0\.0\.1/.test(BASE)) {
+  const html = await page.evaluate(async () => (await fetch('/s/forces-3')).text());
+  check('spell link preview card', /og:title" content="Forces 3:/.test(html) && /url=\/#\/library\/forces-3/.test(html));
+}
+
 // service worker + manifest
 const swReady = await page.evaluate(async () => {
   const reg = await navigator.serviceWorker?.ready;

@@ -7,6 +7,8 @@ const PATHS = {
   lock: 'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z',
   unlock: 'M7 11V8a5 5 0 0 1 9.6-2M5 11h14v10H5z',
   star: 'M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z',
+  share: 'M12 15V3.5M7.5 8L12 3.5 16.5 8M5 12.5V20h14v-7.5',
+  check: 'M5 12.5l4.5 4.5L19 7.5',
 } as const;
 
 export function Icon({ name, size = 18, filled = false }: { name: keyof typeof PATHS; size?: number; filled?: boolean }) {

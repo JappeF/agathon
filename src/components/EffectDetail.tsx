@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDialog } from './useDialog';
+import { ShareButton } from './ShareButton';
+import { librarySpellUrl } from '../share';
 import type { Character } from '../character';
 import { BOOK_NAMES, type Combo, type Effect } from '../library/data';
 import { deficit, difficulties } from '../library/search';
@@ -102,6 +104,7 @@ export function EffectDetail({
             <Icon name="back" /> Library
           </button>
           <span className="detail-top-end">
+            <ShareButton url={() => librarySpellUrl(effect.id)} title={effect.name} label="Share a link to this spell" />
             {character && onPin && (
               <button
                 type="button"

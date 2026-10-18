@@ -391,6 +391,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 
 /* ---------- sheet header ---------- */
 .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 0.6rem; }
+.dossier-actions { display: inline-flex; align-items: center; gap: 0.4rem; }
+.shared-spell-goal { font-family: var(--font-flavor); font-style: italic; font-size: 1.05rem; white-space: pre-wrap; max-height: 9lh; overflow: auto; }
 .back {
   display: inline-flex;
   align-items: center;
@@ -1709,6 +1711,36 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .card-pin:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
 /* the favorite star in the effect detail sits in the top bar, not over a card */
 .card-pin.detail-fav { position: static; width: 40px; height: 40px; }
+/* share a link (spell detail, spell idea): an icon that turns into a tick and "Link copied" */
+.share-btn {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--ink-faint);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.share-btn:hover { color: var(--gold); }
+.share-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.share-btn.done { color: var(--gold-hot); }
+.share-done {
+  position: absolute;
+  top: calc(100% + 2px);
+  right: 0;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: var(--gold-hot);
+  background: var(--bg-raised);
+  border: 1px solid var(--gold-deep);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  pointer-events: none;
+}
 
 /* ---------- file pickers: a label around a real (visually hidden) file input ---------- */
 .file-pick { position: relative; display: inline-flex; align-items: center; justify-content: center; }

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Portal } from './components/Portal';
 import { SharedImport } from './components/SharedImport';
-import { decodeShare, ShareFormatError, type SharePayload } from './share';
+import { decodeShare, decodeSpellShare, ShareFormatError, type SharePayload, type SpellSharePayload } from './share';
+import { SharedSpellImport } from './components/SharedSpellImport';
 import { CharactersView } from './components/CharactersView';
 import { CharacterMenu, openCharacterMenu } from './components/CharacterMenu';
 import { PortalPortrait } from './components/PortalPortrait';
@@ -36,10 +37,21 @@ export default function App() {
   const { view, parts } = useHashRoute();
   const { characters, active } = useActiveCharacter();
   const [shared, setShared] = useState<{ payload: SharePayload | null; error?: string } | null>(null);
+  const [sharedSpell, setSharedSpell] = useState<{ payload: SpellSharePayload | null; error?: string } | null>(null);
 
   // #import=<payload> share links open the import preview, then leave the URL clean
   useEffect(() => {
     const check = () => {
+      // a shared spell idea (from /i/<data>, whose preview page sends people here)
+      if (location.hash.startsWith('#import-spell=')) {
+        const encoded = location.hash.slice('#import-spell='.length);
+        history.replaceState(null, '', '/#/spells');
+        window.dispatchEvent(new HashChangeEvent('hashchange'));
+        decodeSpellShare(encoded)
+          .then((payload) => setSharedSpell({ payload }))
+          .catch((e) => setSharedSpell({ payload: null, error: e instanceof ShareFormatError ? e.message : 'This link is invalid or damaged.' }));
+        return;
+      }
       if (!location.hash.startsWith('#import=')) return;
       const encoded = location.hash.slice('#import='.length);
       history.replaceState(null, '', location.pathname + location.search + '#/characters');
@@ -121,6 +133,7 @@ export default function App() {
           (parts[0] ? <CharacterSheet key={parts[0]} id={parts[0]} tab={parts[1]} /> : <CharactersView characters={characters} active={active} />)}
       </main>
       <CharacterMenu characters={characters} active={active} />
+      {sharedSpell && <SharedSpellImport payload={sharedSpell.payload} error={sharedSpell.error} onClose={() => setSharedSpell(null)} />}
       {shared && (
         <SharedImport
           payload={shared.payload}

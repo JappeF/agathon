@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useDraft } from '../useDraft';
+import { ShareButton } from './ShareButton';
+import { encodeSpellShare, spellIdeaUrl } from '../share';
 import { useActiveCharacter } from '../activeCharacter';
 import type { Character } from '../character';
 import { db, requestPersistence, saveSpell } from '../db/db';
@@ -157,9 +159,13 @@ function SpellDossier({ id }: { id: string }) {
         <a className="back" href="#/spells">
           <Icon name="back" /> Spell ideas
         </a>
-        <button type="button" className="btn btn-small" onClick={() => setConfirmDelete(true)}>
-          Delete idea
-        </button>
+        <span className="dossier-actions">
+          {/* the idea travels in the link; other apps show its title and goal (functions/i) */}
+          <ShareButton url={async () => spellIdeaUrl(await encodeSpellShare(s))} title={s.title || 'Spell idea'} label="Share this spell idea" />
+          <button type="button" className="btn btn-small" onClick={() => setConfirmDelete(true)}>
+            Delete idea
+          </button>
+        </span>
       </div>
 
       {/* a textarea so long titles wrap on phones; Enter just ends editing */}

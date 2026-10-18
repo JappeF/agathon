@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { execSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 
 // shown at the bottom of the character menu, so a phone can tell which build it runs
 const commit = (() => {
@@ -13,10 +14,25 @@ const commit = (() => {
 })();
 const builtAt = new Date().toISOString().slice(0, 16).replace('T', ' ');
 
+/**
+ * spell-index.json: id -> [name, summary] for the link previews of /s/<id>
+ * (functions/s/[id].js). Built from library/effects.json; not precached (the app has
+ * the full library already).
+ */
+const spellIndex = () => ({
+  name: 'spell-index',
+  generateBundle(this: { emitFile: (f: { type: 'asset'; fileName: string; source: string }) => void }) {
+    const effects: { id: string; name: string; summary: string }[] = JSON.parse(readFileSync('library/effects.json', 'utf8'));
+    const index = Object.fromEntries(effects.map((e) => [e.id, [e.name, e.summary]]));
+    this.emitFile({ type: 'asset', fileName: 'spell-index.json', source: JSON.stringify(index) });
+  },
+});
+
 export default defineConfig({
   define: { __APP_VERSION__: JSON.stringify(`${commit}, built ${builtAt} UTC`) },
   plugins: [
     react(),
+    spellIndex(),
     VitePWA({
       // prompt: the app shows a reload toast (UpdateToast) instead of swapping mid-scene
       registerType: 'prompt',
@@ -25,6 +41,7 @@ export default defineConfig({
         // precache the app shell and every data file so everything works offline
         globPatterns: ['**/*.{js,mjs,css,html,svg,png,woff2,json}'],
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
+        globIgnores: ['spell-index.json'],
       },
       manifest: {
         name: 'Agathon',

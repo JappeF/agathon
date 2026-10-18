@@ -107,6 +107,30 @@ check('prompt copied', (await page.evaluate(() => navigator.clipboard.readText()
 check('size shown', /about \d+ words/.test(await page.textContent('.pack-preview summary')));
 await page.click('.modal button:has-text("Close")');
 
+// share the idea: the link (/i/...) carries it, other apps show its title and goal, and
+// a second device adds a copy. vite preview has no Pages Functions, so locally the test
+// opens the app link that the preview page forwards to.
+const ideaTitle = await page.inputValue('.dossier-title');
+await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: BASE });
+await page.click('.dossier .share-btn');
+await page.waitForTimeout(300);
+const ideaLink = await page.evaluate(() => navigator.clipboard.readText());
+check('spell idea share link', ideaLink.startsWith(`${BASE}/i/1.`), ideaLink.slice(0, 60));
+const live = !/localhost|127\.0\.0\.1/.test(BASE);
+if (live) {
+  const html = await (await fetch(ideaLink)).text();
+  check('spell idea link preview', html.includes(`og:title" content="Spell idea: ${ideaTitle}`), (html.match(/og:title" content="([^"]*)"/) || [])[1]);
+}
+const other = await browser.newContext({ viewport: { width: 390, height: 844 } });
+const op = await other.newPage();
+await op.goto(live ? ideaLink : `${BASE}/#import-spell=${ideaLink.split('/i/')[1]}`);
+await op.waitForSelector('.modal');
+await op.fill('.modal input', 'Second Device');
+await op.click('.modal button:has-text("Add spell idea")');
+await op.waitForSelector('.dossier-title');
+check('shared idea arrives on another device', (await op.inputValue('.dossier-title')) === ideaTitle, await op.inputValue('.dossier-title'));
+await other.close();
+
 // Paste the answer: the JSON block becomes a version, junk is filtered out
 await page.click('button:has-text("Paste the answer")');
 check('paste box has focus, ready for Ctrl+V', await page.evaluate(() => document.activeElement?.classList.contains('paste-area')));

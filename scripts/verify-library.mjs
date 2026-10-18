@@ -108,6 +108,13 @@ await page.click('.effect-card >> nth=0');
 await page.waitForSelector('.detail');
 check('detail tags are plain chips, not a pill around them', await page.$eval('.detail-tags', (n) => getComputedStyle(n).borderStyle === 'none'));
 check('detail route', /^#\/library\/[a-z0-9-]+$/.test(new URL(page.url()).hash), new URL(page.url()).hash);
+// the share button next to the star copies a link with a preview card (/s/<id>)
+await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: BASE });
+await page.click('.detail .share-btn');
+await page.waitForTimeout(300);
+const spellLink = await page.evaluate(() => navigator.clipboard.readText());
+check('spell share link', spellLink === `${BASE}/s/${new URL(page.url()).hash.split('/')[2]}`, spellLink);
+check('"Link copied" shows', (await page.textContent('.share-done').catch(() => '')) === 'Link copied');
 check('difficulty shown', /Coincidental\s*\d/.test(await page.textContent('.difficulty')));
 check('checklist shown', (await page.$$('.tips li')).length >= 5);
 await page.waitForTimeout(400); // let the fade-in finish

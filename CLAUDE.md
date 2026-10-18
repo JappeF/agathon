@@ -44,7 +44,8 @@ Library data: edit `library/src/*.json`, then `node library/scripts/build.mjs` a
 - `src/sheets/mrgone.ts` + `mrgone-m20-2page*.json`: PDF read/write; `src/sheetActions.ts`: import diff, export, blank sheet, portrait in the PDF; `functions/blank-sheet.js`: the Pages Function that passes Mr. Gone's blank sheet on.
 - `src/library/`: `data.ts` (lazy effects.json), `search.ts` (query parser, `deficit`, `difficulties`); `LibraryView.tsx`, `EffectDetail.tsx`.
 - `src/spells.ts`, `SpellsView.tsx`, `spellActions.ts`: spell ideas; `src/contextPack.ts`: Copy for AI and `parseReply`; `src/books.ts`, `BooksPanel.tsx`: own rulebooks as page text.
-- `src/share.ts` (wire format, `sanitizeCharacter`), `SharedImport.tsx`, `ImportFlow.tsx` (PDF vs character file by content).
+- `src/share.ts` (wire format for characters and spell ideas, `sanitizeCharacter`, `parseSpellPayload`), `SharedImport.tsx`, `SharedSpellImport.tsx`, `ImportFlow.tsx` (PDF vs character file by content), `ShareButton.tsx` (share sheet on phones, copy link elsewhere).
+- Link previews: `functions/s/[id].js` (`/s/<spell id>`, name and summary from `spell-index.json`, which vite.config.ts emits at build) and `functions/i/[data].js` (`/i/<data>`, a spell idea carried in the link; reads only title and goal, stores nothing), both through `server/preview.js`, then on into the app (`#/library/<id>`, `#import-spell=`).
 - `src/sheetLists.ts` (M20 pick lists with own hints), `TraitPicker.tsx`, `Fields.tsx`, `src/focus.ts` (Focus lines), `src/favorites.ts` (favorite spells = rotes).
 - `src/portrait.ts`, `PortalPortrait.tsx`, `useThumbnail.ts`; `Portal.tsx` (header portal, `Sparks`).
 - `Modal.tsx` + `useDialog.ts`, `ErrorBoundary.tsx`, `UpdateToast.tsx` (outside App), `FilePick.tsx`, `src/styles.css` (one stylesheet, tokens on `:root`).
@@ -61,6 +62,7 @@ Library data: edit `library/src/*.json`, then `node library/scripts/build.mjs` a
 - Two versions exist, each with a generated map; `mapFor` picks by the `skillsex1` field. v2 has editable drop-downs where v1 has text fields, own-Ability rows (imported as Other Traits), shifted Spheres. A box a version lacks is skipped, never fatal.
 - Save with `updateFieldAppearances: false`: his boxes only have an "on" look and pdf-lib would redraw every box as a check mark. Text and drop-downs are redrawn by hand in Times Bold, auto size capped at 12pt.
 - Drop `/Perms` (Reader extensions): a rewritten Reader-extended file makes Acrobat Reader switch the form off.
+- Pages Functions don't run under `vite preview`: the checks use the app links the preview pages forward to locally, and test the functions themselves only against the live site (or run `wrangler pages dev`).
 - We don't ship the blank sheet (his work, publisher's logo, no terms) and his server has no CORS: `/blank-sheet` fetches his current file (one fixed URL, no open proxy); offline the export asks for it with a download link.
 
 **Layout**

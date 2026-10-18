@@ -1,6 +1,7 @@
 import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, clampWheel, HEALTH_LEVELS, newCharacter, type Character, type HealthMark, type Rated } from './character';
 import { SPHERES, type Sphere } from './types';
 import { safePortrait } from './portrait';
+import type { Spell, SpellVersion } from './spells';
 
 /**
  * Versioned wire format for moving characters between devices and players: a JSON
@@ -160,7 +161,7 @@ async function pipe(bytes: Uint8Array, stream: CompressionStream | Decompression
 }
 
 /** Drop empty and default values so links and QR codes stay small; sanitize restores them. */
-function compact(p: SharePayload): unknown {
+function compact(p: unknown): unknown {
   return JSON.parse(
     JSON.stringify(p, (_k, v) => {
       if (v === '' || v === undefined) return undefined;
@@ -170,23 +171,27 @@ function compact(p: SharePayload): unknown {
   );
 }
 
-export async function encodeShare(p: SharePayload): Promise<string> {
-  const json = new TextEncoder().encode(JSON.stringify(compact(p)));
+/** <mode>.<base64url>: mode 1 is deflate-raw, 0 plain (browsers without CompressionStream). */
+async function encodeJson(value: unknown): Promise<string> {
+  const json = new TextEncoder().encode(JSON.stringify(compact(value)));
   if (typeof CompressionStream !== 'undefined') return '1.' + b64uEncode(await pipe(json, new CompressionStream('deflate-raw')));
   return '0.' + b64uEncode(json);
 }
 
-export async function decodeShare(encoded: string): Promise<SharePayload> {
+async function decodeJson<T>(encoded: string, parse: (raw: unknown) => T): Promise<T> {
   try {
     const dot = encoded.indexOf('.');
     const bytes = b64uDecode(encoded.slice(dot + 1));
     const json = encoded.slice(0, dot) === '1' ? await pipe(bytes, new DecompressionStream('deflate-raw')) : bytes;
-    return parsePayload(JSON.parse(new TextDecoder().decode(json)));
+    return parse(JSON.parse(new TextDecoder().decode(json)));
   } catch (e) {
     if (e instanceof ShareFormatError) throw e;
     throw new ShareFormatError('This share link is invalid or damaged.');
   }
 }
+
+export const encodeShare = (p: SharePayload) => encodeJson(p);
+export const decodeShare = (encoded: string) => decodeJson(encoded, parsePayload);
 
 export const shareUrl = (encoded: string) => `${location.origin}${location.pathname}#import=${encoded}`;
 
@@ -194,3 +199,72 @@ export function payloadFileName(p: SharePayload) {
   const who = p.characters.length === 1 ? p.characters[0].name.replace(/[\\/:*?"<>|]+/g, '').trim() || 'character' : 'characters';
   return `${who}.agathon.json`;
 }
+
+// ---------- spell ideas: /i/<mode>.<data> (a link with a preview card) -> #import-spell=<mode>.<data> ----------
+
+/** What a shared spell idea carries: the idea and its plans. Never the log, ids or the AI's full answers. */
+export interface SharedSpell {
+  title: string;
+  goal: string;
+  effects: string[];
+  versions: Pick<SpellVersion, 'spheres' | 'how' | 'coincidental' | 'notes' | 'source'>[];
+}
+
+export interface SpellSharePayload {
+  app: 'agathon';
+  kind: 'spell';
+  version: 1;
+  spell: SharedSpell;
+}
+
+export function buildSpellPayload(s: Spell): SpellSharePayload {
+  return {
+    app: 'agathon',
+    kind: 'spell',
+    version: 1,
+    spell: {
+      title: s.title,
+      goal: s.goal,
+      effects: s.effects,
+      versions: s.versions.map(({ spheres, how, coincidental, notes, source }) => ({ spheres, how, coincidental, notes, source })),
+    },
+  };
+}
+
+/** Rebuild a shared spell idea from untrusted JSON: known fields only, Spheres 1-5, library ids only. */
+export function parseSpellPayload(raw: unknown): SpellSharePayload {
+  const p = obj(raw);
+  if (p.app !== 'agathon' || p.kind !== 'spell') throw new ShareFormatError("This isn't an Agathon spell idea.");
+  if (typeof p.version !== 'number' || p.version > 1) {
+    throw new ShareFormatError('This link comes from a newer version of Agathon. Reload the app and try again.');
+  }
+  const s = obj(p.spell);
+  const versions = arr(s.versions, 30).map((v) => {
+    const o = obj(v);
+    const given = obj(o.spheres);
+    const spheres: SharedSpell['versions'][number]['spheres'] = {};
+    for (const sp of SPHERES) {
+      const r = int(given[sp], 0, 5);
+      if (r) spheres[sp] = r;
+    }
+    return { spheres, how: str(o.how), coincidental: str(o.coincidental), notes: str(o.notes), source: o.source === 'ai' ? ('ai' as const) : ('me' as const) };
+  });
+  return {
+    app: 'agathon',
+    kind: 'spell',
+    version: 1,
+    spell: {
+      title: str(s.title, 200).trim() || 'Untitled spell idea',
+      goal: str(s.goal),
+      effects: arr(s.effects).filter((e): e is string => typeof e === 'string' && /^[a-z0-9-]{1,120}$/.test(e)),
+      versions: versions.length ? versions : [{ spheres: {}, how: '', coincidental: '', notes: '', source: 'me' }],
+    },
+  };
+}
+
+export const encodeSpellShare = (s: Spell) => encodeJson(buildSpellPayload(s));
+export const decodeSpellShare = (encoded: string) => decodeJson(encoded, parseSpellPayload);
+
+/** Links that other apps show with a preview card (the functions under functions/s and functions/i). */
+export const spellIdeaUrl = (encoded: string) => `${location.origin}/i/${encoded}`;
+export const librarySpellUrl = (id: string) => `${location.origin}/s/${encodeURIComponent(id)}`;
