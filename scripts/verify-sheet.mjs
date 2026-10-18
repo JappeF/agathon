@@ -92,9 +92,9 @@ check('XP: digits only, editable while playing', (await page.inputValue('.xp inp
 check('XP left the Background tab', !(await page.isVisible('.field:has-text("Experience")')));
 await page.mouse.wheel(0, 900);
 await page.waitForSelector('.vitals-fixed');
-check('mini bar while scrolled', (await page.$('.vitals-fixed .mini-face img')) !== null);
+check('mini bar while scrolled', (await page.$('.vitals-fixed .pp-face img')) !== null);
 // small faces get their own small picture: a 640px one squeezed into 32px looked grainy on phones
-const miniWidth = await page.waitForFunction(() => { const w = document.querySelector('.vitals-fixed .mini-face img')?.naturalWidth ?? 0; return w > 0 && w <= 128 && w; }, null, { timeout: 5000 }).then((h) => h.jsonValue()).catch(() => 0);
+const miniWidth = await page.waitForFunction(() => { const w = document.querySelector('.vitals-fixed .pp-face img')?.naturalWidth ?? 0; return w > 0 && w <= 128 && w; }, null, { timeout: 5000 }).then((h) => h.jsonValue()).catch(() => 0);
 check('mini bar face is a small sharp copy', miniWidth > 0, `${miniWidth}px`);
 await page.mouse.wheel(0, -2000);
 await page.waitForSelector('.vitals-fixed', { state: 'detached' });

@@ -7,7 +7,6 @@ import { SheetFormatError } from '../sheets/mrgone';
 import { SPHERES, type Sphere } from '../types';
 import { go } from '../useHashRoute';
 import { useDraft } from '../useDraft';
-import { useThumbnail } from './useThumbnail';
 import { Dots } from './Dots';
 import { Field, LineList, LongText, PickField, RatedList } from './Fields';
 import { ImportFlow } from './ImportFlow';
@@ -158,8 +157,6 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const menuRef = useRef<HTMLDetailsElement>(null);
   // library effects: pinned ones on the Magick tab, rotes whose name is in the library
   const effects = useEffects();
-  // the mini bar's 32px face: a copy shrunk in steps, sharp on phones (see useThumbnail)
-  const miniFace = useThumbnail(c?.portrait, 32);
   const [openEffect, setOpenEffect] = useState<string | null>(null);
   const spellIdeas = useLiveQuery(() => db.spells.where('characterId').equals(id).toArray(), [id]);
   const byId = useMemo(() => new Map((effects ?? []).map((e) => [e.id, e])), [effects]);
@@ -357,9 +354,9 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       {heroGone && (
         <div className="vitals-fixed">
           <div className="vitals-fixed-inner">
-            <span className="mini-face" aria-hidden="true">
-              {miniFace ? <img src={miniFace} alt="" /> : c.name.slice(0, 1)}
-            </span>
+            {/* the same small portal as in the nav: a plain round clip inside this fixed,
+                blurred bar lost its anti-aliasing in the desktop app (jagged edges) */}
+            <PortalPortrait src={c.portrait} name={c.name} size={38} />
             {pills(miniOpen, () => setMiniOpen(!miniOpen))}
           </div>
           {miniOpen && panel}
