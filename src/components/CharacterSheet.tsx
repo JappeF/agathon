@@ -20,7 +20,9 @@ import { Icon } from './Icon';
 import { setActiveCharacter } from '../activeCharacter';
 import { openCharacterMenu } from './CharacterMenu';
 import { FilePick } from './FilePick';
-import { AFFILIATIONS, ARCHETYPES, BACKGROUNDS, CONCEPTS, ESSENCES, FLAWS, MERITS, SECTS, SPECIALTIES, affiliationOf } from '../sheetLists';
+import { AFFILIATIONS, ARCHETYPES, BACKGROUNDS, CONCEPTS, ESSENCES, FLAWS, INSTRUMENTS, MERITS, PARADIGMS, PRACTICES, SECTS, SPECIALTIES, affiliationOf } from '../sheetLists';
+import { focusPart, instrumentsOf, setFocusPart, toggleInstrument, type FocusPart } from '../focus';
+import { TraitPicker } from './TraitPicker';
 import { useEffects, type Effect } from '../library/data';
 import { deficit } from '../library/search';
 import { ComboChips } from './ComboChips';
@@ -69,6 +71,8 @@ function useCharacter(id: string) {
   const { draft: c, patch, replace } = useDraft(id, (i) => db.characters.get(i), saveCharacter);
   return { c, patch, replace };
 }
+
+const FOCUS_PICKS = { Paradigm: PARADIGMS, Practice: PRACTICES, Instruments: INSTRUMENTS };
 
 function TraitRow({
   name,
@@ -158,6 +162,8 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   // library effects: pinned ones on the Magick tab, rotes whose name is in the library
   const effects = useEffects();
   const [openEffect, setOpenEffect] = useState<string | null>(null);
+  // the Focus picker that is open, if any (Paradigm, Practice, Instruments)
+  const [focusPick, setFocusPick] = useState<FocusPart | null>(null);
   const spellIdeas = useLiveQuery(() => db.spells.where('characterId').equals(id).toArray(), [id]);
   const byId = useMemo(() => new Map((effects ?? []).map((e) => [e.id, e])), [effects]);
   const tab: Tab = (TABS.some((t) => t.id === tabParam) ? tabParam : 'magick') as Tab;
@@ -493,6 +499,34 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               placeholder="Paradigm, practice or instruments"
               empty="No paradigm, practice or instruments yet."
             />
+            {edit && (
+              <div className="focus-picks">
+                {(['Paradigm', 'Practice', 'Instruments'] as FocusPart[]).map((part) => (
+                  <button key={part} type="button" className="btn btn-small" onClick={() => setFocusPick(part)}>
+                    {part} <Icon name="down" size={14} />
+                  </button>
+                ))}
+              </div>
+            )}
+            {focusPick && (
+              <TraitPicker
+                title={focusPick === 'Instruments' ? 'Add or remove instruments' : `Choose a ${focusPick.toLowerCase()}`}
+                picks={FOCUS_PICKS[focusPick]}
+                taken={focusPick === 'Instruments' ? instrumentsOf(c.focus) : [focusPart(c.focus, focusPick)]}
+                technocrat={false}
+                dots={false}
+                mode="set"
+                onPick={(name) => {
+                  if (!name) return;
+                  if (focusPick === 'Instruments') patch({ focus: toggleInstrument(c.focus, name) });
+                  else {
+                    patch({ focus: setFocusPart(c.focus, focusPick, name) });
+                    setFocusPick(null);
+                  }
+                }}
+                onClose={() => setFocusPick(null)}
+              />
+            )}
           </div>
           <div className="block">
             {/* what M20 sheets call rotes: library favorites (starred) and the mage's own

@@ -1728,3 +1728,5 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .pick-field { display: flex; gap: 0.35rem; min-width: 0; }
 .pick-field .text-input { flex: 1; min-width: 0; }
 .pick-open { flex: none; min-height: 44px; width: 44px; padding: 0; justify-content: center; }
+/* Focus: pick a paradigm, practice or instruments into the free lines above */
+.focus-picks { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }

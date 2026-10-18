@@ -118,6 +118,27 @@ await page.click('button:has-text("Add background")');
 await page.fill('.picker-search', 'sanc');
 check('Technocratic names', (await page.textContent('.trait-pick-name')).startsWith('Laboratory'));
 await page.keyboard.press('Escape');
+// Focus: M20's paradigms, practices and instruments fill tidy lines, free text stays possible
+await page.click('.tab:has-text("Magick")');
+const focusBlock = '.block:has(.block-title:text-is("Focus"))';
+const pickIn = async (part, name) => {
+  await page.click(`${focusBlock} button:has-text("${part}")`);
+  await page.click(`.trait-pick:has(.trait-pick-name:text-is("${name}"))`);
+};
+await pickIn('Paradigm', 'Everything is Data');
+await pickIn('Practice', 'Reality Hacking');
+await pickIn('Paradigm', 'Tech Holds All Answers');
+await page.click(`${focusBlock} button:has-text("Instruments")`);
+for (const n of ['Computers and IT Gear', 'Thought Forms', 'Computers and IT Gear']) await page.click(`.trait-pick:has(.trait-pick-name:text-is("${n}"))`);
+await page.fill('.picker-search', 'Lucky socks');
+await page.click('.trait-pick.own');
+await page.keyboard.press('Escape');
+const focusLines = await page.$$eval(`${focusBlock} input`, (is) => is.map((i) => i.value));
+check(
+  'Focus picks fill and update lines',
+  focusLines.join(' | ') === 'Paradigm: Tech Holds All Answers | Practice: Reality Hacking | Instruments: Thought Forms; Lucky socks',
+  focusLines.join(' | '),
+);
 // a narrow phone (320px) in edit mode: nothing may push the page wider than the screen
 await page.setViewportSize({ width: 320, height: 760 });
 for (const tab of ['Magick', 'Traits', 'Background', 'Notes']) {

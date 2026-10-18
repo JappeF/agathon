@@ -70,7 +70,8 @@ table; Agathon is the helper and sounding board.
   stays fillable in Acrobat Reader. Characters made in the app use Mr. Gone's free
   blank sheet: the first export links to it, and after that it is kept on the device.
 - **Pick lists**: Concept, Essence, Nature, Demeanor, Affiliation, Sect, Backgrounds,
-  Merits and Flaws come from searchable lists of what M20 defines, with a short hint,
+  Merits, Flaws and the Focus (paradigm, practice, instruments) come from searchable
+  lists of what M20 defines, with a short hint,
   the cost and the page; your own names work too. Specialties suggest M20's examples
   as you type.
 - **Portraits** in a small sparking portal, enlarged with a tap, replaceable in edit
