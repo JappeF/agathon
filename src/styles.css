@@ -449,7 +449,6 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .sheet-sub { color: var(--ink-dim); margin: 0.1rem 0 0.8rem; }
 
 /* ---------- vitals: a compact sticky summary that opens into the trackers ---------- */
-.vitals { position: sticky; top: 0; z-index: 30; margin: 0 -1rem 0.6rem; padding: 0 1rem; background: #120b1cf2; backdrop-filter: blur(8px); }
 .vitals-bar {
   all: unset;
   box-sizing: border-box;
@@ -928,7 +927,6 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .kind-badge.kind-rote { color: var(--violet-soft); border-color: #b794f655; }
 .effect-combos { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.4rem; }
 .effect-combo { display: inline-flex; align-items: center; gap: 0.4rem; }
-.combo-or { font-size: 0.75rem; color: var(--ink-faint); font-style: italic; }
 .effect-summary {
   color: var(--ink-dim);
   font-size: 0.9rem;
@@ -1085,10 +1083,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 
 .char-text { display: grid; gap: 0.15rem; min-width: 0; }
 
-.sheet-hero { display: flex; align-items: center; gap: 0.9rem; margin-top: 0.2rem; }
+.sheet-hero { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.2rem; }
 .sheet-title { flex: 1; min-width: 0; }
-.sheet-hero .sheet-sub { margin-bottom: 0; }
-.vitals { margin-top: 0.6rem; }
 .portrait-edit { display: grid; justify-items: center; gap: 0.1rem; flex: none; }
 .portrait-btn { all: unset; box-sizing: border-box; position: relative; display: grid; place-items: center; cursor: pointer; border-radius: 50%; }
 .portrait-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
@@ -1111,13 +1107,12 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .import-item-text { display: grid; min-width: 0; }
 
 /* sheet hero: big portrait, name and the status pills beside it */
-.sheet-hero { align-items: center; gap: 0.8rem; }
 .sheet-hero .sheet-name { font-size: clamp(1.35rem, 5.6vw, 2.1rem); }
 .sheet-hero .name-input { font-size: 1.15rem; }
 .sheet-title .vitals-bar { width: auto; min-height: 0; padding: 0.45rem 0 0; border-bottom: 0; gap: 0.3rem; }
 .sheet-title .vitals-toggle { margin-left: 0.1rem; }
 /* concept line plus the experience field, which is filled in right there */
-.sheet-hero .sheet-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.6rem; }
+.sheet-hero .sheet-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.6rem; margin-bottom: 0; }
 .sheet-sub > span:empty { display: none; }
 .xp {
   display: inline-flex;
@@ -1271,8 +1266,6 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   }
   .lib-side {
     position: sticky;
-    top: 66px;
-    max-height: calc(100dvh - 76px);
     overflow-y: auto;
     padding: 0.2rem 0.8rem 1.5rem 0;
     border-right: 1px solid var(--line);
@@ -1505,25 +1498,6 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 
 /* ---------- pinned effects ---------- */
 .detail-top-end { display: inline-flex; align-items: center; gap: 0.5rem; }
-.pin-btn {
-  all: unset;
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  min-height: 36px;
-  padding: 0 0.8rem;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--ink-dim);
-  border: 1px solid var(--line-solid);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-}
-.pin-btn:hover { color: var(--gold-hot); border-color: var(--gold-deep); }
-.pin-btn.on { color: var(--gold-hot); border-color: var(--gold-deep); background: #d9b45a1a; }
-.pin-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .effect-badges { flex: none; display: inline-flex; align-items: center; gap: 0.35rem; }
 .pinned-mark { display: grid; color: var(--gold); }
 .pin-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }

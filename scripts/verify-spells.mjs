@@ -113,6 +113,12 @@ check('paste box has focus, ready for Ctrl+V', await page.evaluate(() => documen
 await page.fill('.paste-area', 'Nice idea, but no plan block here.');
 await page.click('.modal button:has-text("Add as a new version")');
 check('no block: explains', /no plan block/.test(await page.textContent('.paste-error')));
+// a giant paste of stray braces is read in a moment, not frozen on
+const t0 = Date.now();
+await page.fill('.paste-area', '{'.repeat(300000));
+await page.click('.modal button:has-text("Add as a new version")');
+await page.waitForSelector('.paste-error');
+check('giant garbage paste answers quickly', Date.now() - t0 < 5000, `${Date.now() - t0} ms`);
 const answer = [
   'Use Forces 4 for a bigger blast, keep Prime 2.',
   '```json',

@@ -94,8 +94,13 @@ const [dl] = await Promise.all([page.waitForEvent('download'), page.click('.book
 const path = `shots/${dl.suggestedFilename()}`;
 await dl.saveAs(path);
 check('index file', dl.suggestedFilename() === 'agathon-books.json');
+// removing asks first (reading a book again takes minutes on a phone)
+await page.click('.book-row.on button:has-text("Remove") >> nth=0');
+await page.click('.modal button:has-text("Keep it")');
+check('Keep it keeps the book', (await page.locator('.book-row.on').count()) === 2);
 for (const n of [1, 0]) {
   await page.click('.book-row.on button:has-text("Remove") >> nth=0');
+  await page.click('.modal .btn-danger');
   await page.waitForFunction((k) => document.querySelectorAll('.book-row.on').length === k, n);
 }
 check('books removed', (await page.locator('.book-row.on').count()) === 0);

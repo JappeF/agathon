@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { newCharacter } from '../character';
-import { db, newId, requestPersistence, saveCharacter } from '../db/db';
+import { characterLine, newCharacter } from '../character';
+import { db, freeName, newId, requestPersistence, saveCharacter } from '../db/db';
 import type { SharePayload } from '../share';
 import { SPHERES } from '../types';
 import { Modal } from './Modal';
@@ -46,9 +46,7 @@ export function SharedImport({
       await db.transaction('rw', db.characters, async () => {
         const taken = new Set((await db.characters.toArray()).map((c) => c.name.toLowerCase()));
         for (const shared of payload.characters) {
-          let name = shared.name;
-          for (let n = 2; taken.has(name.toLowerCase()); n++) name = `${shared.name} (${n})`;
-          taken.add(name.toLowerCase());
+          const name = freeName(taken, shared.name, (n) => `${shared.name} (${n})`);
           const c = { ...newCharacter(newId(), name), ...shared, name };
           await saveCharacter(c);
           first ||= c.id;
@@ -73,8 +71,8 @@ export function SharedImport({
             <span className="import-item-text">
             <strong>{c.name}</strong>
             <span className="empty-small">
-              {[c.concept, c.sect || c.affiliation].filter(Boolean).join(', ')}
-              {c.concept || c.affiliation ? '. ' : ''}
+              {characterLine(c)}
+              {characterLine(c) ? '. ' : ''}
               Arete {c.arete}
               {SPHERES.filter((s) => c.spheres[s]).map((s) => `, ${s} ${c.spheres[s]}`).join('')}
             </span>

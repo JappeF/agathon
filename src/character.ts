@@ -31,6 +31,10 @@ export const HEALTH_LEVELS = [
   { name: 'Incapacitated', penalty: null },
 ] as const;
 
+/** A character in one line: concept, sect (else affiliation), essence. Used wherever one is summed up. */
+export const characterLine = (c: Pick<Character, 'concept' | 'sect' | 'affiliation' | 'essence'>) =>
+  [c.concept, c.sect || c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ');
+
 /** The worst marked health level (index into HEALTH_LEVELS), or -1 when unhurt. */
 export function woundLevel(c: Pick<Character, 'health'>): number {
   let worst = -1;

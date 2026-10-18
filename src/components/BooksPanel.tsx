@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FilePick } from './FilePick';
+import { Modal } from './Modal';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { BookError, BOOKS, exportBooks, importBooksFile, readBook, type BookId } from '../books';
 import { db, requestPersistence } from '../db/db';
@@ -15,6 +16,8 @@ export function BooksPanel() {
   const books = useLiveQuery(() => db.books.toArray(), []);
   const [busy, setBusy] = useState<{ done: number; total: number } | null>(null);
   const [message, setMessage] = useState('');
+  // reading a book again takes minutes on a phone, so removing one asks first
+  const [removing, setRemoving] = useState<BookId | null>(null);
 
   const addPdf = async (f?: File) => {
     if (!f) return;
@@ -58,7 +61,7 @@ export function BooksPanel() {
               {b ? (
                 <span className="book-state">
                   {b.pages.length} pages, added {when(b.importedAt)}
-                  <button type="button" className="link-btn" onClick={() => db.books.delete(id)}>
+                  <button type="button" className="link-btn" onClick={() => setRemoving(id)}>
                     Remove
                   </button>
                 </span>
@@ -91,6 +94,25 @@ export function BooksPanel() {
       )}
       {message && <p className="book-message">{message}</p>}
       <p className="fine-print">Reading a whole book takes a while on a phone: add it on a computer, save it as a file and load that on your phone.</p>
+      {removing && (
+        <Modal title={`Remove ${BOOKS[removing].short}?`} onClose={() => setRemoving(null)}>
+          <p>Its text goes from this device. To use it again you add the PDF again, which takes a few minutes on a phone.</p>
+          <div className="modal-actions">
+            <button className="btn" onClick={() => setRemoving(null)}>
+              Keep it
+            </button>
+            <button
+              className="btn btn-danger"
+              onClick={async () => {
+                await db.books.delete(removing);
+                setRemoving(null);
+              }}
+            >
+              Remove
+            </button>
+          </div>
+        </Modal>
+      )}
     </section>
   );
 }

@@ -163,7 +163,10 @@ ideas (issue #22). Later op 18 okt: *Copy character* in het menu van de sheet, e
 health-pil die van groen via geel naar rood loopt, een mini-balk die ook op een Z Flip
 op een regel past, en de PDF-export opgepoetst: de lege sheet van Mr. Gone via een
 downloadlink (een keer per apparaat), exports blijven invulbaar in Acrobat Reader, en
-het portret uit de app gaat mee de PDF in.
+het portret uit de app gaat mee de PDF in. Daarna: de animaties via de compositor (een stilstaande
+pagina van 8-13% naar ongeveer 1% CPU), en een frontend- en softwarereview, afgewerkt in
+drie batches: data en robuustheid, toegankelijkheid, en opruimen (met checks voor elk
+gevonden probleem).
 
 ## Bouwvolgorde (voorstel)
 

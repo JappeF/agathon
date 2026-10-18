@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { Character } from '../character';
-import { newCharacter } from '../character';
+import { characterLine, newCharacter } from '../character';
 import { newId, requestPersistence, saveCharacter } from '../db/db';
 import { setActiveCharacter } from '../activeCharacter';
 import { SPHERES } from '../types';
@@ -58,7 +58,7 @@ export function CharacterTools({ onPick, onBackup }: { onPick?: () => void; onBa
         <ImportFlow label="Import" onDone={open} />
         {onBackup && (
           <button type="button" className="btn" onClick={onBackup}>
-            Back up all
+            Back up all characters
           </button>
         )}
       </div>
@@ -177,7 +177,7 @@ export function CharacterMenu({ characters, active }: { characters?: Character[]
                     <PortalPortrait src={c.portrait} name={c.name} size={48} />
                     <span className="char-text">
                       <span className="char-name">{c.name}</span>
-                      <span className="char-sub">{[c.concept, c.sect || c.affiliation].filter(Boolean).join(', ') || 'Mage'}</span>
+                      <span className="char-sub">{characterLine(c) || 'Mage'}</span>
                       <span className="char-stats">
                         <span className="char-arete">Arete {c.arete}</span>
                         {spheres.map((s) => (

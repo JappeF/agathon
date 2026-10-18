@@ -159,14 +159,23 @@ export function buildPack(s: Spell, c: Character, effects: Effect[], o: PackOpti
 export class ReplyError extends Error {}
 
 /** Every outermost {...} in the text with balanced braces (braces inside strings don't count), last first. */
+// A JSON object starts with a quoted key (straight or curly) or is empty; a plan block
+// is a few KB. Scanning only from such starts, and only so far, keeps a paste of stray
+// braces from freezing the tab: from every "{" to the end of the text was quadratic.
+const OBJECT_START = /\{\s*["“}]/y;
+const MAX_BLOCK = 20_000;
+
 function jsonObjects(text: string): string[] {
   const out: string[] = [];
   for (let i = 0; i < text.length; i++) {
     if (text[i] !== '{') continue;
+    OBJECT_START.lastIndex = i;
+    if (!OBJECT_START.test(text)) continue;
     let depth = 0;
     let inString = false;
     let escaped = false;
-    for (let j = i; j < text.length; j++) {
+    const end = Math.min(text.length, i + MAX_BLOCK);
+    for (let j = i; j < end; j++) {
       const ch = text[j];
       if (inString) {
         if (escaped) escaped = false;

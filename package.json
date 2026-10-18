@@ -2,7 +2,7 @@
   "name": "agathon",
   "private": true,
   "version": "0.2.0",
-  "description": "Offline PWA companion for Mage: The Ascension 20th Anniversary: magick effect library, character sheets with PDF import and export, sharing.",
+  "description": "Offline PWA companion for Mage: The Ascension 20th Anniversary: a spell library, character sheets with PDF import and export, spell ideas, sharing.",
   "license": "MIT",
   "homepage": "https://agathon.pages.dev",
   "type": "module",

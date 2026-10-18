@@ -102,6 +102,46 @@ await b.waitForSelector(`.sheet-name:text-is("${name} (3)")`, { timeout: 8000 })
 check('file import', (await b.textContent('.sheet-name')) === `${name} (3)`);
 check('portrait through the file', (await b.$('.sheet-hero .pp-face img')) !== null);
 
+// a hostile share: out-of-range numbers, unknown Spheres and keys, an SVG portrait. It
+// may come in, but only as a clean character
+const hostile = {
+  app: 'agathon',
+  kind: 'characters',
+  version: 1,
+  characters: [
+    {
+      name: 'Hostile Mage',
+      arete: 99,
+      willpower: 1e9,
+      spheres: { Forces: 42, Bogus: 3 },
+      traits: { Strength: -5 },
+      portrait: 'data:image/svg+xml;base64,PHN2ZyBvbmxvYWQ9ImFsZXJ0KDEpIi8+',
+      constructor: { prototype: { polluted: true } },
+      extra: 'x'.repeat(1000),
+    },
+  ],
+};
+await b.goto(`${BASE}/#import=0.${Buffer.from(JSON.stringify(hostile)).toString('base64url')}`, { waitUntil: 'networkidle' });
+await b.waitForSelector('.modal');
+await b.click('.modal button:has-text("Add character")');
+await b.waitForSelector('.sheet-name:text-is("Hostile Mage")');
+check('hostile share: Arete clamped', /Arete\s*10$/.test((await b.textContent('.arete-row')).trim()), await b.textContent('.arete-row'));
+check('hostile share: Spheres clamped', Number(await b.textContent('.sphere-row:has-text("Forces") .trait-num')) === 5);
+check('hostile share: no unknown Sphere', (await b.locator('.sphere-row:has-text("Bogus")').count()) === 0);
+check('hostile share: SVG portrait dropped', (await b.$('.sheet-hero .pp-face img')) === null);
+check('hostile share: nothing polluted', await b.evaluate(() => ({}).polluted === undefined));
+await b.click('.menu summary');
+await b.click('button:has-text("Delete character")');
+await b.click('.modal .btn-danger');
+await b.waitForSelector('.sheet-name:not(:text-is("Hostile Mage"))');
+
+// a file from a newer app version says so
+const newer = { ...hostile, version: 2 };
+await b.goto(`${BASE}/#import=0.${Buffer.from(JSON.stringify(newer)).toString('base64url')}`, { waitUntil: 'networkidle' });
+await b.waitForSelector('.modal');
+check('newer version explains itself', /newer version/.test(await b.textContent('.modal')));
+await b.click('.modal button:has-text("OK")');
+
 // a damaged link explains itself
 await b.goto(`${BASE}/#import=1.bm90IGEgcmVhbCBsaW5r`, { waitUntil: 'networkidle' });
 await b.waitForSelector('.modal');

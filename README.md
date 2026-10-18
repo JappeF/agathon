@@ -140,12 +140,12 @@ Checks and screenshots (headless system Edge via playwright-core; start
 `npm run preview` first, or set `BASE=https://agathon.pages.dev`):
 
 ```sh
-node scripts/verify.mjs           # shell, navigation, IndexedDB, character switcher, pick lists, Android pickers, 320px edit mode, offline
+node scripts/verify.mjs           # shell, navigation, IndexedDB, character switcher, pick lists, Android pickers, 320px edit mode, broken links, idle CPU, offline
 node scripts/verify-sheet.mjs     # PDF import via the UI, portrait, trackers, edit mode, XP, favorites, export round trip, copies, the blank sheet
-node scripts/verify-share.mjs     # link, QR and file, a second device, name clashes, damaged links
+node scripts/verify-share.mjs     # link, QR and file, a second device, name clashes, damaged, hostile and oversized links
 node scripts/verify-library.mjs   # Sphere search, operators, tags, detail, castable, favorites, a layout that stays put
-node scripts/verify-spells.mjs    # spell ideas: from a spell or by name, versions, links, the log, Copy for AI, pasting answers
-node scripts/verify-books.mjs     # your own rulebooks in Copy for AI (needs the PDFs in refs/)
+node scripts/verify-spells.mjs    # spell ideas: from a spell or by name, versions, links, the log, Copy for AI, pasting answers (and garbage)
+node scripts/verify-books.mjs     # your own rulebooks in Copy for AI, removing asks first (needs the PDFs in refs/)
 node scripts/screenshots.mjs      # regenerate the screenshots in docs/ with a demo character
 ```
 

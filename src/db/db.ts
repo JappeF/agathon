@@ -76,6 +76,17 @@ export async function deleteCharacter(id: string) {
 }
 
 /**
+ * The first name not in `taken` (lower case): `first`, else `nth(2)`, `nth(3)`... and
+ * claims it, so several picks in a row never collide. Imports and copies only ever add.
+ */
+export function freeName(taken: Set<string>, first: string, nth: (n: number) => string) {
+  let name = first;
+  for (let n = 2; taken.has(name.toLowerCase()); n++) name = nth(n);
+  taken.add(name.toLowerCase());
+  return name;
+}
+
+/**
  * A full copy of a character under a free name ("Saito (copy)", "Saito (copy 2)"):
  * the sheet, its stored PDF and its spell ideas, so a build can be tried out without
  * touching the original.
@@ -84,8 +95,7 @@ export async function copyCharacter(c: Character): Promise<Character> {
   const taken = new Set((await db.characters.toArray()).map((x) => x.name.toLowerCase()));
   // a copy of a copy counts on from the original name
   const base = c.name.replace(/ \(copy( \d+)?\)$/, '');
-  let name = `${base} (copy)`;
-  for (let n = 2; taken.has(name.toLowerCase()); n++) name = `${base} (copy ${n})`;
+  const name = freeName(taken, `${base} (copy)`, (n) => `${base} (copy ${n})`);
   const now = Date.now();
   const copy: Character = { ...structuredClone(c), id: newId(), name, createdAt: now, updatedAt: now };
   await db.transaction('rw', db.characters, db.sheetFiles, db.spells, async () => {

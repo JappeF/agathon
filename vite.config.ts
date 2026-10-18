@@ -18,7 +18,7 @@ export default defineConfig({
         name: 'Agathon',
         short_name: 'Agathon',
         description:
-          'Offline companion for Mage: The Ascension 20th Anniversary: characters, magick effects and spell ideas.',
+          'Offline companion for Mage: The Ascension 20th Anniversary: characters, a spell library and spell ideas.',
         theme_color: '#120b1c',
         background_color: '#120b1c',
         display: 'standalone',

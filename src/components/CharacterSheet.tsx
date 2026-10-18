@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, woundLabel, woundLevel, type Character } from '../character';
+import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, characterLine, woundLabel, woundLevel, type Character } from '../character';
 import { copyCharacter, db, deleteCharacter, saveCharacter } from '../db/db';
 import { exportPdf, MRGONE_BLANK_URL, NoSheetError } from '../sheetActions';
 import { SheetFormatError } from '../sheets/mrgone';
@@ -141,7 +141,8 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   // the pills sit beside the portrait; once that scrolls away a fixed mini bar takes over
   const [heroGone, setHeroGone] = useState(false);
   const heroObserver = useRef<IntersectionObserver | null>(null);
-  const heroRef = (el: HTMLDivElement | null) => {
+  // stable, so a render (every keystroke, every tap) doesn't tear the observer down and build a new one
+  const heroRef = useCallback((el: HTMLDivElement | null) => {
     heroObserver.current?.disconnect();
     if (!el) return;
     heroObserver.current = new IntersectionObserver(
@@ -152,7 +153,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       { rootMargin: '-60px 0px 0px 0px' },
     );
     heroObserver.current.observe(el);
-  };
+  }, []);
   const menuRef = useRef<HTMLDetailsElement>(null);
   // library effects: pinned ones on the Magick tab, rotes whose name is in the library
   const effects = useEffects();
@@ -328,7 +329,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               <h2 className="sheet-name">{c.name}</h2>
             )}
             <p className="sheet-sub">
-              <span>{[c.concept, c.sect || c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</span>
+              <span>{characterLine(c)}</span>
               {/* experience is handed out at the table, so it is editable in play mode too */}
               <label className="xp">
                 XP
@@ -470,7 +471,8 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             {/* what M20 sheets call rotes: library favorites (starred) and the mage's own
                 spells that aren't in the library; both go into the PDF's rotes fields */}
             <h3 className="block-title">Favorite spells</h3>
-            {(c.pinned ?? []).length === 0 && c.rotes.length === 0 && !edit ? (
+            {/* stars on spells no longer in the library don't count, nor do blank own lines */}
+            {!(c.pinned ?? []).some((id) => !effects || byId.has(id)) && !c.rotes.some((r) => r.trim()) && !edit ? (
               <p className="empty-small">
                 Tap the star on a spell in the <a href="#/library">library</a> and it waits here, one tap away. Spells of your own go in with Edit.
               </p>

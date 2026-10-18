@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Character } from '../character';
+import { characterLine, type Character } from '../character';
 import { db } from '../db/db';
 import { applyImport, prepareImport, type PendingImport } from '../sheetActions';
 import { SheetFormatError } from '../sheets/mrgone';
@@ -103,7 +103,7 @@ export function ImportFlow({
             </div>
           )}
           <p className="import-summary">
-            {[f.concept, f.sect || f.affiliation, f.essence && `${f.essence} Essence`].filter(Boolean).join(', ')}
+            {characterLine(f)}
           </p>
           <p>
             Arete {f.arete}, Willpower {f.willpower}, Quintessence {f.quintessence}, Paradox {f.paradox}
