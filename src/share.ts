@@ -100,6 +100,9 @@ export function sanitizeCharacter(raw: unknown): SharedCharacter {
   });
   c.notes = str(r.notes, 50000);
   c.portrait = safePortrait(r.portrait);
+  c.pinned = arr(r.pinned, 300)
+    .map((v) => str(v, 80))
+    .filter((v) => /^[a-z0-9][a-z0-9-]*$/.test(v));
   return c;
 }
 

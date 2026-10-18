@@ -97,6 +97,8 @@ export interface Character {
   notes: string;
   /** Square portrait as a data URL (see portrait.ts). */
   portrait?: string;
+  /** Library effects pinned to this character (effect ids). App-owned: never in the PDF. */
+  pinned?: string[];
 
   /** Where the character came from, so re-imports and PDF export know the sheet. */
   sheet?: { id: string; fileName: string; importedAt: number };

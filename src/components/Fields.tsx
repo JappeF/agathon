@@ -121,6 +121,8 @@ export function LineList({
   addLabel,
   empty,
   placeholder,
+  suggestions,
+  renderItem,
 }: {
   items: string[];
   edit: boolean;
@@ -128,6 +130,10 @@ export function LineList({
   addLabel: string;
   empty: string;
   placeholder?: string;
+  /** id of a <datalist> to suggest values while editing */
+  suggestions?: string;
+  /** how a line shows in play mode (default: the text) */
+  renderItem?: (item: string) => React.ReactNode;
 }) {
   if (!edit && items.length === 0) return <p className="empty-small">{empty}</p>;
   return (
@@ -139,6 +145,7 @@ export function LineList({
               className="text-input"
               value={it}
               placeholder={placeholder}
+              list={suggestions}
               aria-label={`Line ${i + 1}`}
               onChange={(e) => onChange(items.map((x, j) => (j === i ? e.target.value : x)))}
             />
@@ -147,7 +154,7 @@ export function LineList({
             </button>
           </li>
         ) : (
-          <li key={i}>{it}</li>
+          <li key={i}>{renderItem ? renderItem(it) : it}</li>
         ),
       )}
       {edit && (

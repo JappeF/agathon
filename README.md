@@ -60,6 +60,8 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
   changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in.
 - **Portraits** in a small sparking portal, enlarged with a tap, replaceable in edit
   mode.
+- **Pinned effects**: star an effect in the library and it waits on the sheet's
+  Magick tab, opening right there. Rotes named after a library effect link to it.
 - **One character in play**: the nav carries the active character, one tap opens
   the sheet. The character switcher (the caret beside it on a wide screen, or
   "Characters" on the sheet) lists the others and adds or imports new ones.

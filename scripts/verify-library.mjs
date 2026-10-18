@@ -146,9 +146,39 @@ check('nothing runs off a desktop screen', await desk.evaluate(() => document.do
 await desk.screenshot({ path: 'shots/34-library-desktop.png' });
 await desk.close();
 
-// clean up Saito
+// pins: star an effect in the library, find it on the sheet, unpin it there
+await search('portal');
+const pinName = (await page.textContent('.effect-card .effect-name >> nth=0')).trim();
+await page.click('.effect-card >> nth=0');
+await page.click('.detail .pin-btn');
+// the button follows the stored character, a moment after the click
+check('pin button turns on', (await page.waitForSelector('.detail .pin-btn[aria-pressed="true"]', { timeout: 5000 }).catch(() => null)) !== null);
+await page.click('.detail .back');
+check('pinned card shows a star', (await page.locator('.effect-card').first().locator('.pinned-mark').count()) === 1);
+await page.check('.lib-toggles .check:has-text("pins") input');
+check('is:pinned keeps only pins', (await num()) === 1 && (await page.inputValue('.search-input')).includes('is:pinned'), await count());
+await search('');
 await page.click('.nav-char .nav-item');
 await page.waitForSelector('.sheet-name:has-text("Saito Weinberg")');
+check('pin on the Magick tab', (await page.textContent('.pin-list')).includes(pinName));
+await page.click('.pin-row');
+await page.waitForSelector('.detail');
+check('pin opens the detail on the sheet', new URL(page.url()).hash.startsWith('#/characters/'));
+await page.click('.detail .pin-btn');
+await page.keyboard.press('Escape');
+check('unpinned from the sheet', (await page.locator('.pin-row').count()) === 0);
+
+// a rote named like a library effect links to it (edit mode suggests names)
+await page.click('.lock');
+await page.click('button:has-text("Add rote")');
+await page.fill('.line-edit .text-input >> nth=-1', 'Hot-Shotting');
+check('rote names suggested', (await page.locator('#library-effect-names option').count()) > 500);
+await page.click('.lock');
+await page.click('.rote-link:has-text("Hot-Shotting")');
+check('rote opens its effect', (await page.textContent('.detail-name')).trim() === 'Hot-Shotting');
+await page.keyboard.press('Escape');
+
+// clean up Saito
 await page.click('.menu summary');
 await page.click('button:has-text("Delete character")');
 await page.click('.modal .btn-danger');

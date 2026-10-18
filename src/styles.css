@@ -1347,3 +1347,56 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .welcome .view-title { margin-top: 0.6rem; }
 .welcome .flavor { margin-top: 0; }
 .welcome .char-tools { width: 100%; text-align: left; margin-top: 0.6rem; }
+
+/* ---------- pinned effects ---------- */
+.detail-top-end { display: inline-flex; align-items: center; gap: 0.5rem; }
+.pin-btn {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 36px;
+  padding: 0 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-dim);
+  border: 1px solid var(--line-solid);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.pin-btn:hover { color: var(--gold-hot); border-color: var(--gold-deep); }
+.pin-btn.on { color: var(--gold-hot); border-color: var(--gold-deep); background: #d9b45a1a; }
+.pin-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.effect-badges { flex: none; display: inline-flex; align-items: center; gap: 0.35rem; }
+.pinned-mark { display: grid; color: var(--gold); }
+.pin-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+.pin-row {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-deep);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.pin-row:hover { border-color: var(--gold-deep); }
+.pin-row:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.pin-name { font-family: var(--font-head); font-weight: 600; color: var(--gold-hot); line-height: 1.25; }
+/* a rote on the sheet whose name is in the library opens it */
+.rote-link {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: var(--ink);
+  text-decoration: underline dotted var(--gold-deep);
+  text-underline-offset: 0.2em;
+}
+.rote-link:hover { color: var(--gold-hot); }
+.rote-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 3px; }

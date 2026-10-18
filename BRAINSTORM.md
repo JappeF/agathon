@@ -160,7 +160,9 @@ Live op https://agathon.pages.dev, repo `OWNER/agathon` (private).
   via bestand, link en QR.
 - **Fase 3, effect-bibliotheek:** klaar. 563 effecten, eerste steekproefronde gedaan;
   correcties lopen via de bibliotheek-sessie op een eigen branch.
-- **Fase 4, spell-dossiers en context pack:** nog te doen.
+- **Fase 4, spell-dossiers en context pack:** in vier stappen. A (effecten pinnen aan je
+  character, rotes op de sheet linken naar de bibliotheek) is klaar; B (dossiers),
+  C (*Copy for AI*) en D (boekindex) volgen.
 - **Fase 5, officiele M20-sheet:** wacht op een voorbeeld.
 
 Onderweg erbij gekomen: het portaal-icoon en het geanimeerde portaal achter het logo,

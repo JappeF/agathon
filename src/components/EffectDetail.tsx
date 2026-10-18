@@ -67,6 +67,8 @@ export function EffectDetail({
   character,
   terms = [],
   tagsOn = [],
+  pinned = false,
+  onPin,
   onClose,
   onTag,
 }: {
@@ -75,6 +77,9 @@ export function EffectDetail({
   /** search words to mark, and the tags the search filters on */
   terms?: string[];
   tagsOn?: string[];
+  /** whether the active character has this effect pinned; onPin toggles it */
+  pinned?: boolean;
+  onPin?: () => void;
   onClose: () => void;
   onTag: (tag: string) => void;
 }) {
@@ -100,7 +105,20 @@ export function EffectDetail({
           <button type="button" className="back" onClick={onClose}>
             <Icon name="back" /> Library
           </button>
-          <span className={`kind-badge kind-${effect.kind}`}>{effect.kind === 'rank' ? 'Sphere rank' : effect.kind}</span>
+          <span className="detail-top-end">
+            <span className={`kind-badge kind-${effect.kind}`}>{effect.kind === 'rank' ? 'Sphere rank' : effect.kind}</span>
+            {character && onPin && (
+              <button
+                type="button"
+                className={`pin-btn${pinned ? ' on' : ''}`}
+                aria-pressed={pinned}
+                title={pinned ? `Unpin from ${character.name}` : `Pin to ${character.name}'s sheet`}
+                onClick={onPin}
+              >
+                <Icon name="star" size={16} filled={pinned} /> {pinned ? 'Pinned' : 'Pin'}
+              </button>
+            )}
+          </span>
         </div>
         <h2 className="detail-name">{hl(effect.name)}</h2>
         <p className="detail-summary">{hl(effect.summary)}</p>

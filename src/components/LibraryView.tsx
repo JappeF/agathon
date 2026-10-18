@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useActiveCharacter } from '../activeCharacter';
+import type { Character } from '../character';
+import { saveCharacter } from '../db/db';
 import { sourceLabel, useEffects, type Effect } from '../library/data';
 import { parseQuery, search, setSphereInQuery, sphereRankInQuery, type Hit } from '../library/search';
 import { SPHERES, type Sphere } from '../types';
@@ -14,6 +16,16 @@ const PAGE = 40;
 
 // remembered while the app is open, so switching tabs doesn't lose the search
 let lastQuery = '';
+
+/** Open the library with this search (e.g. a tag picked on the sheet). */
+export function searchLibrary(query: string) {
+  lastQuery = query;
+  go('library');
+}
+
+/** Pin or unpin a library effect on a character's sheet. */
+export const togglePinned = (c: Character, id: string): string[] =>
+  c.pinned?.includes(id) ? c.pinned.filter((x) => x !== id) : [...(c.pinned ?? []), id];
 // whether the open detail came from the list (then closing = going back), or from a link
 let openedFromList = false;
 const PREFS = 'agathon:library';
@@ -37,7 +49,19 @@ function accentSphere(e: Effect, combo: number): Sphere {
  * Search words are marked; when they only occur further down (the system, a combo note,
  * the coincidental note) a line from there shows why the card matched.
  */
-function EffectCard({ hit, dots, terms, onOpen }: { hit: Hit; dots?: Record<Sphere, number>; terms: string[]; onOpen: () => void }) {
+function EffectCard({
+  hit,
+  dots,
+  terms,
+  pinned,
+  onOpen,
+}: {
+  hit: Hit;
+  dots?: Record<Sphere, number>;
+  terms: string[];
+  pinned: boolean;
+  onOpen: () => void;
+}) {
   const e = hit.effect;
   const first = hit.combos[0];
   const more = e.combos.length - 1;
@@ -53,7 +77,14 @@ function EffectCard({ hit, dots, terms, onOpen }: { hit: Hit; dots?: Record<Sphe
           <span className="effect-name">
             <Highlighted text={e.name} terms={terms} />
           </span>
-          {e.kind !== 'feat' && <span className={`kind-badge kind-${e.kind}`}>{e.kind === 'rank' ? 'Sphere rank' : 'rote'}</span>}
+          <span className="effect-badges">
+            {e.kind !== 'feat' && <span className={`kind-badge kind-${e.kind}`}>{e.kind === 'rank' ? 'Sphere rank' : 'rote'}</span>}
+            {pinned && (
+              <span className="pinned-mark" title="Pinned to the sheet">
+                <Icon name="star" size={15} filled />
+              </span>
+            )}
+          </span>
         </span>
         <span className="effect-combos">
           <span className="effect-combo">
@@ -117,7 +148,8 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
   // the words to mark in cards and the detail: free text, phrases and name: terms
   const terms = useMemo(() => [...parsed.terms, ...parsed.nameTerms], [parsed]);
   const castable = prefs.castable && character ? character.spheres : undefined;
-  const hits = useMemo(() => (effects ? search(effects, parsed, { castable }) : []), [effects, parsed, castable]);
+  const pinned = useMemo(() => new Set(character?.pinned ?? []), [character?.pinned]);
+  const hits = useMemo(() => (effects ? search(effects, parsed, { castable, pinned }) : []), [effects, parsed, castable, pinned]);
   const ready = hits.filter((h) => !h.missing);
   const near = hits.filter((h) => h.missing === 1);
   const selected: Effect | undefined = selectedId ? effects?.find((e) => e.id === selectedId) : undefined;
@@ -142,6 +174,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
           hit={h}
           dots={castable}
           terms={terms}
+          pinned={pinned.has(h.effect.id)}
           onOpen={() => {
             openedFromList = true;
             go('library', h.effect.id);
@@ -215,6 +248,13 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
               <label className="check">
                 <input type="checkbox" checked={prefs.castable} onChange={(e) => setPrefs({ ...prefs, castable: e.target.checked })} />
                 What {character.name} can cast
+              </label>
+            )}
+            {character && (
+              <label className="check">
+                <input type="checkbox" checked={parsed.pinned === true} onChange={() => toggleOp('is', 'pinned')} />
+                Only {character.name}'s pins
+                {pinned.size > 0 && <span className="tag-count">{pinned.size}</span>}
               </label>
             )}
             {parsed.spheres.some((o) => !o.neg) && (
@@ -321,6 +361,8 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
           character={character}
           terms={terms}
           tagsOn={parsed.tags.filter((t) => !t.neg).map((t) => t.value)}
+          pinned={pinned.has(selected.id)}
+          onPin={character ? () => saveCharacter({ ...character, pinned: togglePinned(character, selected.id) }) : undefined}
           onClose={() => {
             if (openedFromList) history.back();
             else {

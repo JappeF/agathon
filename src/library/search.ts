@@ -63,6 +63,8 @@ export interface Query {
   books: { value: 'M20' | 'HDYDT'; neg: boolean }[];
   kinds: { value: Effect['kind']; neg: boolean }[];
   is: { value: NonNullable<Effect['vulgarity']>; neg: boolean }[];
+  /** is:pinned (true) or -is:pinned (false): effects pinned to the active character */
+  pinned?: boolean;
   /** operator chips for the UI, in typing order */
   chips: { label: string; neg: boolean; ok: boolean }[];
 }
@@ -119,6 +121,11 @@ export function parseQuery(raw: string, knownTags: string[]): Query {
         return true;
       }
       case 'is': {
+        if (value && 'pinned'.startsWith(value)) {
+          q.pinned = !neg;
+          chip('pinned', neg, true);
+          return true;
+        }
         const v = (['coincidental', 'vulgar', 'depends'] as const).find((x) => x.startsWith(value));
         if (v) q.is.push({ value: v, neg });
         chip(v ?? value, neg, !!v);
@@ -224,6 +231,8 @@ function textScore(e: Effect, q: Query): number {
 export interface SearchOptions {
   /** the active character's Sphere dots, when "what can I cast" is on */
   castable?: Dots;
+  /** ids pinned to the active character, for is:pinned */
+  pinned?: Set<string>;
 }
 
 /**
@@ -245,6 +254,7 @@ export function search(effects: Effect[], q: Query, opts: SearchOptions = {}): H
     const posIs = q.is.filter((i) => !i.neg);
     if (posIs.length && !posIs.some((i) => i.value === e.vulgarity)) continue;
     if (q.is.some((i) => i.neg && i.value === e.vulgarity)) continue;
+    if (q.pinned !== undefined && q.pinned !== !!opts.pinned?.has(e.id)) continue;
 
     const score = textScore(e, q);
     if (!score) continue;
