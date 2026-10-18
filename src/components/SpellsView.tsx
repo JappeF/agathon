@@ -44,7 +44,7 @@ function SpellList() {
   if (!active) {
     return (
       <section className="view spells">
-        <h2 className="view-title">Spells</h2>
+        <h2 className="view-title">Spell ideas</h2>
         <p className="flavor">Spell ideas belong to a character. Add or import one first.</p>
         <a className="btn" href="#/characters">
           Characters
@@ -67,7 +67,7 @@ function SpellList() {
   const list = [...(spells ?? [])].sort((a, b) => b.updatedAt - a.updatedAt);
   return (
     <section className="view spells">
-      <h2 className="view-title">Spells</h2>
+      <h2 className="view-title">Spell ideas</h2>
       <p className="spells-sub">{active.name}'s spell ideas: what to pull off, how, and how it went.</p>
       <form className="add-row" onSubmit={start}>
         <input
@@ -81,7 +81,7 @@ function SpellList() {
           Start
         </button>
       </form>
-      <p className="fine-print">Or start one from an effect in the library.</p>
+      <p className="fine-print">Or start one from a spell in the library.</p>
       {spells && list.length === 0 && <p className="empty">No spell ideas yet.</p>}
       <ul className="spell-list">
         {list.map((s) => {
@@ -159,7 +159,7 @@ function SpellDossier({ id }: { id: string }) {
       <section className="view">
         <p className="empty">This spell idea isn't on this device.</p>
         <a className="btn" href="#/spells">
-          Spells
+          Spell ideas
         </a>
       </section>
     );
@@ -174,7 +174,7 @@ function SpellDossier({ id }: { id: string }) {
     <section className="view dossier">
       <div className="sheet-head">
         <a className="back" href="#/spells">
-          <Icon name="back" /> Spells
+          <Icon name="back" /> Spell ideas
         </a>
         <button type="button" className="btn btn-small" onClick={() => setConfirmDelete(true)}>
           Delete idea
@@ -276,7 +276,7 @@ function SpellDossier({ id }: { id: string }) {
 
         <div className="dossier-side">
           <h3 className="block-title">From the library</h3>
-          {s.effects.length === 0 && <p className="empty-small">No effects linked yet. Link the ones this idea builds on.</p>}
+          {s.effects.length === 0 && <p className="empty-small">No spells linked yet. Link the ones from the library this idea builds on.</p>}
           <ul className="pin-list">
             {s.effects.map((eid) => {
               const e = byId.get(eid);
@@ -306,7 +306,7 @@ function SpellDossier({ id }: { id: string }) {
             />
           ) : (
             <button type="button" className="btn btn-small" onClick={() => setLinking(true)}>
-              Link an effect
+              Link a spell
             </button>
           )}
 
@@ -437,7 +437,7 @@ function VersionEditor({
   );
 }
 
-/** Search the library by name or words and pick one effect to link. */
+/** Search the library by name or words and pick one spell to link. */
 function EffectPicker({ effects, exclude, onPick, onCancel }: { effects: Effect[]; exclude: string[]; onPick: (id: string) => void; onCancel: () => void }) {
   const [q, setQ] = useState('');
   const hits = useMemo(
@@ -447,7 +447,7 @@ function EffectPicker({ effects, exclude, onPick, onCancel }: { effects: Effect[
   return (
     <div className="effect-picker">
       <div className="add-row">
-        <input className="text-input" autoFocus value={q} placeholder="Search the library, e.g. portal or forces:3" aria-label="Find an effect" onChange={(e) => setQ(e.target.value)} />
+        <input className="text-input" autoFocus value={q} placeholder="Search the library, e.g. portal or forces:3" aria-label="Find a spell" onChange={(e) => setQ(e.target.value)} />
         <button type="button" className="btn" onClick={onCancel}>
           Cancel
         </button>
@@ -611,7 +611,7 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
       <div className="pack-options">
         <label className="check">
           <input type="checkbox" checked={o.library} onChange={(e) => set({ library: e.target.checked })} />
-          Linked library effects
+          Linked library spells
         </label>
         <label className="check">
           <input type="checkbox" checked={o.history} onChange={(e) => set({ history: e.target.checked })} />
@@ -640,7 +640,7 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
         </details>
       ) : (
         <p className="fine-print">
-          Add your own M20 or How Do You DO That? PDF under <a href="#/spells">Spells</a> to take the real pages along.
+          Add your own M20 or How Do You DO That? PDF under <a href="#/spells">Spell ideas</a> to take the real pages along.
         </p>
       )}
       <details className="pack-preview">

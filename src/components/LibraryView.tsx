@@ -215,7 +215,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
             type="search"
             value={query}
             placeholder="portal, mind:3 forces:2, tag:healing"
-            aria-label="Search effects"
+            aria-label="Search spells"
             onChange={(e) => setQuery(e.target.value)}
           />
           {query.trim() && (
@@ -325,7 +325,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
               <p className="results-count">
                 {castable
                   ? `${ready.length} ${character!.name} can cast, ${near.length} one dot away`
-                  : `${hits.length} of ${effects.length} effects`}
+                  : `${hits.length} of ${effects.length} spells`}
                 {parsed.spheres.some((o) => !o.neg) && !prefs.others && ' (exactly these Spheres)'}
               </p>
               {hits.length === 0 && <p className="empty">Nothing matches. Try fewer words, or allow other Spheres.</p>}
@@ -340,7 +340,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
                   {near.length > 0 && (
                     <>
                       <h3 className="block-title near-title">One dot away</h3>
-                      <p className="empty-small">Effects {character!.name} could cast with one more dot. The missing Sphere is marked.</p>
+                      <p className="empty-small">Spells {character!.name} could cast with one more dot. The missing Sphere is marked.</p>
                       {list(near.slice(0, nearLimit))}
                       {near.length > nearLimit && (
                         <button type="button" className="btn load-more" onClick={() => setNearLimit(nearLimit + PAGE)}>

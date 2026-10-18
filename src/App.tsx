@@ -20,7 +20,7 @@ const NAV: { view: Exclude<View, 'characters'>; label: string; icon: JSX.Element
   },
   {
     view: 'spells',
-    label: 'Spells',
+    label: 'Spell ideas',
     icon: <path d="M12 2.5l2.2 6.3 6.3 2.2-6.3 2.2L12 19.5l-2.2-6.3L3.5 11l6.3-2.2zM18.5 17l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />,
   },
 ];

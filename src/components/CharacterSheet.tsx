@@ -491,7 +491,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             <h3 className="block-title">Favorite spells</h3>
             {(c.pinned ?? []).length === 0 && c.rotes.length === 0 && !edit ? (
               <p className="empty-small">
-                Tap the star on an effect in the <a href="#/library">library</a> and it waits here, one tap away. Spells of your own go in with Edit.
+                Tap the star on a spell in the <a href="#/library">library</a> and it waits here, one tap away. Spells of your own go in with Edit.
               </p>
             ) : (
               <ul className="pin-list">
@@ -553,7 +553,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               </ul>
             ) : (
               <p className="empty-small">
-                Work out spells in <a href="#/spells">Spells</a>, or start one from an effect.
+                Work them out in <a href="#/spells">Spell ideas</a>, or start one from a spell in the library.
               </p>
             )}
           </div>

@@ -34,7 +34,7 @@ const cardSpheres = () =>
 
 await page.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.effect-card');
-check('all effects listed', /^\d+ of \d+ effects/.test(await count()), await count());
+check('all spells listed', /^\d+ of \d+ spells/.test(await count()), await count());
 await page.screenshot({ path: 'shots/30-library.png' });
 
 await search('portal');

@@ -74,7 +74,7 @@ await page.click('.old-version button:has-text("Make this the plan")');
 check('switching back keeps the names', (await text('.dossier-main .version-head')).startsWith('Version 1'));
 
 // link another effect through the picker
-await page.click('button:has-text("Link an effect")');
+await page.click('button:has-text("Link a spell")');
 await page.fill('.effect-picker .text-input', 'teleport');
 await page.waitForTimeout(300);
 await page.click('.picker-row >> nth=0');
@@ -100,7 +100,7 @@ check('pack has the log and the question', pack.includes('botched, +3 Paradox') 
 check('pack asks for the JSON block', pack.includes('"agathon": "version"'));
 check('private notes left out by default', !(await page.isChecked('.pack-options .check:has-text("private notes") input')));
 await page.uncheck('.pack-options .check:has-text("Linked library") input');
-check('library toggle drops the effects', !(await page.textContent('.pack-preview pre')).includes('Related effects from my library'));
+check('library toggle drops the effects', !(await page.textContent('.pack-preview pre')).includes('Related spells from my library'));
 await page.check('.pack-options .check:has-text("Linked library") input');
 await page.click('.modal button:has-text("Copy the prompt")');
 check('prompt copied', (await page.evaluate(() => navigator.clipboard.readText())).includes('Two Men in Black'));
@@ -177,7 +177,7 @@ check('versions persist', (await page.locator('.old-version').count()) === 4);
 check('log persists', (await page.locator('.log-entry').count()) === 1);
 
 // the list and the sheet
-await page.click('.back:has-text("Spells")');
+await page.click('.back:has-text("Spell ideas")');
 await page.waitForSelector('.spell-card');
 check('list shows the idea', /Gas leak fireball/.test(await text('.spell-list')) && /last botched/.test(await text('.spell-list')));
 await page.fill('.spells .add-row .text-input', 'Kill every streetlight');

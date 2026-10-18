@@ -166,7 +166,7 @@ await ap.waitForSelector('.sheet-name');
 await ap.click('.lock');
 check('Android: the portrait picker opens the gallery (image/*)', (await ap.getAttribute('.portrait-btn input', 'accept')) === 'image/*');
 await ap.click('.lock');
-await ap.click('.nav-item:has-text("Spells")');
+await ap.click('.nav-item:has-text("Spell ideas")');
 check('Android: the rulebook picker keeps its PDF filter', /pdf/.test((await ap.getAttribute('.books-panel .file-pick:has-text("Add a PDF") input', 'accept')) ?? ''));
 await droid.close();
 

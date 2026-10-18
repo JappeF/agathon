@@ -126,7 +126,7 @@ export function buildPack(s: Spell, c: Character, effects: Effect[], o: PackOpti
           )
           .join('\n')}`,
     ]),
-    o.library && linked.length > 0 && section('Related effects from my library (summaries with M20 / How Do You DO That? pages)', [linked.map(effectText).join('\n\n')]),
+    o.library && linked.length > 0 && section('Related spells from my library (summaries with M20 / How Do You DO That? pages)', [linked.map(effectText).join('\n\n')]),
     section('Rules I use', [
       '- Base difficulty is the highest Sphere in the effect +3 coincidental, +4 vulgar, +5 vulgar with witnesses (M20 p. 501). All modifiers together stay within +3 / -3, and the difficulty never drops below 3.',
       '- A fitting focus and instruments, a related Ability roll first, or taking time (an extended ritual) can lower the difficulty within those limits.',

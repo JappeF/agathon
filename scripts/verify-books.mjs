@@ -47,7 +47,7 @@ await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await page.fill('.add-row .text-input', name);
 await page.click('button:has-text("Add")');
 await page.waitForSelector('.sheet-name');
-await page.click('.nav-item:has-text("Spells")');
+await page.click('.nav-item:has-text("Spell ideas")');
 await page.waitForSelector('.books-panel');
 
 // a PDF that isn't a rulebook is refused
@@ -86,7 +86,7 @@ check('unticking drops the page', !/### M20 p\. 528/.test(pack));
 await page.click('.modal button:has-text("Close")');
 
 // save the index as a file, remove both books, load the file back
-await page.click('.back:has-text("Spells")');
+await page.click('.back:has-text("Spell ideas")');
 await page.waitForSelector('.books-panel');
 const [dl] = await Promise.all([page.waitForEvent('download'), page.click('.books-panel button:has-text("Save as a file")')]);
 const path = `shots/${dl.suggestedFilename()}`;
@@ -106,7 +106,7 @@ await page.click('.nav-char .nav-item');
 await page.click('.menu summary');
 await page.click('button:has-text("Delete character")');
 await page.click('.modal .btn-danger');
-await page.click('.nav-item:has-text("Spells")');
+await page.click('.nav-item:has-text("Spell ideas")');
 await page.goto(`${BASE}/#/spells`, { waitUntil: 'networkidle' });
 await page.evaluate(() => new Promise((res) => (indexedDB.open('agathon').onsuccess = (e) => (e.target.result.transaction('books', 'readwrite').objectStore('books').clear().onsuccess = res))));
 

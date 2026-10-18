@@ -70,7 +70,7 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
   the sheet. The character switcher (the caret beside it on a wide screen, or
   "Characters" on the sheet) lists the others and adds or imports new ones.
 
-### Spells
+### Spell ideas
 
 - **Spell ideas** per character: what you want to happen, the library effects it
   builds on, and the plan: Spheres (with the base difficulty and whether your
