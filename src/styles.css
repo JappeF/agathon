@@ -32,10 +32,11 @@
 }
 
 * { box-sizing: border-box; }
-/* a thin violet thumb on a transparent track, as in another app: it only appears when the page
-   really scrolls (overflow-y: scroll drew an empty track with arrows on short pages), and
-   scrollbar-gutter keeps its space so short and long pages have the same width */
-html { color-scheme: dark; scrollbar-width: thin; scrollbar-color: #3a2a55 transparent; scrollbar-gutter: stable; scroll-padding-top: 72px; }
+/* a thin violet thumb on a transparent track that only appears when the page really
+   scrolls, as in another app. No scrollbar-gutter: Edge leaves that reserved strip empty, so
+   the bar stopped short of the window edge. Instead the bar and the page are placed
+   against the whole window (100vw), so a scrollbar coming or going moves nothing. */
+html { color-scheme: dark; scrollbar-width: thin; scrollbar-color: #3a2a55 transparent; scroll-padding-top: 72px; }
 
 body {
   margin: 0;
@@ -242,12 +243,14 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 
 /* ---------- views ---------- */
 .app-main {
-  max-width: 820px;
+  --main-max: 820px;
+  max-width: var(--main-max);
   margin: 0 auto;
   padding: 0.5rem 1rem calc(var(--nav-h) + 2rem + env(safe-area-inset-bottom));
 }
 @media (min-width: 900px) {
-  .app-main { padding-bottom: 3rem; }
+  /* centred on the window (100vw includes the scrollbar), not on what is left beside it */
+  .app-main { padding-bottom: 3rem; margin-left: max(0px, calc((100vw - var(--main-max)) / 2)); margin-right: 0; }
 }
 .view-title {
   font-family: var(--font-head);
@@ -1111,7 +1114,7 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .zoom-name { margin: 0; font-family: var(--font-head); font-weight: 700; font-size: 1.4rem; color: var(--gold-hot); letter-spacing: 0.04em; }
 
 /* ---------- library layout: search, filters, results ---------- */
-.app-main:has(.library) { max-width: 1400px; }
+.app-main:has(.library) { --main-max: 1400px; }
 .lib-layout { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: 'search' 'side' 'results'; }
 .lib-search { grid-area: search; }
 .lib-side { grid-area: side; }
@@ -1161,12 +1164,10 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
     overflow-y: auto;
     padding: 0.2rem 0.8rem 1.5rem 0;
     border-right: 1px solid var(--line);
-    /* its own scrollbar only shows on hover; the gutter stays reserved so nothing shifts,
-       and the bottom fades out to show there is more below */
+    /* its own scrollbar only shows on hover; the gutter stays reserved so nothing shifts */
     scrollbar-width: thin;
     scrollbar-gutter: stable;
     scrollbar-color: transparent transparent;
-    mask-image: linear-gradient(to bottom, #000 calc(100% - 2.5rem), transparent);
   }
   .lib-side:hover, .lib-side:focus-within { scrollbar-color: #3a2a55 transparent; }
   .lib-side > .side-title:first-child { display: block; }
@@ -1236,25 +1237,13 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 max(1.5rem, calc((100vw - 1400px) / 2 + 1rem));
-    overflow: visible;
-  }
-  /* the bar's frosted background and bottom line: a fixed strip that runs 40px past the
-     right edge of the layout, through the space kept free for the scrollbar on short
-     pages (100vw stops short of it once html has scrollbar-gutter). A fixed box never
-     widens the page, and a real scrollbar simply paints over it. */
-  .app-header::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: -40px;
-    height: var(--bar-h);
-    z-index: -1;
+    /* both sides measured from the window: the right padding gives back the scrollbar's
+       width (100vw - 100%), so the nav keeps its place whether or not the page scrolls */
+    padding: 0 calc(max(1.5rem, calc((100vw - 1400px) / 2 + 1rem)) - (100vw - 100%)) 0 max(1.5rem, calc((100vw - 1400px) / 2 + 1rem));
     background: #120b1ce6;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line-solid);
-    pointer-events: none;
+    overflow: visible;
   }
   .brand { display: flex; align-items: center; gap: 0.9rem; }
   .brand-text { justify-items: start; }
@@ -1263,16 +1252,19 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   .tagline { font-size: 0.9rem; margin-top: 0.15rem; }
   .app-nav { position: static; padding: 0; border: 0; background: none; backdrop-filter: none; }
   .vitals-fixed { top: var(--bar-h); }
-  /* the sticky sidebar must never move: it sticks exactly where it already sits (under
-     the bar plus the main's 0.5rem top padding), ends 16px above the window, and its
-     negative bottom margin takes the main's 3rem bottom padding back out, so the page
-     is never taller than the window because of it and the sidebar isn't pushed up at
-     the end of the page. Off by a few px, it jumped 4px whenever scrolling began or ended. */
-  .lib-side { top: calc(var(--bar-h) + 0.5rem); max-height: calc(100dvh - var(--bar-h) - 0.5rem - 16px); margin-bottom: calc(16px - 3rem); }
+  /* as in another app, the sidebar runs from the bar to the bottom of the window, so its
+     divider joins the bar's line. It sticks exactly where it sits (the library's main
+     has no top padding), and its negative bottom margin takes the main's 3rem bottom
+     padding back out, so the page is never taller than the window because of it and
+     nothing pushes it up at the end of the page. Off by a few px, it jumped when
+     scrolling began or ended. */
+  .app-main:has(.library) { padding-top: 0; }
+  .lib-search { padding-top: 0.5rem; }
+  .lib-side { top: var(--bar-h); height: calc(100dvh - var(--bar-h)); max-height: none; margin-bottom: -3rem; padding-top: 0.7rem; }
 }
 
 /* ---------- sheet on wide screens: laid out like the paper sheet ---------- */
-.app-main:has(.sheet) { max-width: 1280px; }
+.app-main:has(.sheet) { --main-max: 1280px; }
 @media (min-width: 900px) {
   .spread { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 3rem; align-items: start; }
   .spread-col { display: grid; gap: 0.4rem; }
@@ -1469,7 +1461,7 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .outcome-failed { color: var(--ink-dim); }
 .outcome-botched { color: #ff8fb1; }
 @media (min-width: 900px) {
-  .app-main:has(.spells), .app-main:has(.dossier) { max-width: 1280px; }
+  .app-main:has(.spells), .app-main:has(.dossier) { --main-max: 1280px; }
   .spell-list { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
 }
 

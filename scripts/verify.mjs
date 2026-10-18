@@ -6,7 +6,8 @@ import { mkdir } from 'node:fs/promises';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 await mkdir('shots', { recursive: true });
-const browser = await chromium.launch({ channel: 'msedge', headless: true });
+// real scrollbars (Playwright hides them in headless mode), so layout shifts show up
+const browser = await chromium.launch({ channel: 'msedge', headless: true, ignoreDefaultArgs: ['--hide-scrollbars'] });
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
 const page = await ctx.newPage();
 const errors = [];

@@ -8,7 +8,8 @@ import { mkdir } from 'node:fs/promises';
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 const SHEET = process.env.SHEET ?? 'refs/M20_2-Page_Interactive_Saito Weinberg.pdf';
 await mkdir('shots', { recursive: true });
-const browser = await chromium.launch({ channel: 'msedge', headless: true });
+// real scrollbars (Playwright hides them in headless mode), so layout shifts show up
+const browser = await chromium.launch({ channel: 'msedge', headless: true, ignoreDefaultArgs: ['--hide-scrollbars'] });
 const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
 const errors = [];
 page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
@@ -151,11 +152,15 @@ for (const y of [0, 5, 400, 99999]) {
 }
 await desk.evaluate(() => scrollTo(0, 0));
 check('sidebar never shifts while scrolling', new Set(sideTops).size === 1, sideTops.join(', '));
-const fullWidth = await desk.evaluate(() => document.documentElement.clientWidth);
+// the page scrollbar comes and goes with the results; the bar and the page are placed
+// against the whole window, so nothing moves when it does
+const spots = () => desk.evaluate(() => ['.lib-side', '.search-input', '.nav-item', '.brand'].map((s) => Math.round(document.querySelector(s).getBoundingClientRect().x)).join(','));
+const withBar = await spots();
+const hadBar = await desk.evaluate(() => innerWidth > document.documentElement.clientWidth);
 await desk.fill('.search-input', 'zzzz');
 await desk.waitForTimeout(300);
-// the scrollbar track stays when there's nothing to scroll, so the sidebar doesn't shift
-check('page width the same with and without results', (await desk.evaluate(() => document.documentElement.clientWidth)) === fullWidth);
+const noBar = await desk.evaluate(() => innerWidth === document.documentElement.clientWidth);
+check('nothing moves when the page scrollbar comes or goes', hadBar && noBar && (await spots()) === withBar, `${withBar} vs ${await spots()}`);
 check('no page scrollbar with few results', await desk.evaluate(() => document.documentElement.scrollHeight <= innerHeight), await desk.evaluate(() => `${document.documentElement.scrollHeight} vs ${innerHeight}`));
 await desk.fill('.search-input', '');
 await desk.waitForTimeout(300);
