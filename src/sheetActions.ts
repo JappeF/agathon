@@ -1,7 +1,7 @@
 import { newCharacter, type Character } from './character';
 import { db, newId, requestPersistence, saveCharacter } from './db/db';
-import { MRGONE_SHEET_ID, readMrGone, sheetPart, diffSheet, writeMrGone, type SheetFields } from './sheets/mrgone';
-import { imageToPortrait, portraitFromPdf } from './portrait';
+import { MRGONE_SHEET_ID, readMrGone, sheetPart, diffSheet, writeMrGone, PORTRAIT_BOX, type SheetFields } from './sheets/mrgone';
+import { imageToPortrait, portraitFromPdf, portraitJpeg } from './portrait';
 import { loadEffects } from './library/data';
 import { addedNames, favoriteNames, splitFavorites } from './favorites';
 
@@ -107,7 +107,9 @@ export async function exportPdf(c: Character, blankSheet?: File): Promise<string
   if (!bytes) throw new Error('no sheet');
   if (blankSheet) await readMrGone(bytes); // throws a friendly error for the wrong file
   // all favorite spells go into the sheet's rotes fields, library ones first
-  const { pdf, warnings } = await writeMrGone(bytes, { ...c, rotes: favoriteNames(c, await loadEffects()) });
+  // the app's portrait goes onto a sheet that has none yet; one already in the PDF stays
+  const portrait = c.portrait && !(await portraitFromPdf(bytes)) ? await portraitJpeg(c.portrait, PORTRAIT_BOX) : undefined;
+  const { pdf, warnings } = await writeMrGone(bytes, { ...c, rotes: favoriteNames(c, await loadEffects()) }, portrait);
   download(pdf as Uint8Array<ArrayBuffer>, `${safeName(c.name)}.pdf`, 'application/pdf');
   if (blankSheet) {
     // keep it for every character made in the app on this device, not just this one

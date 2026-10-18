@@ -6,7 +6,7 @@
 import { chromium } from 'playwright-core';
 import { mkdir, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument, PDFName } from 'pdf-lib';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 const SHEET = process.env.SHEET ?? 'refs/M20_2-Page_Interactive_Saito Weinberg.pdf';
@@ -268,12 +268,27 @@ for (const n of ['Blank Test A', 'Blank Test B']) {
   await page.fill('.switch-menu .add-row .text-input', n);
   await page.click('.switch-menu button:has-text("Add")');
   await page.waitForSelector(`.sheet-name:text-is("${n}")`);
+  if (n === 'Blank Test A') {
+    // a portrait set in the app goes onto the blank sheet, which has none
+    await page.click('.lock');
+    await page.setInputFiles('.view.sheet input[accept="image/*"]', 'public/icons/icon-512.png');
+    await page.waitForSelector('.sheet-hero .pp-face img');
+    await page.click('.lock');
+  }
   await exportFrom();
   if (n === 'Blank Test A') {
     await page.waitForSelector('.modal-title:has-text("Pick a blank sheet")');
     check('blank sheet: download link to Mr. Gone', /mrgone\.rocksolidshells\.com\/pdf\/M20\/M20_2-Page_Interactive\.pdf/.test(await page.getAttribute('.modal a:has-text("Download the blank sheet")', 'href')));
     const [d1] = await Promise.all([page.waitForEvent('download'), page.setInputFiles('.modal .file-pick input', BLANK)]);
     check('blank sheet: first export', d1.suggestedFilename() === `${n}.pdf`, d1.suggestedFilename());
+    const blankOut = `shots/export-blank-${Date.now()}.pdf`;
+    await d1.saveAs(blankOut);
+    const out = await PDFDocument.load(await readFile(blankOut));
+    const blankIn = await PDFDocument.load(await readFile(BLANK));
+    const images = (d) => d.getPages()[1].node.Resources().lookup(PDFName.of('XObject')).keys().length;
+    // Reader-extended sheets lose their form in Acrobat Reader once rewritten, unless /Perms goes
+    check('blank sheet: Reader extensions removed', !out.catalog.has(PDFName.of('Perms')), `blank had them: ${blankIn.catalog.has(PDFName.of('Perms'))}`);
+    check('blank sheet: app portrait drawn on page 2', images(out) === images(blankIn) + 1, `${images(blankIn)} -> ${images(out)}`);
   } else {
     const d2 = await page.waitForEvent('download', { timeout: 10000 }).catch(() => null);
     check('blank sheet remembered for the next character', d2?.suggestedFilename() === `${n}.pdf` && (await page.locator('.modal-title:has-text("Pick a blank sheet")').count()) === 0);

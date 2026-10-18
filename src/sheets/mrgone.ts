@@ -146,10 +146,30 @@ export async function readMrGone(bytes: ArrayBuffer): Promise<SheetFields> {
  * Fill the character back into the sheet PDF it came from. Returns the new PDF and
  * a list of things that did not fit (more backgrounds than rows, long text...).
  */
-export async function writeMrGone(bytes: ArrayBuffer, c: Character): Promise<{ pdf: Uint8Array; warnings: string[] }> {
+/**
+ * Where a portrait goes on page 2 when the sheet has none: the sheet has no box for it, so
+ * this is where players put theirs (over the right side of Description, to the page edge).
+ */
+export const PORTRAIT_BOX = { page: 1, x: 492.4, y: 245.6, width: 119, height: 138.7 };
+
+export async function writeMrGone(
+  bytes: ArrayBuffer,
+  c: Character,
+  portraitJpeg?: Uint8Array,
+): Promise<{ pdf: Uint8Array; warnings: string[] }> {
   const doc = await loadPdf(bytes);
   const form = doc.getForm();
   const warnings: string[] = [];
+  // The blank sheet is "Reader extended": an Adobe signature (/Perms /UR3) over the exact
+  // bytes. Any rewrite breaks it and Acrobat Reader then turns the form off ("extended
+  // features no longer available"). Without it, Reader fills and saves forms as usual.
+  const { PDFName } = await import('pdf-lib');
+  doc.catalog.delete(PDFName.of('Perms'));
+  if (portraitJpeg) {
+    const img = await doc.embedJpg(portraitJpeg);
+    const { page, ...box } = PORTRAIT_BOX;
+    doc.getPages()[page]?.drawImage(img, box);
+  }
 
   const setText = (n: string, v: string) => {
     try {

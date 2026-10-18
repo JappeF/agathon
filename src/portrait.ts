@@ -24,6 +24,24 @@ export async function imageToPortrait(blob: Blob): Promise<string> {
   return webp.startsWith('data:image/webp') ? webp : canvas.toDataURL('image/jpeg', 0.85);
 }
 
+/** A portrait as JPEG bytes for a PDF (pdf-lib can't embed WebP), cropped to the box's shape, a little above centre. */
+export async function portraitJpeg(dataUrl: string, box: { width: number; height: number }): Promise<Uint8Array> {
+  const bmp = await createImageBitmap(await (await fetch(dataUrl)).blob());
+  const aspect = box.width / box.height;
+  const sw = Math.min(bmp.width, bmp.height * aspect);
+  const sh = sw / aspect;
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(sw);
+  canvas.height = Math.round(sh);
+  const ctx = canvas.getContext('2d')!;
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(bmp, (bmp.width - sw) / 2, (bmp.height - sh) * 0.3, sw, sh, 0, 0, canvas.width, canvas.height);
+  bmp.close();
+  const blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, 'image/jpeg', 0.9));
+  return new Uint8Array(await blob!.arrayBuffer());
+}
+
 /**
  * The portrait pasted into a PDF sheet: the largest JPEG on any page that is not a
  * full-page background (same shape as the page) or a thin decorative strip.
