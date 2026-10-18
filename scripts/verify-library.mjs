@@ -159,7 +159,13 @@ await page.click('.detail .pin-btn');
 // the button follows the stored character, a moment after the click
 check('pin button turns on', (await page.waitForSelector('.detail .pin-btn[aria-pressed="true"]', { timeout: 5000 }).catch(() => null)) !== null);
 await page.click('.detail .back');
-check('pinned card shows a star', (await page.locator('.effect-card').first().locator('.pinned-mark').count()) === 1);
+check('pinned card shows a gold star', (await page.locator('.effect-item').first().locator('.card-pin.on').count()) === 1);
+// the star on a card pins without opening the detail, as in another app
+await page.click('.effect-item >> nth=1 >> .card-pin');
+await page.waitForSelector('.effect-item:nth-child(2) .card-pin.on', { timeout: 5000 }).catch(() => {});
+check('pin from the card', (await page.locator('.card-pin.on').count()) === 2 && !(await page.isVisible('.detail')));
+await page.click('.effect-item >> nth=1 >> .card-pin');
+await page.waitForFunction(() => document.querySelectorAll('.card-pin.on').length === 1);
 await page.check('.lib-toggles .check:has-text("pins") input');
 check('is:pinned keeps only pins', (await num()) === 1 && (await page.inputValue('.search-input')).includes('is:pinned'), await count());
 await search('');

@@ -56,12 +56,15 @@ function EffectCard({
   terms,
   pinned,
   onOpen,
+  onTogglePin,
 }: {
   hit: Hit;
   dots?: Record<Sphere, number>;
   terms: string[];
   pinned: boolean;
   onOpen: () => void;
+  /** pin to (or unpin from) the character in play; no star without one */
+  onTogglePin?: () => void;
 }) {
   const e = hit.effect;
   const first = hit.combos[0];
@@ -72,7 +75,20 @@ function EffectCard({
       ? [e.system, e.coincidentalIf, ...e.combos.map((c) => c.note), ...(e.optional ?? []).map((o) => o.purpose)].find((t) => hasMatch(t, terms))
       : undefined;
   return (
-    <li>
+    <li className={`effect-item${onTogglePin ? ' pinnable' : ''}`}>
+      {/* a sibling of the card button, as in another app: buttons can't nest */}
+      {onTogglePin && (
+        <button
+          type="button"
+          className={`card-pin${pinned ? ' on' : ''}`}
+          aria-pressed={pinned}
+          aria-label={pinned ? `Unpin ${e.name}` : `Pin ${e.name} to the sheet`}
+          title={pinned ? 'Unpin from the sheet' : 'Pin to the sheet'}
+          onClick={onTogglePin}
+        >
+          <Icon name="star" size={18} filled={pinned} />
+        </button>
+      )}
       <button type="button" className={`effect-card kind-${e.kind} sph-${accentSphere(e, first)}`} onClick={onOpen}>
         <span className="effect-head">
           <span className="effect-name">
@@ -80,7 +96,7 @@ function EffectCard({
           </span>
           <span className="effect-badges">
             {e.kind !== 'feat' && <span className={`kind-badge kind-${e.kind}`}>{e.kind === 'rank' ? 'Sphere rank' : 'rote'}</span>}
-            {pinned && (
+            {pinned && !onTogglePin && (
               <span className="pinned-mark" title="Pinned to the sheet">
                 <Icon name="star" size={15} filled />
               </span>
@@ -176,6 +192,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
           dots={castable}
           terms={terms}
           pinned={pinned.has(h.effect.id)}
+          onTogglePin={character ? () => saveCharacter({ ...character, pinned: togglePinned(character, h.effect.id) }) : undefined}
           onOpen={() => {
             openedFromList = true;
             go('library', h.effect.id);

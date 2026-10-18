@@ -62,7 +62,7 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
   with a short hint, the cost and the page; your own names work too.
 - **Portraits** in a small sparking portal, enlarged with a tap, replaceable in edit
   mode.
-- **Pinned effects**: star an effect in the library and it waits on the sheet's
+- **Pinned effects**: tap the star on an effect in the library and it waits on the sheet's
   Magick tab, opening right there. Rotes named after a library effect link to it.
 - **One character in play**: the nav carries the active character, one tap opens
   the sheet. The character switcher (the caret beside it on a wide screen, or

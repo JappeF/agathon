@@ -69,6 +69,15 @@ await page.click('button:has-text("Add background")');
 await page.fill('.picker-search', 'sanc');
 check('Technocratic names', (await page.textContent('.trait-pick-name')).startsWith('Laboratory'));
 await page.keyboard.press('Escape');
+// a narrow phone (320px) in edit mode: nothing may push the page wider than the screen
+await page.setViewportSize({ width: 320, height: 760 });
+for (const tab of ['Magick', 'Traits', 'Background', 'Notes']) {
+  await page.click(`.tab:has-text("${tab}")`);
+  await page.waitForTimeout(150);
+  const wide = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  check(`320px edit mode fits: ${tab}`, wide <= 0, `${wide}px too wide`);
+}
+await page.setViewportSize({ width: 390, height: 844 });
 await page.click('.lock');
 
 // service worker + manifest
