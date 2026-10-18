@@ -93,6 +93,9 @@ for (const tab of ['Magick', 'Traits', 'Background', 'Notes']) {
   const wide = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   check(`320px edit mode fits: ${tab}`, wide <= 0, `${wide}px too wide`);
 }
+// a Sphere's specialty and affinity sit on their own line under the dots, not squeezed beside them
+await page.click('.tab:has-text("Magick")');
+check('320px: Sphere edit line under the dots', await page.$eval('.sphere-row', (r) => r.querySelector('.sphere-edit').getBoundingClientRect().top >= r.querySelector('.dots').getBoundingClientRect().bottom - 2));
 await page.setViewportSize({ width: 390, height: 844 });
 await page.click('.lock');
 

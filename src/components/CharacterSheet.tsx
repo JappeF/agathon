@@ -430,40 +430,40 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
                   <span className="trait-label">
                     <span className="trait-name">
                       <SphereGlyph sphere={s} size={18} /> {s}
-                      {c.affinitySphere === s && (
+                      {!edit && c.affinitySphere === s && (
                         <span className="affinity" title="Affinity Sphere">
                           affinity
                         </span>
                       )}
                     </span>
-                    {edit ? (
-                      <span className="sphere-edit">
-                        <input
-                          className="spec-input"
-                          value={c.specialties[s] ?? ''}
-                          placeholder="specialty"
-                          list={specList(s)}
-                          aria-label={`${s} specialty`}
-                          onChange={(e) => setSpec(s, e.target.value)}
-                        />
-                        <label className="check">
-                          <input
-                            type="radio"
-                            name="affinity"
-                            checked={c.affinitySphere === s}
-                            onChange={() => patch({ affinitySphere: s as Sphere })}
-                          />
-                          affinity
-                        </label>
-                      </span>
-                    ) : (
-                      c.specialties[s] && <span className="trait-spec">{c.specialties[s]}</span>
-                    )}
+                    {!edit && c.specialties[s] && <span className="trait-spec">{c.specialties[s]}</span>}
                   </span>
                   <span className="trait-num" aria-hidden="true">
                     {c.spheres[s]}
                   </span>
                   <Dots value={c.spheres[s]} label={s} onChange={edit ? (v) => patch({ spheres: { ...c.spheres, [s]: v } }) : undefined} />
+                  {/* in edit mode on a line of its own: beside the dots it got squeezed on phones */}
+                  {edit && (
+                    <span className="sphere-edit">
+                      <input
+                        className="spec-input"
+                        value={c.specialties[s] ?? ''}
+                        placeholder="specialty"
+                        list={specList(s)}
+                        aria-label={`${s} specialty`}
+                        onChange={(e) => setSpec(s, e.target.value)}
+                      />
+                      <label className="check">
+                        <input
+                          type="radio"
+                          name="affinity"
+                          checked={c.affinitySphere === s}
+                          onChange={() => patch({ affinitySphere: s as Sphere })}
+                        />
+                        affinity
+                      </label>
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

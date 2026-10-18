@@ -507,8 +507,10 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   border-radius: 999px;
   padding: 0 0.4rem;
 }
-.sphere-edit { display: flex; flex-wrap: wrap; gap: 0 0.5rem; align-items: center; }
-.sphere-edit .spec-input { flex: 1 1 120px; min-width: 0; }
+/* edit mode: specialty and affinity get a line of their own under the name and dots */
+.sphere-row { flex-wrap: wrap; }
+.sphere-edit { flex: 1 1 100%; display: flex; flex-wrap: wrap; gap: 0 0.8rem; align-items: center; padding-bottom: 0.35rem; }
+.sphere-edit .spec-input { flex: 0 1 220px; min-width: 0; margin: 0; }
 .spec-input {
   font: inherit;
   font-size: 0.85rem;
