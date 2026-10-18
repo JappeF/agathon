@@ -1100,7 +1100,7 @@
     "id": "levitation-or-flight",
     "name": "Levitation or Flight",
     "kind": "feat",
-    "summary": "Float or fly, by pushing against gravity, by moving yourself through space, or by lightening what you are made of.",
+    "summary": "Float or fly by pushing against gravity with Forces, or by shifting your body through space with Correspondence and Life. Matter 2 on its own lightens and floats objects.",
     "combos": [
       {
         "spheres": {
@@ -1173,12 +1173,9 @@
       },
       {
         "spheres": {
-          "Forces": 2,
+          "Forces": 3,
           "Matter": 2
         },
-        "inferred": [
-          "Forces"
-        ],
         "note": "into energy"
       },
       {
@@ -1439,7 +1436,7 @@
     "name": "Ward or Ban",
     "kind": "feat",
     "summary": "Protect a place against a chosen kind of being or energy, or ban it from entering. The Sphere of whatever you keep out goes into the ward.",
-    "system": "HDYDT pp. 95-103 has the detailed ward rules.",
+    "system": "HDYDT pp. 95-104 has the detailed ward rules.",
     "combos": [
       {
         "spheres": {
@@ -1804,8 +1801,24 @@
     "id": "sense-energies",
     "name": "Sense Energies",
     "kind": "feat",
-    "summary": "Pick up the kind of energy or Pattern a Sphere covers with rank 1 of that Sphere: forces, life, matter, minds, Quintessence, spirits, time.",
+    "summary": "Pick up the kind of energy or Pattern a Sphere covers with rank 1 of that Sphere: space, probability, forces, life, matter, minds, Quintessence, spirits, time.",
     "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        },
+        "inferred": [
+          "Correspondence"
+        ]
+      },
+      {
+        "spheres": {
+          "Entropy": 1
+        },
+        "inferred": [
+          "Entropy"
+        ]
+      },
       {
         "spheres": {
           "Forces": 1
@@ -1832,6 +1845,14 @@
       },
       {
         "spheres": {
+          "Mind": 1
+        },
+        "inferred": [
+          "Mind"
+        ]
+      },
+      {
+        "spheres": {
           "Prime": 1
         },
         "inferred": [
@@ -1844,6 +1865,14 @@
         },
         "inferred": [
           "Spirit"
+        ]
+      },
+      {
+        "spheres": {
+          "Time": 1
+        },
+        "inferred": [
+          "Time"
         ]
       }
     ],

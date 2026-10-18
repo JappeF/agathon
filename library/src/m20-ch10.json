@@ -1590,7 +1590,7 @@
     "name": "Absorb Quintessence: Node, Tass or Anywhere",
     "kind": "feat",
     "summary": "Take Quintessence into your Avatar: meditate at a Node for more than your usual limit, draw it out of Tass, or as a Master pull it from anywhere at all.",
-    "system": "Without Prime 1 you cannot store more than your Avatar rating. How much you absorb with magick follows the Base Damage or Duration chart. You can still only take in your Avatar rating per turn.",
+    "system": "Without Prime 1, meditating at a Node draws no more than your Avatar rating. Your Avatar rating stays the most personal Quintessence you can hold. How much you absorb with magick follows the Base Damage or Duration chart.",
     "combos": [
       {
         "spheres": {

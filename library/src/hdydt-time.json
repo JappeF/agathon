@@ -598,7 +598,7 @@
     "name": "Time Bubble Prison",
     "kind": "feat",
     "summary": "Wrap a creature, energy, object or spirit in a bubble outside both time and space, cut off from the world until it ends.",
-    "system": "A Godlike feat: 20 or more successes, plus 2 per step on the Time-Sphere Timelines chart, and Paradox doubles for each step. Fifty years takes at least 24 successes and eight times the normal Paradox.",
+    "system": "A Godlike feat: 20 or more successes, plus 2 per step on the Time-Sphere Timelines chart, and each step adds two layers of Paradox. Fifty years takes at least 24 successes and eight times the normal Paradox.",
     "combos": [
       {
         "spheres": {
@@ -679,7 +679,7 @@
     "name": "Time Travel",
     "kind": "feat",
     "summary": "Leave the present and travel forward or back through time, stepping out again in the same place at another time. Long trips can change you so much that you no longer fit into the life you left.",
-    "system": "Out of combat only. Successes: 2 for each step on the Timelines chart (within a year 1, five years 2, 20 years 3, 50 years 4, 100 years 5, 500 years 6, 1000+ years 10); 50 years back takes 8. Going back adds +3 difficulty, is always vulgar and doubles Paradox per step. Without an anchor point the trip is one-way. Sending another person a few turns costs 4 successes plus 2 per turn.",
+    "system": "Out of combat only. Successes: 2 for each step on the Timelines chart (within a year 1, five years 2, 20 years 3, 50 years 4, 100 years 5, 500 years 6, 1000+ years 10); 50 years back takes 8. Going back adds +3 difficulty, is always vulgar and adds two layers of Paradox per step (50 years back: eight times the usual Paradox). Without an anchor point the trip is one-way. Sending another person a few turns costs 4 successes plus 2 per turn.",
     "combos": [
       {
         "spheres": {

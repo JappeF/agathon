@@ -1256,7 +1256,7 @@
     "name": "Ward Against Ghostly Powers",
     "kind": "feat",
     "summary": "Shield an area and the people in it from the death-powers of ghosts, without changing the spirit world around it.",
-    "system": "The first 2 successes set the ward; each further success takes 1 success off any ghostly attack on the protected. Spend 1 more success per extra person warded. A wraith gains a die per Fetter dot if the ward sits between it and its fetter, but loses those dice if the fetter is built into the ward.",
+    "system": "The first 2 successes set the ward; each further success takes 1 success off any ghostly attack on the protected. Spend 1 more success per extra person warded. A wraith trying to break the ward gets 1 extra die per Fetter dot when the ward stands between it and its fetter, but loses those dice if the fetter is built into the ward.",
     "combos": [
       {
         "spheres": {

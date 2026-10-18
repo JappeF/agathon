@@ -95,6 +95,11 @@
       },
       {
         "book": "HDYDT",
+        "page": 93,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Bargaining Process"
+      },
+      {
+        "book": "HDYDT",
         "page": 94,
         "section": "Summoning, Binding, Bargaining, and Warding: The Bargaining Process"
       }
@@ -932,7 +937,7 @@
     "name": "Psychic Ward: Psychic Pain",
     "kind": "feat",
     "summary": "Anyone who crosses into the ward gets stabbed by an invisible spike of mental pain. A nastier version shatters the mind and does aggravated harm.",
-    "system": "Bashing attack on crossing: your Arete is the dice pool, difficulty 6 or the target's Willpower, whichever is higher. Hidden in the ward, so no extra Paradox. One blast per Quintessence spent on the ward. Victims may resist with Willpower at difficulty 6 and must beat the successes you rolled for the ward (a permanent ward has at least 10). Lasts the normal Duration unless held with Time 4 or made permanent.",
+    "system": "Bashing attack on crossing: your Arete is the dice pool, difficulty 6 or the target's Willpower, whichever is higher. Hidden in the ward, so no extra Paradox. One blast per Quintessence spent on the ward. Unlike the other psychic wards it gets no Willpower roll to shake it off. Lasts the normal Duration unless held with Time 4 or made permanent.",
     "combos": [
       {
         "spheres": {

@@ -367,7 +367,7 @@
     "name": "Give a Spirit a Solid Body",
     "kind": "feat",
     "summary": "Charge a spirit with so much Quintessence that it becomes solid in the physical world. When the body is destroyed the spirit simply goes back to being ephemeral.",
-    "system": "The body has 2 health levels per success after the first (3 successes: 6 health levels).",
+    "system": "The body has 2 health levels per success. The book's rule starts counting after the first success, but its own example gives 6 health levels for 3 successes.",
     "combos": [
       {
         "spheres": {
@@ -472,7 +472,7 @@
     "name": "Quintessence Blade or Bolt",
     "kind": "feat",
     "summary": "Form a weapon or a blast of pure metaphysical energy, such as a sword of light or a plasma hammer. It burns on contact but is cold, so it sets nothing alight.",
-    "system": "Aggravated damage. Costs 1 Quintessence per turn of use, hit or miss, so it suits ambushes and last stands.",
+    "system": "Aggravated damage. In HDYDT it costs 1 Quintessence per turn of use, hit or miss, so it suits ambushes and last stands; the M20 chart (p. 510) charges 1 Quintessence per health level of damage instead.",
     "coincidentalIf": "it is built into technology, or used among believers in a place where miracles are accepted",
     "vulgarity": "depends",
     "combos": [

@@ -175,15 +175,15 @@ Entries citing both books count in both rows.
 
 | Sphere | rank | feat | rote | in any combo | needed in every combo |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Correspondence | 10 | 90 | 4 | 104 | 82 |
-| Entropy | 5 | 67 | 1 | 73 | 43 |
+| Correspondence | 10 | 91 | 4 | 105 | 82 |
+| Entropy | 5 | 68 | 1 | 74 | 43 |
 | Forces | 5 | 117 | 8 | 130 | 91 |
 | Life | 5 | 165 | 5 | 175 | 109 |
 | Matter | 5 | 101 | 4 | 110 | 56 |
-| Mind | 5 | 131 | 7 | 143 | 107 |
+| Mind | 5 | 132 | 7 | 144 | 107 |
 | Prime | 10 | 163 | 3 | 176 | 148 |
 | Spirit | 10 | 87 | 3 | 100 | 78 |
-| Time | 5 | 45 | 4 | 54 | 44 |
+| Time | 5 | 46 | 4 | 55 | 44 |
 
 192 entries have more than one alternative combo; 54 have at least one inferred rank.
 <!-- stats:end -->

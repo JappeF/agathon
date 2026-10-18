@@ -1,7 +1,7 @@
 [
   {
     "id": "correspondence-1",
-    "name": "Correspondence 1: Immediate Spatial Perceptions",
+    "name": "Correspondence 1: Immediate Spatial Perceptions / Landscape of the Mind",
     "kind": "rank",
     "summary": "Feel the space around you beyond your normal senses: judge exact distances, always know where north is, notice hidden things or people close by, and pick up warps, gates and other spatial oddities, including ones made by Correspondence magick.",
     "combos": [
@@ -26,7 +26,7 @@
   },
   {
     "id": "correspondence-2",
-    "name": "Correspondence 2: Sense, Touch, Thicken and Reach Through Space",
+    "name": "Correspondence 2: Sense, Touch, Thicken and Reach Through Space / Correspondence Sensing",
     "kind": "rank",
     "summary": "Send your senses to another place and watch or listen there. You can also make the space around you dense, so it is harder for others to spy on you or to notice your own remote senses.",
     "system": "Remote senses leave small ripples that Correspondence 1 can pick up. Each success put into thickening space takes one success off a rival's attempt to spy on you or spot your senses. When Correspondence links another Sphere to a distant target, the Effect can go no higher than your Correspondence rank.",
@@ -256,6 +256,12 @@
         "page": 514,
         "pdfPage": 515,
         "section": "Spheres: Entropy"
+      },
+      {
+        "book": "M20",
+        "page": 515,
+        "pdfPage": 516,
+        "section": "Spheres: Entropy"
       }
     ]
   },
@@ -392,6 +398,12 @@
         "page": 515,
         "pdfPage": 516,
         "section": "Spheres: Forces"
+      },
+      {
+        "book": "M20",
+        "page": 516,
+        "pdfPage": 517,
+        "section": "Spheres: Forces"
       }
     ]
   },
@@ -458,7 +470,7 @@
     "name": "Forces 4: Control Major Forces / Gift of Zeus / Weather-Witching",
     "kind": "rank",
     "summary": "Use the lower-rank tricks over a mile or more: change the weather, darken an area, raise or drop the temperature, and shield a place or wreck it.",
-    "system": "Big Effects at this scale need many successes.",
+    "system": "Big Effects at this scale need many successes and are usually vulgar.",
     "combos": [
       {
         "spheres": {
@@ -466,7 +478,7 @@
         }
       }
     ],
-    "vulgarity": "vulgar",
+    "vulgarity": "depends",
     "tags": [
       "sphere-basics",
       "weather",
@@ -620,6 +632,12 @@
         "book": "M20",
         "page": 516,
         "pdfPage": 517,
+        "section": "Spheres: Life"
+      },
+      {
+        "book": "M20",
+        "page": 517,
+        "pdfPage": 518,
         "section": "Spheres: Life"
       }
     ]
@@ -855,6 +873,12 @@
         "page": 518,
         "pdfPage": 519,
         "section": "Spheres: Matter"
+      },
+      {
+        "book": "M20",
+        "page": 519,
+        "pdfPage": 520,
+        "section": "Spheres: Matter"
       }
     ]
   },
@@ -1018,6 +1042,12 @@
         "book": "M20",
         "page": 519,
         "pdfPage": 520,
+        "section": "Spheres: Mind"
+      },
+      {
+        "book": "M20",
+        "page": 520,
+        "pdfPage": 521,
         "section": "Spheres: Mind"
       }
     ]
@@ -1452,6 +1482,12 @@
         "page": 522,
         "pdfPage": 523,
         "section": "Spheres: Time"
+      },
+      {
+        "book": "M20",
+        "page": 523,
+        "pdfPage": 524,
+        "section": "Spheres: Time"
       }
     ]
   },
@@ -1878,6 +1914,12 @@
         "page": 526,
         "pdfPage": 527,
         "section": "Spheres: Primal Utility"
+      },
+      {
+        "book": "M20",
+        "page": 527,
+        "pdfPage": 528,
+        "section": "Spheres: Primal Utility"
       }
     ]
   },
@@ -2056,7 +2098,7 @@
     "name": "Absorb Quintessence: Node, Tass or Anywhere",
     "kind": "feat",
     "summary": "Take Quintessence into your Avatar: meditate at a Node for more than your usual limit, draw it out of Tass, or as a Master pull it from anywhere at all.",
-    "system": "Without Prime 1 you cannot store more than your Avatar rating. How much you absorb with magick follows the Base Damage or Duration chart. You can still only take in your Avatar rating per turn.",
+    "system": "Without Prime 1, meditating at a Node draws no more than your Avatar rating. Your Avatar rating stays the most personal Quintessence you can hold. How much you absorb with magick follows the Base Damage or Duration chart.",
     "combos": [
       {
         "spheres": {
@@ -5218,7 +5260,7 @@
     "id": "levitation-or-flight",
     "name": "Levitation or Flight",
     "kind": "feat",
-    "summary": "Float or fly, by pushing against gravity, by moving yourself through space, or by lightening what you are made of.",
+    "summary": "Float or fly by pushing against gravity with Forces, or by shifting your body through space with Correspondence and Life. Matter 2 on its own lightens and floats objects.",
     "combos": [
       {
         "spheres": {
@@ -5293,12 +5335,9 @@
       },
       {
         "spheres": {
-          "Forces": 2,
+          "Forces": 3,
           "Matter": 2
         },
-        "inferred": [
-          "Forces"
-        ],
         "note": "into energy"
       },
       {
@@ -5568,7 +5607,7 @@
     "name": "Ward or Ban",
     "kind": "feat",
     "summary": "Protect a place against a chosen kind of being or energy, or ban it from entering. The Sphere of whatever you keep out goes into the ward.",
-    "system": "HDYDT pp. 95-103 has the detailed ward rules.",
+    "system": "HDYDT pp. 95-104 has the detailed ward rules.",
     "combos": [
       {
         "spheres": {
@@ -5945,8 +5984,24 @@
     "id": "sense-energies",
     "name": "Sense Energies",
     "kind": "feat",
-    "summary": "Pick up the kind of energy or Pattern a Sphere covers with rank 1 of that Sphere: forces, life, matter, minds, Quintessence, spirits, time.",
+    "summary": "Pick up the kind of energy or Pattern a Sphere covers with rank 1 of that Sphere: space, probability, forces, life, matter, minds, Quintessence, spirits, time.",
     "combos": [
+      {
+        "spheres": {
+          "Correspondence": 1
+        },
+        "inferred": [
+          "Correspondence"
+        ]
+      },
+      {
+        "spheres": {
+          "Entropy": 1
+        },
+        "inferred": [
+          "Entropy"
+        ]
+      },
       {
         "spheres": {
           "Forces": 1
@@ -5973,6 +6028,14 @@
       },
       {
         "spheres": {
+          "Mind": 1
+        },
+        "inferred": [
+          "Mind"
+        ]
+      },
+      {
+        "spheres": {
           "Prime": 1
         },
         "inferred": [
@@ -5985,6 +6048,14 @@
         },
         "inferred": [
           "Spirit"
+        ]
+      },
+      {
+        "spheres": {
+          "Time": 1
+        },
+        "inferred": [
+          "Time"
         ]
       }
     ],
@@ -6689,7 +6760,7 @@
           "Life": 5,
           "Matter": 5
         },
-        "note": "into exotic materials"
+        "note": "the book's Matter 5 example: a vampire into lawn furniture"
       }
     ],
     "vulgarity": "vulgar",
@@ -6790,6 +6861,12 @@
         "book": "M20",
         "page": 520,
         "pdfPage": 521,
+        "section": "Spheres: Prime"
+      },
+      {
+        "book": "M20",
+        "page": 521,
+        "pdfPage": 522,
         "section": "Spheres: Prime"
       }
     ]
@@ -12104,7 +12181,7 @@
     "name": "Give a Spirit a Solid Body",
     "kind": "feat",
     "summary": "Charge a spirit with so much Quintessence that it becomes solid in the physical world. When the body is destroyed the spirit simply goes back to being ephemeral.",
-    "system": "The body has 2 health levels per success after the first (3 successes: 6 health levels).",
+    "system": "The body has 2 health levels per success. The book's rule starts counting after the first success, but its own example gives 6 health levels for 3 successes.",
     "combos": [
       {
         "spheres": {
@@ -12215,7 +12292,7 @@
     "name": "Quintessence Blade or Bolt",
     "kind": "feat",
     "summary": "Form a weapon or a blast of pure metaphysical energy, such as a sword of light or a plasma hammer. It burns on contact but is cold, so it sets nothing alight.",
-    "system": "Aggravated damage. Costs 1 Quintessence per turn of use, hit or miss, so it suits ambushes and last stands.",
+    "system": "Aggravated damage. In HDYDT it costs 1 Quintessence per turn of use, hit or miss, so it suits ambushes and last stands; the M20 chart (p. 510) charges 1 Quintessence per health level of damage instead.",
     "combos": [
       {
         "spheres": {
@@ -15939,7 +16016,7 @@
     "name": "Ward Against Ghostly Powers",
     "kind": "feat",
     "summary": "Shield an area and the people in it from the death-powers of ghosts, without changing the spirit world around it.",
-    "system": "The first 2 successes set the ward; each further success takes 1 success off any ghostly attack on the protected. Spend 1 more success per extra person warded. A wraith gains a die per Fetter dot if the ward sits between it and its fetter, but loses those dice if the fetter is built into the ward.",
+    "system": "The first 2 successes set the ward; each further success takes 1 success off any ghostly attack on the protected. Spend 1 more success per extra person warded. A wraith trying to break the ward gets 1 extra die per Fetter dot when the ward stands between it and its fetter, but loses those dice if the fetter is built into the ward.",
     "combos": [
       {
         "spheres": {
@@ -16530,6 +16607,12 @@
         "page": 91,
         "pdfPage": 92,
         "section": "Summoning, Binding, Bargaining, and Warding: The Basics"
+      },
+      {
+        "book": "HDYDT",
+        "page": 93,
+        "pdfPage": 94,
+        "section": "Summoning, Binding, Bargaining, and Warding: The Bargaining Process"
       },
       {
         "book": "HDYDT",
@@ -17254,7 +17337,7 @@
     "name": "Psychic Ward: Psychic Pain",
     "kind": "feat",
     "summary": "Anyone who crosses into the ward gets stabbed by an invisible spike of mental pain. A nastier version shatters the mind and does aggravated harm.",
-    "system": "Bashing attack on crossing: your Arete is the dice pool, difficulty 6 or the target's Willpower, whichever is higher. Hidden in the ward, so no extra Paradox. One blast per Quintessence spent on the ward. Victims may resist with Willpower at difficulty 6 and must beat the successes you rolled for the ward (a permanent ward has at least 10). Lasts the normal Duration unless held with Time 4 or made permanent.",
+    "system": "Bashing attack on crossing: your Arete is the dice pool, difficulty 6 or the target's Willpower, whichever is higher. Hidden in the ward, so no extra Paradox. One blast per Quintessence spent on the ward. Unlike the other psychic wards it gets no Willpower roll to shake it off. Lasts the normal Duration unless held with Time 4 or made permanent.",
     "combos": [
       {
         "spheres": {
@@ -18602,7 +18685,7 @@
     "name": "Time Bubble Prison",
     "kind": "feat",
     "summary": "Wrap a creature, energy, object or spirit in a bubble outside both time and space, cut off from the world until it ends.",
-    "system": "A Godlike feat: 20 or more successes, plus 2 per step on the Time-Sphere Timelines chart, and Paradox doubles for each step. Fifty years takes at least 24 successes and eight times the normal Paradox.",
+    "system": "A Godlike feat: 20 or more successes, plus 2 per step on the Time-Sphere Timelines chart, and each step adds two layers of Paradox. Fifty years takes at least 24 successes and eight times the normal Paradox.",
     "combos": [
       {
         "spheres": {
@@ -18685,7 +18768,7 @@
     "name": "Time Travel",
     "kind": "feat",
     "summary": "Leave the present and travel forward or back through time, stepping out again in the same place at another time. Long trips can change you so much that you no longer fit into the life you left.",
-    "system": "Out of combat only. Successes: 2 for each step on the Timelines chart (within a year 1, five years 2, 20 years 3, 50 years 4, 100 years 5, 500 years 6, 1000+ years 10); 50 years back takes 8. Going back adds +3 difficulty, is always vulgar and doubles Paradox per step. Without an anchor point the trip is one-way. Sending another person a few turns costs 4 successes plus 2 per turn.",
+    "system": "Out of combat only. Successes: 2 for each step on the Timelines chart (within a year 1, five years 2, 20 years 3, 50 years 4, 100 years 5, 500 years 6, 1000+ years 10); 50 years back takes 8. Going back adds +3 difficulty, is always vulgar and adds two layers of Paradox per step (50 years back: eight times the usual Paradox). Without an anchor point the trip is one-way. Sending another person a few turns costs 4 successes plus 2 per turn.",
     "combos": [
       {
         "spheres": {

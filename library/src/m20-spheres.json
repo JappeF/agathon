@@ -1,7 +1,7 @@
 [
   {
     "id": "correspondence-1",
-    "name": "Correspondence 1: Immediate Spatial Perceptions",
+    "name": "Correspondence 1: Immediate Spatial Perceptions / Landscape of the Mind",
     "kind": "rank",
     "summary": "Feel the space around you beyond your normal senses: judge exact distances, always know where north is, notice hidden things or people close by, and pick up warps, gates and other spatial oddities, including ones made by Correspondence magick.",
     "combos": [
@@ -25,7 +25,7 @@
   },
   {
     "id": "correspondence-2",
-    "name": "Correspondence 2: Sense, Touch, Thicken and Reach Through Space",
+    "name": "Correspondence 2: Sense, Touch, Thicken and Reach Through Space / Correspondence Sensing",
     "kind": "rank",
     "summary": "Send your senses to another place and watch or listen there. You can also make the space around you dense, so it is harder for others to spy on you or to notice your own remote senses.",
     "system": "Remote senses leave small ripples that Correspondence 1 can pick up. Each success put into thickening space takes one success off a rival's attempt to spy on you or spot your senses. When Correspondence links another Sphere to a distant target, the Effect can go no higher than your Correspondence rank.",
@@ -395,6 +395,11 @@
         "book": "M20",
         "page": 514,
         "section": "Spheres: Entropy"
+      },
+      {
+        "book": "M20",
+        "page": 515,
+        "section": "Spheres: Entropy"
       }
     ]
   },
@@ -525,6 +530,11 @@
       {
         "book": "M20",
         "page": 515,
+        "section": "Spheres: Forces"
+      },
+      {
+        "book": "M20",
+        "page": 516,
         "section": "Spheres: Forces"
       }
     ]
@@ -715,7 +725,7 @@
     "name": "Forces 4: Control Major Forces / Gift of Zeus / Weather-Witching",
     "kind": "rank",
     "summary": "Use the lower-rank tricks over a mile or more: change the weather, darken an area, raise or drop the temperature, and shield a place or wreck it.",
-    "system": "Big Effects at this scale need many successes.",
+    "system": "Big Effects at this scale need many successes and are usually vulgar.",
     "combos": [
       {
         "spheres": {
@@ -723,7 +733,7 @@
         }
       }
     ],
-    "vulgarity": "vulgar",
+    "vulgarity": "depends",
     "tags": [
       "sphere-basics",
       "weather",
@@ -872,6 +882,11 @@
       {
         "book": "M20",
         "page": 516,
+        "section": "Spheres: Life"
+      },
+      {
+        "book": "M20",
+        "page": 517,
         "section": "Spheres: Life"
       }
     ]
@@ -1136,6 +1151,11 @@
         "book": "M20",
         "page": 518,
         "section": "Spheres: Matter"
+      },
+      {
+        "book": "M20",
+        "page": 519,
+        "section": "Spheres: Matter"
       }
     ]
   },
@@ -1191,7 +1211,7 @@
           "Matter": 5,
           "Life": 5
         },
-        "note": "into exotic materials"
+        "note": "the book's Matter 5 example: a vampire into lawn furniture"
       }
     ],
     "vulgarity": "vulgar",
@@ -1335,6 +1355,11 @@
       {
         "book": "M20",
         "page": 519,
+        "section": "Spheres: Mind"
+      },
+      {
+        "book": "M20",
+        "page": 520,
         "section": "Spheres: Mind"
       }
     ]
@@ -1559,6 +1584,11 @@
       {
         "book": "M20",
         "page": 520,
+        "section": "Spheres: Prime"
+      },
+      {
+        "book": "M20",
+        "page": 521,
         "section": "Spheres: Prime"
       }
     ]
@@ -1985,6 +2015,11 @@
       {
         "book": "M20",
         "page": 522,
+        "section": "Spheres: Time"
+      },
+      {
+        "book": "M20",
+        "page": 523,
         "section": "Spheres: Time"
       }
     ]
@@ -2454,6 +2489,11 @@
       {
         "book": "M20",
         "page": 526,
+        "section": "Spheres: Primal Utility"
+      },
+      {
+        "book": "M20",
+        "page": 527,
         "section": "Spheres: Primal Utility"
       }
     ]
