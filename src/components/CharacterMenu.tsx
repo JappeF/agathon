@@ -110,8 +110,17 @@ export function CharacterMenu({ characters, active }: { characters?: Character[]
     };
     place();
     panel.current?.querySelector<HTMLElement>('[aria-current="true"], .switch-row')?.focus();
+    // the button that opened it says so (the nav passes its wrapper, which holds the caret)
+    const button = trigger.matches('button') ? trigger : trigger.querySelector<HTMLElement>('button[aria-haspopup]');
+    button?.setAttribute('aria-expanded', 'true');
+    // stay under the trigger when the page scrolls with the drop-down open
     window.addEventListener('resize', place);
-    return () => window.removeEventListener('resize', place);
+    window.addEventListener('scroll', place, { passive: true });
+    return () => {
+      button?.setAttribute('aria-expanded', 'false');
+      window.removeEventListener('resize', place);
+      window.removeEventListener('scroll', place);
+    };
   }, [trigger]);
 
   useEffect(() => {

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDialog } from './useDialog';
 import type { Character } from '../character';
 import { BOOK_NAMES, type Combo, type Effect } from '../library/data';
 import { deficit, difficulties } from '../library/search';
@@ -89,16 +90,13 @@ export function EffectDetail({
   const combo = effect.combos[pick] ?? effect.combos[0];
   const d = difficulties(combo);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  const box = useRef<HTMLElement>(null);
+  useDialog(box, onClose);
   useEffect(() => setPick(Math.max(0, firstCastable)), [effect.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="detail-overlay" onClick={onClose}>
-      <article className="detail" role="dialog" aria-modal="true" aria-label={effect.name} onClick={(e) => e.stopPropagation()}>
+      <article className="detail" role="dialog" aria-modal="true" aria-label={effect.name} tabIndex={-1} ref={box} onClick={(e) => e.stopPropagation()}>
         <div className="detail-top">
           <button type="button" className="back" onClick={onClose}>
             <Icon name="back" /> Library

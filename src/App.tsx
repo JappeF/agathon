@@ -100,6 +100,8 @@ export default function App() {
             <button
               type="button"
               className="nav-caret"
+              aria-haspopup="dialog"
+              aria-expanded="false"
               aria-label="Switch character"
               title="Switch character"
               onClick={(e) => openCharacterMenu(e.currentTarget.parentElement!)}

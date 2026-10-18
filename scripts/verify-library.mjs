@@ -91,7 +91,17 @@ for (const q of ['tag:', 'kind:', 'is:', '-name:', 'book:']) {
 await search('');
 await page.click('.tag-row:has-text("healing")');
 
-// detail
+// detail, opened from the keyboard: focus goes in, Tab stays in, Escape brings it back
+await page.focus('.effect-card >> nth=0');
+await page.keyboard.press('Enter');
+await page.waitForSelector('.detail');
+const inDetail = () => page.evaluate(() => !!document.querySelector('.detail')?.contains(document.activeElement));
+check('detail takes focus', await inDetail());
+for (let i = 0; i < 25; i++) await page.keyboard.press('Tab');
+check('Tab stays inside the detail', await inDetail());
+await page.keyboard.press('Escape');
+await page.waitForSelector('.detail', { state: 'detached' });
+check('focus back on the card', await page.evaluate(() => document.activeElement === document.querySelector('.effect-card')));
 await page.click('.effect-card >> nth=0');
 await page.waitForSelector('.detail');
 check('detail tags are plain chips, not a pill around them', await page.$eval('.detail-tags', (n) => getComputedStyle(n).borderStyle === 'none'));

@@ -183,6 +183,7 @@ await page.click('.switch-menu button:has-text("Add")');
 await page.waitForSelector(`.sheet-name:has-text("${second}")`);
 check('adding from the menu switches to it', (await page.textContent('.nav-char-name')) === second);
 await page.click('.switch-btn');
+check('the menu button says it is open', (await page.getAttribute('.switch-btn', 'aria-expanded')) === 'true');
 const rows = await page.$$eval('.switch-row .char-name', (ns) => ns.map((n) => n.textContent));
 check('menu lists the one in play first', rows.length === 2 && rows[0] === second, rows.join(' | '));
 await page.click(`.switch-row:has(.char-name:text-is("${name}"))`);

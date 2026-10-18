@@ -109,6 +109,7 @@ await page.click('.modal button:has-text("Close")');
 
 // Paste the answer: the JSON block becomes a version, junk is filtered out
 await page.click('button:has-text("Paste the answer")');
+check('paste box has focus, ready for Ctrl+V', await page.evaluate(() => document.activeElement?.classList.contains('paste-area')));
 await page.fill('.paste-area', 'Nice idea, but no plan block here.');
 await page.click('.modal button:has-text("Add as a new version")');
 check('no block: explains', /no plan block/.test(await page.textContent('.paste-error')));

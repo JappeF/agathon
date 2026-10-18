@@ -14,7 +14,7 @@
   /* body text: a soft violet-white, not paper white */
   --ink: #ddd3e8;
   --ink-dim: #b3a3c9;
-  --ink-faint: #7d6d93;
+  --ink-faint: #8a7aa1; /* 4.6:1 or more on every background (AA for small text) */
   --gold: #d9b45a;
   --gold-hot: #f3d58a;
   --gold-deep: #a8812f;
@@ -120,7 +120,7 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   place-content: center;
   min-height: calc(230px + env(safe-area-inset-top));
   text-align: center;
-  padding: env(safe-area-inset-top) 1rem 0;
+  padding: env(safe-area-inset-top) max(1rem, env(safe-area-inset-right)) 0 max(1rem, env(safe-area-inset-left));
   overflow: hidden;
   isolation: isolate;
 }
@@ -305,7 +305,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   --main-max: 820px;
   max-width: var(--main-max);
   margin: 0 auto;
-  padding: 0.5rem 1rem calc(var(--nav-h) + 2rem + env(safe-area-inset-bottom));
+  /* side insets too: a phone on its side puts the notch over a plain 1rem gutter */
+  padding: 0.5rem max(1rem, env(safe-area-inset-right)) calc(var(--nav-h) + 2rem + env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
 }
 @media (min-width: 900px) {
   /* centred on the window (100vw includes the scrollbar), not on what is left beside it */
@@ -717,14 +718,17 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .modal {
   width: min(480px, 100%);
   max-height: calc(100vh - 2rem);
+  /* the small viewport on phones: 100vh is taller than the visible page in iOS Safari */
+  max-height: calc(100dvh - 2rem);
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--bg-raised);
   border: 1px solid var(--gold-deep);
   border-radius: var(--r);
   box-shadow: var(--shadow), 0 0 30px #d9b45a1a;
   padding: 1.1rem 1.2rem;
 }
-.modal:focus { outline: none; }
+.modal:focus, .detail:focus { outline: none; }
 .modal-title { font-family: var(--font-head); color: var(--gold-hot); font-size: 1.3rem; margin: 0 0 0.6rem; }
 .modal p { margin: 0.4rem 0; }
 .modal-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
@@ -985,8 +989,9 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   position: absolute;
   inset: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--bg);
-  padding: calc(0.5rem + env(safe-area-inset-top)) 1rem calc(2rem + env(safe-area-inset-bottom));
+  padding: calc(0.5rem + env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) calc(2rem + env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
 }
 @media (min-width: 768px) {
   .detail { left: auto; width: min(560px, 100%); border-left: 1px solid var(--gold-deep); box-shadow: var(--shadow); padding: 1rem 1.6rem 2rem; animation: slide-in 0.2s ease-out; }
@@ -997,6 +1002,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .detail-top { display: flex; align-items: center; justify-content: space-between; }
 .detail .back { all: unset; box-sizing: border-box; min-height: 44px; display: inline-flex; align-items: center; gap: 0.2rem; color: var(--ink-dim); font-weight: 600; cursor: pointer; }
 .detail .back:hover { color: var(--gold-hot); }
+/* all: unset drops the browser's focus ring, so these bring their own */
+.detail .back:focus-visible, .link-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: var(--r-sm); }
 .detail-name { font-family: var(--font-head); color: var(--gold-hot); font-size: 1.5rem; line-height: 1.25; margin: 0.2rem 0 0.5rem; }
 .detail-summary { font-size: 1.02rem; margin: 0 0 0.6rem; }
 .detail-system { color: var(--ink-dim); margin: 0 0 0.6rem; }

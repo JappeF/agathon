@@ -251,7 +251,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   return (
     <section className="view sheet">
       <div className="sheet-head">
-        <button type="button" className="back switch-btn" aria-haspopup="dialog" onClick={(e) => openCharacterMenu(e.currentTarget)}>
+        <button type="button" className="back switch-btn" aria-haspopup="dialog" aria-expanded="false" onClick={(e) => openCharacterMenu(e.currentTarget)}>
           Characters <Icon name="down" size={16} />
         </button>
         <div className="sheet-actions">
@@ -368,12 +368,12 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
         </div>
       )}
 
-      <div className="tabs" role="tablist">
+      {/* links between the sheet's sections, so plain links (aria-current), not an ARIA tab widget */}
+      <nav className="tabs" aria-label="Sheet sections">
         {TABS.map((t) => (
           <a
             key={t.id}
-            role="tab"
-            aria-selected={tab === t.id}
+            aria-current={tab === t.id ? 'page' : undefined}
             className={`tab${tab === t.id ? ' on' : ''}`}
             href={`#/characters/${encodeURIComponent(c.id)}/${t.id}`}
             onClick={(e) => {
@@ -385,7 +385,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             {t.label}
           </a>
         ))}
-      </div>
+      </nav>
 
       {tab === 'magick' && (
         <div className="tab-body spread">
