@@ -1161,8 +1161,14 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
     overflow-y: auto;
     padding: 0.2rem 0.8rem 1.5rem 0;
     border-right: 1px solid var(--line);
+    /* its own scrollbar only shows on hover; the gutter stays reserved so nothing shifts,
+       and the bottom fades out to show there is more below */
     scrollbar-width: thin;
+    scrollbar-gutter: stable;
+    scrollbar-color: transparent transparent;
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 2.5rem), transparent);
   }
+  .lib-side:hover, .lib-side:focus-within { scrollbar-color: #3a2a55 transparent; }
   .lib-side > .side-title:first-child { display: block; }
   .lib-side .sphere-bar { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 0; }
   /* a dossier version: one row of nine, with names */
