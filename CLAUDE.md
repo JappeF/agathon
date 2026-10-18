@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Agathon: an offline-first PWA (React 18 + TypeScript + Vite + vite-plugin-pwa) for Mage: The Ascension 20th Anniversary (M20). All decisions and the build order are in `BRAINSTORM.md` (Dutch); read it before adding features.
+Agathon: an offline-first PWA (React 18 + TypeScript + Vite + vite-plugin-pwa) for Mage: The Ascension 20th Anniversary (M20). All decisions and the build order are in `BRAINSTORM.md` (Dutch); read it before adding features. Nice-to-haves, ideas and open points are GitHub issues on OWNER/agathon with emoji labels (kind: ✨ nice to have, 🗺️ roadmap, 💬 to discuss, ⏳ needs input; topic: 🔮 AI, 📜 sheet, 🪄 spells, 📚 library, 🎲 at the table, 🤝 sharing, 📱 android...); reuse those labels for new issues.
 
 The app is a helper and sounding board, not a rules engine: dice are rolled outside the app. The core is a searchable library of magick effects (own summaries, never book text), character sheets imported from Mr. Gone PDFs, sharing, and spell dossiers with a copyable "context pack" prompt for any AI, which can quote the player's own rulebook pages (phase 4 in `BRAINSTORM.md`). App language is English. `README.md` is the public overview (screenshots in `docs/`); the code is MIT (`LICENSE`).
 

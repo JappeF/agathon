@@ -119,22 +119,12 @@ Naam: Agathon (Grieks *to agathon*, "het Goede"). Let op: de lore-claim uit de G
 - `refs/` en alle uitgelezen boektekst blijven buiten git; alleen eigen samenvattingen
   worden gecommit.
 
-## Nice to have (later)
+## Nice to have en open punten: GitHub-issues
 
-- **ST-module:** consensus-dial en reality zones (deelbaar via QR, past de difficulty bij
-  spelers aan), Paradox-ambush-generator, geheime notities.
-- **Tafel-chat op GitHub:** een private repo per groep, een issue per spell-idee, en
-  `@claude` via `anthropics/claude-code-action` op een OAuth-token van het eigen abonnement.
-  Claude leest daar de bibliotheek, de characters en eventueel de boektekst. De knop
-  *Bespreek met de tafel* opent een issue met het context pack.
-- **Ingebouwde AI-aanroepen:** eigen Gemini-key (gratis, maar Google mag prompts gebruiken
-  om modellen te trainen) of een groepsproxy met een Anthropic API-key. Geen Workers AI:
-  de kleine modellen kunnen de context niet aan.
-- Gedeelde cabal-grimoire (samen schaven aan spells), mogelijk in de GitHub-repo van de
-  tafel-chat.
-- Vertalingen van de interface (bijvoorbeeld Nederlands).
-- Arbiter in de browser (WebLLM/WebGPU), gedeelde dice-feed (Durable Objects),
-  Digital Web-terminalthema als easter egg.
+Alle nice-to-haves, losse ideeen en open punten staan sinds 18 okt 2026 als issues op
+https://github.com/OWNER/agathon/issues, met labels per soort (✨ nice to have,
+🗺️ roadmap, 💬 to discuss, ⏳ needs input) en per onderwerp (🔮 AI, 📜 sheet, 🪄 spells,
+🎲 at the table, 🤝 sharing, 📱 android...). Daar bijhouden, niet hier.
 
 ## Bronnen in refs/
 
@@ -143,13 +133,6 @@ Naam: Agathon (Grieks *to agathon*, "het Goede"). Let op: de lore-claim uit de G
 - `M20_How_Do_You_DO_That_(Final_Download).pdf`: digitale tekstlaag, ~96k woorden,
   ~930 vermeldingen van een Sphere met rank; het meeste materiaal voor de bibliotheek
 - `pdftotext` werkt direct, geen OCR nodig.
-
-## Overige ideeen (nog niet besproken)
-
-- Instruments als kaartjes: in de hand, verbruikt of kwijt.
-- Resonance, Seekings en Avatar-journal als lichte notitievelden.
-- Spraakinvoer (Web Speech API) voor spell-ideeen.
-- Extended rolls bijhouden (benodigde successes over meerdere beurten).
 
 ## Status (17 okt 2026)
 
@@ -166,7 +149,7 @@ Live op https://agathon.pages.dev, repo `OWNER/agathon` (private).
   als nieuwe versie) en D (boekindex: je eigen PDF's lokaal als tekst, pagina's
   aanvinken in Copy for AI, index als bestand naar de telefoon) zijn klaar. Fase 4 is
   daarmee af. Dossiers delen kan nog niet.
-- **Fase 5, officiele M20-sheet:** wacht op een voorbeeld.
+- **Fase 5, officiele M20-sheet:** wacht op een voorbeeld (issue #1).
 
 Onderweg erbij gekomen: het portaal-icoon en het geanimeerde portaal achter het logo,
 eigen Sphere-symbolen (o.a. een brein voor Mind en een drietand voor Prime), en de
@@ -188,5 +171,4 @@ another app-achtige zijbalk voor de bibliotheek op desktop.
 
 ## Open vragen
 
-- Paradigm, practice en instruments: keuzelijsten uit M20 plus vrije tekst?
-- Voorbeeld van de officiele M20-sheet.
+Staan als issues met het label 💬 to discuss of ⏳ needs input.
