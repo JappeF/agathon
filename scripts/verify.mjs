@@ -74,6 +74,19 @@ await page.fill('.field:has-text("Affiliation") input', 'Technocracy');
 await page.click('button[aria-label="Choose Sect"]');
 check('Sect list follows the Affiliation', (await page.locator('.trait-pick:not(.own)').count()) === 5);
 await page.keyboard.press('Escape');
+// Concept, Essence, Nature and Demeanor from M20's lists (search covers examples and other names)
+await page.click('button[aria-label="Choose Nature"]');
+await page.fill('.picker-search', 'mad');
+await page.click('.trait-pick:has-text("Mad Scientist")');
+check('Nature picked', (await page.inputValue('.field:has-text("Nature") input')) === 'Mad Scientist');
+await page.click('button[aria-label="Choose Concept"]');
+await page.fill('.picker-search', 'geek');
+check('Concept found by its examples', (await page.textContent('.trait-pick:not(.own) .trait-pick-name')).trim() === 'Technician');
+await page.keyboard.press('Escape');
+await page.click('button[aria-label="Choose Essence"]');
+await page.fill('.picker-search', 'static');
+await page.click('.trait-pick:has-text("Pattern")');
+check('Essence found by its other name', (await page.inputValue('.field:has-text("Essence") input')) === 'Pattern');
 // specialties suggest M20's examples plus ours
 await page.click('.tab:has-text("Traits")');
 check('specialty suggestions', (await page.getAttribute('.trait-row:has-text("Esoterica") .spec-input', 'list')) === 'spec-Esoterica' && (await page.locator('#spec-Esoterica option[value="Kabbalah"]').count()) === 1);

@@ -117,6 +117,57 @@ export const SECTS: (Pick & { affiliation: string })[] = [
   { affiliation: 'Disparate', name: 'Wu Lung', kind: 'Craft', page: 222, hint: "Dragon wizards of Heaven's bureaucracy" },
 ];
 
+/** M20's sample concepts (p. 250), with the book's examples of each as the hint. */
+export const CONCEPTS: Pick[] = [
+  { name: 'Activist', page: 250, hint: 'Journalist, blogger, lobbyist, malcontent' },
+  { name: 'Artist', page: 250, hint: 'Writer, dancer, painter, musician' },
+  { name: 'Athlete', page: 250, hint: 'Team player, personal trainer, physical artisan, thrill-seeker' },
+  { name: 'Caretaker', page: 250, hint: 'Parent, teacher, social worker, medical professional' },
+  { name: 'Criminal', page: 250, hint: 'Gang member, con artist, drug dealer, thief' },
+  { name: 'Executive', page: 250, hint: 'Tycoon, manager, facilitator, power-player' },
+  { name: 'Guardian', page: 250, hint: 'Cop, security guard, conspiracy theorist, social watchdog' },
+  { name: 'Intellectual', page: 250, hint: 'Scholar, professor, philosopher, social critic' },
+  { name: 'Kid', page: 250, hint: 'Child, student, innocent, gutter-punk' },
+  { name: 'Laborer', page: 250, hint: 'Factory worker, sales clerk, roadie, construction worker' },
+  { name: 'Mystic', page: 250, hint: 'Priest or priestess, hermit, shaman, enlightened weirdo' },
+  { name: 'Night-Owl', page: 250, hint: 'Bartender, bouncer, club-goer, celebrity' },
+  { name: 'Rebel', page: 250, hint: 'Vagabond, outlaw, urban tribalist, subculture devotee' },
+  { name: 'Technician', page: 250, hint: 'Mechanic, lab tech, craftsman, computer geek' },
+  { name: 'Warrior', page: 250, hint: 'Soldier, mercenary, vigilante, prophet' },
+];
+
+/** The four Essences of the Avatar (pp. 266-267); Pattern is also called Static. */
+export const ESSENCES: Pick[] = [
+  { name: 'Dynamic', page: 266, hint: 'A passionate force for progress and change' },
+  { name: 'Pattern', tech: 'Static', page: 267, hint: 'A grounded keeper of stability and order' },
+  { name: 'Primordial', page: 267, hint: 'An elusive figure of primal mystery' },
+  { name: 'Questing', page: 267, hint: 'A wandering dreamer who seeks new horizons' },
+];
+
+/** M20's personality Archetypes, for Nature and Demeanor (pp. 268-273). Make up your own too. */
+export const ARCHETYPES: Pick[] = [
+  { name: 'Activist', page: 268, hint: 'Fights for a cause and wants to change the world' },
+  { name: 'Benefactor', page: 268, hint: 'Gives, helps and looks after others' },
+  { name: 'Contrary', page: 268, hint: 'Goes against the grain on principle' },
+  { name: 'Crusader', page: 268, hint: 'Driven by a higher goal, sometimes to a fault' },
+  { name: 'Hacker', page: 269, hint: 'Takes systems apart to see how they work' },
+  { name: 'Idealist', page: 269, hint: 'Believes a better world is possible' },
+  { name: 'Innovator', page: 270, hint: 'Has to make something new' },
+  { name: 'Kid', page: 270, hint: 'Wonder and innocence, and a need to be cared for' },
+  { name: 'Loner', page: 270, hint: 'Goes it alone and trusts few' },
+  { name: 'Machine', page: 270, hint: 'Logic, precision and efficiency first' },
+  { name: 'Mad Scientist', page: 270, hint: 'Brilliant, restless and past every limit' },
+  { name: 'Martyr', page: 271, hint: 'Suffers and sacrifices for others or a cause' },
+  { name: 'Monster', page: 271, hint: 'Embraces the dark side and lets it show' },
+  { name: 'Prophet', page: 272, hint: 'Speaks visions and truths others would rather not hear' },
+  { name: 'Rogue', page: 272, hint: 'Looks out for number one and stays free' },
+  { name: 'Sensualist', page: 272, hint: 'Lives for sensation and pleasure' },
+  { name: 'Survivor', page: 272, hint: 'Endures anything and keeps going' },
+  { name: 'Traditionalist', page: 272, hint: 'Upholds the old ways and proven order' },
+  { name: 'Trickster', page: 272, hint: 'Laughs, pranks and deflates the pompous' },
+  { name: 'Visionary', page: 273, hint: 'Sees what could be, beyond what is' },
+];
+
 /** Which Affiliation a typed one most likely means ("Council", "Union", "Tradition"...). */
 export function affiliationOf(text: string): string | null {
   const t = text.toLowerCase();

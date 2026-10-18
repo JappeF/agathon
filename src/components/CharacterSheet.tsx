@@ -19,7 +19,7 @@ import { Icon } from './Icon';
 import { setActiveCharacter } from '../activeCharacter';
 import { openCharacterMenu } from './CharacterMenu';
 import { FilePick } from './FilePick';
-import { AFFILIATIONS, BACKGROUNDS, FLAWS, MERITS, SECTS, SPECIALTIES, affiliationOf } from '../sheetLists';
+import { AFFILIATIONS, ARCHETYPES, BACKGROUNDS, CONCEPTS, ESSENCES, FLAWS, MERITS, SECTS, SPECIALTIES, affiliationOf } from '../sheetLists';
 import { useEffects, type Effect } from '../library/data';
 import { deficit } from '../library/search';
 import { ComboChips } from './ComboChips';
@@ -669,6 +669,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       {tab === 'background' && (
         <div className="tab-body flow">
           <div className="block field-grid">
+            <PickField label="Concept" value={c.concept} edit={edit} onChange={(concept) => patch({ concept })} picks={CONCEPTS} />
             <PickField label="Affiliation" value={c.affiliation} edit={edit} onChange={(affiliation) => patch({ affiliation })} picks={AFFILIATIONS} />
             <PickField
               label="Sect"
@@ -678,12 +679,11 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               picks={SECTS.filter((s) => !affiliationOf(c.affiliation) || s.affiliation === affiliationOf(c.affiliation))}
               onPick={(p) => !affiliationOf(c.affiliation) && patch({ affiliation: (p as (typeof SECTS)[number]).affiliation })}
             />
+            <PickField label="Essence" value={c.essence} edit={edit} onChange={(essence) => patch({ essence })} picks={ESSENCES} />
+            <PickField label="Nature" value={c.nature} edit={edit} onChange={(nature) => patch({ nature })} picks={ARCHETYPES} />
+            <PickField label="Demeanor" value={c.demeanor} edit={edit} onChange={(demeanor) => patch({ demeanor })} picks={ARCHETYPES} />
             {(
               [
-                ['concept', 'Concept'],
-                ['essence', 'Essence'],
-                ['nature', 'Nature'],
-                ['demeanor', 'Demeanor'],
                 ['player', 'Player'],
                 ['chronicle', 'Chronicle'],
               ] as const

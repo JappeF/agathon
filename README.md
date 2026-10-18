@@ -58,7 +58,8 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
 - **PDF import and export**: drop in Mr. Gone's fillable M20 2-page sheet and every
   field comes across, including the portrait pasted into it. Re-importing shows the
   changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in.
-- **Backgrounds, Merits and Flaws, Affiliation and Sect** from searchable lists of
+- **Concept, Essence, Nature, Demeanor, Affiliation, Sect, Backgrounds, Merits and
+  Flaws** from searchable lists of
   what M20 defines, with a short hint, the cost and the page; your own names work too.
   Specialties suggest M20's examples as you type.
 - **Portraits** in a small sparking portal, enlarged with a tap, replaceable in edit
