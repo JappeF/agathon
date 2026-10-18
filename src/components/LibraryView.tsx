@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useActiveCharacter } from '../activeCharacter';
 import type { Character } from '../character';
 import { saveCharacter } from '../db/db';
+import { startSpellFrom } from '../spellActions';
 import { sourceLabel, useEffects, type Effect } from '../library/data';
 import { parseQuery, search, setSphereInQuery, sphereRankInQuery, type Hit } from '../library/search';
 import { SPHERES, type Sphere } from '../types';
@@ -363,6 +364,14 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
           tagsOn={parsed.tags.filter((t) => !t.neg).map((t) => t.value)}
           pinned={pinned.has(selected.id)}
           onPin={character ? () => saveCharacter({ ...character, pinned: togglePinned(character, selected.id) }) : undefined}
+          onStartSpell={
+            character
+              ? (i) => {
+                  openedFromList = false;
+                  startSpellFrom(character, selected, i);
+                }
+              : undefined
+          }
           onClose={() => {
             if (openedFromList) history.back();
             else {

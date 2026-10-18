@@ -18,3 +18,4 @@ jobs:
       # the sheet and library checks need a filled PDF sheet that is not in the repo
       - run: node scripts/verify.mjs
       - run: node scripts/verify-share.mjs
+      - run: node scripts/verify-spells.mjs

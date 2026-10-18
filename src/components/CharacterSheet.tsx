@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLiveQuery } from 'dexie-react-hooks';
 import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, HEALTH_LEVELS, type Character } from '../character';
 import { db, deleteCharacter, saveCharacter } from '../db/db';
 import { exportPdf } from '../sheetActions';
@@ -22,6 +23,7 @@ import { deficit } from '../library/search';
 import { ComboChips } from './ComboChips';
 import { EffectDetail } from './EffectDetail';
 import { searchLibrary, togglePinned } from './LibraryView';
+import { startSpellFrom } from '../spellActions';
 
 /** Loose name match for rotes on the sheet against library effects. */
 const normName = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -138,6 +140,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   // library effects: pinned ones on the Magick tab, rotes whose name is in the library
   const effects = useEffects();
   const [openEffect, setOpenEffect] = useState<string | null>(null);
+  const spellIdeas = useLiveQuery(() => db.spells.where('characterId').equals(id).toArray(), [id]);
   const byId = useMemo(() => new Map((effects ?? []).map((e) => [e.id, e])), [effects]);
   const byName = useMemo(() => {
     const m = new Map<string, Effect>();
@@ -466,6 +469,26 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             )}
           </div>
           <div className="block">
+            <h3 className="block-title">Spell ideas</h3>
+            {spellIdeas?.length ? (
+              <ul className="pin-list">
+                {[...spellIdeas]
+                  .sort((a, b) => b.updatedAt - a.updatedAt)
+                  .map((sp) => (
+                    <li key={sp.id}>
+                      <a className="pin-row" href={`#/spells/${encodeURIComponent(sp.id)}`}>
+                        <span className="pin-name">{sp.title || 'Untitled idea'}</span>
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+            ) : (
+              <p className="empty-small">
+                Work out spells in <a href="#/spells">Spells</a>, or start one from an effect.
+              </p>
+            )}
+          </div>
+          <div className="block">
             <h3 className="block-title">Pinned effects</h3>
             {(c.pinned ?? []).length === 0 ? (
               <p className="empty-small">
@@ -751,6 +774,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           character={c}
           pinned={!!c.pinned?.includes(openEffect)}
           onPin={() => patch({ pinned: togglePinned(c, openEffect) })}
+          onStartSpell={(i) => startSpellFrom(c, byId.get(openEffect)!, i)}
           onClose={() => setOpenEffect(null)}
           onTag={(t) => searchLibrary(`tag:${t} `)}
         />

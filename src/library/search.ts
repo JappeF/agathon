@@ -165,6 +165,12 @@ export function deficit(c: Combo, dots: Dots) {
 
 export const highestRank = (c: Combo) => Math.max(0, ...Object.values(c.spheres).map((r) => r ?? 0));
 
+/** Base difficulty from M20 p. 501: highest Sphere +3 / +4 / +5, never below 3. */
+export function difficulties(c: Combo) {
+  const h = highestRank(c);
+  return { coincidental: Math.max(3, h + 3), vulgar: Math.max(3, h + 4), witnessed: Math.max(3, h + 5), highest: h };
+}
+
 function comboMatches(c: Combo, q: Query): boolean {
   const used = Object.keys(c.spheres) as Sphere[];
   for (const op of q.spheres) {

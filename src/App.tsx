@@ -9,6 +9,7 @@ import { Icon } from './components/Icon';
 import { useActiveCharacter } from './activeCharacter';
 import { CharacterSheet } from './components/CharacterSheet';
 import { LibraryView } from './components/LibraryView';
+import { SpellsView } from './components/SpellsView';
 import { go, useHashRoute, type View } from './useHashRoute';
 
 const NAV: { view: Exclude<View, 'characters'>; label: string; icon: JSX.Element }[] = [
@@ -30,15 +31,6 @@ const PERSON = (
     <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
   </svg>
 );
-
-function Placeholder({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="view">
-      <h2 className="view-title">{title}</h2>
-      <p className="flavor">{children}</p>
-    </section>
-  );
-}
 
 export default function App() {
   const { view, parts } = useHashRoute();
@@ -116,11 +108,7 @@ export default function App() {
 
       <main className="app-main">
         {view === 'library' && <LibraryView selectedId={parts[0]} />}
-        {view === 'spells' && (
-          <Placeholder title="Spells">
-            Your spell ideas, their versions and how they went at the table. Coming soon.
-          </Placeholder>
-        )}
+        {view === 'spells' && <SpellsView id={parts[0]} />}
         {/* keyed per character: switching starts fresh (play mode, no dialog left open) */}
         {view === 'characters' &&
           (parts[0] ? <CharacterSheet key={parts[0]} id={parts[0]} tab={parts[1]} /> : <CharactersView characters={characters} active={active} />)}

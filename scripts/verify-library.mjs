@@ -142,6 +142,11 @@ check('desktop sidebar is sticky', (await desk.$eval('.lib-side', (e) => getComp
 check('desktop tags visible without a toggle', await desk.isVisible('.tag-list'));
 const cols = await desk.$eval('.effect-list', (e) => getComputedStyle(e).gridTemplateColumns.split(' ').length);
 check('desktop shows cards in columns', cols >= 2, `${cols} columns`);
+await desk.fill('.search-input', 'zzzz');
+await desk.waitForTimeout(300);
+check('no page scrollbar with few results', await desk.evaluate(() => document.documentElement.scrollHeight <= innerHeight), await desk.evaluate(() => `${document.documentElement.scrollHeight} vs ${innerHeight}`));
+await desk.fill('.search-input', '');
+await desk.waitForTimeout(300);
 check('nothing runs off a desktop screen', await desk.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
 await desk.screenshot({ path: 'shots/34-library-desktop.png' });
 await desk.close();

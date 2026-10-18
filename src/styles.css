@@ -33,7 +33,7 @@
 
 * { box-sizing: border-box; }
 /* scrollbar-gutter: short pages (no scrollbar) and long ones keep the same width, so the bar doesn't jump */
-html { color-scheme: dark; scrollbar-width: thin; scrollbar-color: #3a2a55 transparent; scrollbar-gutter: stable; scroll-padding-top: 72px; background: var(--bg); }
+html { color-scheme: dark; scrollbar-width: thin; scrollbar-color: #3a2a55 transparent; scrollbar-gutter: stable; scroll-padding-top: 72px; }
 
 body {
   margin: 0;
@@ -1140,7 +1140,9 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
     scrollbar-width: thin;
   }
   .lib-side > .side-title:first-child { display: block; }
-  .sphere-bar { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 0; }
+  .lib-side .sphere-bar { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 0; }
+  /* a dossier version: one row of nine, with names */
+  .version-spheres .sphere-btn { height: 54px; }
   .sphere-btn { height: 62px; grid-template-rows: auto auto; align-content: center; gap: 0.15rem; }
   .sphere-btn-name { display: block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.02em; }
   .sphere-btn-rank { font-size: 0.8rem; right: 5px; bottom: auto; top: 3px; }
@@ -1217,7 +1219,10 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   .tagline { font-size: 0.9rem; margin-top: 0.15rem; }
   .app-nav { position: static; padding: 0; border: 0; background: none; backdrop-filter: none; }
   .vitals-fixed { top: var(--bar-h); }
-  .lib-side { top: calc(var(--bar-h) + 12px); max-height: calc(100dvh - var(--bar-h) - 24px); }
+  /* the sticky sidebar is a viewport tall; with the main padding around it the page
+     came out 32px taller than the window, so even one result showed a scrollbar. The
+     negative margin takes that padding back out of the layout. */
+  .lib-side { top: calc(var(--bar-h) + 12px); max-height: calc(100dvh - var(--bar-h) - 24px); margin-bottom: calc(24px - 3.5rem); }
 }
 
 /* ---------- sheet on wide screens: laid out like the paper sheet ---------- */
@@ -1400,3 +1405,117 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 }
 .rote-link:hover { color: var(--gold-hot); }
 .rote-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 3px; }
+
+/* ---------- spells: the list and the dossier ---------- */
+.spells-sub { color: var(--ink-dim); margin: -0.3rem 0 0.9rem; }
+.spells .add-row { margin-bottom: 0.2rem; }
+.spells .fine-print { margin-bottom: 1.2rem; }
+.spell-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.spell-card {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.8rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-deep);
+  border-radius: var(--r);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.spell-card:hover { border-color: var(--gold-deep); }
+.spell-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.spell-title { font-family: var(--font-head); font-weight: 600; font-size: 1.1rem; color: var(--gold-hot); line-height: 1.3; }
+.spell-goal { color: var(--ink-dim); font-size: 0.9rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.spell-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.8rem; font-size: 0.8rem; color: var(--ink-faint); }
+.outcome { font-weight: 800; }
+.outcome-worked { color: #9fd9b8; }
+.outcome-partly { color: var(--gold); }
+.outcome-failed { color: var(--ink-dim); }
+.outcome-botched { color: #ff8fb1; }
+@media (min-width: 900px) {
+  .app-main:has(.spells), .app-main:has(.dossier) { max-width: 1280px; }
+  .spell-list { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+}
+
+.dossier-title {
+  all: unset;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  field-sizing: content;
+  margin-top: 0.4rem;
+  padding: 0.2rem 0;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 5.5vw, 2rem);
+  line-height: 1.25;
+  color: var(--gold-hot);
+  border-bottom: 1px dashed transparent;
+}
+.dossier-title:hover { border-bottom-color: var(--line-solid); }
+.dossier-title:focus { border-bottom-color: var(--gold); }
+.dossier-title::placeholder { color: var(--ink-faint); }
+.dossier-for { margin: 0 0 0.8rem; color: var(--ink-faint); font-size: 0.88rem; }
+.dossier .block-title { margin-top: 1.2rem; }
+.dossier-grid { display: grid; gap: 0 3rem; }
+@media (min-width: 900px) {
+  .dossier-grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; }
+}
+.version { display: grid; gap: 0.5rem; }
+.version-head { display: flex; align-items: center; gap: 0.6rem; margin: 0; font-weight: 700; color: var(--ink-dim); }
+.version-spheres { margin: 0; }
+.version .field { margin: 0; }
+.version .castable { margin: 0; font-size: 0.85rem; }
+.version-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.8rem; margin-top: 0.7rem; }
+.version-actions .fine-print { margin: 0; }
+.old-version { border: 1px solid var(--line); border-radius: var(--r-sm); padding: 0 0.8rem; margin-bottom: 0.5rem; background: var(--card); }
+.old-version[open] { padding-bottom: 0.8rem; }
+.old-version summary { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; min-height: 48px; cursor: pointer; }
+.old-version summary:focus-visible { outline: 2px solid var(--gold); }
+.old-version-name { font-weight: 700; color: var(--ink-dim); }
+.old-version .version-head { display: none; }
+.linked-effect { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.2rem; }
+.dossier-side .pin-list { margin-bottom: 0.6rem; }
+.effect-picker { display: grid; gap: 0.4rem; }
+.effect-picker .add-row { margin: 0; }
+.picker-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+.picker-row {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+.picker-row:hover { background: #ffffff0a; }
+.picker-row:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.log-form { display: grid; gap: 0.5rem; }
+.outcome-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.3rem; }
+.outcome-btn {
+  all: unset;
+  box-sizing: border-box;
+  min-height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: 1px solid var(--line-solid);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+.outcome-btn.on { border-color: currentColor; background: color-mix(in srgb, currentColor 14%, transparent); }
+.outcome-btn:focus-visible { outline: 2px solid var(--gold); }
+.log-paradox { display: flex; align-items: center; gap: 0.6rem; font-size: 0.88rem; color: var(--ink-dim); }
+.log-paradox .text-input { width: 4.5rem; min-height: 40px; text-align: center; }
+.log-form .btn-gold { justify-self: start; }
+.log-list { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; }
+.log-entry { display: grid; gap: 0.15rem; padding: 0.5rem 0; border-bottom: 1px solid var(--line); }
+.log-head { display: flex; align-items: center; gap: 0.6rem; }
+.log-head .fine-print { margin: 0; flex: 1; }
+.log-notes { color: var(--ink-dim); font-size: 0.9rem; white-space: pre-wrap; }
+.start-spell { margin-top: 0.8rem; }

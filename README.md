@@ -66,6 +66,16 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
   the sheet. The character switcher (the caret beside it on a wide screen, or
   "Characters" on the sheet) lists the others and adds or imports new ones.
 
+### Spells
+
+- **Spell ideas** per character: what you want to happen, the library effects it
+  builds on, and the plan: Spheres (with the base difficulty and whether your
+  character has the dots), how it looks, how to keep it coincidental. "Try another
+  way" keeps the old plan as an earlier version.
+- **At the table**: log how a casting went (worked, partly, failed, botched) and the
+  Paradox it cost.
+- Start one by name, or from any effect in the library.
+
 ### Sharing
 
 - One character as a **file, link or QR code**, or a backup of all of them. Notes
@@ -107,6 +117,7 @@ node scripts/verify.mjs           # shell, navigation, IndexedDB, service worker
 node scripts/verify-sheet.mjs     # PDF import via the UI, portrait, trackers, edit mode, export round trip
 node scripts/verify-share.mjs     # link, QR and file, a second device, name clashes, damaged links
 node scripts/verify-library.mjs   # Sphere search, operators, tags, detail, castable, phone and desktop layout
+node scripts/verify-spells.mjs    # spell ideas: from an effect or by name, versions, links, the log
 node scripts/screenshots.mjs      # regenerate the screenshots in docs/ with a demo character
 ```
 

@@ -1,5 +1,6 @@
 import Dexie, { type EntityTable } from 'dexie';
 import { newCharacter, type Character } from '../character';
+import type { Spell } from '../spells';
 
 /**
  * Everything the player owns lives in IndexedDB on this device: characters,
@@ -7,14 +8,6 @@ import { newCharacter, type Character } from '../character';
  * filled back in on export), and the page text of their own rulebooks. Nothing
  * leaves the device unless they export or share it.
  */
-
-export interface SpellRecord {
-  id: string;
-  characterId: string;
-  title: string;
-  createdAt: number;
-  updatedAt: number;
-}
 
 /** The original sheet PDF of a character, kept for export. Never part of a share. */
 export interface SheetFileRecord {
@@ -34,7 +27,7 @@ export interface BookRecord {
 
 class AgathonDB extends Dexie {
   characters!: EntityTable<Character, 'id'>;
-  spells!: EntityTable<SpellRecord, 'id'>;
+  spells!: EntityTable<Spell, 'id'>;
   sheetFiles!: EntityTable<SheetFileRecord, 'characterId'>;
   books!: EntityTable<BookRecord, 'id'>;
 
@@ -66,6 +59,10 @@ export const newId = () => crypto.randomUUID();
 
 export async function saveCharacter(c: Character) {
   await db.characters.put({ ...c, updatedAt: Date.now() });
+}
+
+export async function saveSpell(s: Spell) {
+  await db.spells.put({ ...s, updatedAt: Date.now() });
 }
 
 export async function deleteCharacter(id: string) {

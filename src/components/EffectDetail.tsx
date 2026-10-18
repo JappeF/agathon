@@ -1,17 +1,12 @@
 import { useEffect, useState } from 'react';
 import type { Character } from '../character';
 import { BOOK_NAMES, type Combo, type Effect } from '../library/data';
-import { deficit, highestRank } from '../library/search';
+import { deficit, difficulties } from '../library/search';
 import type { Sphere } from '../types';
 import { ComboChips } from './ComboChips';
 import { Icon } from './Icon';
 import { Highlighted } from './Highlighted';
 
-/** Base difficulty from M20 p. 501: highest Sphere +3 / +4 / +5, never below 3. */
-function difficulties(c: Combo) {
-  const h = highestRank(c);
-  return { coincidental: Math.max(3, h + 3), vulgar: Math.max(3, h + 4), witnessed: Math.max(3, h + 5), highest: h };
-}
 
 interface Tip {
   title: string;
@@ -69,6 +64,7 @@ export function EffectDetail({
   tagsOn = [],
   pinned = false,
   onPin,
+  onStartSpell,
   onClose,
   onTag,
 }: {
@@ -80,6 +76,8 @@ export function EffectDetail({
   /** whether the active character has this effect pinned; onPin toggles it */
   pinned?: boolean;
   onPin?: () => void;
+  /** start a spell idea from this effect, with the way to cast it that is selected */
+  onStartSpell?: (combo: number) => void;
   onClose: () => void;
   onTag: (tag: string) => void;
 }) {
@@ -177,6 +175,11 @@ export function EffectDetail({
           Base difficulty for the selected way (highest Sphere {d.highest}), before modifiers. M20 p. 501.
           {effect.vulgarity && ` The book calls this ${effect.vulgarity === 'depends' ? 'coincidental or vulgar depending on how it is done' : effect.vulgarity}.`}
         </p>
+        {character && onStartSpell && (
+          <button type="button" className="btn btn-gold start-spell" onClick={() => onStartSpell(pick)}>
+            Start a spell idea from this
+          </button>
+        )}
 
         <h3 className="block-title">Keeping it coincidental</h3>
         {effect.coincidentalIf && (
