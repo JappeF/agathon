@@ -112,6 +112,27 @@ check('320px: Sphere edit line under the dots', await page.$eval('.sphere-row', 
 await page.setViewportSize({ width: 390, height: 844 });
 await page.click('.lock');
 
+// a Galaxy Z Flip (344px): the scrolled-away mini bar keeps its pills and chevron on one line,
+// even with the longest health status
+await page.setViewportSize({ width: 344, height: 760 });
+await page.click('.sheet-title .vitals-bar');
+const levels = ['Bruised', 'Hurt', 'Injured', 'Wounded', 'Mauled', 'Crippled', 'Incapacitated'];
+for (const l of levels) await page.click(`.vitals-panel [aria-label^="${l}"]`);
+await page.click('.sheet-title .vitals-bar');
+await page.mouse.wheel(0, 1200);
+await page.waitForSelector('.vitals-fixed');
+await page.waitForTimeout(300);
+const mini = await page.$eval('.vitals-fixed .vitals-bar', (bar) => {
+  const mid = (el) => { const r = el.getBoundingClientRect(); return (r.top + r.bottom) / 2; };
+  return { spread: Math.abs(mid(bar.querySelector('.vitals-toggle')) - mid(bar.querySelector('.chip'))), right: bar.getBoundingClientRect().right };
+});
+check('344px: mini bar on one line', mini.spread < 4 && mini.right <= 344, JSON.stringify(mini));
+await page.evaluate(() => scrollTo(0, 0));
+await page.click('.sheet-title .vitals-bar');
+for (const l of levels) for (let i = 0; i < 3; i++) await page.click(`.vitals-panel [aria-label^="${l}"]`);
+await page.click('.sheet-title .vitals-bar');
+await page.setViewportSize({ width: 390, height: 844 });
+
 // service worker + manifest
 const swReady = await page.evaluate(async () => {
   const reg = await navigator.serviceWorker?.ready;

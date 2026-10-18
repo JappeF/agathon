@@ -1097,6 +1097,16 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 }
 .vitals-fixed-inner { max-width: 820px; margin: 0 auto; padding: 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
 .vitals-fixed-inner .vitals-bar { border-bottom: 0; flex: 1; }
+/* one line, also on narrow phones (a Galaxy Z Flip is 344-360px): tighter pills, and the
+   health pill is the one that gives way (ellipsis) if even that is not enough */
+.vitals-fixed-inner .vitals-bar { flex-wrap: nowrap; min-width: 0; }
+.vitals-bar .chip { white-space: nowrap; flex-shrink: 0; }
+.vitals-bar .chip.hp { flex-shrink: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 399px) {
+  .vitals-bar { gap: 0.3rem; }
+  .vitals-bar .chip { padding: 0.2rem 0.45rem; }
+  .vitals-fixed-inner { gap: 0.4rem; padding: 0 0.75rem; }
+}
 .vitals-fixed .vitals-panel { max-width: 820px; margin: 0 auto; padding: 0.6rem 1rem 1rem; max-height: 60vh; overflow-y: auto; overscroll-behavior: contain; border-bottom: 0; }
 .mini-face {
   flex: none;

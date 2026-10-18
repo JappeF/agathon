@@ -17,7 +17,7 @@ npm run preview  # serve dist/ on localhost:4173
 npm run deploy   # build + wrangler pages deploy dist --project-name agathon
 npm run icons    # public/icons/sigil.svg -> PNG app icons via sharp
 
-node scripts/verify.mjs        # headless-Edge checks: shell, nav, IndexedDB persistence, character switcher, pick lists, Android file pickers, 320px edit mode, SW, offline reload, desktop bar that doesn't move
+node scripts/verify.mjs        # headless-Edge checks: shell, nav, IndexedDB persistence, character switcher, pick lists, Android file pickers, 320px edit mode, 344px mini bar on one line, SW, offline reload, desktop bar that doesn't move
 node scripts/verify-sheet.mjs  # import the sample Mr. Gone PDF via the UI, trackers, edit mode, XP, favorite spells, PDF export round trip, re-import diff, copy character, blank sheet (Reader extensions dropped, app portrait drawn)
 node scripts/verify-library.mjs  # Sphere bar and exact combinations, operators, tags, detail with difficulty and checklist, deep links, castable + one dot away
 node scripts/verify-share.mjs  # share link, QR, file without notes, import on a second browser context, name clash, damaged link, back up all
