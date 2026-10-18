@@ -982,10 +982,12 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   border: 2px solid #ffe7a3;
   box-shadow: 0 0 4px #ffb340, 0 0 12px #ff7a12aa, inset 0 0 6px #ff7a1288;
   animation: pp-breathe 5s ease-in-out infinite;
+  /* over the photo, so the photo runs right up to the ring with no dark band between */
+  z-index: 1;
 }
 .pp-face {
   position: absolute;
-  inset: 13%;
+  inset: calc(9% + 1px);
   border-radius: 50%;
   overflow: hidden;
   display: grid;
