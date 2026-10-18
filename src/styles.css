@@ -134,17 +134,28 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   z-index: -1;
   opacity: 0.85;
 }
-.portal-svg { width: 100%; height: 100%; overflow: visible; }
-.portal-glow { fill: none; stroke: #ff7a12; stroke-width: 14; opacity: 0.4; animation: portal-breathe 5s ease-in-out infinite; }
+.portal { --k: calc(240px / 200); }
+.portal-layer { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.portal-glow { fill: none; stroke: #ff7a12; stroke-width: 14; }
+/* whole elements move, never shapes inside an SVG: those would repaint every frame */
+.portal-glow-layer { opacity: 0.4; animation: portal-breathe 5s ease-in-out infinite; }
 .portal-mid { fill: none; stroke: #ffb340; stroke-width: 4.5; opacity: 0.85; }
 .portal-core { fill: none; stroke: #ffe7a3; stroke-width: 1.6; }
 /* a few bright dashes running round the ring clockwise */
 .portal-glint { fill: none; stroke: #fffaf0; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 10 46 3 60 18 90 5 40; opacity: 0.9; }
-.portal-glint-spin, .portal-sparks { transform-origin: 100px 100px; }
-.portal-glint-spin { animation: turn 9s linear infinite; }
-.portal-sparks { animation: turn 70s linear infinite; }
-.portal-spark { stroke: #ffb340; stroke-linecap: round; opacity: 0.55; animation: spark-fly 2s ease-out infinite; }
-.portal-spark.hot { stroke: #ffe7a3; }
+.portal-glint-layer { animation: turn 9s linear infinite; }
+/* sparks: HTML on the compositor (see Sparks in Portal.tsx); --k is one box unit in px */
+.spark-field { position: absolute; inset: 0; pointer-events: none; animation: turn 70s linear infinite; }
+.spark {
+  position: absolute;
+  left: calc(var(--x) * var(--k));
+  top: calc((var(--y) - var(--w) / 2) * var(--k));
+  height: calc(var(--w) * var(--k));
+  transform-origin: 0 50%;
+}
+.spark-fly { display: block; width: calc(var(--fly) * var(--k)); height: 100%; opacity: 0.55; animation: spark-fly 2s ease-out infinite; }
+.spark-fly::before { content: ''; display: block; width: calc(var(--len) * var(--k)); height: 100%; border-radius: 999px; background: #ffb340; }
+.spark.hot .spark-fly::before { background: #ffe7a3; }
 @keyframes portal-breathe {
   0%, 100% { opacity: 0.32; }
   50% { opacity: 0.55; }
@@ -152,30 +163,78 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 @keyframes turn {
   to { transform: rotate(360deg); }
 }
+/* fixed values only: keyframes with var() don't run on the compositor; */
+/* eight flights per iteration: every iteration start wakes the main thread, and 80 sparks
+   each restarting every 2s kept it busy; the jump back happens at opacity 0, unseen */
 @keyframes spark-fly {
-  0% { transform: translate(0, 0); opacity: 0; }
-  12% { opacity: 1; }
-  100% { transform: translate(var(--fx), var(--fy)); opacity: 0; }
+  0.000% { transform: translateX(0); opacity: 0; }
+  1.500% { opacity: 1; }
+  12.490% { transform: translateX(100%); opacity: 0; }
+  12.500% { transform: translateX(0); opacity: 0; }
+  14.000% { opacity: 1; }
+  24.990% { transform: translateX(100%); opacity: 0; }
+  25.000% { transform: translateX(0); opacity: 0; }
+  26.500% { opacity: 1; }
+  37.490% { transform: translateX(100%); opacity: 0; }
+  37.500% { transform: translateX(0); opacity: 0; }
+  39.000% { opacity: 1; }
+  49.990% { transform: translateX(100%); opacity: 0; }
+  50.000% { transform: translateX(0); opacity: 0; }
+  51.500% { opacity: 1; }
+  62.490% { transform: translateX(100%); opacity: 0; }
+  62.500% { transform: translateX(0); opacity: 0; }
+  64.000% { opacity: 1; }
+  74.990% { transform: translateX(100%); opacity: 0; }
+  75.000% { transform: translateX(0); opacity: 0; }
+  76.500% { opacity: 1; }
+  87.490% { transform: translateX(100%); opacity: 0; }
+  87.500% { transform: translateX(0); opacity: 0; }
+  89.000% { opacity: 1; }
+  99.990% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 0; }
 }
 
-.logo {
+.logo, .logo-sheen-text {
   margin: 0;
   font-family: var(--font-logo);
   font-weight: 700;
   font-size: clamp(2.3rem, 9vw, 3.4rem);
   letter-spacing: 0.04em;
   line-height: 1.1;
-  /* gilded type with a light that drifts across it every so often */
-  background: linear-gradient(100deg, var(--gold-deep) 0%, var(--gold) 30%, #fff4d1 45%, var(--gold) 60%, var(--gold-deep) 100%);
-  background-size: 250% 100%;
+  white-space: nowrap;
+}
+/* gilded type with a light that drifts across it and back. The gold is still; the light
+   is a bright copy of the word seen through a soft window (75% of the word) that slides
+   across while the copy slides back, so it stays on the letters. Both only move, which
+   the compositor does; animating the gradient itself repainted the logo every frame. */
+.logo {
+  background: linear-gradient(100deg, var(--gold-deep) 0%, var(--gold) 30%, var(--gold) 70%, var(--gold-deep) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gild 9s ease-in-out infinite;
 }
-@keyframes gild {
-  0%, 100% { background-position: 100% 0; }
-  50% { background-position: 0% 0; }
+.logo-wrap { position: relative; display: block; }
+.logo-sheen {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 75%;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(100deg, transparent, #000 50%, transparent);
+  mask-image: linear-gradient(100deg, transparent, #000 50%, transparent);
+  transform: translateX(-100%);
+  animation: sheen 9s ease-in-out infinite;
+}
+.logo-sheen-text { position: absolute; top: 0; left: 0; width: calc(100% / 0.75); color: #fff4d1; transform: translateX(75%); animation: sheen-text 9s ease-in-out infinite; }
+@keyframes sheen {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+@keyframes sheen-text {
+  0%, 100% { transform: translateX(75%); }
+  50% { transform: translateX(-75%); }
 }
 .tagline {
   margin: 0.2rem 0 0;
@@ -711,7 +770,10 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+  .logo-sheen { display: none; }
 }
+/* off screen (usePauseOffscreen): hold still until it comes back */
+.offscreen, .offscreen *, .offscreen *::before, .offscreen *::after { animation-play-state: paused !important; }
 
 /* rated lists (backgrounds, other traits, merits): name grows, dots or cost on the right */
 .rated-list .trait-name,
@@ -980,11 +1042,22 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   inset: 9%;
   border-radius: 50%;
   border: 2px solid #ffe7a3;
-  box-shadow: 0 0 4px #ffb340, 0 0 12px #ff7a12aa, inset 0 0 6px #ff7a1288;
-  animation: pp-breathe 5s ease-in-out infinite;
+  box-shadow: 0 0 4px #ffb340, 0 0 10px #ff7a1299, inset 0 0 5px #ff7a1277;
   /* over the photo, so the photo runs right up to the ring with no dark band between */
   z-index: 1;
 }
+/* the breathing glow: a second, stronger glow that fades in and out (opacity runs on the
+   compositor; animating box-shadow itself repainted every frame) */
+.pp-ring::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ffc86199, 0 0 18px #ff7a1288, inset 0 0 8px #ff7a1255;
+  opacity: 0;
+  animation: pp-breathe 5s ease-in-out infinite;
+}
+.pp-still .pp-ring::after { animation: none; }
 .pp-face {
   position: absolute;
   inset: calc(9% + 1px);
@@ -996,11 +1069,11 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 }
 .pp-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pp-initials { font-family: var(--font-head); font-weight: 700; color: var(--gold); font-size: calc(var(--pp) * 0.26); }
-.pp-sparks { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.pp-spin { transform-origin: 50px 50px; animation-duration: 50s; }
+.pp { --k: calc(var(--pp) / 100); }
+.pp-sparks { animation-duration: 50s; z-index: 2; }
 @keyframes pp-breathe {
-  0%, 100% { box-shadow: 0 0 4px #ffb340, 0 0 10px #ff7a1299, inset 0 0 5px #ff7a1277; }
-  50% { box-shadow: 0 0 6px #ffc861, 0 0 18px #ff7a12cc, inset 0 0 8px #ff7a12aa; }
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
 }
 
 .char-text { display: grid; gap: 0.15rem; min-width: 0; }
@@ -1279,8 +1352,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   }
   .brand { display: flex; align-items: center; gap: 0.9rem; }
   .brand-text { justify-items: start; }
-  .portal { position: relative; left: auto; top: auto; transform: none; width: 64px; margin: -6px 0; opacity: 1; }
-  .logo { font-size: 1.7rem; line-height: 1; }
+  .portal { position: relative; left: auto; top: auto; transform: none; width: 64px; margin: -6px 0; opacity: 1; --k: calc(64px / 200); }
+  .logo, .logo-sheen-text { font-size: 1.7rem; line-height: 1; }
   .tagline { font-size: 0.9rem; margin-top: 0.15rem; }
   .app-nav { position: static; padding: 0; border: 0; background: none; backdrop-filter: none; }
   .vitals-fixed { top: var(--bar-h); }

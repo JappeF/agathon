@@ -60,7 +60,12 @@ export default function App() {
         <a className="brand" href="#/library" aria-label="Agathon, to the library">
           <Portal />
           <span className="brand-text">
-            <h1 className="logo">Agathon</h1>
+            <span className="logo-wrap">
+              <h1 className="logo">Agathon</h1>
+              <span className="logo-sheen" aria-hidden="true">
+                <span className="logo-sheen-text">Agathon</span>
+              </span>
+            </span>
             <p className="tagline">a grimoire for the Awakened</p>
           </span>
         </a>

@@ -1,4 +1,5 @@
-import { makeSparks, SparkLines } from './Portal';
+import { makeSparks, Sparks } from './Portal';
+import { usePauseOffscreen } from './usePauseOffscreen';
 
 // one set of sparks for every small portal: a 100x100 box with the ring at radius 41
 const SPARKS = makeSparks(16, 50, 41, [5, 13], [1.5, 3.5], 2026);
@@ -16,15 +17,14 @@ const initials = (name: string) =>
  * plain CSS (cheap enough for a list of cards); motion stops under reduced motion.
  */
 export function PortalPortrait({ src, name, size = 64 }: { src?: string; name: string; size?: number }) {
+  const ref = usePauseOffscreen<HTMLSpanElement>();
+  // small ones (the nav, lists) stay still: at that size the motion is noise, not magic
+  const still = size < 64;
   return (
-    <span className="pp" style={{ '--pp': `${size}px` } as React.CSSProperties} aria-hidden="true">
+    <span className={`pp${still ? ' pp-still' : ''}`} style={{ '--pp': `${size}px` } as React.CSSProperties} aria-hidden="true" ref={ref}>
       <span className="pp-ring" />
       <span className="pp-face">{src ? <img src={src} alt="" /> : <span className="pp-initials">{initials(name)}</span>}</span>
-      <svg className="pp-sparks" viewBox="0 0 100 100">
-        <g className="portal-sparks pp-spin">
-          <SparkLines sparks={SPARKS} />
-        </g>
-      </svg>
+      {!still && <Sparks sparks={SPARKS} className="pp-sparks" />}
     </span>
   );
 }

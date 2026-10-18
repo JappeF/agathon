@@ -22,12 +22,26 @@ const check = (label, ok, detail = '') => {
 
 await page.goto(BASE, { waitUntil: 'networkidle' });
 check('logo', (await page.textContent('.logo'))?.trim() === 'Agathon');
-check('portal behind the logo', (await page.$$('.portal .portal-spark')).length > 20);
+check('portal behind the logo', (await page.$$('.portal .spark')).length > 20);
 check(
   'logo font is Cinzel Decorative',
   await page.evaluate(() => document.fonts.check('700 40px "Cinzel Decorative"')),
 );
 await page.screenshot({ path: 'shots/01-mobile-library.png' });
+
+// the animations run on the compositor: an idle page leaves the main thread nearly free
+// (it was 8-13% of a core when sparks, the logo light and the portrait glow repainted)
+{
+  await page.waitForTimeout(1500);
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('Performance.enable');
+  const busy = async () => (await cdp.send('Performance.getMetrics')).metrics.find((m) => m.name === 'TaskDuration').value;
+  const t0 = await busy();
+  await page.waitForTimeout(5000);
+  const pct = ((await busy()) - t0) * 20;
+  check('idle animations stay off the main thread', pct < 4, `${pct.toFixed(1)}% of a core`);
+  await cdp.detach();
+}
 
 // navigation via the bottom bar
 await page.click('.nav-item:has-text("Characters")');
