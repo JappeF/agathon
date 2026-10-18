@@ -163,7 +163,9 @@ Live op https://agathon.pages.dev, repo `OWNER/agathon` (private).
 - **Fase 4, spell-dossiers en context pack:** in vier stappen. A (effecten pinnen aan je
   character, rotes op de sheet linken naar de bibliotheek) en B (dossiers met versies,
   gekoppelde effecten en een logboek) en C (*Copy for AI* en het antwoord terugplakken
-  als nieuwe versie) zijn klaar; D (boekindex) volgt. Dossiers delen kan nog niet.
+  als nieuwe versie) en D (boekindex: je eigen PDF's lokaal als tekst, pagina's
+  aanvinken in Copy for AI, index als bestand naar de telefoon) zijn klaar. Fase 4 is
+  daarmee af. Dossiers delen kan nog niet.
 - **Fase 5, officiele M20-sheet:** wacht op een voorbeeld.
 
 Onderweg erbij gekomen: het portaal-icoon en het geanimeerde portaal achter het logo,

@@ -23,6 +23,8 @@ export interface BookRecord {
   title: string;
   importedAt: number;
   pages: string[]; // index = PDF page index
+  /** pdf page = printed page + offset (1 for the DriveThruRPG PDFs) */
+  offset?: number;
 }
 
 class AgathonDB extends Dexie {

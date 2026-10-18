@@ -79,6 +79,10 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
   effects, plus the scene or your question, to paste into your own Claude, ChatGPT
   or Gemini. Nothing is sent from the app. Paste the answer back and its plan
   becomes a new version, marked as from AI.
+- **Your own rulebooks**: add your PDF of the M20 core book or How Do You DO That?
+  and Copy for AI can quote the real pages (the effect's own pages, the Sphere ranks,
+  the casting and Paradox rules). Only the text is kept, on your device; it is never
+  shared. Save it as a file to move it to your phone.
 
 ### Sharing
 
@@ -121,7 +125,8 @@ node scripts/verify.mjs           # shell, navigation, IndexedDB, service worker
 node scripts/verify-sheet.mjs     # PDF import via the UI, portrait, trackers, edit mode, export round trip
 node scripts/verify-share.mjs     # link, QR and file, a second device, name clashes, damaged links
 node scripts/verify-library.mjs   # Sphere search, operators, tags, detail, castable, phone and desktop layout
-node scripts/verify-spells.mjs    # spell ideas: from an effect or by name, versions, links, the log
+node scripts/verify-spells.mjs    # spell ideas: from an effect or by name, versions, links, the log, Copy for AI
+node scripts/verify-books.mjs     # your own rulebooks in Copy for AI (needs the PDFs in refs/)
 node scripts/screenshots.mjs      # regenerate the screenshots in docs/ with a demo character
 ```
 

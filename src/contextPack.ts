@@ -89,7 +89,15 @@ function effectText(e: Effect) {
     .join('\n');
 }
 
-export function buildPack(s: Spell, c: Character, effects: Effect[], o: PackOptions): string {
+/** A page from the player's own rulebook, quoted in full for the AI. */
+export interface PackPage {
+  book: string;
+  page: number;
+  label: string;
+  text: string;
+}
+
+export function buildPack(s: Spell, c: Character, effects: Effect[], o: PackOptions, pages: PackPage[] = []): string {
   const current = s.versions[s.versions.length - 1];
   const older = s.versions.slice(0, -1);
   const versionOf = (id: string) => {
@@ -123,6 +131,12 @@ export function buildPack(s: Spell, c: Character, effects: Effect[], o: PackOpti
       '- A fitting focus and instruments, a related Ability roll first, or taking time (an extended ritual) can lower the difficulty within those limits.',
       '- Quintessence and Paradox share one wheel; Paradox cancels Quintessence where they meet (M20 p. 331).',
     ]),
+    pages.length > 0 &&
+      section('Pages from my own rulebooks', [
+        'For reference while you think; base the rules on these pages where they apply.',
+        GAP,
+        pages.map((p) => `### ${p.book} p. ${p.page} (${p.label})\n\n${p.text.replace(/^\d{1,3}(?=[A-Z])/, '').trim()}`).join('\n\n'),
+      ]),
     o.ask.trim() && section('The scene, and my question', [o.ask.trim()]),
     section('What I would like from you', [
       '1. Is this the right Sphere combination and rank? Is there a cheaper or more elegant way?',

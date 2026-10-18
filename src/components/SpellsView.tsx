@@ -13,7 +13,9 @@ import { EffectDetail } from './EffectDetail';
 import { Icon } from './Icon';
 import { searchLibrary, togglePinned } from './LibraryView';
 import { Modal } from './Modal';
-import { buildPack, packSize, parseReply, ReplyError, type PackOptions } from '../contextPack';
+import { buildPack, packSize, parseReply, ReplyError, type PackOptions, type PackPage } from '../contextPack';
+import { candidatePassages, printedPage } from '../books';
+import { BooksPanel } from './BooksPanel';
 import { SphereGlyph } from './SphereGlyph';
 
 /** Fit a textarea to its text (for browsers without field-sizing: content). */
@@ -105,6 +107,7 @@ function SpellList() {
           );
         })}
       </ul>
+      <BooksPanel />
     </section>
   );
 }
@@ -538,6 +541,8 @@ function CastLogView({ s, onChange }: { s: Spell; onChange: (log: Spell['log']) 
 // ---------- the AI round trip: copy a context pack out, paste the answer back ----------
 
 const PACK_PREFS = 'agathon:pack';
+/** rulebook pages ticked by default; about 15 pages keeps the prompt inside a free chat */
+const MAX_PAGES = 15;
 
 function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects: Effect[]; onClose: () => void }) {
   const [o, setO] = useState<PackOptions>(() => {
@@ -549,7 +554,26 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
     }
   });
   const [copied, setCopied] = useState(false);
-  const text = useMemo(() => buildPack(s, c, effects, o), [s, c, effects, o]);
+  // pages from the player's own rulebooks: the linked effects, the Sphere ranks of the
+  // plan, then the core rules, up to about 15 pages ticked to start with
+  const books = useLiveQuery(() => db.books.toArray(), []);
+  const candidates = useMemo(() => {
+    const linked = s.effects.map((id) => effects.find((e) => e.id === id)).filter((e): e is Effect => !!e);
+    const plan = s.versions[s.versions.length - 1];
+    return candidatePassages(linked, plan.spheres, effects).filter((p) => printedPage(books?.find((b) => b.id === p.book), p.page));
+  }, [s, effects, books]);
+  // the player's own ticks; untouched pages follow the default (the first MAX_PAGES)
+  const [picked, setPicked] = useState<Record<string, boolean>>({});
+  const isTicked = (key: string, i: number) => picked[key] ?? i < MAX_PAGES;
+  const pages: PackPage[] = candidates
+    .filter((p, i) => isTicked(p.key, i))
+    .map((p) => ({ ...p, text: printedPage(books?.find((b) => b.id === p.book), p.page) ?? '' }));
+  const pageKeys = pages.map((p) => `${p.book}:${p.page}`).join();
+  const text = useMemo(() => buildPack(s, c, effects, o, pages), [s, c, effects, o, pageKeys]); // eslint-disable-line react-hooks/exhaustive-deps
+  const tick = (key: string, on: boolean) => {
+    setCopied(false);
+    setPicked((p) => ({ ...p, [key]: on }));
+  };
   const size = packSize(text);
   const set = (p: Partial<PackOptions>) => {
     const next = { ...o, ...p };
@@ -598,6 +622,27 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
           {c.name}'s private notes
         </label>
       </div>
+      {candidates.length > 0 ? (
+        <details className="pack-pages">
+          <summary>
+            Pages from your rulebooks: {pages.length} of {candidates.length}
+          </summary>
+          <ul>
+            {candidates.map((p, i) => (
+              <li key={p.key}>
+                <label className="check">
+                  <input type="checkbox" checked={isTicked(p.key, i)} onChange={(e) => tick(p.key, e.target.checked)} />
+                  {p.book} p. {p.page}, {p.label}
+                </label>
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : (
+        <p className="fine-print">
+          Add your own M20 or How Do You DO That? PDF under <a href="#/spells">Spells</a> to take the real pages along.
+        </p>
+      )}
       <details className="pack-preview">
         <summary>
           Preview, about {size.words} words ({size.tokens} tokens)

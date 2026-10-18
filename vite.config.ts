@@ -11,7 +11,7 @@ export default defineConfig({
       includeAssets: ['icons/sigil.svg'],
       workbox: {
         // precache the app shell and every data file so everything works offline
-        globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}'],
+        globPatterns: ['**/*.{js,mjs,css,html,svg,png,woff2,json}'],
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
       },
       manifest: {

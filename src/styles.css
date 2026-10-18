@@ -1545,3 +1545,19 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .ai-reply { border-left: 2px solid var(--line-solid); padding-left: 0.7rem; }
 .ai-reply summary { cursor: pointer; font-size: 0.85rem; color: var(--ink-faint); min-height: 32px; display: flex; align-items: center; }
 .ai-reply .prose { white-space: pre-wrap; font-size: 0.88rem; color: var(--ink-dim); max-height: 50vh; overflow: auto; }
+
+/* ---------- the player's own rulebooks ---------- */
+.books-panel { margin-top: 2rem; max-width: 640px; }
+.book-list { list-style: none; margin: 0.6rem 0; padding: 0; display: grid; gap: 0.3rem; }
+.book-row { display: grid; gap: 0.1rem; padding: 0.55rem 0.8rem; border: 1px solid var(--line); border-radius: var(--r-sm); }
+.book-row.on { border-color: var(--gold-deep); }
+.book-name { font-weight: 700; }
+.book-row.on .book-name { color: var(--gold-hot); }
+.book-state { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.8rem; font-size: 0.85rem; color: var(--ink-faint); }
+.book-progress { display: grid; gap: 0.3rem; font-size: 0.88rem; color: var(--ink-dim); }
+.book-progress progress { width: 100%; height: 8px; accent-color: var(--gold); }
+.book-message { font-size: 0.9rem; color: var(--ink-dim); }
+.pack-pages { border: 1px solid var(--line); border-radius: var(--r-sm); padding: 0 0.7rem; margin-bottom: 0.5rem; }
+.pack-pages summary { min-height: 40px; display: flex; align-items: center; cursor: pointer; font-size: 0.88rem; color: var(--ink-dim); }
+.pack-pages ul { list-style: none; margin: 0 0 0.6rem; padding: 0; max-height: 30vh; overflow-y: auto; }
+.pack-pages .check { font-size: 0.85rem; }
