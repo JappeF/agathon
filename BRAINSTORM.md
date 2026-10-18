@@ -90,7 +90,8 @@ Naam: Agathon (Grieks *to agathon*, "het Goede"). Let op: de lore-claim uit de G
 - Characters en sets delen als bestand, link of QR, zoals another app.
 
 ### PDF-sheet import
-- Mr. Gone's sheets en de officiele M20-sheet.
+- Mr. Gone's sheets. (De officiele M20-sheets zijn niet invulbaar, dus Mr. Gone's sheets
+  zijn de enige invulbare in omloop; een tweede importformaat is niet nodig.)
 - Voorbeeld: `refs/M20_2-Page_Interactive_Saito Weinberg.pdf` (Mr. Gone's M20
   2-page interactive, 2014). 625 AcroForm-velden (415 knoppen, 203 tekst, 7 keuzes).
   - Tekstvelden hebben goede namen (`name`, `nature`, `affiliation`, `backgrounds1`,
@@ -111,7 +112,6 @@ Naam: Agathon (Grieks *to agathon*, "het Goede"). Let op: de lore-claim uit de G
   offline de Mr. Gone-PDF die je zelf hebt geimporteerd (de lege sheet leveren we
   waarschijnlijk niet mee, licentie).
 - Rotes op de sheet (`rotes1-8`) worden persoonlijke rotes van dat character.
-- Nog nodig: een voorbeeld van de officiele M20-sheet in `refs/`.
 
 ### Repo en hosting
 - Git-repo op GitHub; Cloudflare Pages-project `agathon`
@@ -149,7 +149,8 @@ Live op https://agathon.pages.dev, repo `OWNER/agathon` (private).
   als nieuwe versie) en D (boekindex: je eigen PDF's lokaal als tekst, pagina's
   aanvinken in Copy for AI, index als bestand naar de telefoon) zijn klaar. Fase 4 is
   daarmee af. Dossiers delen kan nog niet.
-- **Fase 5, officiele M20-sheet:** wacht op een voorbeeld (issue #1).
+- **Fase 5, officiele M20-sheet:** vervallen (18 okt 2026, issue #1): de officiele sheets
+  zijn niet invulbaar, dus er valt niets te importeren.
 
 Onderweg erbij gekomen: het portaal-icoon en het geanimeerde portaal achter het logo,
 eigen Sphere-symbolen (o.a. een brein voor Mind en een drietand voor Prime), en de
@@ -167,7 +168,8 @@ another app-achtige zijbalk voor de bibliotheek op desktop.
    Kan parallel aan 1 en 2 (eigen data, raakt de app-code niet).
 4. **Spell-dossiers en context pack:** dossiers met versies en uitkomsten, de boekindex
    (laag 2), *Copy for AI* en het terugplakken van een antwoord.
-5. **Officiele M20-sheet** als tweede importformaat (zodra er een voorbeeld is).
+5. ~~Officiele M20-sheet als tweede importformaat~~: vervallen, die sheets zijn niet
+   invulbaar.
 
 ## Open vragen
 
