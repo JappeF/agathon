@@ -63,7 +63,6 @@ export function CharacterTools({ onPick, onBackup }: { onPick?: () => void; onBa
         )}
       </div>
       <p className="fine-print">Imports Mr. Gone's fillable M20 2-page PDF sheet and Agathon character files.</p>
-      <p className="fine-print app-version">Agathon {__APP_VERSION__}</p>
     </div>
   );
 }

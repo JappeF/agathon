@@ -1,18 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
-import { execSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 
-// shown at the bottom of the character menu, so a phone can tell which build it runs
-const commit = (() => {
-  try {
-    return execSync('git rev-parse --short HEAD').toString().trim();
-  } catch {
-    return 'dev';
-  }
-})();
-const builtAt = new Date().toISOString().slice(0, 16).replace('T', ' ');
 
 /**
  * spell-index.json: id -> [name, summary] for the link previews of /s/<id>
@@ -29,7 +19,6 @@ const spellIndex = () => ({
 });
 
 export default defineConfig({
-  define: { __APP_VERSION__: JSON.stringify(`${commit}, built ${builtAt} UTC`) },
   plugins: [
     react(),
     spellIndex(),
