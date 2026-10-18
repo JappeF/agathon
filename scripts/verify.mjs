@@ -144,6 +144,15 @@ await ap.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 const [chooser] = await Promise.all([ap.waitForEvent('filechooser', { timeout: 5000 }).catch(() => null), ap.tap('.welcome .file-pick:has-text("Import")')]);
 check('Android: a tap on Import opens the file picker', chooser !== null);
 check('Android: no type filter on the picker', (await ap.getAttribute('.welcome .file-pick input', 'accept')) === null);
+// but photos keep image/*: without it Android offers camera and files instead of the gallery
+await ap.fill('.welcome .add-row .text-input', 'Droid test');
+await ap.click('.welcome button:has-text("Add")');
+await ap.waitForSelector('.sheet-name');
+await ap.click('.lock');
+check('Android: the portrait picker opens the gallery (image/*)', (await ap.getAttribute('.portrait-btn input', 'accept')) === 'image/*');
+await ap.click('.lock');
+await ap.click('.nav-item:has-text("Spells")');
+check('Android: the rulebook picker keeps its PDF filter', /pdf/.test((await ap.getAttribute('.books-panel .file-pick:has-text("Add a PDF") input', 'accept')) ?? ''));
 await droid.close();
 
 // desktop layout

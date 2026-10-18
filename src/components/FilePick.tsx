@@ -1,13 +1,17 @@
 import type { ReactNode } from 'react';
 
-/** Android's picker greys out files whose type it doesn't map; we check contents anyway. */
+/**
+ * Android's picker greys out .json files (it doesn't map them to application/json), so a
+ * picker that takes JSON drops its filter there; the contents are checked anyway. Image
+ * and PDF filters stay: without image/* Android offers camera and files, not the gallery.
+ */
 const ANDROID = typeof navigator !== 'undefined' && /Android/i.test(navigator.userAgent);
+const filterFor = (accept?: string) => (ANDROID && accept && /json/i.test(accept) ? undefined : accept);
 
 /**
  * A button that opens the file picker. It is a <label> around a real, visually hidden
  * file input, so the tap itself opens the picker. Android didn't reliably open it for a
- * display:none input clicked from script, and its picker greys out .json files whose
- * type it doesn't recognise, so JSON pickers take any file and the contents are checked.
+ * display:none input clicked from script.
  */
 export function FilePick({
   children,
@@ -28,7 +32,7 @@ export function FilePick({
       <input
         type="file"
         className="file-input"
-        accept={ANDROID ? undefined : accept}
+        accept={filterFor(accept)}
         disabled={disabled}
         onChange={(e) => {
           const f = e.target.files?.[0];
