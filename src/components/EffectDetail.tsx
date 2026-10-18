@@ -73,7 +73,7 @@ export function EffectDetail({
   /** search words to mark, and the tags the search filters on */
   terms?: string[];
   tagsOn?: string[];
-  /** whether the active character has this effect pinned; onPin toggles it */
+  /** whether this is one of the active character's favorite spells; onPin toggles it */
   pinned?: boolean;
   onPin?: () => void;
   /** start a spell idea from this effect, with the way to cast it that is selected */
@@ -104,16 +104,17 @@ export function EffectDetail({
             <Icon name="back" /> Library
           </button>
           <span className="detail-top-end">
-            <span className={`kind-badge kind-${effect.kind}`}>{effect.kind === 'rank' ? 'Sphere rank' : effect.kind}</span>
+            {effect.kind !== 'feat' && <span className={`kind-badge kind-${effect.kind}`}>{effect.kind === 'rank' ? 'Sphere rank' : 'rote'}</span>}
             {character && onPin && (
               <button
                 type="button"
-                className={`pin-btn${pinned ? ' on' : ''}`}
+                className={`card-pin detail-fav${pinned ? ' on' : ''}`}
                 aria-pressed={pinned}
-                title={pinned ? `Unpin from ${character.name}` : `Pin to ${character.name}'s sheet`}
+                aria-label={pinned ? `Remove from ${character.name}'s favorites` : `Add to ${character.name}'s favorites`}
+                title={pinned ? `Remove from ${character.name}'s favorites` : `Add to ${character.name}'s favorites`}
                 onClick={onPin}
               >
-                <Icon name="star" size={16} filled={pinned} /> {pinned ? 'Pinned' : 'Pin'}
+                <Icon name="star" size={20} filled={pinned} />
               </button>
             )}
           </span>

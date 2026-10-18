@@ -63,7 +63,7 @@ export interface Query {
   books: { value: 'M20' | 'HDYDT'; neg: boolean }[];
   kinds: { value: Effect['kind']; neg: boolean }[];
   is: { value: NonNullable<Effect['vulgarity']>; neg: boolean }[];
-  /** is:pinned (true) or -is:pinned (false): effects pinned to the active character */
+  /** is:fav (true) or -is:fav (false): the active character's favorite spells */
   pinned?: boolean;
   /** operator chips for the UI, in typing order */
   chips: { label: string; neg: boolean; ok: boolean }[];
@@ -121,9 +121,10 @@ export function parseQuery(raw: string, knownTags: string[]): Query {
         return true;
       }
       case 'is': {
-        if (value && 'pinned'.startsWith(value)) {
+        // is:fav (is:favorites, or the older is:pinned): the active character's favorite spells
+        if (value && ['favorites', 'pinned'].some((w) => w.startsWith(value))) {
           q.pinned = !neg;
-          chip('pinned', neg, true);
+          chip('favorites', neg, true);
           return true;
         }
         const v = (['coincidental', 'vulgar', 'depends'] as const).find((x) => x.startsWith(value));

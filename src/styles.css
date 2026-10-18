@@ -1403,17 +1403,6 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .pin-row:hover { border-color: var(--gold-deep); }
 .pin-row:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .pin-name { font-family: var(--font-head); font-weight: 600; color: var(--gold-hot); line-height: 1.25; }
-/* a rote on the sheet whose name is in the library opens it */
-.rote-link {
-  all: unset;
-  box-sizing: border-box;
-  cursor: pointer;
-  color: var(--ink);
-  text-decoration: underline dotted var(--gold-deep);
-  text-underline-offset: 0.2em;
-}
-.rote-link:hover { color: var(--gold-hot); }
-.rote-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 3px; }
 
 /* ---------- spells: the list and the dossier ---------- */
 .spells-sub { color: var(--ink-dim); margin: -0.3rem 0 0.9rem; }
@@ -1619,3 +1608,5 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .card-pin:hover { color: var(--gold); transform: scale(1.12); }
 .card-pin.on { color: var(--gold-hot); filter: drop-shadow(0 0 6px #d9b45a88); }
 .card-pin:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+/* the favorite star in the effect detail sits in the top bar, not over a card */
+.card-pin.detail-fav { position: static; width: 40px; height: 40px; }

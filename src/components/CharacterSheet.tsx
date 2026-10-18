@@ -31,9 +31,6 @@ const UNTRAINED_KEY = 'agathon:show-untrained';
 /** Technocrats get the Union's names in the pick lists (Laboratory, Genius...). */
 const isTechnocrat = (c: Character) => /technocra|iteration x|new world order|progenitor|syndicate|void engineer|union/i.test(`${c.affiliation} ${c.sect}`);
 
-/** Loose name match for rotes on the sheet against library effects. */
-const normName = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-
 /** The way to cast an effect that needs the fewest extra dots. */
 const bestCombo = (e: Effect, dots: Record<Sphere, number>) =>
   e.combos.reduce((best, combo, i) => (deficit(combo, dots) < deficit(e.combos[best], dots) ? i : best), 0);
@@ -163,11 +160,6 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const [openEffect, setOpenEffect] = useState<string | null>(null);
   const spellIdeas = useLiveQuery(() => db.spells.where('characterId').equals(id).toArray(), [id]);
   const byId = useMemo(() => new Map((effects ?? []).map((e) => [e.id, e])), [effects]);
-  const byName = useMemo(() => {
-    const m = new Map<string, Effect>();
-    for (const e of effects ?? []) if (!m.has(normName(e.name)) || e.kind === 'rote') m.set(normName(e.name), e);
-    return m;
-  }, [effects]);
   const blankInput = useRef<HTMLInputElement>(null);
   const portraitInput = useRef<HTMLInputElement>(null);
   const tab: Tab = (TABS.some((t) => t.id === tabParam) ? tabParam : 'magick') as Tab;
@@ -465,29 +457,27 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             />
           </div>
           <div className="block">
-            <h3 className="block-title">Rotes</h3>
-            <LineList
-              items={c.rotes}
-              edit={edit}
-              onChange={(rotes) => patch({ rotes })}
-              addLabel="Add rote"
-              empty="No rotes yet."
-              suggestions="library-effect-names"
-              renderItem={(r) => {
-                const e = byName.get(normName(r));
-                return e ? (
-                  <button type="button" className="rote-link" title="Open in the library" onClick={() => setOpenEffect(e.id)}>
-                    {r}
-                  </button>
-                ) : (
-                  r
-                );
-              }}
-            />
-            {edit && (
-              <datalist id="library-effect-names">
-                {effects?.map((e) => <option key={e.id} value={e.name} />)}
-              </datalist>
+            <h3 className="block-title">Favorite spells</h3>
+            {(c.pinned ?? []).length === 0 ? (
+              <p className="empty-small">
+                Tap the star on an effect in the <a href="#/library">library</a> and it waits here, one tap away.
+              </p>
+            ) : (
+              <ul className="pin-list">
+                {(c.pinned ?? []).map((id) => {
+                  const e = byId.get(id);
+                  if (!e) return null;
+                  const combo = e.combos[bestCombo(e, c.spheres)];
+                  return (
+                    <li key={id}>
+                      <button type="button" className="pin-row" onClick={() => setOpenEffect(id)}>
+                        <span className="pin-name">{e.name}</span>
+                        <ComboChips combo={combo} dots={c.spheres} />
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
             )}
           </div>
           <div className="block">
@@ -508,30 +498,6 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               <p className="empty-small">
                 Work out spells in <a href="#/spells">Spells</a>, or start one from an effect.
               </p>
-            )}
-          </div>
-          <div className="block">
-            <h3 className="block-title">Pinned effects</h3>
-            {(c.pinned ?? []).length === 0 ? (
-              <p className="empty-small">
-                Pin effects in the <a href="#/library">library</a> with the star and they wait here, one tap away.
-              </p>
-            ) : (
-              <ul className="pin-list">
-                {(c.pinned ?? []).map((id) => {
-                  const e = byId.get(id);
-                  if (!e) return null;
-                  const combo = e.combos[bestCombo(e, c.spheres)];
-                  return (
-                    <li key={id}>
-                      <button type="button" className="pin-row" onClick={() => setOpenEffect(id)}>
-                        <span className="pin-name">{e.name}</span>
-                        <ComboChips combo={combo} dots={c.spheres} />
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
             )}
           </div>
           <div className="block">

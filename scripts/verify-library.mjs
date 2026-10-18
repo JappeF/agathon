@@ -154,43 +154,36 @@ check('nothing runs off a desktop screen', await desk.evaluate(() => document.do
 await desk.screenshot({ path: 'shots/34-library-desktop.png' });
 await desk.close();
 
-// pins: star an effect in the library, find it on the sheet, unpin it there
+// favorites: star an effect in the library, find it on the sheet, take it off there
 await search('portal');
-const pinName = (await page.textContent('.effect-card .effect-name >> nth=0')).trim();
+const favName = (await page.textContent('.effect-card .effect-name >> nth=0')).trim();
+check('no Kind filter any more', (await page.locator('.lib-side .side-title:has-text("Kind")').count()) === 0);
 await page.click('.effect-card >> nth=0');
-await page.click('.detail .pin-btn');
-// the button follows the stored character, a moment after the click
-check('pin button turns on', (await page.waitForSelector('.detail .pin-btn[aria-pressed="true"]', { timeout: 5000 }).catch(() => null)) !== null);
+await page.click('.detail .detail-fav');
+// the star follows the stored character, a moment after the click
+check('detail star turns on', (await page.waitForSelector('.detail .detail-fav[aria-pressed="true"]', { timeout: 5000 }).catch(() => null)) !== null);
+check('no Pin button, just the star', (await page.locator('.detail .pin-btn').count()) === 0);
 await page.click('.detail .back');
-check('pinned card shows a gold star', (await page.locator('.effect-item').first().locator('.card-pin.on').count()) === 1);
-// the star on a card pins without opening the detail, as in another app
+check('favorite card shows a gold star', (await page.locator('.effect-item').first().locator('.card-pin.on').count()) === 1);
+// the star on a card works without opening the detail, as in another app
 await page.click('.effect-item >> nth=1 >> .card-pin');
 await page.waitForSelector('.effect-item:nth-child(2) .card-pin.on', { timeout: 5000 }).catch(() => {});
-check('pin from the card', (await page.locator('.card-pin.on').count()) === 2 && !(await page.isVisible('.detail')));
+check('favorite from the card', (await page.locator('.card-pin.on').count()) === 2 && !(await page.isVisible('.detail')));
 await page.click('.effect-item >> nth=1 >> .card-pin');
 await page.waitForFunction(() => document.querySelectorAll('.card-pin.on').length === 1);
-await page.check('.lib-toggles .check:has-text("pins") input');
-check('is:pinned keeps only pins', (await num()) === 1 && (await page.inputValue('.search-input')).includes('is:pinned'), await count());
+await page.check('.lib-toggles .check:has-text("favorites") input');
+check('is:fav keeps only favorites', (await num()) === 1 && (await page.inputValue('.search-input')).includes('is:fav'), await count());
 await search('');
 await page.click('.nav-char .nav-item');
 await page.waitForSelector('.sheet-name:has-text("Saito Weinberg")');
-check('pin on the Magick tab', (await page.textContent('.pin-list')).includes(pinName));
-await page.click('.pin-row');
+check('Favorite spells on the Magick tab', (await page.textContent('.block:has(.block-title:text-is("Favorite spells"))')).includes(favName));
+check('no Rotes block', (await page.locator('.block-title:text-is("Rotes")').count()) === 0);
+await page.click('button.pin-row');
 await page.waitForSelector('.detail');
-check('pin opens the detail on the sheet', new URL(page.url()).hash.startsWith('#/characters/'));
-await page.click('.detail .pin-btn');
+check('favorite opens the detail on the sheet', new URL(page.url()).hash.startsWith('#/characters/'));
+await page.click('.detail .detail-fav');
 await page.keyboard.press('Escape');
-check('unpinned from the sheet', (await page.locator('.pin-row').count()) === 0);
-
-// a rote named like a library effect links to it (edit mode suggests names)
-await page.click('.lock');
-await page.click('button:has-text("Add rote")');
-await page.fill('.line-edit .text-input >> nth=-1', 'Hot-Shotting');
-check('rote names suggested', (await page.locator('#library-effect-names option').count()) > 500);
-await page.click('.lock');
-await page.click('.rote-link:has-text("Hot-Shotting")');
-check('rote opens its effect', (await page.textContent('.detail-name')).trim() === 'Hot-Shotting');
-await page.keyboard.press('Escape');
+check('removed from favorites on the sheet', (await page.locator('button.pin-row').count()) === 0);
 
 // clean up Saito
 await page.click('.menu summary');

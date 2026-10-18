@@ -15,12 +15,6 @@ import { hasMatch, Highlighted, snippet } from './Highlighted';
 
 const PAGE = 40;
 
-/** What the three kinds of library entries are (shown on the Kind chips). */
-const KIND_HINTS = {
-  feat: 'Things a mage can do, as the books describe them: the worked examples',
-  rote: 'Named, ready-made spells of a Tradition or Convention',
-  rank: 'What each dot of a Sphere lets you do',
-} as const;
 
 // remembered while the app is open, so switching tabs doesn't lose the search
 let lastQuery = '';
@@ -31,7 +25,7 @@ export function searchLibrary(query: string) {
   go('library');
 }
 
-/** Pin or unpin a library effect on a character's sheet. */
+/** Add a library effect to a character's favorite spells, or take it off. */
 export const togglePinned = (c: Character, id: string): string[] =>
   c.pinned?.includes(id) ? c.pinned.filter((x) => x !== id) : [...(c.pinned ?? []), id];
 // whether the open detail came from the list (then closing = going back), or from a link
@@ -89,8 +83,8 @@ function EffectCard({
           type="button"
           className={`card-pin${pinned ? ' on' : ''}`}
           aria-pressed={pinned}
-          aria-label={pinned ? `Unpin ${e.name}` : `Pin ${e.name} to the sheet`}
-          title={pinned ? 'Unpin from the sheet' : 'Pin to the sheet'}
+          aria-label={pinned ? `Remove ${e.name} from favorites` : `Add ${e.name} to favorites`}
+          title={pinned ? 'Remove from favorites' : 'Add to favorites'}
           onClick={onTogglePin}
         >
           <Icon name="star" size={18} filled={pinned} />
@@ -104,7 +98,7 @@ function EffectCard({
           <span className="effect-badges">
             {e.kind !== 'feat' && <span className={`kind-badge kind-${e.kind}`}>{e.kind === 'rank' ? 'Sphere rank' : 'rote'}</span>}
             {pinned && !onTogglePin && (
-              <span className="pinned-mark" title="Pinned to the sheet">
+              <span className="pinned-mark" title="A favorite">
                 <Icon name="star" size={15} filled />
               </span>
             )}
@@ -277,8 +271,8 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
             )}
             {character && (
               <label className="check">
-                <input type="checkbox" checked={parsed.pinned === true} onChange={() => toggleOp('is', 'pinned')} />
-                Only {character.name}'s pins
+                <input type="checkbox" checked={parsed.pinned === true} onChange={() => toggleOp('is', 'fav')} />
+                Only {character.name}'s favorites
                 {pinned.size > 0 && <span className="tag-count">{pinned.size}</span>}
               </label>
             )}
@@ -299,14 +293,6 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
             Filters{activeFilters ? ` (${activeFilters})` : ''} <Icon name={filtersOpen ? 'up' : 'down'} size={14} />
           </button>
           <div className={`lib-filters${filtersOpen ? ' open' : ''}`}>
-            <h3 className="side-title">Kind</h3>
-            <div className="chip-row">
-              {(['feat', 'rote', 'rank'] as const).map((k) => (
-                <button key={k} type="button" className={`tag${hasOp('kind', k) ? ' on' : ''}`} title={KIND_HINTS[k]} onClick={() => toggleOp('kind', k)}>
-                  {k === 'feat' ? 'Effects' : k === 'rote' ? 'Rotes' : 'Sphere ranks'}
-                </button>
-              ))}
-            </div>
             <h3 className="side-title">Book</h3>
             <div className="chip-row">
               {(['m20', 'hdydt'] as const).map((b) => (

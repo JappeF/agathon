@@ -39,10 +39,10 @@ await a.click('.tab:has-text("Notes")');
 await a.fill('.text-area', 'The secret of the Tower');
 await a.waitForTimeout(400);
 
-// pin an effect: pins travel with the character
+// a favorite spell travels with the character
 await a.click('.nav-item:has-text("Library")');
 await a.click('.effect-card >> nth=0');
-await a.click('.detail .pin-btn');
+await a.click('.detail .detail-fav');
 await a.click('.detail .back');
 await a.click('.nav-char .nav-item');
 await a.waitForSelector('.pin-row');
@@ -82,7 +82,7 @@ await b.click('.tab:has-text("Notes")');
 check('note stayed private', (await b.inputValue('.text-area')) === '');
 check('small portrait through the link', (await b.$('.sheet-hero .pp-face img')) !== null);
 await b.click('.tab:has-text("Magick")');
-check('pins through the link', (await b.waitForSelector('.pin-row', { timeout: 5000 }).catch(() => null)) !== null);
+check('favorites through the link', (await b.waitForSelector('.pin-row', { timeout: 5000 }).catch(() => null)) !== null);
 
 // opening the same link again adds a copy instead of overwriting
 await b.goto(url, { waitUntil: 'networkidle' });
