@@ -142,6 +142,15 @@ check('desktop sidebar is sticky', (await desk.$eval('.lib-side', (e) => getComp
 check('desktop tags visible without a toggle', await desk.isVisible('.tag-list'));
 const cols = await desk.$eval('.effect-list', (e) => getComputedStyle(e).gridTemplateColumns.split(' ').length);
 check('desktop shows cards in columns', cols >= 2, `${cols} columns`);
+// the sticky sidebar sits still: same top at rest, while scrolling, at the end of the page
+const sideTops = [];
+for (const y of [0, 5, 400, 99999]) {
+  await desk.evaluate((v) => scrollTo(0, v), y);
+  await desk.waitForTimeout(150);
+  sideTops.push(await desk.$eval('.lib-side', (n) => Math.round(n.getBoundingClientRect().top)));
+}
+await desk.evaluate(() => scrollTo(0, 0));
+check('sidebar never shifts while scrolling', new Set(sideTops).size === 1, sideTops.join(', '));
 const fullWidth = await desk.evaluate(() => document.documentElement.clientWidth);
 await desk.fill('.search-input', 'zzzz');
 await desk.waitForTimeout(300);

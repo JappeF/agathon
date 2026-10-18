@@ -18,6 +18,7 @@ import { HealthTrack, QPWheel, WillpowerTrack } from './Trackers';
 import { Icon } from './Icon';
 import { setActiveCharacter } from '../activeCharacter';
 import { openCharacterMenu } from './CharacterMenu';
+import { FilePick } from './FilePick';
 import { BACKGROUNDS, FLAWS, MERITS } from '../sheetLists';
 import { useEffects, type Effect } from '../library/data';
 import { deficit } from '../library/search';
@@ -160,8 +161,6 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const [openEffect, setOpenEffect] = useState<string | null>(null);
   const spellIdeas = useLiveQuery(() => db.spells.where('characterId').equals(id).toArray(), [id]);
   const byId = useMemo(() => new Map((effects ?? []).map((e) => [e.id, e])), [effects]);
-  const blankInput = useRef<HTMLInputElement>(null);
-  const portraitInput = useRef<HTMLInputElement>(null);
   const tab: Tab = (TABS.some((t) => t.id === tabParam) ? tabParam : 'magick') as Tab;
 
   useEffect(() => {
@@ -208,6 +207,13 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
     );
   }
 
+  const setPortraitFrom = async (f: File) => {
+    try {
+      patch({ portrait: await imageToPortrait(f) });
+    } catch {
+      setMessage({ title: "Can't use that image", lines: ['Pick a JPEG, PNG or WebP photo.'] });
+    }
+  };
   const setSpec = (trait: string, s: string) => patch({ specialties: { ...c.specialties, [trait]: s } });
   const technocrat = isTechnocrat(c);
   let worst = -1;
@@ -265,7 +271,14 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             <summary className="btn btn-small" aria-label="More actions">
               <Icon name="more" />
             </summary>
-            <div className="menu-items" onClick={(e) => (e.currentTarget.parentElement as HTMLDetailsElement).removeAttribute('open')}>
+            <div
+              className="menu-items"
+              onClick={(e) => {
+                // a file picker item keeps the menu open until a file is chosen (Android lost it otherwise)
+                if ((e.target as HTMLElement).closest('.file-pick')) return;
+                (e.currentTarget.parentElement as HTMLDetailsElement).removeAttribute('open');
+              }}
+            >
               <button type="button" onClick={() => setSharing(true)}>
                 Share character
               </button>
@@ -284,10 +297,10 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       <div className="sheet-hero" ref={heroRef}>
         {edit ? (
           <span className="portrait-edit">
-            <button type="button" className="portrait-btn" aria-label="Change portrait" onClick={() => portraitInput.current?.click()}>
+            <FilePick className="portrait-btn" accept="image/*" onFile={setPortraitFrom}>
               <PortalPortrait src={c.portrait} name={c.name} size={128} />
               <span className="portrait-hint">{c.portrait ? 'Change' : 'Add photo'}</span>
-            </button>
+            </FilePick>
             {c.portrait && (
               <button type="button" className="link-btn" onClick={() => patch({ portrait: undefined })}>
                 Remove
@@ -342,22 +355,6 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           {miniOpen && panel}
         </div>
       )}
-      <input
-        ref={portraitInput}
-        type="file"
-        accept="image/*"
-        hidden
-        onChange={async (e) => {
-          const f = e.target.files?.[0];
-          e.target.value = '';
-          if (!f) return;
-          try {
-            patch({ portrait: await imageToPortrait(f) });
-          } catch {
-            setMessage({ title: "Can't use that image", lines: ['Pick a JPEG, PNG or WebP photo.'] });
-          }
-        }}
-      />
       {zoom && c.portrait && (
         <div className="zoom-backdrop" role="dialog" aria-modal="true" aria-label={`${c.name}'s portrait`} onClick={() => setZoom(false)}>
           <PortalPortrait src={c.portrait} name={c.name} size={Math.round(Math.min(window.innerWidth * 0.82, window.innerHeight * 0.6, 460))} />
@@ -716,24 +713,19 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
 
       {tab === 'notes' && (
         <div className="tab-body">
-          <div className="block">
-            <LongText label="Notes" value={c.notes} edit onChange={(notes) => patch({ notes })} placeholder="Resonance, Seekings, scenes, anything." />
+          <div className="block notes-block">
+            <LongText
+              label="Notes"
+              value={c.notes}
+              edit
+              className="notes-area"
+              onChange={(notes) => patch({ notes })}
+              placeholder="Resonance, Seekings, scenes, anything."
+            />
           </div>
         </div>
       )}
 
-      <input
-        ref={blankInput}
-        type="file"
-        accept="application/pdf,.pdf"
-        hidden
-        onChange={(e) => {
-          const f = e.target.files?.[0];
-          e.target.value = '';
-          setNeedBlank(false);
-          if (f) doExport(f);
-        }}
-      />
       {needBlank && (
         <Modal title="Pick a blank sheet" onClose={() => setNeedBlank(false)}>
           <p>
@@ -744,9 +736,16 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             <button className="btn" onClick={() => setNeedBlank(false)}>
               Cancel
             </button>
-            <button className="btn btn-gold" onClick={() => blankInput.current?.click()}>
+            <FilePick
+              className="btn btn-gold"
+              accept="application/pdf,.pdf"
+              onFile={(f) => {
+                setNeedBlank(false);
+                doExport(f);
+              }}
+            >
               Choose PDF
-            </button>
+            </FilePick>
           </div>
         </Modal>
       )}

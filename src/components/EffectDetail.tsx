@@ -104,7 +104,6 @@ export function EffectDetail({
             <Icon name="back" /> Library
           </button>
           <span className="detail-top-end">
-            {effect.kind !== 'feat' && <span className={`kind-badge kind-${effect.kind}`}>{effect.kind === 'rank' ? 'Sphere rank' : 'rote'}</span>}
             {character && onPin && (
               <button
                 type="button"

@@ -130,6 +130,21 @@ for (const n of [name, second]) {
 await page.waitForSelector('.welcome');
 check('deleting the last one shows the welcome', (await page.$('.nav-char .pp')) === null);
 
+// Android: a tap on Import opens the system picker (a label around a real input, not a
+// script click on a hidden one), with no type filter that would grey out .json files
+const droid = await browser.newContext({
+  viewport: { width: 390, height: 844 },
+  isMobile: true,
+  hasTouch: true,
+  userAgent: 'Mozilla/5.0 (Linux; Android 14; SM-F731B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36',
+});
+const ap = await droid.newPage();
+await ap.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+const [chooser] = await Promise.all([ap.waitForEvent('filechooser', { timeout: 5000 }).catch(() => null), ap.tap('.welcome .file-pick:has-text("Import")')]);
+check('Android: a tap on Import opens the file picker', chooser !== null);
+check('Android: no type filter on the picker', (await ap.getAttribute('.welcome .file-pick input', 'accept')) === null);
+await droid.close();
+
 // desktop layout
 const desk = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 await desk.goto(BASE, { waitUntil: 'networkidle' });

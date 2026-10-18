@@ -53,10 +53,9 @@ export function CharacterTools({ onPick, onBackup }: { onPick?: () => void; onBa
         </button>
       </form>
       <div className="import-row">
-        {/* the import keeps running after the menu hides: its dialogs live in <body> */}
-        <span onClickCapture={() => setTimeout(() => onPick?.())}>
-          <ImportFlow label="Import" onDone={open} />
-        </span>
+        {/* the menu stays open while the picker is up (Android lost the file when its
+            input sat in a menu that had just hidden); picking a character closes it */}
+        <ImportFlow label="Import" onDone={open} />
         {onBackup && (
           <button type="button" className="btn" onClick={onBackup}>
             Back up all

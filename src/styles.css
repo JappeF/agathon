@@ -555,7 +555,22 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   border-radius: var(--r-sm);
   padding: 0.5rem 0.7rem;
   resize: vertical;
+  /* grows with its text (main.tsx does it by hand where field-sizing isn't supported) */
+  field-sizing: content;
+  min-height: calc(3lh + 1rem);
 }
+/* the Notes tab is a notebook: it fills the screen and has faint rules that scroll with the text */
+.notes-area {
+  --rule: 1.75rem;
+  min-height: max(18rem, calc(100dvh - 24rem));
+  padding: 0.6rem 1rem;
+  line-height: var(--rule);
+  background:
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--rule) - 1px), #3a2a5566 calc(var(--rule) - 1px), #3a2a5566 var(--rule))
+      0 0.6rem / 100% var(--rule) local,
+    var(--bg-deep);
+}
+.notes-block .field-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .row-input { min-height: 38px; }
 .cost-input { flex: 0 0 64px; min-height: 38px; text-align: center; }
 .cost { color: var(--ink-dim); font-size: 0.88rem; }
@@ -1228,10 +1243,12 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   .tagline { font-size: 0.9rem; margin-top: 0.15rem; }
   .app-nav { position: static; padding: 0; border: 0; background: none; backdrop-filter: none; }
   .vitals-fixed { top: var(--bar-h); }
-  /* the sticky sidebar is a viewport tall; with the main padding around it the page
-     came out 32px taller than the window, so even one result showed a scrollbar. The
-     negative margin takes that padding back out of the layout. */
-  .lib-side { top: calc(var(--bar-h) + 12px); max-height: calc(100dvh - var(--bar-h) - 24px); margin-bottom: calc(24px - 3.5rem); }
+  /* the sticky sidebar must never move: it sticks exactly where it already sits (under
+     the bar plus the main's 0.5rem top padding), ends 16px above the window, and its
+     negative bottom margin takes the main's 3rem bottom padding back out, so the page
+     is never taller than the window because of it and the sidebar isn't pushed up at
+     the end of the page. Off by a few px, it jumped 4px whenever scrolling began or ended. */
+  .lib-side { top: calc(var(--bar-h) + 0.5rem); max-height: calc(100dvh - var(--bar-h) - 0.5rem - 16px); margin-bottom: calc(16px - 3rem); }
 }
 
 /* ---------- sheet on wide screens: laid out like the paper sheet ---------- */
@@ -1610,3 +1627,11 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .card-pin:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
 /* the favorite star in the effect detail sits in the top bar, not over a card */
 .card-pin.detail-fav { position: static; width: 40px; height: 40px; }
+
+/* ---------- file pickers: a label around a real (visually hidden) file input ---------- */
+.file-pick { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+.file-pick.disabled { opacity: 0.6; pointer-events: none; }
+.file-pick:focus-within { outline: 2px solid var(--gold); outline-offset: 2px; }
+.file-input { position: absolute; width: 1px; height: 1px; padding: 0; margin: 0; opacity: 0; overflow: hidden; clip-path: inset(50%); }
+.menu-items .file-pick { justify-content: flex-start; }
+.menu-items .menu-btn:hover { background: #ffffff0d; color: var(--gold-hot); }

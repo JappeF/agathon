@@ -8,6 +8,17 @@ import './styles.css';
 import App from './App';
 import { UpdateToast } from './components/UpdateToast';
 
+// text areas grow with their text through field-sizing: content; where a browser lacks it
+// (Safari for now), fit them by hand as people type
+if (!CSS.supports('field-sizing', 'content')) {
+  document.addEventListener('input', (e) => {
+    const t = e.target;
+    if (!(t instanceof HTMLTextAreaElement) || !t.classList.contains('text-area')) return;
+    t.style.height = 'auto';
+    t.style.height = `${t.scrollHeight + 2}px`;
+  });
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />

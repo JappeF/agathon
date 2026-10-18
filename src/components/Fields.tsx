@@ -38,19 +38,22 @@ export function LongText({
   edit,
   onChange,
   placeholder,
+  className = '',
 }: {
   label: string;
   value: string;
   edit: boolean;
   onChange: (v: string) => void;
   placeholder?: string;
+  /** extra class for the textarea (the Notes tab's notebook) */
+  className?: string;
 }) {
   if (!edit && !value) return null;
   return (
     <div className="field field-long">
       <span className="field-label">{label}</span>
       {edit ? (
-        <textarea className="text-area" value={value} rows={4} placeholder={placeholder} aria-label={label} onChange={(e) => onChange(e.target.value)} />
+        <textarea className={`text-area ${className}`} value={value} rows={4} placeholder={placeholder} aria-label={label} onChange={(e) => onChange(e.target.value)} />
       ) : (
         <p className="field-value prose">{value}</p>
       )}

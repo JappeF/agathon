@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { FilePick } from './FilePick';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { BookError, BOOKS, exportBooks, importBooksFile, readBook, type BookId } from '../books';
 import { db, requestPersistence } from '../db/db';
@@ -12,8 +13,6 @@ const when = (t: number) => new Date(t).toLocaleDateString(undefined, { day: 'nu
  */
 export function BooksPanel() {
   const books = useLiveQuery(() => db.books.toArray(), []);
-  const pdfInput = useRef<HTMLInputElement>(null);
-  const fileInput = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState<{ done: number; total: number } | null>(null);
   const [message, setMessage] = useState('');
 
@@ -77,41 +76,21 @@ export function BooksPanel() {
         </div>
       ) : (
         <div className="import-row">
-          <button type="button" className="btn" onClick={() => pdfInput.current?.click()}>
+          <FilePick accept="application/pdf,.pdf" onFile={addPdf}>
             Add a PDF
-          </button>
+          </FilePick>
           {!!books?.length && (
             <button type="button" className="btn" onClick={async () => download(await exportBooks(), 'agathon-books.json', 'application/json')}>
               Save as a file
             </button>
           )}
-          <button type="button" className="btn" onClick={() => fileInput.current?.click()}>
+          <FilePick accept="application/json,.json" onFile={loadFile}>
             Load a book file
-          </button>
+          </FilePick>
         </div>
       )}
       {message && <p className="book-message">{message}</p>}
       <p className="fine-print">Reading a whole book takes a while on a phone. You can add it on a computer, save it as a file and load that on your phone.</p>
-      <input
-        ref={pdfInput}
-        type="file"
-        accept="application/pdf,.pdf"
-        hidden
-        onChange={(e) => {
-          addPdf(e.target.files?.[0]);
-          e.target.value = '';
-        }}
-      />
-      <input
-        ref={fileInput}
-        type="file"
-        accept="application/json,.json"
-        hidden
-        onChange={(e) => {
-          loadFile(e.target.files?.[0]);
-          e.target.value = '';
-        }}
-      />
     </section>
   );
 }

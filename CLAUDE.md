@@ -69,6 +69,9 @@ App icon: a sparking golden portal ring (in the spirit of Doctor Strange's porta
 ## Gotchas
 
 - `all: unset` on buttons resets `box-sizing`; re-set it after (as in `.btn-icon`).
+- File pickers are `FilePick.tsx`: a `<label>` around a real, visually hidden `<input type=file>`, never a `display:none` input clicked from script, and on Android without `accept` (its picker greys out files whose type it doesn't map, .json included; contents are checked anyway). A menu holding a picker stays open until a file is chosen (the character menu, the sheet's ⋯ menu). On Android, picking files failed entirely before this; verify.mjs taps Import with an Android user agent and expects a file chooser.
+- Text areas grow with their text (`field-sizing: content`, min three lines; `main.tsx` sizes them by hand where that's unsupported). The Notes tab is a full-height notebook with rules that scroll with the text (`.notes-area`).
+- The library's sticky sidebar must sit exactly where it already is (`top` = bar + the main's 0.5rem padding) and its negative bottom margin must cancel the main's bottom padding minus its bottom gap; off by a few px it jumps when scrolling starts or ends. verify-library checks it stays put.
 - Grid columns that hold inputs need `minmax(0, 1fr)`: an `auto` or plain `1fr` column grows to the inputs' natural width (about 20 characters each), which pushed the edit-mode Background tab 70px past a narrow phone. `.tab-body` and `.field` have it; verify.mjs checks every tab in edit mode at 320px.
 - The phone nav bar is `position: fixed` inside `.app-header`, which is `isolation: isolate`; the header therefore needs `z-index: 45`, or the page content paints over the nav and its buttons stop working.
 - Shipped text uses plain keyboard characters only: no em/en dashes, no curly quotes (house style, same as another app).

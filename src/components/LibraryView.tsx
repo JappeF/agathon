@@ -96,7 +96,6 @@ function EffectCard({
             <Highlighted text={e.name} terms={terms} />
           </span>
           <span className="effect-badges">
-            {e.kind !== 'feat' && <span className={`kind-badge kind-${e.kind}`}>{e.kind === 'rank' ? 'Sphere rank' : 'rote'}</span>}
             {pinned && !onTogglePin && (
               <span className="pinned-mark" title="A favorite">
                 <Icon name="star" size={15} filled />

@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import type { Character } from '../character';
 import { db } from '../db/db';
 import { applyImport, prepareImport, type PendingImport } from '../sheetActions';
 import { SheetFormatError } from '../sheets/mrgone';
 import { SPHERES } from '../types';
 import { Modal } from './Modal';
+import { FilePick } from './FilePick';
 import { SharedImport } from './SharedImport';
 import { PortalPortrait } from './PortalPortrait';
 import { parsePayload, ShareFormatError, type SharePayload } from '../share';
@@ -25,7 +26,6 @@ export function ImportFlow({
   className?: string;
   onDone: (c: Character) => void;
 }) {
-  const input = useRef<HTMLInputElement>(null);
   const [pending, setPending] = useState<PendingImport | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -48,7 +48,6 @@ export function ImportFlow({
       );
     } finally {
       setBusy(false);
-      if (input.current) input.current.value = '';
     }
   };
 
@@ -64,10 +63,9 @@ export function ImportFlow({
 
   return (
     <>
-      <button type="button" className={className} onClick={() => input.current?.click()} disabled={busy}>
+      <FilePick className={className} accept={target ? 'application/pdf,.pdf' : 'application/pdf,.pdf,application/json,.json'} disabled={busy} onFile={pick}>
         {busy ? 'Reading...' : label}
-      </button>
-      <input ref={input} type="file" accept={target ? 'application/pdf,.pdf' : 'application/pdf,.pdf,application/json,.json'} hidden onChange={(e) => pick(e.target.files?.[0])} />
+      </FilePick>
 
       {shared && (
         <SharedImport
