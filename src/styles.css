@@ -32,10 +32,10 @@
 }
 
 * { box-sizing: border-box; }
-/* the scrollbar track is always there, so short pages (library with few results) and long
-   ones keep the same width and nothing jumps. scrollbar-gutter: stable alone wasn't honoured
-   in installed app windows; overflow-y: scroll is. Phones use overlay scrollbars anyway. */
-html { color-scheme: dark; scrollbar-width: thin; scrollbar-color: #3a2a55 transparent; overflow-y: scroll; scrollbar-gutter: stable; scroll-padding-top: 72px; }
+/* a thin violet thumb on a transparent track, as in another app: it only appears when the page
+   really scrolls (overflow-y: scroll drew an empty track with arrows on short pages), and
+   scrollbar-gutter keeps its space so short and long pages have the same width */
+html { color-scheme: dark; scrollbar-width: thin; scrollbar-color: #3a2a55 transparent; scrollbar-gutter: stable; scroll-padding-top: 72px; }
 
 body {
   margin: 0;
@@ -45,8 +45,8 @@ body {
   font-size: 15.5px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  /* clip, not hidden: hidden would make body a scroll container now that html scrolls,
-     and sticky bars would stick to body instead of the window */
+  /* clip, not hidden: clip never turns body into a scroll container, so sticky bars
+     always stick to the window */
   overflow-x: clip;
 }
 
