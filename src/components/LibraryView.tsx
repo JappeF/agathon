@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useActiveCharacter } from '../activeCharacter';
-import type { Character } from '../character';
-import { saveCharacter } from '../db/db';
+import { toggleFavorite } from '../favorites';
 import { startSpellFrom } from '../spellActions';
 import { sourceLabel, useEffects, type Effect } from '../library/data';
 import { parseQuery, search, setSphereInQuery, sphereRankInQuery, type Hit } from '../library/search';
@@ -26,8 +25,6 @@ export function searchLibrary(query: string) {
 }
 
 /** Add a library effect to a character's favorite spells, or take it off. */
-export const togglePinned = (c: Character, id: string): string[] =>
-  c.pinned?.includes(id) ? c.pinned.filter((x) => x !== id) : [...(c.pinned ?? []), id];
 // whether the open detail came from the list (then closing = going back), or from a link
 let openedFromList = false;
 const PREFS = 'agathon:library';
@@ -192,7 +189,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
           dots={castable}
           terms={terms}
           pinned={pinned.has(h.effect.id)}
-          onTogglePin={character ? () => saveCharacter({ ...character, pinned: togglePinned(character, h.effect.id) }) : undefined}
+          onTogglePin={character ? () => toggleFavorite(character.id, h.effect.id) : undefined}
           onOpen={() => {
             openedFromList = true;
             go('library', h.effect.id);
@@ -372,7 +369,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
           terms={terms}
           tagsOn={parsed.tags.filter((t) => !t.neg).map((t) => t.value)}
           pinned={pinned.has(selected.id)}
-          onPin={character ? () => saveCharacter({ ...character, pinned: togglePinned(character, selected.id) }) : undefined}
+          onPin={character ? () => toggleFavorite(character.id, selected.id) : undefined}
           onStartSpell={
             character
               ? (i) => {

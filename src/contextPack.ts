@@ -204,6 +204,9 @@ const str = (v: unknown, max = 4000) => (typeof v === 'string' ? v.trim().slice(
  * is untrusted text: only known fields, Sphere names and ranks 1-5 get through.
  */
 export function parseReply(text: string): SpellVersion {
+  // the plan block sits at the end; a giant paste (100k stray braces) would make the
+  // block scan crawl, so only the last 200k characters are read
+  text = text.slice(-200_000);
   // AIs wrap the block in ```json fences, or not, spread it over lines, and put their own
   // label in "agathon" (Gemini: "Version 2 (Optimized Network Trace)"). So look at every
   // balanced {...} in the text and take the last one with a spheres object.

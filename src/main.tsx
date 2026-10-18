@@ -7,6 +7,7 @@ import '@fontsource-variable/eb-garamond/wght-italic.css';
 import './styles.css';
 import App from './App';
 import { UpdateToast } from './components/UpdateToast';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // text areas grow with their text through field-sizing: content; where a browser lacks it
 // (Safari for now), fit them by hand as people type
@@ -21,7 +22,9 @@ if (!CSS.supports('field-sizing', 'content')) {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
     {/* outside App so the SW registers even if the app itself fails to render */}
     <UpdateToast />
   </React.StrictMode>,

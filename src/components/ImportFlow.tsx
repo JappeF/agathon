@@ -53,9 +53,14 @@ export function ImportFlow({
 
   const confirm = async (asNew = false) => {
     if (!pending) return;
-    const c = await applyImport(pending, asNew);
-    setPending(null);
-    onDone(c);
+    try {
+      const c = await applyImport(pending, asNew);
+      setPending(null);
+      onDone(c);
+    } catch (e) {
+      setPending(null);
+      setError(`Saving the import failed: ${e instanceof Error ? e.message : String(e)}`);
+    }
   };
 
   const f = pending?.fields;

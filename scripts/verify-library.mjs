@@ -82,6 +82,13 @@ const healing = await num();
 check('tag filters', healing > 0 && healing < 400, String(healing));
 await page.click('.op-clear');
 check('Clear all empties the search', (await page.inputValue('.search-input')) === '' && (await num()) > healing);
+// operators still being typed filter nothing yet
+const everything = await num();
+for (const q of ['tag:', 'kind:', 'is:', '-name:', 'book:']) {
+  await search(q);
+  check(`"${q}" while typing keeps every spell`, (await num()) === everything, `${await num()} of ${everything}`);
+}
+await search('');
 await page.click('.tag-row:has-text("healing")');
 
 // detail

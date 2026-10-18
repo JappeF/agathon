@@ -31,19 +31,32 @@ let cache: Promise<Effect[]> | null = null;
 
 /** The library is ~550 KB of JSON: load it on first use (it is precached for offline). */
 export function loadEffects(): Promise<Effect[]> {
-  cache ??= import('../../library/effects.json').then((m) => m.default as unknown as Effect[]);
+  cache ??= import('../../library/effects.json').then(
+    (m) => m.default as unknown as Effect[],
+    (e) => {
+      // a failed load (an old tab after a deploy, offline before it was cached) may work next time
+      cache = null;
+      throw e;
+    },
+  );
   return cache;
 }
 
+/** The library, or null while it loads. A failed load goes to the error screen, which offers a reload. */
 export function useEffects(): Effect[] | null {
   const [effects, setEffects] = useState<Effect[] | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   useEffect(() => {
     let live = true;
-    loadEffects().then((e) => live && setEffects(e));
+    loadEffects().then(
+      (e) => live && setEffects(e),
+      (e) => live && setError(new Error(`The spell library couldn't be loaded (${e instanceof Error ? e.message : String(e)}).`)),
+    );
     return () => {
       live = false;
     };
   }, []);
+  if (error) throw error;
   return effects;
 }
 

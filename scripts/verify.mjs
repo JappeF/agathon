@@ -29,6 +29,12 @@ check(
 );
 await page.screenshot({ path: 'shots/01-mobile-library.png' });
 
+// a stray % in a link (hand-typed, or cut off) must not blank the app
+await page.goto(`${BASE}/#/library/100%`);
+await page.waitForSelector('.logo', { timeout: 5000 }).catch(() => {});
+check('a broken link still shows the app', (await page.textContent('.logo').catch(() => null))?.trim() === 'Agathon');
+await page.goto(BASE, { waitUntil: 'networkidle' });
+
 // the animations run on the compositor: an idle page leaves the main thread nearly free
 // (it was 8-13% of a core when sparks, the logo light and the portrait glow repainted)
 {

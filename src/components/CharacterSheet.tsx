@@ -2,10 +2,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, woundLabel, woundLevel, type Character } from '../character';
 import { copyCharacter, db, deleteCharacter, saveCharacter } from '../db/db';
-import { exportPdf, MRGONE_BLANK_URL } from '../sheetActions';
+import { exportPdf, MRGONE_BLANK_URL, NoSheetError } from '../sheetActions';
 import { SheetFormatError } from '../sheets/mrgone';
 import { SPHERES, type Sphere } from '../types';
 import { go } from '../useHashRoute';
+import { useDraft } from '../useDraft';
 import { Dots } from './Dots';
 import { Field, LineList, LongText, PickField, RatedList } from './Fields';
 import { ImportFlow } from './ImportFlow';
@@ -24,7 +25,8 @@ import { useEffects, type Effect } from '../library/data';
 import { deficit } from '../library/search';
 import { ComboChips } from './ComboChips';
 import { EffectDetail } from './EffectDetail';
-import { searchLibrary, togglePinned } from './LibraryView';
+import { searchLibrary } from './LibraryView';
+import { togglePinned } from '../favorites';
 import { startSpellFrom } from '../spellActions';
 
 const UNTRAINED_KEY = 'agathon:show-untrained';
@@ -62,40 +64,10 @@ const TABS = [
 ] as const;
 type Tab = (typeof TABS)[number]['id'];
 
-/**
- * Load a character and keep a local copy that updates instantly while typing;
- * writes to IndexedDB are debounced and flushed when leaving the sheet.
- */
+/** The open character: a local copy that saves itself (see useDraft). */
 function useCharacter(id: string) {
-  const [c, setC] = useState<Character | null | undefined>(undefined);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
-  const pending = useRef<Character | null>(null);
-
-  useEffect(() => {
-    let live = true;
-    db.characters.get(id).then((x) => live && setC(x ?? null));
-    return () => {
-      live = false;
-      clearTimeout(timer.current);
-      if (pending.current) saveCharacter(pending.current);
-      pending.current = null;
-    };
-  }, [id]);
-
-  const patch = (p: Partial<Character>) =>
-    setC((prev) => {
-      if (!prev) return prev;
-      const next = { ...prev, ...p };
-      pending.current = next;
-      clearTimeout(timer.current);
-      timer.current = setTimeout(() => {
-        saveCharacter(next);
-        pending.current = null;
-      }, 250);
-      return next;
-    });
-
-  return { c, patch, replace: setC };
+  const { draft: c, patch, replace } = useDraft(id, (i) => db.characters.get(i), saveCharacter);
+  return { c, patch, replace };
 }
 
 function TraitRow({
@@ -161,7 +133,8 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const [message, setMessage] = useState<{ title: string; lines: string[] } | null>(null);
   const [needBlank, setNeedBlank] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [sharing, setSharing] = useState(false);
+  // a snapshot taken when Share opens: a fresh [c] on every render re-encoded the link and hid the QR code
+  const [sharing, setSharing] = useState<Character[] | null>(null);
   const [zoom, setZoom] = useState(false);
   // the mini bar has its own drop-down, so opening it never changes the page height
   const [miniOpen, setMiniOpen] = useState(false);
@@ -268,9 +241,10 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       const warnings = await exportPdf(c, blank);
       setMessage({ title: 'PDF exported', lines: warnings.length ? warnings : ['Your sheet has been filled in and downloaded.'] });
     } catch (e) {
+      // only a missing sheet asks for a blank one; anything else says what went wrong
       if (e instanceof SheetFormatError) setMessage({ title: "That's not the right sheet", lines: [e.message] });
-      else if (!blank) setNeedBlank(true);
-      else setMessage({ title: 'Export failed', lines: ["The PDF couldn't be written."] });
+      else if (e instanceof NoSheetError) setNeedBlank(true);
+      else setMessage({ title: 'Export failed', lines: [`The PDF couldn't be written (${e instanceof Error ? e.message : String(e)}).`] });
     }
   };
 
@@ -301,7 +275,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
                 (e.currentTarget.parentElement as HTMLDetailsElement).removeAttribute('open');
               }}
             >
-              <button type="button" onClick={() => setSharing(true)}>
+              <button type="button" onClick={() => setSharing([c])}>
                 Share character
               </button>
               <button type="button" onClick={() => doExport()}>
@@ -854,7 +828,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           onTag={(t) => searchLibrary(`tag:${t} `)}
         />
       )}
-      {sharing && <ShareDialog characters={[c]} title={`Share ${c.name}`} onClose={() => setSharing(false)} />}
+      {sharing && <ShareDialog characters={sharing} title={`Share ${c.name}`} onClose={() => setSharing(null)} />}
       {confirmDelete && (
         <Modal title={`Delete ${c.name}?`} onClose={() => setConfirmDelete(false)}>
           <p>This removes the character, its stored PDF and its spell ideas from this device.</p>

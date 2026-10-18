@@ -88,6 +88,9 @@ export function parseQuery(raw: string, knownTags: string[]): Query {
       chip(`${sphere} ${value === '' ? 'any' : r}`, neg, true);
       return true;
     }
+    // an operator still being typed ("tag:", "-name:") filters nothing yet; before, it
+    // picked the first tag or kind, or hid every result
+    if (!value && ['uses', 'tag', 'book', 'source', 'kind', 'type', 'is', 'name'].includes(field)) return true;
     switch (field) {
       case 'uses':
       case 'with': {

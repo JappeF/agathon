@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { useDraft } from '../useDraft';
 import { useActiveCharacter } from '../activeCharacter';
 import type { Character } from '../character';
-import { db, requestPersistence, saveCharacter, saveSpell } from '../db/db';
+import { db, requestPersistence, saveSpell } from '../db/db';
 import { useEffects, type Effect } from '../library/data';
 import { deficit, difficulties, parseQuery, search } from '../library/search';
 import { newSpell, newVersion, normalizeSpell, OUTCOMES, versionCombo, versionLabel, type Outcome, type Spell, type SpellVersion } from '../spells';
@@ -11,7 +12,8 @@ import { go } from '../useHashRoute';
 import { ComboChips } from './ComboChips';
 import { EffectDetail } from './EffectDetail';
 import { Icon } from './Icon';
-import { searchLibrary, togglePinned } from './LibraryView';
+import { searchLibrary } from './LibraryView';
+import { toggleFavorite } from '../favorites';
 import { Modal } from './Modal';
 import { buildPack, packSize, parseReply, ReplyError, type PackOptions, type PackPage } from '../contextPack';
 import { candidatePassages, printedPage } from '../books';
@@ -115,31 +117,10 @@ function SpellList() {
 // ---------- one dossier ----------
 
 function useSpell(id: string) {
-  const [s, setS] = useState<Spell | null | undefined>(undefined);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
-  const pending = useRef<Spell | null>(null);
-  useEffect(() => {
-    let live = true;
-    db.spells.get(id).then((x) => live && setS(x ? normalizeSpell(x) : null));
-    return () => {
-      live = false;
-      clearTimeout(timer.current);
-      if (pending.current) saveSpell(pending.current);
-      pending.current = null;
-    };
-  }, [id]);
-  const patch = (p: Partial<Spell>) =>
-    setS((prev) => {
-      if (!prev) return prev;
-      const next = { ...prev, ...p };
-      pending.current = next;
-      clearTimeout(timer.current);
-      timer.current = setTimeout(() => {
-        saveSpell(next);
-        pending.current = null;
-      }, 250);
-      return next;
-    });
+  const { draft: s, patch } = useDraft(id, async (i) => {
+    const x = await db.spells.get(i);
+    return x && normalizeSpell(x);
+  }, saveSpell);
   return { s, patch };
 }
 
@@ -320,7 +301,7 @@ function SpellDossier({ id }: { id: string }) {
           effect={byId.get(openEffect)!}
           character={character}
           pinned={!!character?.pinned?.includes(openEffect)}
-          onPin={character ? () => saveCharacter({ ...character, pinned: togglePinned(character, openEffect) }) : undefined}
+          onPin={character ? () => toggleFavorite(character.id, openEffect) : undefined}
           onClose={() => setOpenEffect(null)}
           onTag={(t) => searchLibrary(`tag:${t} `)}
         />

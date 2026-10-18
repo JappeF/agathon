@@ -9,8 +9,17 @@ export interface Route {
   parts: string[];
 }
 
+// a stray % in a hand-typed or damaged link must not take the app down
+const decode = (s: string) => {
+  try {
+    return decodeURIComponent(s);
+  } catch {
+    return s;
+  }
+};
+
 const parse = (): Route => {
-  const [head, ...parts] = location.hash.replace(/^#\/?/, '').split('/').map(decodeURIComponent);
+  const [head, ...parts] = location.hash.replace(/^#\/?/, '').split('/').map(decode);
   const view = (VIEWS as readonly string[]).includes(head) ? (head as View) : 'library';
   return { view, parts: parts.filter(Boolean) };
 };

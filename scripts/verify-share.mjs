@@ -3,6 +3,7 @@
 // back-up-all file. Needs `npm run preview` on :4173 (or BASE=...).
 import { chromium } from 'playwright-core';
 import { mkdir, readFile } from 'node:fs/promises';
+import { deflateRawSync } from 'node:zlib';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 await mkdir('shots', { recursive: true });
@@ -105,6 +106,13 @@ check('portrait through the file', (await b.$('.sheet-hero .pp-face img')) !== n
 await b.goto(`${BASE}/#import=1.bm90IGEgcmVhbCBsaW5r`, { waitUntil: 'networkidle' });
 await b.waitForSelector('.modal');
 check('damaged link message', /invalid or damaged/.test(await b.textContent('.modal')));
+await b.click('.modal button:has-text("OK")');
+
+// a decompression bomb (64 MB of zeros, a few dozen KB as a link) is refused, not unpacked
+const bomb = deflateRawSync(Buffer.alloc(64 * 1024 * 1024), { level: 9 }).toString('base64url');
+await b.goto(`${BASE}/#import=1.${bomb}`, { waitUntil: 'networkidle' });
+await b.waitForSelector('.modal');
+check('oversized link refused', /too large/.test(await b.textContent('.modal')), `${bomb.length} chars`);
 await b.click('.modal button:has-text("OK")');
 
 // back up all on device B (from the character menu): three characters in one file

@@ -1,4 +1,5 @@
 import type { Character } from './character';
+import { db, saveCharacter } from './db/db';
 import type { Effect } from './library/data';
 
 /**
@@ -7,8 +8,23 @@ import type { Effect } from './library/data';
  * by name). The sheet's rotes fields carry both: names in, names out.
  */
 
-/** Loose name match: case, spaces and punctuation don't count. */
-const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+/** Loose name match: case, spaces and punctuation don't count (letters of any script do). */
+const norm = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+
+/** A library spell in or out of a character's favorites. */
+export const togglePinned = (c: Character, id: string): string[] =>
+  c.pinned?.includes(id) ? c.pinned.filter((x) => x !== id) : [...(c.pinned ?? []), id];
+
+/**
+ * Star or unstar a library spell for a character, against the stored row: two quick
+ * taps on a page that shows an older copy (the library, a dossier) both count.
+ */
+export async function toggleFavorite(characterId: string, effectId: string) {
+  await db.transaction('rw', db.characters, async () => {
+    const c = await db.characters.get(characterId);
+    if (c) await saveCharacter({ ...c, pinned: togglePinned(c, effectId) });
+  });
+}
 
 /** Split sheet rote lines into library effects (ids) and own spells (names). */
 export function splitFavorites(names: string[], effects: Effect[]): { ids: string[]; own: string[] } {

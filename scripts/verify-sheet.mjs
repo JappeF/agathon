@@ -279,6 +279,26 @@ await page.waitForTimeout(400);
 check('library rote back as a library favorite', (await page.locator('button.pin-row:has-text("Hot-Shotting")').count()) === 1);
 check('own spell back as their own', (await page.locator('.own-spell:has-text("Ward of the Seven Seals")').count()) === 1);
 
+// importing through the character menu while this very sheet is open: the sheet takes the
+// new data over, and the next tap must not write the old copy back
+await page.fill('.xp input', '99');
+await page.waitForTimeout(400);
+await page.click('.switch-btn');
+await page.setInputFiles('.switch-menu input[type=file]', SHEET);
+await page.waitForSelector('.change-list');
+await page.click('.modal button:has-text("Update")');
+await page.waitForSelector('.modal', { state: 'detached' });
+// the sample PDF says "4 exp"
+await page.waitForFunction(() => document.querySelector('.xp input')?.value === '4', null, { timeout: 5000 }).catch(() => {});
+check('open sheet takes over an import from the menu', (await page.inputValue('.xp input')) === '4', await page.inputValue('.xp input'));
+await page.click('.sheet-title .vitals-bar');
+for (let i = 0; i < 4; i++) await page.click('.vitals-panel [aria-label^="Bruised"]');
+await page.click('.sheet-title .vitals-bar');
+await page.waitForTimeout(600);
+await page.reload();
+await page.waitForSelector('.sheet-name');
+check('a tap after that keeps the imported data', (await page.inputValue('.xp input')) === '4', await page.inputValue('.xp input'));
+
 // copy the character: same sheet under a free name, with its stored PDF, then delete the copy
 await page.evaluate(() => document.querySelector('.menu')?.removeAttribute('open'));
 await page.click('.menu summary');

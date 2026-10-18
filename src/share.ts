@@ -134,9 +134,29 @@ const b64uEncode = (bytes: Uint8Array) => {
 };
 const b64uDecode = (s: string) => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
 
-async function pipe(bytes: Uint8Array, stream: CompressionStream | DecompressionStream) {
-  const out = new Blob([bytes as BlobPart]).stream().pipeThrough(stream);
-  return new Uint8Array(await new Response(out).arrayBuffer());
+/**
+ * Run bytes through a (de)compression stream, stopping past `limit` bytes of output: a
+ * hostile link of a few MB can inflate to gigabytes and take the tab down before any
+ * preview shows. A real link holds one character with a small portrait, far below 16 MB.
+ */
+async function pipe(bytes: Uint8Array, stream: CompressionStream | DecompressionStream, limit = 16 * 1024 * 1024) {
+  const reader = new Blob([bytes as BlobPart]).stream().pipeThrough(stream).getReader();
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.length;
+    if (size > limit) {
+      await reader.cancel();
+      throw new ShareFormatError('This share link is too large.');
+    }
+    chunks.push(value);
+  }
+  const out = new Uint8Array(size);
+  let at = 0;
+  for (const c of chunks) out.set(c, (at += c.length) - c.length);
+  return out;
 }
 
 /** Drop empty and default values so links and QR codes stay small; sanitize restores them. */

@@ -22,6 +22,7 @@ export function SharedImport({
   onDone: (firstId: string) => void;
 }) {
   const [busy, setBusy] = useState(false);
+  const [failed, setFailed] = useState('');
 
   if (error || !payload) {
     return (
@@ -36,20 +37,30 @@ export function SharedImport({
     );
   }
 
+  // all or nothing: a full device halfway through a backup adds no one
   const add = async () => {
     setBusy(true);
-    const taken = new Set((await db.characters.toArray()).map((c) => c.name.toLowerCase()));
-    let first = '';
-    for (const shared of payload.characters) {
-      let name = shared.name;
-      for (let n = 2; taken.has(name.toLowerCase()); n++) name = `${shared.name} (${n})`;
-      taken.add(name.toLowerCase());
-      const c = { ...newCharacter(newId(), name), ...shared, name };
-      await saveCharacter(c);
-      first ||= c.id;
+    setFailed('');
+    try {
+      let first = '';
+      await db.transaction('rw', db.characters, async () => {
+        const taken = new Set((await db.characters.toArray()).map((c) => c.name.toLowerCase()));
+        for (const shared of payload.characters) {
+          let name = shared.name;
+          for (let n = 2; taken.has(name.toLowerCase()); n++) name = `${shared.name} (${n})`;
+          taken.add(name.toLowerCase());
+          const c = { ...newCharacter(newId(), name), ...shared, name };
+          await saveCharacter(c);
+          first ||= c.id;
+        }
+      });
+      requestPersistence();
+      onDone(first);
+    } catch (e) {
+      setFailed(`Nothing was added: ${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      setBusy(false);
     }
-    requestPersistence();
-    onDone(first);
   };
 
   const n = payload.characters.length;
@@ -72,6 +83,7 @@ export function SharedImport({
         ))}
       </ul>
       <p className="empty-small">Characters are added to this device. Nothing gets overwritten.</p>
+      {failed && <p className="paste-error" role="alert">{failed}</p>}
       <div className="modal-actions">
         <button className="btn" onClick={onClose}>
           Cancel

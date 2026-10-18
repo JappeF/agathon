@@ -119,10 +119,13 @@ async function sheetPortrait(c: Character, bytes: ArrayBuffer): Promise<SheetPor
   return portraitJpeg(c.portrait, box);
 }
 
+/** No PDF to fill in: the character wasn't imported and no blank sheet was picked yet. */
+export class NoSheetError extends Error {}
+
 export async function exportPdf(c: Character, blankSheet?: File): Promise<string[]> {
   const stored = (await db.sheetFiles.get(c.id)) ?? (await db.sheetFiles.get(BLANK_ID));
   const bytes = blankSheet ? await blankSheet.arrayBuffer() : stored?.bytes;
-  if (!bytes) throw new Error('no sheet');
+  if (!bytes) throw new NoSheetError();
   if (blankSheet) await readMrGone(bytes); // throws a friendly error for the wrong file
   const { pdf, warnings } = await writeMrGone(
     bytes,
