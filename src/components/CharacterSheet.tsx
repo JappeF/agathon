@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, characterLine, woundLabel, woundLevel, type Character } from '../character';
 import { copyCharacter, db, deleteCharacter, saveCharacter } from '../db/db';
@@ -169,6 +169,33 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
     return () => window.removeEventListener('keydown', onKey);
   }, [zoom]);
   useEffect(() => () => heroObserver.current?.disconnect(), []);
+
+  // The Notes notebook fills the window down to the bottom, measured rather than guessed:
+  // the space above it depends on the character (portrait, concept line), and a page a few
+  // px taller than the window gave a scrollbar with nothing to scroll that wobbled. Text
+  // beyond that still grows it (field-sizing), and then the page scrolls for real.
+  useLayoutEffect(() => {
+    if (tab !== 'notes') return;
+    const fit = () => {
+      const ta = document.querySelector<HTMLTextAreaElement>('.notes-area');
+      const main = document.querySelector('.app-main');
+      if (!ta || !main) return;
+      ta.style.minHeight = '';
+      const box = ta.getBoundingClientRect();
+      const below = main.getBoundingClientRect().bottom - box.bottom;
+      // 288px (18rem) at the least, as in the stylesheet, for a short window
+      ta.style.minHeight = `${Math.max(288, Math.floor(innerHeight - (box.top + scrollY) - below))}px`;
+    };
+    fit();
+    const ro = new ResizeObserver(fit);
+    const hero = document.querySelector('.sheet-hero');
+    if (hero) ro.observe(hero);
+    window.addEventListener('resize', fit);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', fit);
+    };
+  }, [tab, c?.id]);
 
   // the actions menu is a plain <details>: close it on a tap outside it or on Escape
   useEffect(() => {

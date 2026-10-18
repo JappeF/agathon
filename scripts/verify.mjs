@@ -129,6 +129,16 @@ for (const tab of ['Magick', 'Traits', 'Background', 'Notes']) {
 // a Sphere's specialty and affinity sit on their own line under the dots, not squeezed beside them
 await page.click('.tab:has-text("Magick")');
 check('320px: Sphere edit line under the dots', await page.$eval('.sphere-row', (r) => r.querySelector('.sphere-edit').getBoundingClientRect().top >= r.querySelector('.dots').getBoundingClientRect().bottom - 2));
+// an empty Notes notebook fills the window exactly: a page a few px taller than the window
+// gave a scrollbar with nothing to scroll that wobbled (desktop app, 1795x960)
+await page.click('.lock');
+await page.setViewportSize({ width: 1300, height: 960 });
+await page.click('.tab:has-text("Notes")');
+await page.waitForTimeout(200);
+const notesOver = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
+check('Notes notebook fits the window, no stray scrollbar', notesOver === 0, `${notesOver}px over`);
+await page.click('.tab:has-text("Magick")');
+await page.click('.lock');
 await page.setViewportSize({ width: 390, height: 844 });
 await page.click('.lock');
 
