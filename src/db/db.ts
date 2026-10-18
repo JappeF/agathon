@@ -76,6 +76,29 @@ export async function deleteCharacter(id: string) {
 }
 
 /**
+ * A full copy of a character under a free name ("Saito (copy)", "Saito (copy 2)"):
+ * the sheet, its stored PDF and its spell ideas, so a build can be tried out without
+ * touching the original.
+ */
+export async function copyCharacter(c: Character): Promise<Character> {
+  const taken = new Set((await db.characters.toArray()).map((x) => x.name.toLowerCase()));
+  // a copy of a copy counts on from the original name
+  const base = c.name.replace(/ \(copy( \d+)?\)$/, '');
+  let name = `${base} (copy)`;
+  for (let n = 2; taken.has(name.toLowerCase()); n++) name = `${base} (copy ${n})`;
+  const now = Date.now();
+  const copy: Character = { ...structuredClone(c), id: newId(), name, createdAt: now, updatedAt: now };
+  await db.transaction('rw', db.characters, db.sheetFiles, db.spells, async () => {
+    await db.characters.put(copy);
+    const sheet = await db.sheetFiles.get(c.id);
+    if (sheet) await db.sheetFiles.put({ ...sheet, characterId: copy.id });
+    const spells = await db.spells.where('characterId').equals(c.id).toArray();
+    await db.spells.bulkPut(spells.map((s) => ({ ...s, id: newId(), characterId: copy.id })));
+  });
+  return copy;
+}
+
+/**
  * Ask the browser not to evict our data under storage pressure (Safari and
  * mobile Chrome do clear "best effort" storage). Called on the first real write;
  * the answer only matters for durability, so failures are ignored.

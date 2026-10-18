@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, HEALTH_LEVELS, type Character } from '../character';
-import { db, deleteCharacter, saveCharacter } from '../db/db';
+import { copyCharacter, db, deleteCharacter, saveCharacter } from '../db/db';
 import { exportPdf, MRGONE_BLANK_URL } from '../sheetActions';
 import { SheetFormatError } from '../sheets/mrgone';
 import { SPHERES, type Sphere } from '../types';
@@ -311,6 +311,16 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
                 Export PDF sheet
               </button>
               <ImportFlow target={c} label="Update from PDF" className="menu-btn" onDone={(n) => replace(n)} />
+              <button
+                type="button"
+                onClick={async () => {
+                  const copy = await copyCharacter(c);
+                  setActiveCharacter(copy.id);
+                  go('characters', copy.id, tab);
+                }}
+              >
+                Copy character
+              </button>
               <button type="button" className="danger" onClick={() => setConfirmDelete(true)}>
                 Delete character
               </button>

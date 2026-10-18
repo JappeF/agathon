@@ -231,6 +231,32 @@ await page.waitForTimeout(400);
 check('library rote back as a library favorite', (await page.locator('button.pin-row:has-text("Hot-Shotting")').count()) === 1);
 check('own spell back as their own', (await page.locator('.own-spell:has-text("Ward of the Seven Seals")').count()) === 1);
 
+// copy the character: same sheet under a free name, with its stored PDF, then delete the copy
+await page.evaluate(() => document.querySelector('.menu')?.removeAttribute('open'));
+await page.click('.menu summary');
+await page.click('button:has-text("Copy character")');
+await page.waitForSelector('.sheet-name:text-is("Saito Weinberg (copy)")');
+const copyId = decodeURIComponent(new URL(page.url()).hash.split('/')[2]);
+check('copy: new character opened', copyId !== id, copyId);
+check('copy: favorites carried over', (await page.locator('button.pin-row:has-text("Hot-Shotting")').count()) === 1);
+check('copy: Spheres carried over', (await sphere('Forces')) > 0);
+await page.click('.menu summary');
+const [dlCopy] = await Promise.all([page.waitForEvent('download', { timeout: 10000 }).catch(() => null), page.click('button:has-text("Export PDF sheet")')]);
+check('copy: exports from the copied PDF', dlCopy?.suggestedFilename() === 'Saito Weinberg (copy).pdf', dlCopy?.suggestedFilename());
+await page.click('.modal button:has-text("OK")');
+await page.click('.menu summary');
+await page.click('button:has-text("Copy character")');
+await page.waitForSelector('.sheet-name:text-is("Saito Weinberg (copy 2)")');
+check('copy: second copy gets a free name', true);
+for (let i = 0; i < 2; i++) {
+  await page.click('.menu summary');
+  await page.click('button:has-text("Delete character")');
+  await page.click('.modal .btn-danger');
+  await page.waitForTimeout(300);
+}
+await page.waitForSelector('.sheet-name:text-is("Saito Weinberg")');
+check('copy: original untouched', decodeURIComponent(new URL(page.url()).hash.split('/')[2]) === id);
+
 // a character made in the app: the first export asks for a blank sheet (with a download
 // link to Mr. Gone's), and every later one reuses it
 const exportFrom = async () => {
