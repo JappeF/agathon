@@ -144,11 +144,12 @@ export function buildPack(s: Spell, c: Character, effects: Effect[], o: PackOpti
       `2. How ${c.name} would do it, in their paradigm, practice and instruments: what it looks like, sounds like, what it takes.`,
       '3. How to keep it coincidental in this scene, or how to soften it if it has to be vulgar.',
       '4. The risks: Paradox, a botch, side effects, what the Storyteller is likely to ask.',
+      `5. A new name for this spell idea: short, snappy and funny (two to five words), the kind the table will keep using. And what should happen, in one or two sharp sentences.`,
       GAP,
       'Keep it practical, we are at the table. End your answer with the improved plan as one JSON block, exactly in this shape (Sphere names in English, ranks 1-5):',
       GAP,
       '```json',
-      '{"agathon": "version", "spheres": {"Forces": 3, "Prime": 2}, "how": "what it looks like", "coincidental": "how it stays coincidental", "notes": "risks and open questions"}',
+      '{"agathon": "version", "title": "a short, snappy, funny name", "goal": "what should happen, in one or two sentences", "spheres": {"Forces": 3, "Prime": 2}, "how": "what it looks like", "coincidental": "how it stays coincidental", "notes": "risks and open questions"}',
       '```',
     ]),
   ]
@@ -212,7 +213,14 @@ const str = (v: unknown, max = 4000) => (typeof v === 'string' ? v.trim().slice(
  * Read the JSON block from an AI's answer and turn it into a new version. The answer
  * is untrusted text: only known fields, Sphere names and ranks 1-5 get through.
  */
-export function parseReply(text: string): SpellVersion {
+/** What an answer brings: a new version, and maybe a better name and goal for the idea. */
+export interface ParsedReply {
+  version: SpellVersion;
+  title: string;
+  goal: string;
+}
+
+export function parseReply(text: string): ParsedReply {
   // the plan block sits at the end; a giant paste (100k stray braces) would make the
   // block scan crawl, so only the last 200k characters are read
   text = text.slice(-200_000);
@@ -231,7 +239,7 @@ export function parseReply(text: string): SpellVersion {
   }
   if (!data || !spheres) throw new ReplyError("There is no plan block in this answer. Ask the AI to end with the JSON block from the prompt, or copy the parts you like into the plan by hand.");
   // the asked-for fields first; AIs that invent their own shape get the nearest match
-  return newVersion({
+  const version = newVersion({
     spheres,
     how: str(data.how) || findText(data, /^(how|method|focus|instruments?|tools?|description|intent|effect)$/i),
     coincidental: str(data.coincidental) || findText(data, /coincidental|cover.?story|mitigation|disguise/i),
@@ -239,6 +247,12 @@ export function parseReply(text: string): SpellVersion {
     source: 'ai',
     reply: text.trim().slice(0, 30000),
   });
+  return {
+    version,
+    // one line for a name: no line breaks, no quotes around it
+    title: (str(data.title, 120) || findText(data, /^(title|name|spell_?name|rote_?name)$/i).slice(0, 120)).replace(/\s+/g, ' ').replace(/^["']|["']$/g, ''),
+    goal: str(data.goal) || findText(data, /^(goal|aim|outcome|desired_?(effect|outcome)|what_should_happen)$/i),
+  };
 }
 
 type Json = Record<string, unknown>;

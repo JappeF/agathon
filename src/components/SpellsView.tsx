@@ -208,9 +208,11 @@ function SpellDossier({ id }: { id: string }) {
       {ai === 'copy' && character && <CopyForAi s={s} c={character} effects={effects ?? []} onClose={() => setAi(null)} />}
       {ai === 'paste' && (
         <PasteAnswer
+          title={s.title}
+          goal={s.goal}
           onClose={() => setAi(null)}
-          onVersion={(v) => {
-            patch({ versions: [...s.versions, v] });
+          onTake={(v, also) => {
+            patch({ versions: [...s.versions, v], ...also });
             setAi(null);
           }}
         />
@@ -652,12 +654,42 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
   );
 }
 
-function PasteAnswer({ onClose, onVersion }: { onClose: () => void; onVersion: (v: SpellVersion) => void }) {
+/**
+ * Paste an AI's answer: its plan becomes a new version. When it also suggests a name or a
+ * sharper goal, both show here with a checkbox (on), so the player decides what to take.
+ */
+function PasteAnswer({
+  title,
+  goal,
+  onClose,
+  onTake,
+}: {
+  title: string;
+  goal: string;
+  onClose: () => void;
+  onTake: (v: SpellVersion, also: { title?: string; goal?: string }) => void;
+}) {
   const [text, setText] = useState('');
   const [error, setError] = useState('');
+  const [skipTitle, setSkipTitle] = useState(false);
+  const [skipGoal, setSkipGoal] = useState(false);
+  // read as you paste, so the suggestions show before you take them
+  const parsed = useMemo(() => {
+    try {
+      return text.trim() ? parseReply(text) : null;
+    } catch {
+      return null;
+    }
+  }, [text]);
+  const newTitle = parsed?.title && parsed.title !== title.trim() ? parsed.title : '';
+  const newGoal = parsed?.goal && parsed.goal !== goal.trim() ? parsed.goal : '';
   const take = () => {
     try {
-      onVersion(parseReply(text));
+      const r = parseReply(text);
+      onTake(r.version, {
+        ...(newTitle && !skipTitle ? { title: newTitle } : {}),
+        ...(newGoal && !skipGoal ? { goal: newGoal } : {}),
+      });
     } catch (e) {
       setError(e instanceof ReplyError ? e.message : "This answer couldn't be read.");
     }
@@ -678,6 +710,27 @@ function PasteAnswer({ onClose, onVersion }: { onClose: () => void; onVersion: (
         }}
       />
       {error && <p className="paste-error">{error}</p>}
+      {(newTitle || newGoal) && (
+        <div className="paste-suggest">
+          <p className="empty-small">The AI also suggests:</p>
+          {newTitle && (
+            <label className="check">
+              <input type="checkbox" checked={!skipTitle} onChange={(e) => setSkipTitle(!e.target.checked)} />
+              <span>
+                Name: <strong>{newTitle}</strong>
+              </span>
+            </label>
+          )}
+          {newGoal && (
+            <label className="check">
+              <input type="checkbox" checked={!skipGoal} onChange={(e) => setSkipGoal(!e.target.checked)} />
+              <span>
+                What should happen: <em>{newGoal}</em>
+              </span>
+            </label>
+          )}
+        </div>
+      )}
       <div className="modal-actions">
         <button className="btn" onClick={onClose}>
           Cancel

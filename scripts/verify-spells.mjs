@@ -146,13 +146,24 @@ check('giant garbage paste answers quickly', Date.now() - t0 < 5000, `${Date.now
 const answer = [
   'Use Forces 4 for a bigger blast, keep Prime 2.',
   '```json',
-  '{"agathon": "version", "spheres": {"forces": 4, "Prime": "2", "Fire": 3, "Matter": 9}, "how": "Hairspray, a lighter, a whispered word", "coincidental": "Blame the old gas pipes", "notes": "Witnesses make it vulgar", "evil": "<script>"}',
+  '{"agathon": "version", "title": "Old Pipes, New Fire", "goal": "A gas main gives way right under the van.", "spheres": {"forces": 4, "Prime": "2", "Fire": 3, "Matter": 9}, "how": "Hairspray, a lighter, a whispered word", "coincidental": "Blame the old gas pipes", "notes": "Witnesses make it vulgar", "evil": "<script>"}',
   '```',
 ].join('\n');
+const titleBefore = await page.inputValue('.dossier-title');
+const goalBefore = await page.inputValue('.dossier textarea[placeholder^="In your own words"]');
 await page.fill('.paste-area', answer);
+// the AI's name and goal come with a checkbox each; take the name, keep our own goal
+await page.waitForSelector('.paste-suggest');
+const suggest = await page.textContent('.paste-suggest');
+check('AI suggests a name and a goal', /Old Pipes, New Fire/.test(suggest) && /gas main gives way/.test(suggest), suggest);
+await page.uncheck('.paste-suggest .check:has-text("What should happen") input');
 await page.click('.modal button:has-text("Add as a new version")');
 await page.waitForSelector('.modal', { state: 'detached' });
 check('answer becomes the plan, marked from AI', (await page.textContent('.dossier-main .version-head')).includes('from AI'));
+check('the AI name is taken', (await page.inputValue('.dossier-title')) === 'Old Pipes, New Fire', await page.inputValue('.dossier-title'));
+check('an unticked goal stays ours', (await page.inputValue('.dossier textarea[placeholder^="In your own words"]')) === goalBefore);
+// back to our own name for the rest of the checks
+await page.fill('.dossier-title', titleBefore);
 const aiSpheres = await page.$$eval('.dossier-main > .version .version-spheres .sphere-btn.on', (bs) => bs.map((b) => b.getAttribute('aria-label')).join());
 check('only known Spheres and ranks 1-5', aiSpheres === 'Forces 4,Prime 2', aiSpheres);
 check('plan fields from the answer', (await page.inputValue('.dossier-main .version label:has-text("Keeping it coincidental") textarea')) === 'Blame the old gas pipes');
@@ -192,6 +203,10 @@ const ownShape = `{
 }`;
 await page.click('button:has-text("Paste the answer")');
 await page.fill('.paste-area', ownShape);
+// its "spell_name" is offered as a name; keep ours this time
+await page.waitForSelector('.paste-suggest');
+check('a name under another key is offered too', /Traceroute Prime Leakage/.test(await page.textContent('.paste-suggest')));
+await page.uncheck('.paste-suggest .check:has-text("Name") input');
 await page.click('.modal button:has-text("Add as a new version")');
 await page.waitForSelector('.modal', { state: 'detached', timeout: 3000 }).catch(() => {});
 const nestedSpheres = await page.$$eval('.dossier-main > .version .version-spheres .sphere-btn.on', (bs) => bs.map((b) => b.getAttribute('aria-label')).join());

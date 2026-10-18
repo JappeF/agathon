@@ -1641,6 +1641,11 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .pack-done { margin-top: 0.6rem; }
 .paste-area { width: 100%; min-height: 10rem; }
 .paste-error { color: #ff8fb1; font-size: 0.88rem; }
+/* the AI's name and goal, each with its own checkbox */
+.paste-suggest { display: grid; gap: 0.2rem; margin: 0.4rem 0; }
+.paste-suggest .check { align-items: flex-start; font-size: 0.92rem; color: var(--ink); }
+.paste-suggest .check input { margin-top: 0.3rem; }
+.paste-suggest em { font-family: var(--font-flavor); }
 .ai-reply { border-left: 2px solid var(--line-solid); padding-left: 0.7rem; }
 .ai-reply summary { cursor: pointer; font-size: 0.85rem; color: var(--ink-faint); min-height: 32px; display: flex; align-items: center; }
 .ai-reply .prose { white-space: pre-wrap; font-size: 0.88rem; color: var(--ink-dim); max-height: 50vh; overflow: auto; }

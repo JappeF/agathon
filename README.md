@@ -102,7 +102,8 @@ table; Agathon is the helper and sounding board.
 - **Work it out with an AI**: Copy for AI gathers everything needed to work a spell
   out (your mage, the idea and its plan, the spells it builds on, the rules, your
   scene or question) into one prompt for Claude, ChatGPT or Gemini. Paste the answer
-  back and its plan becomes a new version of the idea.
+  back and its plan becomes a new version of the idea; its suggested name (short, snappy,
+  funny) and its wording of what should happen can be taken over with a tick.
 - **The rules from your own books**: add your PDF of the M20 core book or How Do You
   DO That? and your spell ideas can lean on the book itself: the pages of the spells
   an idea builds on, its Sphere ranks, and the casting and Paradox rules. The text
