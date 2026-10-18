@@ -26,7 +26,7 @@ export function BooksPanel() {
       requestPersistence();
       setMessage(`${BOOKS[b.id as BookId].title} added: ${b.pages.length} pages.`);
     } catch (e) {
-      setMessage(e instanceof BookError ? e.message : "Couldn't read that PDF.");
+      setMessage(e instanceof BookError ? e.message : `Couldn't read that PDF (${e instanceof Error ? `${e.name}: ${e.message}` : String(e)}).`);
     } finally {
       setBusy(null);
     }

@@ -50,24 +50,63 @@ function footerOffset(pages: string[]): number {
   return most >= 10 ? best : 1;
 }
 
+/** The error in a line, for messages people can pass on ("TypeError: ..."). */
+const why = (e: unknown) => (e instanceof Error ? `${e.name}: ${e.message}` : String(e)).slice(0, 200);
+
+/**
+ * The file's bytes. file.arrayBuffer() can fail on a phone for files a cloud app only
+ * links to (Drive, OneDrive); FileReader sometimes still manages.
+ */
+async function fileBytes(file: File): Promise<Uint8Array> {
+  try {
+    return new Uint8Array(await file.arrayBuffer());
+  } catch (first) {
+    try {
+      return await new Promise<Uint8Array>((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(new Uint8Array(r.result as ArrayBuffer));
+        r.onerror = () => reject(r.error);
+        r.readAsArrayBuffer(file);
+      });
+    } catch {
+      throw new BookError(`Couldn't read the file from this device (${why(first)}). If it sits in a cloud folder, download it to the phone first.`);
+    }
+  }
+}
+
 /** Read a rulebook PDF into page text. Calls `progress(done, total)` while reading. */
 export async function readBook(file: File, progress: (done: number, total: number) => void): Promise<BookRecord> {
-  const pdfjs = await import('pdfjs-dist');
-  pdfjs.GlobalWorkerOptions.workerSrc = (await import('pdfjs-dist/build/pdf.worker.min.mjs?url')).default;
+  // each step says what failed, so a problem on one phone can be told apart from another
+  const data = await fileBytes(file);
+  let pdfjs: typeof import('pdfjs-dist');
+  try {
+    pdfjs = await import('pdfjs-dist');
+    pdfjs.GlobalWorkerOptions.workerSrc = (await import('pdfjs-dist/build/pdf.worker.min.mjs?url')).default;
+  } catch (e) {
+    throw new BookError(`Couldn't load the PDF reader (${why(e)}). Reload the app and try again.`);
+  }
   let doc;
   try {
-    doc = await pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
-  } catch {
-    throw new BookError("This file can't be read as a PDF.");
+    doc = await pdfjs.getDocument({ data }).promise;
+  } catch (e) {
+    throw new BookError(`This file can't be read as a PDF (${why(e)}).`);
   }
   try {
     const first: string[] = [];
-    for (let n = 1; n <= Math.min(8, doc.numPages); n++) first.push(await pageText(doc, n));
+    try {
+      for (let n = 1; n <= Math.min(8, doc.numPages); n++) first.push(await pageText(doc, n));
+    } catch (e) {
+      throw new BookError(`Reading the first pages failed (${why(e)}).`);
+    }
     const id = recognise(first.join('\n'), doc.numPages);
     if (!id) throw new BookError("This isn't the M20 core book or How Do You DO That? (the PDFs from DriveThruRPG). Other books aren't supported yet.");
     const pages: string[] = [...first];
     for (let n = first.length + 1; n <= doc.numPages; n++) {
-      pages.push(await pageText(doc, n));
+      try {
+        pages.push(await pageText(doc, n));
+      } catch (e) {
+        throw new BookError(`Reading page ${n} failed (${why(e)}).`);
+      }
       if (n % 10 === 0) progress(n, doc.numPages);
     }
     progress(doc.numPages, doc.numPages);
