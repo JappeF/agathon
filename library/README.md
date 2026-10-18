@@ -160,6 +160,11 @@ is reading section by section, not a regex job.
 Every batch was read section by section, and each has a spot-check sheet
 (`node library/scripts/spotcheck.mjs <batch>`) for comparing entries with the book. The first
 round of spot-checks (10 entries per batch, seed 11) came back without corrections on 2026-10-17.
+On 2026-10-18 every entry, not a sample, was read side by side with its book pages by seven
+read-only agents (issue #18). Each finding was checked against the book text before it went
+in: 24 corrections, among them five real rule errors (Timelines Paradox, the Psychic Pain
+ward, the Avatar cap on Quintessence, Forces 3 for turning matter into energy, Forces 4
+being usually rather than always vulgar). The app calls these entries spells.
 
 ## Counts
 

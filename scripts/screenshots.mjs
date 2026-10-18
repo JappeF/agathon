@@ -22,7 +22,8 @@ const demo = {
     {
       name: 'De Tovenaar van Salsaborenco',
       concept: 'Hedge-wizard of the old quarter',
-      affiliation: 'Order of Hermes',
+      affiliation: 'Traditions',
+      sect: 'Order of Hermes',
       essence: 'Questing',
       nature: 'Visionary',
       demeanor: 'Pedagogue',
@@ -43,6 +44,8 @@ const demo = {
       ],
       merits: [{ name: 'Lucky', rating: 3 }],
       flaws: [{ name: 'Curiosity', rating: 2 }],
+      // favorite spells: three from the library, two of their own
+      pinned: ['conjure-fire-or-pulse-cannon-blast', 'heatless-fire-and-shockless-electricity', 'create-light'],
       rotes: ['Ward of the Seven Seals', 'Lightning from a clear sky'],
       focus: ['Paradigm: a mechanistic cosmos of Hermetic correspondences', 'Practice: High Ritual Magick', 'Instruments: wands, sigils, Enochian chant'],
     },
@@ -86,9 +89,39 @@ await d.goto(`${BASE}/#/library/thunder-punch`, { waitUntil: 'networkidle' });
 await d.waitForSelector('.detail');
 await settle(d);
 await d.screenshot({ path: 'docs/screenshot-detail.png' });
+
+// 3. desktop sheet: the Magick tab with the wheel, favorite spells and spell ideas
+// (the spell idea is made through the app: start one from a library spell)
+await d.goto(`${BASE}/#/library/conjure-fire-or-pulse-cannon-blast`, { waitUntil: 'networkidle' });
+await d.click('.start-spell');
+await d.waitForSelector('.dossier');
+await d.fill('.dossier-title', 'The gas main under Vondelstraat');
+await d.fill('.dossier label:has-text("What should happen") textarea', 'Blow the warehouse door open at night, so it reads as an old gas main giving way.');
+await d.fill('.dossier-main > .version label:has-text("How it looks") textarea', 'A chalk sigil on the pipe, a whispered Latin formula, a lighter flicked once.');
+await d.fill(
+  '.dossier-main > .version label:has-text("Keeping it coincidental") textarea',
+  'The street has had gas leaks before; nobody is around but one guard on his rounds.',
+);
+await d.click('button:has-text("Link a spell")');
+await d.fill('.effect-picker .text-input', 'heatless');
+await d.waitForTimeout(300);
+await d.click('.picker-row >> nth=0');
+await d.click('.outcome-btn:has-text("Worked")');
+await d.fill('.log-paradox input', '1');
+await d.fill('.log-form textarea', 'The Storyteller bought the gas leak. One Paradox for the flash.');
+await d.click('button:has-text("Add to the log")');
+await d.evaluate(() => scrollTo(0, 0));
+await settle(d);
+await d.screenshot({ path: 'docs/screenshot-spell-idea.png' });
+
+await d.setViewportSize({ width: 1440, height: 1320 });
+await d.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+await d.waitForSelector('.sheet-name');
+await settle(d);
+await d.screenshot({ path: 'docs/screenshot-sheet.png' });
 await d.close();
 
-// 3. phone: the sheet, the Sphere search and the character list
+// 4. phone: the sheet, the Sphere search and the character list
 const m = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 await m.addInitScript(() =>
   document.addEventListener('DOMContentLoaded', () => {

@@ -62,7 +62,7 @@ export function SharedImport({
             <span className="import-item-text">
             <strong>{c.name}</strong>
             <span className="empty-small">
-              {[c.concept, c.affiliation].filter(Boolean).join(', ')}
+              {[c.concept, c.sect || c.affiliation].filter(Boolean).join(', ')}
               {c.concept || c.affiliation ? '. ' : ''}
               Arete {c.arete}
               {SPHERES.filter((s) => c.spheres[s]).map((s) => `, ${s} ${c.spheres[s]}`).join('')}

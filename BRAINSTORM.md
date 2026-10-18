@@ -134,17 +134,18 @@ https://github.com/OWNER/agathon/issues, met labels per soort (✨ nice to have,
   ~930 vermeldingen van een Sphere met rank; het meeste materiaal voor de bibliotheek
 - `pdftotext` werkt direct, geen OCR nodig.
 
-## Status (17 okt 2026)
+## Status (18 okt 2026)
 
 Live op https://agathon.pages.dev, repo `OWNER/agathon` (private).
 
 - **Fase 1, fundament:** klaar.
 - **Fase 2, character:** klaar, inclusief portretten (uit de PDF of zelf gekozen) en delen
   via bestand, link en QR.
-- **Fase 3, effect-bibliotheek:** klaar. 563 effecten, eerste steekproefronde gedaan;
-  correcties lopen via de bibliotheek-sessie op een eigen branch.
-- **Fase 4, spell-dossiers en context pack:** in vier stappen. A (effecten pinnen aan je
-  character, rotes op de sheet linken naar de bibliotheek) en B (dossiers met versies,
+- **Fase 3, effect-bibliotheek:** klaar. 563 spells (in de app heten effecten nu
+  spells). Na de eerste steekproefronde zijn op 18 okt alle 563 naast hun boekpagina's
+  gelegd (issue #18): 24 correcties, waarvan vijf echte regelfouten.
+- **Fase 4, spell-dossiers en context pack:** in vier stappen. A (favorite spells: een ster
+  in de bibliotheek; rotes van de sheet zijn gewoon favorite spells, issue #17) en B (dossiers met versies,
   gekoppelde effecten en een logboek) en C (*Copy for AI* en het antwoord terugplakken
   als nieuwe versie) en D (boekindex: je eigen PDF's lokaal als tekst, pagina's
   aanvinken in Copy for AI, index als bestand naar de telefoon) zijn klaar. Fase 4 is
@@ -153,8 +154,12 @@ Live op https://agathon.pages.dev, repo `OWNER/agathon` (private).
   zijn niet invulbaar, dus er valt niets te importeren.
 
 Onderweg erbij gekomen: het portaal-icoon en het geanimeerde portaal achter het logo,
-eigen Sphere-symbolen (o.a. een brein voor Mind en een drietand voor Prime), en de
-another app-achtige zijbalk voor de bibliotheek op desktop.
+eigen Sphere-symbolen (o.a. een brein voor Mind en een drietand voor Prime), de
+another app-achtige zijbalk voor de bibliotheek op desktop, een character-switcher in de nav,
+zoekwoorden die oplichten, keuzelijsten uit M20 (Backgrounds, Merits, Flaws, Concept,
+Essence, Nature, Demeanor, Affiliation, Sect, specialties), XP naast de naam, een
+Notes-schrijfblok, en Android-proof bestandskiezers. Het tabblad Spells heet nu Spell
+ideas (issue #22).
 
 ## Bouwvolgorde (voorstel)
 

@@ -347,7 +347,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               <h2 className="sheet-name">{c.name}</h2>
             )}
             <p className="sheet-sub">
-              <span>{[c.concept, c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</span>
+              <span>{[c.concept, c.sect || c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ')}</span>
               {/* experience is handed out at the table, so it is editable in play mode too */}
               <label className="xp">
                 XP

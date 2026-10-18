@@ -1,15 +1,20 @@
 # Agathon: a grimoire for the Awakened
 
 An installable, offline-first companion for **Mage: The Ascension 20th Anniversary**:
-a searchable library of **563 magick effects** from the books, full **character
-sheets** you can import from (and export back to) your PDF sheet, and sharing with
-your table. Rolls stay on the table; Agathon is the helper and sounding board.
+a searchable library of **563 spells** from the books, full **character sheets** you
+can import from (and export back to) your PDF sheet, **spell ideas** you can work out
+and think through with your own AI, and sharing with your table. Rolls stay on the
+table; Agathon is the helper and sounding board.
 
 **Live: [agathon.pages.dev](https://agathon.pages.dev)**
 
 ![Agathon: the library on a desktop, showing what the active character can cast](docs/screenshot.png)
 
-![Agathon: an effect with its ways to cast it, the difficulty and a checklist for keeping it coincidental](docs/screenshot-detail.png)
+![Agathon: a spell with its ways to cast it, the difficulty and a checklist for keeping it coincidental](docs/screenshot-detail.png)
+
+![Agathon: a character sheet's Magick tab with the Spheres, the Quintessence and Paradox wheel, the focus and the favorite spells](docs/screenshot-sheet.png)
+
+![Agathon: a spell idea with its plan, the spells it builds on, the Copy for AI button and a casting in the log](docs/screenshot-spell-idea.png)
 
 <details>
 <summary>On a phone</summary>
@@ -26,31 +31,33 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
 
 ### Library
 
-- **Every effect from both books**: the Sphere rank lists, the worked feats and the
+- **Every spell from both books**: the Sphere rank lists, the worked examples and the
   named rotes of *Mage 20* and *How Do You DO That?*, each with its Sphere
   combinations, alternatives, add-ons and book/page references. The summaries are
   our own words; no book text ships with the app.
 - **Search by Sphere combination**: tap Spheres in the bar (or type `mind:3
-  forces:2`) to find effects that use exactly that combination. "Allow other
+  forces:2`) to find spells that use exactly that combination. "Allow other
   Spheres" or `uses:mind,forces` widens it.
 - **What can my character cast**: one switch splits the list into what the active
   character can cast right now and what is **one dot away**, with the missing
   Sphere marked.
 - **Search words are marked** in the cards and the detail; when they only occur
-  further down an effect, a line from there shows why it matched.
+  further down a spell, a line from there shows why it matched.
 - **Operators** for keyboard search: `tag:healing`, `book:hdydt`, `kind:rote`,
-  `is:vulgar`, `name:portal`, rank forms `=3`, `3+`, `2-4`, the Technocratic names
+  `is:vulgar`, `is:fav` (your favorites), `name:portal`, rank forms `=3`, `3+`, `2-4`, the Technocratic names
   (`data:`, `primal:`, `dimsci:`), and `-` to exclude anything.
-- **Effect detail**: every way to cast it, the base difficulty (highest Sphere +3
+- **Spell detail**: every way to cast it, the base difficulty (highest Sphere +3
   coincidental, +4 vulgar, +5 with witnesses, M20 p. 501), what the book says about
   keeping it coincidental, and a checklist of mitigation tricks that light up when
-  your character has the Spheres for them.
+  your character has the Spheres for them. A star makes it a favorite; "Start a
+  spell idea from this" turns it into a spell idea.
 
 ### Characters
 
 - **The full M20 sheet**: Attributes, Abilities, Spheres with specialties and the
-  affinity Sphere, Arete, Backgrounds, Merits and Flaws, Focus, rotes, Wonders,
-  history, description, gear and weapons.
+  affinity Sphere, Arete, Backgrounds, Merits and Flaws, Focus, favorite spells,
+  Wonders, experience, history, description, gear and weapons, and a full-height
+  notebook for notes.
 - **Play mode and edit mode**: while playing only health, Willpower and the
   **Quintessence/Paradox wheel** change (Paradox cancels Quintessence, never the
   other way round, as in M20), plus the experience beside the name; a lock switches
@@ -58,13 +65,13 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
 - **PDF import and export**: drop in Mr. Gone's fillable M20 2-page sheet and every
   field comes across, including the portrait pasted into it. Re-importing shows the
   changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in.
-- **Concept, Essence, Nature, Demeanor, Affiliation, Sect, Backgrounds, Merits and
-  Flaws** from searchable lists of
-  what M20 defines, with a short hint, the cost and the page; your own names work too.
-  Specialties suggest M20's examples as you type.
+- **Pick lists**: Concept, Essence, Nature, Demeanor, Affiliation, Sect, Backgrounds,
+  Merits and Flaws come from searchable lists of what M20 defines, with a short hint,
+  the cost and the page; your own names work too. Specialties suggest M20's examples
+  as you type.
 - **Portraits** in a small sparking portal, enlarged with a tap, replaceable in edit
   mode.
-- **Favorite spells** (what M20 sheets call rotes): tap the star on an effect in the
+- **Favorite spells** (what M20 sheets call rotes): tap the star on a spell in the
   library and it waits on the sheet's Magick tab, opening right there; spells of your
   own sit in the same list. They go in and out of the PDF sheet's rotes fields.
 - **One character in play**: the nav carries the active character, one tap opens
@@ -73,19 +80,20 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
 
 ### Spell ideas
 
-- **Spell ideas** per character: what you want to happen, the library effects it
+- **Spell ideas** per character: what you want to happen, the library spells it
   builds on, and the plan: Spheres (with the base difficulty and whether your
   character has the dots), how it looks, how to keep it coincidental. "Try another
   way" keeps the old plan as an earlier version.
 - **At the table**: log how a casting went (worked, partly, failed, botched) and the
   Paradox it cost.
-- Start one by name, or from any effect in the library.
+- Start one by name, or from any spell in the library.
 - **Copy for AI**: one prompt with your mage, the idea, its plan and the linked
-  effects, plus the scene or your question, to paste into your own Claude, ChatGPT
+  spells, plus the scene or your question, to paste into your own Claude, ChatGPT
   or Gemini. Nothing is sent from the app. Paste the answer back and its plan
-  becomes a new version, marked as from AI.
+  becomes a new version, marked as from AI (the plan block is read in whatever
+  shape the AI gives it).
 - **Your own rulebooks**: add your PDF of the M20 core book or How Do You DO That?
-  and Copy for AI can quote the real pages (the effect's own pages, the Sphere ranks,
+  and Copy for AI can quote the real pages (the spell's own pages, the Sphere ranks,
   the casting and Paradox rules). Only the text is kept, on your device; it is never
   shared. Save it as a file to move it to your phone.
 
@@ -98,7 +106,8 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
 ### App
 
 - **Fully offline** once loaded, installable on phone and desktop, with a "new
-  version ready" prompt after each deploy.
+  version ready" prompt after each deploy. Works on narrow phones down to 320px,
+  file pickers included.
 - Everything you enter stays in your browser (IndexedDB) until you share it.
 
 ## Commands
@@ -113,7 +122,7 @@ npm run icons    # PNG app icons from public/icons/sigil.svg
 node scripts/sigil.mjs   # regenerate the portal icon itself
 ```
 
-Effect library (the generated `library/effects.json` is committed; the build does
+Spell library (the generated `library/effects.json` is committed; the build does
 not run these; see [library/README.md](library/README.md)):
 
 ```sh
@@ -126,11 +135,11 @@ Checks and screenshots (headless system Edge via playwright-core; start
 `npm run preview` first, or set `BASE=https://agathon.pages.dev`):
 
 ```sh
-node scripts/verify.mjs           # shell, navigation, IndexedDB, service worker, offline reload
-node scripts/verify-sheet.mjs     # PDF import via the UI, portrait, trackers, edit mode, export round trip
+node scripts/verify.mjs           # shell, navigation, IndexedDB, character switcher, pick lists, Android pickers, 320px edit mode, offline
+node scripts/verify-sheet.mjs     # PDF import via the UI, portrait, trackers, edit mode, XP, favorites, export round trip
 node scripts/verify-share.mjs     # link, QR and file, a second device, name clashes, damaged links
-node scripts/verify-library.mjs   # Sphere search, operators, tags, detail, castable, phone and desktop layout
-node scripts/verify-spells.mjs    # spell ideas: from an effect or by name, versions, links, the log, Copy for AI
+node scripts/verify-library.mjs   # Sphere search, operators, tags, detail, castable, favorites, a layout that stays put
+node scripts/verify-spells.mjs    # spell ideas: from a spell or by name, versions, links, the log, Copy for AI, pasting answers
 node scripts/verify-books.mjs     # your own rulebooks in Copy for AI (needs the PDFs in refs/)
 node scripts/screenshots.mjs      # regenerate the screenshots in docs/ with a demo character
 ```
@@ -140,12 +149,16 @@ default `refs/`), which is not in the repository.
 
 ## Data and credit
 
-- **Effects** were read section by section from *Mage: The Ascension 20th
+- **Spells** were read section by section from *Mage: The Ascension 20th
   Anniversary Edition* and *How Do You DO That? A Practical Guide to Sphere Magick*
   and written up as short summaries in our own words with Sphere combinations and
   page references. A check script compares every Sphere rank with the book text of
-  its page and flags any run of eight or more words copied from the book.
-- **Character sheets**: the importer reads Mr. Gone's interactive M20 2-page sheet;
+  its page and flags any run of eight or more words copied from the book, and every
+  entry has also been read side by side with its pages.
+- **Pick lists** use M20's names, costs, suggested specialties, sample concepts and
+  page numbers; the one-line hints are our own words.
+- **Character sheets**: the importer reads Mr. Gone's interactive M20 2-page sheet,
+  the only fillable M20 sheet around (the official ones are not fillable);
   its field map is generated from the field positions (`scripts/build-mrgone-map.mjs`).
   The sheet itself is not included.
 
@@ -162,5 +175,5 @@ touching the wrangler setup.
 
 ## License
 
-[MIT](LICENSE) for the code. The effect summaries are our own text; the books they
+[MIT](LICENSE) for the code. The spell summaries are our own text; the books they
 refer to are not covered by this license.

@@ -168,7 +168,7 @@ export function CharacterMenu({ characters, active }: { characters?: Character[]
                     <PortalPortrait src={c.portrait} name={c.name} size={48} />
                     <span className="char-text">
                       <span className="char-name">{c.name}</span>
-                      <span className="char-sub">{[c.concept, c.affiliation].filter(Boolean).join(', ') || 'Mage'}</span>
+                      <span className="char-sub">{[c.concept, c.sect || c.affiliation].filter(Boolean).join(', ') || 'Mage'}</span>
                       <span className="char-stats">
                         <span className="char-arete">Arete {c.arete}</span>
                         {spheres.map((s) => (

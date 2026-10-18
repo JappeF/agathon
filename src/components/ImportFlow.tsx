@@ -98,7 +98,7 @@ export function ImportFlow({
             </div>
           )}
           <p className="import-summary">
-            {[f.concept, f.affiliation, f.essence && `${f.essence} Essence`].filter(Boolean).join(', ')}
+            {[f.concept, f.sect || f.affiliation, f.essence && `${f.essence} Essence`].filter(Boolean).join(', ')}
           </p>
           <p>
             Arete {f.arete}, Willpower {f.willpower}, Quintessence {f.quintessence}, Paradox {f.paradox}
