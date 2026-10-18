@@ -47,6 +47,33 @@ const portraitSrc = () => page.getAttribute('.sheet-hero .pp-face img', 'src').c
 const fromPdf = await portraitSrc();
 check('portrait from the PDF', /^data:image\/(webp|jpeg);base64,/.test(fromPdf ?? ''), `${(fromPdf ?? '').length} chars`);
 
+// the sheet's picture in an exported PDF: the largest JPEG that is not the page background
+const pdfPortrait = (doc) => {
+  let best = null;
+  for (const pg of doc.getPages()) {
+    const xo = pg.node.Resources()?.lookup(PDFName.of('XObject'));
+    for (const k of xo?.keys() ?? []) {
+      const o = xo.lookup(k);
+      const num = (n) => Number(o.dict.get(PDFName.of(n))?.toString());
+      if (String(o.dict.get(PDFName.of('Filter'))) !== '/DCTDecode' || Math.min(num('Width'), num('Height')) < 200) continue;
+      if (num('Width') > 1500 && Math.abs(num('Width') / num('Height') - 612 / 792) < 0.02) continue; // page background
+      if (!best || num('Width') * num('Height') > best.w * best.h) best = { w: num('Width'), h: num('Height'), bytes: Buffer.from(o.contents).toString('base64') };
+    }
+  }
+  return best;
+};
+const exportDoc = async () => {
+  await page.click('.menu summary');
+  const [d] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("Export PDF sheet")')]);
+  const out = `shots/export-${Date.now()}.pdf`;
+  await d.saveAs(out);
+  await page.click('.modal button:has-text("OK")');
+  return PDFDocument.load(await readFile(out));
+};
+const sheetPicture = pdfPortrait(await PDFDocument.load(await readFile(SHEET)));
+check('sample sheet has a picture', !!sheetPicture);
+check('export: the PDF picture is left as it was', pdfPortrait(await exportDoc())?.bytes === sheetPicture?.bytes);
+
 // tapping the portrait (play mode) shows it large; scrolling away brings the mini bar
 await page.click('.sheet-hero .portrait-btn');
 await page.waitForSelector('.zoom-backdrop');
@@ -202,7 +229,22 @@ check('export: name', form.getTextField('name').getText() === 'Saito Weinberg');
 check('export: experience', form.getTextField('experience').getText() === '27', form.getTextField('experience').getText());
 const rotes = map.rotes.slice(0, 3).map((n) => form.getTextField(n).getText() ?? '');
 check('export: favorite spells fill the rotes fields', rotes.join() === 'Hot-Shotting,Ward of the Seven Seals,', rotes.join());
+check('export: portrait removed in the app leaves the PDF picture', pdfPortrait(await PDFDocument.load(await readFile(path)))?.bytes === sheetPicture?.bytes);
 await page.click('.modal button:has-text("OK")');
+
+// a portrait changed in the app replaces the PDF's picture, in the same place and shape
+await page.click('.lock');
+await page.setInputFiles('.view.sheet input[accept="image/*"]', 'public/icons/icon-512.png');
+await page.waitForSelector('.sheet-hero .pp-face img');
+await page.click('.lock');
+const swapped = await exportDoc();
+const newPicture = pdfPortrait(swapped);
+check('export: changed portrait replaces the PDF picture', !!newPicture && newPicture.bytes !== sheetPicture.bytes);
+check('export: in the same shape', newPicture && Math.abs(newPicture.w / newPicture.h - sheetPicture.w / sheetPicture.h) < 0.01, `${newPicture?.w}x${newPicture?.h} vs ${sheetPicture.w}x${sheetPicture.h}`);
+check('export: no second picture', swapped.getPages()[1].node.Resources().lookup(PDFName.of('XObject')).keys().length === (await PDFDocument.load(await readFile(SHEET))).getPages()[1].node.Resources().lookup(PDFName.of('XObject')).keys().length);
+await page.click('.lock');
+await page.click('.portrait-edit .link-btn');
+await page.click('.lock');
 
 // re-import the original: the diff lists what the app changed since
 await page.click('.menu summary');

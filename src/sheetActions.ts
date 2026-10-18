@@ -1,7 +1,7 @@
 import { newCharacter, type Character } from './character';
 import { db, newId, requestPersistence, saveCharacter } from './db/db';
 import { MRGONE_SHEET_ID, readMrGone, sheetPart, diffSheet, writeMrGone, PORTRAIT_BOX, type SheetFields } from './sheets/mrgone';
-import { imageToPortrait, portraitFromPdf, portraitJpeg } from './portrait';
+import { imageToPortrait, portraitFromPdf, portraitJpeg, type SheetPortrait } from './portrait';
 import { loadEffects } from './library/data';
 import { addedNames, favoriteNames, splitFavorites } from './favorites';
 
@@ -101,15 +101,35 @@ const safeName = (s: string) => s.replace(/[\\/:*?"<>|]+/g, '').trim() || 'chara
 const BLANK_ID = '__blank__';
 export const MRGONE_BLANK_URL = 'https://mrgone.rocksolidshells.com/pdf/M20/M20_2-Page_Interactive.pdf';
 
+/**
+ * The app's portrait for the sheet, or nothing when the sheet already shows it. A sheet
+ * without a picture gets one in PORTRAIT_BOX; a sheet whose picture differs from the
+ * app's (changed in the app, or another PDF) gets it swapped, cropped to the old one's
+ * shape. "The same" means the app portrait is exactly what import makes of the PDF's
+ * picture; an encoder that changed since only costs a needless (lookalike) swap.
+ */
+async function sheetPortrait(c: Character, bytes: ArrayBuffer): Promise<SheetPortrait | undefined> {
+  if (!c.portrait) return undefined;
+  const inPdf = await portraitFromPdf(bytes).catch(() => null);
+  if (!inPdf) return portraitJpeg(c.portrait, PORTRAIT_BOX);
+  if ((await imageToPortrait(inPdf)) === c.portrait) return undefined;
+  const bmp = await createImageBitmap(inPdf);
+  const box = { width: bmp.width, height: bmp.height };
+  bmp.close();
+  return portraitJpeg(c.portrait, box);
+}
+
 export async function exportPdf(c: Character, blankSheet?: File): Promise<string[]> {
   const stored = (await db.sheetFiles.get(c.id)) ?? (await db.sheetFiles.get(BLANK_ID));
   const bytes = blankSheet ? await blankSheet.arrayBuffer() : stored?.bytes;
   if (!bytes) throw new Error('no sheet');
   if (blankSheet) await readMrGone(bytes); // throws a friendly error for the wrong file
-  // all favorite spells go into the sheet's rotes fields, library ones first
-  // the app's portrait goes onto a sheet that has none yet; one already in the PDF stays
-  const portrait = c.portrait && !(await portraitFromPdf(bytes)) ? await portraitJpeg(c.portrait, PORTRAIT_BOX) : undefined;
-  const { pdf, warnings } = await writeMrGone(bytes, { ...c, rotes: favoriteNames(c, await loadEffects()) }, portrait);
+  const { pdf, warnings } = await writeMrGone(
+    bytes,
+    // all favorite spells go into the sheet's rotes fields, library ones first
+    { ...c, rotes: favoriteNames(c, await loadEffects()) },
+    await sheetPortrait(c, bytes),
+  );
   download(pdf as Uint8Array<ArrayBuffer>, `${safeName(c.name)}.pdf`, 'application/pdf');
   if (blankSheet) {
     // keep it for every character made in the app on this device, not just this one

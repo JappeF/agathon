@@ -1,4 +1,5 @@
 import type { PDFDocument, PDFForm } from 'pdf-lib';
+import { findPdfPortrait, type SheetPortrait } from '../portrait';
 import map from './mrgone-m20-2page.json';
 import { clampWheel, HEALTH_LEVELS, newCharacter, WHEEL_SIZE, type Character, type HealthMark, type Rated } from '../character';
 import { SPHERES, type Sphere } from '../types';
@@ -155,7 +156,7 @@ export const PORTRAIT_BOX = { page: 1, x: 492.4, y: 245.6, width: 119, height: 1
 export async function writeMrGone(
   bytes: ArrayBuffer,
   c: Character,
-  portraitJpeg?: Uint8Array,
+  portrait?: SheetPortrait,
 ): Promise<{ pdf: Uint8Array; warnings: string[] }> {
   const doc = await loadPdf(bytes);
   const form = doc.getForm();
@@ -165,10 +166,25 @@ export async function writeMrGone(
   // features no longer available"). Without it, Reader fills and saves forms as usual.
   const { PDFName } = await import('pdf-lib');
   doc.catalog.delete(PDFName.of('Perms'));
-  if (portraitJpeg) {
-    const img = await doc.embedJpg(portraitJpeg);
-    const { page, ...box } = PORTRAIT_BOX;
-    doc.getPages()[page]?.drawImage(img, box);
+  if (portrait) {
+    const old = await findPdfPortrait(doc);
+    if (old) {
+      // the sheet's own picture: same object, new pixels, so it keeps its place and size
+      // (the caller crops the new one to the old one's shape)
+      const stream = doc.context.stream(portrait.jpeg, {
+        Type: 'XObject',
+        Subtype: 'Image',
+        Width: portrait.width,
+        Height: portrait.height,
+        ColorSpace: 'DeviceRGB',
+        BitsPerComponent: 8,
+        Filter: 'DCTDecode',
+      });
+      doc.context.assign(old.ref, stream);
+    } else {
+      const { page, ...box } = PORTRAIT_BOX;
+      doc.getPages()[page]?.drawImage(await doc.embedJpg(portrait.jpeg), box);
+    }
   }
 
   const setText = (n: string, v: string) => {

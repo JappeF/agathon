@@ -1,4 +1,4 @@
-import type { PDFDict as PDFDictType } from 'pdf-lib';
+import type { PDFDict as PDFDictType, PDFDocument as PDFDocumentType, PDFRef as PDFRefType } from 'pdf-lib';
 
 /**
  * Character portraits: any image (an upload, or the picture inside a PDF sheet) becomes
@@ -25,7 +25,7 @@ export async function imageToPortrait(blob: Blob): Promise<string> {
 }
 
 /** A portrait as JPEG bytes for a PDF (pdf-lib can't embed WebP), cropped to the box's shape, a little above centre. */
-export async function portraitJpeg(dataUrl: string, box: { width: number; height: number }): Promise<Uint8Array> {
+export async function portraitJpeg(dataUrl: string, box: { width: number; height: number }): Promise<SheetPortrait> {
   const bmp = await createImageBitmap(await (await fetch(dataUrl)).blob());
   const aspect = box.width / box.height;
   const sw = Math.min(bmp.width, bmp.height * aspect);
@@ -39,17 +39,24 @@ export async function portraitJpeg(dataUrl: string, box: { width: number; height
   ctx.drawImage(bmp, (bmp.width - sw) / 2, (bmp.height - sh) * 0.3, sw, sh, 0, 0, canvas.width, canvas.height);
   bmp.close();
   const blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, 'image/jpeg', 0.9));
-  return new Uint8Array(await blob!.arrayBuffer());
+  return { jpeg: new Uint8Array(await blob!.arrayBuffer()), width: canvas.width, height: canvas.height };
+}
+
+export interface SheetPortrait {
+  jpeg: Uint8Array;
+  width: number;
+  height: number;
 }
 
 /**
  * The portrait pasted into a PDF sheet: the largest JPEG on any page that is not a
- * full-page background (same shape as the page) or a thin decorative strip.
+ * full-page background (same shape as the page) or a thin decorative strip. Returns its
+ * object, so export can put a new picture in its place.
  */
-export async function portraitFromPdf(bytes: ArrayBuffer): Promise<Blob | null> {
-  const { PDFDocument, PDFName, PDFDict, PDFRawStream } = await import('pdf-lib');
-  const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
-  const best = { data: null as Uint8Array | null, area: 0 };
+export async function findPdfPortrait(doc: PDFDocumentType) {
+  const { PDFName, PDFDict, PDFRawStream, PDFRef } = await import('pdf-lib');
+  // a holder, not a plain let: TypeScript doesn't see assignments inside the walk closure
+  const found = { best: null as { ref: PDFRefType; data: Uint8Array; width: number; height: number } | null };
   for (const page of doc.getPages()) {
     const { width: pw, height: ph } = page.getSize();
     const seen = new Set<unknown>();
@@ -71,12 +78,18 @@ export async function portraitFromPdf(bytes: ArrayBuffer): Promise<Blob | null> 
         const h = Number(dict.get(PDFName.of('Height'))?.toString());
         if (!w || !h || Math.min(w, h) < 200) continue;
         if (Math.abs(w / h - pw / ph) < 0.02 && w > 1500) continue; // page background
-        if (w * h > best.area) Object.assign(best, { data: obj.contents, area: w * h });
+        if (ref instanceof PDFRef && (!found.best || w * h > found.best.width * found.best.height)) found.best = { ref, data: obj.contents, width: w, height: h };
       }
     };
     walk(page.node.Resources(), 0);
   }
-  return best.data ? new Blob([best.data as BlobPart], { type: 'image/jpeg' }) : null;
+  return found.best;
+}
+
+export async function portraitFromPdf(bytes: ArrayBuffer): Promise<Blob | null> {
+  const { PDFDocument } = await import('pdf-lib');
+  const found = await findPdfPortrait(await PDFDocument.load(bytes, { ignoreEncryption: true }));
+  return found ? new Blob([found.data as BlobPart], { type: 'image/jpeg' }) : null;
 }
 
 /** A small copy of a portrait for share links (a few KB instead of tens). */
