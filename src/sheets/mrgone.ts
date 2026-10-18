@@ -220,7 +220,36 @@ export async function writeMrGone(bytes: ArrayBuffer, c: Character): Promise<{ p
     (r) => Object.values(r).forEach((n) => setText(n, '')),
   );
 
-  return { pdf: await doc.save(), warnings };
+  // Mr. Gone's dot and wheel boxes only carry an "on" look (/Yes); off shows the circle
+  // printed on the page. pdf-lib takes the missing "off" look for a fault and would
+  // redraw every box in its own square style, so only text fields and drop-downs get
+  // fresh appearances and the check boxes are left exactly as the sheet made them.
+  //
+  // The sheet's text font (Goudy Old Style Bold, auto size) can't be reused, so text is
+  // drawn in Times Bold, a close serif, and auto size is capped at 12pt the way Acrobat
+  // does it (pdf-lib would fill the whole box: a huge "27" in Experience). Long text
+  // shrinks to fit. The field keeps its own DA, so editing it later in a PDF app works
+  // as before.
+  const { PDFCheckBox, PDFTextField, StandardFonts } = await import('pdf-lib');
+  const font = await doc.embedFont(StandardFonts.TimesRomanBold);
+  for (const f of form.getFields()) {
+    if (f instanceof PDFCheckBox || !f.needsAppearancesUpdate()) continue;
+    try {
+      if (f instanceof PDFTextField && /\s0 Tf/.test(f.acroField.getDefaultAppearance() ?? '')) {
+        const da = f.acroField.getDefaultAppearance()!;
+        const text = f.getText() ?? '';
+        const box = f.acroField.getWidgets()[0].getRectangle();
+        const width = text ? font.widthOfTextAtSize(text, 1) : 0;
+        const size = Math.max(4, Math.min(12, box.height * 0.75, width ? (box.width - 4) / width : 12));
+        f.setFontSize(Math.round(size * 10) / 10);
+        f.defaultUpdateAppearances(font);
+        f.acroField.setDefaultAppearance(da);
+      } else f.defaultUpdateAppearances(font);
+    } catch {
+      warnings.push(`Couldn't draw "${f.getName()}" (characters the PDF font lacks?)`);
+    }
+  }
+  return { pdf: await doc.save({ updateFieldAppearances: false }), warnings };
 }
 
 /** Human-readable differences between two versions of the sheet part of a character. */

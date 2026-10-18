@@ -161,12 +161,17 @@ check('menu closes on Escape', !(await page.$eval('.menu', (m) => m.open)));
 // export back into the PDF and read it back
 await page.click('.menu summary');
 const [dl] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("Export PDF sheet")')]);
-const path = `shots/export-${Date.now()}.pdf`;
+const path = process.env.EXPORT_TO ?? `shots/export-${Date.now()}.pdf`;
 await dl.saveAs(path);
 const form = (await PDFDocument.load(await readFile(path))).getForm();
 const map = JSON.parse(await readFile('src/sheets/mrgone-m20-2page.json', 'utf8'));
 const count = (names) => names.filter((n) => form.getCheckBox(n).isChecked()).length;
 check('export: Esoterica 2', count(map.traits.Esoterica.dots) === 2);
+// empty boxes keep the sheet's own look (only an "on" appearance); pdf-lib used to
+// redraw them all as squares with check marks
+const looks = (n) => form.getCheckBox(n).acroField.getWidgets()[0].getAppearances().normal.keys().map(String).join();
+check('export: empty dots keep the sheet look', looks(map.traits.Esoterica.dots[4]) === '/Yes', looks(map.traits.Esoterica.dots[4]));
+check('export: wheel boxes keep the sheet look', map.wheel.every((n) => looks(n) === '/Yes'));
 check('export: Correspondence 4', count(map.traits.Correspondence.dots) === 4);
 check('export: Hurt is lethal', form.getDropdown('health2').getSelected()[0] === 'X');
 check('export: Willpower spent 2', count(map.willpowerSpent) === 2);
