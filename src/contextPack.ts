@@ -1,6 +1,7 @@
 import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, type Character } from './character';
 import { sourceLabel, type Combo, type Effect } from './library/data';
 import { difficulties } from './library/search';
+import { favoriteNames } from './favorites';
 import { newVersion, versionCombo, versionLabel, OUTCOMES, type Spell, type SpellVersion } from './spells';
 import { SPHERES, type Sphere } from './types';
 
@@ -34,7 +35,7 @@ const section = (title: string, lines: (string | false | undefined | 0)[]) => {
   return body ? `## ${title}\n\n${body}` : '';
 };
 
-function characterText(c: Character, notes: boolean) {
+function characterText(c: Character, notes: boolean, favorites: string[]) {
   const rated = (names: readonly string[]) =>
     names
       .filter((t) => (c.traits[t] ?? 0) > 0)
@@ -57,7 +58,7 @@ function characterText(c: Character, notes: boolean) {
     `Abilities: ${ABILITY_GROUPS.map((g) => rated(g.traits)).filter(Boolean).join('; ') || 'none'}.`,
     c.otherTraits.length > 0 && `Other traits: ${c.otherTraits.map((t) => `${t.name} ${t.rating}`).join(', ')}.`,
     c.backgrounds.length > 0 && `Backgrounds: ${c.backgrounds.map((b) => `${b.name} ${b.rating}`).join(', ')}.`,
-    c.rotes.filter(Boolean).length > 0 && `Known rotes: ${c.rotes.filter(Boolean).join('; ')}.`,
+    favorites.length > 0 && `Favorite spells (the rotes on their sheet): ${favorites.join('; ')}.`,
     notes && c.notes.trim() && `Player's notes:\n${c.notes.trim()}`,
   ];
 }
@@ -109,7 +110,7 @@ export function buildPack(s: Spell, c: Character, effects: Effect[], o: PackOpti
   return [
     `# A spell for ${c.name} (Mage: The Ascension, 20th Anniversary Edition)`,
     `I play ${c.name} in a Mage: The Ascension 20th Anniversary (M20) chronicle and want to work out a spell before or during a session. Think along as an experienced Mage player and Storyteller. The Storyteller at our table has the final say, so suggest, don't rule. Use the M20 rules; when you are not sure of a rule or a page, say so instead of guessing. Dice are rolled at the table, not by you.`,
-    section('The mage', characterText(c, o.notes)),
+    section('The mage', characterText(c, o.notes, favoriteNames(c, effects))),
     section('The idea', [
       `**${s.title || 'Untitled idea'}**`,
       s.goal.trim() && `What should happen: ${s.goal.trim()}`,

@@ -197,7 +197,7 @@ export async function writeMrGone(bytes: ArrayBuffer, c: Character): Promise<{ p
   costRows(map.merits, c.merits, 'merits');
   costRows(map.flaws, c.flaws, 'flaws');
   const lineRows = (rows: string[], items: string[], what: string) => fill(rows, items, what, (r, it: string) => setText(r, it), (r) => setText(r, ''));
-  lineRows(map.rotes, c.rotes, 'rotes');
+  lineRows(map.rotes, c.rotes, 'favorite spells');
   lineRows(map.focus, c.focus, 'focus lines');
   lineRows(map.gear, c.gear, 'gear lines');
   fill(
@@ -278,7 +278,6 @@ export function diffSheet(a: SheetFields, b: SheetFields): string[] {
   list('Flaws', a.flaws, b.flaws);
   const same = (x: unknown, y: unknown) => JSON.stringify(x) === JSON.stringify(y);
   if (!same(a.specialties, b.specialties)) out.push('Specialties changed');
-  if (!same(a.rotes, b.rotes)) out.push('Rotes changed');
   if (!same(a.focus, b.focus)) out.push('Focus changed');
   if (!same(a.wonders, b.wonders)) out.push('Wonders changed');
   if (a.history !== b.history || a.goals !== b.goals) out.push('History or goals changed');

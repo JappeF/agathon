@@ -454,10 +454,12 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             />
           </div>
           <div className="block">
+            {/* what M20 sheets call rotes: library favorites (starred) and the mage's own
+                spells that aren't in the library; both go into the PDF's rotes fields */}
             <h3 className="block-title">Favorite spells</h3>
-            {(c.pinned ?? []).length === 0 ? (
+            {(c.pinned ?? []).length === 0 && c.rotes.length === 0 && !edit ? (
               <p className="empty-small">
-                Tap the star on an effect in the <a href="#/library">library</a> and it waits here, one tap away.
+                Tap the star on an effect in the <a href="#/library">library</a> and it waits here, one tap away. Spells of your own go in with Edit.
               </p>
             ) : (
               <ul className="pin-list">
@@ -466,15 +468,41 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
                   if (!e) return null;
                   const combo = e.combos[bestCombo(e, c.spheres)];
                   return (
-                    <li key={id}>
+                    <li key={id} className={edit ? 'fav-edit' : undefined}>
                       <button type="button" className="pin-row" onClick={() => setOpenEffect(id)}>
                         <span className="pin-name">{e.name}</span>
                         <ComboChips combo={combo} dots={c.spheres} />
                       </button>
+                      {edit && (
+                        <button type="button" className="btn-icon" aria-label={`Remove ${e.name} from favorites`} onClick={() => patch({ pinned: togglePinned(c, id) })}>
+                          <Icon name="close" />
+                        </button>
+                      )}
                     </li>
                   );
                 })}
+                {!edit &&
+                  c.rotes
+                    .filter((r) => r.trim())
+                    .map((r, i) => (
+                      <li key={`own-${i}`}>
+                        <span className="pin-row own-spell">
+                          <span className="pin-name">{r}</span>
+                          <span className="own-note">Your own spell</span>
+                        </span>
+                      </li>
+                    ))}
               </ul>
+            )}
+            {edit && (
+              <LineList
+                items={c.rotes}
+                edit
+                onChange={(rotes) => patch({ rotes })}
+                addLabel="Add your own spell"
+                empty=""
+                placeholder="A spell that isn't in the library"
+              />
             )}
           </div>
           <div className="block">

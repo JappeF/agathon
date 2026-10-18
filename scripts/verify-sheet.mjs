@@ -158,6 +158,25 @@ await page.click('.menu summary');
 await page.keyboard.press('Escape');
 check('menu closes on Escape', !(await page.$eval('.menu', (m) => m.open)));
 
+// favorite spells (the sheet's rotes): one from the library, one of their own
+const sheetUrl = page.url();
+await page.click('.nav-item:has-text("Library")');
+await page.fill('.search-input', 'name:hot-shotting');
+await page.waitForTimeout(300);
+await page.click('.effect-item >> nth=0 >> .card-pin');
+await page.waitForSelector('.card-pin.on');
+await page.goto(sheetUrl, { waitUntil: 'networkidle' });
+await page.waitForSelector('.sheet-name');
+await page.click('.tab:has-text("Magick")');
+await page.click('.lock');
+const favBlock = '.block:has(.block-title:text-is("Favorite spells"))';
+await page.click(`${favBlock} button:has-text("Add your own spell")`);
+await page.fill(`${favBlock} .line-edit .text-input >> nth=-1`, 'Ward of the Seven Seals');
+await page.click('.lock');
+await page.waitForTimeout(400);
+const favRows = await page.$$eval('.block:has(.block-title:text-is("Favorite spells")) .pin-name', (ns) => ns.map((n) => n.textContent.trim()));
+check('favorite spells: library and own in one list', favRows.join() === 'Hot-Shotting,Ward of the Seven Seals', favRows.join());
+
 // export back into the PDF and read it back
 await page.click('.menu summary');
 const [dl] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("Export PDF sheet")')]);
@@ -177,6 +196,8 @@ check('export: Hurt is lethal', form.getDropdown('health2').getSelected()[0] ===
 check('export: Willpower spent 2', count(map.willpowerSpent) === 2);
 check('export: name', form.getTextField('name').getText() === 'Saito Weinberg');
 check('export: experience', form.getTextField('experience').getText() === '27', form.getTextField('experience').getText());
+const rotes = map.rotes.slice(0, 3).map((n) => form.getTextField(n).getText() ?? '');
+check('export: favorite spells fill the rotes fields', rotes.join() === 'Hot-Shotting,Ward of the Seven Seals,', rotes.join());
 await page.click('.modal button:has-text("OK")');
 
 // re-import the original: the diff lists what the app changed since
@@ -187,6 +208,25 @@ const changes = await page.$$eval('.change-list li', (ls) => ls.map((l) => l.tex
 check('re-import diff', changes.some((c) => /Esoterica: 2 -> 0/.test(c)), changes.join(' | '));
 await page.screenshot({ path: 'shots/15-reimport-diff.png' });
 await page.click('.modal button:has-text("Cancel")');
+
+// the exported sheet's rotes come back as favorites: drop both, then update from that PDF
+await page.evaluate(() => document.querySelector('.menu')?.removeAttribute('open'));
+await page.click('.lock');
+await page.click(`${favBlock} .fav-edit .btn-icon`);
+await page.click(`${favBlock} .line-edit .btn-icon`);
+await page.click('.lock');
+await page.waitForTimeout(400);
+check('favorites removed', (await page.locator('.block:has(.block-title:text-is("Favorite spells")) .pin-name').count()) === 0);
+await page.click('.menu summary');
+await page.setInputFiles('.menu input[type=file]', path);
+await page.waitForSelector('.change-list');
+const favChanges = await page.$$eval('.change-list li', (ls) => ls.map((l) => l.textContent));
+check('re-import lists the favorites', favChanges.includes('Favorite spells: + Hot-Shotting') && favChanges.includes('Favorite spells: + Ward of the Seven Seals'), favChanges.join(' | '));
+await page.click('.modal button:has-text("Update")');
+await page.waitForSelector('.modal', { state: 'detached' });
+await page.waitForTimeout(400);
+check('library rote back as a library favorite', (await page.locator('button.pin-row:has-text("Hot-Shotting")').count()) === 1);
+check('own spell back as their own', (await page.locator('.own-spell:has-text("Ward of the Seven Seals")').count()) === 1);
 
 // clean up (the file was set without clicking the menu item, so the menu is still open)
 await page.evaluate(() => document.querySelector('.menu')?.removeAttribute('open'));
