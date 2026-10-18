@@ -159,7 +159,11 @@ another app-achtige zijbalk voor de bibliotheek op desktop, een character-switch
 zoekwoorden die oplichten, keuzelijsten uit M20 (Backgrounds, Merits, Flaws, Concept,
 Essence, Nature, Demeanor, Affiliation, Sect, specialties), XP naast de naam, een
 Notes-schrijfblok, en Android-proof bestandskiezers. Het tabblad Spells heet nu Spell
-ideas (issue #22).
+ideas (issue #22). Later op 18 okt: *Copy character* in het menu van de sheet, een
+health-pil die van groen via geel naar rood loopt, een mini-balk die ook op een Z Flip
+op een regel past, en de PDF-export opgepoetst: de lege sheet van Mr. Gone via een
+downloadlink (een keer per apparaat), exports blijven invulbaar in Acrobat Reader, en
+het portret uit de app gaat mee de PDF in.
 
 ## Bouwvolgorde (voorstel)
 

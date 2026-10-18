@@ -61,10 +61,14 @@ table; Agathon is the helper and sounding board.
 - **Play mode and edit mode**: while playing only health, Willpower and the
   **Quintessence/Paradox wheel** change (Paradox cancels Quintessence, never the
   other way round, as in M20), plus the experience beside the name; a lock switches
-  to editing.
+  to editing. The health status runs from green (unhurt) through yellow and orange to
+  red as the wound penalties climb.
 - **PDF import and export**: drop in Mr. Gone's fillable M20 2-page sheet and every
   field comes across, including the portrait pasted into it. Re-importing shows the
-  changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in.
+  changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in,
+  portrait included (a new one from the app replaces the old picture), and the result
+  stays fillable in Acrobat Reader. Characters made in the app use Mr. Gone's free
+  blank sheet: the first export links to it, and after that it is kept on the device.
 - **Pick lists**: Concept, Essence, Nature, Demeanor, Affiliation, Sect, Backgrounds,
   Merits and Flaws come from searchable lists of what M20 defines, with a short hint,
   the cost and the page; your own names work too. Specialties suggest M20's examples
@@ -74,6 +78,8 @@ table; Agathon is the helper and sounding board.
 - **Favorite spells** (what M20 sheets call rotes): tap the star on a spell in the
   library and it waits on the sheet's Magick tab, opening right there; spells of your
   own sit in the same list. They go in and out of the PDF sheet's rotes fields.
+- **Copy character** (in the sheet's menu): a full copy with its PDF and spell ideas,
+  to try out a build without touching the original.
 - **One character in play**: the nav carries the active character, one tap opens
   the sheet. The character switcher (the caret beside it on a wide screen, or
   "Characters" on the sheet) lists the others and adds or imports new ones.
@@ -135,7 +141,7 @@ Checks and screenshots (headless system Edge via playwright-core; start
 
 ```sh
 node scripts/verify.mjs           # shell, navigation, IndexedDB, character switcher, pick lists, Android pickers, 320px edit mode, offline
-node scripts/verify-sheet.mjs     # PDF import via the UI, portrait, trackers, edit mode, XP, favorites, export round trip
+node scripts/verify-sheet.mjs     # PDF import via the UI, portrait, trackers, edit mode, XP, favorites, export round trip, copies, the blank sheet
 node scripts/verify-share.mjs     # link, QR and file, a second device, name clashes, damaged links
 node scripts/verify-library.mjs   # Sphere search, operators, tags, detail, castable, favorites, a layout that stays put
 node scripts/verify-spells.mjs    # spell ideas: from a spell or by name, versions, links, the log, Copy for AI, pasting answers
@@ -159,7 +165,7 @@ default `refs/`), which is not in the repository.
 - **Character sheets**: the importer reads Mr. Gone's interactive M20 2-page sheet,
   the only fillable M20 sheet around (the official ones are not fillable);
   its field map is generated from the field positions (`scripts/build-mrgone-map.mjs`).
-  The sheet itself is not included.
+  The sheet itself is not included; the app links to Mr. Gone's free download.
 
 Unofficial fan tool. Mage: The Ascension is (c) Paradox Interactive AB; the rules
 and setting belong to their authors. Use your own copies of the books.
