@@ -35,7 +35,10 @@ export function ImportFlow({
     if (!file) return;
     setBusy(true);
     try {
-      if (!target && (/\.json$/i.test(file.name) || file.type === 'application/json')) {
+      // Import (no target) tells a PDF from a character file by content, not name: a shared
+      // file often arrives renamed (".json.txt", no extension). Update from PDF takes PDFs.
+      const head = new Uint8Array(await file.slice(0, 5).arrayBuffer());
+      if (!target && String.fromCharCode(...head) !== '%PDF-') {
         setShared(parsePayload(JSON.parse(await file.text())));
       } else {
         setPending(await prepareImport(file, target));

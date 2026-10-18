@@ -2,7 +2,7 @@
 // second "device" (a fresh browser context), name clashes, a damaged link and the
 // back-up-all file. Needs `npm run preview` on :4173 (or BASE=...).
 import { chromium } from 'playwright-core';
-import { mkdir, readFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile } from 'node:fs/promises';
 import { deflateRawSync } from 'node:zlib';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
@@ -101,6 +101,24 @@ await b.click('.modal button:has-text("Add character")');
 await b.waitForSelector(`.sheet-name:text-is("${name} (3)")`, { timeout: 8000 }).catch(() => {});
 check('file import', (await b.textContent('.sheet-name')) === `${name} (3)`);
 check('portrait through the file', (await b.$('.sheet-hero .pp-face img')) !== null);
+
+// a shared file that arrived renamed (".txt") still imports: Import tells a character
+// file from a PDF by its content, not its name
+const renamed = 'shots/shared-character.txt';
+await copyFile(filePath, renamed);
+await b.click('.switch-btn');
+await b.setInputFiles('.switch-menu .import-row input[type=file]', renamed);
+await b.waitForSelector('.modal');
+const renamedPreview = await b.textContent('.modal');
+check('renamed character file: an add preview', /Add character/.test(renamedPreview), renamedPreview.slice(0, 80));
+await b.click('.modal button:has-text("Add character")');
+await b.waitForSelector(`.sheet-name:text-is("${name} (4)")`, { timeout: 8000 }).catch(() => {});
+check('renamed file imports', (await b.textContent('.sheet-name')) === `${name} (4)`);
+await b.evaluate(() => document.querySelector('.menu')?.removeAttribute('open'));
+await b.click('.menu summary');
+await b.click('button:has-text("Delete character")');
+await b.click('.modal .btn-danger');
+await b.waitForSelector(`.sheet-name:not(:text-is("${name} (4)"))`);
 
 // a hostile share: out-of-range numbers, unknown Spheres and keys, an SVG portrait. It
 // may come in, but only as a clean character
