@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, HEALTH_LEVELS, type Character } from '../character';
 import { db, deleteCharacter, saveCharacter } from '../db/db';
-import { exportPdf } from '../sheetActions';
+import { exportPdf, MRGONE_BLANK_URL } from '../sheetActions';
 import { SheetFormatError } from '../sheets/mrgone';
 import { SPHERES, type Sphere } from '../types';
 import { go } from '../useHashRoute';
@@ -796,8 +796,13 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       {needBlank && (
         <Modal title="Pick a blank sheet" onClose={() => setNeedBlank(false)}>
           <p>
-            {c.name} wasn't imported from a PDF, so there's no sheet to fill in yet. Choose a blank Mr. Gone M20 2-page sheet
-            and Agathon fills it in (and keeps it for next time).
+            {c.name} wasn't imported from a PDF, so there's no sheet to fill in yet. Download Mr. Gone's free M20 2-page sheet, then choose it here.
+            Agathon keeps it, so this is a one-time step on this device.
+          </p>
+          <p>
+            <a className="btn btn-small" href={MRGONE_BLANK_URL} target="_blank" rel="noopener noreferrer">
+              Download the blank sheet
+            </a>
           </p>
           <div className="modal-actions">
             <button className="btn" onClick={() => setNeedBlank(false)}>

@@ -92,8 +92,17 @@ const safeName = (s: string) => s.replace(/[\\/:*?"<>|]+/g, '').trim() || 'chara
  * Fill the character into its sheet PDF and download it. Uses the PDF it was imported
  * from; for characters made in the app the player picks a blank Mr. Gone sheet.
  */
+/**
+ * The blank sheet a player picked once, kept under this id in `sheetFiles` and used for
+ * every character made in the app. We can't ship it (it carries the publisher's logo and
+ * Mr. Gone's work, with no terms for hosting it elsewhere) and his server doesn't allow
+ * fetching it from the app, so the player downloads it once from MRGONE_BLANK_URL.
+ */
+const BLANK_ID = '__blank__';
+export const MRGONE_BLANK_URL = 'https://mrgone.rocksolidshells.com/pdf/M20/M20_2-Page_Interactive.pdf';
+
 export async function exportPdf(c: Character, blankSheet?: File): Promise<string[]> {
-  const stored = await db.sheetFiles.get(c.id);
+  const stored = (await db.sheetFiles.get(c.id)) ?? (await db.sheetFiles.get(BLANK_ID));
   const bytes = blankSheet ? await blankSheet.arrayBuffer() : stored?.bytes;
   if (!bytes) throw new Error('no sheet');
   if (blankSheet) await readMrGone(bytes); // throws a friendly error for the wrong file
@@ -101,7 +110,8 @@ export async function exportPdf(c: Character, blankSheet?: File): Promise<string
   const { pdf, warnings } = await writeMrGone(bytes, { ...c, rotes: favoriteNames(c, await loadEffects()) });
   download(pdf as Uint8Array<ArrayBuffer>, `${safeName(c.name)}.pdf`, 'application/pdf');
   if (blankSheet) {
-    await db.sheetFiles.put({ characterId: c.id, sheetId: MRGONE_SHEET_ID, fileName: blankSheet.name, bytes });
+    // keep it for every character made in the app on this device, not just this one
+    await db.sheetFiles.put({ characterId: BLANK_ID, sheetId: MRGONE_SHEET_ID, fileName: blankSheet.name, bytes });
   }
   return warnings;
 }

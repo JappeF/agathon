@@ -4,12 +4,12 @@
 // Needs the rulebook PDFs in refs/ (gitignored; override with M20=<path> HDYDT=<path>
 // SHEET=<path>) and `npm run preview` on :4173 (or BASE=...). Not run in CI.
 import { chromium } from 'playwright-core';
-import { mkdir, readdir } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 const M20 = process.env.M20 ?? 'refs/Mage_20th_Anniversary_Edition_(Final_Download).pdf';
 const HDYDT = process.env.HDYDT ?? 'refs/M20_How_Do_You_DO_That_(Final_Download).pdf';
-const SHEET = process.env.SHEET ?? `refs/${(await readdir('refs')).find((f) => /^M20_2-Page_Interactive.*\.pdf$/i.test(f))}`;
+const SHEET = process.env.SHEET ?? 'refs/M20_2-Page_Interactive_Saito Weinberg.pdf';
 await mkdir('shots', { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, acceptDownloads: true });

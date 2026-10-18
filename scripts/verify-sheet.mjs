@@ -5,10 +5,13 @@
 // (defaults to the Saito Weinberg sample in refs/, which is not in git).
 import { chromium } from 'playwright-core';
 import { mkdir, readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { PDFDocument } from 'pdf-lib';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 const SHEET = process.env.SHEET ?? 'refs/M20_2-Page_Interactive_Saito Weinberg.pdf';
+// a blank Mr. Gone sheet for characters made in the app (BLANK=<path>); the sample stands in when there is none
+const BLANK = process.env.BLANK ?? (existsSync('refs/M20_2-Page_Interactive.pdf') ? 'refs/M20_2-Page_Interactive.pdf' : SHEET);
 await mkdir('shots', { recursive: true });
 
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
@@ -227,6 +230,37 @@ await page.waitForSelector('.modal', { state: 'detached' });
 await page.waitForTimeout(400);
 check('library rote back as a library favorite', (await page.locator('button.pin-row:has-text("Hot-Shotting")').count()) === 1);
 check('own spell back as their own', (await page.locator('.own-spell:has-text("Ward of the Seven Seals")').count()) === 1);
+
+// a character made in the app: the first export asks for a blank sheet (with a download
+// link to Mr. Gone's), and every later one reuses it
+const exportFrom = async () => {
+  await page.click('.menu summary');
+  await page.click('button:has-text("Export PDF sheet")');
+};
+for (const n of ['Blank Test A', 'Blank Test B']) {
+  await page.click('.switch-btn');
+  await page.fill('.switch-menu .add-row .text-input', n);
+  await page.click('.switch-menu button:has-text("Add")');
+  await page.waitForSelector(`.sheet-name:text-is("${n}")`);
+  await exportFrom();
+  if (n === 'Blank Test A') {
+    await page.waitForSelector('.modal-title:has-text("Pick a blank sheet")');
+    check('blank sheet: download link to Mr. Gone', /mrgone\.rocksolidshells\.com\/pdf\/M20\/M20_2-Page_Interactive\.pdf/.test(await page.getAttribute('.modal a:has-text("Download the blank sheet")', 'href')));
+    const [d1] = await Promise.all([page.waitForEvent('download'), page.setInputFiles('.modal .file-pick input', BLANK)]);
+    check('blank sheet: first export', d1.suggestedFilename() === `${n}.pdf`, d1.suggestedFilename());
+  } else {
+    const d2 = await page.waitForEvent('download', { timeout: 10000 }).catch(() => null);
+    check('blank sheet remembered for the next character', d2?.suggestedFilename() === `${n}.pdf` && (await page.locator('.modal-title:has-text("Pick a blank sheet")').count()) === 0);
+  }
+  await page.click('.modal button:has-text("OK")');
+}
+for (const n of ['Blank Test B', 'Blank Test A']) {
+  await page.waitForSelector(`.sheet-name:text-is("${n}")`);
+  await page.click('.menu summary');
+  await page.click('button:has-text("Delete character")');
+  await page.click('.modal .btn-danger');
+}
+await page.waitForSelector('.sheet-name:text-is("Saito Weinberg")');
 
 // clean up (the file was set without clicking the menu item, so the menu is still open)
 await page.evaluate(() => document.querySelector('.menu')?.removeAttribute('open'));
