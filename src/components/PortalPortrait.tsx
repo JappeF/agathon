@@ -1,5 +1,6 @@
 import { makeSparks, Sparks } from './Portal';
 import { usePauseOffscreen } from './usePauseOffscreen';
+import { useThumbnail } from './useThumbnail';
 
 // one set of sparks for every small portal: a 100x100 box with the ring at radius 41
 const SPARKS = makeSparks(16, 50, 41, [5, 13], [1.5, 3.5], 2026);
@@ -20,10 +21,12 @@ export function PortalPortrait({ src, name, size = 64 }: { src?: string; name: s
   const ref = usePauseOffscreen<HTMLSpanElement>();
   // small ones (the nav, lists) stay still: at that size the motion is noise, not magic
   const still = size < 64;
+  // small ones get a copy shrunk in steps, which stays sharp on phones
+  const face = useThumbnail(src, still ? size : 0);
   return (
     <span className={`pp${still ? ' pp-still' : ''}`} style={{ '--pp': `${size}px` } as React.CSSProperties} aria-hidden="true" ref={ref}>
       <span className="pp-ring" />
-      <span className="pp-face">{src ? <img src={src} alt="" /> : <span className="pp-initials">{initials(name)}</span>}</span>
+      <span className="pp-face">{face ? <img src={face} alt="" /> : <span className="pp-initials">{initials(name)}</span>}</span>
       {!still && <Sparks sparks={SPARKS} className="pp-sparks" />}
     </span>
   );
