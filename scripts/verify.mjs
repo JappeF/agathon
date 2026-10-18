@@ -220,6 +220,16 @@ check('loads offline', (await page.textContent('.logo').catch(() => null))?.trim
 check('character still there offline', (await page.$(`.sheet-name:has-text("${name}")`)) !== null);
 await ctx.setOffline(false);
 
+// with the service worker in control, a shared spell link still reaches the server's
+// preview page and opens that spell (the worker used to answer it with the app shell)
+if (!/localhost|127\.0\.0\.1/.test(BASE)) {
+  await page.goto(`${BASE}/s/forces-3`);
+  await page.waitForSelector('.detail-name', { timeout: 10000 }).catch(() => {});
+  check('spell link opens the spell in the installed app', /^Forces 3/.test((await page.textContent('.detail-name').catch(() => '')) ?? ''), page.url());
+  await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+  await page.waitForSelector('.sheet-name');
+}
+
 // the nav shows the character in play; a second one is one switch away
 check('nav shows the character in play', (await page.textContent('.nav-char-name')) === name);
 const second = `${name} B`;
