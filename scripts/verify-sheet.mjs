@@ -119,6 +119,7 @@ await page.click('[aria-label^="Hurt"]');
 await page.click('[aria-label^="Hurt"]');
 check('health marks', (await page.getAttribute('[aria-label^="Hurt"]', 'aria-label')) === 'Hurt: lethal');
 check('health status', (await text('.vitals-bar .chip')) === 'Hurt -1', await text('.vitals-bar .chip'));
+check('health colour follows the wound level', (await page.getAttribute('.vitals-bar .chip', 'class')).includes('hp-2'), await page.getAttribute('.vitals-bar .chip', 'class'));
 await page.click('[aria-label="Willpower point 2"]');
 check('willpower spent', /WP 5\/7/.test(await text('.vitals-bar')), await text('.vitals-bar'));
 check('dots locked while playing', (await page.$('.sphere-row .dot-btn')) === null);

@@ -1,4 +1,4 @@
-import { clampWheel, HEALTH_LEVELS, WHEEL_SIZE, type Character, type HealthMark } from '../character';
+import { clampWheel, HEALTH_LEVELS, WHEEL_SIZE, woundLabel, woundLevel, type Character, type HealthMark } from '../character';
 import { Dots } from './Dots';
 
 type Patch = (p: Partial<Character>) => void;
@@ -8,15 +8,12 @@ const MARK_NAME: Record<HealthMark, string> = { '': 'unmarked', '/': 'bashing', 
 
 /** Seven health boxes; tapping cycles unmarked, bashing, lethal, aggravated. */
 export function HealthTrack({ c, patch }: { c: Character; patch: Patch }) {
-  let worst = -1;
-  c.health.forEach((m, i) => m && (worst = i));
-  const status =
-    worst < 0 ? 'Unhurt' : `${HEALTH_LEVELS[worst].name}${HEALTH_LEVELS[worst].penalty ? ` ${HEALTH_LEVELS[worst].penalty}` : ''}`;
+  const worst = woundLevel(c);
   return (
     <div className="track">
       <div className="track-head">
         <span className="track-title">Health</span>
-        <span className={`track-status${worst >= 3 ? ' bad' : ''}`}>{status}</span>
+        <span className={`track-status hp hp-${worst + 1}`}>{woundLabel(worst)}</span>
       </div>
       <div className="health-boxes">
         {HEALTH_LEVELS.map((lvl, i) => (

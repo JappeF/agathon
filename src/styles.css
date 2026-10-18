@@ -413,7 +413,25 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   border: 1px solid var(--line-solid);
   color: var(--ink);
 }
-.chip.bad { border-color: var(--paradox); color: #ffb3cb; }
+/*
+ * Health, as a traffic light that follows the wound penalties: green when unhurt, yellow
+ * for the -0/-1 levels, orange at -2, red at Crippled -5 and a filled deep red when
+ * Incapacitated. A true red-orange, kept clear of the Paradox pink beside it.
+ */
+.hp-0 { --hp: oklch(0.8 0.15 150); }
+.hp-1 { --hp: oklch(0.85 0.15 118); }
+.hp-2 { --hp: oklch(0.86 0.15 98); }
+.hp-3 { --hp: oklch(0.83 0.15 82); }
+.hp-4 { --hp: oklch(0.77 0.16 62); }
+.hp-5 { --hp: oklch(0.72 0.17 48); }
+.hp-6 { --hp: oklch(0.67 0.2 33); }
+.hp-7 { --hp: oklch(0.6 0.21 28); }
+.chip.hp {
+  color: var(--hp);
+  border-color: color-mix(in oklab, var(--hp) 60%, transparent);
+  background: color-mix(in oklab, var(--hp) 12%, var(--bg-raised));
+}
+.chip.hp-7 { background: var(--hp); border-color: var(--hp); color: var(--bg-deep); }
 .chip.q { color: var(--gold-hot); border-color: var(--gold-deep); }
 .chip.p { color: #ff8fb1; border-color: #e0457b88; }
 .vitals-toggle { margin-left: auto; color: var(--ink-faint); display: grid; }
@@ -424,7 +442,7 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .track-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem; }
 .track-title { font-family: var(--font-head); font-weight: 600; color: var(--gold); letter-spacing: 0.05em; }
 .track-status { font-size: 0.85rem; color: var(--ink-dim); font-weight: 600; }
-.track-status.bad { color: #ff8fb1; }
+.track-status.hp { color: var(--hp); }
 .health-boxes, .wp-boxes { display: flex; flex-wrap: wrap; gap: 4px; }
 .wp-boxes { margin-top: 0.3rem; }
 .health-box, .wp-box {

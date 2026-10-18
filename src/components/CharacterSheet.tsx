@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, HEALTH_LEVELS, type Character } from '../character';
+import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, woundLabel, woundLevel, type Character } from '../character';
 import { copyCharacter, db, deleteCharacter, saveCharacter } from '../db/db';
 import { exportPdf, MRGONE_BLANK_URL } from '../sheetActions';
 import { SheetFormatError } from '../sheets/mrgone';
@@ -241,14 +241,11 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   };
   const setSpec = (trait: string, s: string) => patch({ specialties: { ...c.specialties, [trait]: s } });
   const technocrat = isTechnocrat(c);
-  let worst = -1;
-  c.health.forEach((m, i) => m && (worst = i));
+  const worst = woundLevel(c);
 
   const pills = (open: boolean, toggle: () => void) => (
     <button type="button" className="vitals-bar" aria-expanded={open} onClick={toggle}>
-      <span className={`chip${worst >= 3 ? ' bad' : ''}`}>
-        {worst < 0 ? 'Unhurt' : `${HEALTH_LEVELS[worst].name}${HEALTH_LEVELS[worst].penalty ? ` ${HEALTH_LEVELS[worst].penalty}` : ''}`}
-      </span>
+      <span className={`chip hp hp-${worst + 1}`}>{woundLabel(worst)}</span>
       <span className="chip">
         WP {Math.max(0, c.willpower - c.willpowerSpent)}/{c.willpower}
       </span>
