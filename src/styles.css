@@ -1653,3 +1653,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .pin-row.own-spell { cursor: default; border-left-color: var(--violet-soft); }
 .pin-row.own-spell:hover { border-color: var(--line); border-left-color: var(--violet-soft); }
 .own-note { font-size: 0.75rem; color: var(--ink-faint); }
+
+/* ---------- a field with a pick list (Affiliation, Sect) ---------- */
+.pick-field { display: flex; gap: 0.35rem; min-width: 0; }
+.pick-field .text-input { flex: 1; min-width: 0; }
+.pick-open { flex: none; min-height: 44px; width: 44px; padding: 0; justify-content: center; }

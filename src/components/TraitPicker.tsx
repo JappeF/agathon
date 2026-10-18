@@ -14,6 +14,7 @@ export function TraitPicker({
   dots,
   onPick,
   onClose,
+  mode = 'add',
 }: {
   title: string;
   picks: Pick[];
@@ -23,7 +24,9 @@ export function TraitPicker({
   technocrat: boolean;
   /** Backgrounds start at one dot; Merits and Flaws at their lowest cost */
   dots: boolean;
-  onPick: (name: string, rating: number) => void;
+  onPick: (name: string, rating: number, pick?: Pick) => void;
+  /** 'set' fills one field (Affiliation, Sect) instead of adding a row */
+  mode?: 'add' | 'set';
   onClose: () => void;
 }) {
   const [q, setQ] = useState('');
@@ -47,14 +50,14 @@ export function TraitPicker({
         onKeyDown={(e) => {
           if (e.key !== 'Enter') return;
           e.preventDefault();
-          if (shown.length === 1) onPick(nameOf(shown[0]), dots ? 1 : firstCost(shown[0].cost));
+          if (shown.length === 1) onPick(nameOf(shown[0]), dots ? 1 : firstCost(shown[0].cost), shown[0]);
           else if (q.trim()) onPick(q.trim(), dots ? 1 : 1);
         }}
       />
       <ul className="trait-picks">
         {shown.map((p) => (
           <li key={p.name}>
-            <button type="button" className={`trait-pick${has(p) ? ' taken' : ''}`} onClick={() => onPick(nameOf(p), dots ? 1 : firstCost(p.cost))}>
+            <button type="button" className={`trait-pick${has(p) ? ' taken' : ''}`} onClick={() => onPick(nameOf(p), dots ? 1 : firstCost(p.cost), p)}>
               <span className="trait-pick-head">
                 <span className="trait-pick-name">
                   {nameOf(p)}
@@ -64,7 +67,7 @@ export function TraitPicker({
               </span>
               <span className="trait-pick-hint">{p.hint}</span>
               <span className="trait-pick-meta">
-                {[p.kind, p.technocracy && 'Technocracy', `M20 p. ${p.page}`, has(p) && 'on the sheet'].filter(Boolean).join(', ')}
+                {[p.kind, p.technocracy && 'Technocracy', `M20 p. ${p.page}`, has(p) && (mode === 'set' ? 'chosen now' : 'on the sheet')].filter(Boolean).join(', ')}
               </span>
             </button>
           </li>
@@ -72,12 +75,14 @@ export function TraitPicker({
         {q.trim() && !exact && (
           <li>
             <button type="button" className="trait-pick own" onClick={() => onPick(q.trim(), 1)}>
-              <span className="trait-pick-name">Add "{q.trim()}"</span>
+              <span className="trait-pick-name">
+                {mode === 'set' ? 'Use' : 'Add'} "{q.trim()}"
+              </span>
               <span className="trait-pick-hint">Your own, or from another book</span>
             </button>
           </li>
         )}
-        {!q.trim() && (
+        {!q.trim() && mode === 'add' && (
           <li>
             <button type="button" className="trait-pick own" onClick={() => onPick('', 1)}>
               <span className="trait-pick-name">An empty row</span>

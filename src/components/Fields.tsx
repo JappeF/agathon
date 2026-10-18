@@ -5,6 +5,61 @@ import { TraitPicker } from './TraitPicker';
 import { Dots } from './Dots';
 import { Icon } from './Icon';
 
+/**
+ * A labelled value with a pick list (Affiliation, Sect): free text in edit mode, plus a
+ * button that opens the searchable list of what M20 defines.
+ */
+export function PickField({
+  label,
+  value,
+  edit,
+  onChange,
+  picks,
+  onPick,
+}: {
+  label: string;
+  value: string;
+  edit: boolean;
+  onChange: (v: string) => void;
+  picks: Pick[];
+  /** called with the chosen entry, after onChange (to fill related fields) */
+  onPick?: (p: Pick) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  if (!edit && !value) return null;
+  return (
+    <div className="field">
+      <span className="field-label">{label}</span>
+      {edit ? (
+        <span className="pick-field">
+          <input className="text-input" value={value} aria-label={label} onChange={(e) => onChange(e.target.value)} />
+          <button type="button" className="btn btn-small pick-open" aria-label={`Choose ${label}`} onClick={() => setOpen(true)}>
+            <Icon name="down" size={16} />
+          </button>
+        </span>
+      ) : (
+        <span className="field-value">{value}</span>
+      )}
+      {open && (
+        <TraitPicker
+          title={`Choose ${label}`}
+          picks={picks}
+          taken={[value]}
+          technocrat={false}
+          dots
+          mode="set"
+          onPick={(name, _r, p) => {
+            onChange(name);
+            if (p) onPick?.(p);
+            setOpen(false);
+          }}
+          onClose={() => setOpen(false)}
+        />
+      )}
+    </div>
+  );
+}
+
 /** A labelled value: plain text while playing, an input in edit mode. */
 export function Field({
   label,

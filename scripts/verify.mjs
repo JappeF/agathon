@@ -64,6 +64,21 @@ await page.click('.trait-pick.own');
 const ratedRows = await page.$$eval('.rated-list .row-input', (is) => is.map((i) => i.value).join());
 check('picked and own rows', ratedRows === 'Sanctum,Language,Nightmares', ratedRows);
 check('a Merit starts at its cost', (await page.inputValue('.rated-list .cost-input >> nth=0')) === '1');
+// Sect from M20's list: picking one with no Affiliation yet fills that in too
+await page.click('button[aria-label="Choose Sect"]');
+await page.fill('.picker-search', 'virtual');
+await page.click('.trait-pick:has-text("Virtual Adepts")');
+check('Sect picked', (await page.inputValue('.field:has-text("Sect") input')) === 'Virtual Adepts');
+check('Affiliation follows the Sect', (await page.inputValue('.field:has-text("Affiliation") input')) === 'Traditions');
+await page.fill('.field:has-text("Affiliation") input', 'Technocracy');
+await page.click('button[aria-label="Choose Sect"]');
+check('Sect list follows the Affiliation', (await page.locator('.trait-pick:not(.own)').count()) === 5);
+await page.keyboard.press('Escape');
+// specialties suggest M20's examples plus ours
+await page.click('.tab:has-text("Traits")');
+check('specialty suggestions', (await page.getAttribute('.trait-row:has-text("Esoterica") .spec-input', 'list')) === 'spec-Esoterica' && (await page.locator('#spec-Esoterica option[value="Kabbalah"]').count()) === 1);
+await page.click('.tab:has-text("Background")');
+
 // a Technocrat gets the Union's names
 await page.fill('.field:has-text("Affiliation") input', 'Iteration X');
 await page.click('button:has-text("Add background")');

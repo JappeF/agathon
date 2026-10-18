@@ -7,7 +7,7 @@ import { SheetFormatError } from '../sheets/mrgone';
 import { SPHERES, type Sphere } from '../types';
 import { go } from '../useHashRoute';
 import { Dots } from './Dots';
-import { Field, LineList, LongText, RatedList } from './Fields';
+import { Field, LineList, LongText, PickField, RatedList } from './Fields';
 import { ImportFlow } from './ImportFlow';
 import { Modal } from './Modal';
 import { ShareDialog } from './ShareDialog';
@@ -19,7 +19,7 @@ import { Icon } from './Icon';
 import { setActiveCharacter } from '../activeCharacter';
 import { openCharacterMenu } from './CharacterMenu';
 import { FilePick } from './FilePick';
-import { BACKGROUNDS, FLAWS, MERITS } from '../sheetLists';
+import { AFFILIATIONS, BACKGROUNDS, FLAWS, MERITS, SECTS, SPECIALTIES, affiliationOf } from '../sheetLists';
 import { useEffects, type Effect } from '../library/data';
 import { deficit } from '../library/search';
 import { ComboChips } from './ComboChips';
@@ -28,6 +28,24 @@ import { searchLibrary, togglePinned } from './LibraryView';
 import { startSpellFrom } from '../spellActions';
 
 const UNTRAINED_KEY = 'agathon:show-untrained';
+
+/** id of the <datalist> with suggested specialties for a trait (M20's examples plus ours) */
+const specList = (trait: string) => (SPECIALTIES[trait] ? `spec-${trait.replace(/\s+/g, '-')}` : undefined);
+
+/** The suggestion lists for every trait's specialty input; rendered once, in edit mode. */
+function SpecialtyLists() {
+  return (
+    <>
+      {Object.entries(SPECIALTIES).map(([trait, list]) => (
+        <datalist key={trait} id={specList(trait)}>
+          {list.map((s) => (
+            <option key={s} value={s} />
+          ))}
+        </datalist>
+      ))}
+    </>
+  );
+}
 
 /** Technocrats get the Union's names in the pick lists (Laboratory, Genius...). */
 const isTechnocrat = (c: Character) => /technocra|iteration x|new world order|progenitor|syndicate|void engineer|union/i.test(`${c.affiliation} ${c.sect}`);
@@ -100,7 +118,14 @@ function TraitRow({
       <span className="trait-label">
         <span className="trait-name">{name}</span>
         {edit ? (
-          <input className="spec-input" value={specialty ?? ''} placeholder="specialty" aria-label={`${name} specialty`} onChange={(e) => onSpecialty(e.target.value)} />
+          <input
+            className="spec-input"
+            value={specialty ?? ''}
+            placeholder="specialty"
+            list={specList(name)}
+            aria-label={`${name} specialty`}
+            onChange={(e) => onSpecialty(e.target.value)}
+          />
         ) : (
           specialty && <span className="trait-spec">{specialty}</span>
         )}
@@ -413,7 +438,14 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
                     </span>
                     {edit ? (
                       <span className="sphere-edit">
-                        <input className="spec-input" value={c.specialties[s] ?? ''} placeholder="specialty" aria-label={`${s} specialty`} onChange={(e) => setSpec(s, e.target.value)} />
+                        <input
+                          className="spec-input"
+                          value={c.specialties[s] ?? ''}
+                          placeholder="specialty"
+                          list={specList(s)}
+                          aria-label={`${s} specialty`}
+                          onChange={(e) => setSpec(s, e.target.value)}
+                        />
                         <label className="check">
                           <input
                             type="radio"
@@ -637,11 +669,18 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
       {tab === 'background' && (
         <div className="tab-body flow">
           <div className="block field-grid">
+            <PickField label="Affiliation" value={c.affiliation} edit={edit} onChange={(affiliation) => patch({ affiliation })} picks={AFFILIATIONS} />
+            <PickField
+              label="Sect"
+              value={c.sect}
+              edit={edit}
+              onChange={(sect) => patch({ sect })}
+              picks={SECTS.filter((s) => !affiliationOf(c.affiliation) || s.affiliation === affiliationOf(c.affiliation))}
+              onPick={(p) => !affiliationOf(c.affiliation) && patch({ affiliation: (p as (typeof SECTS)[number]).affiliation })}
+            />
             {(
               [
                 ['concept', 'Concept'],
-                ['affiliation', 'Affiliation'],
-                ['sect', 'Sect'],
                 ['essence', 'Essence'],
                 ['nature', 'Nature'],
                 ['demeanor', 'Demeanor'],
@@ -791,6 +830,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           </div>
         </Modal>
       )}
+      {edit && <SpecialtyLists />}
       {openEffect && byId.get(openEffect) && (
         <EffectDetail
           effect={byId.get(openEffect)!}
