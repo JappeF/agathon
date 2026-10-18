@@ -136,6 +136,9 @@ await desk.goto(BASE, { waitUntil: 'networkidle' });
 const barPos = await desk.$eval('.app-header', (n) => getComputedStyle(n).position);
 const navInBar = await desk.$eval('.app-nav', (n) => n.closest('.app-header') !== null && getComputedStyle(n).position === 'static');
 check('desktop: compact sticky bar with the nav inside it', barPos === 'sticky' && navInBar, barPos);
+await desk.evaluate(() => scrollTo(0, 600));
+check('desktop bar stays on top while scrolling', (await desk.$eval('.app-header', (n) => Math.round(n.getBoundingClientRect().top))) === 0);
+await desk.evaluate(() => scrollTo(0, 0));
 check('desktop bar is compact', (await desk.$eval('.app-header', (n) => n.getBoundingClientRect().height)) <= 80);
 await desk.screenshot({ path: 'shots/03-desktop.png' });
 

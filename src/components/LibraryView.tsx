@@ -15,6 +15,13 @@ import { hasMatch, Highlighted, snippet } from './Highlighted';
 
 const PAGE = 40;
 
+/** What the three kinds of library entries are (shown on the Kind chips). */
+const KIND_HINTS = {
+  feat: 'Things a mage can do, as the books describe them: the worked examples',
+  rote: 'Named, ready-made spells of a Tradition or Convention',
+  rank: 'What each dot of a Sphere lets you do',
+} as const;
+
 // remembered while the app is open, so switching tabs doesn't lose the search
 let lastQuery = '';
 
@@ -295,7 +302,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
             <h3 className="side-title">Kind</h3>
             <div className="chip-row">
               {(['feat', 'rote', 'rank'] as const).map((k) => (
-                <button key={k} type="button" className={`tag${hasOp('kind', k) ? ' on' : ''}`} onClick={() => toggleOp('kind', k)}>
+                <button key={k} type="button" className={`tag${hasOp('kind', k) ? ' on' : ''}`} title={KIND_HINTS[k]} onClick={() => toggleOp('kind', k)}>
                   {k === 'feat' ? 'Effects' : k === 'rote' ? 'Rotes' : 'Sphere ranks'}
                 </button>
               ))}
