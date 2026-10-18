@@ -128,13 +128,31 @@ check('plan fields from the answer', (await page.inputValue('.dossier-main .vers
 await page.click('.dossier-main .ai-reply summary');
 check('whole answer kept', (await page.textContent('.dossier-main .ai-reply .prose')).includes('bigger blast'));
 
+// Gemini's way: no fences, spread over lines, its own label in "agathon"
+const gemini = `{
+  "agathon": "Version 2 (Optimized Network Trace)",
+  "spheres": {
+    "Correspondence": 3,
+    "Prime": 3
+  },
+  "how": "Saito runs a custom network diagnostics tool on a mainframe.",
+  "coincidental": "Entirely coincidental. To any observer, Saito is merely a highly skilled data scientist.",
+  "notes": "A botch might trigger a digital Paradox Flaw {or worse}."
+}`;
+await page.click('button:has-text("Paste the answer")');
+await page.fill('.paste-area', gemini);
+await page.click('.modal button:has-text("Add as a new version")');
+await page.waitForSelector('.modal', { state: 'detached', timeout: 3000 }).catch(() => {});
+const geminiSpheres = await page.$$eval('.dossier-main > .version .version-spheres .sphere-btn.on', (bs) => bs.map((b) => b.getAttribute('aria-label')).join());
+check('Gemini-style block (no fences, own label) read', geminiSpheres === 'Correspondence 3,Prime 3', geminiSpheres);
+
 // everything survives a reload
 await page.waitForTimeout(500);
 await page.reload({ waitUntil: 'networkidle' });
 await page.waitForSelector('.dossier');
 check('title persists', (await page.inputValue('.dossier-title')) === 'Gas leak fireball');
 check('goal persists', (await page.inputValue('.dossier label:has-text("What should happen") textarea')) === 'Blow the door, blame the gas.');
-check('versions persist', (await page.locator('.old-version').count()) === 2);
+check('versions persist', (await page.locator('.old-version').count()) === 3);
 check('log persists', (await page.locator('.log-entry').count()) === 1);
 
 // the list and the sheet

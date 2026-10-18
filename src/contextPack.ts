@@ -157,6 +157,45 @@ export function buildPack(s: Spell, c: Character, effects: Effect[], o: PackOpti
 
 export class ReplyError extends Error {}
 
+/** Every outermost {...} in the text with balanced braces (braces inside strings don't count), last first. */
+function jsonObjects(text: string): string[] {
+  const out: string[] = [];
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] !== '{') continue;
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+    for (let j = i; j < text.length; j++) {
+      const ch = text[j];
+      if (inString) {
+        if (escaped) escaped = false;
+        else if (ch === '\\') escaped = true;
+        else if (ch === '"') inString = false;
+      } else if (ch === '"') inString = true;
+      else if (ch === '{') depth++;
+      else if (ch === '}' && --depth === 0) {
+        out.push(text.slice(i, j + 1));
+        i = j;
+        break;
+      }
+    }
+  }
+  return out.reverse();
+}
+
+/** JSON.parse, then again with curly quotes straightened and trailing commas dropped. */
+function looseParse(block: string): Record<string, unknown> | null {
+  for (const attempt of [block, block.replace(/[“”]/g, '"'), block.replace(/[“”]/g, '"').replace(/,\s*([}\]])/g, '$1')]) {
+    try {
+      const v = JSON.parse(attempt);
+      if (v && typeof v === 'object' && !Array.isArray(v)) return v;
+    } catch {
+      // try the next repair
+    }
+  }
+  return null;
+}
+
 const str = (v: unknown, max = 4000) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
 
 /**
@@ -164,23 +203,15 @@ const str = (v: unknown, max = 4000) => (typeof v === 'string' ? v.trim().slice(
  * is untrusted text: only known fields, Sphere names and ranks 1-5 get through.
  */
 export function parseReply(text: string): SpellVersion {
-  const blocks = [...text.matchAll(/```(?:json)?\s*([\s\S]*?)```/gi)].map((m) => m[1]);
-  // no fenced block: try the last {...} in the text
-  if (!blocks.length) {
-    const i = text.lastIndexOf('{"agathon"') >= 0 ? text.lastIndexOf('{"agathon"') : text.lastIndexOf('{');
-    const j = text.lastIndexOf('}');
-    if (i >= 0 && j > i) blocks.push(text.slice(i, j + 1));
-  }
+  // AIs wrap the block in ```json fences, or not, spread it over lines, and put their own
+  // label in "agathon" (Gemini: "Version 2 (Optimized Network Trace)"). So look at every
+  // balanced {...} in the text and take the last one with a spheres object.
   let data: Record<string, unknown> | null = null;
-  for (const b of blocks.reverse()) {
-    try {
-      const parsed = JSON.parse(b.trim().replace(/[“”]/g, '"'));
-      if (parsed && typeof parsed === 'object' && ('spheres' in parsed || parsed.agathon === 'version')) {
-        data = parsed;
-        break;
-      }
-    } catch {
-      // not this block
+  for (const block of jsonObjects(text)) {
+    const parsed = looseParse(block);
+    if (parsed && typeof parsed.spheres === 'object' && parsed.spheres) {
+      data = parsed;
+      break;
     }
   }
   if (!data) throw new ReplyError("There is no plan block in this answer. Ask the AI to end with the JSON block from the prompt, or copy the parts you like into the plan by hand.");

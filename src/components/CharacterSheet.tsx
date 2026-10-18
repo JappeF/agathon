@@ -18,6 +18,7 @@ import { HealthTrack, QPWheel, WillpowerTrack } from './Trackers';
 import { Icon } from './Icon';
 import { setActiveCharacter } from '../activeCharacter';
 import { openCharacterMenu } from './CharacterMenu';
+import { BACKGROUNDS, FLAWS, MERITS } from '../sheetLists';
 import { useEffects, type Effect } from '../library/data';
 import { deficit } from '../library/search';
 import { ComboChips } from './ComboChips';
@@ -26,6 +27,9 @@ import { searchLibrary, togglePinned } from './LibraryView';
 import { startSpellFrom } from '../spellActions';
 
 const UNTRAINED_KEY = 'agathon:show-untrained';
+
+/** Technocrats get the Union's names in the pick lists (Laboratory, Genius...). */
+const isTechnocrat = (c: Character) => /technocra|iteration x|new world order|progenitor|syndicate|void engineer|union/i.test(`${c.affiliation} ${c.sect}`);
 
 /** Loose name match for rotes on the sheet against library effects. */
 const normName = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -213,6 +217,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   }
 
   const setSpec = (trait: string, s: string) => patch({ specialties: { ...c.specialties, [trait]: s } });
+  const technocrat = isTechnocrat(c);
   let worst = -1;
   c.health.forEach((m, i) => m && (worst = i));
 
@@ -658,15 +663,23 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           </div>
           <div className="block">
             <h3 className="block-title">Backgrounds</h3>
-            <RatedList items={c.backgrounds} edit={edit} onChange={(backgrounds) => patch({ backgrounds })} addLabel="Add background" empty="No Backgrounds." />
+            <RatedList
+              items={c.backgrounds}
+              edit={edit}
+              onChange={(backgrounds) => patch({ backgrounds })}
+              addLabel="Add background"
+              empty="No Backgrounds."
+              picks={BACKGROUNDS}
+              technocrat={technocrat}
+            />
           </div>
           <div className="block">
             <h3 className="block-title">Merits</h3>
-            <RatedList items={c.merits} kind="cost" edit={edit} onChange={(merits) => patch({ merits })} addLabel="Add merit" empty="No Merits." />
+            <RatedList items={c.merits} kind="cost" edit={edit} onChange={(merits) => patch({ merits })} addLabel="Add merit" empty="No Merits." picks={MERITS} technocrat={technocrat} />
           </div>
           <div className="block">
             <h3 className="block-title">Flaws</h3>
-            <RatedList items={c.flaws} kind="cost" edit={edit} onChange={(flaws) => patch({ flaws })} addLabel="Add flaw" empty="No Flaws." />
+            <RatedList items={c.flaws} kind="cost" edit={edit} onChange={(flaws) => patch({ flaws })} addLabel="Add flaw" empty="No Flaws." picks={FLAWS} technocrat={technocrat} />
           </div>
           <div className="block field-grid">
             {(

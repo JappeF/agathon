@@ -1561,3 +1561,29 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .pack-pages summary { min-height: 40px; display: flex; align-items: center; cursor: pointer; font-size: 0.88rem; color: var(--ink-dim); }
 .pack-pages ul { list-style: none; margin: 0 0 0.6rem; padding: 0; max-height: 30vh; overflow-y: auto; }
 .pack-pages .check { font-size: 0.85rem; }
+
+/* ---------- picking a Background, Merit or Flaw ---------- */
+.picker-search { width: 100%; margin-bottom: 0.6rem; }
+.trait-picks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.2rem; max-height: min(60vh, 520px); overflow-y: auto; overscroll-behavior: contain; }
+.trait-pick {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+.trait-pick:hover { background: #ffffff0a; border-color: var(--line); }
+.trait-pick:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.trait-pick-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
+.trait-pick-name { font-weight: 700; color: var(--gold-hot); }
+.trait-pick-alt { font-weight: 500; color: var(--ink-faint); }
+.trait-pick-cost { flex: none; font-size: 0.8rem; font-weight: 800; color: var(--violet-soft); }
+.trait-pick-hint { font-size: 0.88rem; color: var(--ink-dim); }
+.trait-pick-meta { font-size: 0.75rem; color: var(--ink-faint); }
+.trait-pick.taken { opacity: 0.6; }
+.trait-pick.own { border: 1px dashed var(--line-solid); margin-top: 0.3rem; }
+.trait-pick.own .trait-pick-name { color: var(--ink); }

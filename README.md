@@ -58,6 +58,8 @@ your table. Rolls stay on the table; Agathon is the helper and sounding board.
 - **PDF import and export**: drop in Mr. Gone's fillable M20 2-page sheet and every
   field comes across, including the portrait pasted into it. Re-importing shows the
   changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in.
+- **Backgrounds, Merits and Flaws** from a searchable list of the ones M20 defines,
+  with a short hint, the cost and the page; your own names work too.
 - **Portraits** in a small sparking portal, enlarged with a tap, replaceable in edit
   mode.
 - **Pinned effects**: star an effect in the library and it waits on the sheet's

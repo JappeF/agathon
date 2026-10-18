@@ -47,6 +47,30 @@ await page.reload({ waitUntil: 'networkidle' });
 check('character persists after reload', (await page.$(`.sheet-name:has-text("${name}")`)) !== null);
 await page.screenshot({ path: 'shots/02-mobile-sheet.png' });
 
+// Backgrounds, Merits and Flaws: pick from the M20 lists, or type your own
+await page.click('.tab:has-text("Background")');
+await page.click('.lock');
+await page.click('button:has-text("Add background")');
+await page.fill('.picker-search', 'sanc');
+check('picker filters', (await page.locator('.trait-pick:not(.own)').count()) === 1);
+await page.click('.trait-pick:has-text("Sanctum")');
+await page.click('button:has-text("Add merit")');
+await page.fill('.picker-search', 'lang');
+await page.click('.trait-pick:has-text("Language")');
+await page.click('button:has-text("Add flaw")');
+await page.fill('.picker-search', 'Nightmares');
+await page.click('.trait-pick.own');
+const ratedRows = await page.$$eval('.rated-list .row-input', (is) => is.map((i) => i.value).join());
+check('picked and own rows', ratedRows === 'Sanctum,Language,Nightmares', ratedRows);
+check('a Merit starts at its cost', (await page.inputValue('.rated-list .cost-input >> nth=0')) === '1');
+// a Technocrat gets the Union's names
+await page.fill('.field:has-text("Affiliation") input', 'Iteration X');
+await page.click('button:has-text("Add background")');
+await page.fill('.picker-search', 'sanc');
+check('Technocratic names', (await page.textContent('.trait-pick-name')).startsWith('Laboratory'));
+await page.keyboard.press('Escape');
+await page.click('.lock');
+
 // service worker + manifest
 const swReady = await page.evaluate(async () => {
   const reg = await navigator.serviceWorker?.ready;

@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import type { Rated } from '../character';
+import type { Pick } from '../sheetLists';
+import { TraitPicker } from './TraitPicker';
 import { Dots } from './Dots';
 import { Icon } from './Icon';
 
@@ -63,6 +66,8 @@ export function RatedList({
   kind = 'dots',
   addLabel,
   empty,
+  picks,
+  technocrat = false,
 }: {
   items: Rated[];
   edit: boolean;
@@ -70,8 +75,13 @@ export function RatedList({
   kind?: 'dots' | 'cost';
   addLabel: string;
   empty: string;
+  /** the ones the book defines: Add opens a picker (free-form names stay possible) */
+  picks?: Pick[];
+  technocrat?: boolean;
 }) {
+  const [picking, setPicking] = useState(false);
   const set = (i: number, p: Partial<Rated>) => onChange(items.map((it, j) => (j === i ? { ...it, ...p } : it)));
+  const known = (name: string) => picks?.find((p) => [p.name, p.tech].some((n) => n && n.toLowerCase() === name.trim().toLowerCase()));
   if (!edit && items.length === 0) return <p className="empty-small">{empty}</p>;
   return (
     <ul className="rated-list">
@@ -80,7 +90,9 @@ export function RatedList({
           {edit ? (
             <input className="text-input row-input" value={it.name} aria-label="Name" onChange={(e) => set(i, { name: e.target.value })} />
           ) : (
-            <span className="trait-name">{it.name}</span>
+            <span className="trait-name" title={known(it.name) ? `${known(it.name)!.hint} (M20 p. ${known(it.name)!.page})` : undefined}>
+              {it.name}
+            </span>
           )}
           {kind === 'dots' ? (
             <Dots value={it.rating} label={it.name || 'Rating'} onChange={edit ? (v) => set(i, { rating: v }) : undefined} />
@@ -104,9 +116,23 @@ export function RatedList({
       ))}
       {edit && (
         <li>
-          <button type="button" className="btn btn-small" onClick={() => onChange([...items, { name: '', rating: kind === 'dots' ? 1 : 1 }])}>
+          <button type="button" className="btn btn-small" onClick={() => (picks ? setPicking(true) : onChange([...items, { name: '', rating: 1 }]))}>
             {addLabel}
           </button>
+          {picking && picks && (
+            <TraitPicker
+              title={addLabel}
+              picks={picks}
+              taken={items.map((it) => it.name)}
+              technocrat={technocrat}
+              dots={kind === 'dots'}
+              onPick={(name, rating) => {
+                onChange([...items, { name, rating }]);
+                setPicking(false);
+              }}
+              onClose={() => setPicking(false)}
+            />
+          )}
         </li>
       )}
     </ul>
