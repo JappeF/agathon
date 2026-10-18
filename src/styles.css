@@ -1237,10 +1237,24 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
     align-items: center;
     justify-content: space-between;
     padding: 0 max(1.5rem, calc((100vw - 1400px) / 2 + 1rem));
+    overflow: visible;
+  }
+  /* the bar's frosted background and bottom line: a fixed strip that runs 40px past the
+     right edge of the layout, through the space kept free for the scrollbar on short
+     pages (100vw stops short of it once html has scrollbar-gutter). A fixed box never
+     widens the page, and a real scrollbar simply paints over it. */
+  .app-header::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: -40px;
+    height: var(--bar-h);
+    z-index: -1;
     background: #120b1ce6;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line-solid);
-    overflow: visible;
+    pointer-events: none;
   }
   .brand { display: flex; align-items: center; gap: 0.9rem; }
   .brand-text { justify-items: start; }
