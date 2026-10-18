@@ -146,13 +146,34 @@ await page.waitForSelector('.modal', { state: 'detached', timeout: 3000 }).catch
 const geminiSpheres = await page.$$eval('.dossier-main > .version .version-spheres .sphere-btn.on', (bs) => bs.map((b) => b.getAttribute('aria-label')).join());
 check('Gemini-style block (no fences, own label) read', geminiSpheres === 'Correspondence 3,Prime 3', geminiSpheres);
 
+// an AI that invents its own shape: Spheres nested under mechanics.spheres_required
+const ownShape = `{
+  "spell_name": "Traceroute Prime Leakage",
+  "caster": "Saito Weinberg",
+  "paradigm": "Everything is Data",
+  "mechanics": {
+    "intent": "Detect, isolate, and trace raw Quintessence anomalies in the local execution layer.",
+    "spheres_required": { "Correspondence": 3, "Prime": 1 },
+    "system_bottleneck": "None (Caster Correspondence 4 exceeds required Rank 3)",
+    "base_difficulty": { "coincidental": 6, "vulgar_without_witnesses": 7, "vulgar_with_witnesses": 8 }
+  },
+  "execution_modifiers": { "instrument_bonus": { "instrument": "Mainframe terminal", "difficulty_modifier": -1 }, "minimum_difficulty_floor": 3 }
+}`;
+await page.click('button:has-text("Paste the answer")');
+await page.fill('.paste-area', ownShape);
+await page.click('.modal button:has-text("Add as a new version")');
+await page.waitForSelector('.modal', { state: 'detached', timeout: 3000 }).catch(() => {});
+const nestedSpheres = await page.$$eval('.dossier-main > .version .version-spheres .sphere-btn.on', (bs) => bs.map((b) => b.getAttribute('aria-label')).join());
+check('nested Spheres found (spheres_required)', nestedSpheres === 'Correspondence 3,Prime 1', nestedSpheres);
+check('nearest text fields used', (await page.inputValue('.dossier-main > .version label:has-text("How it looks") textarea')).startsWith('Detect, isolate'));
+
 // everything survives a reload
 await page.waitForTimeout(500);
 await page.reload({ waitUntil: 'networkidle' });
 await page.waitForSelector('.dossier');
 check('title persists', (await page.inputValue('.dossier-title')) === 'Gas leak fireball');
 check('goal persists', (await page.inputValue('.dossier label:has-text("What should happen") textarea')) === 'Blow the door, blame the gas.');
-check('versions persist', (await page.locator('.old-version').count()) === 3);
+check('versions persist', (await page.locator('.old-version').count()) === 4);
 check('log persists', (await page.locator('.log-entry').count()) === 1);
 
 // the list and the sheet

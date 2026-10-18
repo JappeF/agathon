@@ -206,30 +206,70 @@ export function parseReply(text: string): SpellVersion {
   // AIs wrap the block in ```json fences, or not, spread it over lines, and put their own
   // label in "agathon" (Gemini: "Version 2 (Optimized Network Trace)"). So look at every
   // balanced {...} in the text and take the last one with a spheres object.
-  let data: Record<string, unknown> | null = null;
+  let data: Json | null = null;
+  let spheres: SpellVersion['spheres'] | null = null;
   for (const block of jsonObjects(text)) {
     const parsed = looseParse(block);
-    if (parsed && typeof parsed.spheres === 'object' && parsed.spheres) {
+    spheres = parsed && findSpheres(parsed);
+    if (spheres) {
       data = parsed;
       break;
     }
   }
-  if (!data) throw new ReplyError("There is no plan block in this answer. Ask the AI to end with the JSON block from the prompt, or copy the parts you like into the plan by hand.");
-  const spheres: SpellVersion['spheres'] = {};
-  const raw = data.spheres && typeof data.spheres === 'object' ? (data.spheres as Record<string, unknown>) : {};
-  for (const [k, v] of Object.entries(raw)) {
-    const s = SPHERES.find((x) => x.toLowerCase() === k.trim().toLowerCase()) as Sphere | undefined;
-    const r = typeof v === 'number' ? Math.round(v) : parseInt(String(v), 10);
-    if (s && r >= 1 && r <= 5) spheres[s] = r;
-  }
+  if (!data || !spheres) throw new ReplyError("There is no plan block in this answer. Ask the AI to end with the JSON block from the prompt, or copy the parts you like into the plan by hand.");
+  // the asked-for fields first; AIs that invent their own shape get the nearest match
   return newVersion({
     spheres,
-    how: str(data.how),
-    coincidental: str(data.coincidental),
-    notes: str(data.notes),
+    how: str(data.how) || findText(data, /^(how|method|focus|instruments?|tools?|description|intent|effect)$/i),
+    coincidental: str(data.coincidental) || findText(data, /coincidental|cover.?story|mitigation|disguise/i),
+    notes: str(data.notes) || findText(data, /^(notes?|risks?|warnings?|bottleneck|system_bottleneck)$/i),
     source: 'ai',
     reply: text.trim().slice(0, 30000),
   });
+}
+
+type Json = Record<string, unknown>;
+const isObj = (v: unknown): v is Json => !!v && typeof v === 'object' && !Array.isArray(v);
+
+/** Sphere ranks in an object like {"Forces": 3, "prime": "2"}: only Sphere names, ranks 1-5. */
+function sphereRanks(o: Json): SpellVersion['spheres'] {
+  const out: SpellVersion['spheres'] = {};
+  for (const [k, v] of Object.entries(o)) {
+    const s = SPHERES.find((x) => x.toLowerCase() === k.trim().toLowerCase()) as Sphere | undefined;
+    const r = typeof v === 'number' ? Math.round(v) : parseInt(String(v), 10);
+    if (s && r >= 1 && r <= 5) out[s] = r;
+  }
+  return out;
+}
+
+/** Every value in the JSON, depth first, with the key that leads to it. */
+function* walk(v: unknown, key = ''): Generator<[string, unknown]> {
+  yield [key, v];
+  if (isObj(v)) for (const [k, x] of Object.entries(v)) yield* walk(x, k);
+  else if (Array.isArray(v)) for (const x of v) yield* walk(x, key);
+}
+
+/**
+ * The plan's Spheres, wherever the AI put them: the asked-for "spheres" key, then any
+ * key that mentions Spheres ("spheres_required" inside "mechanics"), then any object
+ * that is just Sphere ranks.
+ */
+function findSpheres(data: Json): SpellVersion['spheres'] | null {
+  const objects = [...walk(data)].filter((e): e is [string, Json] => isObj(e[1]));
+  const tests = [(k: string) => k === 'spheres', (k: string) => /sphere/i.test(k), () => true];
+  for (const test of tests)
+    for (const [k, o] of objects) {
+      if (!test(k)) continue;
+      const ranks = sphereRanks(o);
+      if (Object.keys(ranks).length) return ranks;
+    }
+  return null;
+}
+
+/** The first non-empty text under a key that matches, at any depth. */
+function findText(data: Json, keys: RegExp): string {
+  for (const [k, v] of walk(data)) if (keys.test(k) && typeof v === 'string' && v.trim()) return str(v);
+  return '';
 }
 
 /** A rough size, so the player knows whether it fits a free chat. */
