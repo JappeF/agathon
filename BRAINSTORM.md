@@ -4,7 +4,7 @@ Werkdocument van de grill-sessie. Wat onder "Besloten" staat is afgesproken, de 
 
 ## Wat het is
 
-Offline-first PWA voor Mage: The Ascension (M20), metReact + TypeScript + Vite + vite-plugin-pwa, Cloudflare Pages,
+Offline-first PWA voor Mage: The Ascension (M20), met React + TypeScript + Vite + vite-plugin-pwa, Cloudflare Pages,
 verify-scripts met playwright-core en Edge.
 
 Naam: Agathon (Grieks *to agathon*, "het Goede"). Let op: de lore-claim uit de Google-chat
@@ -40,7 +40,7 @@ Naam: Agathon (Grieks *to agathon*, "het Goede"). Let op: de lore-claim uit de G
   originele passage ernaast.
 - **Zoeken op Spheres, standaard "precies deze combinatie"** (`mind:3 forces:2`). Daarnaast
   een schakelaar "wat kan mijn character casten" op de dots van het actieve character, met
-  een sectie "net buiten bereik". Verder operators zoals in another app, ook met de
+  een sectie "net buiten bereik". Verder zoek-operators, ook met de
   Technocratische namen (`data:`, `primal:`, `dimsci:`).
 
 ### Vulgar mitigation
@@ -86,13 +86,13 @@ Naam: Agathon (Grieks *to agathon*, "het Goede"). Let op: de lore-claim uit de G
 - **Animaties** (alleen CSS, uit bij `prefers-reduced-motion`): langzaam opstijgende
   gouden Quintessence-vonkjes, en achter de header een ring met de negen
   Sphere-symbolen die heel langzaam draait.
-- PWA met auto-update (update-toast, elk uur checken en bij focus), zoals another app.
-- Characters en sets delen als bestand, link of QR, zoals another app.
+- PWA met auto-update (update-toast, elk uur checken en bij focus).
+- Characters en sets delen als bestand, link of QR.
 
 ### PDF-sheet import
 - Mr. Gone's sheets. (De officiele M20-sheets zijn niet invulbaar, dus Mr. Gone's sheets
   zijn de enige invulbare in omloop; een tweede importformaat is niet nodig.)
-- Voorbeeld: `refs/M20_2-Page_Interactive_Saito Weinberg.pdf` (Mr. Gone's M20
+- Voorbeeld: een ingevulde sheet in `refs/` (Mr. Gone's M20
   2-page interactive, 2014). 625 AcroForm-velden (415 knoppen, 203 tekst, 7 keuzes).
   - Tekstvelden hebben goede namen (`name`, `nature`, `affiliation`, `backgrounds1`,
     `Merit1`, `flaw1`, `rotes1`, `experience`, `health1-7` met `/`, `X`, `*`).
@@ -115,14 +115,14 @@ Naam: Agathon (Grieks *to agathon*, "het Goede"). Let op: de lore-claim uit de G
 
 ### Repo en hosting
 - Git-repo op GitHub; Cloudflare Pages-project `agathon`
-  (`agathon.pages.dev`), deploy zoals another app.
+  (`agathon.pages.dev`).
 - `refs/` en alle uitgelezen boektekst blijven buiten git; alleen eigen samenvattingen
   worden gecommit.
 
 ## Nice to have en open punten: GitHub-issues
 
-Alle nice-to-haves, losse ideeen en open punten staan sinds 18 okt 2026 als issues op
-https://github.com/OWNER/agathon/issues, met labels per soort (✨ nice to have,
+Alle nice-to-haves, losse ideeen en open punten staan sinds 18 okt 2026 als issues in de
+GitHub-repo, met labels per soort (✨ nice to have,
 🗺️ roadmap, 💬 to discuss, ⏳ needs input) en per onderwerp (🔮 AI, 📜 sheet, 🪄 spells,
 🎲 at the table, 🤝 sharing, 📱 android...). Daar bijhouden, niet hier.
 
@@ -136,7 +136,7 @@ https://github.com/OWNER/agathon/issues, met labels per soort (✨ nice to have,
 
 ## Status (18 okt 2026)
 
-Live op https://agathon.pages.dev, repo `OWNER/agathon` (private).
+Live op https://agathon.pages.dev, GitHub-repo (private).
 
 - **Fase 1, fundament:** klaar.
 - **Fase 2, character:** klaar, inclusief portretten (uit de PDF of zelf gekozen) en delen
@@ -155,7 +155,7 @@ Live op https://agathon.pages.dev, repo `OWNER/agathon` (private).
 
 Onderweg erbij gekomen: het portaal-icoon en het geanimeerde portaal achter het logo,
 eigen Sphere-symbolen (o.a. een brein voor Mind en een drietand voor Prime), de
-another app-achtige zijbalk voor de bibliotheek op desktop, een character-switcher in de nav,
+vaste zijbalk voor de bibliotheek op desktop, een character-switcher in de nav,
 zoekwoorden die oplichten, keuzelijsten uit M20 (Backgrounds, Merits, Flaws, Concept,
 Essence, Nature, Demeanor, Affiliation, Sect, specialties), XP naast de naam, een
 Notes-schrijfblok, en Android-proof bestandskiezers. Het tabblad Spells heet nu Spell

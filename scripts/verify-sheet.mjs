@@ -5,11 +5,12 @@
 // (defaults to the Saito Weinberg sample in refs/, which is not in git).
 import { chromium } from 'playwright-core';
 import { mkdir, readFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import { PDFDocument, PDFName } from 'pdf-lib';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
-const SHEET = process.env.SHEET ?? 'refs/M20_2-Page_Interactive_Saito Weinberg.pdf';
+// a filled Mr. Gone sheet in refs/ (M20_2-Page_Interactive_<name>.pdf); the blank one has no suffix
+const SHEET = process.env.SHEET ?? readdirSync('refs').map((f) => `refs/${f}`).find((f) => /^refs\/M20_2-Page_Interactive_.+\.pdf$/i.test(f));
 // a blank Mr. Gone sheet for characters made in the app (BLANK=<path>); the sample stands in when there is none
 const BLANK = process.env.BLANK ?? (existsSync('refs/M20_2-Page_Interactive.pdf') ? 'refs/M20_2-Page_Interactive.pdf' : SHEET);
 await mkdir('shots', { recursive: true });

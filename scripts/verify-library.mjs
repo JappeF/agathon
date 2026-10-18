@@ -3,10 +3,12 @@
 // links, and "what can I cast" with the one-dot-away section for an imported character.
 // Needs `npm run preview` on :4173 (or BASE=...) and the sample sheet (SHEET=..., refs/).
 import { chromium } from 'playwright-core';
+import { readdirSync } from 'node:fs';
 import { mkdir } from 'node:fs/promises';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
-const SHEET = process.env.SHEET ?? 'refs/M20_2-Page_Interactive_Saito Weinberg.pdf';
+// a filled Mr. Gone sheet in refs/ (M20_2-Page_Interactive_<name>.pdf); the blank one has no suffix
+const SHEET = process.env.SHEET ?? readdirSync('refs').map((f) => `refs/${f}`).find((f) => /^refs\/M20_2-Page_Interactive_.+\.pdf$/i.test(f));
 await mkdir('shots', { recursive: true });
 // real scrollbars (Playwright hides them in headless mode), so layout shifts show up
 const browser = await chromium.launch({ channel: 'msedge', headless: true, ignoreDefaultArgs: ['--hide-scrollbars'] });
@@ -152,7 +154,7 @@ await page.waitForSelector('.detail');
 check('Sphere tip marked ready', /Correspondence 4/.test(await page.textContent('.tips')));
 await page.keyboard.press('Escape');
 
-// desktop: another app-style sticky filter sidebar and a grid of cards
+// desktop: a sticky filter sidebar and a grid of cards
 const desk = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 await desk.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
 await desk.waitForSelector('.effect-card');
@@ -196,7 +198,7 @@ check('detail star turns on', (await page.waitForSelector('.detail .detail-fav[a
 check('no Pin button, just the star', (await page.locator('.detail .pin-btn').count()) === 0);
 await page.click('.detail .back');
 check('favorite card shows a gold star', (await page.locator('.effect-item').first().locator('.card-pin.on').count()) === 1);
-// the star on a card works without opening the detail, as in another app
+// the star on a card works without opening the detail
 await page.click('.effect-item >> nth=1 >> .card-pin');
 await page.waitForSelector('.effect-item:nth-child(2) .card-pin.on', { timeout: 5000 }).catch(() => {});
 check('favorite from the card', (await page.locator('.card-pin.on').count()) === 2 && !(await page.isVisible('.detail')));

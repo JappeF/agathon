@@ -4,12 +4,14 @@
 // Needs the rulebook PDFs in refs/ (gitignored; override with M20=<path> HDYDT=<path>
 // SHEET=<path>) and `npm run preview` on :4173 (or BASE=...). Not run in CI.
 import { chromium } from 'playwright-core';
+import { readdirSync } from 'node:fs';
 import { mkdir } from 'node:fs/promises';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 const M20 = process.env.M20 ?? 'refs/Mage_20th_Anniversary_Edition_(Final_Download).pdf';
 const HDYDT = process.env.HDYDT ?? 'refs/M20_How_Do_You_DO_That_(Final_Download).pdf';
-const SHEET = process.env.SHEET ?? 'refs/M20_2-Page_Interactive_Saito Weinberg.pdf';
+// a filled Mr. Gone sheet in refs/ (M20_2-Page_Interactive_<name>.pdf); the blank one has no suffix
+const SHEET = process.env.SHEET ?? readdirSync('refs').map((f) => `refs/${f}`).find((f) => /^refs\/M20_2-Page_Interactive_.+\.pdf$/i.test(f));
 await mkdir('shots', { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, acceptDownloads: true });

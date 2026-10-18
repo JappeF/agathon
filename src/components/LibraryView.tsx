@@ -74,7 +74,7 @@ function EffectCard({
       : undefined;
   return (
     <li className={`effect-item${onTogglePin ? ' pinnable' : ''}`}>
-      {/* a sibling of the card button, as in another app: buttons can't nest */}
+      {/* a sibling of the card button: buttons can't nest */}
       {onTogglePin && (
         <button
           type="button"

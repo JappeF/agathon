@@ -33,7 +33,7 @@
 
 * { box-sizing: border-box; }
 /* a thin violet thumb on a transparent track that only appears when the page really
-   scrolls, as in another app. No scrollbar-gutter: Edge leaves that reserved strip empty, so
+   scrolls. No scrollbar-gutter: Edge leaves that reserved strip empty, so
    the bar stopped short of the window edge. Instead the bar and the page are placed
    against the whole window (100vw), so a scrollbar coming or going moves nothing. */
 html { color-scheme: dark; scrollbar-width: thin; scrollbar-color: #3a2a55 transparent; scroll-padding-top: 72px; }
@@ -1364,7 +1364,7 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   .tagline { font-size: 0.9rem; margin-top: 0.15rem; }
   .app-nav { position: static; padding: 0; border: 0; background: none; backdrop-filter: none; }
   .vitals-fixed { top: var(--bar-h); }
-  /* as in another app, the sidebar runs from the bar to the bottom of the window, so its
+  /* the sidebar runs from the bar to the bottom of the window, so its
      divider joins the bar's line. It sticks exactly where it sits (the library's main
      has no top padding), and its negative bottom margin takes the main's 3rem bottom
      padding back out, so the page is never taller than the window because of it and
