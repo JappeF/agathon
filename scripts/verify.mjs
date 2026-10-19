@@ -150,6 +150,14 @@ for (const tab of ['Magick', 'Traits', 'Background', 'Notes']) {
 // a Sphere's specialty and affinity sit on their own line under the dots, not squeezed beside them
 await page.click('.tab:has-text("Magick")');
 check('320px: Sphere edit line under the dots', await page.$eval('.sphere-row', (r) => r.querySelector('.sphere-edit').getBoundingClientRect().top >= r.querySelector('.dots').getBoundingClientRect().bottom - 2));
+// the affinity Sphere: one at most, and it can be taken away again
+const affinityBox = (s) => `.sphere-row:has-text("${s}") .sphere-edit input[type=checkbox]`;
+const affinities = () => page.$$eval('.sphere-row .sphere-edit input[type=checkbox]', (is) => is.filter((i) => i.checked).length);
+await page.check(affinityBox('Forces'));
+await page.check(affinityBox('Prime'));
+check('one affinity Sphere at most', (await affinities()) === 1 && (await page.isChecked(affinityBox('Prime'))));
+await page.uncheck(affinityBox('Prime'));
+check('affinity can be cleared', (await affinities()) === 0);
 // an empty Notes notebook fills the window exactly: a page a few px taller than the window
 // gave a scrollbar with nothing to scroll that wobbled (desktop app, 1795x960)
 await page.click('.lock');

@@ -473,12 +473,13 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
                         aria-label={`${s} specialty`}
                         onChange={(e) => setSpec(s, e.target.value)}
                       />
+                      {/* one Sphere at most, but unticking leaves none (a radio can't be cleared) */}
                       <label className="check">
                         <input
-                          type="radio"
-                          name="affinity"
+                          type="checkbox"
                           checked={c.affinitySphere === s}
-                          onChange={() => patch({ affinitySphere: s as Sphere })}
+                          aria-label={`${s} is the affinity Sphere`}
+                          onChange={(e) => patch({ affinitySphere: e.target.checked ? (s as Sphere) : undefined })}
                         />
                         affinity
                       </label>
