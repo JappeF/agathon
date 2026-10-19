@@ -563,6 +563,12 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
     setCopied(false);
     setPicked((p) => ({ ...p, [key]: on }));
   };
+  // all or none in one go, for AIs that choke on a long prompt
+  const tickAll = (on: boolean) => {
+    setCopied(false);
+    setPicked(Object.fromEntries(candidates.map((p) => [p.key, on])));
+  };
+  const allTicked = pages.length === candidates.length;
   const size = packSize(text);
   const set = (p: Partial<PackOptions>) => {
     const next = { ...o, ...p };
@@ -619,6 +625,17 @@ function CopyForAi({ s, c, effects, onClose }: { s: Spell; c: Character; effects
           <summary>
             Pages from your rulebooks: {pages.length} of {candidates.length}
           </summary>
+          <label className="check pack-all">
+            <input
+              type="checkbox"
+              checked={allTicked}
+              ref={(el) => {
+                if (el) el.indeterminate = pages.length > 0 && !allTicked;
+              }}
+              onChange={(e) => tickAll(e.target.checked)}
+            />
+            All pages
+          </label>
           <ul>
             {candidates.map((p, i) => (
               <li key={p.key}>
