@@ -196,10 +196,10 @@ function SpellDossier({ id }: { id: string }) {
 
       {character && (
         <div className="ai-row">
-          <button type="button" className="btn btn-gold" onClick={() => setAi('copy')}>
+          <button type="button" className="btn" onClick={() => setAi('copy')}>
             Copy for AI
           </button>
-          <button type="button" className="btn btn-gold" onClick={() => setAi('paste')}>
+          <button type="button" className="btn" onClick={() => setAi('paste')}>
             Paste the answer
           </button>
           <span className="fine-print">Work out the Spheres, the rules and the story that keeps it coincidental with an AI: copy the idea out, paste the answer back.</span>
