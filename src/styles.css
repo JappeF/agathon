@@ -500,12 +500,18 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 @media (min-width: 600px) {
   .vitals-panel { grid-template-columns: 1fr 1fr; }
 }
-.track-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem; }
+/* as wide as its boxes, so the status ends where the boxes end */
+.track { width: fit-content; max-width: 100%; display: flex; flex-direction: column; }
+/* side by side, the health boxes sit on the same bottom line as the Willpower boxes */
+.health-boxes { margin-top: auto; }
+.track-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.8rem; margin-bottom: 0.3rem; }
 .track-title { font-family: var(--font-head); font-weight: 600; color: var(--gold); letter-spacing: 0.05em; }
 .track-status { font-size: 0.85rem; color: var(--ink-dim); font-weight: 600; }
 .track-status.hp { color: var(--hp); }
-.health-boxes, .wp-boxes { display: flex; flex-wrap: wrap; gap: 4px; }
-.wp-boxes { margin-top: 0.3rem; }
+/* boxes shrink on a narrow phone instead of wrapping; dots share the Willpower columns */
+.health-boxes, .wp-boxes { display: grid; gap: 4px; }
+.health-boxes { grid-template-columns: repeat(7, minmax(0, 40px)); }
+.wp-boxes { grid-template-columns: repeat(10, minmax(0, 28px)); margin-top: 0.35rem; }
 .health-box, .wp-box {
   all: unset;
   box-sizing: border-box;
@@ -524,9 +530,12 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .health-box.mark-bashing { border-color: var(--ink-dim); color: var(--ink); }
 .health-box.mark-lethal { border-color: #e0457b; color: #ff8fb1; }
 .health-box.mark-aggravated { border-color: #e0457b; background: #e0457b33; color: #ffd0de; }
-.wp-box { width: 28px; height: 28px; position: relative; }
-.wp-box::after { content: ''; position: absolute; inset: -8px; }
+.health-box, .wp-box { width: 100%; height: auto; aspect-ratio: 1; }
+.wp-box { position: relative; }
+.wp-box::after { content: ''; position: absolute; inset: -8px 0; }
 .wp-box.spent { background: var(--ink-faint); border-color: var(--ink-faint); }
+.wp-box-off { cursor: default; background: none; border-style: dashed; border-color: var(--line); }
+.wp-box-off::after { content: none; }
 
 /* ---------- tabs ---------- */
 .tabs { display: flex; gap: 0.2rem; border-bottom: 1px solid var(--line-solid); margin-bottom: 0.8rem; overflow-x: auto; scrollbar-width: none; }
@@ -620,6 +629,10 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .dot-btn { all: unset; box-sizing: border-box; width: 30px; height: 44px; display: grid; place-items: center; cursor: pointer; }
 .dot-btn .dot { width: 17px; height: 17px; }
 .dot-btn:focus-visible { outline: 2px solid var(--gold); border-radius: 6px; }
+/* Willpower: one dot over each box (after the rules above, which it overrides) */
+.wp-dots .dots { display: grid; grid-template-columns: repeat(10, minmax(0, 28px)); gap: 4px; max-width: none; justify-content: start; }
+.wp-dots .dots .dot { width: min(18px, 100%); height: auto; aspect-ratio: 1; justify-self: center; }
+.wp-dots .dots .dot-btn { width: auto; height: 36px; }
 
 /* fields */
 .field { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.1rem; margin-bottom: 0.5rem; min-width: 0; }

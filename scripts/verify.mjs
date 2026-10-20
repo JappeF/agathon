@@ -189,6 +189,36 @@ check('344px: mini bar on one line', mini.spread < 4 && mini.right <= 344, JSON.
 await page.evaluate(() => scrollTo(0, 0));
 await page.click('.sheet-title .vitals-bar');
 for (const l of levels) for (let i = 0; i < 3; i++) await page.click(`.vitals-panel [aria-label^="${l}"]`);
+// Health and Willpower: the counts end where the boxes end, each Willpower dot sits over its
+// box, and side by side both rows of boxes share a bottom line; in play and in edit mode
+for (const [w, edit] of [[1300, false], [320, false], [320, true], [1300, true]]) {
+  if (edit !== !!(await page.$('.vitals-panel .wp-dots .dot-btn'))) await page.click('.lock');
+  await page.setViewportSize({ width: w, height: 900 });
+  await page.waitForTimeout(150);
+  const t = await page.evaluate(() => {
+    const panel = document.querySelector('.vitals-panel');
+    const all = (sel) => [...panel.querySelectorAll(sel)].map((e) => e.getBoundingClientRect());
+    const [hp, wp] = panel.querySelectorAll('.track');
+    const end = (track, sel) => Math.round(track.querySelector('.track-status').getBoundingClientRect().right - [...track.querySelectorAll(sel)].at(-1).getBoundingClientRect().right);
+    const dots = all('.wp-dots .dot').map((r) => r.left + r.width / 2);
+    const boxes = all('.wp-boxes .wp-box').map((r) => r.left + r.width / 2);
+    return {
+      hpEnd: end(hp, '.health-box'),
+      wpEnd: end(wp, '.wp-box'),
+      dotsOff: Math.round(Math.max(...dots.map((d, i) => Math.abs(d - boxes[i])))),
+      boxes: boxes.length,
+      bottoms: Math.round(Math.abs(all('.health-box').at(-1).bottom - all('.wp-box').at(-1).bottom)),
+      sideBySide: hp.getBoundingClientRect().top === wp.getBoundingClientRect().top,
+      wide: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    };
+  });
+  check(
+    `${w}px${edit ? ', edit mode' : ''}: Health and Willpower line up`,
+    t.hpEnd === 0 && t.wpEnd === 0 && t.dotsOff <= 1 && t.boxes === 10 && (!t.sideBySide || t.bottoms <= 1) && t.wide <= 0,
+    JSON.stringify(t),
+  );
+}
+await page.click('.lock');
 await page.click('.sheet-title .vitals-bar');
 await page.setViewportSize({ width: 390, height: 844 });
 

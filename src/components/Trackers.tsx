@@ -44,17 +44,24 @@ export function WillpowerTrack({ c, patch, edit }: { c: Character; patch: Patch;
           {left} of {c.willpower}
         </span>
       </div>
-      <Dots value={c.willpower} max={10} label="Willpower" onChange={edit ? (v) => patch({ willpower: v, willpowerSpent: Math.min(c.willpowerSpent, v) }) : undefined} />
+      {/* ten dots over ten boxes, as on the paper sheet: boxes above the rating stay empty */}
+      <div className="wp-dots">
+        <Dots value={c.willpower} max={10} label="Willpower" onChange={edit ? (v) => patch({ willpower: v, willpowerSpent: Math.min(c.willpowerSpent, v) }) : undefined} />
+      </div>
       <div className="wp-boxes">
-        {Array.from({ length: c.willpower }, (_, i) => (
-          <button
-            key={i}
-            type="button"
-            className={`wp-box${i < c.willpowerSpent ? ' spent' : ''}`}
-            aria-label={`Willpower point ${i + 1}${i < c.willpowerSpent ? ', spent' : ''}`}
-            onClick={() => patch({ willpowerSpent: c.willpowerSpent === i + 1 ? i : i + 1 })}
-          />
-        ))}
+        {Array.from({ length: 10 }, (_, i) =>
+          i < c.willpower ? (
+            <button
+              key={i}
+              type="button"
+              className={`wp-box${i < c.willpowerSpent ? ' spent' : ''}`}
+              aria-label={`Willpower point ${i + 1}${i < c.willpowerSpent ? ', spent' : ''}`}
+              onClick={() => patch({ willpowerSpent: c.willpowerSpent === i + 1 ? i : i + 1 })}
+            />
+          ) : (
+            <span key={i} className="wp-box wp-box-off" aria-hidden="true" />
+          ),
+        )}
       </div>
     </div>
   );
