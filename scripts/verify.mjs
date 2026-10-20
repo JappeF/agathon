@@ -247,6 +247,15 @@ const heads = await page.evaluate(() => {
   });
 });
 check('head buttons as tall as the pills, 44px to tap', heads.length === 3 && heads.every((h) => h.off <= 1 && h.tapAbove), JSON.stringify(heads));
+// and so are the Add and pick pills in edit mode, on every tab
+await page.click('.lock');
+for (const tab of ['Magick', 'Traits', 'Background', 'Notes']) {
+  await page.click(`.tab:has-text("${tab}")`);
+  const tall = await page.$$eval('.sheet .tab-body .btn-small:not(.pick-open)', (bs) => bs.filter((b) => b.offsetParent).map((b) => Math.round(b.getBoundingClientRect().height)));
+  check(`edit mode ${tab}: pill buttons as tall as the pills`, tall.every((h) => h === 30), tall.join());
+}
+await page.click('.tab:has-text("Magick")');
+await page.click('.lock');
 // edit mode opens Health and Willpower; Done folds them away again
 const vitalsShown = () => page.isVisible('.sheet-hero + .vitals-panel');
 const shownBefore = await vitalsShown();
