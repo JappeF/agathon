@@ -84,6 +84,21 @@ await page.click('.trait-pick.own');
 const ratedRows = await page.$$eval('.rated-list .row-input', (is) => is.map((i) => i.value).join());
 check('picked and own rows', ratedRows === 'Sanctum,Language,Nightmares', ratedRows);
 check('a Merit starts at its cost', (await page.inputValue('.rated-list .cost-input >> nth=0')) === '1');
+// Other traits: M20's secondary Abilities, by name or group, or your own
+await page.click('.tab:has-text("Traits")');
+await page.click('button:has-text("Add trait")');
+check('secondary Abilities offered', (await page.locator('.trait-pick:has-text("Animal Kinship")').count()) === 1);
+await page.fill('.picker-search', 'knowledge');
+check('found by their group', (await page.locator('.trait-pick:has-text("Cryptography")').count()) === 1);
+await page.fill('.picker-search', 'lore');
+await page.click('.trait-pick:has-text("Lore")');
+await page.click('button:has-text("Add trait")');
+await page.fill('.picker-search', 'Gaming');
+await page.click('.trait-pick.own');
+const otherRows = await page.$$eval('.rated-list .row-input', (is) => is.map((i) => i.value).join());
+check('picked and own other traits', otherRows === 'Lore,Gaming', otherRows);
+for (let i = 0; i < 2; i++) await page.click('.rated-list .btn-icon[aria-label^="Remove"] >> nth=0');
+await page.click('.tab:has-text("Background")');
 // Sect from M20's list: picking one with no Affiliation yet fills that in too
 await page.click('button[aria-label="Choose Sect"]');
 await page.fill('.picker-search', 'virtual');

@@ -20,7 +20,7 @@ import { Icon } from './Icon';
 import { setActiveCharacter } from '../activeCharacter';
 import { openCharacterMenu } from './CharacterMenu';
 import { FilePick } from './FilePick';
-import { AFFILIATIONS, ARCHETYPES, BACKGROUNDS, CONCEPTS, ESSENCES, FLAWS, INSTRUMENTS, MERITS, PARADIGMS, PRACTICES, SECTS, SPECIALTIES, affiliationOf } from '../sheetLists';
+import { AFFILIATIONS, ARCHETYPES, BACKGROUNDS, CONCEPTS, ESSENCES, FLAWS, INSTRUMENTS, MERITS, PARADIGMS, PRACTICES, SECONDARY_ABILITIES, SECTS, SPECIALTIES, affiliationOf } from '../sheetLists';
 import { focusPart, instrumentsOf, setFocusPart, toggleInstrument, type FocusPart } from '../focus';
 import { TraitPicker } from './TraitPicker';
 import { useEffects, type Effect } from '../library/data';
@@ -720,6 +720,8 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               onChange={(otherTraits) => patch({ otherTraits })}
               addLabel="Add trait"
               empty="No other traits."
+              picks={SECONDARY_ABILITIES}
+              technocrat={technocrat}
             />
           </div>
         </div>

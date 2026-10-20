@@ -3,7 +3,7 @@ import { firstCost, type Pick } from '../sheetLists';
 import { Modal } from './Modal';
 
 /**
- * Pick a Background, Merit or Flaw from the ones M20 defines, or add your own: search
+ * Pick a Background, Merit, Flaw or secondary Ability from the ones M20 defines, or add your own: search
  * filters names, Technocratic names and hints; the typed text can always be added as is.
  */
 export function TraitPicker({

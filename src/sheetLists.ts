@@ -1,5 +1,5 @@
 /**
- * The Backgrounds, Merits and Flaws M20 defines, for the pick lists on the sheet. Names,
+ * The Backgrounds, Merits, Flaws and secondary Abilities M20 defines, for the pick lists on the sheet. Names,
  * costs and pages from the book; the one-line hints are our own words. Free-form names
  * stay possible everywhere: sourcebooks add many more.
  */
@@ -76,6 +76,41 @@ export const FLAWS: Pick[] = [
   { name: 'Genetic Flaw', cost: '1', kind: 'Physical, Mental or Social', page: 650, hint: 'A side effect of a heavily altered Pattern' },
   { name: 'PTSD', cost: '2 to 5', kind: 'Mental', page: 647, hint: 'A hair-trigger response to certain situations' },
   { name: 'Stress Atavism', cost: '4', kind: 'Mental', page: 644, hint: 'Under pressure you lose yourself, like the Berserker Merit' },
+];
+
+/**
+ * M20's secondary Abilities (pp. 289-300) and the optional catch-alls (p. 277), for Other
+ * traits; Mr. Gone's newer sheet brings own-Ability rows in there too. `kind` says which
+ * group. Cultural Savvy is only named in the quick reference, so it isn't here.
+ */
+export const SECONDARY_ABILITIES: Pick[] = [
+  { name: 'Animal Kinship', kind: 'Talent', page: 289, hint: 'A way with animals: calming, reading and training them' },
+  { name: 'Blatancy', kind: 'Talent', page: 291, hint: 'Doing the outrageous and making people swallow it' },
+  { name: 'Carousing', kind: 'Talent', page: 292, hint: 'Partying with people until they open up' },
+  { name: 'Do', kind: 'Talent', page: 292, hint: 'The Akashic way of movement, body and mind as one' },
+  { name: 'Flying', kind: 'Talent', page: 293, hint: 'Moving through the air, by wings, magick or gear' },
+  { name: 'High Ritual', kind: 'Talent', page: 293, hint: 'Grand ceremonial magick, done exactly right' },
+  { name: 'Lucid Dreaming', kind: 'Talent', page: 294, hint: 'Staying aware and in control inside dreams' },
+  { name: 'Seduction', kind: 'Talent', page: 295, hint: 'Attraction, flirting and getting what you want from it' },
+  { name: 'Hobby Talent', kind: 'Talent', page: 277, hint: 'Optional: a knack refined by practice; name it yourself' },
+  { name: 'Acrobatics', kind: 'Skill', page: 295, hint: 'Tumbling, balance, flips and landing on your feet' },
+  { name: 'Archery', kind: 'Skill', page: 295, hint: 'Bows and crossbows' },
+  { name: 'Biotech', kind: 'Skill', page: 295, hint: 'Living technology: grown, spliced and engineered' },
+  { name: 'Energy Weapons', kind: 'Skill', page: 296, hint: 'Lasers, plasma and other beam guns' },
+  { name: 'Hypertech', kind: 'Skill', page: 296, hint: 'Building and fixing tech beyond the mainstream' },
+  { name: 'Jetpack', kind: 'Skill', page: 297, hint: 'Flying with a rocket on your back' },
+  { name: 'Riding', kind: 'Skill', page: 297, hint: 'Horses and other mounts' },
+  { name: 'Torture', kind: 'Skill', page: 298, hint: 'Breaking people, for answers or worse' },
+  { name: 'Professional Skill', kind: 'Skill', page: 277, hint: 'Optional: one trained craft, such as cooking or gambling' },
+  { name: 'Area Knowledge', kind: 'Knowledge', page: 298, hint: 'One place known inside out: streets, people, secrets' },
+  { name: 'Belief Systems', kind: 'Knowledge', page: 298, hint: 'Religions and philosophies, and how their followers think' },
+  { name: 'Cryptography', kind: 'Knowledge', page: 299, hint: 'Making and breaking codes' },
+  { name: 'Demolitions', kind: 'Knowledge', page: 299, hint: 'Explosives: placing, shaping and defusing them' },
+  { name: 'Finance', kind: 'Knowledge', page: 299, hint: 'Money, markets and where the money goes' },
+  { name: 'Lore', tech: 'RD Data', kind: 'Knowledge', page: 299, hint: 'What you know about the Night-Folk: spirits, fae, vampires' },
+  { name: 'Media', kind: 'Knowledge', page: 300, hint: 'How news and entertainment work, and how to steer them' },
+  { name: 'Pharmacopoeia', kind: 'Knowledge', page: 300, hint: 'Drugs, medicines and poisons, and what they do' },
+  { name: 'Expert Knowledge', kind: 'Knowledge', page: 277, hint: 'Optional: one field of learning, such as journalism' },
 ];
 
 /** The lowest cost of a printed range, as the starting value. */
