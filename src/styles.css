@@ -391,6 +391,9 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 
 /* ---------- sheet header ---------- */
 .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 0.6rem; }
+/* Characters, Edit and the menu as tall as the XP and status pills; the tap area stays 44px */
+.sheet-head .btn-small { min-height: 30px; height: 30px; position: relative; }
+.sheet-head .btn-small::after { content: ''; position: absolute; inset: -7px 0; }
 .dossier-actions { display: inline-flex; align-items: center; gap: 0.4rem; }
 .shared-spell-goal { font-family: var(--font-flavor); font-style: italic; font-size: 1.05rem; white-space: pre-wrap; max-height: 9lh; overflow: auto; }
 .back {

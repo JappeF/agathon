@@ -237,6 +237,16 @@ await page.waitForSelector('.switch-menu', { state: 'hidden' });
 // the sheet's Characters button is a pill like the menu button beside the actions
 const btnLook = (sel) => page.$eval(sel, (e) => { const st = getComputedStyle(e); return [st.borderStyle, st.borderRadius, st.height].join(); });
 check('Characters button is a pill like the menu button', (await btnLook('.switch-btn')) === (await btnLook('.sheet-actions .menu summary')), await btnLook('.switch-btn'));
+// Characters, Edit and the menu are as tall as the pills, with a tap area of 44px
+const heads = await page.evaluate(() => {
+  const chip = document.querySelector('.sheet-title .chip').getBoundingClientRect().height;
+  return [...document.querySelectorAll('.sheet-head .btn-small')].map((b) => {
+    const tap = b.getBoundingClientRect();
+    const mid = document.elementFromPoint(tap.left + tap.width / 2, tap.top - 6);
+    return { off: Math.round(Math.abs(tap.height - chip)), tapAbove: b.contains(mid) };
+  });
+});
+check('head buttons as tall as the pills, 44px to tap', heads.length === 3 && heads.every((h) => h.off <= 1 && h.tapAbove), JSON.stringify(heads));
 // edit mode opens Health and Willpower; Done folds them away again
 const vitalsShown = () => page.isVisible('.sheet-hero + .vitals-panel');
 const shownBefore = await vitalsShown();
