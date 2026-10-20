@@ -1,12 +1,13 @@
 import { ABILITY_GROUPS, ATTRIBUTE_GROUPS, clampWheel, HEALTH_LEVELS, newCharacter, type Character, type HealthMark, type Rated } from './character';
 import { SPHERES, type Sphere } from './types';
 import { safePortrait } from './portrait';
-import type { Spell, SpellVersion } from './spells';
+import { OUTCOMES, type CastLog, type Spell, type SpellVersion } from './spells';
 
 /**
  * Versioned wire format for moving characters between devices and players: a JSON
  * file, or a share link / QR code carrying #import=<mode>.<base64url(deflate(json))>.
- * Never carries the stored sheet PDF, ids or timestamps; notes only when asked.
+ * Never carries the stored sheet PDF, ids or timestamps; notes only when asked. A backup
+ * file also carries the spell ideas, tied to their character by its place in the file.
  */
 
 export type SharedCharacter = Omit<Character, 'id' | 'createdAt' | 'updatedAt' | 'sheet'>;
@@ -17,9 +18,18 @@ export interface SharePayload {
   version: 1;
   exportedAt: string;
   characters: SharedCharacter[];
+  /** a backup also carries the spell ideas, each with the index of its character */
+  spells?: BackupSpell[];
 }
 
-export function buildPayload(characters: Character[], includeNotes: boolean, includePortraits = true): SharePayload {
+/** A spell idea in a backup: all of it (versions, AI answers, log), tied to its character by index. */
+export type BackupSpell = Omit<Spell, 'id' | 'characterId'> & { character: number };
+
+export function buildPayload(characters: Character[], includeNotes: boolean, includePortraits = true, spells: Spell[] = []): SharePayload {
+  const index = new Map(characters.map((c, i) => [c.id, i]));
+  const backup = spells
+    .filter((s) => index.has(s.characterId))
+    .map(({ id: _i, characterId, ...rest }) => ({ ...rest, character: index.get(characterId)! }));
   return {
     app: 'agathon',
     kind: 'characters',
@@ -30,6 +40,7 @@ export function buildPayload(characters: Character[], includeNotes: boolean, inc
       notes: includeNotes ? rest.notes : '',
       portrait: includePortraits ? rest.portrait : undefined,
     })),
+    ...(backup.length ? { spells: backup } : {}),
   };
 }
 
@@ -117,12 +128,72 @@ export function parsePayload(raw: unknown): SharePayload {
   if (typeof p.version !== 'number' || p.version > 1) {
     throw new ShareFormatError('This file comes from a newer version of Agathon. Reload the app and try again.');
   }
+  const characters = p.characters.slice(0, 100).map(sanitizeCharacter);
+  // spell ideas only for a character in this file
+  const spells = arr(p.spells, 2000)
+    .filter((x) => typeof obj(x).character === 'number')
+    .map(sanitizeBackupSpell)
+    .filter((s) => s.character < characters.length);
   return {
     app: 'agathon',
     kind: 'characters',
     version: 1,
     exportedAt: str(p.exportedAt, 30),
-    characters: p.characters.slice(0, 100).map(sanitizeCharacter),
+    characters,
+    ...(spells.length ? { spells } : {}),
+  };
+}
+
+const ID = /^[A-Za-z0-9-]{1,64}$/;
+const time = (v: unknown) => int(v, 0, 8.64e15);
+
+/** One plan: Spheres 1-5, known fields only. */
+function cleanVersion(v: unknown): Omit<SpellVersion, 'id' | 'createdAt' | 'reply'> {
+  const o = obj(v);
+  const given = obj(o.spheres);
+  const spheres: SpellVersion['spheres'] = {};
+  for (const sp of SPHERES) {
+    const r = int(given[sp], 0, 5);
+    if (r) spheres[sp] = r;
+  }
+  return { spheres, how: str(o.how), coincidental: str(o.coincidental), notes: str(o.notes), source: o.source === 'ai' ? 'ai' : 'me' };
+}
+
+const libraryIds = (v: unknown) => arr(v).filter((e): e is string => typeof e === 'string' && /^[a-z0-9-]{1,120}$/.test(e));
+
+function sanitizeBackupSpell(raw: unknown): BackupSpell {
+  const s = obj(raw);
+  const versions: SpellVersion[] = arr(s.versions, 100).map((v, i) => {
+    const o = obj(v);
+    const reply = str(o.reply, 30000);
+    return {
+      ...cleanVersion(o),
+      id: typeof o.id === 'string' && ID.test(o.id) ? o.id : `v${i}`,
+      createdAt: time(o.createdAt),
+      ...(reply ? { reply } : {}),
+    };
+  });
+  const outcomes = OUTCOMES.map((o) => o.id) as string[];
+  const log: CastLog[] = arr(s.log, 500).map((l, i) => {
+    const o = obj(l);
+    return {
+      id: typeof o.id === 'string' && ID.test(o.id) ? o.id : `l${i}`,
+      at: time(o.at),
+      version: typeof o.version === 'string' && ID.test(o.version) ? o.version : '',
+      outcome: outcomes.includes(o.outcome as string) ? (o.outcome as CastLog['outcome']) : 'worked',
+      paradox: int(o.paradox, 0, 20),
+      notes: str(o.notes),
+    };
+  });
+  return {
+    character: int(s.character, 0, 1e6),
+    createdAt: time(s.createdAt),
+    updatedAt: time(s.updatedAt),
+    title: str(s.title, 200).trim() || 'Untitled spell idea',
+    goal: str(s.goal),
+    effects: libraryIds(s.effects),
+    versions: versions.length ? versions : [{ ...cleanVersion({}), id: 'v0', createdAt: 0 }],
+    log,
   };
 }
 
@@ -239,16 +310,7 @@ export function parseSpellPayload(raw: unknown): SpellSharePayload {
     throw new ShareFormatError('This link comes from a newer version of Agathon. Reload the app and try again.');
   }
   const s = obj(p.spell);
-  const versions = arr(s.versions, 30).map((v) => {
-    const o = obj(v);
-    const given = obj(o.spheres);
-    const spheres: SharedSpell['versions'][number]['spheres'] = {};
-    for (const sp of SPHERES) {
-      const r = int(given[sp], 0, 5);
-      if (r) spheres[sp] = r;
-    }
-    return { spheres, how: str(o.how), coincidental: str(o.coincidental), notes: str(o.notes), source: o.source === 'ai' ? ('ai' as const) : ('me' as const) };
-  });
+  const versions = arr(s.versions, 30).map(cleanVersion);
   return {
     app: 'agathon',
     kind: 'spell',
@@ -256,7 +318,7 @@ export function parseSpellPayload(raw: unknown): SpellSharePayload {
     spell: {
       title: str(s.title, 200).trim() || 'Untitled spell idea',
       goal: str(s.goal),
-      effects: arr(s.effects).filter((e): e is string => typeof e === 'string' && /^[a-z0-9-]{1,120}$/.test(e)),
+      effects: libraryIds(s.effects),
       versions: versions.length ? versions : [{ spheres: {}, how: '', coincidental: '', notes: '', source: 'me' }],
     },
   };

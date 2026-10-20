@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { characterLine, newCharacter } from '../character';
 import { db, freeName, newId, requestPersistence, saveCharacter } from '../db/db';
+import { newVersion } from '../spells';
 import type { SharePayload } from '../share';
 import { SPHERES } from '../types';
 import { Modal } from './Modal';
@@ -43,14 +44,29 @@ export function SharedImport({
     setFailed('');
     try {
       let first = '';
-      await db.transaction('rw', db.characters, async () => {
+      await db.transaction('rw', db.characters, db.spells, async () => {
         const taken = new Set((await db.characters.toArray()).map((c) => c.name.toLowerCase()));
+        const ids: string[] = [];
         for (const shared of payload.characters) {
           const name = freeName(taken, shared.name, (n) => `${shared.name} (${n})`);
           const c = { ...newCharacter(newId(), name), ...shared, name };
           await saveCharacter(c);
+          ids.push(c.id);
           first ||= c.id;
         }
+        // a backup's spell ideas go back to their own character, as new rows
+        const now = Date.now();
+        await db.spells.bulkAdd(
+          (payload.spells ?? []).map(({ character, ...s }) => ({
+            ...s,
+            id: newId(),
+            characterId: ids[character],
+            createdAt: s.createdAt || now,
+            // the list keeps its order: newest change first, as before the backup
+            updatedAt: s.updatedAt || now,
+            versions: s.versions.map((v) => newVersion({ ...v, createdAt: v.createdAt || now })),
+          })),
+        );
       });
       requestPersistence();
       onDone(first);
@@ -62,6 +78,7 @@ export function SharedImport({
   };
 
   const n = payload.characters.length;
+  const spells = payload.spells?.length ?? 0;
   return (
     <Modal title={n === 1 ? `Add ${payload.characters[0].name}?` : `Add ${n} characters?`} onClose={onClose}>
       <ul className="import-list">
@@ -80,7 +97,10 @@ export function SharedImport({
           </li>
         ))}
       </ul>
-      <p className="empty-small">Characters are added to this device. Nothing gets overwritten.</p>
+      <p className="empty-small">
+        {spells ? `Characters and ${spells === 1 ? 'one spell idea' : `${spells} spell ideas`}` : 'Characters'} are added to this device. Nothing gets
+        overwritten.
+      </p>
       {failed && <p className="paste-error" role="alert">{failed}</p>}
       <div className="modal-actions">
         <button className="btn" onClick={onClose}>

@@ -207,7 +207,7 @@ export function CharacterMenu({ characters, active }: { characters?: Character[]
           }
         />
       </div>
-      {backup && characters && <ShareDialog characters={characters} title="Back up all characters" onClose={() => setBackup(false)} />}
+      {backup && characters && <ShareDialog characters={characters} title="Back up all characters" backup onClose={() => setBackup(false)} />}
     </>,
     document.body,
   );

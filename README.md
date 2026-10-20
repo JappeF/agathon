@@ -112,9 +112,11 @@ table; Agathon is the helper and sounding board.
 
 ### Sharing
 
-- One character as a **file, link or QR code**, or a backup of all of them. Notes
-  stay private unless you tick them; links carry a small portrait, files the full
-  one. Imports only ever add: a name that already exists gets a number.
+- One character as a **file, link or QR code**, or a backup of all of them that
+  also holds the spell ideas (with their versions and log), which come back with
+  their own character. Notes stay private unless you tick them; links carry a small
+  portrait, files the full one. Imports only ever add: a name that already exists
+  gets a number.
 
 ### App
 

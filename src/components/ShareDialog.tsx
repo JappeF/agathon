@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useLiveQuery } from 'dexie-react-hooks';
 import qrcode from 'qrcode-generator';
 import type { Character } from '../character';
+import { db } from '../db/db';
 import { download } from '../sheetActions';
 import { buildPayload, encodeShare, payloadFileName, shareUrl } from '../share';
 import { shrinkPortrait } from '../portrait';
@@ -13,7 +15,18 @@ const QR_MAX = 2200;
  * Share one character (or back up all of them) as a file, a link or a QR code.
  * Notes stay private unless the player ticks the box. The sheet PDF never goes along.
  */
-export function ShareDialog({ characters, title, onClose }: { characters: Character[]; title: string; onClose: () => void }) {
+export function ShareDialog({
+  characters,
+  title,
+  backup = false,
+  onClose,
+}: {
+  characters: Character[];
+  title: string;
+  /** a backup file also takes the spell ideas along */
+  backup?: boolean;
+  onClose: () => void;
+}) {
   const [includeNotes, setIncludeNotes] = useState(characters.length > 1);
   const [url, setUrl] = useState('');
   // the QR code holds ~2 KB, so it gets its own link without the portrait
@@ -21,6 +34,7 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
   const [copied, setCopied] = useState(false);
   const [qr, setQr] = useState<string | null>(null);
   const hasNotes = characters.some((c) => c.notes.trim());
+  const spellCount = useLiveQuery(() => (backup ? db.spells.count() : 0), [backup]) ?? 0;
 
   useEffect(() => {
     let live = true;
@@ -49,8 +63,8 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
     };
   }, [characters, includeNotes]);
 
-  const file = () => {
-    const p = buildPayload(characters, includeNotes);
+  const file = async () => {
+    const p = buildPayload(characters, includeNotes, true, backup ? await db.spells.toArray() : []);
     download(JSON.stringify(p, null, 2), payloadFileName(p), 'application/json');
   };
 
@@ -86,7 +100,7 @@ export function ShareDialog({ characters, title, onClose }: { characters: Charac
       <p className="empty-small">
         {characters.length === 1
           ? 'Whoever opens it gets their own copy. Their changes never reach yours.'
-          : `A backup of all ${characters.length} characters. Importing it adds them, nothing gets overwritten.`}{' '}
+          : `A backup of all ${characters.length} characters${spellCount ? ` and ${spellCount === 1 ? 'one spell idea' : `${spellCount} spell ideas`}` : ''}. Importing it adds them, nothing gets overwritten.`}{' '}
         The stored PDF sheet is not included.
         {characters.some((c) => c.portrait) && characters.length === 1 && ' Links carry a small copy of the portrait; QR codes leave it out.'}
       </p>

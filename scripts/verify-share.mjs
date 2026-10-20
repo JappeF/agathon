@@ -138,10 +138,24 @@ const hostile = {
       extra: 'x'.repeat(1000),
     },
   ],
+  // spell ideas for a character that isn't there, junk, and impossible ranks and outcomes
+  spells: [
+    { character: 7, title: 'Orphan idea' },
+    'junk',
+    { character: 0, title: 'Hostile idea', versions: [{ id: '../x', spheres: { Forces: 42, Bogus: 2 } }], log: [{ outcome: 'exploded', paradox: 999 }] },
+  ],
 };
 await b.goto(`${BASE}/#import=0.${Buffer.from(JSON.stringify(hostile)).toString('base64url')}`, { waitUntil: 'networkidle' });
 await b.waitForSelector('.modal');
+check('hostile share: only the spell idea with a character', /Characters and one spell idea/.test(await b.textContent('.modal')), await b.textContent('.modal'));
 await b.click('.modal button:has-text("Add character")');
+await b.waitForSelector('.sheet-name:text-is("Hostile Mage")');
+await b.goto(`${BASE}/#/spells`, { waitUntil: 'networkidle' });
+await b.click('text=Hostile idea');
+await b.waitForSelector('.dossier');
+check('hostile share: idea ranks clamped', (await b.getAttribute('.version-spheres .sphere-btn[title="Forces"]', 'aria-label')) === 'Forces 5');
+check('hostile share: no orphan idea', (await b.locator('text=Orphan idea').count()) === 0);
+await b.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await b.waitForSelector('.sheet-name:text-is("Hostile Mage")');
 check('hostile share: Arete clamped', /Arete\s*10$/.test((await b.textContent('.arete-row')).trim()), await b.textContent('.arete-row'));
 check('hostile share: Spheres clamped', Number(await b.textContent('.sphere-row:has-text("Forces") .trait-num')) === 5);
@@ -175,6 +189,20 @@ await b.waitForSelector('.modal');
 check('oversized link refused', /too large/.test(await b.textContent('.modal')), `${bomb.length} chars`);
 await b.click('.modal button:has-text("OK")');
 
+// a spell idea with a log entry on device B, for the last character in the list (so a mix-up
+// with the first one shows)
+await b.click('.switch-btn');
+await b.click('.switch-menu .switch-row >> nth=-1');
+await b.goto(`${BASE}/#/spells`, { waitUntil: 'networkidle' });
+const ideaOwner = (await b.textContent('.nav-char-name')).trim();
+await b.fill('input[aria-label="New spell idea"]', 'Backup test idea');
+await b.keyboard.press('Enter');
+await b.waitForSelector('.dossier');
+await b.fill('.dossier label:has-text("What should happen") textarea', 'Survive the backup.');
+await b.click('.outcome-btn:has-text("Worked")');
+await b.click('button:has-text("Add to the log")');
+await b.waitForTimeout(800);
+
 // back up all on device B (from the character menu): three characters in one file
 await b.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await b.waitForSelector('.sheet-name');
@@ -184,6 +212,40 @@ const [bk] = await Promise.all([b.waitForEvent('download'), b.click('.modal butt
 await bk.saveAs(`shots/${bk.suggestedFilename()}`);
 const backup = JSON.parse(await readFile(`shots/${bk.suggestedFilename()}`, 'utf8'));
 check('backup has all three', backup.characters.length === 3, String(backup.characters.length));
+check('the backup dialog counts the spell idea', /and one spell idea/.test(await b.textContent('.modal')));
+const backedUp = backup.spells?.[0];
+check(
+  'backup carries the spell idea, its log and its character',
+  backup.spells?.length === 1 && backedUp.title === 'Backup test idea' && backedUp.log.length === 1 && backup.characters[backedUp.character].name === ideaOwner,
+  JSON.stringify(backup.spells?.map((x) => [x.title, x.character, x.log.length])),
+);
+
+// restoring it on a fresh device C: the idea comes back with its own character
+const { page: c } = await device();
+await c.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+await c.setInputFiles('.welcome .file-pick input[type=file], .switch-menu .import-row input[type=file]', `shots/${bk.suggestedFilename()}`);
+await c.waitForSelector('.modal');
+check('import names the spell idea', /Characters and one spell idea/.test(await c.textContent('.modal')));
+await c.click('.modal button:has-text("Add 3 characters")');
+await c.waitForSelector('.sheet-name');
+// switch the character in play, then look at its spell ideas
+const ideasOf = async (who) => {
+  await c.click('.nav-char .nav-caret');
+  await c.click(`.switch-menu :text-is("${who}")`);
+  await c.waitForSelector(`.nav-char-name:text-is("${who}")`);
+  await c.goto(`${BASE}/#/spells`, { waitUntil: 'networkidle' });
+  await c.waitForTimeout(300);
+  return c.locator('text=Backup test idea').count();
+};
+const others = backup.characters.map((x) => x.name).filter((n) => n !== ideaOwner);
+check('other characters get no spell idea', (await ideasOf(others[0])) === 0);
+check('the idea is with its own character', (await ideasOf(ideaOwner)) === 1);
+await c.click('text=Backup test idea');
+await c.waitForSelector('.dossier');
+check(
+  'restored idea is back with its goal and log',
+  (await c.inputValue('.dossier label:has-text("What should happen") textarea')) === 'Survive the backup.' && (await c.locator('.log-entry').count()) === 1,
+);
 
 // clean up device A (device B's context is thrown away)
 await a.click('.menu summary');
