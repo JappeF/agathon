@@ -391,10 +391,14 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 
 /* ---------- sheet header ---------- */
 .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 0.6rem; }
-/* pill buttons on the sheet (Characters, Edit, menu, Add ..., Focus picks) as tall as the XP and
-   status pills; the tap area stays 44px. The round pick buttons keep the height of their field */
-.sheet .btn-small:not(.pick-open) { min-height: 30px; height: 30px; position: relative; }
-.sheet .btn-small:not(.pick-open)::after { content: ''; position: absolute; inset: -7px 0; }
+/* the dark pill buttons on the sheet, Spell ideas and the Library (Characters, Edit, Add ...,
+   Show more, Paste the answer) as tall as the XP and status pills; the tap area stays 44px.
+   Gold main actions and the round pick buttons keep the height of their field */
+.sheet .btn-small:not(.pick-open),
+:is(.spells, .dossier, .library) .btn:not(.btn-gold) { min-height: 30px; height: 30px; position: relative; }
+:is(.spells, .dossier, .library) .btn:not(.btn-gold) { padding: 0 0.9rem; font-size: 0.85rem; }
+.sheet .btn-small:not(.pick-open)::after,
+:is(.spells, .dossier, .library) .btn:not(.btn-gold)::after { content: ''; position: absolute; inset: -7px 0; }
 .dossier-actions { display: inline-flex; align-items: center; gap: 0.4rem; }
 .shared-spell-goal { font-family: var(--font-flavor); font-style: italic; font-size: 1.05rem; white-space: pre-wrap; max-height: 9lh; overflow: auto; }
 .back {

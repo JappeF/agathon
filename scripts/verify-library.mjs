@@ -37,6 +37,13 @@ const cardSpheres = () =>
 await page.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.effect-card');
 check('all spells listed', /^\d+ of \d+ spells/.test(await count()), await count());
+// Show more: a dark pill as tall as the others (30px), still centred under the list
+const more = await page.$eval('.load-more', (b) => {
+  const r = b.getBoundingClientRect();
+  const p = b.parentElement.getBoundingClientRect();
+  return { h: Math.round(r.height), off: Math.round(Math.abs(r.left + r.width / 2 - (p.left + p.width / 2))) };
+});
+check('Show more: 30px pill, centred', more.h === 30 && more.off <= 1, JSON.stringify(more));
 await page.screenshot({ path: 'shots/30-library.png' });
 
 await search('portal');
