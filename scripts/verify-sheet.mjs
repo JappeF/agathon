@@ -125,7 +125,10 @@ check('portrait badge above the ring', await page.$eval('.portrait-hint', (h) =>
 await page.setInputFiles('.view.sheet input[accept="image/*"]', 'public/icons/icon-512.png');
 await page.waitForFunction((old) => document.querySelector('.sheet-hero .pp-face img')?.getAttribute('src') !== old, fromPdf);
 check('portrait replaced in edit mode', (await portraitSrc()) !== fromPdf);
-await page.click('.portrait-edit .link-btn');
+// Remove is the same pill as Change
+const pillLook = (sel) => page.$eval(sel, (e) => { const st = getComputedStyle(e); return [st.borderColor, st.borderRadius, st.color, st.fontSize].join(); });
+check('Remove looks like the Change pill', (await pillLook('.portrait-remove')) === (await pillLook('.portrait-hint')), await pillLook('.portrait-remove'));
+await page.click('.portrait-remove');
 check('portrait removed shows initials', (await page.textContent('.sheet-hero .pp-initials')) === 'SW');
 await page.click('.lock');
 
@@ -252,7 +255,7 @@ check('export: changed portrait replaces the PDF picture', !!newPicture && newPi
 check('export: in the same shape', newPicture && Math.abs(newPicture.w / newPicture.h - sheetPicture.w / sheetPicture.h) < 0.01, `${newPicture?.w}x${newPicture?.h} vs ${sheetPicture.w}x${sheetPicture.h}`);
 check('export: no second picture', swapped.getPages()[1].node.Resources().lookup(PDFName.of('XObject')).keys().length === (await PDFDocument.load(await readFile(SHEET))).getPages()[1].node.Resources().lookup(PDFName.of('XObject')).keys().length);
 await page.click('.lock');
-await page.click('.portrait-edit .link-btn');
+await page.click('.portrait-remove');
 await page.click('.lock');
 
 // re-import the original: the diff lists what the app changed since

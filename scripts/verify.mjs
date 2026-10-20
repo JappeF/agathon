@@ -234,6 +234,16 @@ await page.click('.nav-char .nav-caret');
 check('nav caret opens the switcher', await page.isVisible('.switch-menu'));
 await page.keyboard.press('Escape');
 await page.waitForSelector('.switch-menu', { state: 'hidden' });
+// the sheet's Characters button is a pill like the menu button beside the actions
+const btnLook = (sel) => page.$eval(sel, (e) => { const st = getComputedStyle(e); return [st.borderStyle, st.borderRadius, st.height].join(); });
+check('Characters button is a pill like the menu button', (await btnLook('.switch-btn')) === (await btnLook('.sheet-actions .menu summary')), await btnLook('.switch-btn'));
+// edit mode opens Health and Willpower; Done folds them away again
+const vitalsShown = () => page.isVisible('.sheet-hero + .vitals-panel');
+const shownBefore = await vitalsShown();
+await page.click('.lock');
+check('edit mode opens Health and Willpower', await vitalsShown());
+await page.click('.lock');
+check('Done puts the panel back as it was', (await vitalsShown()) === shownBefore);
 
 // on the live site, /blank-sheet (a Pages Function) hands over Mr. Gone's blank sheet
 if (!/localhost|127\.0\.0\.1/.test(BASE)) {

@@ -118,6 +118,15 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   const { c, patch, replace } = useCharacter(id);
   const [edit, setEdit] = useState(false);
   const [vitalsOpen, setVitalsOpen] = useState(false);
+  // edit mode opens Health and Willpower (they are edited there too); Done puts it back
+  const vitalsBeforeEdit = useRef(false);
+  const toggleEdit = () => {
+    if (!edit) {
+      vitalsBeforeEdit.current = vitalsOpen;
+      setVitalsOpen(true);
+    } else setVitalsOpen(vitalsBeforeEdit.current);
+    setEdit(!edit);
+  };
   // "show Abilities at 0" is remembered on this device, for every character
   const [showUntrained, setShowUntrainedState] = useState(() => {
     try {
@@ -290,7 +299,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   return (
     <section className="view sheet">
       <div className="sheet-head">
-        <button type="button" className="back switch-btn" aria-haspopup="dialog" aria-expanded="false" onClick={(e) => openCharacterMenu(e.currentTarget)}>
+        <button type="button" className="btn btn-small switch-btn" aria-haspopup="dialog" aria-expanded="false" onClick={(e) => openCharacterMenu(e.currentTarget)}>
           Characters <Icon name="down" size={16} />
         </button>
         <div className="sheet-actions">
@@ -298,7 +307,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
             type="button"
             className={`btn btn-small lock${edit ? ' on' : ''}`}
             aria-pressed={edit}
-            onClick={() => setEdit(!edit)}
+            onClick={toggleEdit}
           >
             <Icon name={edit ? 'unlock' : 'lock'} size={16} /> {edit ? 'Done' : 'Edit'}
           </button>
@@ -347,7 +356,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               <span className="portrait-hint">{c.portrait ? 'Change' : 'Add photo'}</span>
             </FilePick>
             {c.portrait && (
-              <button type="button" className="link-btn" onClick={() => patch({ portrait: undefined })}>
+              <button type="button" className="portrait-remove" onClick={() => patch({ portrait: undefined })}>
                 Remove
               </button>
             )}
