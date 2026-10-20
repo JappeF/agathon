@@ -191,7 +191,7 @@ await page.click('.sheet-title .vitals-bar');
 for (const l of levels) for (let i = 0; i < 3; i++) await page.click(`.vitals-panel [aria-label^="${l}"]`);
 // Health and Willpower: the counts end where the boxes end, each Willpower dot sits over its
 // box, and side by side both rows of boxes share a bottom line; in play and in edit mode
-for (const [w, edit] of [[1300, false], [320, false], [320, true], [1300, true]]) {
+for (const [w, edit] of [[1300, false], [430, false], [320, false], [320, true], [1300, true]]) {
   if (edit !== !!(await page.$('.vitals-panel .wp-dots .dot-btn'))) await page.click('.lock');
   await page.setViewportSize({ width: w, height: 900 });
   await page.waitForTimeout(150);
@@ -209,18 +209,31 @@ for (const [w, edit] of [[1300, false], [320, false], [320, true], [1300, true]]
       boxes: boxes.length,
       bottoms: Math.round(Math.abs(all('.health-box').at(-1).bottom - all('.wp-box').at(-1).bottom)),
       sideBySide: hp.getBoundingClientRect().top === wp.getBoundingClientRect().top,
+      statusEnds: Math.round(hp.querySelector('.track-status').getBoundingClientRect().right - wp.querySelector('.track-status').getBoundingClientRect().right),
       wide: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     };
   });
   check(
     `${w}px${edit ? ', edit mode' : ''}: Health and Willpower line up`,
-    t.hpEnd === 0 && t.wpEnd === 0 && t.dotsOff <= 1 && t.boxes === 10 && (!t.sideBySide || t.bottoms <= 1) && t.wide <= 0,
+    t.hpEnd === 0 && t.wpEnd === 0 && t.dotsOff <= 1 && t.boxes === 10 && (t.sideBySide ? t.bottoms <= 1 : t.statusEnds === 0) && t.wide <= 0,
     JSON.stringify(t),
   );
 }
 await page.click('.lock');
 await page.click('.sheet-title .vitals-bar');
 await page.setViewportSize({ width: 390, height: 844 });
+
+// phones: a caret beside the portrait in the bottom nav opens the switcher
+const navCaret = await page.evaluate(() => {
+  const pp = document.querySelector('.nav-char .pp').getBoundingClientRect();
+  const c = document.querySelector('.nav-char .nav-caret').getBoundingClientRect();
+  return { mid: Math.round(Math.abs(pp.top + pp.height / 2 - (c.top + c.height / 2))), gap: Math.round(c.left - pp.right) };
+});
+check('390px: caret beside the nav portrait', navCaret.mid <= 1 && navCaret.gap >= -1 && navCaret.gap <= 4, JSON.stringify(navCaret));
+await page.click('.nav-char .nav-caret');
+check('nav caret opens the switcher', await page.isVisible('.switch-menu'));
+await page.keyboard.press('Escape');
+await page.waitForSelector('.switch-menu', { state: 'hidden' });
 
 // on the live site, /blank-sheet (a Pages Function) hands over Mr. Gone's blank sheet
 if (!/localhost|127\.0\.0\.1/.test(BASE)) {

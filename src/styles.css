@@ -511,6 +511,11 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 /* boxes shrink on a narrow phone instead of wrapping; dots share the Willpower columns */
 .health-boxes, .wp-boxes { display: grid; gap: 4px; }
 .health-boxes { grid-template-columns: repeat(7, minmax(0, 40px)); }
+/* stacked (phones): Health takes the Willpower width, so counts and box rows end together */
+@media (max-width: 599.98px) {
+  .track { width: min(100%, calc(10 * 28px + 9 * 4px)); }
+  .health-boxes { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+}
 .wp-boxes { grid-template-columns: repeat(10, minmax(0, 28px)); margin-top: 0.35rem; }
 .health-box, .wp-box {
   all: unset;
@@ -1387,7 +1392,27 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .nav-char .nav-item { min-width: 0; }
 .nav-char .pp { margin: -3px 0; }
 .nav-char-name { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 0.3rem; }
-.nav-caret { display: none; }
+/* phones: the portrait steps aside for a caret that opens the switcher; together they sit
+   centred over the name. 50% - 25.5px is the portrait's top in the centred column */
+@media (max-width: 899.98px) {
+  .nav-char { position: relative; }
+  .nav-char:has(.nav-caret) .pp { transform: translateX(-11px); }
+  .nav-caret {
+    all: unset;
+    box-sizing: border-box;
+    position: absolute;
+    left: calc(50% + 4px);
+    top: calc(50% - 25.5px);
+    width: 28px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    color: var(--ink-faint);
+    cursor: pointer;
+  }
+  .nav-char.on .nav-caret, .nav-caret[aria-expanded='true'] { color: var(--gold-hot); }
+  .nav-caret:focus-visible { outline: 2px solid var(--gold); border-radius: var(--r-sm); }
+}
 @media (min-width: 900px) {
   .nav-char { flex: 0 0 auto; align-items: center; border: 1px solid transparent; border-radius: 999px; transition: border-color 0.2s, background 0.2s; }
   .nav-char.on { border-color: var(--gold-deep); background: #d9b45a14; }

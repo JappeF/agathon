@@ -96,8 +96,8 @@ export default function App() {
             <span>{n.label}</span>
           </a>
         ))}
-        {/* the character in play: tap for the sheet; the caret (wide screens) or the sheet's
-            own switch button opens the switcher */}
+        {/* the character in play: tap for the sheet; the caret beside the portrait (or the
+            sheet's own switch button) opens the switcher */}
         <span className={`nav-char${view === 'characters' ? ' on' : ''}`}>
           <a
             href={active ? `#/characters/${encodeURIComponent(active.id)}` : '#/characters'}
