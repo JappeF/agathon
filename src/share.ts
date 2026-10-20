@@ -25,6 +25,9 @@ export interface SharePayload {
 /** A spell idea in a backup: all of it (versions, AI answers, log), tied to its character by index. */
 export type BackupSpell = Omit<Spell, 'id' | 'characterId'> & { character: number };
 
+/** Spell ideas for a link: the ideas and their plans, without the AI's whole answers and the log. */
+export const lightSpells = (spells: Spell[]): Spell[] => spells.map((s) => ({ ...s, log: [], versions: s.versions.map(({ reply: _r, ...v }) => v) }));
+
 export function buildPayload(characters: Character[], includeNotes: boolean, includePortraits = true, spells: Spell[] = []): SharePayload {
   const index = new Map(characters.map((c, i) => [c.id, i]));
   const backup = spells

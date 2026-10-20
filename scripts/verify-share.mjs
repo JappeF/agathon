@@ -3,7 +3,7 @@
 // back-up-all file. Needs `npm run preview` on :4173 (or BASE=...).
 import { chromium } from 'playwright-core';
 import { copyFile, mkdir, readFile } from 'node:fs/promises';
-import { deflateRawSync } from 'node:zlib';
+import { deflateRawSync, inflateRawSync } from 'node:zlib';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 await mkdir('shots', { recursive: true });
@@ -147,7 +147,7 @@ const hostile = {
 };
 await b.goto(`${BASE}/#import=0.${Buffer.from(JSON.stringify(hostile)).toString('base64url')}`, { waitUntil: 'networkidle' });
 await b.waitForSelector('.modal');
-check('hostile share: only the spell idea with a character', /Characters and one spell idea/.test(await b.textContent('.modal')), await b.textContent('.modal'));
+check('hostile share: only the spell idea with a character', /and one spell idea are added/.test(await b.textContent('.modal')), await b.textContent('.modal'));
 await b.click('.modal button:has-text("Add character")');
 await b.waitForSelector('.sheet-name:text-is("Hostile Mage")');
 await b.goto(`${BASE}/#/spells`, { waitUntil: 'networkidle' });
@@ -246,6 +246,37 @@ check(
   'restored idea is back with its goal and log',
   (await c.inputValue('.dossier label:has-text("What should happen") textarea')) === 'Survive the backup.' && (await c.locator('.log-entry').count()) === 1,
 );
+
+// sharing one character with its spell ideas (device B, the idea's owner is in play): the
+// link takes the idea without its log, the file takes it whole
+await b.click('.modal button:has-text("Done")');
+await b.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+await b.waitForSelector(`.sheet-name:text-is("${ideaOwner}")`);
+await b.click('.menu summary');
+await b.click('button:has-text("Share character")');
+await b.waitForSelector('.modal');
+const ideasBox = '.modal .check:has-text("Include spell ideas") input';
+await b.waitForSelector(ideasBox, { timeout: 3000 }).catch(() => {});
+check('spell ideas offered, unticked', (await b.locator(ideasBox).count()) === 1 && !(await b.isChecked(ideasBox)));
+const linkOf = async () => {
+  await b.click('.modal button:has-text("Copy link")');
+  const link = await b.evaluate(() => navigator.clipboard.readText());
+  return JSON.parse(inflateRawSync(Buffer.from(link.split('#import=1.')[1], 'base64url')).toString());
+};
+check('link without ideas by default', !(await linkOf()).spells);
+await b.check(ideasBox);
+await b.waitForTimeout(500);
+const linked = await linkOf();
+check('link carries the idea, not its log', linked.spells?.length === 1 && linked.spells[0].title === 'Backup test idea' && !linked.spells[0].log, JSON.stringify(linked.spells));
+const [one] = await Promise.all([b.waitForEvent('download'), b.click('.modal button:has-text("Download file")')]);
+await one.saveAs('shots/one-with-ideas.agathon.json');
+const oneFile = JSON.parse(await readFile('shots/one-with-ideas.agathon.json', 'utf8'));
+check('file carries the idea with its log', oneFile.spells?.length === 1 && oneFile.spells[0].log.length === 1);
+await b.click('.modal button:has-text("Done")');
+// and the link brings it in elsewhere, with the character
+await c.goto(`${BASE}/#import=1.${deflateRawSync(Buffer.from(JSON.stringify(linked))).toString('base64url')}`, { waitUntil: 'networkidle' });
+await c.waitForSelector('.modal');
+check('link import names the spell idea', /The character and one spell idea are added/.test(await c.textContent('.modal')), await c.textContent('.modal'));
 
 // clean up device A (device B's context is thrown away)
 await a.click('.menu summary');

@@ -4,7 +4,7 @@ import qrcode from 'qrcode-generator';
 import type { Character } from '../character';
 import { db } from '../db/db';
 import { download } from '../sheetActions';
-import { buildPayload, encodeShare, payloadFileName, shareUrl } from '../share';
+import { buildPayload, encodeShare, lightSpells, payloadFileName, shareUrl } from '../share';
 import { shrinkPortrait } from '../portrait';
 import { Modal } from './Modal';
 
@@ -14,6 +14,8 @@ const QR_MAX = 2200;
 /**
  * Share one character (or back up all of them) as a file, a link or a QR code.
  * Notes stay private unless the player ticks the box. The sheet PDF never goes along.
+ * Spell ideas: a backup takes them all; one character takes its own when ticked, in full
+ * in the file and without AI answers and log in the link (the QR code leaves them out).
  */
 export function ShareDialog({
   characters,
@@ -35,6 +37,9 @@ export function ShareDialog({
   const [qr, setQr] = useState<string | null>(null);
   const hasNotes = characters.some((c) => c.notes.trim());
   const spellCount = useLiveQuery(() => (backup ? db.spells.count() : 0), [backup]) ?? 0;
+  const [includeSpells, setIncludeSpells] = useState(false);
+  const single = characters.length === 1 ? characters[0].id : '';
+  const ownSpells = useLiveQuery(() => (single && !backup ? db.spells.where('characterId').equals(single).toArray() : []), [single, backup]);
 
   useEffect(() => {
     let live = true;
@@ -43,10 +48,11 @@ export function ShareDialog({
       const bare = buildPayload(characters, includeNotes, false);
       const qr = shareUrl(await encodeShare(bare));
       // links carry a small copy of the portrait; the file has the full one
+      const linked = buildPayload(characters, includeNotes, false, includeSpells && ownSpells ? lightSpells(ownSpells) : []);
       const withThumb = {
-        ...bare,
+        ...linked,
         characters: await Promise.all(
-          bare.characters.map(async (sc, i) => {
+          linked.characters.map(async (sc, i) => {
             const p = characters[i].portrait;
             return p ? { ...sc, portrait: await shrinkPortrait(p).catch(() => undefined) } : sc;
           }),
@@ -61,10 +67,11 @@ export function ShareDialog({
     return () => {
       live = false;
     };
-  }, [characters, includeNotes]);
+  }, [characters, includeNotes, includeSpells, ownSpells]);
 
   const file = async () => {
-    const p = buildPayload(characters, includeNotes, true, backup ? await db.spells.toArray() : []);
+    const spells = backup ? await db.spells.toArray() : includeSpells ? (ownSpells ?? []) : [];
+    const p = buildPayload(characters, includeNotes, true, spells);
     download(JSON.stringify(p, null, 2), payloadFileName(p), 'application/json');
   };
 
@@ -109,6 +116,17 @@ export function ShareDialog({
           <input type="checkbox" checked={includeNotes} onChange={(e) => setIncludeNotes(e.target.checked)} />
           Include notes
         </label>
+      )}
+      {!backup && ownSpells && ownSpells.length > 0 && (
+        <>
+          <label className="check">
+            <input type="checkbox" checked={includeSpells} onChange={(e) => setIncludeSpells(e.target.checked)} />
+            Include spell ideas ({ownSpells.length})
+          </label>
+          {includeSpells && (
+            <p className="fine-print">The file takes them whole; the link leaves out the AI answers and the log, the QR code leaves the ideas out.</p>
+          )}
+        </>
       )}
       <div className="share-actions">
         <button className="btn" onClick={file}>

@@ -98,8 +98,9 @@ export function SharedImport({
         ))}
       </ul>
       <p className="empty-small">
-        {spells ? `Characters and ${spells === 1 ? 'one spell idea' : `${spells} spell ideas`}` : 'Characters'} are added to this device. Nothing gets
-        overwritten.
+        {n === 1 ? 'The character' : 'Characters'}
+        {spells ? ` and ${spells === 1 ? 'one spell idea' : `${spells} spell ideas`}` : ''} {n === 1 && !spells ? 'is' : 'are'} added to this device.
+        Nothing gets overwritten.
       </p>
       {failed && <p className="paste-error" role="alert">{failed}</p>}
       <div className="modal-actions">
