@@ -50,6 +50,7 @@ check('opens the new dossier', new URL(page.url()).hash.startsWith('#/spells/'),
 // the dark pill buttons are as tall as the sheet's (30px); gold main actions keep 44px
 const pills = await page.$$eval('.dossier .btn', (bs) => bs.filter((b) => b.offsetParent).map((b) => [b.classList.contains('btn-gold'), Math.round(b.getBoundingClientRect().height), b.textContent.trim()]));
 check('dossier: dark pills 30px, gold 44px', pills.length > 3 && pills.every(([gold, h]) => h === (gold ? 44 : 30)), JSON.stringify(pills));
+check('Copy for AI and Paste the answer are both gold', pills.filter(([gold, , t]) => gold && /Copy for AI|Paste the answer/.test(t)).length === 2);
 check('title from the effect', (await page.inputValue('.dossier-title')) === effectName);
 check('effect linked', (await text('.dossier-side .pin-list')).includes(effectName));
 check('Spheres from the effect', (await page.$$eval('.version-spheres .sphere-btn.on', (bs) => bs.map((b) => b.title).join())) === 'Forces,Prime');
