@@ -393,14 +393,15 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 
 /* ---------- sheet header ---------- */
 .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 0.6rem; }
-/* the dark pill buttons on the sheet, Spell ideas and the Library (Characters, Edit, Add ...,
-   Show more, Paste the answer) as tall as the XP and status pills; the tap area stays 44px.
-   Gold main actions and the round pick buttons keep the height of their field */
+/* the dark pill buttons on the sheet, Spell ideas, the Library, the character menu and the
+   share dialog (Characters, Edit, Add ..., Show more, Import, Copy link) as tall as the XP and
+   status pills; the tap area stays 44px. Gold main actions and the round pick buttons keep the
+   height of their field */
 .sheet .btn-small:not(.pick-open),
-:is(.spells, .dossier, .library) .btn:not(.btn-gold) { min-height: 30px; height: 30px; position: relative; }
-:is(.spells, .dossier, .library) .btn:not(.btn-gold) { padding: 0 0.9rem; font-size: 0.85rem; }
+:is(.spells, .dossier, .library, .char-tools, .share-actions) .btn:not(.btn-gold) { min-height: 30px; height: 30px; position: relative; }
+:is(.spells, .dossier, .library, .char-tools, .share-actions) .btn:not(.btn-gold) { padding: 0 0.9rem; font-size: 0.85rem; }
 .sheet .btn-small:not(.pick-open)::after,
-:is(.spells, .dossier, .library) .btn:not(.btn-gold)::after { content: ''; position: absolute; inset: -7px 0; }
+:is(.spells, .dossier, .library, .char-tools, .share-actions) .btn:not(.btn-gold)::after { content: ''; position: absolute; inset: -7px 0; }
 .dossier-actions { display: inline-flex; align-items: center; gap: 0.4rem; }
 .shared-spell-goal { font-family: var(--font-flavor); font-style: italic; font-size: 1.05rem; white-space: pre-wrap; max-height: 9lh; overflow: auto; }
 .back {
@@ -839,7 +840,7 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .rated-list .row-input { flex: 1; min-width: 0; }
 
 /* sharing */
-.share-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.8rem 0 0.4rem; }
+.share-actions { display: flex; flex-wrap: wrap; gap: 0.9rem 0.5rem; margin: 0.8rem 0 0.4rem; }
 .qr {
   width: min(260px, 100%);
   margin: 0.8rem auto 0;
