@@ -237,6 +237,41 @@ await page.click('.menu summary');
 await page.click('button:has-text("Delete character")');
 await page.click('.modal .btn-danger');
 
+// a checkbox dot sits level with its label's text (measured in pixels at 4x: the line box
+// sits lower than the capitals, so the dot is lifted by 1px)
+{
+  const sharp = await browser.newPage({ viewport: { width: 1300, height: 900 }, deviceScaleFactor: 4, reducedMotion: 'reduce' });
+  await sharp.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+  await sharp.fill('input[aria-label="New character name"]:visible', 'Level');
+  await sharp.keyboard.press('Enter');
+  await sharp.waitForSelector('.sheet-name');
+  await sharp.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
+  await sharp.addStyleTag({ content: '[class*=toast]{display:none!important}' });
+  const label = sharp.locator('.lib-toggles .check').first(); // "What Level can cast": no descenders to skew the text's middle
+  const png = (await label.screenshot()).toString('base64');
+  const mid = await sharp.evaluate(async (src) => {
+    const img = new Image();
+    img.src = src;
+    await img.decode();
+    const c = Object.assign(document.createElement('canvas'), { width: img.width, height: img.height });
+    const x = c.getContext('2d');
+    x.drawImage(img, 0, 0);
+    const d = x.getImageData(0, 0, c.width, c.height).data;
+    const at = (xx, y) => d.slice((y * c.width + xx) * 4, (y * c.width + xx) * 4 + 3);
+    const dot = [], text = [];
+    for (let y = 0; y < c.height; y++) {
+      let g = 0, t = 0;
+      for (let xx = 0; xx < 72; xx++) { const [r, , b] = at(xx, y); if (r > 120 && b < 110 && r - b > 60) g++; }
+      for (let xx = 80; xx < Math.min(c.width, 380); xx++) { const [r, gg, b] = at(xx, y); if (r > 140 && gg > 140 && b > 150) t++; }
+      if (g) dot.push(y);
+      if (t > 2) text.push(y);
+    }
+    return { dot: (dot[0] + dot.at(-1)) / 8, text: (text[0] + text.at(-1)) / 8 };
+  }, `data:image/png;base64,${png}`);
+  check('checkbox dot level with its text', Math.abs(mid.dot - mid.text) <= 0.6, JSON.stringify(mid));
+  await sharp.close();
+}
+
 check('no page errors', errors.length === 0, errors.join(' | '));
 await browser.close();
 console.log(failed ? `\n${failed} check(s) failed` : '\nAll checks passed');

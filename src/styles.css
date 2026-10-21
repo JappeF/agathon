@@ -654,6 +654,8 @@ input[type='checkbox']:indeterminate { border-color: var(--gold); background: li
 input[type='checkbox']:hover { border-color: var(--gold); }
 input[type='checkbox']:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
+/* beside a label the line box sits lower than the capitals: lift the dot to the text's middle */
+.check input[type='checkbox'] { position: relative; top: -1px; }
 .toggle-untrained { margin: 0.2rem 0; }
 
 /* dots */
@@ -1758,7 +1760,7 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 /* the AI's name and goal, each with its own checkbox */
 .paste-suggest { display: grid; gap: 0.2rem; margin: 0.4rem 0; }
 .paste-suggest .check { align-items: flex-start; font-size: 0.92rem; color: var(--ink); }
-.paste-suggest .check input { margin-top: 0.3rem; }
+.paste-suggest .check input { margin-top: calc(0.3rem + 1px); }
 .paste-suggest em { font-family: var(--font-flavor); }
 .ai-reply { border-left: 2px solid var(--line-solid); padding-left: 0.7rem; }
 .ai-reply summary { cursor: pointer; font-size: 0.85rem; color: var(--ink-faint); min-height: 32px; display: flex; align-items: center; }
