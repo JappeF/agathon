@@ -81,6 +81,13 @@ await page.setViewportSize({ width: 700, height: 900 });
 look = await spheresLook();
 check('700px: Spheres in one row', rows(look) === 1, String(rows(look)));
 await page.setViewportSize({ width: 390, height: 844 });
+// fields: one line is a pill, more lines get the softer corner (--r-area)
+const fieldLook = await page.evaluate(() => {
+  const one = document.querySelector('.text-input');
+  const area = document.querySelector('.dossier .text-area');
+  return { pill: parseFloat(getComputedStyle(one).borderTopLeftRadius) >= one.getBoundingClientRect().height / 2, area: getComputedStyle(area).borderTopLeftRadius };
+});
+check('single-line fields are pills, text areas softly rounded', fieldLook.pill && fieldLook.area === '16px', JSON.stringify(fieldLook));
 // Prime 2 -> 3 -> 4 -> 5 -> 0: past 5 it is gone
 for (let i = 0; i < 4; i++) await page.click('.version-spheres .sphere-btn[title="Prime"]');
 check('past 5 a Sphere drops out', (await page.getAttribute('.version-spheres .sphere-btn[title="Prime"]', 'aria-label')) === 'Prime');

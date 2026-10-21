@@ -24,6 +24,8 @@
   --shadow: 0 16px 40px #00000099;
   --r: 12px;
   --r-sm: 8px;
+  /* fields: one line is a pill like the buttons; more lines get this softer corner */
+  --r-area: 16px;
   --nav-h: 64px;
   --font-logo: 'Cinzel Decorative', 'Cinzel Variable', Georgia, serif;
   --font-head: 'Cinzel Variable', Georgia, serif;
@@ -369,8 +371,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   color: var(--ink);
   background: var(--bg-deep);
   border: 1px solid var(--line-solid);
-  border-radius: var(--r-sm);
-  padding: 0 0.8rem;
+  border-radius: 999px;
+  padding: 0 1rem;
 }
 .text-input:focus { outline: none; border-color: var(--gold); }
 
@@ -622,8 +624,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   color: var(--ink);
   background: var(--bg-deep);
   border: 1px solid var(--line-solid);
-  border-radius: 6px;
-  padding: 0 0.5rem;
+  border-radius: 999px;
+  padding: 0 0.75rem;
 }
 .spec-input:focus, .text-area:focus { outline: none; border-color: var(--gold); }
 .check { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; color: var(--ink-dim); min-height: 32px; }
@@ -662,8 +664,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   color: var(--ink);
   background: var(--bg-deep);
   border: 1px solid var(--line-solid);
-  border-radius: var(--r-sm);
-  padding: 0.5rem 0.7rem;
+  border-radius: var(--r-area);
+  padding: 0.55rem 0.9rem;
   resize: vertical;
   /* grows with its text (main.tsx does it by hand where field-sizing isn't supported) */
   field-sizing: content;
@@ -692,7 +694,7 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .wonder strong { color: var(--gold-hot); }
 .weapon { margin: 0.2rem 0; }
 .weapon-edit { display: grid; grid-template-columns: 2fr repeat(5, 1fr) 44px; gap: 0.3rem; margin-bottom: 0.4rem; }
-.weapon-edit .text-input { min-height: 38px; padding: 0 0.4rem; font-size: 0.85rem; }
+.weapon-edit .text-input { min-height: 38px; padding: 0 0.6rem; font-size: 0.85rem; }
 @media (max-width: 600px) {
   .weapon-edit { grid-template-columns: 1fr 1fr 1fr; }
   .weapon-edit .text-input:first-child { grid-column: 1 / -1; }
