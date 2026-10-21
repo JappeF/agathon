@@ -1681,22 +1681,26 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .picker-row:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
 .log-form { display: grid; gap: 0.5rem; }
 .outcome-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.3rem; }
+/* how it went: four pills like the other dark buttons (30px, 44px to tap) */
 .outcome-btn {
   all: unset;
   box-sizing: border-box;
-  min-height: 40px;
+  position: relative;
+  height: 30px;
   display: grid;
   place-items: center;
   font-size: 0.85rem;
   font-weight: 700;
   border: 1px solid var(--line-solid);
-  border-radius: var(--r-sm);
+  border-radius: 999px;
+  background: var(--bg-raised);
   cursor: pointer;
 }
+.outcome-btn::after { content: ''; position: absolute; inset: -7px 0; }
 .outcome-btn.on { border-color: currentColor; background: color-mix(in srgb, currentColor 14%, transparent); }
-.outcome-btn:focus-visible { outline: 2px solid var(--gold); }
+.outcome-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .log-paradox { display: flex; align-items: center; gap: 0.6rem; font-size: 0.88rem; color: var(--ink-dim); }
-.log-paradox .text-input { width: 4.5rem; min-height: 40px; text-align: center; }
+.log-paradox .text-input { flex: none; width: 4.5rem; min-height: 40px; text-align: center; }
 .log-form .btn-gold { justify-self: start; }
 .log-list { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; }
 .log-entry { display: grid; gap: 0.15rem; padding: 0.5rem 0; border-bottom: 1px solid var(--line); }

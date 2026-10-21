@@ -88,6 +88,8 @@ const fieldLook = await page.evaluate(() => {
   return { pill: parseFloat(getComputedStyle(one).borderTopLeftRadius) >= one.getBoundingClientRect().height / 2, area: getComputedStyle(area).borderTopLeftRadius };
 });
 check('single-line fields are pills, text areas softly rounded', fieldLook.pill && fieldLook.area === '16px', JSON.stringify(fieldLook));
+const outcomes = await page.$$eval('.outcome-btn', (bs) => bs.map((b) => [Math.round(b.getBoundingClientRect().height), getComputedStyle(b).borderTopLeftRadius]));
+check('outcome buttons are 30px pills', outcomes.length === 4 && outcomes.every(([h, r]) => h === 30 && parseFloat(r) >= 15), JSON.stringify(outcomes));
 // Prime 2 -> 3 -> 4 -> 5 -> 0: past 5 it is gone
 for (let i = 0; i < 4; i++) await page.click('.version-spheres .sphere-btn[title="Prime"]');
 check('past 5 a Sphere drops out', (await page.getAttribute('.version-spheres .sphere-btn[title="Prime"]', 'aria-label')) === 'Prime');
@@ -112,6 +114,7 @@ check('second effect linked', (await page.locator('.linked-effect').count()) ===
 // log a casting
 await page.click('.outcome-btn:has-text("Botched")');
 await page.fill('.log-paradox input', '3');
+check('Paradox gained stays a small field', (await page.$eval('.log-paradox .text-input', (i) => i.getBoundingClientRect().width)) < 100);
 await page.fill('.log-form textarea', 'The door held, the hairspray did not.');
 await page.click('button:has-text("Add to the log")');
 check('log entry', /Botched/.test(await text('.log-list')) && /\+3 Paradox/.test(await text('.log-list')), await text('.log-list'));
