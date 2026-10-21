@@ -630,7 +630,30 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 }
 .spec-input:focus, .text-area:focus { outline: none; border-color: var(--gold); }
 .check { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; color: var(--ink-dim); min-height: 32px; }
-.check input { accent-color: var(--gold); }
+/*
+ * Every checkbox is a dot, like the Arete and Willpower dots: an empty ring, a gold dot
+ * when ticked, half gold when only some are (All pages in Copy for AI).
+ */
+input[type='checkbox'] {
+  appearance: none;
+  flex: none;
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  border: 1.5px solid var(--gold-deep);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+input[type='checkbox']:checked {
+  border-color: var(--gold);
+  background: radial-gradient(circle at 35% 35%, var(--gold-hot), var(--gold) 55%, var(--gold-deep));
+  box-shadow: 0 0 6px #d9b45a55;
+}
+input[type='checkbox']:indeterminate { border-color: var(--gold); background: linear-gradient(to right, var(--gold) 50%, transparent 50%); }
+input[type='checkbox']:hover { border-color: var(--gold); }
+input[type='checkbox']:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .toggle-untrained { margin: 0.2rem 0; }
 
 /* dots */

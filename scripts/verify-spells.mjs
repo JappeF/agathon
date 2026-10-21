@@ -89,6 +89,12 @@ const fieldLook = await page.evaluate(() => {
 });
 check('single-line fields are pills, text areas softly rounded', fieldLook.pill && fieldLook.area === '16px', JSON.stringify(fieldLook));
 const outcomes = await page.$$eval('.outcome-btn', (bs) => bs.map((b) => [Math.round(b.getBoundingClientRect().height), getComputedStyle(b).borderTopLeftRadius]));
+// checkboxes are dots: round, and gold when ticked (Copy for AI has three)
+await page.click('button:has-text("Copy for AI")');
+await page.waitForSelector('.modal .pack-options');
+const dots = await page.$$eval('.modal input[type=checkbox]', (is) => is.map((i) => [getComputedStyle(i).borderRadius, i.checked, getComputedStyle(i).backgroundImage !== 'none']));
+check('checkboxes are dots, filled when ticked', dots.length >= 3 && dots.every(([r, on, filled]) => r === '50%' && on === filled), JSON.stringify(dots));
+await page.click('.modal button:has-text("Close")');
 check('outcome buttons are 30px pills', outcomes.length === 4 && outcomes.every(([h, r]) => h === 30 && parseFloat(r) >= 15), JSON.stringify(outcomes));
 // Prime 2 -> 3 -> 4 -> 5 -> 0: past 5 it is gone
 for (let i = 0; i < 4; i++) await page.click('.version-spheres .sphere-btn[title="Prime"]');

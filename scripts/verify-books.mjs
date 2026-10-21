@@ -92,6 +92,7 @@ check('no pages, no book text in the pack', !/### M20 p\./.test(await page.textC
 await page.click('.pack-preview summary');
 await page.check('.pack-pages li:has-text("p. 528") input');
 check('one page back: the box shows some', (await allState()) === 'some', await allState());
+check('and is drawn half gold', /linear-gradient/.test(await page.$eval(allBox, (i) => getComputedStyle(i).backgroundImage)));
 await page.click(allBox);
 await page.click('.pack-preview summary');
 let pack = await page.textContent('.pack-preview pre');
