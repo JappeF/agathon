@@ -68,7 +68,7 @@ export function WillpowerTrack({ c, patch, edit }: { c: Character; patch: Patch;
 }
 
 /**
- * The M20 Quintessence/Paradox wheel: 20 boxes, Quintessence filling clockwise from
+ * The M20 Quintessence/Paradox wheel: 20 boxes (drawn round), Quintessence filling clockwise from
  * the dot on the left, Paradox counterclockwise. Paradox cancels Quintessence where
  * they meet; Quintessence stops at the Paradox (M20 p. 331).
  */
@@ -88,16 +88,7 @@ export function QPWheel({ c, patch }: { c: Character; patch: Patch }) {
           const y = cx + R * Math.sin(a);
           const state = k < c.quintessence ? 'q' : k >= WHEEL_SIZE - c.paradox ? 'p' : '';
           return (
-            <rect
-              key={k}
-              x={x - 7}
-              y={y - 7}
-              width="14"
-              height="14"
-              rx="2"
-              transform={`rotate(${(a * 180) / Math.PI + 45} ${x} ${y})`}
-              className={`wheel-box ${state}`}
-            />
+            <circle key={k} cx={x} cy={y} r="7.5" className={`wheel-box ${state}`} />
           );
         })}
         <text x={cx} y={cx - 6} className="wheel-q">

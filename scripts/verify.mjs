@@ -234,6 +234,14 @@ for (const [w, edit] of [[1300, false], [430, false], [320, false], [320, true],
     JSON.stringify(t),
   );
 }
+check(
+  'Health, Willpower and the wheel are circles',
+  await page.evaluate(
+    () =>
+      [...document.querySelectorAll('.vitals-panel .health-box, .vitals-panel .wp-box')].every((b) => getComputedStyle(b).borderRadius === '50%') &&
+      document.querySelectorAll('.wheel-svg circle.wheel-box').length === 20,
+  ),
+);
 await page.click('.lock');
 await page.click('.sheet-title .vitals-bar');
 await page.setViewportSize({ width: 390, height: 844 });

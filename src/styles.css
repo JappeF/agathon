@@ -535,7 +535,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   display: grid;
   place-items: center;
   border: 1.5px solid var(--line-solid);
-  border-radius: 6px;
+  /* round, like the Spheres and the Quintessence wheel */
+  border-radius: 50%;
   background: var(--bg-deep);
   font-weight: 800;
   font-size: 1.1rem;
