@@ -8,7 +8,7 @@ import { SPHERES, type Sphere } from '../types';
 import { go } from '../useHashRoute';
 import { ComboChips } from './ComboChips';
 import { EffectDetail } from './EffectDetail';
-import { SphereGlyph } from './SphereGlyph';
+import { SphereButton } from './SphereButton';
 import { Icon } from './Icon';
 import { hasMatch, Highlighted, snippet } from './Highlighted';
 
@@ -242,18 +242,7 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
             {SPHERES.map((s) => {
               const r = sphereRankInQuery(parsed, s);
               return (
-                <button
-                  key={s}
-                  type="button"
-                  className={`sphere-btn sph-${s}${r ? ' on' : ''}`}
-                  aria-label={`${s}${r ? ` up to ${r}` : ''}`}
-                  title={s}
-                  onClick={() => cycleSphere(s)}
-                >
-                  <SphereGlyph sphere={s} size={20} />
-                  <span className="sphere-btn-name">{s === 'Correspondence' ? 'Corresp.' : s}</span>
-                  <span className="sphere-btn-rank">{r || ''}</span>
-                </button>
+                <SphereButton key={s} sphere={s} rank={r} label={`${s}${r ? ` up to ${r}` : ''}`} onClick={() => cycleSphere(s)} />
               );
             })}
           </div>

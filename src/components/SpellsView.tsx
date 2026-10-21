@@ -20,7 +20,7 @@ import { Modal } from './Modal';
 import { buildPack, packSize, parseReply, ReplyError, type PackOptions, type PackPage } from '../contextPack';
 import { candidatePassages, printedPage } from '../books';
 import { BooksPanel } from './BooksPanel';
-import { SphereGlyph } from './SphereGlyph';
+import { SphereButton } from './SphereButton';
 
 /** Fit a textarea to its text (for browsers without field-sizing: content). */
 const grow = (el: HTMLTextAreaElement | null) => {
@@ -373,18 +373,13 @@ function VersionEditor({
         {SPHERES.map((sp) => {
           const r = v.spheres[sp] ?? 0;
           return (
-            <button
+            <SphereButton
               key={sp}
-              type="button"
-              className={`sphere-btn sph-${sp}${r ? ' on' : ''}`}
-              aria-label={`${sp}${r ? ` ${r}` : ''}`}
-              title={sp}
+              sphere={sp}
+              rank={r}
+              label={`${sp}${r ? ` ${r}` : ''}`}
               onClick={() => onChange({ spheres: { ...v.spheres, [sp]: r >= 5 ? 0 : r + 1 } })}
-            >
-              <SphereGlyph sphere={sp} size={20} />
-              <span className="sphere-btn-name">{sp === 'Correspondence' ? 'Corresp.' : sp}</span>
-              <span className="sphere-btn-rank">{r || ''}</span>
-            </button>
+            />
           );
         })}
       </div>

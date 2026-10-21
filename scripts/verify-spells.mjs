@@ -63,6 +63,24 @@ await page.fill('.dossier label:has-text("What should happen") textarea', 'Blow 
 await page.fill('.version label:has-text("How it looks") textarea', 'A lighter and hairspray');
 await page.click('.version-spheres .sphere-btn[title="Matter"]');
 check('Sphere tap adds a rank', (await page.getAttribute('.version-spheres .sphere-btn[title="Matter"]', 'aria-label')) === 'Matter 1');
+// Spheres are round: a disc with a ring whose lit arcs follow the rank; five and four on a
+// phone, nine in a row from 600px
+const spheresLook = async () =>
+  page.$$eval('.version-spheres .sphere-btn', (bs) =>
+    bs.map((b) => {
+      const d = b.querySelector('.sphere-disc').getBoundingClientRect();
+      return { round: Math.abs(d.width - d.height) < 1 && getComputedStyle(b.querySelector('.sphere-disc')).borderRadius === '50%', lit: b.querySelectorAll('.sphere-ring .lit').length, top: Math.round(d.top) };
+    }),
+  );
+let look = await spheresLook();
+const rows = (l) => [...new Set(l.map((x) => x.top))].length;
+check('Sphere buttons are round discs', look.every((x) => x.round));
+check('ring lights one arc per rank', look[4].lit === 1 && look[1].lit === 0, JSON.stringify(look.map((x) => x.lit)));
+check('390px: Spheres in two rows', rows(look) === 2, String(rows(look)));
+await page.setViewportSize({ width: 700, height: 900 });
+look = await spheresLook();
+check('700px: Spheres in one row', rows(look) === 1, String(rows(look)));
+await page.setViewportSize({ width: 390, height: 844 });
 // Prime 2 -> 3 -> 4 -> 5 -> 0: past 5 it is gone
 for (let i = 0; i < 4; i++) await page.click('.version-spheres .sphere-btn[title="Prime"]');
 check('past 5 a Sphere drops out', (await page.getAttribute('.version-spheres .sphere-btn[title="Prime"]', 'aria-label')) === 'Prime');
