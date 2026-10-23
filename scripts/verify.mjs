@@ -494,9 +494,15 @@ check('deleting the last one shows the welcome', (await page.$('.nav-char .pp'))
   await tp.waitForSelector('.sheet-name:text-is("Tally NPC")');
   await tp.click('.xp-word');
   check('a short tap on XP opens nothing', (await tp.locator('.modal').count()) === 0);
+  // a press of a second is not enough; two seconds is
   await tp.hover('.xp-word');
   await tp.mouse.down();
-  await tp.waitForTimeout(900);
+  await tp.waitForTimeout(1000);
+  await tp.mouse.up();
+  await tp.waitForTimeout(300);
+  check('a one-second press opens nothing', (await tp.locator('.modal').count()) === 0);
+  await tp.mouse.down();
+  await tp.waitForTimeout(2200);
   await tp.mouse.up();
   await tp.waitForSelector('.modal .build-cost', { timeout: 3000 }).catch(() => {});
   const tally = await tp.textContent('.modal').catch(() => '');

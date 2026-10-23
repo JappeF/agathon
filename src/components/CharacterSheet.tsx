@@ -150,7 +150,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   // a snapshot taken when Share opens: a fresh [c] on every render re-encoded the link and hid the QR code
   const [sharing, setSharing] = useState<Character[] | null>(null);
   const [zoom, setZoom] = useState(false);
-  // a long press on the word XP opens the build cost (kept out of the guide on purpose)
+  // a long press (2 s) on the word XP opens the build cost (kept out of the guide on purpose)
   const [tally, setTally] = useState(false);
   const press = useRef<{ timer?: number; fired?: boolean }>({});
   const pressStart = () => {
@@ -159,7 +159,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
     press.current.timer = window.setTimeout(() => {
       press.current.fired = true;
       setTally(true);
-    }, 700);
+    }, 2000);
   };
   const pressEnd = () => window.clearTimeout(press.current.timer);
   // the mini bar has its own drop-down, so opening it never changes the page height
