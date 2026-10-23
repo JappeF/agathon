@@ -1907,9 +1907,14 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .help-q::after { content: ''; position: absolute; inset: -12px; }
 .help-q:hover { color: var(--gold-hot); border-color: var(--gold); }
 .help-q:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-/* phones: Help takes a narrower slot than the three main items */
+/* the Help ring sits like the portrait: 30px, with the same -3px margins so the labels line up */
+.nav-help svg { margin: -3px 0; }
+/* phones: the character in play gets the room; the others are as wide as they need */
 @media (max-width: 899.98px) {
-  .nav-help { flex: 0 0 64px; }
+  .app-nav > .nav-item { flex: 0 0 auto; padding: 0 0.75rem; }
+}
+@media (min-width: 900px) {
+  .nav-help svg { margin: -4px 0; }
 }
 .search-tips { margin-left: 0.7rem; font-size: 0.82rem; white-space: nowrap; }
 .help { max-width: 46rem; margin-inline: auto; }
