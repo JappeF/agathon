@@ -463,7 +463,15 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
                 <li key={s} className={`trait-row sphere-row sph-${s}${c.spheres[s] ? '' : ' zero'}`}>
                   <span className="trait-label">
                     <span className="trait-name">
-                      <SphereGlyph sphere={s} size={18} /> {s}
+                      <SphereGlyph sphere={s} size={18} />{' '}
+                      {/* on the narrowest phones in edit mode the dots take the room: "Corresp.", as in the library */}
+                      {s === 'Correspondence' ? (
+                        <span className="sphere-name" data-short="Corresp.">
+                          <span>{s}</span>
+                        </span>
+                      ) : (
+                        s
+                      )}
                       {!edit && c.affinitySphere === s && (
                         <span className="affinity" title="Affinity Sphere">
                           affinity

@@ -175,6 +175,11 @@ for (const tab of ['Magick', 'Traits', 'Background', 'Notes']) {
 // a Sphere's specialty and affinity sit on their own line under the dots, not squeezed beside them
 await page.click('.tab:has-text("Magick")');
 check('320px: Sphere edit line under the dots', await page.$eval('.sphere-row', (r) => r.querySelector('.sphere-edit').getBoundingClientRect().top >= r.querySelector('.dots').getBoundingClientRect().bottom - 2));
+// no Sphere name runs into its number and dots (Correspondence shortens to Corresp. here)
+const nameClash = await page.$$eval('.sphere-row', (rs) =>
+  rs.filter((r) => r.querySelector('.trait-name').getBoundingClientRect().right > r.querySelector('.trait-num').getBoundingClientRect().left + 1).map((r) => r.querySelector('.trait-name').textContent.trim()),
+);
+check('320px edit mode: Sphere names clear of the dots', nameClash.length === 0, nameClash.join());
 // the affinity Sphere: one at most, and it can be taken away again
 const affinityBox = (s) => `.sphere-row:has-text("${s}") .sphere-edit input[type=checkbox]`;
 const affinities = () => page.$$eval('.sphere-row .sphere-edit input[type=checkbox]', (is) => is.filter((i) => i.checked).length);
@@ -353,6 +358,18 @@ await page.waitForSelector('#help-experience');
 await page.waitForTimeout(300);
 const xpHelp = await page.evaluate(() => ({ top: Math.round(document.getElementById('help-experience').getBoundingClientRect().top), table: document.querySelector('#help-experience ~ .help-table')?.textContent ?? '' }));
 check('XP "?" opens the experience costs', xpHelp.top >= 0 && xpHelp.top < 40 && /affinity Sphere\s*current x 7/.test(xpHelp.table), JSON.stringify({ top: xpHelp.top }));
+// keyboard users: focus scrolls clear of the fixed bottom nav, and links get the gold ring
+check('phones: focus scrolls clear of the bottom nav', await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).scrollPaddingBottom) >= 64));
+await page.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
+await page.waitForSelector('.effect-card');
+await page.focus('.search-input');
+for (let i = 0; i < 40 && !(await page.evaluate(() => document.activeElement?.classList.contains('search-tips'))); i++) await page.keyboard.press('Tab');
+check('links get the gold focus ring', await page.evaluate(() => { const a = document.activeElement; const st = getComputedStyle(a); return a.classList.contains('search-tips') && st.outlineStyle === 'solid' && st.outlineColor !== 'rgb(16, 16, 16)'; }));
+// Windows high contrast: the system's own checkboxes, so on and off stay visible
+await page.emulateMedia({ forcedColors: 'active' });
+check('high contrast: system checkboxes', await page.$eval('input[type=checkbox]', (i) => getComputedStyle(i).appearance === 'auto'));
+await page.emulateMedia({ forcedColors: 'none' });
+await page.goto(`${BASE}/#/help`, { waitUntil: 'networkidle' });
 // phones: the guide's tables stack each row, nothing runs off the side
 check('guide tables fit a phone', await page.$$eval('.help-table', (ts) => ts.length >= 2 && ts.every((t) => t.scrollWidth <= t.clientWidth && getComputedStyle(t.querySelector('tr')).display === 'block')));
 await page.setViewportSize({ width: 1300, height: 900 });
@@ -459,6 +476,17 @@ check('Android: the portrait picker opens the gallery (image/*)', (await ap.getA
 await ap.click('.lock');
 await ap.click('.nav-item:has-text("Spell ideas")');
 check('Android: the rulebook picker keeps its PDF filter', /pdf/.test((await ap.getAttribute('.books-panel .file-pick:has-text("Add a PDF") input', 'accept')) ?? ''));
+// touch: tick-box rows are 44px to tap, and the caret beside the portrait has a 44px area
+await ap.click('.nav-item:has-text("Library")');
+await ap.waitForSelector('.lib-toggles .check');
+const checkRows = await ap.$$eval('.lib-toggles .check', (ls) => ls.map((l) => Math.round(l.getBoundingClientRect().height)));
+check('touch: tick-box rows 44px', checkRows.length > 0 && checkRows.every((h) => h >= 44), checkRows.join());
+const caretHit = await ap.$eval('.nav-char .nav-caret', (c) => {
+  const r = c.getBoundingClientRect();
+  const at = (x, y) => c.contains(document.elementFromPoint(x, y));
+  return at(r.right + 10, r.top + r.height / 2) && at(r.left + r.width / 2, r.top - 5) && at(r.left + r.width / 2, r.bottom + 5);
+});
+check('touch: the caret is easy to hit', caretHit);
 await droid.close();
 
 // desktop layout

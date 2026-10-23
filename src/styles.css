@@ -111,6 +111,12 @@ body::before {
 }
 
 a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
+/* links get the gold ring the buttons have (the browser's own is near black on violet) */
+a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+/* phones: what the keyboard focuses scrolls clear of the fixed bottom nav */
+@media (max-width: 899.98px) {
+  html { scroll-padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 1rem); }
+}
 ::selection { background: var(--gold); color: #1a1027; }
 
 /* ---------- header with the slowly turning Sphere ring ---------- */
@@ -605,6 +611,10 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
 .trait-spec { font-family: var(--font-flavor); font-style: italic; color: var(--ink-dim); font-size: 0.95rem; line-height: 1.2; }
 .trait-num { width: 1.2rem; text-align: right; color: var(--ink-faint); font-variant-numeric: tabular-nums; font-size: 0.85rem; }
 .sphere-row.zero .trait-name { color: var(--ink-faint); }
+@media (max-width: 359.98px) {
+  .sphere-row:has(.sphere-edit) .sphere-name > span { display: none; }
+  .sphere-row:has(.sphere-edit) .sphere-name::after { content: attr(data-short); }
+}
 .sphere-row .sphere-glyph { color: var(--gold); flex: none; }
 .affinity {
   font-size: 0.74rem;
@@ -657,6 +667,14 @@ input[type='checkbox']:indeterminate { border-color: var(--gold); background: li
 input[type='checkbox']:hover { border-color: var(--gold); }
 input[type='checkbox']:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
+/* Windows high contrast drops backgrounds: show the system's own checkbox there */
+@media (forced-colors: active) {
+  input[type='checkbox'] { appearance: auto; }
+}
+/* on touch screens a tick-box row is 44px to tap, at the same spacing as before */
+@media (pointer: coarse) {
+  .check { min-height: 44px; margin-block: -6px; }
+}
 /* beside a label the line box sits lower than the capitals: lift the dot to the text's middle */
 .check input[type='checkbox'] { position: relative; top: -1px; }
 .toggle-untrained { margin: 0.2rem 0; }
@@ -1488,6 +1506,8 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
     color: var(--ink-faint);
     cursor: pointer;
   }
+  /* a 44px tap area that reaches up, down and to the right, never over the portrait */
+  .nav-caret::after { content: ''; position: absolute; inset: -7px -14px -7px 0; }
   .nav-char.on .nav-caret, .nav-caret[aria-expanded='true'] { color: var(--gold-hot); }
   .nav-caret:focus-visible { outline: 2px solid var(--gold); border-radius: var(--r-sm); }
 }
@@ -1916,7 +1936,8 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 @media (min-width: 900px) {
   .nav-help svg { margin: -4px 0; }
 }
-.search-tips { margin-left: 0.7rem; font-size: 0.82rem; white-space: nowrap; }
+.search-tips { position: relative; margin-left: 0.7rem; font-size: 0.82rem; white-space: nowrap; }
+.search-tips::after { content: ''; position: absolute; inset: -13px -6px; }
 .help { max-width: 46rem; margin-inline: auto; }
 .help-text h2 { font-family: var(--font-head); font-weight: 600; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--gold); margin: 1rem 0 0.6rem; }
 .help-text h3 {
