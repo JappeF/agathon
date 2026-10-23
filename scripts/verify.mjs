@@ -313,8 +313,18 @@ await page.click('.switch-menu a:has-text("Read the guide")');
 await page.waitForSelector('.help');
 check('guide from the character menu (phones)', new URL(page.url()).hash === '#/help' && !(await page.isVisible('.switch-menu')));
 check('guide has its contents', (await page.locator('.help-contents a').count()) >= 10 && (await page.textContent('.help-text h2')) === 'Help');
-check('phones: "?" in the header corner, not in the bottom nav', (await page.isVisible('.hero-help')) && !(await page.isVisible('.nav-help')));
-check('the "?" on the guide looks selected', await page.$eval('.hero-help', (q) => q.classList.contains('on') && getComputedStyle(q).backgroundColor !== 'rgba(0, 0, 0, 0)'));
+// phones: Help is a narrow fourth item of the bottom nav, selected like the others
+const navRow = async () =>
+  page.$$eval('.app-nav > .nav-item, .app-nav > .nav-char', (els) =>
+    els.map((e) => { const r = e.getBoundingClientRect(); return { top: Math.round(r.top), left: Math.round(r.left), right: Math.round(r.right), w: Math.round(r.width) }; }),
+  );
+let row = await navRow();
+check('phones: Help in the bottom nav, four on one row', row.length === 4 && new Set(row.map((r) => r.top)).size === 1 && row[3].w === 56, JSON.stringify(row));
+check('Help looks selected on the guide', await page.$eval('.nav-help', (a) => a.classList.contains('on') && getComputedStyle(a).color === getComputedStyle(document.querySelector('.nav-help .help-q')).color));
+await page.setViewportSize({ width: 320, height: 760 });
+row = await navRow();
+check('320px: the bottom nav still fits', row.at(-1).right <= 320 && row.every((r) => r.w >= 56), JSON.stringify(row));
+await page.setViewportSize({ width: 390, height: 844 });
 await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.sheet-name');
 check('no XP "?" while playing', (await page.locator('.help-q[href="#/help/experience"]').count()) === 0);
@@ -327,7 +337,7 @@ check('XP "?" opens the experience costs', xpHelp.top >= 0 && xpHelp.top < 40 &&
 await page.setViewportSize({ width: 1300, height: 900 });
 await page.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.effect-card');
-check('"?" in the bar on wide screens', (await page.isVisible('.nav-help')) && !(await page.isVisible('.hero-help')));
+check('"?" in the bar on wide screens, without its label', (await page.isVisible('.nav-help .help-q')) && !(await page.isVisible('.nav-help-label')));
 await page.click('.search-tips');
 await page.waitForSelector('#help-searching');
 await page.waitForTimeout(300);

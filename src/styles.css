@@ -1907,14 +1907,17 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .help-q::after { content: ''; position: absolute; inset: -12px; }
 .help-q:hover { color: var(--gold-hot); border-color: var(--gold); }
 .help-q:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-/* selected like the other nav items: gold edge on a faint gold wash */
-.help-q.on { color: var(--gold-hot); border-color: var(--gold-deep); background: #d9b45a14; }
-.nav-help { display: none; }
-/* phones: in the top corner of the header, beside the portal */
-.hero-help { position: absolute; top: calc(env(safe-area-inset-top) + 0.8rem); right: max(1rem, env(safe-area-inset-right)); width: 34px; height: 34px; margin: 0; font-size: 0.95rem; z-index: 1; }
+/* the nav item: on phones a narrow fourth item, the "?" drawn like the other icons */
+.nav-help { flex: 0 0 56px; }
+.nav-help .help-q { width: 22px; height: 22px; margin: 0; font-size: 0.8rem; color: inherit; border: 1.6px solid currentColor; }
+.nav-help .help-q::after { content: none; }
 @media (min-width: 900px) {
-  .nav-help { display: inline-grid; width: 34px; height: 34px; margin: 0 0 0 0.3rem; font-size: 0.95rem; align-self: center; }
-  .hero-help { display: none; }
+  /* in the bar: just the round "?", selected like the other nav items (gold edge, faint gold wash) */
+  .nav-help, .nav-help.on { flex: none; padding: 0; margin-left: 0.3rem; border: 0; background: none; }
+  .nav-help-label { display: none; }
+  .nav-help .help-q { width: 34px; height: 34px; font-size: 0.95rem; border: 1px solid var(--line-solid); color: var(--ink-faint); }
+  .nav-help:hover .help-q { color: var(--gold-hot); border-color: var(--gold); }
+  .nav-help.on .help-q { color: var(--gold-hot); border-color: var(--gold-deep); background: #d9b45a14; }
 }
 .search-tips { margin-left: 0.7rem; font-size: 0.82rem; white-space: nowrap; }
 .help { max-width: 46rem; margin-inline: auto; }

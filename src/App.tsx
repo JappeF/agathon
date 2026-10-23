@@ -123,14 +123,14 @@ export default function App() {
             </button>
           )}
         </span>
-        {/* the guide, in the bar from 900px (on phones it sits in the corner of the header) */}
-        <a className={`nav-help help-q${view === 'help' ? ' on' : ''}`} href="#/help" aria-label="Help" title="Help" aria-current={view === 'help' ? 'page' : undefined}>
-          ?
+        {/* the guide: a narrow fourth item on phones, a round "?" in the bar from 900px */}
+        <a className={`nav-item nav-help${view === 'help' ? ' on' : ''}`} href="#/help" aria-label="Help" title="Help" aria-current={view === 'help' ? 'page' : undefined}>
+          <span className="help-q" aria-hidden="true">
+            ?
+          </span>
+          <span className="nav-help-label">Help</span>
         </a>
       </nav>
-      <a className={`hero-help help-q${view === 'help' ? ' on' : ''}`} href="#/help" aria-label="Help" title="Help" aria-current={view === 'help' ? 'page' : undefined}>
-        ?
-      </a>
       </header>
 
       <main className="app-main">
