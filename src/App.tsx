@@ -123,11 +123,14 @@ export default function App() {
             </button>
           )}
         </span>
-        {/* the guide; on phones it is linked from the character menu instead */}
+        {/* the guide, in the bar from 900px (on phones it sits in the corner of the header) */}
         <a className={`nav-help help-q${view === 'help' ? ' on' : ''}`} href="#/help" aria-label="Help" title="Help" aria-current={view === 'help' ? 'page' : undefined}>
           ?
         </a>
       </nav>
+      <a className={`hero-help help-q${view === 'help' ? ' on' : ''}`} href="#/help" aria-label="Help" title="Help" aria-current={view === 'help' ? 'page' : undefined}>
+        ?
+      </a>
       </header>
 
       <main className="app-main">

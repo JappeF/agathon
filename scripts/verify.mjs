@@ -313,7 +313,8 @@ await page.click('.switch-menu a:has-text("Read the guide")');
 await page.waitForSelector('.help');
 check('guide from the character menu (phones)', new URL(page.url()).hash === '#/help' && !(await page.isVisible('.switch-menu')));
 check('guide has its contents', (await page.locator('.help-contents a').count()) >= 10 && (await page.textContent('.help-text h2')) === 'Help');
-check('no "?" in the phone nav', !(await page.isVisible('.nav-help')));
+check('phones: "?" in the header corner, not in the bottom nav', (await page.isVisible('.hero-help')) && !(await page.isVisible('.nav-help')));
+check('the "?" on the guide looks selected', await page.$eval('.hero-help', (q) => q.classList.contains('on') && getComputedStyle(q).backgroundColor !== 'rgba(0, 0, 0, 0)'));
 await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.sheet-name');
 check('no XP "?" while playing', (await page.locator('.help-q[href="#/help/experience"]').count()) === 0);
@@ -326,7 +327,7 @@ check('XP "?" opens the experience costs', xpHelp.top >= 0 && xpHelp.top < 40 &&
 await page.setViewportSize({ width: 1300, height: 900 });
 await page.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.effect-card');
-check('"?" in the bar on wide screens', await page.isVisible('.nav-help'));
+check('"?" in the bar on wide screens', (await page.isVisible('.nav-help')) && !(await page.isVisible('.hero-help')));
 await page.click('.search-tips');
 await page.waitForSelector('#help-searching');
 await page.waitForTimeout(300);
