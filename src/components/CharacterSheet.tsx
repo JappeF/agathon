@@ -999,7 +999,7 @@ function BuildCostDialog({ c, onClose }: { c: Character; onClose: () => void }) 
       </table>
       {cost.beyondNew > 0 && (
         <p className="build-sessions">
-          {Math.ceil(cost.beyondNew / 3)} to {Math.ceil(cost.beyondNew / 2)} sessions at 2 to 3 XP each
+          {Math.ceil(cost.beyondNew / 4)} to {Math.ceil(cost.beyondNew / 3)} sessions at 3 to 4 XP each
         </p>
       )}
       <p className="fine-print">
