@@ -313,6 +313,9 @@ export function LibraryView({ selectedId }: { selectedId?: string }) {
                   ? `${ready.length} ${character!.name} can cast, ${near.length} one dot away`
                   : `${hits.length} of ${effects.length} spells`}
                 {parsed.spheres.some((o) => !o.neg) && !prefs.others && ' (exactly these Spheres)'}
+                <a className="search-tips" href="#/help/searching">
+                  Search tips
+                </a>
               </p>
               {hits.length === 0 && <p className="empty">Nothing matches. Try fewer words, or allow other Spheres.</p>}
               {castable ? (

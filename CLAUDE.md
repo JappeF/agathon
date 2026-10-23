@@ -49,6 +49,7 @@ Library data: edit `library/src/*.json`, then `node library/scripts/build.mjs` a
 - `src/sheetLists.ts` (M20 pick lists with own hints), `TraitPicker.tsx`, `Fields.tsx`, `src/focus.ts` (Focus lines), `src/favorites.ts` (favorite spells = rotes).
 - `src/portrait.ts`, `PortalPortrait.tsx`, `useThumbnail.ts`; `Portal.tsx` (header portal, `Sparks`).
 - `Modal.tsx` + `useDialog.ts`, `ErrorBoundary.tsx`, `UpdateToast.tsx` (outside App), `FilePick.tsx`, `src/styles.css` (one stylesheet, tokens on `:root`).
+- The guide: `src/help/guide.md` (our own words; `## Title {#id}` gives `#/help/<id>`), `markdown.ts` (just enough Markdown, escaped first), `HelpView.tsx`.
 
 ## Traps (each cost real time)
 
@@ -92,6 +93,7 @@ Library data: edit `library/src/*.json`, then `node library/scripts/build.mjs` a
 
 - Shipped text and everything colleagues read: plain keyboard characters only (no em/en dashes, no curly quotes). Labels in sentence case, no tracked all-caps.
 - Commit messages end with a line containing only `⚡`, no other trailers.
+- A feature players notice gets its line in `src/help/guide.md`; rules stay information there, never enforced in the app.
 - No personal references in the repo (names, handles, local paths, other projects); describe things on their own terms.
 - Look: violet depths and gold (`--gold` on `--bg`, `--paradox` magenta), soft violet-white text, one colour per Sphere (`.sph-<Sphere>` sets `--sp`), our own Sphere glyphs (`SphereGlyph.tsx`). Fonts: Cinzel Decorative (logo), Cinzel (headings), Manrope (UI), EB Garamond italic (flavor only). Health runs green to red over the wound levels, clear of the Paradox pink.
 - Mobile first: below 900px a fixed bottom nav and a hero portal; from 900px a 72px sticky bar (`--bar-h`). Wide sheet tabs follow the paper sheet's columns.

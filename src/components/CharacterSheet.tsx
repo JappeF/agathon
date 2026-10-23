@@ -392,6 +392,11 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
                   onChange={(e) => patch({ experience: e.target.value.replace(/\D/g, '').slice(0, 4) })}
                 />
               </label>
+              {edit && (
+                <a className="help-q" href="#/help/experience" aria-label="Experience costs" title="Experience costs">
+                  ?
+                </a>
+              )}
             </p>
           </div>
           {pills(vitalsOpen, () => setVitalsOpen(!vitalsOpen))}

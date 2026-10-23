@@ -63,6 +63,9 @@ export function CharacterTools({ onPick, onBackup }: { onPick?: () => void; onBa
         )}
       </div>
       <p className="fine-print">Imports Mr. Gone's fillable M20 2-page PDF sheet and Agathon character files.</p>
+      <p className="fine-print">
+        New here, or wondering how something works? <a href="#/help" onClick={onPick}>Read the guide</a>.
+      </p>
     </div>
   );
 }

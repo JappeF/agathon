@@ -126,6 +126,10 @@ table; Agathon is the helper and sounding board.
   version ready" prompt after each deploy. Works on narrow phones down to 320px,
   file pickers included.
 - Everything you enter stays in your browser (IndexedDB) until you share it.
+- **A guide in the app** (`#/help`, from `src/help/guide.md`): getting started, the
+  sheet, searching, spell ideas and the AI round trip, sharing, and M20's experience
+  costs for reference (nothing is enforced). The "?" in the bar, the character menu,
+  the XP field and the library link to the part that matters.
 
 ## Commands
 

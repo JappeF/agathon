@@ -11,9 +11,10 @@ import { useActiveCharacter } from './activeCharacter';
 import { CharacterSheet } from './components/CharacterSheet';
 import { LibraryView } from './components/LibraryView';
 import { SpellsView } from './components/SpellsView';
+import { HelpView } from './components/HelpView';
 import { go, useHashRoute, type View } from './useHashRoute';
 
-const NAV: { view: Exclude<View, 'characters'>; label: string; icon: JSX.Element }[] = [
+const NAV: { view: Exclude<View, 'characters' | 'help'>; label: string; icon: JSX.Element }[] = [
   {
     view: 'library',
     label: 'Library',
@@ -122,12 +123,17 @@ export default function App() {
             </button>
           )}
         </span>
+        {/* the guide; on phones it is linked from the character menu instead */}
+        <a className={`nav-help help-q${view === 'help' ? ' on' : ''}`} href="#/help" aria-label="Help" title="Help" aria-current={view === 'help' ? 'page' : undefined}>
+          ?
+        </a>
       </nav>
       </header>
 
       <main className="app-main">
         {view === 'library' && <LibraryView selectedId={parts[0]} />}
         {view === 'spells' && <SpellsView id={parts[0]} />}
+        {view === 'help' && <HelpView section={parts[0]} />}
         {/* keyed per character: switching starts fresh (play mode, no dialog left open) */}
         {view === 'characters' &&
           (parts[0] ? <CharacterSheet key={parts[0]} id={parts[0]} tab={parts[1]} /> : <CharactersView characters={characters} active={active} />)}

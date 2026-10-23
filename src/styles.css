@@ -1887,3 +1887,69 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .pick-open { flex: none; min-height: 44px; width: 44px; padding: 0; justify-content: center; }
 /* Focus: pick a paradigm, practice or instruments into the free lines above */
 .focus-picks { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
+
+/* ---------- help: the guide (#/help) and the small "?" links to it ---------- */
+.help-q {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 0.3rem;
+  border: 1px solid var(--line-solid);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--ink-faint);
+  text-decoration: none;
+  vertical-align: middle;
+  position: relative;
+}
+.help-q::after { content: ''; position: absolute; inset: -12px; }
+.help-q:hover, .help-q.on { color: var(--gold-hot); border-color: var(--gold); }
+.help-q:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.nav-help { display: none; }
+@media (min-width: 900px) {
+  .nav-help { display: inline-grid; width: 34px; height: 34px; margin: 0 0 0 0.3rem; font-size: 0.95rem; align-self: center; }
+}
+.search-tips { margin-left: 0.7rem; font-size: 0.82rem; white-space: nowrap; }
+.help { max-width: 46rem; margin-inline: auto; }
+.help-text h2 { font-family: var(--font-head); font-weight: 600; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--gold); margin: 1rem 0 0.6rem; }
+.help-text h3 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin: 1.8rem 0 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #d9b45a33;
+  scroll-margin-top: 0.8rem;
+}
+/* deep links land just under the bar (elsewhere the padding also clears the sheet's mini bar) */
+html:has(.help) { scroll-padding-top: var(--bar-h); }
+.help-text p, .help-text li { line-height: 1.6; color: var(--ink); }
+.help-text ul { padding-left: 1.2rem; margin: 0.3rem 0 0.6rem; }
+.help-text li { margin: 0.25rem 0; }
+.help-text li::marker { color: var(--gold-deep); }
+.help-text strong { color: var(--gold-hot); font-weight: 700; }
+.help-text code { font-size: 0.9em; padding: 0 0.3rem; border-radius: 6px; background: var(--bg-raised); }
+.help-table { overflow-x: auto; margin: 0.5rem 0 0.8rem; }
+.help-table table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+.help-table th, .help-table td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.help-table th { color: var(--ink-faint); font-weight: 600; font-size: 0.82rem; }
+.help-table td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.help-contents { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.8rem 0 0.4rem; }
+.help-contents a {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-solid);
+  background: var(--bg-raised);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.help-contents a:hover, .help-contents a.on { border-color: var(--gold); color: var(--gold-hot); }

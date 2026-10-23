@@ -304,6 +304,38 @@ if (!/localhost|127\.0\.0\.1/.test(BASE)) {
   check('spell link preview card', /og:title" content="Forces 3:/.test(html) && /url=\/#\/library\/forces-3/.test(html));
 }
 
+// the guide (#/help): contents, deep links to a section, and the ways in
+await page.setViewportSize({ width: 390, height: 844 });
+await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+await page.waitForSelector('.sheet-name');
+await page.click('.nav-char .nav-caret');
+await page.click('.switch-menu a:has-text("Read the guide")');
+await page.waitForSelector('.help');
+check('guide from the character menu (phones)', new URL(page.url()).hash === '#/help' && !(await page.isVisible('.switch-menu')));
+check('guide has its contents', (await page.locator('.help-contents a').count()) >= 10 && (await page.textContent('.help-text h2')) === 'Help');
+check('no "?" in the phone nav', !(await page.isVisible('.nav-help')));
+await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+await page.waitForSelector('.sheet-name');
+check('no XP "?" while playing', (await page.locator('.help-q[href="#/help/experience"]').count()) === 0);
+await page.click('.lock');
+await page.click('.help-q[href="#/help/experience"]');
+await page.waitForSelector('#help-experience');
+await page.waitForTimeout(300);
+const xpHelp = await page.evaluate(() => ({ top: Math.round(document.getElementById('help-experience').getBoundingClientRect().top), table: document.querySelector('#help-experience ~ .help-table')?.textContent ?? '' }));
+check('XP "?" opens the experience costs', xpHelp.top >= 0 && xpHelp.top < 40 && /affinity Sphere\s*current x 7/.test(xpHelp.table), JSON.stringify({ top: xpHelp.top }));
+await page.setViewportSize({ width: 1300, height: 900 });
+await page.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
+await page.waitForSelector('.effect-card');
+check('"?" in the bar on wide screens', await page.isVisible('.nav-help'));
+await page.click('.search-tips');
+await page.waitForSelector('#help-searching');
+await page.waitForTimeout(300);
+const searchTop = await page.$eval('#help-searching', (h) => Math.round(h.getBoundingClientRect().top));
+check('Search tips open the search section, below the bar', searchTop >= 72 && searchTop < 100, String(searchTop));
+await page.setViewportSize({ width: 390, height: 844 });
+await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+await page.waitForSelector('.sheet-name');
+
 // service worker + manifest
 const swReady = await page.evaluate(async () => {
   const reg = await navigator.serviceWorker?.ready;
@@ -322,6 +354,9 @@ await page.reload({ waitUntil: 'domcontentloaded' });
 await page.waitForSelector('.logo', { timeout: 10000 }).catch(() => {});
 check('loads offline', (await page.textContent('.logo').catch(() => null))?.trim() === 'Agathon');
 check('character still there offline', (await page.$(`.sheet-name:has-text("${name}")`)) !== null);
+await page.evaluate(() => (location.hash = '#/help/experience'));
+check('guide works offline', await page.waitForSelector('#help-experience', { timeout: 5000 }).then(() => true, () => false));
+await page.evaluate(() => (location.hash = '#/characters'));
 await ctx.setOffline(false);
 
 // with the service worker in control, a shared spell link still reaches the server's
