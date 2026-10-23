@@ -125,11 +125,11 @@ export default function App() {
         </span>
         {/* the guide: an item like the others, last in the row (narrower on phones) */}
         <a className={`nav-item nav-help${view === 'help' ? ' on' : ''}`} href="#/help" aria-current={view === 'help' ? 'page' : undefined}>
-          {/* the ring fills the icon, so it matches the 30px portrait beside it */}
+          {/* a 30px box like the portrait beside it, the ring as wide as the portrait's gold ring */}
           <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="11.3" />
-            <path d="M8.9 9.2a3.2 3.2 0 1 1 4.6 2.8c-1 .5-1.5 1.2-1.5 2.2v.6" />
-            <circle cx="12" cy="17.6" r="0.6" fill="currentColor" />
+            <circle cx="12" cy="12" r="9.2" />
+            <path d="M9.5 9.6a2.6 2.6 0 1 1 3.8 2.3c-.8.4-1.3 1-1.3 1.8v.5" />
+            <circle cx="12" cy="16.8" r="0.55" fill="currentColor" />
           </svg>
           <span>Help</span>
         </a>

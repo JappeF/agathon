@@ -323,7 +323,11 @@ check('phones: Help last in the bottom nav, the character slot widest', row.leng
 const ring = await page.evaluate(() => {
   const r = (sel) => document.querySelector(sel).getBoundingClientRect();
   const pp = r('.nav-char .pp'), hs = r('.nav-help svg'), ln = r('.nav-char-name'), lh = r('.nav-help span');
-  return { size: Math.round(hs.width - pp.width), mid: Math.round(Math.abs(pp.top + pp.height / 2 - (hs.top + hs.height / 2))), label: Math.round(Math.abs(ln.top - lh.top)) };
+  // the visible rings: the portrait's gold ring, and the help circle with its stroke
+  const ringP = r('.nav-char .pp-ring').width;
+  const c = document.querySelector('.nav-help svg circle');
+  const ringH = c.getBoundingClientRect().width + (parseFloat(c.parentElement.getAttribute('stroke-width')) * hs.width) / 24;
+  return { size: Math.round(Math.abs(ringH - ringP)), mid: Math.round(Math.abs(pp.top + pp.height / 2 - (hs.top + hs.height / 2))), label: Math.round(Math.abs(ln.top - lh.top)) };
 });
 check('Help ring as big as the portrait, level with it and its label', ring.size === 0 && ring.mid === 0 && ring.label === 0, JSON.stringify(ring));
 check('Help looks selected on the guide, like the other items', await page.$eval('.nav-help', (a) => a.classList.contains('on') && getComputedStyle(a).color === getComputedStyle(document.querySelector('.nav-item.on')).color && !a.querySelector('.help-q')));
