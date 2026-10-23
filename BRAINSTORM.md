@@ -134,7 +134,7 @@ GitHub-repo, met labels per soort (✨ nice to have,
   ~930 vermeldingen van een Sphere met rank; het meeste materiaal voor de bibliotheek
 - `pdftotext` werkt direct, geen OCR nodig.
 
-## Status (18 okt 2026)
+## Status (23 okt 2026)
 
 Live op https://agathon.pages.dev, GitHub-repo (private).
 
@@ -149,7 +149,7 @@ Live op https://agathon.pages.dev, GitHub-repo (private).
   gekoppelde effecten en een logboek) en C (*Copy for AI* en het antwoord terugplakken
   als nieuwe versie) en D (boekindex: je eigen PDF's lokaal als tekst, pagina's
   aanvinken in Copy for AI, index als bestand naar de telefoon) zijn klaar. Fase 4 is
-  daarmee af. Dossiers delen kan nog niet.
+  daarmee af. Dossiers delen kan inmiddels ook (issue #6 dicht, zie hieronder).
 - **Fase 5, officiele M20-sheet:** vervallen (18 okt 2026, issue #1): de officiele sheets
   zijn niet invulbaar, dus er valt niets te importeren.
 
@@ -167,6 +167,31 @@ het portret uit de app gaat mee de PDF in. Daarna: de animaties via de composito
 pagina van 8-13% naar ongeveer 1% CPU), en een frontend- en softwarereview, afgewerkt in
 drie batches: data en robuustheid, toegankelijkheid, en opruimen (met checks voor elk
 gevonden probleem).
+
+19 tot 23 okt:
+- **Delen:** een spell uit de bibliotheek en een spell idea delen met een link die in
+  WhatsApp en Discord een kaartje toont (Pages Functions `/s/` en `/i/`, niets
+  opgeslagen). De backup neemt alle spell ideas mee en zet ze terug bij hun eigen
+  character; een los character kan zijn ideas meenemen (de link zonder AI-antwoorden
+  en log, het bestand compleet).
+- **Sheet:** Focus-kiezers voor paradigm, practice en instruments (issue #15), de nieuwere
+  sheet van Mr. Gone (v2) naast de oude, de lege sheet via `/blank-sheet`, affinity
+  weer uit te zetten, een kiezer voor Other traits met de secondary Abilities (pp.
+  289-300), "Healthy" in plaats van "Unhurt", en Health en Willpower netjes uitgelijnd
+  (tien dots boven tien vakjes, zoals op papier).
+- **AI:** het antwoord kan een nieuwe naam (kort en grappig) en een scherpere omschrijving
+  voorstellen, elk met een vinkje; boekpagina's in Copy for AI in een keer aan of uit.
+- **Rond, als de Spheres:** de Sphere-knoppen zijn cirkels met een ring die de rang
+  toont, Health, Willpower en het Q/P-wiel zijn rond, vinkjes zijn gouden stippen, velden
+  van een regel en de donkere knoppen zijn pills van 30px, tekstvlakken krijgen een
+  zachte hoek. De markeringen / X * zijn lijnen die het vakje vullen, ook in de
+  geexporteerde PDF.
+- **Handleiding in de app** (`#/help`, de tekst in `src/help/guide.md`): van aan de slag
+  tot zoekoperatoren, met de XP-kosten uit M20 alleen als informatie. Bereikbaar via
+  Help in de nav (op de telefoon een smal vak in de onderbalk), het welkomstscherm, een
+  "?" naast XP en "Search tips" in de bibliotheek.
+- Nieuwe ideeen als issues #23 tot #28 (speelscherm, undo, rote van een idea,
+  spell-kaartje, Paradox-seintje, "verras me").
 
 ## Bouwvolgorde (voorstel)
 

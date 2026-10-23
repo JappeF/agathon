@@ -37,7 +37,7 @@ Library data: edit `library/src/*.json`, then `node library/scripts/build.mjs` a
 ## Map
 
 - `src/db/db.ts`: Dexie tables `characters`, `spells`, `sheetFiles` (imported PDFs, plus the device's blank sheet as `__blank__`), `books`; `copyCharacter`, `deleteCharacter`, `freeName`.
-- `src/character.ts`: the M20 model, `clampWheel` (M20 p. 331), wound helpers, `characterLine`.
+- `src/character.ts`: the M20 model, `clampWheel` (M20 p. 331), wound helpers, `healthMarkLines` (the / X * marks as lines, shared by the screen and the PDF export), `characterLine`.
 - `src/useDraft.ts`: the debounced local copy behind the sheet and the spell dossier.
 - `src/useHashRoute.ts`: hash routes `#/library[/<effect>]`, `#/spells[/<id>]`, `#/characters/<id>/<tab>`; `activeCharacter.ts` is the character in play.
 - `src/components/CharacterSheet.tsx`: the sheet (play/edit, mini bar, tabs); `CharacterMenu.tsx`: the switcher with Import and backup.
@@ -47,7 +47,7 @@ Library data: edit `library/src/*.json`, then `node library/scripts/build.mjs` a
 - `src/share.ts` (wire format for characters and spell ideas; a backup file carries the ideas by character index; `sanitizeCharacter`, `parseSpellPayload`), `SharedImport.tsx`, `SharedSpellImport.tsx`, `ImportFlow.tsx` (PDF vs character file by content), `ShareButton.tsx` (share sheet on phones, copy link elsewhere).
 - Link previews: `functions/s/[id].js` (`/s/<spell id>`, name and summary from `spell-index.json`, which vite.config.ts emits at build) and `functions/i/[data].js` (`/i/<data>`, a spell idea carried in the link; reads only title and goal, stores nothing), both through `server/preview.js`, then on into the app (`#/library/<id>`, `#import-spell=`).
 - `src/sheetLists.ts` (M20 pick lists with own hints), `TraitPicker.tsx`, `Fields.tsx`, `src/focus.ts` (Focus lines), `src/favorites.ts` (favorite spells = rotes).
-- `src/portrait.ts`, `PortalPortrait.tsx`, `useThumbnail.ts`; `Portal.tsx` (header portal, `Sparks`).
+- `src/portrait.ts`, `PortalPortrait.tsx`, `useThumbnail.ts`; `Portal.tsx` (header portal, `Sparks`); `SphereButton.tsx` (round Sphere with a rank ring, library and dossier); `Trackers.tsx` (Health, Willpower, the wheel).
 - `Modal.tsx` + `useDialog.ts`, `ErrorBoundary.tsx`, `UpdateToast.tsx` (outside App), `FilePick.tsx`, `src/styles.css` (one stylesheet, tokens on `:root`).
 - The guide: `src/help/guide.md` (our own words; `## Title {#id}` gives `#/help/<id>`), `markdown.ts` (just enough Markdown, escaped first), `HelpView.tsx`.
 
@@ -96,5 +96,5 @@ Library data: edit `library/src/*.json`, then `node library/scripts/build.mjs` a
 - Commit messages end with a line containing only `⚡`, no other trailers.
 - A feature players notice gets its line in `src/help/guide.md`; rules stay information there, never enforced in the app.
 - No personal references in the repo (names, handles, local paths, other projects); describe things on their own terms.
-- Look: violet depths and gold (`--gold` on `--bg`, `--paradox` magenta), soft violet-white text, one colour per Sphere (`.sph-<Sphere>` sets `--sp`), our own Sphere glyphs (`SphereGlyph.tsx`). Fonts: Cinzel Decorative (logo), Cinzel (headings), Manrope (UI), EB Garamond italic (flavor only). Health runs green to red over the wound levels, clear of the Paradox pink.
+- Look: violet depths and gold (`--gold` on `--bg`, `--paradox` magenta), soft violet-white text, one colour per Sphere (`.sph-<Sphere>` sets `--sp`), our own Sphere glyphs (`SphereGlyph.tsx`). Round, after the Spheres: circles for Spheres, health and the wheel, gold dots for checkboxes, pills for one-line fields and dark buttons (30px, a 44px tap strip), text areas `--r-area`; gold buttons are the main action and keep 44px. Fonts: Cinzel Decorative (logo), Cinzel (headings), Manrope (UI), EB Garamond italic (flavor only). Health runs green to red over the wound levels, clear of the Paradox pink.
 - Mobile first: below 900px a fixed bottom nav and a hero portal; from 900px a 72px sticky bar (`--bar-h`). Wide sheet tabs follow the paper sheet's columns.

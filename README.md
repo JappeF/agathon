@@ -35,8 +35,9 @@ table; Agathon is the helper and sounding board.
   named rotes of *Mage 20* and *How Do You DO That?*, each with its Sphere
   combinations, alternatives, add-ons and book/page references. The summaries are
   our own words; no book text ships with the app.
-- **Search by Sphere combination**: tap Spheres in the bar (or type `mind:3
-  forces:2`) to find spells that use exactly that combination. "Allow other
+- **Search by Sphere combination**: tap the round Sphere buttons (a ring around each
+  shows the rank) or type `mind:3 forces:2` to find spells that use exactly that
+  combination. "Allow other
   Spheres" or `uses:mind,forces` widens it.
 - **What can my character cast**: one switch splits the list into what the active
   character can cast right now and what is **one dot away**, with the missing
@@ -64,8 +65,10 @@ table; Agathon is the helper and sounding board.
 - **Play mode and edit mode**: while playing only health, Willpower and the
   **Quintessence/Paradox wheel** change (Paradox cancels Quintessence, never the
   other way round, as in M20), plus the experience beside the name; a lock switches
-  to editing. The health status runs from green (healthy) through yellow and orange to
-  red as the wound penalties climb.
+  to editing. Health marks (bashing, lethal, aggravated) are drawn as a stroke, a cross
+  and a star that fill the round boxes, and the same way in the exported PDF. The
+  health status runs from green (healthy) through yellow and orange to red as the
+  wound penalties climb.
 - **PDF import and export**: drop in Mr. Gone's fillable M20 2-page sheet and every
   field comes across, including the portrait pasted into it. Re-importing shows the
   changes first and keeps your notes. "Export PDF sheet" fills your own PDF back in,
@@ -86,8 +89,8 @@ table; Agathon is the helper and sounding board.
 - **Copy character** (in the sheet's menu): a full copy with its PDF and spell ideas,
   to try out a build without touching the original.
 - **One character in play**: the nav carries the active character, one tap opens
-  the sheet. The character switcher (the caret beside it on a wide screen, or
-  "Characters" on the sheet) lists the others and adds or imports new ones.
+  the sheet. The character switcher (the caret beside its portrait, or "Characters"
+  on the sheet) lists the others and adds or imports new ones.
 
 ### Spell ideas
 
@@ -108,7 +111,8 @@ table; Agathon is the helper and sounding board.
 - **The rules from your own books**: add your PDF of the M20 core book or How Do You
   DO That? and your spell ideas can lean on the book itself: the pages of the spells
   an idea builds on, its Sphere ranks, and the casting and Paradox rules. The text
-  stays on your device; save it as a file to move it to your phone.
+  stays on your device; save it as a file to move it to your phone. The pages can be
+  ticked one by one or all at once, so a cheaper AI gets a shorter prompt.
 
 ### Sharing
 
@@ -128,8 +132,11 @@ table; Agathon is the helper and sounding board.
 - Everything you enter stays in your browser (IndexedDB) until you share it.
 - **A guide in the app** (`#/help`, from `src/help/guide.md`): getting started, the
   sheet, searching, spell ideas and the AI round trip, sharing, and M20's experience
-  costs for reference (nothing is enforced). The "?" in the bar, the character menu,
-  the XP field and the library link to the part that matters.
+  costs for reference (nothing is enforced). Help in the nav, the character menu, the
+  "?" beside XP and "Search tips" in the library link to the part that matters.
+- **One round look**, after the Spheres: round Sphere buttons with rank rings, round
+  Health and Willpower boxes and Quintessence wheel, gold dots for tick boxes, and
+  pill-shaped buttons and fields.
 
 ## Commands
 
