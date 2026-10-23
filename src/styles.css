@@ -1907,6 +1907,10 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .help-q::after { content: ''; position: absolute; inset: -12px; }
 .help-q:hover { color: var(--gold-hot); border-color: var(--gold); }
 .help-q:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+/* phones: Help takes a narrower slot than the three main items */
+@media (max-width: 899.98px) {
+  .nav-help { flex: 0 0 64px; }
+}
 .search-tips { margin-left: 0.7rem; font-size: 0.82rem; white-space: nowrap; }
 .help { max-width: 46rem; margin-inline: auto; }
 .help-text h2 { font-family: var(--font-head); font-weight: 600; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--gold); margin: 1rem 0 0.6rem; }

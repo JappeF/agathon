@@ -319,11 +319,11 @@ const navRow = async () =>
     els.map((e) => { const r = e.getBoundingClientRect(); return { top: Math.round(r.top), left: Math.round(r.left), right: Math.round(r.right), w: Math.round(r.width) }; }),
   );
 let row = await navRow();
-check('phones: Help in the bottom nav, four equal items on one row', row.length === 4 && new Set(row.map((r) => r.top)).size === 1 && Math.max(...row.map((r) => r.w)) - Math.min(...row.map((r) => r.w)) <= 1, JSON.stringify(row));
+check('phones: Help last in the bottom nav, narrower, the other three equal', row.length === 4 && new Set(row.map((r) => r.top)).size === 1 && row[3].w === 64 && Math.max(...row.slice(0, 3).map((r) => r.w)) - Math.min(...row.slice(0, 3).map((r) => r.w)) <= 1, JSON.stringify(row));
 check('Help looks selected on the guide, like the other items', await page.$eval('.nav-help', (a) => a.classList.contains('on') && getComputedStyle(a).color === getComputedStyle(document.querySelector('.nav-item.on')).color && !a.querySelector('.help-q')));
 await page.setViewportSize({ width: 320, height: 760 });
 row = await navRow();
-check('320px: the bottom nav still fits', row.at(-1).right <= 320 && row.every((r) => r.w >= 70), JSON.stringify(row));
+check('320px: the bottom nav still fits', row.at(-1).right <= 320 && row.every((r) => r.w >= 64), JSON.stringify(row));
 await page.setViewportSize({ width: 390, height: 844 });
 await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.sheet-name');
