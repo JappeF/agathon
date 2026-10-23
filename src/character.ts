@@ -35,16 +35,16 @@ export const HEALTH_LEVELS = [
 export const characterLine = (c: Pick<Character, 'concept' | 'sect' | 'affiliation' | 'essence'>) =>
   [c.concept, c.sect || c.affiliation, c.essence && `${c.essence} Essence`].filter(Boolean).join(', ');
 
-/** The worst marked health level (index into HEALTH_LEVELS), or -1 when unhurt. */
+/** The worst marked health level (index into HEALTH_LEVELS), or -1 when healthy. */
 export function woundLevel(c: Pick<Character, 'health'>): number {
   let worst = -1;
   c.health.forEach((m, i) => m && (worst = i));
   return worst;
 }
 
-/** "Unhurt", "Bruised", "Wounded -2"... */
+/** "Healthy", "Bruised", "Wounded -2"... */
 export function woundLabel(worst: number): string {
-  if (worst < 0) return 'Unhurt';
+  if (worst < 0) return 'Healthy';
   const { name, penalty } = HEALTH_LEVELS[worst];
   return penalty ? `${name} ${penalty}` : name;
 }

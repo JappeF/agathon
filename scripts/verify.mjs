@@ -66,6 +66,7 @@ await page.click('button:has-text("Add")');
 await page.waitForSelector(`.sheet-name:has-text("${name}")`);
 await page.reload({ waitUntil: 'networkidle' });
 check('character persists after reload', (await page.$(`.sheet-name:has-text("${name}")`)) !== null);
+check('a new character is Healthy', (await page.textContent('.sheet-title .chip.hp')).trim() === 'Healthy', await page.textContent('.sheet-title .chip.hp'));
 await page.screenshot({ path: 'shots/02-mobile-sheet.png' });
 
 // Backgrounds, Merits and Flaws: pick from the M20 lists, or type your own

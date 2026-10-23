@@ -64,7 +64,7 @@ table; Agathon is the helper and sounding board.
 - **Play mode and edit mode**: while playing only health, Willpower and the
   **Quintessence/Paradox wheel** change (Paradox cancels Quintessence, never the
   other way round, as in M20), plus the experience beside the name; a lock switches
-  to editing. The health status runs from green (unhurt) through yellow and orange to
+  to editing. The health status runs from green (healthy) through yellow and orange to
   red as the wound penalties climb.
 - **PDF import and export**: drop in Mr. Gone's fillable M20 2-page sheet and every
   field comes across, including the portrait pasted into it. Re-importing shows the

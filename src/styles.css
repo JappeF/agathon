@@ -486,7 +486,7 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   color: var(--ink);
 }
 /*
- * Health, as a traffic light that follows the wound penalties: green when unhurt, yellow
+ * Health, as a traffic light that follows the wound penalties: green when healthy, yellow
  * for the -0/-1 levels, orange at -2, red at Crippled -5 and a filled deep red when
  * Incapacitated. A true red-orange, kept clear of the Paradox pink beside it.
  */
