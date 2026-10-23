@@ -472,6 +472,39 @@ for (const n of [name, second]) {
 await page.waitForSelector('.welcome');
 check('deleting the last one shows the welcome', (await page.$('.nav-char .pp')) === null);
 
+// the build cost: a long press on the word XP (in no guide) counts what the character
+// would cost from scratch and beyond a new mage. By hand for this one: from scratch 12 + 8 +
+// 41 + 80 + 5 + 6 = 152; creation covers Strength, Alertness, Cooking, Avatar and all four
+// Sphere dots, 14 freebies (15 + 2 for Flaws - 3 for Merits) buy Willpower 6 and Arete 2 and 3,
+// so Arete 4 and 5 are left: 24 + 32 = 56
+{
+  const tc = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const tp = await tc.newPage();
+  tp.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
+  const npc = {
+    app: 'agathon', kind: 'characters', version: 1,
+    characters: [{
+      name: 'Tally NPC', traits: { Strength: 3, Alertness: 2 }, spheres: { Forces: 3, Mind: 1 }, affinitySphere: 'Forces',
+      arete: 5, willpower: 6, backgrounds: [{ name: 'Avatar', rating: 2 }], otherTraits: [{ name: 'Cooking', rating: 1 }],
+      merits: [{ name: 'Lucky', rating: 3 }], flaws: [{ name: 'Nightmares', rating: 2 }],
+    }],
+  };
+  await tp.goto(`${BASE}/#import=0.${Buffer.from(JSON.stringify(npc)).toString('base64url')}`, { waitUntil: 'networkidle' });
+  await tp.click('.modal button:has-text("Add character")');
+  await tp.waitForSelector('.sheet-name:text-is("Tally NPC")');
+  await tp.click('.xp-word');
+  check('a short tap on XP opens nothing', (await tp.locator('.modal').count()) === 0);
+  await tp.hover('.xp-word');
+  await tp.mouse.down();
+  await tp.waitForTimeout(900);
+  await tp.mouse.up();
+  await tp.waitForSelector('.modal .build-cost', { timeout: 3000 }).catch(() => {});
+  const tally = await tp.textContent('.modal').catch(() => '');
+  check('a long press on XP shows the build cost', /From scratch\s*152 XP/.test(tally) && /Beyond a new mage, about\s*56 XP/.test(tally), tally.replace(/\s+/g, ' ').slice(0, 160));
+  check('and does not pop up the keyboard', await tp.evaluate(() => document.activeElement?.tagName !== 'INPUT'));
+  await tc.close();
+}
+
 // Android: a tap on Import opens the system picker (a label around a real input, not a
 // script click on a hidden one), with no type filter that would grey out .json files
 const droid = await browser.newContext({

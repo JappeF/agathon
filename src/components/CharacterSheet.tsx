@@ -11,6 +11,7 @@ import { Dots } from './Dots';
 import { Field, LineList, LongText, PickField, RatedList } from './Fields';
 import { ImportFlow } from './ImportFlow';
 import { Modal } from './Modal';
+import { buildCost } from '../buildCost';
 import { ShareDialog } from './ShareDialog';
 import { PortalPortrait } from './PortalPortrait';
 import { imageToPortrait } from '../portrait';
@@ -149,6 +150,18 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   // a snapshot taken when Share opens: a fresh [c] on every render re-encoded the link and hid the QR code
   const [sharing, setSharing] = useState<Character[] | null>(null);
   const [zoom, setZoom] = useState(false);
+  // a long press on the word XP opens the build cost (kept out of the guide on purpose)
+  const [tally, setTally] = useState(false);
+  const press = useRef<{ timer?: number; fired?: boolean }>({});
+  const pressStart = () => {
+    press.current.fired = false;
+    window.clearTimeout(press.current.timer);
+    press.current.timer = window.setTimeout(() => {
+      press.current.fired = true;
+      setTally(true);
+    }, 700);
+  };
+  const pressEnd = () => window.clearTimeout(press.current.timer);
   // the mini bar has its own drop-down, so opening it never changes the page height
   const [miniOpen, setMiniOpen] = useState(false);
   // the pills sit beside the portrait; once that scrolls away a fixed mini bar takes over
@@ -379,7 +392,18 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
               <span>{characterLine(c)}</span>
               {/* experience is handed out at the table, so it is editable in play mode too */}
               <label className="xp">
-                XP
+                <span
+                  className="xp-word"
+                  onPointerDown={pressStart}
+                  onPointerUp={pressEnd}
+                  onPointerLeave={pressEnd}
+                  onPointerCancel={pressEnd}
+                  onContextMenu={(e) => e.preventDefault()}
+                  // after a long press the tap must not also focus the field (a keyboard would pop up)
+                  onClick={(e) => press.current.fired && e.preventDefault()}
+                >
+                  XP
+                </span>
                 <input
                   type="text"
                   inputMode="numeric"
@@ -890,6 +914,7 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
           </div>
         </Modal>
       )}
+      {tally && <BuildCostDialog c={c} onClose={() => setTally(false)} />}
       {message && (
         <Modal title={message.title} onClose={() => setMessage(null)}>
           <ul className="change-list">
@@ -946,3 +971,42 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   );
 }
 
+
+/** The build cost: what this character would cost in XP from a starting mage (see buildCost). */
+function BuildCostDialog({ c, onClose }: { c: Character; onClose: () => void }) {
+  const cost = buildCost(c);
+  return (
+    <Modal title="Build cost" onClose={onClose}>
+      <table className="build-cost">
+        <tbody>
+          {cost.rows.map((r) => (
+            <tr key={r.label}>
+              <td>{r.label}</td>
+              <td>{r.xp}</td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>From scratch</td>
+            <td>{cost.total} XP</td>
+          </tr>
+          <tr className="build-beyond">
+            <td>Beyond a new mage, about</td>
+            <td>{cost.beyondNew} XP</td>
+          </tr>
+        </tfoot>
+      </table>
+      <p className="fine-print">
+        From scratch: every dot above Attributes 1, Arete 1 and Willpower 5 at M20's prices (a new Background counts as 3). Beyond a new mage: what is left once
+        character creation has paid its share (Attributes 7/5/3, Abilities 13/9/5, Backgrounds 7, Spheres 6, then 15 freebie points
+        {cost.merits || cost.flaws ? `, here ${cost.flaws ? `plus ${Math.min(cost.flaws, 7)} for Flaws` : ''}${cost.merits && cost.flaws ? ' and ' : ''}${cost.merits ? `minus ${cost.merits} for Merits` : ''}` : ''}).
+      </p>
+      <div className="modal-actions">
+        <button className="btn btn-gold" onClick={onClose}>
+          OK
+        </button>
+      </div>
+    </Modal>
+  );
+}

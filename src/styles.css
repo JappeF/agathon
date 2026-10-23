@@ -1990,3 +1990,13 @@ html:has(.help) { scroll-padding-top: var(--bar-h); }
   text-decoration: none;
 }
 .help-contents a:hover, .help-contents a.on { border-color: var(--gold); color: var(--gold-hot); }
+
+/* ---------- the build cost (a long press on XP) ---------- */
+.xp-word { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.build-cost { width: 100%; border-collapse: collapse; margin: 0.2rem 0 0.6rem; font-size: 0.95rem; }
+.build-cost td { padding: 0.35rem 0.2rem; border-bottom: 1px solid var(--line); }
+.build-cost td + td { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-dim); }
+.build-cost tfoot td { border-bottom: 0; padding-top: 0.6rem; font-weight: 700; color: var(--gold-hot); }
+.build-cost tfoot td + td { font-family: var(--font-head); font-size: 1.25rem; color: var(--gold-hot); }
+.build-cost tfoot tr:first-child td { color: var(--ink-dim); font-weight: 600; }
+.build-cost tfoot tr:first-child td + td { font-size: 1.05rem; color: var(--ink-dim); }
