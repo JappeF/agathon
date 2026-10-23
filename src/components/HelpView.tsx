@@ -11,7 +11,8 @@ export function HelpView({ section }: { section?: string }) {
   const { intro, body, sections } = useMemo(() => {
     const { html, sections } = renderMarkdown(guide);
     // the title and opening lines, then the contents, then the sections
-    const at = html.indexOf('<h3');
+    const found = html.indexOf('<h3');
+    const at = found < 0 ? html.length : found;
     return { intro: html.slice(0, at), body: html.slice(at), sections };
   }, []);
   useEffect(() => {
@@ -24,7 +25,14 @@ export function HelpView({ section }: { section?: string }) {
       <div className="help-text" dangerouslySetInnerHTML={{ __html: intro }} />
       <nav className="help-contents" aria-label="Contents">
         {sections.map((s) => (
-          <a key={s.id} href={`#/help/${s.id}`} className={s.id === section ? 'on' : undefined}>
+          <a
+            key={s.id}
+            href={`#/help/${s.id}`}
+            className={s.id === section ? 'on' : undefined}
+            aria-current={s.id === section ? 'location' : undefined}
+            // the section already in the address: the hash won't change, so scroll by hand
+            onClick={() => s.id === section && document.getElementById(`help-${s.id}`)?.scrollIntoView({ block: 'start' })}
+          >
             {s.title}
           </a>
         ))}

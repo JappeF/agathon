@@ -50,8 +50,11 @@ export function TraitPicker({
         onKeyDown={(e) => {
           if (e.key !== 'Enter') return;
           e.preventDefault();
-          if (shown.length === 1) onPick(nameOf(shown[0]), dots ? 1 : firstCost(shown[0].cost), shown[0]);
-          else if (q.trim()) onPick(q.trim(), dots ? 1 : 1);
+          // Enter takes the one match only when the typed text is in its name; a hint match
+          // ("cooking" finds Professional Skill) adds the text as typed, as the player meant it
+          const one = shown.length === 1 && [shown[0].name, shown[0].tech].some((n) => n?.toLowerCase().includes(query)) ? shown[0] : null;
+          if (one) onPick(nameOf(one), dots ? 1 : firstCost(one.cost), one);
+          else if (q.trim()) onPick(q.trim(), 1);
         }}
       />
       <ul className="trait-picks">

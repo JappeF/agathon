@@ -105,9 +105,13 @@ await page.click('.trait-pick:has-text("Lore")');
 await page.click('button:has-text("Add trait")');
 await page.fill('.picker-search', 'Gaming');
 await page.click('.trait-pick.own');
+// Enter on a match by its hint alone keeps the typed name ("cooking" is no Professional Skill)
+await page.click('button:has-text("Add trait")');
+await page.fill('.picker-search', 'cooking');
+await page.keyboard.press('Enter');
 const otherRows = await page.$$eval('.rated-list .row-input', (is) => is.map((i) => i.value).join());
-check('picked and own other traits', otherRows === 'Lore,Gaming', otherRows);
-for (let i = 0; i < 2; i++) await page.click('.rated-list .btn-icon[aria-label^="Remove"] >> nth=0');
+check('picked and own other traits', otherRows === 'Lore,Gaming,cooking', otherRows);
+for (let i = 0; i < 3; i++) await page.click('.rated-list .btn-icon[aria-label^="Remove"] >> nth=0');
 await page.click('.tab:has-text("Background")');
 // Sect from M20's list: picking one with no Affiliation yet fills that in too
 await page.click('button[aria-label="Choose Sect"]');
@@ -257,6 +261,17 @@ check(
       document.querySelectorAll('.wheel-svg circle.wheel-box').length === 20,
   ),
 );
+// the wheel's steppers: minus and plus drawn alike; on phones the wheel and steppers centred
+check('wheel steppers drawn alike', await page.$$eval('.wheel .step svg', (s) => s.length === 4 && s.every((x) => x.getBoundingClientRect().width === s[0].getBoundingClientRect().width)));
+{
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.waitForTimeout(150);
+  const wheelMid = await page.$eval('.wheel', (wh) => {
+    const r = wh.getBoundingClientRect(), s = wh.querySelector('.wheel-svg').getBoundingClientRect();
+    return Math.round(Math.abs(s.left + s.width / 2 - (r.left + r.width / 2)));
+  });
+  check('phones: the wheel sits in the middle', wheelMid <= 2, String(wheelMid));
+}
 await page.click('.lock');
 await page.click('.sheet-title .vitals-bar');
 await page.setViewportSize({ width: 390, height: 844 });
@@ -327,6 +342,7 @@ await page.click('.switch-menu a:has-text("Read the guide")');
 await page.waitForSelector('.help');
 check('guide from the character menu (phones)', new URL(page.url()).hash === '#/help' && !(await page.isVisible('.switch-menu')));
 check('guide has its contents', (await page.locator('.help-contents a').count()) >= 10 && (await page.textContent('.help-text h2')) === 'Help');
+check('search operators look like something to type', (await page.locator('#help-searching ~ .help-table code').count()) >= 12);
 // phones: Help is a narrow fourth item of the bottom nav, selected like the others
 const navRow = async () =>
   page.$$eval('.app-nav > .nav-item, .app-nav > .nav-char', (els) =>

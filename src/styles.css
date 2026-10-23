@@ -454,6 +454,9 @@ a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-ra
 .menu-items button:hover { background: #ffffff0d; color: var(--gold-hot); }
 .menu-items button:focus-visible { outline: 2px solid var(--gold); }
 .menu-items .danger { color: #ff8fb1; }
+/* a destructive pill reads as one: the Paradox pink, as for Delete character in the menu */
+.btn.danger { color: #ff8fb1; }
+.btn.danger:hover { border-color: #e0457b; }
 
 .sheet-name {
   font-family: var(--font-head);
@@ -749,6 +752,10 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 
 /* ---------- the Quintessence/Paradox wheel ---------- */
 .wheel { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.2rem; }
+/* phones: wheel and steppers stack, both centred */
+@media (max-width: 599.98px) {
+  .wheel { justify-content: center; }
+}
 .wheel-svg { width: 200px; height: 200px; flex: none; }
 .wheel-ring { fill: none; stroke: #d9b45a33; stroke-width: 1; }
 .wheel-dot { fill: var(--gold-hot); }
@@ -910,12 +917,16 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
   height: calc(100% + 12px);
   transform: rotate(-90deg);
   fill: none;
-  stroke: var(--line);
+  /* the empty track in a faint tint of the Sphere, so the five places read before any is lit */
+  stroke: color-mix(in srgb, var(--sp, var(--gold)) 22%, var(--line-solid));
   stroke-width: 2.2;
   stroke-linecap: round;
 }
 .sphere-ring .lit { stroke: var(--sp, var(--gold)); }
-.sphere-btn-name { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.02em; }
+.sphere-btn-name { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.01em; }
+@media (max-width: 359.98px) {
+  .sphere-btn-name { font-size: 0.7rem; }
+}
 .sphere-btn:focus-visible .sphere-disc { outline: 2px solid var(--gold); outline-offset: 7px; }
 @media (min-width: 600px) {
   .sphere-bar { --per: 9; }
@@ -1129,6 +1140,7 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .castable { font-size: 0.78rem; font-weight: 700; color: #ff8fb1; }
 .castable.yes { color: #9fd9b8; }
 .difficulty { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-size: 0.95rem; }
+.difficulty > span { white-space: nowrap; }
 .difficulty strong { font-family: var(--font-head); font-size: 1.3rem; color: var(--gold-hot); margin-left: 0.2rem; }
 .book-tip { border-left: 3px solid var(--gold); padding: 0.2rem 0 0.2rem 0.7rem; margin: 0.3rem 0 0.6rem; }
 .tips { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
@@ -1423,6 +1435,10 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .sphere-btn[class*='sph-']:hover .sphere-disc { border-color: color-mix(in srgb, var(--sp) 60%, transparent); }
 .sphere-btn[class*='sph-'].on { color: var(--sp); }
 .sphere-btn[class*='sph-'].on .sphere-disc { border-color: var(--sp); background: color-mix(in srgb, var(--sp) 14%, transparent); }
+/* Prime and Time are near white: a softer fill when on and a dimmer name when off, so on and off differ as much as for the others */
+.sphere-btn:is(.sph-Prime, .sph-Time) { color: color-mix(in srgb, var(--sp) 50%, var(--ink-faint)); }
+.sphere-btn:is(.sph-Prime, .sph-Time).on { color: var(--sp); }
+.sphere-btn:is(.sph-Prime, .sph-Time).on .sphere-disc { background: color-mix(in srgb, var(--sp) 7%, transparent); }
 .char-sphere[class*='sph-'] { color: var(--sp); }
 
 /* ---------- the header: a portal hero on phones, a compact bar from 900px ---------- */
@@ -1756,7 +1772,7 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .log-head { display: flex; align-items: center; gap: 0.6rem; }
 .log-head .fine-print { margin: 0; flex: 1; }
 .log-notes { color: var(--ink-dim); font-size: 0.9rem; white-space: pre-wrap; }
-.start-spell { margin-top: 0.8rem; }
+.start-spell { margin: 0.8rem 0 1.4rem; }
 
 /* ---------- the AI round trip ---------- */
 .ai-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.7rem; margin: 0.4rem 0 0.4rem; }
@@ -1873,6 +1889,9 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 .share-btn:hover { color: var(--gold); }
 .share-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
 .share-btn.done { color: var(--gold-hot); }
+/* beside Delete idea: the same round dark button, at the pills' height (44px to tap) */
+.dossier-actions .share-btn { width: 30px; height: 30px; border: 1px solid var(--line-solid); background: var(--bg-raised); }
+.dossier-actions .share-btn::after { content: ''; position: absolute; inset: -7px; }
 .share-done {
   position: absolute;
   top: calc(100% + 2px);
@@ -1958,7 +1977,8 @@ html:has(.help) { scroll-padding-top: var(--bar-h); }
 .help-text li { margin: 0.25rem 0; }
 .help-text li::marker { color: var(--gold-deep); }
 .help-text strong { color: var(--gold-hot); font-weight: 700; }
-.help-text code { font-size: 0.9em; padding: 0 0.3rem; border-radius: 6px; background: var(--bg-raised); }
+/* what you type: set apart from the prose around it */
+.help-text code { font-family: ui-monospace, Consolas, monospace; font-size: 0.88em; padding: 0.05em 0.35em; border-radius: 6px; color: var(--gold-hot); background: #d9b45a14; }
 .help-table { overflow-x: auto; margin: 0.5rem 0 0.8rem; }
 .help-table table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
 .help-table th, .help-table td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: top; }

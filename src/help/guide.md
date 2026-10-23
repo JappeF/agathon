@@ -44,24 +44,24 @@ Everything you make stays on this device. Nothing is sent to a server unless you
 
 ## Searching {#searching}
 
-Type words to search names and descriptions; every word must match. Put a phrase in "quotes", and start a word with a minus to leave it out (-fire).
+Type words to search names and descriptions; every word must match. Put a phrase in "quotes", and start a word with a minus to leave it out (`-fire`).
 
 | Type | Finds |
 | --- | --- |
-| mind:3 | Mind up to rank 3 |
-| mind:=3 | Mind at exactly rank 3 |
-| mind:3+ | Mind at rank 3 or more |
-| mind:2-4 | Mind from rank 2 to 4 |
-| mind:3 forces:2 | exactly this combination of Spheres (tick Allow other Spheres too for more) |
-| uses:mind,forces | these Spheres, others allowed |
-| tag:healing | spells with this tag (the list in the sidebar) |
-| book:hdydt or book:m20 | spells from one book |
-| kind:rote, kind:feat, kind:rank | rotes, single effects, or what a Sphere rank can do |
-| is:vulgar, is:coincidental | how it usually looks to Sleepers |
-| is:fav | the character's favorites |
-| name:portal | only in the name |
+| `mind:3` | Mind up to rank 3 |
+| `mind:=3` | Mind at exactly rank 3 |
+| `mind:3+` | Mind at rank 3 or more |
+| `mind:2-4` | Mind from rank 2 to 4 |
+| `mind:3 forces:2` | exactly this combination of Spheres (tick Allow other Spheres too for more) |
+| `uses:mind,forces` | these Spheres, others allowed |
+| `tag:healing` | spells with this tag (the list in the sidebar) |
+| `book:hdydt` or `book:m20` | spells from one book |
+| `kind:rote`, `kind:feat`, `kind:rank` | rotes, single effects, or what a Sphere rank can do |
+| `is:vulgar`, `is:coincidental` | how it usually looks to Sleepers |
+| `is:fav` | the character's favorites |
+| `name:portal` | only in the name |
 
-Every operator can be turned around with a minus: -time:, -tag:combat. Technocratic names work as well: data: for Correspondence, primal: for Prime, dimsci: for Spirit.
+Every operator can be turned around with a minus: `-time:`, `-tag:combat`. Technocratic names work as well: `data:` for Correspondence, `primal:` for Prime, `dimsci:` for Spirit.
 
 ## Spell ideas {#spell-ideas}
 

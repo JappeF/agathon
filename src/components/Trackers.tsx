@@ -73,6 +73,15 @@ export function WillpowerTrack({ c, patch, edit }: { c: Character; patch: Patch;
   );
 }
 
+/** The stepper signs as drawn lines, so minus and plus are the same size and weight. */
+const SIGN = (d: string) => (
+  <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+    <path d={d} />
+  </svg>
+);
+const MINUS = SIGN('M3 8h10');
+const PLUS = SIGN('M3 8h10M8 3v10');
+
 /**
  * The M20 Quintessence/Paradox wheel: 20 boxes (drawn round), Quintessence filling clockwise from
  * the dot on the left, Paradox counterclockwise. Paradox cancels Quintessence where
@@ -87,7 +96,8 @@ export function QPWheel({ c, patch }: { c: Character; patch: Patch }) {
     <div className="wheel">
       <svg viewBox={`0 0 ${size} ${size}`} className="wheel-svg" role="img" aria-label={`Quintessence ${c.quintessence}, Paradox ${c.paradox}`}>
         <circle cx={cx} cy={cx} r={R} className="wheel-ring" />
-        <circle cx={cx - R - 14} cy={cx} r="3.5" className="wheel-dot" />
+        {/* where both start, as on the sheet: a small arrow pointing the way Quintessence fills */}
+        <path d={`M${cx - R - 13} ${cx - 5.5} l4.5 8 h-9 z`} className="wheel-dot" />
         {Array.from({ length: WHEEL_SIZE }, (_, k) => {
           const a = Math.PI + ((k + 0.5) * 2 * Math.PI) / WHEEL_SIZE;
           const x = cx + R * Math.cos(a);
@@ -108,19 +118,19 @@ export function QPWheel({ c, patch }: { c: Character; patch: Patch }) {
         <div className="stepper">
           <span className="stepper-label q">Quintessence</span>
           <button type="button" className="step" aria-label="Spend Quintessence" onClick={() => set(c.quintessence - 1, c.paradox)}>
-            -
+            {MINUS}
           </button>
           <button type="button" className="step" aria-label="Gain Quintessence" onClick={() => set(c.quintessence + 1, c.paradox)}>
-            +
+            {PLUS}
           </button>
         </div>
         <div className="stepper">
           <span className="stepper-label p">Paradox</span>
           <button type="button" className="step" aria-label="Lose Paradox" onClick={() => set(c.quintessence, c.paradox - 1)}>
-            -
+            {MINUS}
           </button>
           <button type="button" className="step" aria-label="Gain Paradox" onClick={() => set(c.quintessence, c.paradox + 1)}>
-            +
+            {PLUS}
           </button>
         </div>
       </div>

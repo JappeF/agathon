@@ -162,7 +162,7 @@ function SpellDossier({ id }: { id: string }) {
         <span className="dossier-actions">
           {/* the idea travels in the link; other apps show its title and goal (functions/i) */}
           <ShareButton url={async () => spellIdeaUrl(await encodeSpellShare(s))} title={s.title || 'Spell idea'} label="Share this spell idea" />
-          <button type="button" className="btn btn-small" onClick={() => setConfirmDelete(true)}>
+          <button type="button" className="btn btn-small danger" onClick={() => setConfirmDelete(true)}>
             Delete idea
           </button>
         </span>

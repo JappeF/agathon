@@ -44,6 +44,7 @@ const more = await page.$eval('.load-more', (b) => {
   return { h: Math.round(r.height), off: Math.round(Math.abs(r.left + r.width / 2 - (p.left + p.width / 2))) };
 });
 check('Show more: 30px pill, centred', more.h === 30 && more.off <= 1, JSON.stringify(more));
+check('Sphere names 12px or more', (await page.$$eval('.sphere-btn-name', (ns) => ns.every((n) => parseFloat(getComputedStyle(n).fontSize) >= 12))));
 await page.screenshot({ path: 'shots/30-library.png' });
 
 await search('portal');

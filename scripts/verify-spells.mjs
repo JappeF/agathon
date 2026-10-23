@@ -55,6 +55,13 @@ check('title from the effect', (await page.inputValue('.dossier-title')) === eff
 check('effect linked', (await text('.dossier-side .pin-list')).includes(effectName));
 check('Spheres from the effect', (await page.$$eval('.version-spheres .sphere-btn.on', (bs) => bs.map((b) => b.title).join())) === 'Forces,Prime');
 check('difficulty shown', /Coincidental\s*6/.test(await text('.version .difficulty')), await text('.version .difficulty'));
+// each pair stays on one line, and the header's Delete reads as destructive beside a round share
+check('difficulty pairs never split', await page.$$eval('.version .difficulty > span', (ss) => ss.every((s) => getComputedStyle(s).whiteSpace === 'nowrap')));
+check('Delete idea in the Paradox pink, share a 30px round button', await page.evaluate(() => {
+  const del = [...document.querySelectorAll('.dossier-actions .btn')].find((b) => b.textContent.includes('Delete idea'));
+  const sh = document.querySelector('.dossier-actions .share-btn').getBoundingClientRect();
+  return getComputedStyle(del).color === 'rgb(255, 143, 177)' && Math.round(sh.height) === 30;
+}));
 check('castable for the character', (await text('.version .castable')).includes('has the dots'));
 
 // edit the plan
