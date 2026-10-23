@@ -1,4 +1,4 @@
-import { clampWheel, HEALTH_LEVELS, WHEEL_SIZE, woundLabel, woundLevel, type Character, type HealthMark } from '../character';
+import { clampWheel, HEALTH_LEVELS, healthMarkLines, WHEEL_SIZE, woundLabel, woundLevel, type Character, type HealthMark } from '../character';
 import { Dots } from './Dots';
 
 type Patch = (p: Partial<Character>) => void;
@@ -25,7 +25,13 @@ export function HealthTrack({ c, patch }: { c: Character; patch: Patch }) {
             title={lvl.name}
             onClick={() => patch({ health: c.health.map((m, j) => (j === i ? NEXT_MARK[m] : m)) })}
           >
-            {c.health[i]}
+            {c.health[i] && (
+              <svg className="health-mark" viewBox="0 0 1 1" aria-hidden="true">
+                {healthMarkLines(c.health[i]).map(([x1, y1, x2, y2], k) => (
+                  <line key={k} x1={x1} y1={y1} x2={x2} y2={y2} />
+                ))}
+              </svg>
+            )}
           </button>
         ))}
       </div>

@@ -6,7 +6,7 @@
 import { chromium } from 'playwright-core';
 import { mkdir, readFile } from 'node:fs/promises';
 import { existsSync, readdirSync } from 'node:fs';
-import { PDFDocument, PDFName } from 'pdf-lib';
+import { decodePDFRawStream, PDFDocument, PDFName, PDFRawStream } from 'pdf-lib';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 // a filled Mr. Gone sheet in refs/ (M20_2-Page_Interactive_<name>.pdf); the blank one has no suffix
@@ -405,6 +405,7 @@ if (existsSync(BLANK2)) {
       merits: [{ name: 'Lucky', rating: 3 }],
       otherTraits: [{ name: 'Hypereconomics', rating: 2 }],
       spheres: { Forces: 3, Mind: 2 }, arete: 3, quintessence: 4, paradox: 1,
+      health: ['/', 'X', '*', '', '', '', ''],
     }],
   };
   await p2.goto(`${BASE}/#import=0.${Buffer.from(JSON.stringify(v2char)).toString('base64url')}`, { waitUntil: 'networkidle' });
@@ -427,6 +428,14 @@ if (existsSync(BLANK2)) {
   check('v2 sheet: Merit', sel(v2map.merits[0].name) === 'Lucky', sel(v2map.merits[0].name));
   check('v2 sheet: Spheres in the shifted rows', dots2(v2map.traits.Forces.dots) === 3 && dots2(v2map.traits.Mind.dots) === 2);
   check('v2 sheet: Other Traits', f2.getTextField(v2map.otherTraits[0].name).getText() === 'Hypereconomics');
+  // health marks: chosen in the drop-downs, and drawn as lines that fill the square
+  const strokes = (n) => {
+    const ap = f2.doc.context.lookup(f2.getDropdown(n).acroField.getWidgets()[0].getNormalAppearance());
+    const text = new TextDecoder().decode(ap instanceof PDFRawStream ? decodePDFRawStream(ap).decode() : ap.getContents());
+    return text.split('\n').filter((line) => line.trim().endsWith(' l')).length;
+  };
+  check('v2 sheet: health marks chosen', ['health1', 'health2', 'health3', 'health4'].map(sel).join('') === '/X* ', ['health1', 'health2', 'health3', 'health4'].map(sel).join('|'));
+  check('v2 sheet: health marks drawn as 1, 2 and 3 lines', strokes('health1') === 1 && strokes('health2') === 2 && strokes('health3') === 3 && strokes('health4') === 0, [1, 2, 3, 4].map((i) => strokes(`health${i}`)).join());
   await p2.click('.modal button:has-text("OK")');
   // and back: the exported sheet matches the character
   await p2.click('.switch-btn');

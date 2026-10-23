@@ -544,6 +544,8 @@ a { color: var(--gold-hot); text-decoration-color: #d9b45a55; }
   cursor: pointer;
 }
 .health-box:focus-visible, .wp-box:focus-visible { outline: 2px solid var(--gold); }
+/* the mark as lines that fill the circle (healthMarkLines), not a small glyph */
+.health-mark { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 0.075; stroke-linecap: round; }
 .health-box.mark-bashing { border-color: var(--ink-dim); color: var(--ink); }
 .health-box.mark-lethal { border-color: #e0457b; color: #ff8fb1; }
 .health-box.mark-aggravated { border-color: #e0457b; background: #e0457b33; color: #ffd0de; }

@@ -2,7 +2,7 @@ import type { PDFDocument, PDFForm } from 'pdf-lib';
 import { findPdfPortrait, type SheetPortrait } from '../portrait';
 import mapV1 from './mrgone-m20-2page.json';
 import mapV2 from './mrgone-m20-2page-v2.json';
-import { clampWheel, HEALTH_LEVELS, newCharacter, WHEEL_SIZE, type Character, type HealthMark, type Rated } from '../character';
+import { clampWheel, HEALTH_LEVELS, healthMarkLines, newCharacter, WHEEL_SIZE, type Character, type HealthMark, type Rated } from '../character';
 import { SPHERES, type Sphere } from '../types';
 
 /**
@@ -298,12 +298,32 @@ export async function writeMrGone(
   // does it (pdf-lib would fill the whole box: a huge "27" in Experience). Long text
   // shrinks to fit. The field keeps its own DA, so editing it later in a PDF app works
   // as before.
-  const { PDFCheckBox, PDFTextField, StandardFonts } = await import('pdf-lib');
+  const lib = await import('pdf-lib');
+  const { PDFCheckBox, PDFTextField, StandardFonts } = lib;
   const font = await doc.embedFont(StandardFonts.TimesRomanBold);
+  // A health mark is drawn as lines filling the printed square (the left part of the
+  // drop-down, as tall as it is), like the circles on screen: in Courier "/" and "*" were
+  // thin glyphs in the corner. Picking a mark in a PDF app later redraws it as text.
+  const healthFields = new Set(map.health);
+  const healthLook = (field: { getSelected(): string[] }, widget: { getRectangle(): { height: number } }) => {
+    const mark = (field.getSelected()[0] ?? '').trim() as HealthMark;
+    const side = widget.getRectangle().height;
+    const pad = side * 0.12;
+    const at = (u: number) => pad + u * (side - 2 * pad);
+    return [
+      lib.pushGraphicsState(),
+      lib.setLineWidth(side * 0.08),
+      lib.setLineCap(lib.LineCapStyle.Round),
+      lib.setStrokingGrayscaleColor(0),
+      ...healthMarkLines(mark).flatMap(([x1, y1, x2, y2]) => [lib.moveTo(at(x1), side - at(y1)), lib.lineTo(at(x2), side - at(y2)), lib.stroke()]),
+      lib.popGraphicsState(),
+    ];
+  };
   for (const f of form.getFields()) {
     if (f instanceof PDFCheckBox || !f.needsAppearancesUpdate()) continue;
     try {
-      if (f instanceof PDFTextField && /\s0 Tf/.test(f.acroField.getDefaultAppearance() ?? '')) {
+      if (f instanceof PDFDropdown && healthFields.has(f.getName())) f.updateAppearances(font, healthLook);
+      else if (f instanceof PDFTextField && /\s0 Tf/.test(f.acroField.getDefaultAppearance() ?? '')) {
         const da = f.acroField.getDefaultAppearance()!;
         const text = f.getText() ?? '';
         const box = f.acroField.getWidgets()[0].getRectangle();

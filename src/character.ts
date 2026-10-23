@@ -42,6 +42,24 @@ export function woundLevel(c: Pick<Character, 'health'>): number {
   return worst;
 }
 
+/**
+ * A health mark as lines in a unit square (y down), so it fills its box the same way on
+ * screen and in the PDF: bashing one stroke, lethal a cross, aggravated a six-armed star.
+ * The ends stay inside a circle, for the round boxes on screen.
+ */
+export function healthMarkLines(mark: HealthMark): [number, number, number, number][] {
+  const slash: [number, number, number, number] = [0.22, 0.78, 0.78, 0.22];
+  if (mark === '/') return [slash];
+  if (mark === 'X') return [slash, [0.22, 0.22, 0.78, 0.78]];
+  if (mark === '*')
+    return [
+      [0.5, 0.15, 0.5, 0.85],
+      [0.197, 0.325, 0.803, 0.675],
+      [0.197, 0.675, 0.803, 0.325],
+    ];
+  return [];
+}
+
 /** "Healthy", "Bruised", "Wounded -2"... */
 export function woundLabel(worst: number): string {
   if (worst < 0) return 'Healthy';
