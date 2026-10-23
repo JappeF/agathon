@@ -500,7 +500,7 @@ check('deleting the last one shows the welcome', (await page.$('.nav-char .pp'))
   await tp.mouse.up();
   await tp.waitForSelector('.modal .build-cost', { timeout: 3000 }).catch(() => {});
   const tally = await tp.textContent('.modal').catch(() => '');
-  check('a long press on XP shows the build cost', /From scratch\s*152 XP/.test(tally) && /Beyond a new mage, about\s*56 XP/.test(tally), tally.replace(/\s+/g, ' ').slice(0, 160));
+  check('a long press on XP shows the build cost', /From scratch\s*152 XP/.test(tally) && /Beyond a new mage, about\s*56 XP/.test(tally) && /19 to 28 sessions at 2 to 3 XP/.test(tally), tally.replace(/\s+/g, ' ').slice(0, 160));
   check('and does not pop up the keyboard', await tp.evaluate(() => document.activeElement?.tagName !== 'INPUT'));
   await tc.close();
 }

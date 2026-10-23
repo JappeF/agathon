@@ -2000,3 +2000,4 @@ html:has(.help) { scroll-padding-top: var(--bar-h); }
 .build-cost tfoot td + td { font-family: var(--font-head); font-size: 1.25rem; color: var(--gold-hot); }
 .build-cost tfoot tr:first-child td { color: var(--ink-dim); font-weight: 600; }
 .build-cost tfoot tr:first-child td + td { font-size: 1.05rem; color: var(--ink-dim); }
+.build-sessions { margin: 0 0 0.6rem; text-align: right; color: var(--gold); font-weight: 600; }

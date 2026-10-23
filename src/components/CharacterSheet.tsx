@@ -997,6 +997,11 @@ function BuildCostDialog({ c, onClose }: { c: Character; onClose: () => void }) 
           </tr>
         </tfoot>
       </table>
+      {cost.beyondNew > 0 && (
+        <p className="build-sessions">
+          {Math.ceil(cost.beyondNew / 3)} to {Math.ceil(cost.beyondNew / 2)} sessions at 2 to 3 XP each
+        </p>
+      )}
       <p className="fine-print">
         From scratch: every dot above Attributes 1, Arete 1 and Willpower 5 at M20's prices (a new Background counts as 3). Beyond a new mage: what is left once
         character creation has paid its share (Attributes 7/5/3, Abilities 13/9/5, Backgrounds 7, Spheres 6, then 15 freebie points
