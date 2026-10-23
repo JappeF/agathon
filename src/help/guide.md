@@ -101,7 +101,7 @@ The costs from M20 (p. 253 and p. 336), where "current" is the rating you have n
 | Arete | current x 8 |
 | An Attribute | current x 4 |
 | An Ability | current x 2 |
-| A Background, if the Storyteller allows it | current x 3 (current x 6 for one that costs double) |
+| A Background | current x 3 (current x 6 for one that costs double) |
 | Willpower | current x 1 |
 
 An example: Forces is your affinity Sphere at 2. Raising it to 3 costs 2 x 7 = 14 XP. Raising Arete from 3 to 4 costs 3 x 8 = 24 XP.

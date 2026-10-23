@@ -123,12 +123,13 @@ export default function App() {
             </button>
           )}
         </span>
-        {/* the guide: a narrow fourth item on phones, a round "?" in the bar from 900px */}
-        <a className={`nav-item nav-help${view === 'help' ? ' on' : ''}`} href="#/help" aria-label="Help" title="Help" aria-current={view === 'help' ? 'page' : undefined}>
-          <span className="help-q" aria-hidden="true">
-            ?
-          </span>
-          <span className="nav-help-label">Help</span>
+        {/* the guide: an item like the others, last in the row */}
+        <a className={`nav-item nav-help${view === 'help' ? ' on' : ''}`} href="#/help" aria-current={view === 'help' ? 'page' : undefined}>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M8.6 8.4a3.5 3.5 0 1 1 5.2 3.1c-1.1.6-1.8 1.4-1.8 2.6V15" />
+            <circle cx="12" cy="19" r="0.6" fill="currentColor" />
+          </svg>
+          <span>Help</span>
         </a>
       </nav>
       </header>

@@ -319,11 +319,11 @@ const navRow = async () =>
     els.map((e) => { const r = e.getBoundingClientRect(); return { top: Math.round(r.top), left: Math.round(r.left), right: Math.round(r.right), w: Math.round(r.width) }; }),
   );
 let row = await navRow();
-check('phones: Help in the bottom nav, four on one row', row.length === 4 && new Set(row.map((r) => r.top)).size === 1 && row[3].w === 56, JSON.stringify(row));
-check('Help looks selected on the guide', await page.$eval('.nav-help', (a) => a.classList.contains('on') && getComputedStyle(a).color === getComputedStyle(document.querySelector('.nav-help .help-q')).color));
+check('phones: Help in the bottom nav, four equal items on one row', row.length === 4 && new Set(row.map((r) => r.top)).size === 1 && Math.max(...row.map((r) => r.w)) - Math.min(...row.map((r) => r.w)) <= 1, JSON.stringify(row));
+check('Help looks selected on the guide, like the other items', await page.$eval('.nav-help', (a) => a.classList.contains('on') && getComputedStyle(a).color === getComputedStyle(document.querySelector('.nav-item.on')).color && !a.querySelector('.help-q')));
 await page.setViewportSize({ width: 320, height: 760 });
 row = await navRow();
-check('320px: the bottom nav still fits', row.at(-1).right <= 320 && row.every((r) => r.w >= 56), JSON.stringify(row));
+check('320px: the bottom nav still fits', row.at(-1).right <= 320 && row.every((r) => r.w >= 70), JSON.stringify(row));
 await page.setViewportSize({ width: 390, height: 844 });
 await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.sheet-name');
@@ -334,10 +334,17 @@ await page.waitForSelector('#help-experience');
 await page.waitForTimeout(300);
 const xpHelp = await page.evaluate(() => ({ top: Math.round(document.getElementById('help-experience').getBoundingClientRect().top), table: document.querySelector('#help-experience ~ .help-table')?.textContent ?? '' }));
 check('XP "?" opens the experience costs', xpHelp.top >= 0 && xpHelp.top < 40 && /affinity Sphere\s*current x 7/.test(xpHelp.table), JSON.stringify({ top: xpHelp.top }));
+// phones: the guide's tables stack each row, nothing runs off the side
+check('guide tables fit a phone', await page.$$eval('.help-table', (ts) => ts.length >= 2 && ts.every((t) => t.scrollWidth <= t.clientWidth && getComputedStyle(t.querySelector('tr')).display === 'block')));
 await page.setViewportSize({ width: 1300, height: 900 });
 await page.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.effect-card');
-check('"?" in the bar on wide screens, without its label', (await page.isVisible('.nav-help .help-q')) && !(await page.isVisible('.nav-help-label')));
+await page.waitForTimeout(400); // the nav colours fade (0.2s) after leaving the guide
+check('Help in the bar looks like the other items', await page.$eval('.nav-help', (h) => {
+  const lib = document.querySelector('.app-nav > .nav-item:not(.on)');
+  const look = (e) => { const st = getComputedStyle(e); return [st.borderTopColor, st.backgroundColor, st.color, st.borderRadius, st.height].join(); };
+  return h.textContent.trim() === 'Help' && look(h) === look(lib);
+}));
 await page.click('.search-tips');
 await page.waitForSelector('#help-searching');
 await page.waitForTimeout(300);
