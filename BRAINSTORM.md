@@ -188,8 +188,8 @@ gevonden probleem).
   geexporteerde PDF.
 - **Handleiding in de app** (`#/help`, de tekst in `src/help/guide.md`): van aan de slag
   tot zoekoperatoren, met de XP-kosten uit M20 alleen als informatie. Bereikbaar via
-  Help in de nav (op de telefoon een smal vak in de onderbalk), het welkomstscherm, een
-  "?" naast XP en "Search tips" in de bibliotheek.
+  Help in de nav (op de telefoon een smal vak in de onderbalk), het welkomstscherm en
+  "Search tips" in de bibliotheek.
 - Nieuwe ideeen als issues #23 tot #28 (speelscherm, undo, rote van een idea,
   spell-kaartje, Paradox-seintje, "verras me").
 

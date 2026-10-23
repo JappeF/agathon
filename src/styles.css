@@ -1927,25 +1927,7 @@ input[type='checkbox']:disabled { opacity: 0.5; cursor: default; }
 /* Focus: pick a paradigm, practice or instruments into the free lines above */
 .focus-picks { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
 
-/* ---------- help: the guide (#/help) and the small "?" links to it ---------- */
-.help-q {
-  display: inline-grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  margin-left: 0.3rem;
-  border: 1px solid var(--line-solid);
-  border-radius: 50%;
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--ink-faint);
-  text-decoration: none;
-  vertical-align: middle;
-  position: relative;
-}
-.help-q::after { content: ''; position: absolute; inset: -12px; }
-.help-q:hover { color: var(--gold-hot); border-color: var(--gold); }
-.help-q:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+/* ---------- help: the guide (#/help) and the way to it in the nav ---------- */
 /* the Help ring sits like the portrait: 30px, with the same -3px margins so the labels line up */
 .nav-help svg { margin: -3px 0; }
 /* phones: the character in play gets the room; the others are as wide as they need */

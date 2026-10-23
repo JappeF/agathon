@@ -360,20 +360,22 @@ const ring = await page.evaluate(() => {
   return { size: Math.round(Math.abs(ringH - ringP)), mid: Math.round(Math.abs(pp.top + pp.height / 2 - (hs.top + hs.height / 2))), label: Math.round(Math.abs(ln.top - lh.top)) };
 });
 check('Help ring as big as the portrait, level with it and its label', ring.size === 0 && ring.mid === 0 && ring.label === 0, JSON.stringify(ring));
-check('Help looks selected on the guide, like the other items', await page.$eval('.nav-help', (a) => a.classList.contains('on') && getComputedStyle(a).color === getComputedStyle(document.querySelector('.nav-item.on')).color && !a.querySelector('.help-q')));
+check('Help looks selected on the guide, like the other items', await page.$eval('.nav-help', (a) => a.classList.contains('on') && getComputedStyle(a).color === getComputedStyle(document.querySelector('.nav-item.on')).color ));
 await page.setViewportSize({ width: 320, height: 760 });
 row = await navRow();
 check('320px: the bottom nav still fits', row.at(-1).right <= 320 && row.every((r) => r.w >= 50), JSON.stringify(row));
 await page.setViewportSize({ width: 390, height: 844 });
 await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await page.waitForSelector('.sheet-name');
-check('no XP "?" while playing', (await page.locator('.help-q[href="#/help/experience"]').count()) === 0);
 await page.click('.lock');
-await page.click('.help-q[href="#/help/experience"]');
+check('no "?" beside XP, in play or edit mode', (await page.locator('.sheet a[href^="#/help"]').count()) === 0);
+await page.click('.lock');
+// a deep link opens the guide at its section, just under the top
+await page.goto(`${BASE}/#/help/experience`, { waitUntil: 'networkidle' });
 await page.waitForSelector('#help-experience');
 await page.waitForTimeout(300);
 const xpHelp = await page.evaluate(() => ({ top: Math.round(document.getElementById('help-experience').getBoundingClientRect().top), table: document.querySelector('#help-experience ~ .help-table')?.textContent ?? '' }));
-check('XP "?" opens the experience costs', xpHelp.top >= 0 && xpHelp.top < 40 && /affinity Sphere\s*current x 7/.test(xpHelp.table), JSON.stringify({ top: xpHelp.top }));
+check('#/help/experience opens the experience costs', xpHelp.top >= 0 && xpHelp.top < 40 && /affinity Sphere\s*current x 7/.test(xpHelp.table), JSON.stringify({ top: xpHelp.top }));
 // keyboard users: focus scrolls clear of the fixed bottom nav, and links get the gold ring
 check('phones: focus scrolls clear of the bottom nav', await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).scrollPaddingBottom) >= 64));
 await page.goto(`${BASE}/#/library`, { waitUntil: 'networkidle' });

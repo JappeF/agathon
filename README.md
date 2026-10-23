@@ -132,8 +132,8 @@ table; Agathon is the helper and sounding board.
 - Everything you enter stays in your browser (IndexedDB) until you share it.
 - **A guide in the app** (`#/help`, from `src/help/guide.md`): getting started, the
   sheet, searching, spell ideas and the AI round trip, sharing, and M20's experience
-  costs for reference (nothing is enforced). Help in the nav, the character menu, the
-  "?" beside XP and "Search tips" in the library link to the part that matters.
+  costs for reference (nothing is enforced). Help in the nav, the character menu and
+  "Search tips" in the library link to the part that matters.
 - **One round look**, after the Spheres: round Sphere buttons with rank rings, round
   Health and Willpower boxes and Quintessence wheel, gold dots for tick boxes, and
   pill-shaped buttons and fields.
