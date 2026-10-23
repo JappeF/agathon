@@ -2,7 +2,7 @@
 // second "device" (a fresh browser context), name clashes, a damaged link and the
 // back-up-all file. Needs `npm run preview` on :4173 (or BASE=...).
 import { chromium } from 'playwright-core';
-import { copyFile, mkdir, readFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { deflateRawSync, inflateRawSync } from 'node:zlib';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
@@ -15,6 +15,20 @@ const check = (label, ok, detail = '') => {
   if (!ok) failed++;
 };
 const errors = [];
+
+// the link preview page (functions/i, functions/s): nothing in the target may close its
+// script tag, and on the live site a link that isn't <mode>.<base64url> only redirects
+{
+  const { previewPage } = await import('../server/preview.js');
+  const hostileTarget = '/#import-spell=</script><script>alert(1)</script>&' + String.fromCharCode(0x2028);
+  const html = await previewPage({ title: 't', description: 'd', url: 'https://x.test/i/a', target: hostileTarget }).text();
+  const scriptLine = html.split(String.fromCharCode(10)).find((l) => l.startsWith('<script>')) ?? '';
+  check('preview page: the target cannot close its script', /^<script>[^<]*<\/script>$/.test(scriptLine) && !scriptLine.includes(String.fromCharCode(0x2028)), scriptLine.slice(0, 80));
+  if (!/localhost|127\.0\.0\.1/.test(BASE)) {
+    const r = await fetch(`${BASE}/i/x%3C%2Fscript%3E%3Cscript%3Ealert(1)`, { redirect: 'manual' });
+    check('odd /i/ link only redirects', r.status === 302 && /#\/spells$/.test(r.headers.get('location') ?? ''), `${r.status} ${r.headers.get('location')}`);
+  }
+}
 const device = async () => {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, acceptDownloads: true });
   await ctx.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: BASE });
@@ -116,6 +130,16 @@ check('renamed character file: an add preview', /Add character/.test(renamedPrev
 await b.click('.modal button:has-text("Add character")');
 await b.waitForSelector(`.sheet-name:text-is("${name} (4)")`, { timeout: 8000 }).catch(() => {});
 check('renamed file imports', (await b.textContent('.sheet-name')) === `${name} (4)`);
+// a huge file that is no PDF (a video picked by mistake) is refused before it is read
+await b.click('.switch-btn');
+const t0 = Date.now();
+await writeFile('shots/huge-video.mp4', Buffer.alloc(65 * 1024 * 1024, 32));
+await b.setInputFiles('.switch-menu .import-row input[type=file]', 'shots/huge-video.mp4');
+await b.waitForSelector('.modal');
+check('a huge file is refused, quickly', /far too big/.test(await b.textContent('.modal')) && Date.now() - t0 < 15000, `${Date.now() - t0} ms`);
+await b.click('.modal button:has-text("OK")');
+await b.keyboard.press('Escape');
+await rm('shots/huge-video.mp4');
 await b.evaluate(() => document.querySelector('.menu')?.removeAttribute('open'));
 await b.click('.menu summary');
 await b.click('button:has-text("Delete character")');
@@ -144,7 +168,14 @@ const hostile = {
   spells: [
     { character: 7, title: 'Orphan idea' },
     'junk',
-    { character: 0, title: 'Hostile idea', versions: [{ id: '../x', spheres: { Forces: 42, Bogus: 2 } }], log: [{ outcome: 'exploded', paradox: 999 }] },
+    { character: -1, title: 'Negative idea' },
+    { character: 0.6, title: 'Fraction idea' },
+    {
+      character: 0,
+      title: 'Hostile idea',
+      versions: [{ id: 'dup', spheres: { Mind: 2 } }, { id: 'dup', spheres: { Forces: 42, Bogus: 2 } }],
+      log: [{ version: 'dup', outcome: 'exploded', paradox: 999 }],
+    },
   ],
 };
 await b.goto(`${BASE}/#import=0.${Buffer.from(JSON.stringify(hostile)).toString('base64url')}`, { waitUntil: 'networkidle' });
@@ -157,6 +188,7 @@ await b.click('text=Hostile idea');
 await b.waitForSelector('.dossier');
 check('hostile share: idea ranks clamped', (await b.getAttribute('.version-spheres .sphere-btn[title="Forces"]', 'aria-label')) === 'Forces 5');
 check('hostile share: no orphan idea', (await b.locator('text=Orphan idea').count()) === 0);
+check('hostile share: a repeated version id keeps both versions', (await b.locator('.old-version').count()) === 1);
 await b.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await b.waitForSelector('.sheet-name:text-is("Hostile Mage")');
 check('hostile share: Arete clamped', /Arete\s*10$/.test((await b.textContent('.arete-row')).trim()), await b.textContent('.arete-row'));

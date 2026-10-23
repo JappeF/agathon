@@ -42,6 +42,8 @@ export function ShareDialog({
   const ownSpells = useLiveQuery(() => (single && !backup ? db.spells.where('characterId').equals(single).toArray() : []), [single, backup]);
 
   useEffect(() => {
+    // links and QR codes are for one character; a backup is a file only, so skip the work
+    if (characters.length !== 1) return;
     let live = true;
     setQr(null);
     (async () => {

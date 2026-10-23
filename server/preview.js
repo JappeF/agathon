@@ -3,6 +3,8 @@
 // under functions/s and functions/i; nothing is stored.
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const BACKSLASH = String.fromCharCode(92);
+const UNSAFE = new RegExp("[<>&" + String.fromCharCode(0x2028, 0x2029) + "]", "g");
 
 /** About two lines of a preview card, cut at a word. */
 export const short = (s, max = 200) => {
@@ -14,8 +16,11 @@ export function previewPage({ title, description, url, target }) {
   const origin = new URL(url).origin;
   const t = esc(title);
   const d = esc(description);
-  // the target goes into a script as JSON; "<" escaped so it can't close the tag
-  const js = JSON.stringify(target).replace(/</g, '\u003c');
+  // the target goes into a script as JSON, with < > & and the two line separators written as
+  // unicode escapes, so nothing in it can close the tag or break the line. The backslash is
+  // built from its char code: tools that write this file turn an escape typed in the source
+  // into the character itself (which is how a no-op replace once slipped in here).
+  const js = JSON.stringify(target).replace(UNSAFE, (c) => BACKSLASH + "u" + c.charCodeAt(0).toString(16).padStart(4, "0"));
   const html = `<!doctype html>
 <html lang="en">
 <head>

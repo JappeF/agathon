@@ -134,7 +134,8 @@ export function parsePayload(raw: unknown): SharePayload {
   const characters = p.characters.slice(0, 100).map(sanitizeCharacter);
   // spell ideas only for a character in this file
   const spells = arr(p.spells, 2000)
-    .filter((x) => typeof obj(x).character === 'number')
+    // a whole, non-negative index only: -1 or 0.6 must not land on some other character
+    .filter((x) => Number.isInteger(obj(x).character) && (obj(x).character as number) >= 0)
     .map(sanitizeBackupSpell)
     .filter((s) => s.character < characters.length);
   return {
@@ -166,21 +167,25 @@ const libraryIds = (v: unknown) => arr(v).filter((e): e is string => typeof e ==
 
 function sanitizeBackupSpell(raw: unknown): BackupSpell {
   const s = obj(raw);
-  const versions: SpellVersion[] = arr(s.versions, 100).map((v, i) => {
+  // version ids tie log entries to a plan: each must be unique, so a missing or repeated
+  // one gets a fresh id (a log entry pointing at it then shows no version, never the wrong one)
+  const seen = new Set<string>();
+  const versions: SpellVersion[] = arr(s.versions, 100).map((v) => {
     const o = obj(v);
     const reply = str(o.reply, 30000);
     return {
       ...cleanVersion(o),
-      id: typeof o.id === 'string' && ID.test(o.id) ? o.id : `v${i}`,
+      id: typeof o.id === 'string' && ID.test(o.id) && !seen.has(o.id) ? (seen.add(o.id), o.id) : crypto.randomUUID(),
       createdAt: time(o.createdAt),
       ...(reply ? { reply } : {}),
     };
   });
   const outcomes = OUTCOMES.map((o) => o.id) as string[];
-  const log: CastLog[] = arr(s.log, 500).map((l, i) => {
+  const logIds = new Set<string>();
+  const log: CastLog[] = arr(s.log, 500).map((l) => {
     const o = obj(l);
     return {
-      id: typeof o.id === 'string' && ID.test(o.id) ? o.id : `l${i}`,
+      id: typeof o.id === 'string' && ID.test(o.id) && !logIds.has(o.id) ? (logIds.add(o.id), o.id) : crypto.randomUUID(),
       at: time(o.at),
       version: typeof o.version === 'string' && ID.test(o.version) ? o.version : '',
       outcome: outcomes.includes(o.outcome as string) ? (o.outcome as CastLog['outcome']) : 'worked',
@@ -195,7 +200,7 @@ function sanitizeBackupSpell(raw: unknown): BackupSpell {
     title: str(s.title, 200).trim() || 'Untitled spell idea',
     goal: str(s.goal),
     effects: libraryIds(s.effects),
-    versions: versions.length ? versions : [{ ...cleanVersion({}), id: 'v0', createdAt: 0 }],
+    versions: versions.length ? versions : [{ ...cleanVersion({}), id: crypto.randomUUID(), createdAt: 0 }],
     log,
   };
 }
@@ -331,5 +336,8 @@ export const encodeSpellShare = (s: Spell) => encodeJson(buildSpellPayload(s));
 export const decodeSpellShare = (encoded: string) => decodeJson(encoded, parseSpellPayload);
 
 /** Links that other apps show with a preview card (the functions under functions/s and functions/i). */
-export const spellIdeaUrl = (encoded: string) => `${location.origin}/i/${encoded}`;
+/** Past this the /i/ path nears the server's URL limit; such a link goes straight to the app. */
+export const SPELL_LINK_MAX = 12000;
+export const spellIdeaUrl = (encoded: string) =>
+  encoded.length <= SPELL_LINK_MAX ? `${location.origin}/i/${encoded}` : `${location.origin}/#import-spell=${encoded}`;
 export const librarySpellUrl = (id: string) => `${location.origin}/s/${encodeURIComponent(id)}`;

@@ -23,8 +23,13 @@ async function inflate(bytes) {
   return new TextDecoder().decode(await new Blob(chunks).arrayBuffer());
 }
 
+/** What a spell idea link carries: <mode>.<base64url>, nothing else. */
+const DATA = /^[01]\.[A-Za-z0-9_-]{1,16000}$/;
+
 export async function onRequestGet({ params, request }) {
   const data = String(params.data ?? '');
+  // anything else is not a link the app made: send it to the spell ideas, carrying nothing
+  if (!DATA.test(data)) return Response.redirect(new URL('/#/spells', request.url).toString(), 302);
   const target = `/#import-spell=${data}`;
   let title = 'A spell idea';
   let goal = 'A spell idea shared from Agathon, a companion for Mage: The Ascension.';

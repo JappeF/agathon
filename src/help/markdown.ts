@@ -56,7 +56,8 @@ export function renderMarkdown(md: string): { html: string; sections: Section[] 
           .join('')}</tbody></table></div>`,
       );
     } else {
-      const para: string[] = [];
+      // the first line always goes in (a "#" that is no heading, say), so the loop moves on
+      const para: string[] = [lines[i++]];
       while (i < lines.length && lines[i].trim() && !/^(#|- |\|)/.test(lines[i])) para.push(lines[i++]);
       out.push(`<p>${inline(para.join(' '))}</p>`);
     }

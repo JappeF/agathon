@@ -3,6 +3,7 @@
 // or BASE=https://agathon.pages.dev to check the live site.
 import { chromium } from 'playwright-core';
 import { mkdir } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 await mkdir('shots', { recursive: true });
@@ -19,6 +20,14 @@ const check = (label, ok, detail = '') => {
   console.log(`${ok ? 'ok  ' : 'FAIL'} ${label}${detail ? `: ${detail}` : ''}`);
   if (!ok) failed++;
 };
+
+// the guide's Markdown: odd lines (a "#" that is no heading) must not hang it, and nothing
+// gets through unescaped; run apart with a time limit, since a hang would freeze this script
+{
+  const probe = "import('./src/help/markdown.ts').then(({ renderMarkdown }) => console.log(renderMarkdown(['# T', '#### x', '#tag', '<b>x</b> [a](javascript:x)'].join(String.fromCharCode(10))).html))";
+  const run = spawnSync(process.execPath, ['-e', probe], { timeout: 5000, encoding: 'utf8' });
+  check('guide Markdown: odd lines end, everything escaped', run.status === 0 && /<p>#### x<\/p>/.test(run.stdout) && !/<b>|href="javascript/.test(run.stdout), (run.stdout || run.error?.message || '').slice(0, 160));
+}
 
 await page.goto(BASE, { waitUntil: 'networkidle' });
 check('logo', (await page.textContent('.logo'))?.trim() === 'Agathon');

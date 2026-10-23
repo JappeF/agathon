@@ -164,9 +164,38 @@ const op = await other.newPage();
 await op.goto(live ? ideaLink : `${BASE}/#import-spell=${ideaLink.split('/i/')[1]}`);
 await op.waitForSelector('.modal');
 await op.fill('.modal input', 'Second Device');
-await op.click('.modal button:has-text("Add spell idea")');
+// a double tap adds it once, with one new character
+await op.dblclick('.modal button:has-text("Add spell idea")');
 await op.waitForSelector('.dossier-title');
 check('shared idea arrives on another device', (await op.inputValue('.dossier-title')) === ideaTitle, await op.inputValue('.dossier-title'));
+await op.waitForTimeout(500);
+const counts = await op.evaluate(
+  () =>
+    new Promise((done) => {
+      const req = indexedDB.open('agathon');
+      req.onsuccess = () => {
+        const tx = req.result.transaction(['characters', 'spells']);
+        const c = tx.objectStore('characters').count();
+        const sp = tx.objectStore('spells').count();
+        tx.oncomplete = () => done([c.result, sp.result]);
+      };
+    }),
+);
+check('a double tap adds one character and one idea', counts.join() === '1,1', counts.join());
+// an idea too long for the /i/ path gets a link straight into the app (no preview card)
+await other.grantPermissions(['clipboard-read', 'clipboard-write'], { origin: BASE });
+await op.goto(`${BASE}/#/spells`);
+await op.fill('input[aria-label="New spell idea"]', 'A very long idea');
+await op.keyboard.press('Enter');
+await op.waitForSelector('.dossier');
+const noise = (n) => Array.from({ length: n }, () => 'abcdefghijklmnopqrstuvwxyz0123456789 '[(Math.random() * 37) | 0]).join('');
+await op.fill('.dossier label:has-text("What should happen") textarea', noise(4000));
+for (const f of ['How it looks', 'Keeping it coincidental', 'Notes']) await op.fill(`.version label:has-text("${f}") textarea`, noise(4000));
+await op.waitForTimeout(600);
+await op.click('.dossier .share-btn');
+await op.waitForTimeout(500);
+const longLink = await op.evaluate(() => navigator.clipboard.readText());
+check('a very long idea links straight into the app', longLink.startsWith(`${BASE}/#import-spell=1.`), `${longLink.slice(0, 50)}... ${longLink.length} chars`);
 await other.close();
 
 // Paste the answer: the JSON block becomes a version, junk is filtered out

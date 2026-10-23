@@ -58,6 +58,7 @@ Library data: edit `library/src/*.json`, then `node library/scripts/build.mjs` a
 - `portrait` and `pinned` are app-owned: left out of `SheetFields`, so PDF import and `diffSheet` never overwrite them.
 - `useDraft`: writes are flushed on unmount and when the page hides; a newer stored row is adopted only when nothing is pending, and local edits bump `updatedAt`. Don't write a whole character from a stale snapshot elsewhere (stars use `toggleFavorite`, against the stored row).
 - `refs/` (rulebooks, sample sheets, extracted text) is never committed. Only our own summaries are.
+- Escapes typed into an edit (a backslash-u code, a backslash before a slash) can reach the file as the character itself: the preview page's "escape" of `<` was a no-op that way. Build such characters with `String.fromCharCode` and test the output (verify-share does for the preview page).
 
 **PDF (Mr. Gone's sheet)**
 - Two versions exist, each with a generated map; `mapFor` picks by the `skillsex1` field. v2 has editable drop-downs where v1 has text fields, own-Ability rows (imported as Other Traits), shifted Spheres. A box a version lacks is skipped, never fatal.

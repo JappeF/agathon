@@ -15,6 +15,9 @@ import { parsePayload, ShareFormatError, type SharePayload } from '../share';
  * preview; an existing one (same name, or `target`) gets the list of changes first,
  * because an import never overwrites anything without asking.
  */
+/** A backup of a hundred characters with portraits is a few MB; this leaves lots of room. */
+const MAX_CHARACTER_FILE = 64 * 1024 * 1024;
+
 export function ImportFlow({
   target,
   label,
@@ -39,6 +42,9 @@ export function ImportFlow({
       // file often arrives renamed (".json.txt", no extension). Update from PDF takes PDFs.
       const head = new Uint8Array(await file.slice(0, 5).arrayBuffer());
       if (!target && String.fromCharCode(...head) !== '%PDF-') {
+        // a character file is text and stays well under this; a video picked by mistake
+        // is not read into memory at all
+        if (file.size > MAX_CHARACTER_FILE) throw new ShareFormatError("That file is far too big for an Agathon character file.");
         setShared(parsePayload(JSON.parse(await file.text())));
       } else {
         setPending(await prepareImport(file, target));
