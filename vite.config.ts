@@ -32,9 +32,9 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
         globIgnores: ['spell-index.json'],
         // the service worker answers page loads with the app shell; the link-preview pages
-        // (/s/<id>, /i/<data>) have to come from the server, or an
+        // (/s/<id>, /i/<data>, /c/<data>) have to come from the server, or an
         // installed app opens the library instead of the shared spell
-        navigateFallbackDenylist: [/^\/s\//, /^\/i\//],
+        navigateFallbackDenylist: [/^\/s\//, /^\/i\//, /^\/c\//],
       },
       manifest: {
         name: 'Agathon',

@@ -122,8 +122,10 @@ table; Agathon is the helper and sounding board.
   (the link leaves out the AI answers and the log, the file has everything). Notes
   stay private unless you tick them. Files carry the portrait; links leave it out by
   default (it is most of a link's length, and chat apps stop making long links
-  clickable), with a tick box to add a small copy. Imports only ever add: a name that
-  already exists gets a number.
+  clickable), with a tick box to add a small copy. In chat apps the link shows a card
+  with the character's name, a line about it and its magic (and the portrait, when it
+  rides along). The QR code goes straight into the app, so it works offline too.
+  Imports only ever add: a name that already exists gets a number.
 
 ### App
 

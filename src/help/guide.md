@@ -81,6 +81,7 @@ Every operator can be turned around with a minus: `-time:`, `-tag:combat`. Techn
 
 - **Share character** (in the sheet's ... menu) gives a file, a link or a QR code. Notes stay private unless you tick them. Tick **Include spell ideas** to send the character's ideas along.
 - The file carries the portrait; a link leaves it out, so WhatsApp and the like keep it clickable. Tick **Portrait in the link** to add a small copy anyway.
+- In chat apps a character link shows a card with the name, a line about the character and its magic, and the portrait when it rides along.
 - A **spell idea** has its own share button: the link shows its title and goal in chat apps, and opens in Agathon to add it to one of your characters.
 - A **library spell** can be shared from its detail page too.
 - **Back up all characters** (in the character menu) saves one file with all characters and their spell ideas. Importing it later adds them back, each idea with its own character.

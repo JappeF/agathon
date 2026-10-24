@@ -205,7 +205,7 @@ function sanitizeBackupSpell(raw: unknown): BackupSpell {
   };
 }
 
-// ---------- share-link encoding: #import=<mode>.<base64url(deflate(json))> ----------
+// ---------- share-link encoding: /c/<mode>.<data> -> #import=<mode>.<base64url(deflate(json))> ----------
 
 const b64uEncode = (bytes: Uint8Array) => {
   let bin = '';
@@ -272,7 +272,10 @@ async function decodeJson<T>(encoded: string, parse: (raw: unknown) => T): Promi
 export const encodeShare = (p: SharePayload) => encodeJson(p);
 export const decodeShare = (encoded: string) => decodeJson(encoded, parsePayload);
 
-export const shareUrl = (encoded: string) => `${location.origin}${location.pathname}#import=${encoded}`;
+/** Straight into the app: no server on the way, so it works offline too (the QR code). */
+export const appShareUrl = (encoded: string) => `${location.origin}/#import=${encoded}`;
+/** /c/<data>: the same character, with a preview card in chat apps (functions/c). */
+export const shareUrl = (encoded: string) => (encoded.length <= LINK_MAX ? `${location.origin}/c/${encoded}` : appShareUrl(encoded));
 
 export function payloadFileName(p: SharePayload) {
   const who = p.characters.length === 1 ? p.characters[0].name.replace(/[\\/:*?"<>|]+/g, '').trim() || 'character' : 'characters';
@@ -335,9 +338,9 @@ export function parseSpellPayload(raw: unknown): SpellSharePayload {
 export const encodeSpellShare = (s: Spell) => encodeJson(buildSpellPayload(s));
 export const decodeSpellShare = (encoded: string) => decodeJson(encoded, parseSpellPayload);
 
-/** Links that other apps show with a preview card (the functions under functions/s and functions/i). */
-/** Past this the /i/ path nears the server's URL limit; such a link goes straight to the app. */
-export const SPELL_LINK_MAX = 12000;
+/** Links that other apps show with a preview card (the functions under functions/s, functions/i and functions/c). */
+/** Past this an /i/ or /c/ path nears the server's URL limit; such a link goes straight to the app. */
+export const LINK_MAX = 12000;
 export const spellIdeaUrl = (encoded: string) =>
-  encoded.length <= SPELL_LINK_MAX ? `${location.origin}/i/${encoded}` : `${location.origin}/#import-spell=${encoded}`;
+  encoded.length <= LINK_MAX ? `${location.origin}/i/${encoded}` : `${location.origin}/#import-spell=${encoded}`;
 export const librarySpellUrl = (id: string) => `${location.origin}/s/${encodeURIComponent(id)}`;

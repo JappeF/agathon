@@ -16,17 +16,38 @@ const check = (label, ok, detail = '') => {
 };
 const errors = [];
 
-// the link preview page (functions/i, functions/s): nothing in the target may close its
-// script tag, and on the live site a link that isn't <mode>.<base64url> only redirects
+// the link preview page (functions/i, functions/s, functions/c): nothing in the target may
+// close its script tag, and on the live site a link that isn't <mode>.<base64url> only redirects
 {
   const { previewPage } = await import('../server/preview.js');
   const hostileTarget = '/#import-spell=</script><script>alert(1)</script>&' + String.fromCharCode(0x2028);
   const html = await previewPage({ title: 't', description: 'd', url: 'https://x.test/i/a', target: hostileTarget }).text();
   const scriptLine = html.split(String.fromCharCode(10)).find((l) => l.startsWith('<script>')) ?? '';
   check('preview page: the target cannot close its script', /^<script>[^<]*<\/script>$/.test(scriptLine) && !scriptLine.includes(String.fromCharCode(0x2028)), scriptLine.slice(0, 80));
+  // the character card (functions/c), run here in Node: name, a line and the magic, the
+  // portrait as the picture, and nothing from the link can break out of the tags
+  const { onRequestGet } = await import('../functions/c/[data].js');
+  const thumb = `data:image/webp;base64,${(await readFile('public/icons/icon-192.png')).subarray(0, 2500).toString('base64')}`; // thumbnail-sized
+  const person = { name: 'Ada "<b>"', concept: 'Healer', sect: 'Verbena', essence: 'Dynamic', arete: 3, spheres: { Life: 3, Prime: 2, Time: 0 }, portrait: thumb };
+  const enc = (o) => `1.${deflateRawSync(Buffer.from(JSON.stringify({ app: 'agathon', version: 1, characters: [o] }))).toString('base64url')}`;
+  const card = async (data, query = '') => onRequestGet({ params: { data }, request: new Request(`https://x.test/c/${data}${query}`) });
+  const page = await (await card(enc(person))).text();
+  const metaOf = (prop) => (page.match(new RegExp(`property="${prop}" content="([^"]*)"`)) || [])[1] ?? '';
+  check('character card: name and line', metaOf('og:title') === 'Character: Ada &quot;&lt;b&gt;&quot;' && metaOf('og:description') === 'Healer, Verbena, Dynamic Essence. Arete 3, Life 3, Prime 2', `${metaOf('og:title')} / ${metaOf('og:description')}`);
+  check('character card: the portrait is the picture', metaOf('og:image') === `https://x.test/c/${enc(person)}?portrait` && metaOf('og:image:width') === '128', metaOf('og:image').slice(-20));
+  const pic = await card(enc(person), '?portrait');
+  check('character card: ?portrait serves the image', pic.headers.get('content-type') === 'image/webp' && (await pic.arrayBuffer()).byteLength > 1000, pic.headers.get('content-type'));
+  const plain = await (await card(enc({ name: 'Bo' }))).text();
+  check('character card: no portrait, the sigil', plain.includes('og:image" content="https://x.test/icons/icon-512.png"') && plain.includes('location.replace("/#import=1.'));
+  const broken = await card('1.bm90IGEgcmVhbCBsaW5r');
+  check('character card: a damaged link still goes on', broken.status === 200 && (await broken.text()).includes('og:title" content="A character"'));
+  const noPic = await card(enc({ name: 'Bo', portrait: 'data:text/html;base64,PGI+' }), '?portrait');
+  check('character card: only image portraits are served', noPic.status === 302 && /icon-512\.png$/.test(noPic.headers.get('location') ?? ''), `${noPic.status}`);
   if (!/localhost|127\.0\.0\.1/.test(BASE)) {
     const r = await fetch(`${BASE}/i/x%3C%2Fscript%3E%3Cscript%3Ealert(1)`, { redirect: 'manual' });
     check('odd /i/ link only redirects', r.status === 302 && /#\/spells$/.test(r.headers.get('location') ?? ''), `${r.status} ${r.headers.get('location')}`);
+    const rc = await fetch(`${BASE}/c/x%3C%2Fscript%3E`, { redirect: 'manual' });
+    check('odd /c/ link only redirects', rc.status === 302 && /#\/characters$/.test(rc.headers.get('location') ?? ''), `${rc.status} ${rc.headers.get('location')}`);
   }
 }
 const device = async () => {
@@ -69,10 +90,21 @@ check('notes unticked by default', !(await a.isChecked('.modal .check input')));
 const shareBtns = await a.$$eval('.modal .btn', (bs) => bs.map((b) => [b.classList.contains('btn-gold'), Math.round(b.getBoundingClientRect().height)]));
 check('share dialog: dark pills 30px, Done stays gold', shareBtns.length >= 4 && shareBtns.every(([gold, h]) => h === (gold ? 44 : 30)), JSON.stringify(shareBtns));
 // links go without the portrait (chat apps stop making long links clickable), unless ticked
-const linkData = (link) => JSON.parse(inflateRawSync(Buffer.from(link.split('#import=1.')[1], 'base64url')).toString());
+// links go through /c/ (a preview card in chat apps, functions/c); vite preview has no Pages
+// Functions, so locally a link is opened as the app link the preview page forwards to
+const live = !/localhost|127\.0\.0\.1/.test(BASE);
+const dataOf = (link) => link.split(/\/c\/|#import=/)[1];
+const linkData = (link) => JSON.parse(inflateRawSync(Buffer.from(dataOf(link).slice(2), 'base64url')).toString());
+const opened = (link) => (live ? link : `${BASE}/#import=${dataOf(link)}`);
+const meta = (html, prop) => (html.match(new RegExp(`property="${prop}" content="([^"]*)"`)) || [])[1] ?? '';
 await a.click('.modal button:has-text("Copy link")');
 const shortUrl = await a.evaluate(() => navigator.clipboard.readText());
-check('share link', shortUrl.startsWith(`${BASE}/#import=1.`), `${shortUrl.length} chars`);
+check('share link', shortUrl.startsWith(`${BASE}/c/1.`), `${shortUrl.length} chars`);
+if (live) {
+  const html = await (await fetch(shortUrl)).text();
+  check('character link preview', meta(html, 'og:title') === `Character: ${name}` && /Arete 1, Forces 3/.test(meta(html, 'og:description')), `${meta(html, 'og:title')} / ${meta(html, 'og:description')}`);
+  check('no portrait in the link: the sigil is the picture', meta(html, 'og:image').endsWith('/icons/icon-512.png'), meta(html, 'og:image'));
+}
 check('link leaves the portrait out by default', !linkData(shortUrl).characters[0].portrait && shortUrl.length < 2500, `${shortUrl.length} chars`);
 const portraitBox = '.modal .check:has-text("Portrait in the link") input';
 check('portrait tick box, off', (await a.locator(portraitBox).count()) === 1 && !(await a.isChecked(portraitBox)));
@@ -81,6 +113,13 @@ await a.waitForTimeout(600);
 await a.click('.modal button:has-text("Copy link")');
 const url = await a.evaluate(() => navigator.clipboard.readText());
 check('ticked: the link carries a small portrait', /^data:image\/webp/.test(linkData(url).characters[0].portrait ?? '') && url.length > shortUrl.length, `${url.length} chars`);
+if (live) {
+  const html = await (await fetch(url)).text();
+  const img = meta(html, 'og:image').replace(/&amp;/g, '&');
+  const r = await fetch(img);
+  const bytes = new Uint8Array(await r.arrayBuffer());
+  check('ticked: the preview card shows the portrait', img === `${url}?portrait` && r.headers.get('content-type') === 'image/webp' && bytes.length > 500, `${r.status} ${r.headers.get('content-type')} ${bytes.length} bytes`);
+}
 await a.click('.modal button:has-text("Show QR code")');
 check('QR code drawn', (await a.$('.qr svg')) !== null);
 await a.waitForTimeout(400); // let the fade-in finish
@@ -96,7 +135,7 @@ await a.click('.modal button:has-text("Done")');
 
 // --- device B: open the link ---
 const { page: b } = await device();
-await b.goto(url, { waitUntil: 'networkidle' });
+await b.goto(opened(url), { waitUntil: 'networkidle' });
 await b.waitForSelector('.modal');
 check('link preview', (await b.textContent('.modal-title')) === `Add ${name}?`);
 check('link cleaned from the URL', !b.url().includes('import='), b.url());
@@ -111,7 +150,7 @@ await b.click('.tab:has-text("Magick")');
 check('favorites through the link', (await b.waitForSelector('.pin-row', { timeout: 5000 }).catch(() => null)) !== null);
 
 // opening the same link again adds a copy instead of overwriting
-await b.goto(url, { waitUntil: 'networkidle' });
+await b.goto(opened(url), { waitUntil: 'networkidle' });
 await b.waitForSelector('.modal');
 await b.click('.modal button:has-text("Add character")');
 // the sheet in play shows first; wait for the new one
@@ -305,8 +344,7 @@ await b.waitForSelector(ideasBox, { timeout: 3000 }).catch(() => {});
 check('spell ideas offered, unticked', (await b.locator(ideasBox).count()) === 1 && !(await b.isChecked(ideasBox)));
 const linkOf = async () => {
   await b.click('.modal button:has-text("Copy link")');
-  const link = await b.evaluate(() => navigator.clipboard.readText());
-  return JSON.parse(inflateRawSync(Buffer.from(link.split('#import=1.')[1], 'base64url')).toString());
+  return linkData(await b.evaluate(() => navigator.clipboard.readText()));
 };
 check('link without ideas by default', !(await linkOf()).spells);
 await b.check(ideasBox);

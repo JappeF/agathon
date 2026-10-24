@@ -171,7 +171,8 @@ gevonden probleem).
 19 tot 23 okt:
 - **Delen:** een spell uit de bibliotheek en een spell idea delen met een link die in
   WhatsApp en Discord een kaartje toont (Pages Functions `/s/` en `/i/`, niets
-  opgeslagen). De backup neemt alle spell ideas mee en zet ze terug bij hun eigen
+  opgeslagen). Sinds 24 okt ook voor characters (`/c/`: naam, een regel en de magie,
+  het portret als het in de link zit); de QR-code gaat direct de app in. De backup neemt alle spell ideas mee en zet ze terug bij hun eigen
   character; een los character kan zijn ideas meenemen (de link zonder AI-antwoorden
   en log, het bestand compleet).
 - **Sheet:** Focus-kiezers voor paradigm, practice en instruments (issue #15), de nieuwere

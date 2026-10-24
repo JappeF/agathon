@@ -4,7 +4,7 @@ import qrcode from 'qrcode-generator';
 import type { Character } from '../character';
 import { db } from '../db/db';
 import { download } from '../sheetActions';
-import { buildPayload, encodeShare, lightSpells, payloadFileName, shareUrl } from '../share';
+import { appShareUrl, buildPayload, encodeShare, lightSpells, payloadFileName, shareUrl } from '../share';
 import { shrinkPortrait } from '../portrait';
 import { Modal } from './Modal';
 
@@ -31,7 +31,7 @@ export function ShareDialog({
 }) {
   const [includeNotes, setIncludeNotes] = useState(characters.length > 1);
   const [url, setUrl] = useState('');
-  // the QR code holds ~2 KB, so it gets its own link without the portrait
+  // the QR code holds ~2 KB, so it gets its own link without the portrait or spell ideas
   const [qrUrl, setQrUrl] = useState('');
   const [copied, setCopied] = useState(false);
   const [qr, setQr] = useState<string | null>(null);
@@ -52,7 +52,8 @@ export function ShareDialog({
     setQr(null);
     (async () => {
       const bare = buildPayload(characters, includeNotes, false);
-      const qr = shareUrl(await encodeShare(bare));
+      // the QR code goes straight into the app: no preview card to show, and it works offline
+      const qr = appShareUrl(await encodeShare(bare));
       // with the tick, the link carries a small copy of the portrait; the file has the full one
       const linked = buildPayload(characters, includeNotes, false, includeSpells && ownSpells ? lightSpells(ownSpells) : []);
       const withThumb = portraitInLink

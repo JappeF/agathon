@@ -12,8 +12,39 @@ export const short = (s, max = 200) => {
   return t.length <= max ? t : `${t.slice(0, max).replace(/\s+\S*$/, '')}...`;
 };
 
-export function previewPage({ title, description, url, target }) {
+/** What a link that carries its data holds (/i/, /c/): <mode>.<base64url>, nothing else. */
+export const LINK_DATA = /^[01]\.[A-Za-z0-9_-]{1,16000}$/;
+
+/**
+ * The JSON inside such a link: mode 1 is deflate-raw, 0 plain. A hostile link may not
+ * inflate past `limit` bytes. Throws on anything damaged.
+ */
+export async function readLink(data, limit) {
+  const dot = data.indexOf('.');
+  const bin = atob(data.slice(dot + 1).replace(/-/g, '+').replace(/_/g, '/'));
+  const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+  if (data.slice(0, dot) !== '1') return JSON.parse(new TextDecoder().decode(bytes));
+  const reader = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw')).getReader();
+  const chunks = [];
+  let size = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    size += value.length;
+    if (size > limit) {
+      await reader.cancel();
+      throw new Error('too large');
+    }
+    chunks.push(value);
+  }
+  return JSON.parse(new TextDecoder().decode(await new Blob(chunks).arrayBuffer()));
+}
+
+/** `image`: { url, size } for a square picture of the subject; the app's sigil otherwise. */
+export function previewPage({ title, description, url, target, image }) {
   const origin = new URL(url).origin;
+  const img = esc(image?.url ?? `${origin}/icons/icon-512.png`);
+  const side = image?.size ?? 512;
   const t = esc(title);
   const d = esc(description);
   // the target goes into a script as JSON, with < > & and the two line separators written as
@@ -33,13 +64,13 @@ export function previewPage({ title, description, url, target }) {
 <meta property="og:title" content="${t}">
 <meta property="og:description" content="${d}">
 <meta property="og:url" content="${esc(url)}">
-<meta property="og:image" content="${origin}/icons/icon-512.png">
-<meta property="og:image:width" content="512">
-<meta property="og:image:height" content="512">
+<meta property="og:image" content="${img}">
+<meta property="og:image:width" content="${side}">
+<meta property="og:image:height" content="${side}">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="${t}">
 <meta name="twitter:description" content="${d}">
-<meta name="twitter:image" content="${origin}/icons/icon-512.png">
+<meta name="twitter:image" content="${img}">
 <meta http-equiv="refresh" content="0;url=${esc(target)}">
 <script>location.replace(${js})</script>
 </head>
