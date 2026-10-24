@@ -120,9 +120,10 @@ table; Agathon is the helper and sounding board.
   also holds the spell ideas (with their versions and log), which come back with
   their own character. One character can take its own spell ideas along when ticked
   (the link leaves out the AI answers and the log, the file has everything). Notes
-  stay private unless you tick them; links carry a small
-  portrait, files the full one. Imports only ever add: a name that already exists
-  gets a number.
+  stay private unless you tick them. Files carry the portrait; links leave it out by
+  default (it is most of a link's length, and chat apps stop making long links
+  clickable), with a tick box to add a small copy. Imports only ever add: a name that
+  already exists gets a number.
 
 ### App
 

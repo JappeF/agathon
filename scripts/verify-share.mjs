@@ -68,9 +68,19 @@ await a.waitForSelector('.modal');
 check('notes unticked by default', !(await a.isChecked('.modal .check input')));
 const shareBtns = await a.$$eval('.modal .btn', (bs) => bs.map((b) => [b.classList.contains('btn-gold'), Math.round(b.getBoundingClientRect().height)]));
 check('share dialog: dark pills 30px, Done stays gold', shareBtns.length >= 4 && shareBtns.every(([gold, h]) => h === (gold ? 44 : 30)), JSON.stringify(shareBtns));
+// links go without the portrait (chat apps stop making long links clickable), unless ticked
+const linkData = (link) => JSON.parse(inflateRawSync(Buffer.from(link.split('#import=1.')[1], 'base64url')).toString());
+await a.click('.modal button:has-text("Copy link")');
+const shortUrl = await a.evaluate(() => navigator.clipboard.readText());
+check('share link', shortUrl.startsWith(`${BASE}/#import=1.`), `${shortUrl.length} chars`);
+check('link leaves the portrait out by default', !linkData(shortUrl).characters[0].portrait && shortUrl.length < 2500, `${shortUrl.length} chars`);
+const portraitBox = '.modal .check:has-text("Portrait in the link") input';
+check('portrait tick box, off', (await a.locator(portraitBox).count()) === 1 && !(await a.isChecked(portraitBox)));
+await a.check(portraitBox);
+await a.waitForTimeout(600);
 await a.click('.modal button:has-text("Copy link")');
 const url = await a.evaluate(() => navigator.clipboard.readText());
-check('share link', url.startsWith(`${BASE}/#import=1.`), `${url.length} chars`);
+check('ticked: the link carries a small portrait', /^data:image\/webp/.test(linkData(url).characters[0].portrait ?? '') && url.length > shortUrl.length, `${url.length} chars`);
 await a.click('.modal button:has-text("Show QR code")');
 check('QR code drawn', (await a.$('.qr svg')) !== null);
 await a.waitForTimeout(400); // let the fade-in finish
@@ -82,7 +92,6 @@ const file = JSON.parse(await readFile(filePath, 'utf8'));
 check('file name', dl.suggestedFilename() === `${name}.agathon.json`, dl.suggestedFilename());
 check('file: Forces 3, no notes, no id', file.characters[0].spheres.Forces === 3 && file.characters[0].notes === '' && !('id' in file.characters[0]));
 check('file carries the portrait', /^data:image\//.test(file.characters[0].portrait ?? ''));
-check('link carries a small portrait', url.length < 20000, `${url.length} chars`);
 await a.click('.modal button:has-text("Done")');
 
 // --- device B: open the link ---

@@ -38,6 +38,10 @@ export function ShareDialog({
   const hasNotes = characters.some((c) => c.notes.trim());
   const spellCount = useLiveQuery(() => (backup ? db.spells.count() : 0), [backup]) ?? 0;
   const [includeSpells, setIncludeSpells] = useState(false);
+  // a portrait is most of a link (about 5 of its 7 thousand characters), and chat apps stop
+  // making long links clickable: links go without it unless ticked; the file always has it
+  const [portraitInLink, setPortraitInLink] = useState(false);
+  const hasPortrait = characters.length === 1 && !!characters[0].portrait;
   const single = characters.length === 1 ? characters[0].id : '';
   const ownSpells = useLiveQuery(() => (single && !backup ? db.spells.where('characterId').equals(single).toArray() : []), [single, backup]);
 
@@ -49,17 +53,19 @@ export function ShareDialog({
     (async () => {
       const bare = buildPayload(characters, includeNotes, false);
       const qr = shareUrl(await encodeShare(bare));
-      // links carry a small copy of the portrait; the file has the full one
+      // with the tick, the link carries a small copy of the portrait; the file has the full one
       const linked = buildPayload(characters, includeNotes, false, includeSpells && ownSpells ? lightSpells(ownSpells) : []);
-      const withThumb = {
-        ...linked,
-        characters: await Promise.all(
-          linked.characters.map(async (sc, i) => {
-            const p = characters[i].portrait;
-            return p ? { ...sc, portrait: await shrinkPortrait(p).catch(() => undefined) } : sc;
-          }),
-        ),
-      };
+      const withThumb = portraitInLink
+        ? {
+            ...linked,
+            characters: await Promise.all(
+              linked.characters.map(async (sc, i) => {
+                const p = characters[i].portrait;
+                return p ? { ...sc, portrait: await shrinkPortrait(p).catch(() => undefined) } : sc;
+              }),
+            ),
+          }
+        : linked;
       const link = shareUrl(await encodeShare(withThumb));
       if (live) {
         setQrUrl(qr);
@@ -69,7 +75,7 @@ export function ShareDialog({
     return () => {
       live = false;
     };
-  }, [characters, includeNotes, includeSpells, ownSpells]);
+  }, [characters, includeNotes, includeSpells, ownSpells, portraitInLink]);
 
   const file = async () => {
     const spells = backup ? await db.spells.toArray() : includeSpells ? (ownSpells ?? []) : [];
@@ -111,12 +117,18 @@ export function ShareDialog({
           ? 'Whoever opens it gets their own copy. Their changes never reach yours.'
           : `A backup of all ${characters.length} characters${spellCount ? ` and ${spellCount === 1 ? 'one spell idea' : `${spellCount} spell ideas`}` : ''}. Importing it adds them, nothing gets overwritten.`}{' '}
         The stored PDF sheet is not included.
-        {characters.some((c) => c.portrait) && characters.length === 1 && ' Links carry a small copy of the portrait; QR codes leave it out.'}
+        {hasPortrait && ' The file has the portrait; links and QR codes go without, so chat apps keep them clickable.'}
       </p>
       {hasNotes && (
         <label className="check">
           <input type="checkbox" checked={includeNotes} onChange={(e) => setIncludeNotes(e.target.checked)} />
           Include notes
+        </label>
+      )}
+      {hasPortrait && (
+        <label className="check">
+          <input type="checkbox" checked={portraitInLink} onChange={(e) => setPortraitInLink(e.target.checked)} />
+          Portrait in the link (makes it several times longer)
         </label>
       )}
       {!backup && ownSpells && ownSpells.length > 0 && (
