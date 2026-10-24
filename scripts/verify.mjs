@@ -262,15 +262,15 @@ check(
   ),
 );
 // the wheel's steppers: minus and plus drawn alike; on phones the wheel and steppers centred
-// the start dot sits close against the ring, clear of the boxes beside it
-check('wheel start dot against the ring', await page.$eval('.wheel-svg', (svg) => {
+// the start dot sits just outside the boxes, as on the paper sheet
+check('wheel start dot just outside the ring', await page.$eval('.wheel-svg', (svg) => {
   const dot = svg.querySelector('circle.wheel-dot');
   const ring = svg.querySelector('circle.wheel-ring');
   if (!dot || !ring) return false;
   const gap = +ring.getAttribute('cx') - +ring.getAttribute('r') - +dot.getAttribute('cx');
   const d = dot.getBoundingClientRect();
   const clear = [...svg.querySelectorAll('.wheel-box')].every((b) => { const r = b.getBoundingClientRect(); return r.bottom <= d.top || r.top >= d.bottom || r.right <= d.left || r.left >= d.right; });
-  return gap > 0 && gap <= 6 && clear;
+  return gap >= 10 && gap <= 14 && clear;
 }));
 check('wheel steppers drawn alike', await page.$$eval('.wheel .step svg', (s) => s.length === 4 && s.every((x) => x.getBoundingClientRect().width === s[0].getBoundingClientRect().width)));
 {
