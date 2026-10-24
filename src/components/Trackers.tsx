@@ -96,8 +96,9 @@ export function QPWheel({ c, patch }: { c: Character; patch: Patch }) {
     <div className="wheel">
       <svg viewBox={`0 0 ${size} ${size}`} className="wheel-svg" role="img" aria-label={`Quintessence ${c.quintessence}, Paradox ${c.paradox}`}>
         <circle cx={cx} cy={cx} r={R} className="wheel-ring" />
-        {/* where both start, as on the sheet: a small arrow pointing the way Quintessence fills */}
-        <path d={`M${cx - R - 13} ${cx - 5.5} l4.5 8 h-9 z`} className="wheel-dot" />
+        {/* where both start, as on the paper sheet: a dot just outside the ring, in the gap
+            between the first Quintessence and the first Paradox box */}
+        <circle cx={cx - R - 4} cy={cx} r="3" className="wheel-dot" />
         {Array.from({ length: WHEEL_SIZE }, (_, k) => {
           const a = Math.PI + ((k + 0.5) * 2 * Math.PI) / WHEEL_SIZE;
           const x = cx + R * Math.cos(a);
