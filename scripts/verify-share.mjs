@@ -24,6 +24,15 @@ const errors = [];
   const html = await previewPage({ title: 't', description: 'd', url: 'https://x.test/i/a', target: hostileTarget }).text();
   const scriptLine = html.split(String.fromCharCode(10)).find((l) => l.startsWith('<script>')) ?? '';
   check('preview page: the target cannot close its script', /^<script>[^<]*<\/script>$/.test(scriptLine) && !scriptLine.includes(String.fromCharCode(0x2028)), scriptLine.slice(0, 80));
+  // the card pictures are full squares: WhatsApp fills transparent corners with white
+  const sharp = (await import('sharp')).default;
+  for (const f of ['share-512.png', 'apple-touch-icon.png']) {
+    const { data } = await sharp(`public/icons/${f}`).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+    let clear = 0;
+    for (let i = 3; i < data.length; i += 4) if (data[i] < 255) clear++;
+    check(`${f}: no transparent pixels`, clear === 0, `${clear}`);
+  }
+  check('index.html: the preview picture is the opaque square', (await readFile('index.html', 'utf8')).includes('og:image" content="https://agathon.pages.dev/icons/share-512.png"'));
   // the character card (functions/c), run here in Node: name, a line and the magic, the
   // portrait as the picture, and nothing from the link can break out of the tags
   const { onRequestGet } = await import('../functions/c/[data].js');
@@ -38,11 +47,11 @@ const errors = [];
   const pic = await card(enc(person), '?portrait');
   check('character card: ?portrait serves the image', pic.headers.get('content-type') === 'image/webp' && (await pic.arrayBuffer()).byteLength > 1000, pic.headers.get('content-type'));
   const plain = await (await card(enc({ name: 'Bo' }))).text();
-  check('character card: no portrait, the sigil', plain.includes('og:image" content="https://x.test/icons/icon-512.png"') && plain.includes('location.replace("/#import=1.'));
+  check('character card: no portrait, the sigil', plain.includes('og:image" content="https://x.test/icons/share-512.png"') && plain.includes('location.replace("/#import=1.'));
   const broken = await card('1.bm90IGEgcmVhbCBsaW5r');
   check('character card: a damaged link still goes on', broken.status === 200 && (await broken.text()).includes('og:title" content="A character"'));
   const noPic = await card(enc({ name: 'Bo', portrait: 'data:text/html;base64,PGI+' }), '?portrait');
-  check('character card: only image portraits are served', noPic.status === 302 && /icon-512\.png$/.test(noPic.headers.get('location') ?? ''), `${noPic.status}`);
+  check('character card: only image portraits are served', noPic.status === 302 && /share-512\.png$/.test(noPic.headers.get('location') ?? ''), `${noPic.status}`);
   if (!/localhost|127\.0\.0\.1/.test(BASE)) {
     const r = await fetch(`${BASE}/i/x%3C%2Fscript%3E%3Cscript%3Ealert(1)`, { redirect: 'manual' });
     check('odd /i/ link only redirects', r.status === 302 && /#\/spells$/.test(r.headers.get('location') ?? ''), `${r.status} ${r.headers.get('location')}`);
@@ -103,7 +112,7 @@ check('share link', shortUrl.startsWith(`${BASE}/c/1.`), `${shortUrl.length} cha
 if (live) {
   const html = await (await fetch(shortUrl)).text();
   check('character link preview', meta(html, 'og:title') === `Character: ${name}` && /Arete 1, Forces 3/.test(meta(html, 'og:description')), `${meta(html, 'og:title')} / ${meta(html, 'og:description')}`);
-  check('no portrait in the link: the sigil is the picture', meta(html, 'og:image').endsWith('/icons/icon-512.png'), meta(html, 'og:image'));
+  check('no portrait in the link: the sigil is the picture', meta(html, 'og:image').endsWith('/icons/share-512.png'), meta(html, 'og:image'));
 }
 check('link leaves the portrait out by default', !linkData(shortUrl).characters[0].portrait && shortUrl.length < 2500, `${shortUrl.length} chars`);
 const portraitBox = '.modal .check:has-text("Portrait in the link") input';

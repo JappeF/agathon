@@ -88,6 +88,7 @@ Library data: edit `library/src/*.json`, then `node library/scripts/build.mjs` a
 
 **Hosting**
 - Classic Cloudflare Pages project `agathon`. Never run `wrangler deploy` or accept a conversion to Workers (wrangler once rewrote package.json and vite.config for that); `npm run deploy` is right. Don't pass `--force` to `pages project create` again.
+- Link preview pictures (`og:image`, `apple-touch-icon`) are full squares without transparency (`share-512.png`, made by `npm run icons`): WhatsApp fills the sigil's transparent rounded corners with white. It caches a card per URL for a while, so test with a new link.
 - `public/_headers` keeps index.html, sw.js, workbox and the manifest uncached; the update toast falls back to `location.reload()` on a first visit.
 - Right after a deploy the live offline check in `verify.mjs` can fail once (the edge still hands out old files while the new worker precaches); run it again before digging.
 

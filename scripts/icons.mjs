@@ -16,4 +16,12 @@ await sharp({
   .png()
   .toFile('public/icons/icon-512-maskable.png');
 
+// for link previews and the home screen: chat apps and iOS round the corners themselves and
+// fill transparent ones with white, so these are full squares, flattened on the page colour
+const square = Buffer.from(svg.toString().replace(' rx="112"', ''));
+if (square.equals(svg)) throw new Error('sigil.svg: the rounded background rect was not found');
+const flat = (size, file) => sharp(square, { density: 300 }).resize(size, size).flatten({ background: '#120a1d' }).png().toFile(`public/icons/${file}`);
+await flat(512, 'share-512.png');
+await flat(180, 'apple-touch-icon.png');
+
 console.log('Icons generated.');

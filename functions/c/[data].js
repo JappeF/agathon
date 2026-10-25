@@ -26,7 +26,7 @@ export async function onRequestGet({ params, request }) {
   const portrait = typeof c.portrait === 'string' ? PORTRAIT.exec(c.portrait) : null;
 
   if (wantsPortrait) {
-    if (!portrait) return Response.redirect(new URL('/icons/icon-512.png', request.url).toString(), 302);
+    if (!portrait) return Response.redirect(new URL('/icons/share-512.png', request.url).toString(), 302);
     const bytes = Uint8Array.from(atob(portrait[2]), (ch) => ch.charCodeAt(0));
     return new Response(bytes, { headers: { 'Content-Type': portrait[1], 'Cache-Control': 'public, max-age=86400' } });
   }

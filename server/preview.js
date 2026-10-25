@@ -43,7 +43,9 @@ export async function readLink(data, limit) {
 /** `image`: { url, size } for a square picture of the subject; the app's sigil otherwise. */
 export function previewPage({ title, description, url, target, image }) {
   const origin = new URL(url).origin;
-  const img = esc(image?.url ?? `${origin}/icons/icon-512.png`);
+  // a full square without transparency: WhatsApp fills transparent corners with white
+  const img = esc(image?.url ?? `${origin}/icons/share-512.png`);
+  const alt = esc(image ? title : 'The Agathon sigil, a golden ring on violet');
   const side = image?.size ?? 512;
   const t = esc(title);
   const d = esc(description);
@@ -67,6 +69,7 @@ export function previewPage({ title, description, url, target, image }) {
 <meta property="og:image" content="${img}">
 <meta property="og:image:width" content="${side}">
 <meta property="og:image:height" content="${side}">
+<meta property="og:image:alt" content="${alt}">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="${t}">
 <meta name="twitter:description" content="${d}">
