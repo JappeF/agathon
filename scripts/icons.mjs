@@ -23,5 +23,7 @@ if (square.equals(svg)) throw new Error('sigil.svg: the rounded background rect 
 const flat = (size, file) => sharp(square, { density: 300 }).resize(size, size).flatten({ background: '#120a1d' }).png().toFile(`public/icons/${file}`);
 await flat(512, 'share-512.png');
 await flat(180, 'apple-touch-icon.png');
+// Google shows no SVG favicon in its results
+await flat(32, 'favicon-32.png');
 
 console.log('Icons generated.');

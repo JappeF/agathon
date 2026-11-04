@@ -26,7 +26,7 @@ const errors = [];
   check('preview page: the target cannot close its script', /^<script>[^<]*<\/script>$/.test(scriptLine) && !scriptLine.includes(String.fromCharCode(0x2028)), scriptLine.slice(0, 80));
   // the card pictures are full squares: WhatsApp fills transparent corners with white
   const sharp = (await import('sharp')).default;
-  for (const f of ['share-512.png', 'apple-touch-icon.png']) {
+  for (const f of ['share-512.png', 'apple-touch-icon.png', 'favicon-32.png']) {
     const { data } = await sharp(`public/icons/${f}`).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
     let clear = 0;
     for (let i = 3; i < data.length; i += 4) if (data[i] < 255) clear++;
@@ -44,6 +44,10 @@ const errors = [];
   const metaOf = (prop) => (page.match(new RegExp(`property="${prop}" content="([^"]*)"`)) || [])[1] ?? '';
   check('character card: name and line', metaOf('og:title') === 'Character: Ada &quot;&lt;b&gt;&quot;' && metaOf('og:description') === 'Healer, Verbena, Dynamic Essence. Arete 3, Life 3, Prime 2', `${metaOf('og:title')} / ${metaOf('og:description')}`);
   check('character card: the portrait is the picture', metaOf('og:image') === `https://x.test/c/${enc(person)}?portrait` && metaOf('og:image:width') === '128', metaOf('og:image').slice(-20));
+  const dataCopies = page.split(enc(person)).length - 1;
+  check('character card: kept out of search engines, a heading, few copies of the data', page.includes('<meta name="robots" content="noindex">') && !page.includes('rel="canonical"') && page.includes('<h1 style="font-size:1.4rem">Character: Ada &quot;&lt;b&gt;&quot;</h1>') && page.includes('og:locale" content="en_US"') && dataCopies <= 5, `${dataCopies} copies`);
+  const listed = await previewPage({ title: 't', description: 'd', url: 'https://x.test/s/a', target: '/#/library/a', listed: true }).text();
+  check('a library spell card is indexable under its own URL', listed.includes('<link rel="canonical" href="https://x.test/s/a">') && !listed.includes('noindex'));
   const pic = await card(enc(person), '?portrait');
   check('character card: ?portrait serves the image', pic.headers.get('content-type') === 'image/webp' && (await pic.arrayBuffer()).byteLength > 1000, pic.headers.get('content-type'));
   const plain = await (await card(enc({ name: 'Bo' }))).text();

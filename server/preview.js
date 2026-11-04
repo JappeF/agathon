@@ -40,8 +40,12 @@ export async function readLink(data, limit) {
   return JSON.parse(new TextDecoder().decode(await new Blob(chunks).arrayBuffer()));
 }
 
-/** `image`: { url, size } for a square picture of the subject; the app's sigil otherwise. */
-export function previewPage({ title, description, url, target, image }) {
+/**
+ * `image`: { url, size } for a square picture of the subject; the app's sigil otherwise.
+ * `listed`: a public page (a library spell) that search engines may index under this URL;
+ * a link that carries someone's character or spell idea is kept out of them.
+ */
+export function previewPage({ title, description, url, target, image, listed = false }) {
   const origin = new URL(url).origin;
   // a full square without transparency: WhatsApp fills transparent corners with white
   const img = esc(image?.url ?? `${origin}/icons/share-512.png`);
@@ -61,7 +65,12 @@ export function previewPage({ title, description, url, target, image }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${t}</title>
 <meta name="description" content="${d}">
+${listed ? `<link rel="canonical" href="${esc(url)}">` : '<meta name="robots" content="noindex">'}
+<meta name="theme-color" content="#120b1c">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <meta property="og:site_name" content="Agathon">
+<meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${t}">
 <meta property="og:description" content="${d}">
@@ -70,14 +79,14 @@ export function previewPage({ title, description, url, target, image }) {
 <meta property="og:image:width" content="${side}">
 <meta property="og:image:height" content="${side}">
 <meta property="og:image:alt" content="${alt}">
+<!-- a small square card on purpose; X reads title, text and picture from the og tags -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="${t}">
-<meta name="twitter:description" content="${d}">
-<meta name="twitter:image" content="${img}">
 <meta http-equiv="refresh" content="0;url=${esc(target)}">
 <script>location.replace(${js})</script>
 </head>
 <body style="background:#120b1c;color:#ddd3e8;font-family:system-ui,sans-serif;padding:2rem">
+<h1 style="font-size:1.4rem">${t}</h1>
+<p>${d}</p>
 <p><a style="color:#f3d58a" href="${esc(target)}">Open in Agathon</a></p>
 </body>
 </html>`;

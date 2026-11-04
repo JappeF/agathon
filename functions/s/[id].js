@@ -16,5 +16,5 @@ export async function onRequestGet({ params, request, env }) {
   }
   if (!entry) return Response.redirect(new URL('/#/library', request.url).toString(), 302);
   const [name, summary] = entry;
-  return previewPage({ title: name, description: short(summary), url: request.url, target });
+  return previewPage({ title: name, description: short(summary), url: request.url, target, listed: true });
 }
