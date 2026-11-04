@@ -31,10 +31,9 @@ export default defineConfig({
         globPatterns: ['**/*.{js,mjs,css,html,svg,png,woff2,json}'],
         maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
         globIgnores: ['spell-index.json'],
-        // the service worker answers page loads with the app shell; the link-preview pages
-        // (/s/<id>, /i/<data>, /c/<data>) have to come from the server, or an
-        // installed app opens the library instead of the shared spell
-        navigateFallbackDenylist: [/^\/s\//, /^\/i\//, /^\/c\//],
+        // the service worker answers page loads with the app shell, the link-preview paths
+        // (/s/<id>, /i/<data>, /c/<data>) too: the app reads those itself (src/linkPath.ts),
+        // so a shared link opens in an installed app offline and costs no Functions request
       },
       manifest: {
         name: 'Agathon',

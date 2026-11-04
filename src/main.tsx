@@ -8,6 +8,11 @@ import './styles.css';
 import App from './App';
 import { UpdateToast } from './components/UpdateToast';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { adoptLinkPath } from './linkPath';
+
+// a shared link that reached the app itself instead of its preview page (offline, or no
+// Functions left today): read it from the path
+adoptLinkPath();
 
 // text areas grow with their text through field-sizing: content; where a browser lacks it
 // (Safari, Firefox), fit them by hand: as people type, and when one appears with text in

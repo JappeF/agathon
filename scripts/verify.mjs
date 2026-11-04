@@ -4,6 +4,7 @@
 import { chromium } from 'playwright-core';
 import { mkdir } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
+import { deflateRawSync } from 'node:zlib';
 
 const BASE = process.env.BASE ?? 'http://localhost:4173';
 await mkdir('shots', { recursive: true });
@@ -438,18 +439,28 @@ check('loads offline', (await page.textContent('.logo').catch(() => null))?.trim
 check('character still there offline', (await page.$(`.sheet-name:has-text("${name}")`)) !== null);
 await page.evaluate(() => (location.hash = '#/help/experience'));
 check('guide works offline', await page.waitForSelector('#help-experience', { timeout: 5000 }).then(() => true, () => false));
-await page.evaluate(() => (location.hash = '#/characters'));
+// shared links (/c/, /i/, /s/) reach the installed app without their preview page: the
+// service worker answers them with the app, which reads the path (src/linkPath.ts). The
+// same happens online when Pages has no Functions left for the day.
+const linkData = (o) => `1.${deflateRawSync(Buffer.from(JSON.stringify(o))).toString('base64url')}`;
+await page.goto(`${BASE}/c/${linkData({ app: 'agathon', kind: 'characters', version: 1, characters: [{ name: 'Offline Link' }] })}`).catch(() => {});
+await page.waitForSelector('.modal', { timeout: 10000 }).catch(() => {});
+check('character link opens offline', (await page.textContent('.modal-title').catch(() => '')) === 'Add Offline Link?', page.url().slice(0, 60));
+check('the path is gone from the URL', new URL(page.url()).pathname === '/', page.url().slice(0, 60));
+await page.click('.modal button:has-text("Cancel")');
+await page.goto(`${BASE}/i/${linkData({ app: 'agathon', kind: 'spell', version: 1, spell: { title: 'Offline idea' } })}`).catch(() => {});
+await page.waitForSelector('.modal', { timeout: 10000 }).catch(() => {});
+check('spell idea link opens offline', /Offline idea/.test((await page.textContent('.modal').catch(() => '')) ?? ''));
+await page.keyboard.press('Escape');
+await page.goto(`${BASE}/s/forces-3`).catch(() => {});
+await page.waitForSelector('.detail-name', { timeout: 10000 }).catch(() => {});
+check('spell link opens offline', /^Forces 3/.test((await page.textContent('.detail-name').catch(() => '')) ?? ''), page.url());
+await page.goto(`${BASE}/c/x%3Cscript%3E`).catch(() => {});
+await page.waitForTimeout(500);
+check('an odd link path carries nothing in', (await page.$('.modal')) === null && new URL(page.url()).pathname === '/' && new URL(page.url()).hash.startsWith('#/characters'), page.url());
 await ctx.setOffline(false);
-
-// with the service worker in control, a shared spell link still reaches the server's
-// preview page and opens that spell (the worker used to answer it with the app shell)
-if (!/localhost|127\.0\.0\.1/.test(BASE)) {
-  await page.goto(`${BASE}/s/forces-3`);
-  await page.waitForSelector('.detail-name', { timeout: 10000 }).catch(() => {});
-  check('spell link opens the spell in the installed app', /^Forces 3/.test((await page.textContent('.detail-name').catch(() => '')) ?? ''), page.url());
-  await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
-  await page.waitForSelector('.sheet-name');
-}
+await page.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
+await page.waitForSelector('.sheet-name');
 
 // the nav shows the character in play; a second one is one switch away
 check('nav shows the character in play', (await page.textContent('.nav-char-name')) === name);

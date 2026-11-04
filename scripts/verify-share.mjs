@@ -55,6 +55,10 @@ const errors = [];
   if (!/localhost|127\.0\.0\.1/.test(BASE)) {
     const r = await fetch(`${BASE}/i/x%3C%2Fscript%3E%3Cscript%3Ealert(1)`, { redirect: 'manual' });
     check('odd /i/ link only redirects', r.status === 302 && /#\/spells$/.test(r.headers.get('location') ?? ''), `${r.status} ${r.headers.get('location')}`);
+    // with no Functions left for the day Pages passes /c/1.<data> on as a static path: it
+    // must answer with the app (which reads the path), also for a path with a dot in it
+    const spa = await fetch(`${BASE}/zz/1.abc_-x`);
+    check('a path without a function gets the app', spa.status === 200 && /<title>Agathon/.test(await spa.text()), `${spa.status}`);
     const rc = await fetch(`${BASE}/c/x%3C%2Fscript%3E`, { redirect: 'manual' });
     check('odd /c/ link only redirects', rc.status === 302 && /#\/characters$/.test(rc.headers.get('location') ?? ''), `${rc.status} ${rc.headers.get('location')}`);
   }

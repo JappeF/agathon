@@ -110,5 +110,5 @@ An example: Forces is your affinity Sphere at 2. Raising it to 3 costs 2 x 7 = 1
 
 ## Offline and updates {#offline}
 
-- After the first visit the whole app works offline: the sheet, the library, spell ideas and your rulebooks. Only fetching the blank PDF sheet and opening share link previews need a connection.
+- After the first visit the whole app works offline: the sheet, the library, spell ideas and your rulebooks. Shared links open in it offline too. Only fetching the blank PDF sheet needs a connection.
 - When there is a new version, a message offers to reload. Your characters stay where they are.

@@ -124,7 +124,8 @@ table; Agathon is the helper and sounding board.
   default (it is most of a link's length, and chat apps stop making long links
   clickable), with a tick box to add a small copy. In chat apps the link shows a card
   with the character's name, a line about it and its magic (and the portrait, when it
-  rides along). The QR code goes straight into the app, so it works offline too.
+  rides along). The QR code goes straight into the app; in an installed app every shared
+  link opens offline too.
   Imports only ever add: a name that already exists gets a number.
 
 ### App
