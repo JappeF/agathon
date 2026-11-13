@@ -19,7 +19,6 @@ import { SphereGlyph } from './SphereGlyph';
 import { HealthTrack, QPWheel, WillpowerTrack } from './Trackers';
 import { Icon } from './Icon';
 import { setActiveCharacter } from '../activeCharacter';
-import { openCharacterMenu } from './CharacterMenu';
 import { FilePick } from './FilePick';
 import { AFFILIATIONS, ARCHETYPES, BACKGROUNDS, CONCEPTS, ESSENCES, FLAWS, INSTRUMENTS, MERITS, PARADIGMS, PRACTICES, SECONDARY_ABILITIES, SECTS, SPECIALTIES, affiliationOf } from '../sheetLists';
 import { focusPart, instrumentsOf, setFocusPart, toggleInstrument, type FocusPart } from '../focus';
@@ -312,9 +311,6 @@ export function CharacterSheet({ id, tab: tabParam }: { id: string; tab?: string
   return (
     <section className="view sheet">
       <div className="sheet-head">
-        <button type="button" className="btn btn-small switch-btn" aria-haspopup="dialog" aria-expanded="false" onClick={(e) => openCharacterMenu(e.currentTarget)}>
-          Characters <Icon name="down" size={16} />
-        </button>
         <div className="sheet-actions">
           <button
             type="button"

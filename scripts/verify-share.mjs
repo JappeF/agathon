@@ -175,7 +175,7 @@ await b.waitForSelector(`.sheet-name:text-is("${name} (2)")`, { timeout: 8000 })
 check('name clash gets a suffix', (await b.textContent('.sheet-name')) === `${name} (2)`);
 
 // the downloaded file imports through the Import button in the character menu
-await b.click('.switch-btn');
+await b.click('.nav-char .nav-caret');
 await b.setInputFiles('.switch-menu .import-row input[type=file]', filePath);
 await b.waitForSelector('.modal');
 await b.click('.modal button:has-text("Add character")');
@@ -187,7 +187,7 @@ check('portrait through the file', (await b.$('.sheet-hero .pp-face img')) !== n
 // file from a PDF by its content, not its name
 const renamed = 'shots/shared-character.txt';
 await copyFile(filePath, renamed);
-await b.click('.switch-btn');
+await b.click('.nav-char .nav-caret');
 await b.setInputFiles('.switch-menu .import-row input[type=file]', renamed);
 await b.waitForSelector('.modal');
 const renamedPreview = await b.textContent('.modal');
@@ -196,7 +196,7 @@ await b.click('.modal button:has-text("Add character")');
 await b.waitForSelector(`.sheet-name:text-is("${name} (4)")`, { timeout: 8000 }).catch(() => {});
 check('renamed file imports', (await b.textContent('.sheet-name')) === `${name} (4)`);
 // a huge file that is no PDF (a video picked by mistake) is refused before it is read
-await b.click('.switch-btn');
+await b.click('.nav-char .nav-caret');
 const t0 = Date.now();
 await writeFile('shots/huge-video.mp4', Buffer.alloc(65 * 1024 * 1024, 32));
 await b.setInputFiles('.switch-menu .import-row input[type=file]', 'shots/huge-video.mp4');
@@ -290,7 +290,7 @@ await b.click('.modal button:has-text("OK")');
 
 // a spell idea with a log entry on device B, for the last character in the list (so a mix-up
 // with the first one shows)
-await b.click('.switch-btn');
+await b.click('.nav-char .nav-caret');
 await b.click('.switch-menu .switch-row >> nth=-1');
 await b.goto(`${BASE}/#/spells`, { waitUntil: 'networkidle' });
 const ideaOwner = (await b.textContent('.nav-char-name')).trim();
@@ -305,7 +305,7 @@ await b.waitForTimeout(800);
 // back up all on device B (from the character menu): three characters in one file
 await b.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await b.waitForSelector('.sheet-name');
-await b.click('.switch-btn');
+await b.click('.nav-char .nav-caret');
 const menuBtns = await b.$$eval('.switch-menu .char-tools .btn:not(.btn-gold)', (bs) => bs.map((x) => Math.round(x.getBoundingClientRect().height)));
 check('character menu: Import and Back up are 30px pills', menuBtns.length === 2 && menuBtns.every((h) => h === 30), menuBtns.join());
 await b.click('.switch-menu button:has-text("Back up all")');

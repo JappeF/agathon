@@ -153,7 +153,7 @@ await p.screenshot({ path: 'docs/screenshot-mobile-library.png' });
 // the character switcher: the one in play first, the tools underneath
 await p.goto(`${BASE}/#/characters`, { waitUntil: 'networkidle' });
 await p.waitForSelector('.sheet-name');
-await p.click('.switch-btn');
+await p.click('.nav-char .nav-caret');
 await settle(p);
 await p.screenshot({ path: 'docs/screenshot-mobile-characters.png' });
 

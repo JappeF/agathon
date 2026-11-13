@@ -290,7 +290,7 @@ check('own spell back as their own', (await page.locator('.own-spell:has-text("W
 // new data over, and the next tap must not write the old copy back
 await page.fill('.xp input', '99');
 await page.waitForTimeout(400);
-await page.click('.switch-btn');
+await page.click('.nav-char .nav-caret');
 await page.setInputFiles('.switch-menu input[type=file]', SHEET);
 await page.waitForSelector('.change-list');
 await page.click('.modal button:has-text("Update")');
@@ -341,7 +341,7 @@ const exportFrom = async () => {
   await page.click('button:has-text("Export PDF sheet")');
 };
 for (const n of ['Blank Test A', 'Blank Test B']) {
-  await page.click('.switch-btn');
+  await page.click('.nav-char .nav-caret');
   await page.fill('.switch-menu .add-row .text-input', n);
   await page.click('.switch-menu button:has-text("Add")');
   await page.waitForSelector(`.sheet-name:text-is("${n}")`);
@@ -438,7 +438,7 @@ if (existsSync(BLANK2)) {
   check('v2 sheet: health marks drawn as 1, 2 and 3 lines', strokes('health1') === 1 && strokes('health2') === 2 && strokes('health3') === 3 && strokes('health4') === 0, [1, 2, 3, 4].map((i) => strokes(`health${i}`)).join());
   await p2.click('.modal button:has-text("OK")');
   // and back: the exported sheet matches the character
-  await p2.click('.switch-btn');
+  await p2.click('.nav-char .nav-caret');
   await p2.setInputFiles('.switch-menu input[type=file]', out2);
   await p2.waitForSelector('.modal-title:has-text("Update Version Two")');
   const same = await p2.textContent('.modal');
